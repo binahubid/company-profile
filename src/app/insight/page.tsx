@@ -128,7 +128,7 @@ export default function InsightPage() {
   const progressPercent = step >= 0 ? Math.min(100, (step / TOTAL_STEPS) * 100) : 0;
 
   return (
-    <div className="min-h-screen bg-[#F8F9FB] text-[#0F172A] font-sans flex flex-col selection:bg-[#0A1A3A] selection:text-white relative overflow-x-hidden">
+    <div className="min-h-screen bg-[#F5F7FA] text-[#4A4C54] font-sans flex flex-col selection:bg-[#0B2C6B] selection:text-white relative overflow-x-hidden">
 
       {/* Confirmation Modal */}
       <AnimatePresence>
@@ -139,7 +139,7 @@ export default function InsightPage() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setShowExitConfirm(false)}
-              className="absolute inset-0 bg-[#0A1A3A]/60 backdrop-blur-md"
+              className="absolute inset-0 bg-[#0B2C6B]/60 backdrop-blur-md"
             />
             <motion.div
               initial={{ opacity: 0, scale: 0.95, y: 20 }}
@@ -147,8 +147,8 @@ export default function InsightPage() {
               exit={{ opacity: 0, scale: 0.95, y: 20 }}
               className="relative w-full max-w-md bg-white rounded-[40px] p-10 shadow-[0_32px_64px_-16px_rgba(0,0,0,0.2)] border border-white/20 text-center overflow-hidden"
             >
-              <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-red-500 via-[#D4AF37] to-red-500" />
-              <div className="absolute -top-24 -right-24 w-48 h-48 bg-[#D4AF37]/10 blur-3xl rounded-full" />
+              <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-red-500 via-[#D9A441] to-red-500" />
+              <div className="absolute -top-24 -right-24 w-48 h-48 bg-[#D9A441]/10 blur-3xl rounded-full" />
               <div className="absolute -bottom-24 -left-24 w-48 h-48 bg-red-500/5 blur-3xl rounded-full" />
               <button onClick={() => setShowExitConfirm(false)} className="absolute top-6 right-6 p-2 rounded-full hover:bg-black/5 transition-colors text-black/20 hover:text-black">
                 <X size={20} />
@@ -157,15 +157,15 @@ export default function InsightPage() {
                 <div className="w-20 h-20 rounded-[28px] bg-red-50 text-red-500 flex items-center justify-center mx-auto mb-8 rotate-3 shadow-xl shadow-red-500/10 border border-red-100">
                   <AlertTriangle size={36} strokeWidth={2} />
                 </div>
-                <h3 className="text-2xl font-bold text-[#0A1A3A] mb-3 tracking-tight">Batalkan Asesmen?</h3>
+                <h3 className="text-2xl font-bold text-[#0B2C6B] mb-3 tracking-tight">Batalkan Asesmen?</h3>
                 <p className="text-black/40 text-base mb-10 leading-relaxed font-light">
                   Anda akan kehilangan semua data yang telah diisi. <br /> Apakah Anda yakin ingin menghentikan proses ini?
                 </p>
                 <div className="grid grid-cols-1 gap-3">
-                  <button onClick={confirmBack} className="group relative w-full h-16 bg-[#0A1A3A] text-white rounded-2xl text-[11px] font-bold tracking-[0.2em] uppercase overflow-hidden transition-all hover:bg-black shadow-xl">
+                  <button onClick={confirmBack} className="group relative w-full h-16 bg-[#0B2C6B] text-white rounded-2xl text-[11px] font-bold tracking-[0.2em] uppercase overflow-hidden transition-all hover:bg-black shadow-xl">
                     <span className="relative z-10">YA, KEMBALI & BATALKAN</span>
                   </button>
-                  <button onClick={() => setShowExitConfirm(false)} className="w-full h-16 bg-white text-[#0A1A3A] border border-black/5 rounded-2xl text-[11px] font-bold tracking-[0.2em] uppercase hover:bg-black/5 transition-all">
+                  <button onClick={() => setShowExitConfirm(false)} className="w-full h-16 bg-white text-[#0B2C6B] border border-black/5 rounded-2xl text-[11px] font-bold tracking-[0.2em] uppercase hover:bg-black/5 transition-all">
                     <span className="relative z-10">TIDAK, LANJUTKAN ASESMEN</span>
                   </button>
                 </div>
@@ -219,7 +219,7 @@ export default function InsightPage() {
       {/* Progress bar */}
       {step >= 0 && step < 10 && (
         <div className="fixed top-16 left-0 h-1 bg-black/5 w-full z-50">
-          <div className="h-full bg-[#D4AF37] transition-all duration-700 ease-out" style={{ width: `${progressPercent}%` }} />
+          <div className="h-full bg-[#D9A441] transition-all duration-700 ease-out" style={{ width: `${progressPercent}%` }} />
         </div>
       )}
 
@@ -256,7 +256,7 @@ export default function InsightPage() {
           <button
             onClick={nextStep}
             disabled={!isQuestionPageValid()}
-            className="h-12 px-8 rounded-xl bg-[#0A1A3A] text-white flex items-center gap-2 font-medium text-xs tracking-widest uppercase transition-all disabled:opacity-40 disabled:cursor-not-allowed hover:bg-black shadow-md shadow-black/20"
+            className="h-12 px-8 rounded-xl bg-[#0B2C6B] text-white flex items-center gap-2 font-medium text-xs tracking-widest uppercase transition-all disabled:opacity-40 disabled:cursor-not-allowed hover:bg-black shadow-md shadow-black/20"
           >
             <span>
               {step === 8 ? "LANJUT KE PENUTUP" : "HALAMAN BERIKUTNYA"}
@@ -294,7 +294,7 @@ function LoadingOverlay() {
       exit={{ opacity: 0 }}
       className="fixed inset-0 z-[100] bg-white flex flex-col items-center justify-center p-6 text-center"
     >
-      <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#0A1A3A] via-[#D4AF37] to-[#0A1A3A] animate-pulse" />
+      <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#0B2C6B] via-[#D9A441] to-[#0B2C6B] animate-pulse" />
       
       <div className="mb-12">
         <PixelLoader />
@@ -305,7 +305,7 @@ function LoadingOverlay() {
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         exit={{ opacity: 0, y: -10 }}
-        className="text-xl md:text-2xl font-bold text-[#0A1A3A] mb-4 max-w-lg"
+        className="text-xl md:text-2xl font-bold text-[#0B2C6B] mb-4 max-w-lg"
       >
         {messages[msgIdx]}
       </motion.h2>
@@ -327,9 +327,9 @@ function PixelLoader() {
   return (
     <div className="relative w-[320px] h-[160px] flex items-center justify-center">
       {/* Soft Background Glow - Darker for visibility */}
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#0A1A3A]/[0.12] to-transparent rounded-[100px] blur-3xl" />
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#0B2C6B]/[0.12] to-transparent rounded-[100px] blur-3xl" />
       
-      <div className="relative w-full h-[120px] overflow-hidden flex items-end pb-2 border-b-2 border-[#0A1A3A]/10">
+      <div className="relative w-full h-[120px] overflow-hidden flex items-end pb-2 border-b-2 border-[#0B2C6B]/10">
         {/* Infinite scrolling pillars (8 Ecosystem Icons) */}
         <motion.div 
           animate={{ x: [0, -600] }}
@@ -339,7 +339,7 @@ function PixelLoader() {
           {[...pillars, ...pillars].map((type, i) => (
             <div key={i} className="flex flex-col items-center justify-end shrink-0 opacity-100">
               <PixelIcon type={type as any} size={32} />
-              <div className="w-[1px] h-4 bg-[#0A1A3A]/20 mt-1" />
+              <div className="w-[1px] h-4 bg-[#0B2C6B]/20 mt-1" />
             </div>
           ))}
         </motion.div>
@@ -358,7 +358,7 @@ function PixelLoader() {
           {[...Array(3)].map((_, i) => (
             <motion.div
               key={i}
-              className="absolute h-[1px] bg-[#D4AF37]/40"
+              className="absolute h-[1px] bg-[#D9A441]/40"
               initial={{ x: 320, y: 30 + i * 30, width: 30 + Math.random() * 50 }}
               animate={{ x: -100 }}
               transition={{ 

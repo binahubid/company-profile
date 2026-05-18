@@ -74,7 +74,7 @@ export function HeroSection({ heroReady }: HeroSectionProps) {
             }}
           >
             AI Powered <br />
-            <span className="italic" style={{ color: "#D4AF37" }}>
+            <span className="italic" style={{ color: "#D9A441" }}>
               Human Synergy
             </span>
           </h1>
@@ -105,7 +105,7 @@ export function HeroSection({ heroReady }: HeroSectionProps) {
           >
             <Link
               href="/insight"
-              className="px-7 py-3.5 bg-white text-[#0A1A3A] text-sm rounded-xl hover:bg-white/90 transition-all tracking-widest font-semibold flex items-center gap-2 group"
+              className="px-7 py-3.5 bg-white text-[#0B2C6B] text-sm rounded-xl hover:bg-white/90 transition-all tracking-widest font-semibold flex items-center gap-2 group"
             >
               MULAI TRANSFORMASI{" "}
               <ArrowRight

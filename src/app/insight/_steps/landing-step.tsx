@@ -33,7 +33,7 @@ export function LandingStep({ onStart }: LandingStepProps) {
 
           <div className="relative z-10 text-center px-6 max-w-4xl">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/20 text-[11px] uppercase tracking-widest font-medium mb-8 text-white/80 bg-white/10 backdrop-blur-md">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#D4AF37] animate-pulse" />
+              <span className="w-1.5 h-1.5 rounded-full bg-[#D9A441] animate-pulse" />
               BinaInsight Diagnostic
             </div>
             <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-light tracking-tight leading-[1.1] mb-6 text-white">
@@ -46,7 +46,7 @@ export function LandingStep({ onStart }: LandingStepProps) {
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-10">
               <button
                 onClick={onStart}
-                className="w-full sm:w-auto group relative inline-flex items-center justify-center h-14 md:h-16 px-10 md:px-12 bg-white text-black rounded-full text-[13px] font-bold tracking-widest hover:bg-[#F8F9FB] transition-all overflow-hidden uppercase shadow-xl"
+                className="w-full sm:w-auto group relative inline-flex items-center justify-center h-14 md:h-16 px-10 md:px-12 bg-white text-black rounded-full text-[13px] font-bold tracking-widest hover:bg-[#F5F7FA] transition-all overflow-hidden uppercase shadow-xl"
               >
                 <span className="relative z-10 flex items-center gap-3">
                   MULAI DIAGNOSTIK
@@ -75,7 +75,7 @@ export function LandingStep({ onStart }: LandingStepProps) {
       <section id="about-insight" className="py-12 md:py-24 px-6 bg-white">
         <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-16 items-center">
           <div>
-            <div className="text-[10px] font-bold tracking-[0.3em] text-[#D4AF37] uppercase mb-4">
+            <div className="text-[10px] font-bold tracking-[0.3em] text-[#D9A441] uppercase mb-4">
               Value Proposition
             </div>
             <h2 className="text-3xl md:text-5xl font-light leading-tight mb-8">
@@ -93,8 +93,8 @@ export function LandingStep({ onStart }: LandingStepProps) {
                 { title: "Rekomendasi Strategis", desc: "Insight yang dapat langsung dieksekusi oleh tim manajemen." },
               ].map((item, i) => (
                 <div key={i} className="flex gap-5 group">
-                  <div className="w-12 h-12 rounded-2xl bg-[#F8F9FB] flex items-center justify-center shrink-0 border border-black/[0.03] group-hover:bg-[#0A1A3A] group-hover:text-white transition-all duration-300">
-                    <Check size={20} className={i === 0 ? "text-[#D4AF37]" : ""} />
+                  <div className="w-12 h-12 rounded-2xl bg-[#F5F7FA] flex items-center justify-center shrink-0 border border-black/[0.03] group-hover:bg-[#0B2C6B] group-hover:text-white transition-all duration-300">
+                    <Check size={20} className={i === 0 ? "text-[#D9A441]" : ""} />
                   </div>
                   <div>
                     <h4 className="font-bold text-sm tracking-wide text-black uppercase mb-1">
@@ -107,7 +107,7 @@ export function LandingStep({ onStart }: LandingStepProps) {
             </div>
           </div>
           <div className="relative">
-            <div className="aspect-[4/5] bg-[#F8F9FB] rounded-[32px] md:rounded-[48px] flex items-center justify-center p-6 md:p-12 overflow-hidden border border-black/[0.05] relative group">
+            <div className="aspect-[4/5] bg-[#F5F7FA] rounded-[32px] md:rounded-[48px] flex items-center justify-center p-6 md:p-12 overflow-hidden border border-black/[0.05] relative group">
               <img
                 src="/asset/Play.png"
                 alt="Team Analysis"
@@ -122,14 +122,14 @@ export function LandingStep({ onStart }: LandingStepProps) {
                 <div className="space-y-4">
                   <div className="h-4 bg-black/5 rounded-full w-full" />
                   <div className="h-4 bg-black/5 rounded-full w-3/4" />
-                  <div className="h-4 bg-[#D4AF37]/20 rounded-full w-full" />
+                  <div className="h-4 bg-[#D9A441]/20 rounded-full w-full" />
                   <div className="h-4 bg-black/5 rounded-full w-1/2" />
                 </div>
                 <div className="mt-8 flex justify-between items-end">
-                  <div className="h-20 w-8 bg-[#D4AF37] rounded-t-lg" />
+                  <div className="h-20 w-8 bg-[#D9A441] rounded-t-lg" />
                   <div className="h-12 w-8 bg-black/5 rounded-t-lg" />
                   <div className="h-28 w-8 bg-black/10 rounded-t-lg" />
-                  <div className="h-16 w-8 bg-[#0A1A3A] rounded-t-lg" />
+                  <div className="h-16 w-8 bg-[#0B2C6B] rounded-t-lg" />
                 </div>
               </div>
             </div>
@@ -138,11 +138,11 @@ export function LandingStep({ onStart }: LandingStepProps) {
       </section>
 
       {/* 7 Dimensions Bento Grid */}
-      <section className="py-16 md:py-32 px-6 md:px-12 lg:px-20 bg-[#F8F9FB]">
+      <section className="py-16 md:py-32 px-6 md:px-12 lg:px-20 bg-[#F5F7FA]">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16 md:mb-24">
             <Tag>7 DIMENSIONS</Tag>
-            <h2 className="text-3xl md:text-5xl lg:text-6xl font-light tracking-tight mt-6 md:mt-10 text-[#0A1A3A]">Spektrum Pengukuran.</h2>
+            <h2 className="text-3xl md:text-5xl lg:text-6xl font-light tracking-tight mt-6 md:mt-10 text-[#0B2C6B]">Spektrum Pengukuran.</h2>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -159,12 +159,12 @@ export function LandingStep({ onStart }: LandingStepProps) {
                   <div className="mb-10 group-hover:scale-110 transition-transform duration-500">
                     <PixelIcon type={dim.toLowerCase() as any} size={48} />
                   </div>
-                  <h4 className="text-2xl font-light mb-3 text-[#0A1A3A] group-hover:text-[#D4AF37] transition-colors">{dim}</h4>
+                  <h4 className="text-2xl font-light mb-3 text-[#0B2C6B] group-hover:text-[#D9A441] transition-colors">{dim}</h4>
                   <p className="text-sm text-black/40 font-light leading-relaxed">
                     Menganalisis efektivitas {dim.toLowerCase()} dalam mendukung akselerasi target organisasi.
                   </p>
                 </div>
-                <div className="absolute -bottom-10 -right-10 w-32 h-32 bg-black/[0.01] rounded-full group-hover:bg-[#D4AF37]/5 transition-all duration-700" />
+                <div className="absolute -bottom-10 -right-10 w-32 h-32 bg-black/[0.01] rounded-full group-hover:bg-[#D9A441]/5 transition-all duration-700" />
               </motion.div>
             ))}
 
@@ -173,15 +173,15 @@ export function LandingStep({ onStart }: LandingStepProps) {
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
-              className="bg-[#0A1A3A] p-6 md:p-10 rounded-[32px] md:rounded-[40px] flex flex-col justify-between text-white relative overflow-hidden group shadow-2xl shadow-[#0A1A3A]/20"
+              className="bg-[#0B2C6B] p-6 md:p-10 rounded-[32px] md:rounded-[40px] flex flex-col justify-between text-white relative overflow-hidden group shadow-2xl shadow-[#0B2C6B]/20"
             >
-              <div className="absolute top-0 right-0 w-32 h-32 bg-[#D4AF37]/20 blur-3xl rounded-full translate-x-10 -translate-y-10" />
+              <div className="absolute top-0 right-0 w-32 h-32 bg-[#D9A441]/20 blur-3xl rounded-full translate-x-10 -translate-y-10" />
               <h4 className="text-2xl font-light leading-tight relative z-10">
-                Temukan Blind Spot <br /><span className="text-[#D4AF37] font-bold italic">Kepemimpinan Anda.</span>
+                Temukan Blind Spot <br /><span className="text-[#D9A441] font-bold italic">Kepemimpinan Anda.</span>
               </h4>
               <button
                 onClick={onStart}
-                className="mt-12 h-14 w-full bg-white text-black rounded-2xl text-[11px] font-bold tracking-widest uppercase relative z-10 hover:bg-[#D4AF37] hover:text-white transition-colors shadow-lg"
+                className="mt-12 h-14 w-full bg-white text-black rounded-2xl text-[11px] font-bold tracking-widest uppercase relative z-10 hover:bg-[#D9A441] hover:text-white transition-colors shadow-lg"
               >
                 <span>MULAI SEKARANG</span>
               </button>
@@ -192,18 +192,18 @@ export function LandingStep({ onStart }: LandingStepProps) {
 
       {/* Slim & Premium CTA Section */}
       <section className="w-full px-4 md:px-8 mb-16">
-        <div className="relative w-full py-8 md:py-0 md:h-40 rounded-[32px] md:rounded-[40px] bg-[#0A1A3A] overflow-hidden flex flex-col md:flex-row items-center justify-between gap-6 px-6 md:px-16 border border-white/5 shadow-2xl shadow-[#0A1A3A]/10">
+        <div className="relative w-full py-8 md:py-0 md:h-40 rounded-[32px] md:rounded-[40px] bg-[#0B2C6B] overflow-hidden flex flex-col md:flex-row items-center justify-between gap-6 px-6 md:px-16 border border-white/5 shadow-2xl shadow-[#0B2C6B]/10">
           {/* Background Ornaments */}
           <div className="absolute inset-0 opacity-10 pointer-events-none">
             <div className="absolute top-0 left-0 w-full h-full" style={{ backgroundImage: 'radial-gradient(circle, white 1px, transparent 1px)', backgroundSize: '30px 30px' }} />
           </div>
-          <div className="absolute top-1/2 left-0 w-32 h-[1px] bg-gradient-to-r from-transparent to-[#D4AF37]/50" />
-          <div className="absolute top-1/2 right-0 w-32 h-[1px] bg-gradient-to-l from-transparent to-[#D4AF37]/50" />
+          <div className="absolute top-1/2 left-0 w-32 h-[1px] bg-gradient-to-r from-transparent to-[#D9A441]/50" />
+          <div className="absolute top-1/2 right-0 w-32 h-[1px] bg-gradient-to-l from-transparent to-[#D9A441]/50" />
 
           <div className="relative z-10 flex flex-col md:flex-row md:items-center gap-4 md:gap-12">
             <h3 className="text-xl md:text-3xl font-light text-white tracking-tight">
               Siap Bertransformasi <br className="md:hidden" />
-              <span className="text-[#D4AF37] font-bold italic">Berbasis Data?</span>
+              <span className="text-[#D9A441] font-bold italic">Berbasis Data?</span>
             </h3>
           </div>
 
@@ -214,7 +214,7 @@ export function LandingStep({ onStart }: LandingStepProps) {
             </div>
             <button
               onClick={onStart}
-              className="group flex items-center gap-4 px-8 h-14 bg-white text-black rounded-full text-xs font-bold tracking-widest hover:bg-[#D4AF37] hover:text-white transition-all shadow-xl"
+              className="group flex items-center gap-4 px-8 h-14 bg-white text-black rounded-full text-xs font-bold tracking-widest hover:bg-[#D9A441] hover:text-white transition-all shadow-xl"
             >
               <span className="relative z-10 flex items-center gap-4">
                 MULAI DIAGNOSTIK

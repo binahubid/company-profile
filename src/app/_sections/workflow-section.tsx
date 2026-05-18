@@ -100,7 +100,7 @@ export function WorkflowSection({ onMouseMove }: WorkflowSectionProps) {
                   <h3 className="text-2xl font-light mb-2">{step.title}</h3>
                   <p className="text-sm text-black/45 leading-relaxed">{step.desc}</p>
                   <div className="mt-4 overflow-hidden h-0 group-hover/card:h-6 transition-all duration-500 opacity-0 group-hover/card:opacity-100">
-                    <span className="text-[10px] font-medium tracking-widest text-[#D4AF37] uppercase flex items-center gap-2">
+                    <span className="text-[10px] font-medium tracking-widest text-[#D9A441] uppercase flex items-center gap-2">
                       Klik untuk detail <span className="text-lg">→</span>
                     </span>
                   </div>
@@ -131,7 +131,7 @@ export function WorkflowSection({ onMouseMove }: WorkflowSectionProps) {
                 initial={{ opacity: 0, scale: 0.9, y: 20 }}
                 animate={{ opacity: 1, scale: 1, y: 0 }}
                 exit={{ opacity: 0, scale: 0.9, y: 20 }}
-                className="bg-[#F8F9FB] border border-black/[0.08] rounded-3xl overflow-hidden max-w-4xl w-full shadow-2xl pointer-events-auto flex flex-col md:flex-row shadow-black/5 max-h-[90vh] overflow-y-auto custom-scrollbar md:overflow-visible"
+                className="bg-[#F5F7FA] border border-black/[0.08] rounded-3xl overflow-hidden max-w-4xl w-full shadow-2xl pointer-events-auto flex flex-col md:flex-row shadow-black/5 max-h-[90vh] overflow-y-auto custom-scrollbar md:overflow-visible"
               >
                 {/* Close Button */}
                 <button 
@@ -152,13 +152,13 @@ export function WorkflowSection({ onMouseMove }: WorkflowSectionProps) {
 
                 {/* Right Side: Text */}
                 <div className="w-full md:w-1/2 p-6 md:p-14 flex flex-col justify-center">
-                  <span className="text-[11px] text-[#D4AF37] tracking-widest font-mono mb-4 block">
+                  <span className="text-[11px] text-[#D9A441] tracking-widest font-mono mb-4 block">
                     STEP {selectedStep.n}
                   </span>
                   <h3 className="text-4xl md:text-5xl font-light mb-6 tracking-tight">
                     {selectedStep.title}
                   </h3>
-                  <div className="w-12 h-[2px] bg-[#D4AF37] mb-8" />
+                  <div className="w-12 h-[2px] bg-[#D9A441] mb-8" />
                   <p className="text-lg text-black/60 leading-relaxed font-light">
                     {selectedStep.detail}
                   </p>

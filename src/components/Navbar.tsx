@@ -52,10 +52,10 @@ export default function Navbar() {
               <Link
                 key={link.label}
                 href={link.href}
-                className="relative text-[11px] font-bold text-[#0A1A3A]/60 hover:text-[#0A1A3A] transition-colors tracking-widest uppercase group"
+                className="relative text-[11px] font-bold text-[#0B2C6B]/60 hover:text-[#0B2C6B] transition-colors tracking-widest uppercase group"
               >
                 {link.label}
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#D4AF37] transition-all duration-300 group-hover:w-full" />
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#D9A441] transition-all duration-300 group-hover:w-full" />
               </Link>
             ))}
           </div>
@@ -64,7 +64,7 @@ export default function Navbar() {
           <div className="flex items-center gap-4">
             <Link
               href="/insight"
-              className="hidden md:flex items-center gap-2 px-6 py-2.5 bg-[#0A1A3A] text-[#D4AF37] rounded-full text-[10px] font-bold tracking-widest uppercase hover:bg-[#0F172A] hover:scale-105 transition-all shadow-lg shadow-black/10 active:scale-95"
+              className="hidden md:flex items-center gap-2 px-6 py-2.5 bg-[#0B2C6B] text-[#D9A441] rounded-full text-[10px] font-bold tracking-widest uppercase hover:bg-[#4A4C54] hover:scale-105 transition-all shadow-lg shadow-black/10 active:scale-95"
             >
               Assessment Gratis
               <ChevronRight size={14} />
@@ -73,7 +73,7 @@ export default function Navbar() {
             {/* Mobile Toggle */}
             <button
               onClick={() => setOpen(!open)}
-              className="md:hidden w-10 h-10 rounded-full bg-[#0A1A3A]/5 flex items-center justify-center text-[#0A1A3A] hover:bg-[#0A1A3A]/10 transition-colors"
+              className="md:hidden w-10 h-10 rounded-full bg-[#0B2C6B]/5 flex items-center justify-center text-[#0B2C6B] hover:bg-[#0B2C6B]/10 transition-colors"
             >
               {open ? <X size={20} /> : <Menu size={20} />}
             </button>
@@ -95,17 +95,17 @@ export default function Navbar() {
                     key={link.label}
                     href={link.href}
                     onClick={() => setOpen(false)}
-                    className="flex items-center justify-between px-6 py-4 rounded-2xl hover:bg-[#0A1A3A]/5 text-[#0A1A3A] font-bold text-[12px] tracking-widest uppercase transition-all"
+                    className="flex items-center justify-between px-6 py-4 rounded-2xl hover:bg-[#0B2C6B]/5 text-[#0B2C6B] font-bold text-[12px] tracking-widest uppercase transition-all"
                   >
                     {link.label}
-                    <ChevronRight size={16} className="text-[#D4AF37]" />
+                    <ChevronRight size={16} className="text-[#D9A441]" />
                   </Link>
                 ))}
                 <div className="h-px bg-black/[0.05] my-2 mx-4" />
                 <Link
                   href="/insight"
                   onClick={() => setOpen(false)}
-                  className="flex items-center justify-center gap-3 w-full py-5 bg-[#0A1A3A] text-[#D4AF37] rounded-2xl font-bold text-[12px] tracking-widest uppercase shadow-xl"
+                  className="flex items-center justify-center gap-3 w-full py-5 bg-[#0B2C6B] text-[#D9A441] rounded-2xl font-bold text-[12px] tracking-widest uppercase shadow-xl"
                 >
                   MULAI BINAINSIGHT
                   <ChevronRight size={18} />

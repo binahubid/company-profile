@@ -62,7 +62,7 @@ export function MethodologySection({ onMouseMove }: MethodologySectionProps) {
 
             <div className="rounded-xl border border-white/50 p-6" style={glassStyle}>
               <div className="flex items-center gap-2 mb-2">
-                <div className="w-2 h-2 rounded-full bg-[#D4AF37] animate-pulse" />
+                <div className="w-2 h-2 rounded-full bg-[#D9A441] animate-pulse" />
                 <span className="text-xs text-black/40 tracking-widest uppercase">TERUKUR</span>
               </div>
               <p className="text-sm text-black/50 leading-relaxed">

@@ -29,7 +29,7 @@ export function CoreValuesSection() {
   const value = CORE_VALUES[active];
 
   return (
-    <section id="values" className="py-16 md:py-24 px-6 md:px-12 lg:px-20 border-t border-black/[0.06] bg-[#F8F9FB]">
+    <section id="values" className="py-16 md:py-24 px-6 md:px-12 lg:px-20 border-t border-black/[0.06] bg-[#F5F7FA]">
       <div className="max-w-6xl mx-auto">
         <div className="mb-16">
           <PixelIcon type="core" size={40} />
@@ -62,7 +62,7 @@ export function CoreValuesSection() {
                   <div
                     className="flex items-center justify-center w-8 h-8 rounded-lg text-xs font-light shrink-0 transition-colors duration-200"
                     style={{
-                      background: active === i ? "#0A1A3A" : "rgba(0,0,0,0.04)",
+                      background: active === i ? "#0B2C6B" : "rgba(0,0,0,0.04)",
                       color: active === i ? "#fff" : "rgba(0,0,0,0.35)",
                     }}
                   >
@@ -100,11 +100,11 @@ export function CoreValuesSection() {
               className="relative z-10 max-w-lg transition-all duration-300 ease-out flex flex-col items-center"
               style={{ opacity: visible ? 1 : 0, transform: visible ? "translateY(0)" : "translateY(12px)" }}
             >
-              <div className="w-16 h-16 rounded-full bg-[#0A1A3A] text-white flex items-center justify-center mb-8 shadow-xl shadow-black/10">
+              <div className="w-16 h-16 rounded-full bg-[#0B2C6B] text-white flex items-center justify-center mb-8 shadow-xl shadow-black/10">
                 {value.icon}
               </div>
-              <h3 className="text-3xl font-light mb-6 text-[#0F172A]">{value.title}</h3>
-              <p className="text-[#0F172A]/60 leading-relaxed text-lg">
+              <h3 className="text-3xl font-light mb-6 text-[#4A4C54]">{value.title}</h3>
+              <p className="text-[#4A4C54]/60 leading-relaxed text-lg">
                 {value.fullText.split("(")[0].trim()}
               </p>
             </div>

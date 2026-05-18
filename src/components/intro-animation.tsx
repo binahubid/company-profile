@@ -47,7 +47,7 @@ export function IntroAnimation({ onDone }: { onDone: () => void }) {
         style={{
           bottom: curtainUp ? "100%" : "0%",
           transition: curtainUp ? "bottom 1.3s cubic-bezier(0.76, 0, 0.24, 1)" : "none",
-          background: "#F8F9FB",
+          background: "#F5F7FA",
         }}
       />
 

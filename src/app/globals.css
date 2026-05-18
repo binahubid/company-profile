@@ -10,16 +10,16 @@
   --card-foreground: oklch(0.208 0.042 265.755);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.208 0.042 265.755);
-  --primary: #0A1A3A;
+  --primary: #0B2C6B;
   /* BinaHub Navy */
   --primary-foreground: oklch(0.985 0 0);
-  --secondary: #F8F9FB;
-  /* Cool Off-White */
+  --secondary: #F5F7FA;
+  /* Cool Off-White / Abu Muda */
   --secondary-foreground: oklch(0.208 0.042 265.755);
-  --muted: #F8F9FB;
+  --muted: #F5F7FA;
   --muted-foreground: oklch(0.474 0.062 265.755);
   /* Slate 500 */
-  --accent: #D4AF37;
+  --accent: #D9A441;
   /* BinaHub Gold */
   --accent-foreground: oklch(0.208 0.042 265.755);
   --destructive: oklch(0.577 0.245 27.325);
@@ -31,7 +31,8 @@
 }
 
 @theme inline {
-  --font-sans: 'Inter', 'IBM Plex Sans', sans-serif;
+  --font-sans: var(--font-poppins), 'Segoe UI', sans-serif;
+  --font-secondary: var(--font-inter), 'Helvetica Neue', Arial, sans-serif;
   --font-mono: 'Geist Mono', monospace;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -53,8 +54,8 @@
 
   html, body {
     background-color: #FFFFFF;
-    color: #0F172A;
-    font-family: 'IBM Plex Sans', sans-serif;
+    color: #4A4C54;
+    font-family: var(--font-poppins), 'Segoe UI', sans-serif;
     -webkit-font-smoothing: antialiased;
     /* Hide scrollbar for IE, Edge and Firefox */
     -ms-overflow-style: none;

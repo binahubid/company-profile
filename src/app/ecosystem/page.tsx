@@ -13,7 +13,7 @@ export default function EcosystemPage() {
   const products = Object.values(ECOSYSTEM_DATA)
 
   return (
-    <div className="min-h-screen bg-[#F8F9FB] text-[#0F172A] font-sans overflow-x-hidden">
+    <div className="min-h-screen bg-[#F5F7FA] text-[#4A4C54] font-sans overflow-x-hidden">
 
       {/* Immersive Hero Section - Reconstructed for High Visibility */}
       <section className="w-full px-4 md:px-8 pt-20 md:pt-26 mb-8 md:mb-16">
@@ -33,7 +33,7 @@ export default function EcosystemPage() {
           {/* 2. Agitated Intersections (Visible Ornaments) */}
           <div className="absolute inset-0 z-[2] pointer-events-none opacity-40">
             <div className="w-full h-full" style={{ 
-              backgroundImage: `radial-gradient(circle, #D4AF37 1.5px, transparent 1.5px)`,
+              backgroundImage: `radial-gradient(circle, #D9A441 1.5px, transparent 1.5px)`,
               backgroundSize: '100px 100px',
               backgroundPosition: '-0.75px -0.75px'
             }} />
@@ -91,7 +91,7 @@ export default function EcosystemPage() {
             {[...Array(15)].map((_, i) => (
               <motion.div
                 key={i}
-                className="absolute w-1.5 h-1.5 bg-[#D4AF37]/40 rounded-sm"
+                className="absolute w-1.5 h-1.5 bg-[#D9A441]/40 rounded-sm"
                 initial={{ 
                   x: Math.random() * 100 + "%", 
                   y: Math.random() * 100 + "%",
@@ -118,7 +118,7 @@ export default function EcosystemPage() {
           </div>
 
           {/* 5. The Curved Horizon Arc - Lowered to sit right above the text */}
-          <div className="absolute -bottom-[58%] left-1/2 -translate-x-1/2 w-[160%] aspect-[4/1] rounded-[100%] bg-gradient-to-t from-[#0A1A3A] to-transparent border-t border-[#D4AF37]/30 shadow-[0_-20px_100px_rgba(212,175,55,0.2)] z-[5]" />
+          <div className="absolute -bottom-[58%] left-1/2 -translate-x-1/2 w-[160%] aspect-[4/1] rounded-[100%] bg-gradient-to-t from-[#0B2C6B] to-transparent border-t border-[#D9A441]/30 shadow-[0_-20px_100px_rgba(212,175,55,0.2)] z-[5]" />
 
           {/* 6. Hero Content (Highest Layer) */}
           <div className="relative z-[10] max-w-7xl mx-auto px-6 text-center">
@@ -138,7 +138,7 @@ export default function EcosystemPage() {
 
               <h1 className="text-4xl sm:text-6xl md:text-8xl lg:text-9xl font-light tracking-tighter leading-[0.85] text-white mb-10">
                 People. Learning. <br />
-                <span className="text-[#D4AF37] font-normal italic">Elevated.</span>
+                <span className="text-[#D9A441] font-normal italic">Elevated.</span>
               </h1>
               
               <p className="text-xl md:text-2xl text-white/40 font-light leading-relaxed max-w-2xl mx-auto">
@@ -158,9 +158,9 @@ export default function EcosystemPage() {
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              className="bg-[#F8F9FB] p-6 md:p-16 rounded-[32px] md:rounded-[48px] border border-black/[0.03]"
+              className="bg-[#F5F7FA] p-6 md:p-16 rounded-[32px] md:rounded-[48px] border border-black/[0.03]"
             >
-              <h3 className="text-3xl font-light mb-10 text-[#0A1A3A]">Mengapa Program <br /><span className="font-bold text-red-500 underline decoration-red-500/30 underline-offset-8">Sering Gagal?</span></h3>
+              <h3 className="text-3xl font-light mb-10 text-[#0B2C6B]">Mengapa Program <br /><span className="font-bold text-red-500 underline decoration-red-500/30 underline-offset-8">Sering Gagal?</span></h3>
               <div className="space-y-6">
                 {[
                   "Tidak menyentuh akar permasalahan (Root Cause)",
@@ -184,7 +184,7 @@ export default function EcosystemPage() {
               initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              className="bg-[#0A1A3A] p-6 md:p-16 rounded-[32px] md:rounded-[48px] text-white relative overflow-hidden flex flex-col justify-center border border-[#D4AF37]/20 shadow-2xl"
+              className="bg-[#0B2C6B] p-6 md:p-16 rounded-[32px] md:rounded-[48px] text-white relative overflow-hidden flex flex-col justify-center border border-[#D9A441]/20 shadow-2xl"
             >
               {/* Background Ornaments (Increased Visibility) */}
               <div className="absolute inset-0 z-0 opacity-40 pointer-events-none" 
@@ -193,27 +193,27 @@ export default function EcosystemPage() {
                      backgroundSize: '24px 24px' 
                    }} 
               />
-              <div className="absolute top-0 right-0 w-96 h-96 bg-[#D4AF37]/30 blur-[100px] rounded-full -translate-y-1/2 translate-x-1/2 opacity-60" />
-              <div className="absolute bottom-0 left-0 w-64 h-64 bg-[#D4AF37]/15 blur-[80px] rounded-full translate-y-1/2 -translate-x-1/2 opacity-40" />
+              <div className="absolute top-0 right-0 w-96 h-96 bg-[#D9A441]/30 blur-[100px] rounded-full -translate-y-1/2 translate-x-1/2 opacity-60" />
+              <div className="absolute bottom-0 left-0 w-64 h-64 bg-[#D9A441]/15 blur-[80px] rounded-full translate-y-1/2 -translate-x-1/2 opacity-40" />
               
               {/* Decorative Corner '+' */}
               <div className="absolute top-10 left-10 w-6 h-6 opacity-40">
-                <div className="absolute top-1/2 left-0 w-full h-[1.5px] bg-[#D4AF37]" />
-                <div className="absolute top-0 left-1/2 w-[1.5px] h-full bg-[#D4AF37]" />
+                <div className="absolute top-1/2 left-0 w-full h-[1.5px] bg-[#D9A441]" />
+                <div className="absolute top-0 left-1/2 w-[1.5px] h-full bg-[#D9A441]" />
               </div>
 
               <div className="relative z-10">
-                <h3 className="text-3xl font-light mb-10 text-white">Jawaban di Dalam <br /><span className="text-[#D4AF37] font-bold italic">Satu Ekosistem.</span></h3>
+                <h3 className="text-3xl font-light mb-10 text-white">Jawaban di Dalam <br /><span className="text-[#D9A441] font-bold italic">Satu Ekosistem.</span></h3>
                 <p className="text-white/90 font-light leading-relaxed mb-10 text-lg">
                   Setiap pilar BinaHub dirancang untuk saling melengkapi, memastikan transformasi yang berkesinambungan dari penggalian akar masalah hingga akselerasi kinerja nyata.
                 </p>
                 <div className="grid grid-cols-2 gap-4 md:gap-6">
                   <div className="bg-white/10 p-6 rounded-3xl border border-white/10 backdrop-blur-md">
-                    <div className="text-[#D4AF37] font-bold text-4xl tracking-tighter mb-2">8</div>
+                    <div className="text-[#D9A441] font-bold text-4xl tracking-tighter mb-2">8</div>
                     <div className="text-[10px] tracking-[0.2em] uppercase text-white/60 font-bold">Integrated Pillars</div>
                   </div>
                   <div className="bg-white/10 p-6 rounded-3xl border border-white/10 backdrop-blur-md">
-                    <div className="text-[#D4AF37] font-bold text-4xl tracking-tighter mb-2">∞</div>
+                    <div className="text-[#D9A441] font-bold text-4xl tracking-tighter mb-2">∞</div>
                     <div className="text-[10px] tracking-[0.2em] uppercase text-white/60 font-bold">Human Synergy</div>
                   </div>
                 </div>
@@ -224,11 +224,11 @@ export default function EcosystemPage() {
       </section>
 
       {/* Interactive Ecosystem Bento Grid */}
-      <section className="py-16 md:py-32 px-6 md:px-12 lg:px-20 bg-[#F8F9FB]">
+      <section className="py-16 md:py-32 px-6 md:px-12 lg:px-20 bg-[#F5F7FA]">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16 md:mb-24">
             <Tag>EXPLORE THE HUB</Tag>
-            <h2 className="text-3xl md:text-5xl lg:text-7xl font-light tracking-tight mt-6 md:mt-10 text-[#0A1A3A]">8 Pilar Transformasi.</h2>
+            <h2 className="text-3xl md:text-5xl lg:text-7xl font-light tracking-tight mt-6 md:mt-10 text-[#0B2C6B]">8 Pilar Transformasi.</h2>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -247,13 +247,13 @@ export default function EcosystemPage() {
                   <div className="mb-10 group-hover:scale-110 transition-transform duration-500">
                     <PixelIcon type={product.iconType} size={48} />
                   </div>
-                  <h3 className="text-2xl font-light mb-2 text-[#0A1A3A] group-hover:text-[#D4AF37] transition-colors">{product.title}</h3>
+                  <h3 className="text-2xl font-light mb-2 text-[#0B2C6B] group-hover:text-[#D9A441] transition-colors">{product.title}</h3>
                   <p className="text-[10px] text-black/40 uppercase tracking-[0.2em] font-bold mb-8">{product.subtitle}</p>
                   <div className="flex items-center gap-3 text-[11px] font-bold text-black/40 group-hover:text-black transition-colors">
                     PELAJARI DETAIL <ChevronRight size={16} />
                   </div>
                 </div>
-                <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-black/[0.01] rounded-full group-hover:bg-[#D4AF37]/5 transition-all duration-700" />
+                <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-black/[0.01] rounded-full group-hover:bg-[#D9A441]/5 transition-all duration-700" />
               </motion.div>
             ))}
           </div>
@@ -270,7 +270,7 @@ export default function EcosystemPage() {
             className="fixed inset-0 z-[100] flex items-center justify-center p-6 md:p-12"
           >
             <div
-              className="absolute inset-0 bg-[#0A1A3A]/90 backdrop-blur-xl"
+              className="absolute inset-0 bg-[#0B2C6B]/90 backdrop-blur-xl"
               onClick={() => setSelectedProduct(null)}
             />
 
@@ -280,7 +280,7 @@ export default function EcosystemPage() {
             >
               {/* Product Header Side - Now Navy */}
               <div
-                className="w-full md:w-1/3 p-6 md:p-12 text-white flex flex-col justify-between relative overflow-hidden shrink-0 bg-[#0A1A3A]"
+                className="w-full md:w-1/3 p-6 md:p-12 text-white flex flex-col justify-between relative overflow-hidden shrink-0 bg-[#0B2C6B]"
               >
                 <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 blur-[80px] rounded-full translate-x-10 -translate-y-10" />
                 <div className="relative z-10">
@@ -288,14 +288,14 @@ export default function EcosystemPage() {
                     <PixelIcon type={selectedProduct.iconType} size={64} />
                   </div>
                   <h2 className="text-5xl font-light tracking-tighter mb-4 leading-none text-white">{selectedProduct.title}</h2>
-                  <p className="text-[11px] font-bold tracking-[0.3em] uppercase text-[#D4AF37] mb-8">{selectedProduct.subtitle}</p>
-                  <p className="text-white/90 text-xl font-light leading-relaxed italic border-l-2 border-[#D4AF37] pl-8">
+                  <p className="text-[11px] font-bold tracking-[0.3em] uppercase text-[#D9A441] mb-8">{selectedProduct.subtitle}</p>
+                  <p className="text-white/90 text-xl font-light leading-relaxed italic border-l-2 border-[#D9A441] pl-8">
                     "{selectedProduct.tagline}"
                   </p>
                 </div>
                 <button
                   onClick={() => setSelectedProduct(null)}
-                  className="mt-12 md:mt-0 flex items-center gap-4 text-[10px] font-bold tracking-[0.3em] uppercase hover:text-[#D4AF37] transition-colors group"
+                  className="mt-12 md:mt-0 flex items-center gap-4 text-[10px] font-bold tracking-[0.3em] uppercase hover:text-[#D9A441] transition-colors group"
                 >
                   <X size={24} className="group-hover:rotate-90 transition-transform" /> TUTUP DETAIL
                 </button>
@@ -334,8 +334,8 @@ export default function EcosystemPage() {
                       <div className="space-y-6">
                         {selectedProduct.benefits.map((b: string, i: number) => (
                           <div key={i} className="flex gap-4 items-start">
-                            <div className="w-6 h-6 rounded-lg bg-[#D4AF37]/10 flex items-center justify-center shrink-0 mt-1">
-                              <Target size={14} className="text-[#D4AF37]" />
+                            <div className="w-6 h-6 rounded-lg bg-[#D9A441]/10 flex items-center justify-center shrink-0 mt-1">
+                              <Target size={14} className="text-[#D9A441]" />
                             </div>
                             <p className="text-black/80 font-light leading-relaxed">{b}</p>
                           </div>
@@ -345,7 +345,7 @@ export default function EcosystemPage() {
                   </div>
 
                   {/* Results */}
-                  <div className="bg-[#F8F9FB] p-6 md:p-12 rounded-[32px] md:rounded-[48px] border border-black/[0.04] shadow-sm">
+                  <div className="bg-[#F5F7FA] p-6 md:p-12 rounded-[32px] md:rounded-[48px] border border-black/[0.04] shadow-sm">
                     <h4 className="text-[10px] font-bold tracking-[0.5em] text-black/30 uppercase mb-10">Hasil & Output Nyata</h4>
                     <div className="grid sm:grid-cols-2 gap-x-12 gap-y-6">
                       {selectedProduct.results.map((r: string, i: number) => (
@@ -364,21 +364,21 @@ export default function EcosystemPage() {
       </AnimatePresence>
 
       {/* Slim & Full Width CTA Section */}
-      <section className="relative w-full py-16 bg-[#0A1A3A] border-y border-white/5 overflow-hidden">
+      <section className="relative w-full py-16 bg-[#0B2C6B] border-y border-white/5 overflow-hidden">
         {/* Ornaments */}
         <div className="absolute inset-0 z-0 opacity-20 pointer-events-none">
           <svg className="w-full h-full">
-            <line x1="0" y1="20%" x2="100%" y2="80%" stroke="#D4AF37" strokeWidth="0.5" />
-            <line x1="0" y1="80%" x2="100%" y2="20%" stroke="#D4AF37" strokeWidth="0.5" />
+            <line x1="0" y1="20%" x2="100%" y2="80%" stroke="#D9A441" strokeWidth="0.5" />
+            <line x1="0" y1="80%" x2="100%" y2="20%" stroke="#D9A441" strokeWidth="0.5" />
           </svg>
-          <div className="absolute top-1/2 left-10 w-2 h-2 bg-[#D4AF37] rotate-45" />
-          <div className="absolute top-1/2 right-10 w-2 h-2 bg-[#D4AF37] rotate-45" />
+          <div className="absolute top-1/2 left-10 w-2 h-2 bg-[#D9A441] rotate-45" />
+          <div className="absolute top-1/2 right-10 w-2 h-2 bg-[#D9A441] rotate-45" />
         </div>
 
         <div className="max-w-7xl mx-auto px-6 relative z-10 flex flex-col md:flex-row items-center justify-between gap-8">
           <div className="text-center md:text-left">
             <h2 className="text-3xl md:text-4xl font-light text-white tracking-tight mb-2">
-              Mulai Transformasi <span className="text-[#D4AF37] italic">Sekarang.</span>
+              Mulai Transformasi <span className="text-[#D9A441] italic">Sekarang.</span>
             </h2>
             <p className="text-white/50 text-sm font-light uppercase tracking-[0.2em]">
               Partnering in your journey towards excellence.
@@ -388,7 +388,7 @@ export default function EcosystemPage() {
           <div className="flex items-center gap-6">
             <Link
               href="/insight"
-              className="group inline-flex h-14 px-10 bg-[#D4AF37] text-[#0A1A3A] rounded-full text-[11px] font-bold tracking-[0.3em] hover:bg-white transition-all items-center justify-center uppercase"
+              className="group inline-flex h-14 px-10 bg-[#D9A441] text-[#0B2C6B] rounded-full text-[11px] font-bold tracking-[0.3em] hover:bg-white transition-all items-center justify-center uppercase"
             >
               MULAI ASESMEN <ArrowRight size={16} className="ml-3 group-hover:translate-x-1 transition-transform" />
             </Link>

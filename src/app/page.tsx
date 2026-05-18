@@ -26,7 +26,7 @@ export default function Home() {
   };
 
   return (
-    <div className="bg-white text-[#0F172A] min-h-screen font-sans antialiased">
+    <div className="bg-white text-[#4A4C54] min-h-screen font-sans antialiased">
       <IntroAnimation onDone={handleIntroDone} />
       <HeroSection heroReady={heroReady} />
       <PlatformSection onMouseMove={handleMouse} />

@@ -21,7 +21,7 @@ export function QuestionsStep({ step, answers, onAnswer }: QuestionsStepProps) {
       className="w-full max-w-4xl px-4 py-6 flex flex-col items-center"
     >
       <div className="mb-8 text-center">
-        <h2 className="text-3xl md:text-4xl font-light text-[#0A1A3A] leading-tight max-w-2xl">
+        <h2 className="text-3xl md:text-4xl font-light text-[#0B2C6B] leading-tight max-w-2xl">
           Sejauh mana Anda setuju dengan pernyataan berikut?
         </h2>
       </div>
@@ -42,7 +42,7 @@ export function QuestionsStep({ step, answers, onAnswer }: QuestionsStepProps) {
               </div>
 
               <div className="relative z-10">
-                <h3 className="text-sm md:text-lg font-light text-[#0A1A3A] mb-5 text-left leading-relaxed px-2">
+                <h3 className="text-sm md:text-lg font-light text-[#0B2C6B] mb-5 text-left leading-relaxed px-2">
                   {q.text}
                 </h3>
 
@@ -54,11 +54,11 @@ export function QuestionsStep({ step, answers, onAnswer }: QuestionsStepProps) {
                         key={opt.value}
                         onClick={() => onAnswer(q.id, opt.value)}
                         className={`flex flex-col items-center justify-center py-2.5 md:py-5 rounded-xl md:rounded-2xl border transition-all duration-300 ${isSelected
-                            ? "bg-[#0A1A3A] border-[#0A1A3A] text-white shadow-[0_15px_30px_rgba(10,26,58,0.25)] scale-[1.03]"
+                            ? "bg-[#0B2C6B] border-[#0B2C6B] text-white shadow-[0_15px_30px_rgba(10,26,58,0.25)] scale-[1.03]"
                             : "bg-[#F5F7F9] border-black/[0.03] text-black/60 hover:bg-black/[0.05] hover:border-black/10"
                           }`}
                       >
-                        <span className={`text-xl md:text-2xl font-bold mb-1 transition-colors ${isSelected ? "text-[#D4AF37]" : "text-[#0A1A3A]"}`}>
+                        <span className={`text-xl md:text-2xl font-bold mb-1 transition-colors ${isSelected ? "text-[#D9A441]" : "text-[#0B2C6B]"}`}>
                           {opt.value}
                         </span>
                         <span className={`text-[6px] md:text-[7px] text-center leading-tight uppercase tracking-widest font-black transition-colors ${isSelected ? "text-white" : "text-black/30"}`}>

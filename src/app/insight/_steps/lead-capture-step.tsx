@@ -22,7 +22,7 @@ export function LeadCaptureStep({ formData, onChange, onNext, onPrev }: LeadCapt
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   const inputClass =
-    "w-full bg-white border border-black/10 rounded-xl px-4 py-3.5 text-sm focus:outline-none focus:border-[#0A1A3A] transition-all font-medium text-black placeholder:text-black/20";
+    "w-full bg-white border border-black/10 rounded-xl px-4 py-3.5 text-sm focus:outline-none focus:border-[#0B2C6B] transition-all font-medium text-black placeholder:text-black/20";
   const labelClass =
     "flex items-center gap-2 text-[10px] font-medium tracking-widest text-black/60 mb-2.5 uppercase";
 
@@ -35,7 +35,7 @@ export function LeadCaptureStep({ formData, onChange, onNext, onPrev }: LeadCapt
       className="w-full max-w-4xl px-6 py-12 flex flex-col items-center"
     >
       <div className="mb-12 text-center">
-        <h2 className="text-3xl md:text-5xl font-light text-[#0A1A3A] mb-4">Profil Organisasi</h2>
+        <h2 className="text-3xl md:text-5xl font-light text-[#0B2C6B] mb-4">Profil Organisasi</h2>
         <p className="text-black/40 text-sm font-medium tracking-wide">
           Berikan informasi dasar untuk personalisasi laporan diagnostik tim Anda.
         </p>
@@ -48,7 +48,7 @@ export function LeadCaptureStep({ formData, onChange, onNext, onPrev }: LeadCapt
         <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6 mb-8 md:mb-12">
           <div className="space-y-1">
             <label className={labelClass}>
-              <User size={14} className="text-[#D4AF37]" /> Nama Lengkap *
+              <User size={14} className="text-[#D9A441]" /> Nama Lengkap *
             </label>
             <input
               required
@@ -61,7 +61,7 @@ export function LeadCaptureStep({ formData, onChange, onNext, onPrev }: LeadCapt
           </div>
           <div className="space-y-1">
             <label className={labelClass}>
-              <Briefcase size={14} className="text-[#D4AF37]" /> Jabatan *
+              <Briefcase size={14} className="text-[#D9A441]" /> Jabatan *
             </label>
             <input
               required
@@ -75,7 +75,7 @@ export function LeadCaptureStep({ formData, onChange, onNext, onPrev }: LeadCapt
 
           <div className="space-y-1">
             <label className={labelClass}>
-              <Building2 size={14} className="text-[#D4AF37]" /> Nama Perusahaan *
+              <Building2 size={14} className="text-[#D9A441]" /> Nama Perusahaan *
             </label>
             <input
               required
@@ -88,7 +88,7 @@ export function LeadCaptureStep({ formData, onChange, onNext, onPrev }: LeadCapt
           </div>
           <div className="space-y-1">
             <label className={labelClass}>
-              <Users size={14} className="text-[#D4AF37]" /> Jumlah Karyawan *
+              <Users size={14} className="text-[#D9A441]" /> Jumlah Karyawan *
             </label>
             <div className="relative">
               <div 
@@ -123,7 +123,7 @@ export function LeadCaptureStep({ formData, onChange, onNext, onPrev }: LeadCapt
                               }}
                               className={`flex items-center justify-between px-4 py-3 rounded-xl cursor-pointer transition-all duration-200 ${
                                 isSelected 
-                                  ? "bg-[#0A1A3A] text-white" 
+                                  ? "bg-[#0B2C6B] text-white" 
                                   : "hover:bg-black/[0.03] text-black/60 hover:text-black"
                               }`}
                             >
@@ -142,7 +142,7 @@ export function LeadCaptureStep({ formData, onChange, onNext, onPrev }: LeadCapt
 
           <div className="space-y-1">
             <label className={labelClass}>
-              <Mail size={14} className="text-[#D4AF37]" /> Email Profesional *
+              <Mail size={14} className="text-[#D9A441]" /> Email Profesional *
             </label>
             <input
               required
@@ -155,7 +155,7 @@ export function LeadCaptureStep({ formData, onChange, onNext, onPrev }: LeadCapt
           </div>
           <div className="space-y-1">
             <label className={labelClass}>
-              <Phone size={14} className="text-[#D4AF37]" /> WhatsApp Aktif *
+              <Phone size={14} className="text-[#D9A441]" /> WhatsApp Aktif *
             </label>
             <input
               required
@@ -178,7 +178,7 @@ export function LeadCaptureStep({ formData, onChange, onNext, onPrev }: LeadCapt
           </button>
           <button
             type="submit"
-            className="flex-1 h-14 bg-[#0A1A3A] text-white rounded-xl text-[11px] font-medium tracking-widest hover:bg-black transition-all flex items-center justify-center gap-3 uppercase shadow-lg shadow-black/10"
+            className="flex-1 h-14 bg-[#0B2C6B] text-white rounded-xl text-[11px] font-medium tracking-widest hover:bg-black transition-all flex items-center justify-center gap-3 uppercase shadow-lg shadow-black/10"
           >
             Lanjut ke Instruksi <ArrowRight size={16} />
           </button>

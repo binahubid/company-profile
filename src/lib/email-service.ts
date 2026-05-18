@@ -16,9 +16,9 @@ export async function sendAssessmentEmail(
   pdfBuffer?: Buffer
 ) {
   // Brand Colors
-  const navy = '#0A1A3A';
-  const gold = '#D4AF37';
-  const offWhite = '#F8F9FB';
+  const navy = '#0B2C6B';
+  const gold = '#D9A441';
+  const offWhite = '#F5F7FA';
 
   // Premium Corporate HTML Email
   const htmlBody = `

@@ -24,7 +24,7 @@ export const ECOSYSTEM_DATA = {
       "Analisis budaya organisasi",
       "Dashboard insight & data pengembangan"
     ],
-    color: "#D4AF37"
+    color: "#D9A441"
   },
   lab: {
     id: "lab",

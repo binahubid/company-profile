@@ -24,7 +24,7 @@ export function InstructionStep({ onNext, onPrev }: InstructionStepProps) {
       className="w-full max-w-4xl px-6 py-12 flex flex-col items-center"
     >
       <div className="mb-12 text-center">
-        <h2 className="text-3xl md:text-5xl font-light text-[#0A1A3A] mb-4">Instruksi Pengisian</h2>
+        <h2 className="text-3xl md:text-5xl font-light text-[#0B2C6B] mb-4">Instruksi Pengisian</h2>
         <p className="text-black/40 text-sm font-medium tracking-wide max-w-xl mx-auto leading-relaxed">
           Berikan penilaian sesuai kondisi di tempat kerja Anda saat ini. <br />
           Kejujuran Anda sangat krusial bagi akurasi laporan.
@@ -38,7 +38,7 @@ export function InstructionStep({ onNext, onPrev }: InstructionStepProps) {
               key={item.val} 
               className={`flex items-center p-3 rounded-2xl border ${item.bg} ${item.border}`}
             >
-              <div className="w-10 h-10 rounded-xl bg-white shadow-sm flex items-center justify-center font-bold text-lg text-[#0A1A3A] mr-4 md:mr-6 shrink-0 border border-black/5">
+              <div className="w-10 h-10 rounded-xl bg-white shadow-sm flex items-center justify-center font-bold text-lg text-[#0B2C6B] mr-4 md:mr-6 shrink-0 border border-black/5">
                 {item.val}
               </div>
               <div className={`text-[11px] font-medium uppercase tracking-[0.15em] ${item.color}`}>
@@ -58,7 +58,7 @@ export function InstructionStep({ onNext, onPrev }: InstructionStepProps) {
         </button>
         <button 
           onClick={onNext} 
-          className="flex-1 h-14 bg-[#0A1A3A] text-white rounded-xl text-[11px] font-bold tracking-widest hover:bg-black transition-all flex items-center justify-center gap-3 uppercase shadow-lg shadow-black/10"
+          className="flex-1 h-14 bg-[#0B2C6B] text-white rounded-xl text-[11px] font-bold tracking-widest hover:bg-black transition-all flex items-center justify-center gap-3 uppercase shadow-lg shadow-black/10"
         >
           Saya Mengerti, Mulai <ArrowRight size={16} />
         </button>

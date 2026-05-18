@@ -24,7 +24,7 @@ export function CTASection() {
         <div className="flex flex-col sm:flex-row gap-3 justify-center">
           <Link
             href="mailto:info@binahub.id"
-            className="px-8 py-4 bg-[#0A1A3A] text-white text-sm rounded-xl hover:bg-[#0F172A] transition-colors tracking-widest font-medium"
+            className="px-8 py-4 bg-[#0B2C6B] text-white text-sm rounded-xl hover:bg-[#4A4C54] transition-colors tracking-widest font-medium"
           >
             HUBUNGI KAMI
           </Link>

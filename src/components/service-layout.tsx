@@ -18,10 +18,10 @@ export interface ServiceData {
 }
 
 export default function ServiceLayout({ data }: { data: ServiceData }) {
-  const accentColor = data.color || "#D4AF37"
+  const accentColor = data.color || "#D9A441"
 
   return (
-    <div className="min-h-screen bg-[#F8F9FB] text-[#0F172A] font-sans selection:bg-[#0A1A3A] selection:text-white pt-24 pb-24">
+    <div className="min-h-screen bg-[#F5F7FA] text-[#4A4C54] font-sans selection:bg-[#0B2C6B] selection:text-white pt-24 pb-24">
       <div className="max-w-5xl mx-auto px-6">
         
         {/* Back Navigation */}
@@ -99,7 +99,7 @@ export default function ServiceLayout({ data }: { data: ServiceData }) {
             className="md:col-span-7 space-y-8"
           >
             {/* Benefits */}
-            <div className="bg-[#0A1A3A] text-white p-6 md:p-10 rounded-[24px] md:rounded-[32px] border border-black/[0.04] relative overflow-hidden group">
+            <div className="bg-[#0B2C6B] text-white p-6 md:p-10 rounded-[24px] md:rounded-[32px] border border-black/[0.04] relative overflow-hidden group">
               <div className="absolute top-0 right-0 w-64 h-64 blur-[80px] rounded-full translate-x-20 -translate-y-20 opacity-20" style={{ backgroundColor: accentColor }} />
               <div className="relative z-10">
                 <div className="w-12 h-12 rounded-2xl bg-white/10 text-white flex items-center justify-center mb-8 border border-white/10 backdrop-blur-sm">
@@ -119,14 +119,14 @@ export default function ServiceLayout({ data }: { data: ServiceData }) {
 
             {/* Results */}
             <div className="bg-white p-6 md:p-10 rounded-[24px] md:rounded-[32px] border border-black/[0.04] shadow-xl shadow-black/[0.02]">
-              <div className="w-12 h-12 rounded-2xl bg-[#F8F9FB] flex items-center justify-center mb-8 border border-black/5 text-black">
+              <div className="w-12 h-12 rounded-2xl bg-[#F5F7FA] flex items-center justify-center mb-8 border border-black/5 text-black">
                 <TrendingUp size={24} />
               </div>
               <h3 className="text-2xl font-medium mb-6">Hasil yang Ingin Dicapai</h3>
               <div className="space-y-4">
                 {data.results.map((result, i) => (
                   <div key={i} className="flex items-center gap-4 group">
-                    <div className="w-8 h-8 rounded-full bg-[#F8F9FB] flex items-center justify-center text-[10px] font-bold text-black/40 group-hover:bg-[#0A1A3A] group-hover:text-white transition-colors border border-black/5">
+                    <div className="w-8 h-8 rounded-full bg-[#F5F7FA] flex items-center justify-center text-[10px] font-bold text-black/40 group-hover:bg-[#0B2C6B] group-hover:text-white transition-colors border border-black/5">
                       0{i + 1}
                     </div>
                     <span className="text-sm font-medium text-black/80">{result}</span>
@@ -145,7 +145,7 @@ export default function ServiceLayout({ data }: { data: ServiceData }) {
           transition={{ delay: 0.3 }}
           className="mt-20 text-center bg-white p-6 md:p-20 rounded-[32px] md:rounded-[48px] border border-black/[0.03] shadow-2xl shadow-black/[0.02]"
         >
-          <div className="w-16 h-16 rounded-full bg-[#F8F9FB] mx-auto flex items-center justify-center mb-8 text-[#D4AF37]">
+          <div className="w-16 h-16 rounded-full bg-[#F5F7FA] mx-auto flex items-center justify-center mb-8 text-[#D9A441]">
             <Sparkles size={32} />
           </div>
           <h3 className="text-3xl md:text-4xl font-light mb-6 tracking-tight">Siap Untuk Bertransformasi?</h3>
@@ -156,21 +156,21 @@ export default function ServiceLayout({ data }: { data: ServiceData }) {
             {data.id === "insight" ? (
               <Link 
                 href="/insight" 
-                className="h-14 px-10 bg-[#0A1A3A] text-white rounded-full text-[11px] font-bold tracking-widest hover:scale-105 transition-transform flex items-center justify-center uppercase shadow-xl shadow-black/10"
+                className="h-14 px-10 bg-[#0B2C6B] text-white rounded-full text-[11px] font-bold tracking-widest hover:scale-105 transition-transform flex items-center justify-center uppercase shadow-xl shadow-black/10"
               >
                 Mulai Diagnostik Gratis
               </Link>
             ) : (
               <Link 
                 href="/#contact" 
-                className="h-14 px-10 bg-[#0A1A3A] text-white rounded-full text-[11px] font-bold tracking-widest hover:scale-105 transition-transform flex items-center justify-center uppercase shadow-xl shadow-black/10"
+                className="h-14 px-10 bg-[#0B2C6B] text-white rounded-full text-[11px] font-bold tracking-widest hover:scale-105 transition-transform flex items-center justify-center uppercase shadow-xl shadow-black/10"
               >
                 Jadwalkan Konsultasi
               </Link>
             )}
             <Link 
               href="/ecosystem" 
-              className="h-14 px-10 border border-black/10 bg-white text-black rounded-full text-[11px] font-bold tracking-widest hover:bg-[#F8F9FB] transition-colors flex items-center justify-center uppercase"
+              className="h-14 px-10 border border-black/10 bg-white text-black rounded-full text-[11px] font-bold tracking-widest hover:bg-[#F5F7FA] transition-colors flex items-center justify-center uppercase"
             >
               Lihat Ekosistem Lainnya
             </Link>

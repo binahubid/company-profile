@@ -26,8 +26,8 @@ export interface AssessmentResult {
   }[];
 }
 
-const NAVY = '#0A1A3A';
-const GOLD = '#D4AF37';
+const NAVY = '#0B2C6B';
+const GOLD = '#D9A441';
 const GOLD_LIGHT = '#F4E5B2';
 const ICE = '#F4F7FB';
 const SILVER = '#8A9BB0';

@@ -18,7 +18,7 @@ export function OpenQuestionsStep({
   isSubmitting,
 }: OpenQuestionsStepProps) {
   const textareaClass =
-    "w-full bg-black/[0.02] border border-black/10 rounded-2xl px-5 py-4 text-base focus:outline-none focus:border-[#0A1A3A] focus:bg-white transition-all resize-none font-medium text-[#0A1A3A] placeholder:text-black/10";
+    "w-full bg-black/[0.02] border border-black/10 rounded-2xl px-5 py-4 text-base focus:outline-none focus:border-[#0B2C6B] focus:bg-white transition-all resize-none font-medium text-[#0B2C6B] placeholder:text-black/10";
 
   return (
     <motion.div
@@ -33,7 +33,7 @@ export function OpenQuestionsStep({
         className="bg-white p-8 md:p-12 rounded-[40px] border border-black/[0.03] shadow-[0_20px_60px_rgba(0,0,0,0.06)] space-y-8 text-left"
       >
         <div className="space-y-3">
-          <label className="block text-[10px] font-medium text-[#0A1A3A]/60 uppercase tracking-widest px-1">
+          <label className="block text-[10px] font-medium text-[#0B2C6B]/60 uppercase tracking-widest px-1">
             Apa tantangan terbesar tim Anda saat ini?
           </label>
           <textarea
@@ -46,7 +46,7 @@ export function OpenQuestionsStep({
         </div>
 
         <div className="space-y-3">
-          <label className="block text-[10px] font-medium text-[#0A1A3A]/60 uppercase tracking-widest px-1">
+          <label className="block text-[10px] font-medium text-[#0B2C6B]/60 uppercase tracking-widest px-1">
             Target utama (3-6 bulan)?
           </label>
           <textarea
@@ -62,14 +62,14 @@ export function OpenQuestionsStep({
           <button
             type="button"
             onClick={onPrev}
-            className="flex-1 h-14 border border-[#0A1A3A]/10 bg-white rounded-2xl text-[11px] font-bold tracking-widest text-[#0A1A3A]/60 hover:bg-black/[0.03] hover:text-[#0A1A3A] transition-all uppercase flex items-center justify-center gap-2"
+            className="flex-1 h-14 border border-[#0B2C6B]/10 bg-white rounded-2xl text-[11px] font-bold tracking-widest text-[#0B2C6B]/60 hover:bg-black/[0.03] hover:text-[#0B2C6B] transition-all uppercase flex items-center justify-center gap-2"
           >
             <ArrowLeft size={16} /> KEMBALI
           </button>
           <button
             type="submit"
             disabled={isSubmitting}
-            className="flex-[2] h-14 bg-[#0A1A3A] text-white rounded-2xl text-[11px] font-bold tracking-widest hover:bg-black transition-all flex items-center justify-center gap-3 disabled:opacity-70 uppercase shadow-lg shadow-[#0A1A3A]/10 group"
+            className="flex-[2] h-14 bg-[#0B2C6B] text-white rounded-2xl text-[11px] font-bold tracking-widest hover:bg-black transition-all flex items-center justify-center gap-3 disabled:opacity-70 uppercase shadow-lg shadow-[#0B2C6B]/10 group"
           >
             {isSubmitting ? (
               <span className="flex items-center gap-3">
