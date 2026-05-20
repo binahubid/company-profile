@@ -67,7 +67,7 @@ export default function JourneyPage() {
               <div className="text-base text-black/70 font-light leading-relaxed space-y-6">
                 <p>
                   <span className="text-6xl font-semibold text-[#D9A441] float-left mr-3 mt-1 leading-[0.8] font-sans">B</span>
-                  inaHub tidak lahir di ruang hampa. Akar kami tertanam kuat dalam dedikasi panjang **BDN (Bina Daya Nusantara)** — perusahaan pelatihan dan penyelenggara program Team Building, yang telah mewarnai industri pengembangan SDM di Indonesia sejak tahun 2010.
+                  inaHub tidak lahir di ruang hampa. Akar kami tertanam kuat dalam dedikasi panjang <span className="font-bold">  BDN (Bina Daya Nusantara)</span> — perusahaan pelatihan dan penyelenggara program Team Building, yang telah mewarnai industri pengembangan SDM di Indonesia sejak tahun 2010.
                 </p>
                 <p>
                   Di awal dekade, kami menyadari bahwa pembelajaran terbaik tidak terjadi hanya dengan mendengarkan teori di dalam ruang kelas yang kaku. Manusia belajar secara mendalam ketika mereka bergerak, berinteraksi, menghadapi tantangan bersama, dan merefleksikan pengalaman tersebut secara langsung.
@@ -130,7 +130,7 @@ export default function JourneyPage() {
               <div className="text-base text-black/70 font-light leading-relaxed space-y-6">
                 <p>
                   <span className="text-6xl font-semibold text-[#D9A441] float-left mr-3 mt-1 leading-[0.8] font-sans">S</span>
-                  elama lebih dari 15 tahun berkiprah, kami telah diberikan kehormatan untuk mendampingi lebih dari **10.000 peserta** dari berbagai sektor industri. Dari jajaran direksi BUMN, manajer perusahaan multinasional swasta, institusi pendidikan terkemuka, hingga lembaga nirlaba.
+                  elama lebih dari 15 tahun berkiprah, kami telah diberikan kehormatan untuk mendampingi lebih dari <span className="font-bold">10.000 peserta</span> dari berbagai sektor industri. Dari jajaran direksi BUMN, manajer perusahaan multinasional swasta, institusi pendidikan terkemuka, hingga lembaga nirlaba.
                 </p>
                 <p>
                   Setiap modul pembelajaran diuji langsung di lapangan, membentuk mentalitas kolaborasi tangguh, dan melahirkan sinergi tim yang kokoh. Pengalaman nyata inilah yang menjadi bahan bakar utama dalam memahami anatomi budaya organisasi di Indonesia secara mendalam.
@@ -159,7 +159,7 @@ export default function JourneyPage() {
               <div className="text-base text-black/70 font-light leading-relaxed space-y-6">
                 <p>
                   <span className="text-6xl font-semibold text-[#D9A441] float-left mr-3 mt-1 leading-[0.8] font-sans">K</span>
-                  omitmen kami dalam membawa standar terbaik diwujudkan dengan menjadi mitra resmi di Indonesia dari **BSKSims (www.bsksims.com)** — penyedia platform simulasi keputusan strategis terkemuka asal Amerika Serikat.
+                  omitmen kami dalam membawa standar terbaik diwujudkan dengan menjadi mitra resmi di Indonesia dari <span className="font-bold">BSKSims (www.bsksims.com)</span> — penyedia platform simulasi keputusan strategis terkemuka asal Amerika Serikat.
                 </p>
                 <p>
                   Melalui kolaborasi global ini, kami mengintegrasikan teknologi simulasi bisnis ke dalam sistem pengembangan kepemimpinan dan asesmen talenta di Indonesia. Simulasi interaktif ini memaksa para pemimpin masa depan untuk mengambil keputusan taktis secara presisi di tengah dinamika pasar digital yang dinamis dan kompetitif.
@@ -225,7 +225,7 @@ export default function JourneyPage() {
                   unia kerja terus bergerak dengan kecepatan disrupsi yang luar biasa. Masuknya era kecerdasan buatan (AI) dan otomatisasi membawa tantangan baru bagi eksistensi manusia di dalam organisasi.
                 </p>
                 <p>
-                  BinaHub lahir sebagai *sister company* BDN untuk menjawab tantangan makro ini. Jika BDN berfokus penuh pada pelatihan berbasis pengalaman (*experiential learning*), BinaHub hadir melangkah lebih jauh sebagai **mitra transformasi organisasi menyeluruh** yang menyinergikan kapasitas manusia, kedalaman budaya kerja, kekuatan ekosistem teknologi, dan ketepatan data analitik AI.
+                  BinaHub lahir sebagai <span className="font-bold">sister company</span> BDN untuk menjawab tantangan makro ini. Jika BDN berfokus penuh pada pelatihan berbasis pengalaman (<span className="font-bold">experiential learning</span>), BinaHub hadir melangkah lebih jauh sebagai <span className="font-bold">mitra transformasi organisasi menyeluruh</span> yang menyinergikan kapasitas manusia, kedalaman budaya kerja, kekuatan ekosistem teknologi, dan ketepatan data analitik AI.
                 </p>
               </div>
             </motion.div>
