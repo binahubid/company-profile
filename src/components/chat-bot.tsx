@@ -51,6 +51,44 @@ export function ChatBot() {
       const newUrl = window.location.pathname;
       window.history.replaceState({}, '', newUrl);
     }
+
+    // Hash change & click listener for #chatbot CTAs
+    if (window.location.hash === '#chatbot') {
+      setIsOpen(true);
+      window.history.replaceState(null, '', window.location.pathname);
+    }
+
+    const handleHashChange = () => {
+      if (window.location.hash === '#chatbot') {
+        setIsOpen(true);
+        window.history.replaceState(null, '', window.location.pathname);
+      }
+    };
+    window.addEventListener('hashchange', handleHashChange);
+
+    const handleOpenChat = () => {
+      setIsOpen(true);
+    };
+    window.addEventListener('open-chatbot', handleOpenChat);
+
+    const handleDocumentClick = (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
+      const closestLink = target.closest('a');
+      if (closestLink) {
+        const href = closestLink.getAttribute('href');
+        if (href === '#chatbot' || href === '/#chatbot' || href?.endsWith('#chatbot')) {
+          e.preventDefault();
+          setIsOpen(true);
+        }
+      }
+    };
+    document.addEventListener('click', handleDocumentClick);
+
+    return () => {
+      window.removeEventListener('hashchange', handleHashChange);
+      window.removeEventListener('open-chatbot', handleOpenChat);
+      document.removeEventListener('click', handleDocumentClick);
+    };
   }, []);
 
   useEffect(() => {

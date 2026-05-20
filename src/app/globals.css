@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Silkscreen:wght@400;700&display=swap');
 @import 'tailwindcss';
 
 @custom-variant dark (&:is(.dark *));
@@ -118,4 +119,58 @@
 
 .animate-scroll-line {
   animation: scroll-line 2s cubic-bezier(0.76, 0, 0.24, 1) infinite;
+}
+
+/* 3D BinaHub Navy Pixel-Art Game Button - Borderless Stepped Look */
+.pixel-start-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px 36px;
+  background-color: #0B2C6B; /* BinaHub Navy (Dominant) */
+  color: #D9A441 !important; /* BinaHub Gold Text */
+  font-family: 'Press Start 2P', 'Silkscreen', monospace;
+  font-size: 11px;
+  letter-spacing: 0.05em;
+  font-weight: bold;
+  text-shadow: 2px 2px 0px #05183D; /* Deep Navy Shadow */
+  
+  border: none;
+  border-radius: 16px;
+  margin-bottom: 16px; /* space for 3D depth shadow */
+  
+  /* 3D Gold Casing (Borderless) */
+  box-shadow: 
+    /* --- Cap highlights & inner shadows --- */
+    inset 0 4px 0px #2B529E, /* Light Navy Highlight */
+    inset 0 -6px 0px #05183D, /* Dark Navy Shadow */
+    
+    /* --- 3D Casing Base - BinaHub Gold --- */
+    0 6px 0px #D9A441, /* Gold Base Top */
+    0 12px 0px #A06F12; /* Gold Base Bottom Shadow */
+    
+  transition: all 0.05s ease;
+  transform: translateY(0px);
+  cursor: pointer;
+  user-select: none;
+}
+.pixel-start-btn:hover {
+  background-color: #143e8c;
+  color: #fce996 !important; /* Lighter Gold */
+  box-shadow: 
+    inset 0 4px 0px #3567cc,
+    inset 0 -6px 0px #0a2354,
+    
+    0 6px 0px #e5b24e,
+    0 12px 0px #c78f23;
+}
+.pixel-start-btn:active {
+  transform: translateY(6px);
+  box-shadow: 
+    inset 0 4px 0px #2B529E,
+    inset 0 -4px 0px #05183D,
+    
+    0 0px 0px #D9A441,
+    0 6px 0px #A06F12;
 }

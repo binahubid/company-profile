@@ -16,10 +16,10 @@ const Footer = () => {
           <div className="lg:col-span-5">
             <Link href="/" className="inline-block mb-8 group">
               <div className="relative h-10 w-44 transition-transform group-hover:scale-105 duration-300">
-                <Image 
-                  src="/full-logo.png" 
-                  alt="BinaHub Logo" 
-                  fill 
+                <Image
+                  src="/full-logo.png"
+                  alt="BinaHub Logo"
+                  fill
                   className="object-contain object-left"
                 />
               </div>
@@ -37,12 +37,12 @@ const Footer = () => {
             <ul className="space-y-4">
               {[
                 { label: "Tentang Kami", href: "/about" },
-                { label: "Ekosistem", href: "/ecosystem" },
-                { label: "Metodologi", href: "#methodology" },
-                { label: "Mulai Asesmen", href: "/insight" },
+                { label: "Layanan", href: "/ecosystem" },
+                { label: "Perspektif", href: "/perspektif" },
+                { label: "Mulai Diagnosa", href: "/insight" },
               ].map((link) => (
                 <li key={link.label}>
-                  <Link 
+                  <Link
                     href={link.href}
                     className="text-[#0B2C6B]/60 hover:text-[#D9A441] transition-colors font-medium flex items-center gap-2 group"
                   >
@@ -66,9 +66,11 @@ const Footer = () => {
                 </div>
                 <div>
                   <span className="block text-[10px] font-bold text-[#0B2C6B]/40 uppercase tracking-widest mb-1">Lokasi Kantor</span>
-                  <p className="text-[#0B2C6B]/70 leading-relaxed font-light">
-                    Kawasan Bisnis Sudirman, District 8 <br />
-                    Jakarta Selatan, 12190
+                  <p className="text-[#0B2C6B]/70 leading-relaxed font-light text-sm">
+                    Kencana Tower, Level Mezzanine<br />
+                    Jl. Raya Meruya Ilir No. 88<br />
+                    Business Park Kebon Jeruk<br />
+                    Jakarta Barat 11620
                   </p>
                 </div>
               </div>
@@ -78,8 +80,8 @@ const Footer = () => {
                   <Mail size={18} className="text-[#D9A441]" />
                 </div>
                 <div>
-                  <span className="block text-[10px] font-bold text-[#0B2C6B]/40 uppercase tracking-widest mb-1">Email Pertanyaan</span>
-                  <p className="text-[#0B2C6B]/70 font-medium">halo@binahub.id</p>
+                  <span className="block text-[10px] font-bold text-[#0B2C6B]/40 uppercase tracking-widest mb-1">Email</span>
+                  <a href="mailto:info@binahub.id" className="text-[#0B2C6B]/70 font-medium hover:text-[#D9A441] transition-colors">info@binahub.id</a>
                 </div>
               </div>
 
@@ -88,8 +90,8 @@ const Footer = () => {
                   <Phone size={18} className="text-[#D9A441]" />
                 </div>
                 <div>
-                  <span className="block text-[10px] font-bold text-[#0B2C6B]/40 uppercase tracking-widest mb-1">WhatsApp Layanan</span>
-                  <p className="text-[#0B2C6B]/70 font-medium">+62 812-1234-5678</p>
+                  <span className="block text-[10px] font-bold text-[#0B2C6B]/40 uppercase tracking-widest mb-1">Telepon</span>
+                  <a href="tel:02129601514" className="text-[#0B2C6B]/70 font-medium hover:text-[#D9A441] transition-colors">021-29601514</a>
                 </div>
               </div>
             </div>
@@ -99,7 +101,7 @@ const Footer = () => {
         {/* Bottom Bar */}
         <div className="pt-12 border-t border-black/[0.05] flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="text-[10px] text-black/20 tracking-wider flex items-center gap-2">
-            © {year} <span className="font-bold text-[#0B2C6B]">Bina<span className="text-[#D9A441]">Hub</span></span>. PT BINA HUB BERDIKARI.
+            © 2026 <span className="font-bold text-[#0B2C6B]">Bina<span className="text-[#D9A441]">Hub</span></span>. PT Binahub Solusi Transformasi.
           </div>
           <div className="flex items-center gap-8">
             <Link href="#" className="text-[10px] text-black/25 hover:text-[#D9A441] transition-colors tracking-widest font-bold uppercase">Kebijakan Privasi</Link>

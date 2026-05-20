@@ -56,7 +56,7 @@ export function SuccessStep({ name, company }: SuccessStepProps) {
             KEMBALI KE BERANDA <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
           </Link>
           <div className="flex items-center gap-3 px-6 text-[10px] font-bold text-[#D9A441] tracking-[0.3em] uppercase">
-            <Mail size={16} /> halo@binahub.id
+            <Mail size={16} /> info@binahub.id
           </div>
         </div>
       </div>

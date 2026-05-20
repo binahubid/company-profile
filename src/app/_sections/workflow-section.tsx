@@ -51,7 +51,7 @@ export function WorkflowSection({ onMouseMove }: WorkflowSectionProps) {
 
   return (
     <section
-      id="workflow"
+      id="alur-kerja"
       className="py-16 md:py-32 px-6 md:px-12 lg:px-20 border-t border-black/[0.06] overflow-hidden"
     >
       <div className="max-w-6xl mx-auto">

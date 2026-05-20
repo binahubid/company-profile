@@ -3,14 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-import { Counter } from "@/components/ui/counter";
 import PixelBackground from "@/components/pixel-background";
-
-const HERO_STATS = [
-  { value: 50, label: "Perusahaan", suffix: "+" },
-  { value: 15, label: "Ribu Alumni", suffix: "k+" },
-  { value: 98, label: "Tingkat Keberhasilan", suffix: "%" },
-];
 
 interface HeroSectionProps {
   heroReady: boolean;
@@ -18,7 +11,7 @@ interface HeroSectionProps {
 
 export function HeroSection({ heroReady }: HeroSectionProps) {
   return (
-    <section className="px-4 pt-[100px] pb-4 bg-white">
+    <section className="sticky top-0 z-0 px-4 pt-[110px] pb-4 bg-[#F5F7FA] w-full">
       <div
         className="relative rounded-3xl overflow-hidden"
         style={{ minHeight: "calc(100vh - 108px)" }}
@@ -61,11 +54,10 @@ export function HeroSection({ heroReady }: HeroSectionProps) {
         <PixelBackground ready={heroReady} />
 
         {/* Hero Content */}
-        <div className="absolute inset-x-0 bottom-0 z-30 flex flex-col px-6 md:px-16 pb-10 md:pb-16 max-w-5xl">
+        <div className="absolute inset-x-0 bottom-0 z-30 flex flex-col px-6 md:px-16 pb-10 md:pb-24 max-w-5xl">
           <h1
             className="text-4xl sm:text-7xl md:text-8xl font-light text-white leading-[1.0] tracking-tight mb-6"
             style={{
-              fontFamily: '"IBM Plex Sans", sans-serif',
               opacity: heroReady ? 1 : 0,
               filter: heroReady ? "blur(0px)" : "blur(24px)",
               transform: heroReady ? "translateY(0px)" : "translateY(32px)",
@@ -74,13 +66,13 @@ export function HeroSection({ heroReady }: HeroSectionProps) {
             }}
           >
             AI Powered <br />
-            <span className="italic" style={{ color: "#D9A441" }}>
+            <span className="italic font-sans" style={{ color: "#D9A441" }}>
               Human Synergy
             </span>
           </h1>
 
           <p
-            className="text-base md:text-lg text-white/60 max-w-xl mb-8 leading-relaxed"
+            className="text-base md:text-lg text-white/70 max-w-xl mb-12 leading-relaxed"
             style={{
               opacity: heroReady ? 1 : 0,
               filter: heroReady ? "blur(0px)" : "blur(16px)",
@@ -89,13 +81,12 @@ export function HeroSection({ heroReady }: HeroSectionProps) {
                 "opacity 1s cubic-bezier(0.16,1,0.3,1) 100ms, filter 1s cubic-bezier(0.16,1,0.3,1) 100ms, transform 1s cubic-bezier(0.16,1,0.3,1) 100ms",
             }}
           >
-            Membangun masa depan di mana organisasi tidak hanya cerdas secara
-            teknologi, tetapi juga matang secara manusiawi.
+            Menciptakan masa depan organisasi yang adaptif terhadap teknologi dan bertumbuh secara manusiawi.
           </p>
 
           {/* CTA Buttons */}
           <div
-            className="flex flex-wrap gap-3 mb-14"
+            className="flex items-center gap-6 mb-8"
             style={{
               opacity: heroReady ? 1 : 0,
               transform: heroReady ? "translateY(0px)" : "translateY(20px)",
@@ -103,44 +94,43 @@ export function HeroSection({ heroReady }: HeroSectionProps) {
                 "opacity 1s cubic-bezier(0.16,1,0.3,1) 300ms, transform 1s cubic-bezier(0.16,1,0.3,1) 300ms",
             }}
           >
-            <Link
-              href="/insight"
-              className="px-7 py-3.5 bg-white text-[#0B2C6B] text-sm rounded-xl hover:bg-white/90 transition-all tracking-widest font-semibold flex items-center gap-2 group"
-            >
-              MULAI TRANSFORMASI{" "}
-              <ArrowRight
-                size={15}
-                className="group-hover:translate-x-1 transition-transform"
-              />
-            </Link>
-            <Link
-              href="#ecosystem"
-              className="px-7 py-3.5 border border-white/20 text-white/65 text-sm rounded-xl hover:bg-white/5 hover:border-white/30 transition-all tracking-widest font-medium"
-            >
-              PELAJARI EKOSISTEM
-            </Link>
-          </div>
+            <div className="flex items-center gap-2.5">
+              {/* Helper Text First (Left side of button) */}
+              <span className="text-white/60 text-sm italic hidden md:flex items-center tracking-wide shrink-0">
+                Perjalanan Anda Dimulai dari sini <ArrowRight className="inline ml-2.5" size={16}/>
+              </span>
 
-          {/* Stats */}
-          <div className="flex flex-wrap gap-6 sm:gap-12">
-            {HERO_STATS.map((stat, i) => (
-              <div
-                key={i}
+              {/* Button Second (Right side, right next to the arrow) */}
+              <Link
+                href="/insight"
+                className="relative inline-flex items-center justify-center select-none transition-all duration-300 active:scale-95 group shrink-0"
                 style={{
-                  opacity: heroReady ? 1 : 0,
-                  filter: heroReady ? "blur(0px)" : "blur(16px)",
-                  transform: heroReady ? "translateY(0px)" : "translateY(20px)",
-                  transition: `opacity 0.8s cubic-bezier(0.16,1,0.3,1) ${200 + i * 80}ms, filter 0.8s cubic-bezier(0.16,1,0.3,1) ${200 + i * 80}ms, transform 0.8s cubic-bezier(0.16,1,0.3,1) ${200 + i * 80}ms`,
+                  width: "180px",
+                  height: "56px",
                 }}
               >
-                <div className="text-3xl sm:text-4xl text-white font-light tracking-tight">
-                  <Counter end={stat.value} suffix={stat.suffix} trigger={heroReady} />
+                {/* Background Button Image */}
+                <div className="absolute inset-0 z-0 w-full h-full">
+                  <Image 
+                    src="/asset/button-hero.png" 
+                    alt="Mulai" 
+                    fill 
+                    priority
+                    className="object-contain transition-transform duration-300 group-hover:scale-[1.03]"
+                  />
                 </div>
-                <div className="text-xs text-white/40 tracking-widest uppercase mt-1">
-                  {stat.label}
-                </div>
-              </div>
-            ))}
+                {/* Centered Text - Gorgeous Pixel-Art Font Style in All-Caps */}
+                <span 
+                  className="relative z-10 font-bold uppercase tracking-widest text-white drop-shadow-[0_2px_3px_rgba(0,0,0,0.6)] translate-y-[-4px] transition-colors duration-300 group-hover:text-[#D9A441]"
+                  style={{
+                    fontFamily: "'Press Start 2P', 'Silkscreen', monospace",
+                    fontSize: "9px",
+                  }}
+                >
+                  MULAI
+                </span>
+              </Link>
+            </div>
           </div>
         </div>
 

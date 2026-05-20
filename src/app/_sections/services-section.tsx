@@ -15,7 +15,7 @@ export function ServicesSection() {
           <div>
             <PixelIcon type="ecosystem" size={40} />
             <div className="mt-4">
-              <Tag>EKOSISTEM</Tag>
+              <Tag>LAYANAN</Tag>
             </div>
             <h2 className="mt-5 text-4xl md:text-5xl font-light tracking-tight leading-[1.05]">
               Solusi Pembelajaran &<br />Pengembangan Terintegrasi.

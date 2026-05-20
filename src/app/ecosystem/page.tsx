@@ -7,16 +7,29 @@ import { ArrowRight, X, Zap, Shield, Target, TrendingUp, CheckCircle2, ChevronRi
 import { ECOSYSTEM_DATA } from "@/data/ecosystem"
 import { PixelIcon } from "@/components/pixel-icon"
 import { Tag } from "@/components/ui/tag"
+import Image from "next/image"
 
-export default function EcosystemPage() {
+export default function LayananPage() {
   const [selectedProduct, setSelectedProduct] = useState<any>(null)
   const products = Object.values(ECOSYSTEM_DATA)
+
+  // Approximate coordinate mapping for service.jpeg (Adjust top, left, w, h percentages as needed)
+  const imageMapAreas = [
+    { id: 'insight', top: '15%', left: '10%', width: '15%', height: '25%' },
+    { id: 'lab', top: '15%', left: '32%', width: '15%', height: '25%' },
+    { id: 'coach', top: '15%', left: '54%', width: '15%', height: '25%' },
+    { id: 'journey', top: '15%', left: '76%', width: '15%', height: '25%' },
+    { id: 'play', top: '55%', left: '10%', width: '15%', height: '25%' },
+    { id: 'academy', top: '55%', left: '32%', width: '15%', height: '25%' },
+    { id: 'impact', top: '55%', left: '54%', width: '15%', height: '25%' },
+    { id: 'works', top: '55%', left: '76%', width: '15%', height: '25%' },
+  ]
 
   return (
     <div className="min-h-screen bg-[#F5F7FA] text-[#4A4C54] font-sans overflow-x-hidden">
 
       {/* Immersive Hero Section - Reconstructed for High Visibility */}
-      <section className="w-full px-4 md:px-8 pt-20 md:pt-26 mb-8 md:mb-16">
+      <section className="w-full px-4 md:px-8 pt-20 md:pt-28 mb-8 md:mb-16">
         <div className="relative w-full h-[80vh] md:h-[85vh] rounded-[32px] md:rounded-[48px] bg-[#030712] overflow-hidden flex items-center justify-center border border-white/5 shadow-2xl">
           
           {/* 1. Technical Grid Lines (High Visibility) */}
@@ -142,7 +155,7 @@ export default function EcosystemPage() {
               </h1>
               
               <p className="text-xl md:text-2xl text-white/40 font-light leading-relaxed max-w-2xl mx-auto">
-                Menyatukan <span className="text-white">Potensi Manusia</span> dan <span className="text-white">Teknologi</span> dalam satu ekosistem terpadu untuk transformasi nyata.
+                Menyatukan <span className="text-white">Potensi Manusia</span> dan <span className="text-white">Teknologi</span> dalam satu layanan terpadu untuk transformasi nyata.
               </p>
             </motion.div>
           </div>
@@ -150,7 +163,7 @@ export default function EcosystemPage() {
       </section>
 
       {/* The "Cycle Breaker" Section */}
-      <section className="py-16 md:py-32 px-6 md:px-12 lg:px-20 bg-white">
+      <section id="latar-belakang" className="py-16 md:py-32 px-6 md:px-12 lg:px-20 bg-white">
         <div className="max-w-7xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-12 items-stretch">
             {/* The Failure Path */}
@@ -169,8 +182,8 @@ export default function EcosystemPage() {
                   "Dampak perubahan tidak terukur secara nyata",
                   "Terhenti di ruang kelas tanpa eksekusi"
                 ].map((item, i) => (
-                  <div key={i} className="flex items-start gap-4">
-                    <div className="w-6 h-6 rounded-full bg-red-500/10 flex items-center justify-center shrink-0 mt-1">
+                  <div key={i} className="flex items-center gap-4">
+                    <div className="w-6 h-6 rounded-full bg-red-500/10 flex items-center justify-center shrink-0">
                       <div className="w-1.5 h-1.5 rounded-full bg-red-500" />
                     </div>
                     <p className="text-black/80 font-light text-lg">{item}</p>
@@ -203,60 +216,85 @@ export default function EcosystemPage() {
               </div>
 
               <div className="relative z-10">
-                <h3 className="text-3xl font-light mb-10 text-white">Jawaban di Dalam <br /><span className="text-[#D9A441] font-bold italic">Satu Ekosistem.</span></h3>
+                <h3 className="text-3xl font-light mb-10 text-white">Jawaban di Dalam <br /><span className="text-[#D9A441] font-bold italic">Satu Layanan Terintegrasi.</span></h3>
                 <p className="text-white/90 font-light leading-relaxed mb-10 text-lg">
                   Setiap pilar BinaHub dirancang untuk saling melengkapi, memastikan transformasi yang berkesinambungan dari penggalian akar masalah hingga akselerasi kinerja nyata.
                 </p>
-                <div className="grid grid-cols-2 gap-4 md:gap-6">
-                  <div className="bg-white/10 p-6 rounded-3xl border border-white/10 backdrop-blur-md">
-                    <div className="text-[#D9A441] font-bold text-4xl tracking-tighter mb-2">8</div>
-                    <div className="text-[10px] tracking-[0.2em] uppercase text-white/60 font-bold">Integrated Pillars</div>
-                  </div>
-                  <div className="bg-white/10 p-6 rounded-3xl border border-white/10 backdrop-blur-md">
-                    <div className="text-[#D9A441] font-bold text-4xl tracking-tighter mb-2">∞</div>
-                    <div className="text-[10px] tracking-[0.2em] uppercase text-white/60 font-bold">Human Synergy</div>
-                  </div>
-                </div>
+                {/* Stats removed as requested */}
               </div>
             </motion.div>
           </div>
         </div>
       </section>
 
-      {/* Interactive Ecosystem Bento Grid */}
-      <section className="py-16 md:py-32 px-6 md:px-12 lg:px-20 bg-[#F5F7FA]">
+      {/* Interactive Service Map */}
+      <section id="solusi" className="py-16 md:py-32 px-6 md:px-12 lg:px-20 bg-[#F5F7FA]">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16 md:mb-24">
             <Tag>EXPLORE THE HUB</Tag>
-            <h2 className="text-3xl md:text-5xl lg:text-7xl font-light tracking-tight mt-6 md:mt-10 text-[#0B2C6B]">8 Pilar Transformasi.</h2>
+            <h2 className="text-3xl md:text-5xl lg:text-7xl font-light tracking-tight mt-6 md:mt-10 text-[#0B2C6B]">
+              Solusi Pembelajaran & <br />Pengembangan Terintegrasi.
+            </h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {products.map((product: any, i) => (
-              <motion.div
-                key={product.id}
-                initial={{ opacity: 0, scale: 0.95 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.05 }}
-                layoutId={product.id}
-                onClick={() => setSelectedProduct(product)}
-                className="group bg-white p-6 md:p-10 rounded-[32px] md:rounded-[40px] border border-black/[0.04] cursor-pointer hover:shadow-2xl hover:shadow-black/10 transition-all duration-500 relative overflow-hidden"
-              >
-                <div className="relative z-10">
-                  <div className="mb-10 group-hover:scale-110 transition-transform duration-500">
-                    <PixelIcon type={product.iconType} size={48} />
-                  </div>
-                  <h3 className="text-2xl font-light mb-2 text-[#0B2C6B] group-hover:text-[#D9A441] transition-colors">{product.title}</h3>
-                  <p className="text-[10px] text-black/40 uppercase tracking-[0.2em] font-bold mb-8">{product.subtitle}</p>
-                  <div className="flex items-center gap-3 text-[11px] font-bold text-black/40 group-hover:text-black transition-colors">
-                    PELAJARI DETAIL <ChevronRight size={16} />
+          {/* New Image Map Section - Responsive and Full-Width */}
+          <div className="relative w-full max-w-[95vw] xl:max-w-7xl 2xl:max-w-[1440px] mx-auto aspect-[16/9] rounded-3xl md:rounded-[40px] overflow-hidden shadow-2xl border border-black/5 bg-white">
+            <Image 
+              src="/asset/service.jpeg"
+              alt="BinaHub Layanan Map"
+              fill
+              className="object-contain w-full h-full"
+            />
+            {/* Clickable Overlay Areas */}
+            {imageMapAreas.map((area, i) => {
+              const product = products.find(p => p.id === area.id);
+              return (
+                <div
+                  key={i}
+                  className="absolute cursor-pointer hover:bg-[#D9A441]/20 transition-colors duration-300 rounded-xl border-2 border-transparent hover:border-[#D9A441]/50 flex items-center justify-center group"
+                  style={{ top: area.top, left: area.left, width: area.width, height: area.height }}
+                  onClick={() => {
+                    if(product) setSelectedProduct(product);
+                  }}
+                >
+                  {/* Subtle indicator for clickable area */}
+                  <div className="w-8 h-8 rounded-full bg-white/40 shadow-xl opacity-0 group-hover:opacity-100 flex items-center justify-center backdrop-blur-sm transition-opacity">
+                    <Zap size={16} className="text-[#0B2C6B]" />
                   </div>
                 </div>
-                <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-black/[0.01] rounded-full group-hover:bg-[#D9A441]/5 transition-all duration-700" />
-              </motion.div>
-            ))}
+              );
+            })}
           </div>
+
+          
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-16">
+              {products.map((product: any, i) => (
+                <motion.div
+                  key={product.id}
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.05 }}
+                  layoutId={product.id}
+                  onClick={() => setSelectedProduct(product)}
+                  className="group bg-white p-6 md:p-10 rounded-[32px] md:rounded-[40px] border border-black/[0.04] cursor-pointer hover:shadow-2xl hover:shadow-black/10 transition-all duration-500 relative overflow-hidden"
+                >
+                  <div className="relative z-10">
+                    <div className="mb-10 group-hover:scale-110 transition-transform duration-500">
+                      <PixelIcon type={product.iconType} size={48} />
+                    </div>
+                    <h3 className="text-2xl font-bold mb-2 text-[#0B2C6B] group-hover:text-[#D9A441] transition-colors">{product.title}</h3>
+                    <p className="text-[10px] text-black/40 uppercase tracking-[0.2em] font-bold mb-8">{product.subtitle}</p>
+                    <div className="flex items-center gap-3 text-[11px] font-bold text-black/40 group-hover:text-black transition-colors">
+                      PELAJARI DETAIL <ChevronRight size={16} />
+                    </div>
+                  </div>
+                  <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-black/[0.01] rounded-full group-hover:bg-[#D9A441]/5 transition-all duration-700" />
+                </motion.div>
+              ))}
+            </div>
+
+
         </div>
       </section>
 
@@ -289,9 +327,6 @@ export default function EcosystemPage() {
                   </div>
                   <h2 className="text-5xl font-light tracking-tighter mb-4 leading-none text-white">{selectedProduct.title}</h2>
                   <p className="text-[11px] font-bold tracking-[0.3em] uppercase text-[#D9A441] mb-8">{selectedProduct.subtitle}</p>
-                  <p className="text-white/90 text-xl font-light leading-relaxed italic border-l-2 border-[#D9A441] pl-8">
-                    "{selectedProduct.tagline}"
-                  </p>
                 </div>
                 <button
                   onClick={() => setSelectedProduct(null)}
@@ -307,7 +342,7 @@ export default function EcosystemPage() {
                   {/* Context */}
                   <div>
                     <h4 className="text-[10px] font-bold tracking-[0.5em] text-black/30 uppercase mb-8">Filosofi & Pendekatan</h4>
-                    <p className="text-3xl text-black/90 font-light leading-relaxed tracking-tight">
+                    <p className="text-xl md:text-2xl text-black/75 font-light leading-relaxed">
                       {selectedProduct.description}
                     </p>
                   </div>
@@ -318,8 +353,8 @@ export default function EcosystemPage() {
                       <h4 className="text-[10px] font-bold tracking-[0.5em] text-black/30 uppercase mb-8">Tantangan yang Dijawab</h4>
                       <div className="space-y-6">
                         {selectedProduct.challenges.map((c: string, i: number) => (
-                          <div key={i} className="flex gap-4 items-start">
-                            <div className="w-6 h-6 rounded-lg bg-red-500/10 flex items-center justify-center shrink-0 mt-1">
+                          <div key={i} className="flex gap-4 items-center">
+                            <div className="w-6 h-6 rounded-lg bg-red-500/10 flex items-center justify-center shrink-0">
                               <X size={14} className="text-red-500" />
                             </div>
                             <p className="text-black/80 font-light leading-relaxed">{c}</p>
@@ -333,8 +368,8 @@ export default function EcosystemPage() {
                       <h4 className="text-[10px] font-bold tracking-[0.5em] text-black/30 uppercase mb-8">Tujuan & Manfaat</h4>
                       <div className="space-y-6">
                         {selectedProduct.benefits.map((b: string, i: number) => (
-                          <div key={i} className="flex gap-4 items-start">
-                            <div className="w-6 h-6 rounded-lg bg-[#D9A441]/10 flex items-center justify-center shrink-0 mt-1">
+                          <div key={i} className="flex gap-4 items-center">
+                            <div className="w-6 h-6 rounded-lg bg-[#D9A441]/10 flex items-center justify-center shrink-0">
                               <Target size={14} className="text-[#D9A441]" />
                             </div>
                             <p className="text-black/80 font-light leading-relaxed">{b}</p>
@@ -350,7 +385,7 @@ export default function EcosystemPage() {
                     <div className="grid sm:grid-cols-2 gap-x-12 gap-y-6">
                       {selectedProduct.results.map((r: string, i: number) => (
                         <div key={i} className="flex gap-4 items-center group">
-                          <div className="w-2 h-2 rounded-full bg-green-500 group-hover:scale-150 transition-transform" />
+                          <div className="w-2 h-2 rounded-full bg-green-500 group-hover:scale-150 transition-transform shrink-0" />
                           <p className="text-xs font-bold text-black/80 uppercase tracking-widest leading-relaxed">{r}</p>
                         </div>
                       ))}
@@ -387,10 +422,10 @@ export default function EcosystemPage() {
 
           <div className="flex items-center gap-6">
             <Link
-              href="/insight"
+              href="#chatbot"
               className="group inline-flex h-14 px-10 bg-[#D9A441] text-[#0B2C6B] rounded-full text-[11px] font-bold tracking-[0.3em] hover:bg-white transition-all items-center justify-center uppercase"
             >
-              MULAI ASESMEN <ArrowRight size={16} className="ml-3 group-hover:translate-x-1 transition-transform" />
+              KONSULTASI GRATIS <ArrowRight size={16} className="ml-3 group-hover:translate-x-1 transition-transform" />
             </Link>
             <div className="hidden lg:flex gap-2">
               {[...Array(3)].map((_, i) => (
