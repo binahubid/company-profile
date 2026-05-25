@@ -99,7 +99,6 @@ export function CoreValuesSection() {
             onMouseLeave={() => setIsPaused(false)}
             onFocus={() => setIsPaused(true)}
             onBlur={() => setIsPaused(false)}
-            onFocusOut={() => setIsPaused(false)}
           >
             {CORE_VALUES.map((item, index) => {
               const isActive = active === index;

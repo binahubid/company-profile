@@ -31,10 +31,10 @@ export function HeroSection({ heroReady }: HeroSectionProps) {
   }, []);
 
   return (
-    <section className="relative z-0 px-4 pt-[110px] pb-4 bg-[#F5F7FA] w-full overflow-x-hidden">
+    <section className="relative z-0 px-4 pt-[104px] pb-3 md:pt-[110px] md:pb-4 bg-[#F5F7FA] w-full overflow-x-hidden">
       <div
         className="relative rounded-xl overflow-hidden"
-        style={{ minHeight: "calc(100vh - 108px)", maxHeight: "calc(100svh - 60px)" }}
+        style={{ height: "clamp(560px, calc(100svh - 126px), 820px)" }}
       >
         {/* Background Image */}
         <Image
@@ -84,9 +84,9 @@ export function HeroSection({ heroReady }: HeroSectionProps) {
         <PixelBackground ready={heroReady} />
 
         {/* Hero Content */}
-        <div className="absolute inset-x-0 bottom-0 z-30 flex flex-col px-4 sm:px-6 md:px-16 pb-8 sm:pb-10 md:pb-24 max-w-5xl">
+        <div className="absolute inset-x-0 bottom-0 z-30 flex flex-col px-4 sm:px-6 md:px-16 pb-8 sm:pb-10 md:pb-16 lg:pb-20 xl:pb-24 max-w-5xl">
           <div
-            className="mb-4 sm:mb-6 relative h-[90px] sm:h-[150px] md:h-[200px] lg:h-[220px]"
+            className="mb-4 sm:mb-6 relative h-[90px] sm:h-[150px] md:h-[180px] lg:h-[200px] xl:h-[220px]"
             style={{
               opacity: heroReady ? 1 : 0,
               filter: heroReady ? "blur(0px)" : "blur(24px)",
@@ -102,7 +102,7 @@ export function HeroSection({ heroReady }: HeroSectionProps) {
                 animate={{ y: 0, opacity: 1 }}
                 exit={{ y: -40, opacity: 0 }}
                 transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-                className="absolute inset-0 text-3xl sm:text-6xl md:text-7xl lg:text-8xl font-light text-white leading-[1.1] tracking-tight"
+                className="absolute inset-0 text-3xl sm:text-6xl md:text-7xl lg:text-[5.5rem] xl:text-8xl font-light text-white leading-[1.1] tracking-tight"
               >
                 {TITLES[titleIndex].white} <br />
                 <span className="italic font-sans" style={{ color: "#D9A441" }}>
