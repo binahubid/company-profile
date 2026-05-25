@@ -83,9 +83,6 @@ export default function ContactPage() {
         
         {/* Header Hero Section */}
         <div className="mb-16 text-left max-w-3xl">
-          <div className="flex justify-start mb-4">
-            <PixelIcon type="coach" size={48} />
-          </div>
           <div className="mt-2">
             <Tag>HUBUNGI KAMI</Tag>
           </div>
