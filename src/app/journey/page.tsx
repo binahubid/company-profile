@@ -46,7 +46,7 @@ export default function JourneyPage() {
         </header>
 
         {/* CHAPTERS (Selang-seling, Asimetris, Majalah) */}
-        <div className="space-y-36 md:space-y-48">
+        <div className="space-y-24 md:space-y-36 lg:space-y-36 xl:space-y-48">
 
           {/* Chapter 1: 2010 - Fondasi Awal BDN (Text-Left, Image-Right) */}
           <section className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center">
@@ -81,7 +81,7 @@ export default function JourneyPage() {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
-              className="lg:col-span-6 relative h-[240px] sm:h-[320px] md:h-[500px] w-full rounded-none overflow-hidden shadow-md border border-black/[0.06] group"
+              className="lg:col-span-6 relative h-[240px] sm:h-[320px] md:h-[500px] lg:h-[400px] xl:h-[500px] w-full rounded-none overflow-hidden shadow-md border border-black/[0.06] group"
             >
               <Image
                 src="/BDN.png"
@@ -103,7 +103,7 @@ export default function JourneyPage() {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
-              className="lg:col-span-6 order-2 lg:order-1 relative h-[240px] sm:h-[320px] md:h-[500px] w-full rounded-none overflow-hidden shadow-md border border-black/[0.06] group"
+              className="lg:col-span-6 order-2 lg:order-1 relative h-[240px] sm:h-[320px] md:h-[500px] lg:h-[400px] xl:h-[500px] w-full rounded-none overflow-hidden shadow-md border border-black/[0.06] group"
             >
               <Image
                 src="/gallery/2.jpg"
@@ -173,7 +173,7 @@ export default function JourneyPage() {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
-              className="lg:col-span-6 relative h-[240px] sm:h-[320px] md:h-[500px] w-full rounded-none overflow-hidden shadow-md border border-black/[0.06] group"
+              className="lg:col-span-6 relative h-[240px] sm:h-[320px] md:h-[500px] lg:h-[400px] xl:h-[500px] w-full rounded-none overflow-hidden shadow-md border border-black/[0.06] group"
             >
               <Image
                 src="/asset/bsksims2.png"
@@ -195,7 +195,7 @@ export default function JourneyPage() {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
-              className="lg:col-span-6 order-2 lg:order-1 relative h-[240px] sm:h-[320px] md:h-[500px] w-full rounded-none overflow-hidden shadow-md border border-black/[0.06] group"
+              className="lg:col-span-6 order-2 lg:order-1 relative h-[240px] sm:h-[320px] md:h-[500px] lg:h-[400px] xl:h-[500px] w-full rounded-none overflow-hidden shadow-md border border-black/[0.06] group"
             >
               <Image
                 src="/logo.png"

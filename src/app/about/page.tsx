@@ -308,7 +308,7 @@ export default function AboutPage() {
             <div>
               <Tag>OUR POSITIONING</Tag>
 
-              <h2 className="mt-6 md:mt-8 max-w-[620px] text-4xl md:text-5xl lg:text-[62px] font-light tracking-[-0.055em] leading-[1.02] text-[#0B2C6B]">
+              <h2 className="mt-6 md:mt-8 max-w-[620px] text-4xl md:text-5xl lg:text-5xl xl:text-[62px] font-light tracking-[-0.055em] leading-[1.02] text-[#0B2C6B]">
                 Mitra transformasi
                 <span className="block">& kapabilitas</span>
                 <span className="block font-medium">masa depan.</span>
@@ -321,7 +321,7 @@ export default function AboutPage() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-5">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-5">
             {CAPABILITIES.map((cap, i) => {
               const isFeatured = i === 0;
               const texture = CAPABILITY_TEXTURES[i];

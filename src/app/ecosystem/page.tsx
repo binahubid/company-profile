@@ -345,7 +345,7 @@ export default function LayananPage() {
             <div className="flex-1 h-[1px] bg-gradient-to-l from-transparent via-black/10 to-[#0B2C6B]/20" />
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
               {products.map((product: any, i) => {
                 const isPrimary = primaryProductIds.has(product.id)
 
@@ -410,14 +410,14 @@ export default function LayananPage() {
             >
               {/* Product Header Side - Now Navy */}
               <div
-                className="w-full md:w-1/3 p-5 sm:p-6 md:p-12 text-white flex flex-col justify-between relative overflow-hidden shrink-0 bg-[#0B2C6B]"
+                className="w-full md:w-2/5 lg:w-1/3 p-5 sm:p-6 md:p-12 text-white flex flex-col justify-between relative overflow-hidden shrink-0 bg-[#0B2C6B]"
               >
                 <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 blur-[80px] rounded-full translate-x-10 -translate-y-10" />
                 <div className="relative z-10">
                   <div className="bg-white/5 p-5 sm:p-8 rounded-lg inline-block mb-6 sm:mb-10 border border-white/10">
                     <PixelIcon type={selectedProduct.iconType} size={64} />
                   </div>
-                  <h2 className="text-3xl sm:text-4xl md:text-5xl font-light tracking-tighter mb-4 leading-none text-white">{selectedProduct.title}</h2>
+                  <h2 className="text-3xl sm:text-4xl md:text-3xl lg:text-4xl font-light tracking-tighter mb-4 leading-none text-white">{selectedProduct.title}</h2>
                   <p className="text-[11px] font-bold tracking-[0.3em] uppercase text-[#D9A441] mb-8">{selectedProduct.subtitle}</p>
                   {selectedProduct.tagline && (
                     <div className="mt-10 rounded-2xl border border-white/10 bg-white/[0.045] p-5">

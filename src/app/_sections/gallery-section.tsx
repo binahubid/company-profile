@@ -20,7 +20,7 @@ export function GallerySection() {
           <span className="inline-flex rounded-full bg-black/[0.04] px-4 py-2 text-[10px] font-bold uppercase tracking-[0.24em] text-[#0B2C6B]/52">
             Gallery
           </span>
-          <h2 className="mt-6 text-4xl font-light leading-[1.06] tracking-tight text-[#0B2C6B] md:text-6xl">
+          <h2 className="mt-6 text-4xl font-light leading-[1.06] tracking-tight text-[#0B2C6B] md:text-5xl lg:text-6xl">
             Momen yang membentuk perjalanan.
           </h2>
           <p className="mt-6 text-base leading-[1.85] text-[#4A4C54]/70 md:text-lg">

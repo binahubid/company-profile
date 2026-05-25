@@ -13,7 +13,7 @@ const Footer = () => {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="relative overflow-hidden border-t border-black/[0.04] bg-[linear-gradient(to_bottom,#FFFFFF,#FAFBFC)] px-6 pb-12 pt-24 md:px-12 lg:px-24">
+    <footer className="relative overflow-hidden border-t border-black/[0.04] bg-[linear-gradient(to_bottom,#FFFFFF,#FAFBFC)] px-6 pb-12 pt-24 md:px-12 lg:px-16">
       <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#D9A441]/35 to-transparent" />
       <div className="pointer-events-none absolute inset-x-[12%] top-0 h-20 bg-[#0B2C6B]/[0.025] blur-3xl" />
       <div className="pointer-events-none absolute bottom-[-180px] right-[-120px] h-[520px] w-[520px] rounded-full bg-[#D9A441]/7 blur-[120px]" />

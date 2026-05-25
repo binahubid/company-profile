@@ -99,8 +99,8 @@ export default function BinaHubOrbit({ onProductClick }: BinaHubOrbitProps) {
 
   return (
     <section 
-      className="relative w-full overflow-hidden flex items-center justify-center rounded-xl border border-white/10 py-36 px-4"
-      style={{ minHeight: "820px", background: "#030712" }}
+      className="relative w-full overflow-hidden flex items-center justify-center rounded-xl border border-white/10 py-12 md:py-24 lg:py-36 px-4 min-h-[380px] sm:min-h-[500px] md:min-h-[640px] lg:min-h-[760px] xl:min-h-[820px]"
+      style={{ background: "#030712" }}
       aria-label="BinaHub Orbit Map"
     >
       {/* 1. Tech Grid Lines */}
@@ -159,7 +159,7 @@ export default function BinaHubOrbit({ onProductClick }: BinaHubOrbitProps) {
       ))}
 
       {/* Scaling wrapper to make the entire orbit diagram responsive across different viewports */}
-      <div className="relative w-[1120px] h-[680px] flex items-center justify-center shrink-0 scale-[0.58] sm:scale-[0.7] md:scale-[0.78] lg:scale-[0.9] xl:scale-100 transition-all duration-550 origin-center">
+      <div className="relative w-[1120px] h-[680px] flex items-center justify-center shrink-0 scale-[0.28] min-[375px]:scale-[0.33] min-[414px]:scale-[0.37] min-[500px]:scale-[0.45] sm:scale-[0.54] md:scale-[0.66] lg:scale-[0.82] xl:scale-[0.95] 2xl:scale-100 transition-all duration-550 origin-center">
         {/* Orbit Track Circles */}
         <div className="absolute w-[500px] h-[500px] rounded-full border border-white/5 border-dashed pointer-events-none z-[4] animate-[spin_120s_linear_infinite]" />
         <div className="absolute w-[680px] h-[680px] rounded-full border border-white/[0.04] pointer-events-none z-[4]" />

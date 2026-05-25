@@ -81,7 +81,7 @@ export function CoreValuesSection() {
             <div className="inline-flex items-center rounded-full bg-black/[0.04] px-3 py-1 text-[11px] font-medium uppercase tracking-[0.18em] text-black/42">
               NILAI-NILAI UTAMA
             </div>
-            <h2 className="mt-6 text-4xl sm:text-7xl md:text-7xl lg:text-[88px] font-light leading-none tracking-[-0.04em] text-[#0B2C6B]">
+            <h2 className="mt-6 text-4xl sm:text-7xl md:text-7xl lg:text-[68px] xl:text-[88px] font-light leading-none tracking-[-0.04em] text-[#0B2C6B]">
               H.U.M.A.N
             </h2>
           </div>
@@ -99,6 +99,7 @@ export function CoreValuesSection() {
             onMouseLeave={() => setIsPaused(false)}
             onFocus={() => setIsPaused(true)}
             onBlur={() => setIsPaused(false)}
+            onFocusOut={() => setIsPaused(false)}
           >
             {CORE_VALUES.map((item, index) => {
               const isActive = active === index;
@@ -183,7 +184,7 @@ export function CoreValuesSection() {
             transition={{ duration: 0.7, ease: premiumEase }}
             onMouseEnter={() => setIsPaused(true)}
             onMouseLeave={() => setIsPaused(false)}
-            className="relative min-h-[470px] overflow-hidden rounded-2xl border border-[#0B2C6B]/10 bg-[#07182F] p-8 text-white shadow-[0_20px_60px_-30px_rgba(11,44,107,0.18)] md:p-12 lg:p-14"
+            className="relative min-h-[470px] overflow-hidden rounded-2xl border border-[#0B2C6B]/10 bg-[#07182F] p-8 text-white shadow-[0_20px_60px_-30px_rgba(11,44,107,0.18)] md:p-12 lg:p-10 xl:p-14"
           >
             <motion.div
               key={`texture-${active}`}

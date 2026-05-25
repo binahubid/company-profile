@@ -74,7 +74,7 @@ export default function ContactPage() {
   };
 
   return (
-    <div className="bg-[#F5F7FA] min-h-screen pt-28 pb-20 px-6 md:px-12 lg:px-24">
+    <div className="bg-[#F5F7FA] min-h-screen pt-28 pb-20 px-6 md:px-12 lg:px-16">
       {/* Decorative Glow Ambient Orbs */}
       <div className="absolute top-20 right-0 w-[500px] h-[500px] bg-[#D9A441]/5 blur-[120px] rounded-full pointer-events-none" />
       <div className="absolute bottom-20 left-0 w-[400px] h-[400px] bg-[#3B82F6]/5 blur-[100px] rounded-full pointer-events-none" />

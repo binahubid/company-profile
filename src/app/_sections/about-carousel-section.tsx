@@ -147,7 +147,7 @@ export function AboutCarouselSection() {
                   {slide.lines.map((line, i) => (
                     <h2
                       key={i}
-                      className="text-4xl md:text-5xl lg:text-[4.5rem] font-light tracking-tight leading-[1.16] text-white"
+                      className="text-4xl md:text-5xl lg:text-[3.5rem] xl:text-[4.5rem] font-light tracking-tight leading-[1.16] text-white"
                     >
                       {line}
                     </h2>

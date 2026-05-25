@@ -24,7 +24,7 @@ export default function GalleryPage() {
               <span className="inline-flex rounded-full bg-black/[0.04] px-4 py-2 text-[10px] font-bold uppercase tracking-[0.24em] text-[#0B2C6B]/52">
                 Gallery
               </span>
-              <h1 className="mt-6 text-4xl sm:text-5xl md:text-7xl font-light leading-[1.02] tracking-tight text-[#0B2C6B]">
+              <h1 className="mt-6 text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-light leading-[1.02] tracking-tight text-[#0B2C6B]">
                 Dokumentasi perjalanan BinaHub.
               </h1>
             </div>
