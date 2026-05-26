@@ -19,6 +19,8 @@ export async function sendAssessmentEmail(
   const navy = '#0B2C6B';
   const gold = '#D9A441';
   const offWhite = '#F5F7FA';
+  const scoreInterpretation = result.scoreInterpretation || `Skor ${result.scores.overall} menempatkan ${formData.company} pada kategori ${result.category}. Ini menunjukkan fondasi organisasi yang dapat diperkuat melalui prioritas strategis yang lebih tajam.`;
+  const crossInsights = result.crossDimensionalInsights?.length ? result.crossDimensionalInsights : [];
 
   // Premium Corporate HTML Email
   const htmlBody = `
@@ -33,10 +35,10 @@ export async function sendAssessmentEmail(
   <div style="max-width:600px;margin:0 auto;background:#FFFFFF;border-radius:8px;overflow:hidden;margin-top:40px;margin-bottom:40px;box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
     
     <!-- Header -->
-    <div style="padding:40px;background-color:${navy};text-align:center;border-bottom:4px solid ${gold};">
-      <div style="color:${gold};font-size:10px;text-transform:uppercase;letter-spacing:3px;margin-bottom:15px;font-weight:700;">BinaHub Insight Diagnostic</div>
+    <div style="padding:40px;background-color:${navy};text-align:center;border-bottom:4px solid ${gold};background-image:radial-gradient(circle at 85% 20%, rgba(217,164,65,0.18), transparent 26%), linear-gradient(135deg, rgba(255,255,255,0.05), transparent 45%);">
+      <div style="color:${gold};font-size:10px;text-transform:uppercase;letter-spacing:3px;margin-bottom:15px;font-weight:700;">Diagnostik BinaHub Insight</div>
       <h1 style="color:#FFFFFF;font-size:26px;font-weight:600;margin:0 0 10px;letter-spacing:0px;">
-        Laporan Eksekutif Kematangan Organisasi
+        Asesmen Eksekutif Rahasia
       </h1>
       <p style="color:rgba(255,255,255,0.8);margin:0;font-size:16px;font-weight:300;">${formData.company}</p>
     </div>
@@ -47,7 +49,7 @@ export async function sendAssessmentEmail(
         Yth. <strong>Bapak/Ibu ${formData.name}</strong>,
       </p>
       <p style="color:#475569;font-size:15px;line-height:1.6;margin:0 0 35px;font-weight:400;">
-        Terima kasih telah meluangkan waktu untuk menyelesaikan proses diagnostik BinaHub Insight. Tim konsultan kami telah memproses data Anda untuk memetakan kondisi operasional dan sumber daya manusia di perusahaan Anda saat ini.
+        Terima kasih telah menyelesaikan proses diagnostik BinaHub Insight. Kami telah memetakan pola operasional, keselarasan kepemimpinan, dan kesiapan transformasi organisasi Anda berdasarkan parameter diagnostik multidimensi.
       </p>
 
       <!-- Score Card -->
@@ -57,6 +59,14 @@ export async function sendAssessmentEmail(
         <div style="display:inline-block;background:${gold};color:${navy};padding:6px 20px;border-radius:4px;font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:1px;">
           Tahap: ${result.category}
         </div>
+        <p style="color:#475569;font-size:14px;line-height:1.6;margin:22px 0 0;font-weight:400;">
+          ${scoreInterpretation}
+        </p>
+        ${result.archetype ? `
+          <div style="margin-top:18px;display:inline-block;border:1px solid #E2E8F0;background:#FFFFFF;color:${navy};padding:8px 18px;border-radius:999px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1.4px;">
+            ${result.archetype}
+          </div>
+        ` : ''}
       </div>
 
       <!-- Analysis -->
@@ -65,15 +75,33 @@ export async function sendAssessmentEmail(
         <p style="color:#475569;font-size:15px;line-height:1.7;margin:0;font-weight:400;">${result.aiAnalysis}</p>
       </div>
 
+      ${crossInsights.length ? `
+        <h2 style="color:${navy};font-size:18px;font-weight:600;margin:0 0 15px;border-left:3px solid ${gold};padding-left:12px;">Penalaran Diagnostik</h2>
+        ${crossInsights.slice(0, 2).map((insight, i) => `
+          <div style="padding:18px;background:#FFFFFF;border-radius:8px;margin-bottom:12px;border:1px solid #E2E8F0;">
+            <div style="color:${gold};font-size:10px;font-weight:700;margin-bottom:8px;text-transform:uppercase;letter-spacing:1.2px;">Temuan 0${i + 1}</div>
+            <p style="color:#475569;font-size:14px;margin:0;line-height:1.55;">${insight}</p>
+          </div>
+        `).join('')}
+      ` : ''}
+
       <!-- Recommendation Highlights -->
       <h2 style="color:${navy};font-size:18px;font-weight:600;margin:0 0 15px;border-left:3px solid ${gold};padding-left:12px;">Prioritas Strategis</h2>
       ${result.recommendations.slice(0, 3).map((rec, i) => `
         <div style="padding:20px;background:${offWhite};border-radius:8px;margin-bottom:12px;border:1px solid #E2E8F0;border-left:4px solid ${navy};">
           <div style="color:${gold};font-size:10px;font-weight:700;margin-bottom:5px;text-transform:uppercase;">Prioritas 0${i+1} — ${rec.service}</div>
           <p style="color:${navy};font-size:15px;font-weight:600;margin:0 0 8px;">${rec.title}</p>
+          ${rec.diagnosis ? `<p style="color:${navy};font-size:13px;margin:0 0 8px;line-height:1.5;font-weight:500;">${rec.diagnosis}</p>` : ''}
           <p style="color:#64748B;font-size:14px;margin:0;line-height:1.5;">${rec.description}</p>
         </div>
       `).join('')}
+
+      ${result.riskProjection ? `
+        <div style="background:#FFF8E8;border-radius:8px;padding:22px;margin:30px 0;border:1px solid #F4E5B2;">
+          <div style="color:${navy};font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1.2px;margin-bottom:8px;">Proyeksi Risiko 12-18 Bulan</div>
+          <p style="color:#475569;font-size:14px;line-height:1.6;margin:0;">${result.riskProjection}</p>
+        </div>
+      ` : ''}
 
       <!-- PDF Note -->
       <div style="background:${offWhite};border-radius:8px;padding:25px;text-align:center;margin:35px 0;">
@@ -102,7 +130,7 @@ export async function sendAssessmentEmail(
     <div style="padding:30px 40px;border-top:1px solid #E2E8F0;text-align:center;background-color:${offWhite};">
       <p style="color:${navy};font-size:12px;margin:0;font-weight:600;letter-spacing:1px;text-transform:uppercase;">${COMPANY_NAME}</p>
       <p style="color:#94A3B8;font-size:11px;margin:8px 0 0;">
-        Human Transformation & Future Capability Partner<br>
+        Mitra Transformasi Manusia & Kapabilitas Masa Depan<br>
         Email ini dikirim secara otomatis. Jika butuh bantuan, balas ke ${process.env.NEXT_PUBLIC_COMPANY_EMAIL || 'hello@binahub.id'}
       </p>
     </div>
@@ -118,7 +146,7 @@ export async function sendAssessmentEmail(
     const clientRes = await resend.emails.send({
       from: `${COMPANY_NAME} <${FROM}>`,
       to: formData.email,
-      subject: `Laporan Eksekutif BinaHub Insight: ${formData.company}`,
+      subject: `Asesmen Eksekutif Rahasia · ${formData.company}`,
       html: htmlBody,
       attachments: pdfBuffer
         ? [{ 

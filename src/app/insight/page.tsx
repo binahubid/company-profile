@@ -7,7 +7,7 @@ import { ArrowLeft, ArrowRight, AlertTriangle, X, Loader2 } from "lucide-react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { FormData } from "./_types";
-import { QUESTIONS } from "./questions";
+import { DIMENSIONS, QUESTIONS } from "./questions";
 import { LandingStep } from "./_steps/landing-step";
 import { LeadCaptureStep } from "./_steps/lead-capture-step";
 import { InstructionStep } from "./_steps/instruction-step";
@@ -17,6 +17,15 @@ import { SuccessStep } from "./_steps/success-step";
 import { PixelIcon } from "@/components/pixel-icon";
 
 const TOTAL_STEPS = 10;
+const STEP_CONTEXT = [
+  { eyebrow: "Profil Organisasi", title: "Personalisasi laporan diagnostik" },
+  { eyebrow: "Instruksi", title: "Kalibrasi cara menjawab" },
+  ...DIMENSIONS.map((dimension) => ({
+    eyebrow: `Dimensi ${dimension}`,
+    title: `Menganalisis ${dimension}`,
+  })),
+  { eyebrow: "Konteks Strategis", title: "Menangkap prioritas 3-6 bulan" },
+];
 
 export default function InsightPage() {
   const [step, setStep] = useState(-1);
@@ -126,6 +135,7 @@ export default function InsightPage() {
   };
 
   const progressPercent = step >= 0 ? Math.min(100, (step / TOTAL_STEPS) * 100) : 0;
+  const currentContext = step >= 0 && step < 10 ? STEP_CONTEXT[step] : null;
 
   return (
     <div className="min-h-screen bg-[#F5F7FA] text-[#4A4C54] font-sans flex flex-col selection:bg-[#0B2C6B] selection:text-white relative overflow-x-hidden">
@@ -162,11 +172,11 @@ export default function InsightPage() {
                   Anda akan kehilangan semua data yang telah diisi. <br /> Apakah Anda yakin ingin menghentikan proses ini?
                 </p>
                 <div className="grid grid-cols-1 gap-3">
-                  <button onClick={confirmBack} className="group relative w-full h-16 bg-[#0B2C6B] text-white rounded-2xl text-[11px] font-bold tracking-[0.2em] uppercase overflow-hidden transition-all hover:bg-black shadow-xl">
-                    <span className="relative z-10">YA, KEMBALI & BATALKAN</span>
+                  <button onClick={() => setShowExitConfirm(false)} className="group relative w-full h-16 bg-[#0B2C6B] text-white rounded-2xl text-[11px] font-bold tracking-[0.2em] uppercase overflow-hidden transition-all hover:bg-black shadow-xl">
+                    <span className="relative z-10">LANJUTKAN ASESMEN</span>
                   </button>
-                  <button onClick={() => setShowExitConfirm(false)} className="w-full h-16 bg-white text-[#0B2C6B] border border-black/5 rounded-2xl text-[11px] font-bold tracking-[0.2em] uppercase hover:bg-black/5 transition-all">
-                    <span className="relative z-10">TIDAK, LANJUTKAN ASESMEN</span>
+                  <button onClick={confirmBack} className="w-full h-16 bg-white text-[#0B2C6B]/55 border border-black/5 rounded-2xl text-[11px] font-bold tracking-[0.2em] uppercase hover:bg-black/5 transition-all">
+                    <span className="relative z-10">KELUAR & BATALKAN</span>
                   </button>
                 </div>
               </div>
@@ -210,8 +220,15 @@ export default function InsightPage() {
               className="h-8 w-auto object-contain"
             />
           </button>
-          <div className="text-[10px] font-bold tracking-[0.2em] text-black/20 uppercase">
-            {step === 10 ? "SELESAI" : `TAHAP ${step + 1} DARI ${TOTAL_STEPS}`}
+          <div className="text-right">
+            <div className="text-[10px] font-bold tracking-[0.2em] text-black/24 uppercase">
+              {step === 10 ? "SELESAI" : `TAHAP ${step + 1} DARI ${TOTAL_STEPS}`}
+            </div>
+            {currentContext && (
+              <div className="mt-1 hidden text-[11px] font-medium text-[#0B2C6B]/60 md:block">
+                {currentContext.eyebrow} · {currentContext.title}
+              </div>
+            )}
           </div>
         </header>
       )}
@@ -309,7 +326,7 @@ function LoadingOverlay() {
       >
         {messages[msgIdx]}
       </motion.h2>
-      
+
       <p className="text-sm text-black/40 max-w-md font-light">
         Mohon jangan menutup halaman ini. Tim kami sedang memproses parameter bisnis Anda untuk hasil yang akurat.
       </p>

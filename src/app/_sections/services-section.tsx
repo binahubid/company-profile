@@ -22,8 +22,7 @@ export function ServicesSection() {
             </h2>
           </div>
           <p className="text-sm text-black/45 leading-relaxed max-w-xs">
-            Delapan modul pembelajaran AI-Powered Human Synergy kami dirancang siap pakai dan saling
-            melengkapi.
+            Delapan layanan kami dirancang siap pakai dan saling melengkapi.
           </p>
         </div>
 

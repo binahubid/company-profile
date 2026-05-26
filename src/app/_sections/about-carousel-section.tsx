@@ -127,7 +127,7 @@ export function AboutCarouselSection() {
               <PixelIcon type="about" size={28} />
             </div>
             <div className="mt-6">
-              <Tag className="bg-white/10 text-[#D9A441] border border-[#D9A441]/30 uppercase">{slide.title}</Tag>
+              <Tag className="bg-white/10 text-white border border-white/20 uppercase">{slide.title}</Tag>
             </div>
           </div>
 
@@ -165,7 +165,7 @@ export function AboutCarouselSection() {
                   transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
                   className="w-full"
                 >
-                  <div className="relative w-full max-w-4xl min-h-[360px] md:min-h-[330px]">
+                  <div className="relative w-full max-w-5xl min-h-[420px] md:min-h-[360px]">
                     <motion.div
                       initial={{ opacity: 0, scaleX: 0.75 }}
                       animate={{ opacity: 1, scaleX: 1 }}
@@ -184,7 +184,7 @@ export function AboutCarouselSection() {
                         initial={{ opacity: 0, y: 26, scale: 0.92, filter: "blur(10px)" }}
                         animate={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
                         transition={{ delay: 0.18 + pIdx * 0.14, duration: 0.72, ease: [0.22, 1, 0.36, 1] }}
-                        className={`group relative mb-3 flex w-full items-center gap-4 rounded-2xl border px-4 py-3.5 text-white shadow-[0_22px_70px_-46px_rgba(0,0,0,0.82)] backdrop-blur-xl transition-all duration-500 hover:-translate-y-1 md:absolute md:mb-0 md:w-[300px] ${POPUP_POSITIONS[pIdx]} ${
+                        className={`group relative mb-3 flex w-full items-center gap-5 rounded-2xl border px-5 py-4 text-white shadow-[0_22px_70px_-46px_rgba(0,0,0,0.82)] backdrop-blur-xl transition-all duration-500 hover:-translate-y-1 md:absolute md:mb-0 md:w-[380px] ${POPUP_POSITIONS[pIdx]} ${
                           pIdx === 1
                             ? "border-[#D9A441]/45 bg-[#D9A441]/16"
                             : "border-white/14 bg-[#071B3D]/48 hover:border-white/24 hover:bg-[#0B2C6B]/48"
@@ -197,10 +197,10 @@ export function AboutCarouselSection() {
                           {point.icon}
                         </div>
                         <div>
-                          <span className="block text-[10px] font-bold uppercase tracking-[0.22em] text-[#D9A441]/80">
+                          <span className="block text-xs font-bold uppercase tracking-[0.22em] text-[#D9A441]/80">
                             {String(pIdx + 1).padStart(2, "0")}
                           </span>
-                          <span className="mt-1 block text-sm font-semibold leading-snug tracking-tight">{point.title}</span>
+                          <span className="mt-1 block text-[18px] font-semibold leading-snug tracking-tight md:text-[21px]">{point.title}</span>
                         </div>
                       </motion.div>
                     ))}

@@ -133,7 +133,7 @@ export default function AboutPage() {
               <div className="mt-1 h-24 w-px shrink-0 bg-[#D9A63A]" />
               <p className="text-base md:text-lg leading-[1.75] text-white/86">
                 BinaHub hadir sebagai mitra transformasi dan kapabilitas masa depan
-                di era perubahan yang belum pernah terjadi sebelumnya.
+                di era perubahan.
               </p>
             </div>
           </div>

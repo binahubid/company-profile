@@ -2,9 +2,27 @@
 
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Mail, Phone, MapPin, Send, CheckCircle2, AlertCircle, Clock } from "lucide-react";
+import { Mail, Phone, MapPin, Send, CheckCircle2, AlertCircle, Clock, Plus } from "lucide-react";
 import { Tag } from "@/components/ui/tag";
-import { PixelIcon } from "@/components/pixel-icon";
+
+const FAQ_ITEMS = [
+  {
+    question: "Apakah konsultasi awal berbayar?",
+    answer: "Tidak. Diskusi awal bersifat eksploratif untuk memahami tantangan, konteks organisasi, dan kemungkinan arah solusi yang relevan.",
+  },
+  {
+    question: "Berapa lama biasanya tim BinaHub merespons?",
+    answer: "Tim kami biasanya merespons dalam 1x24 jam kerja melalui email atau kontak yang Anda cantumkan di formulir.",
+  },
+  {
+    question: "Apakah harus sudah tahu layanan yang dibutuhkan?",
+    answer: "Tidak harus. Anda cukup menceritakan situasi atau tantangan utama. Kami dapat membantu memetakan apakah kebutuhannya lebih cocok ke assessment, coaching, training, culture program, atau ekosistem lain.",
+  },
+  {
+    question: "Apakah BinaHub cocok untuk organisasi kecil?",
+    answer: "Ya. Pendekatan dapat disesuaikan dengan skala tim, tingkat kematangan organisasi, dan prioritas perubahan yang paling mendesak.",
+  },
+];
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -16,6 +34,7 @@ export default function ContactPage() {
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [serverMessage, setServerMessage] = useState("");
+  const [openFaq, setOpenFaq] = useState(0);
 
   const validateForm = () => {
     const newErrors: Record<string, string> = {};
@@ -87,11 +106,12 @@ export default function ContactPage() {
             <Tag>HUBUNGI KAMI</Tag>
           </div>
           <h1 className="mt-6 text-4xl md:text-5xl lg:text-6xl font-light tracking-tight text-[#0B2C6B] leading-[1.1]">
-            Mari Berdiskusi Mengenai <br />
-            <span className="font-semibold text-[#0B2C6B]">Transformasi Organisasi Anda</span>
+            Ceritakan tantangan <br />
+            <span className="font-semibold text-[#0B2C6B]">organisasi Anda.</span>
           </h1>
           <p className="mt-6 text-lg text-black/45 leading-relaxed font-light">
-            Tim konsultan ahli BinaHub siap mendengarkan tantangan bisnis Anda, merancang ekosistem pembelajaran strategis, dan mengakselerasi masa depan kapabilitas tim Anda.
+            Mulai dari percakapan singkat. Tim kami akan membantu membaca kebutuhan awal,
+            menjawab pertanyaan Anda, dan merekomendasikan langkah yang paling masuk akal.
           </p>
         </div>
 
@@ -134,6 +154,19 @@ export default function ContactPage() {
               </div>
 
               {/* WhatsApp */}
+              <div className="flex gap-4 items-start">
+                <div className="w-10 h-10 rounded-2xl bg-[#D9A441]/10 flex items-center justify-center shrink-0">
+                  <Clock size={18} className="text-[#D9A441]" />
+                </div>
+                <div>
+                  <span className="block text-[10px] font-bold text-[#0B2C6B]/40 uppercase tracking-widest mb-1">Jam Respons</span>
+                  <p className="text-[#0B2C6B]/70 leading-relaxed text-sm font-light">
+                    Tim kami biasanya merespons dalam 1x24 jam kerja setelah inquiry diterima.
+                  </p>
+                </div>
+              </div>
+
+              {/* Phone */}
               <div className="flex gap-4 items-start">
                 <div className="w-10 h-10 rounded-2xl bg-[#D9A441]/10 flex items-center justify-center shrink-0">
                   <Phone size={18} className="text-[#D9A441]" />
@@ -209,8 +242,8 @@ export default function ContactPage() {
                     className="flex flex-col gap-6"
                   >
                     <div>
-                      <h2 className="text-xl font-bold text-[#0B2C6B] tracking-tight mb-1">Formulir Pertanyaan</h2>
-                      <p className="text-xs text-black/40">Lengkapi formulir di bawah ini untuk memulai kolaborasi.</p>
+                      <h2 className="text-xl font-bold text-[#0B2C6B] tracking-tight mb-1">Mulai Percakapan</h2>
+                      <p className="text-xs text-black/40">Cukup ceritakan kebutuhan utama. Detail lainnya bisa kami gali bersama setelahnya.</p>
                     </div>
 
                     {/* Server Error Alert */}
@@ -221,46 +254,48 @@ export default function ContactPage() {
                       </div>
                     )}
 
-                    {/* Name Input */}
-                    <div className="flex flex-col gap-1.5">
-                      <label htmlFor="name" className="text-[10px] font-bold text-[#0B2C6B]/60 tracking-wider uppercase">
-                        Nama Lengkap <span className="text-rose-500">*</span>
-                      </label>
-                      <input
-                        type="text"
-                        id="name"
-                        name="name"
-                        value={formData.name}
-                        onChange={handleInputChange}
-                        placeholder="Contoh: Budi Santoso"
-                        className={`w-full px-4 py-3 rounded-xl border bg-black/[0.01] text-sm text-[#0B2C6B] outline-none transition-all duration-300 ${
-                          errors.name 
-                            ? "border-rose-300 focus:border-rose-500 focus:ring-1 focus:ring-rose-500" 
-                            : "border-black/[0.08] focus:border-[#D9A441] focus:ring-1 focus:ring-[#D9A441]"
-                        }`}
-                      />
-                      {errors.name && <span className="text-[10px] text-rose-500 font-medium">{errors.name}</span>}
-                    </div>
+                    <div className="grid gap-6 md:grid-cols-2">
+                      {/* Name Input */}
+                      <div className="flex flex-col gap-1.5">
+                        <label htmlFor="name" className="text-[10px] font-bold text-[#0B2C6B]/60 tracking-wider uppercase">
+                          Nama Lengkap <span className="text-rose-500">*</span>
+                        </label>
+                        <input
+                          type="text"
+                          id="name"
+                          name="name"
+                          value={formData.name}
+                          onChange={handleInputChange}
+                          placeholder="Contoh: Budi Santoso"
+                          className={`w-full px-4 py-3 rounded-xl border bg-black/[0.01] text-sm text-[#0B2C6B] outline-none transition-all duration-300 ${
+                            errors.name 
+                              ? "border-rose-300 focus:border-rose-500 focus:ring-1 focus:ring-rose-500" 
+                              : "border-black/[0.08] focus:border-[#D9A441] focus:ring-1 focus:ring-[#D9A441]"
+                          }`}
+                        />
+                        {errors.name && <span className="text-[10px] text-rose-500 font-medium">{errors.name}</span>}
+                      </div>
 
-                    {/* Email Input */}
-                    <div className="flex flex-col gap-1.5">
-                      <label htmlFor="email" className="text-[10px] font-bold text-[#0B2C6B]/60 tracking-wider uppercase">
-                        Email Kerja <span className="text-rose-500">*</span>
-                      </label>
-                      <input
-                        type="email"
-                        id="email"
-                        name="email"
-                        value={formData.email}
-                        onChange={handleInputChange}
-                        placeholder="Contoh: budi@perusahaan.com"
-                        className={`w-full px-4 py-3 rounded-xl border bg-black/[0.01] text-sm text-[#0B2C6B] outline-none transition-all duration-300 ${
-                          errors.email 
-                            ? "border-rose-300 focus:border-rose-500 focus:ring-1 focus:ring-rose-500" 
-                            : "border-black/[0.08] focus:border-[#D9A441] focus:ring-1 focus:ring-[#D9A441]"
-                        }`}
-                      />
-                      {errors.email && <span className="text-[10px] text-rose-500 font-medium">{errors.email}</span>}
+                      {/* Email Input */}
+                      <div className="flex flex-col gap-1.5">
+                        <label htmlFor="email" className="text-[10px] font-bold text-[#0B2C6B]/60 tracking-wider uppercase">
+                          Email Kerja <span className="text-rose-500">*</span>
+                        </label>
+                        <input
+                          type="email"
+                          id="email"
+                          name="email"
+                          value={formData.email}
+                          onChange={handleInputChange}
+                          placeholder="Contoh: budi@perusahaan.com"
+                          className={`w-full px-4 py-3 rounded-xl border bg-black/[0.01] text-sm text-[#0B2C6B] outline-none transition-all duration-300 ${
+                            errors.email 
+                              ? "border-rose-300 focus:border-rose-500 focus:ring-1 focus:ring-rose-500" 
+                              : "border-black/[0.08] focus:border-[#D9A441] focus:ring-1 focus:ring-[#D9A441]"
+                          }`}
+                        />
+                        {errors.email && <span className="text-[10px] text-rose-500 font-medium">{errors.email}</span>}
+                      </div>
                     </div>
 
                     {/* WhatsApp Input */}
@@ -287,10 +322,10 @@ export default function ContactPage() {
                       <textarea
                         id="message"
                         name="message"
-                        rows={5}
+                        rows={4}
                         value={formData.message}
                         onChange={handleInputChange}
-                        placeholder="Tuliskan tantangan, kebutuhan, atau pertanyaan mengenai organisasi Anda secara lengkap..."
+                        placeholder="Tuliskan tantangan utama, kebutuhan, atau pertanyaan singkat Anda..."
                         className={`w-full px-4 py-3 rounded-xl border bg-black/[0.01] text-sm text-[#0B2C6B] outline-none resize-none transition-all duration-300 ${
                           errors.message 
                             ? "border-rose-300 focus:border-rose-500 focus:ring-1 focus:ring-rose-500" 
@@ -304,8 +339,9 @@ export default function ContactPage() {
                     <button
                       type="submit"
                       disabled={status === "loading"}
-                      className="mt-4 inline-flex items-center justify-center gap-3 w-full px-6 py-4 rounded-xl bg-[#0B2C6B] text-white font-bold text-sm hover:bg-[#D9A441] hover:text-[#0B2C6B] transition-all duration-300 disabled:bg-[#0B2C6B]/40 disabled:cursor-not-allowed group shadow-[0_4px_16px_rgba(11,44,107,0.15)]"
+                      className="mt-4 group relative inline-flex items-center justify-center gap-3 w-full overflow-hidden px-6 py-4 rounded-xl bg-[#0B2C6B] text-white font-bold text-sm hover:bg-[#D9A441] hover:text-[#0B2C6B] transition-all duration-300 disabled:bg-[#0B2C6B]/40 disabled:cursor-not-allowed shadow-[0_4px_16px_rgba(11,44,107,0.15)]"
                     >
+                      <span className="absolute inset-y-0 -left-1/3 w-1/3 bg-white/20 blur-xl transition-transform duration-700 group-hover:translate-x-[420%]" />
                       {status === "loading" ? (
                         <>
                           <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
@@ -319,6 +355,18 @@ export default function ContactPage() {
                       )}
                     </button>
 
+                    <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+                      {[
+                        ["1x24 jam", "Estimasi respons tim"],
+                        ["Gratis", "Diskusi kebutuhan awal"],
+                      ].map(([title, desc]) => (
+                        <div key={title} className="rounded-2xl border border-black/[0.04] bg-[#F5F7FA] px-5 py-4">
+                          <p className="text-sm font-bold text-[#0B2C6B]">{title}</p>
+                          <p className="mt-1 text-[10px] font-bold uppercase tracking-[0.13em] text-black/34">{desc}</p>
+                        </div>
+                      ))}
+                    </div>
+
                   </motion.form>
                 )}
               </AnimatePresence>
@@ -327,6 +375,70 @@ export default function ContactPage() {
           </div>
 
         </div>
+
+        <section className="relative mt-20 overflow-hidden rounded-[36px] border border-white/70 bg-[#071B3D] p-6 shadow-[0_26px_90px_-54px_rgba(11,44,107,0.55)] backdrop-blur-xl md:p-10">
+          <div className="absolute inset-0 opacity-[0.16]" style={{ backgroundImage: "linear-gradient(rgba(255,255,255,0.12) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.12) 1px, transparent 1px)", backgroundSize: "48px 48px" }} />
+          <div className="absolute -right-24 -top-24 h-72 w-72 rounded-full bg-[#D9A441]/20 blur-3xl" />
+          <div className="absolute -bottom-28 left-10 h-72 w-72 rounded-full bg-[#8FA3C7]/16 blur-3xl" />
+
+          <div className="relative z-10 mb-10 grid gap-6 md:grid-cols-[0.85fr_1.15fr] md:items-end">
+            <div>
+              <span className="inline-flex rounded-full border border-white/10 bg-white/10 px-4 py-2 text-[10px] font-bold uppercase tracking-[0.22em] text-[#D9A441]">
+                FAQ
+              </span>
+              <h2 className="mt-6 text-3xl font-light leading-tight tracking-tight text-white md:text-5xl">
+                Pertanyaan sebelum memulai.
+              </h2>
+            </div>
+            <p className="max-w-2xl text-base font-light leading-relaxed text-white/58">
+              Beberapa hal yang biasanya ingin dipastikan sebelum tim organisasi mulai berdiskusi dengan BinaHub.
+            </p>
+          </div>
+
+          <div className="relative z-10 space-y-3">
+            {FAQ_ITEMS.map((item, index) => {
+              const isOpen = openFaq === index;
+
+              return (
+                <div
+                  key={item.question}
+                  className="overflow-hidden rounded-3xl border border-white/10 bg-white/[0.065] backdrop-blur-xl transition-all duration-500 hover:border-[#D9A441]/24 hover:bg-white/[0.09]"
+                >
+                  <button
+                    type="button"
+                    onClick={() => setOpenFaq(isOpen ? -1 : index)}
+                    className="group flex w-full items-center justify-between gap-6 px-5 py-5 text-left md:px-7"
+                    aria-expanded={isOpen}
+                  >
+                    <span className="flex items-center gap-4">
+                      <span className="hidden text-[10px] font-bold uppercase tracking-[0.2em] text-[#D9A441]/70 sm:inline">
+                        {String(index + 1).padStart(2, "0")}
+                      </span>
+                      <span className="text-base font-medium leading-snug text-white md:text-lg">{item.question}</span>
+                    </span>
+                    <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl border border-white/10 bg-white/10 text-[#D9A441] transition-transform duration-300 group-hover:border-[#D9A441]/30">
+                      <Plus size={18} className={`transition-transform duration-300 ${isOpen ? "rotate-45" : ""}`} />
+                    </span>
+                  </button>
+                  <AnimatePresence initial={false}>
+                    {isOpen && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: "auto", opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+                      >
+                        <div className="border-t border-white/10 px-5 pb-6 pt-5 md:px-7">
+                          <p className="max-w-3xl text-sm font-light leading-relaxed text-white/62">{item.answer}</p>
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              );
+            })}
+          </div>
+        </section>
 
       </div>
     </div>

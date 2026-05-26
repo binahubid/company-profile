@@ -101,6 +101,11 @@ export async function POST(req: NextRequest) {
       scores: aiResult.scores,
       category: aiResult.category,
       aiAnalysis: aiResult.analysis,
+      archetype: aiResult.archetype,
+      scoreInterpretation: aiResult.scoreInterpretation,
+      crossDimensionalInsights: aiResult.crossDimensionalInsights,
+      riskProjection: aiResult.riskProjection,
+      strategicKey: aiResult.strategicKey,
       recommendations: aiResult.recommendations,
     };
 

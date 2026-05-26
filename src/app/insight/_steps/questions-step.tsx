@@ -1,6 +1,22 @@
 import { motion } from "framer-motion";
-import { QUESTIONS } from "../questions";
+import { DIMENSIONS, QUESTIONS } from "../questions";
 import { LIKERT_OPTIONS } from "../_types";
+
+const DIMENSION_GUIDANCE: Record<string, string> = {
+  Insights: "Kami membaca bagaimana data, indikator, dan akar masalah digunakan dalam keputusan tim.",
+  Lab: "Dimensi ini melihat kecocokan kompetensi, kualitas komunikasi, dan kemampuan problem solving.",
+  Coach: "Bagian ini menilai kualitas arahan, feedback, tanggung jawab, dan growth mindset.",
+  Play: "Kami mengukur energi kerja, engagement, rasa dihargai, dan koneksi antaranggota tim.",
+  Academy: "Dimensi ini memetakan struktur pembelajaran, kurikulum, dan budaya belajar berkelanjutan.",
+  Works: "Bagian ini melihat kejelasan KPI, dokumentasi proses, peran, dan ritme monitoring pekerjaan.",
+  Impact: "Kami membaca sejauh mana program pengembangan punya indikator, bukti dampak, dan ROI.",
+};
+
+const REINFORCEMENT = [
+  "Jawaban yang jujur lebih berguna daripada jawaban yang terlihat ideal.",
+  "Banyak organisasi menemukan blind spot saat membandingkan praktik harian dengan ekspektasi strategis.",
+  "Pola kecil yang konsisten sering menjadi sinyal terbesar dalam performa tim.",
+];
 
 interface QuestionsStepProps {
   step: number;
@@ -11,6 +27,7 @@ interface QuestionsStepProps {
 export function QuestionsStep({ step, answers, onAnswer }: QuestionsStepProps) {
   const pageIndex = step - 2;
   const pageQuestions = QUESTIONS.slice(pageIndex * 7, pageIndex * 7 + 7);
+  const dimension = DIMENSIONS[pageIndex];
 
   return (
     <motion.div
@@ -20,10 +37,16 @@ export function QuestionsStep({ step, answers, onAnswer }: QuestionsStepProps) {
       exit={{ opacity: 0, y: -10 }}
       className="w-full max-w-4xl px-4 py-6 flex flex-col items-center"
     >
-      <div className="mb-8 text-center">
-        <h2 className="text-3xl md:text-4xl font-light text-[#0B2C6B] leading-tight max-w-2xl">
+      <div className="mb-8 max-w-3xl text-center">
+        <p className="mb-4 text-[10px] font-bold uppercase tracking-[0.24em] text-[#D9A441]">
+          Dimensi {dimension}
+        </p>
+        <h2 className="text-3xl md:text-4xl font-light text-[#0B2C6B] leading-tight">
           Sejauh mana Anda setuju dengan pernyataan berikut?
         </h2>
+        <p className="mx-auto mt-4 max-w-2xl text-sm font-light leading-relaxed text-black/48">
+          {DIMENSION_GUIDANCE[dimension]}
+        </p>
       </div>
 
       <div className="space-y-4 w-full max-w-3xl">
@@ -46,6 +69,14 @@ export function QuestionsStep({ step, answers, onAnswer }: QuestionsStepProps) {
                   {q.text}
                 </h3>
 
+                {idx === 3 && (
+                  <div className="mb-5 rounded-2xl border border-[#D9A441]/18 bg-[#D9A441]/[0.055] px-5 py-4">
+                    <p className="text-xs font-medium leading-relaxed text-[#0B2C6B]/62">
+                      {REINFORCEMENT[pageIndex % REINFORCEMENT.length]}
+                    </p>
+                  </div>
+                )}
+
                 <div className="grid grid-cols-5 gap-1.5 md:gap-4">
                   {LIKERT_OPTIONS.map((opt) => {
                     const isSelected = answers[q.id] === opt.value;
@@ -61,7 +92,7 @@ export function QuestionsStep({ step, answers, onAnswer }: QuestionsStepProps) {
                         <span className={`text-xl md:text-2xl font-bold mb-1 transition-colors ${isSelected ? "text-[#D9A441]" : "text-[#0B2C6B]"}`}>
                           {opt.value}
                         </span>
-                        <span className={`text-[6px] md:text-[7px] text-center leading-tight uppercase tracking-widest font-black transition-colors ${isSelected ? "text-white" : "text-black/30"}`}>
+                        <span className={`text-[7px] md:text-[9px] text-center leading-tight uppercase tracking-[0.08em] font-bold transition-colors ${isSelected ? "text-white" : "text-black/40"}`}>
                           {opt.label}
                         </span>
                       </button>

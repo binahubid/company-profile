@@ -7,6 +7,36 @@ export const metadata: Metadata = {
   description: "Dokumentasi kegiatan, ruang belajar, dan perjalanan transformasi BinaHub.",
 };
 
+const FEATURED_STORIES = [
+  {
+    image: GALLERY_IMAGES[4],
+    label: "Hero Moment",
+    title: "Ruang belajar yang bergerak bersama.",
+    meta: "Facilitation • Team Engagement • Reflection",
+  },
+  {
+    image: GALLERY_IMAGES[7],
+    label: "Collaboration",
+    title: "Interaksi yang membentuk cara kerja baru.",
+    meta: "Workshop • Leadership • Culture",
+  },
+  {
+    image: GALLERY_IMAGES[10],
+    label: "Field Energy",
+    title: "Simulasi dan pengalaman sebagai medium transformasi.",
+    meta: "Experiential Learning • Team Dynamics",
+  },
+];
+
+const GALLERY_STORY_COPY: Record<number, { title: string; meta: string; weight: "primary" | "secondary" | "support" }> = {
+  0: { title: "Strategic learning session", meta: "Workshop • Jakarta", weight: "primary" },
+  2: { title: "Team alignment in motion", meta: "Collaboration • Reflection", weight: "secondary" },
+  4: { title: "Facilitated transformation", meta: "Leadership • Capability", weight: "primary" },
+  7: { title: "Shared problem solving", meta: "People • Learning", weight: "primary" },
+  10: { title: "Experiential team energy", meta: "Simulation • Outdoor", weight: "secondary" },
+  11: { title: "Learning ecosystem", meta: "Program • Culture", weight: "secondary" },
+};
+
 export default function GalleryPage() {
   return (
     <div className="bg-[#F5F7FA] text-[#4A4C54]">
@@ -34,9 +64,51 @@ export default function GalleryPage() {
             </p>
           </div>
 
-          <div className="mt-14 grid auto-rows-[220px] grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-14 grid gap-4 lg:grid-cols-[1.35fr_0.65fr]">
+            <figure className="group relative min-h-[520px] overflow-hidden rounded-[30px] border border-white/70 bg-white shadow-[0_30px_90px_-52px_rgba(11,44,107,0.72)]">
+              <Image
+                src={FEATURED_STORIES[0].image.src}
+                alt={FEATURED_STORIES[0].image.alt}
+                fill
+                sizes="(min-width: 1024px) 66vw, 100vw"
+                className="object-cover saturate-[0.9] contrast-[1.02] brightness-[1.03] transition-transform duration-[1400ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.025]"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#061A3B]/72 via-[#061A3B]/16 to-white/5" />
+              <figcaption className="absolute inset-x-0 bottom-0 p-6 md:p-8">
+                <p className="mb-4 text-[10px] font-bold uppercase tracking-[0.24em] text-[#D9A441]">{FEATURED_STORIES[0].label}</p>
+                <h2 className="max-w-2xl text-3xl font-light leading-tight tracking-tight text-white md:text-5xl">
+                  {FEATURED_STORIES[0].title}
+                </h2>
+                <p className="mt-4 text-xs font-bold uppercase tracking-[0.18em] text-white/48">{FEATURED_STORIES[0].meta}</p>
+              </figcaption>
+            </figure>
+
+            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-1">
+              {FEATURED_STORIES.slice(1).map((story) => (
+                <figure key={story.title} className="group relative min-h-[252px] overflow-hidden rounded-[30px] border border-white/70 bg-white shadow-[0_22px_80px_-56px_rgba(11,44,107,0.65)]">
+                  <Image
+                    src={story.image.src}
+                    alt={story.image.alt}
+                    fill
+                    sizes="(min-width: 1024px) 34vw, (min-width: 640px) 50vw, 100vw"
+                    className="object-cover saturate-[0.78] contrast-[0.98] brightness-[0.98] transition-transform duration-[1400ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.025]"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#061A3B]/68 via-[#061A3B]/10 to-transparent" />
+                  <figcaption className="absolute inset-x-0 bottom-0 p-5">
+                    <p className="mb-3 text-[9px] font-bold uppercase tracking-[0.22em] text-[#D9A441]">{story.label}</p>
+                    <h3 className="text-xl font-light leading-tight text-white">{story.title}</h3>
+                    <p className="mt-3 text-[9px] font-bold uppercase tracking-[0.16em] text-white/44">{story.meta}</p>
+                  </figcaption>
+                </figure>
+              ))}
+            </div>
+          </div>
+
+          <div className="mt-5 grid auto-rows-[220px] grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {GALLERY_IMAGES.map((image, index) => {
-              const isAnchor = index === 0 || index === 7;
+              const story = GALLERY_STORY_COPY[index];
+              const isAnchor = story?.weight === "primary";
+              const isSecondary = story?.weight === "secondary";
 
               return (
                 <figure
@@ -65,6 +137,15 @@ export default function GalleryPage() {
                   <div className={`absolute inset-0 bg-gradient-to-t from-[#061A3B]/42 via-transparent to-white/5 transition-opacity duration-500 ${
                     isAnchor ? "opacity-52 group-hover:opacity-38" : "opacity-78 group-hover:opacity-54"
                   }`} />
+                  {story && (
+                    <figcaption className="absolute inset-x-0 bottom-0 translate-y-2 p-5 opacity-0 transition-all duration-500 group-hover:translate-y-0 group-hover:opacity-100">
+                      <p className="mb-2 text-[9px] font-bold uppercase tracking-[0.2em] text-[#D9A441]">
+                        {isAnchor ? "Key Story" : isSecondary ? "Supporting Moment" : "Moment"}
+                      </p>
+                      <h3 className="text-lg font-light leading-tight text-white">{story.title}</h3>
+                      <p className="mt-2 text-[9px] font-bold uppercase tracking-[0.16em] text-white/42">{story.meta}</p>
+                    </figcaption>
+                  )}
                 </figure>
               );
             })}

@@ -40,7 +40,7 @@ export default function JourneyPage() {
               </p>
             </div>
             <div className="md:col-span-4 flex md:justify-end text-xs tracking-widest text-[#0B2C6B]/50 font-bold uppercase">
-              SISTER COMPANY PT BINA DAYA Nugraha — SEJAK 2010
+              SISTER COMPANY OF PT BINA DAYA NUGRAHA - EST 2010
             </div>
           </div>
         </header>
@@ -81,15 +81,21 @@ export default function JourneyPage() {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
-              className="lg:col-span-6 relative h-[240px] sm:h-[320px] md:h-[500px] lg:h-[400px] xl:h-[500px] w-full rounded-none overflow-hidden shadow-md border border-black/[0.06] group"
+              className="lg:col-span-6 relative h-[240px] sm:h-[320px] md:h-[500px] lg:h-[400px] xl:h-[500px] w-full overflow-hidden rounded-[30px] border border-black/[0.06] bg-white p-6 shadow-[0_24px_90px_-60px_rgba(11,44,107,0.48)] group"
             >
-              <Image
-                src="/BDN.png"
-                alt="BDN Team Building 2010"
-                fill
-                className="object-cover transition-transform duration-700 group-hover:scale-105"
-              />
-              <div className="absolute inset-0 bg-[#0B2C6B]/5 mix-blend-multiply pointer-events-none" />
+              <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(11,44,107,0.08),transparent_46%,rgba(217,164,65,0.08))]" />
+              <div className="absolute right-6 top-6 rounded-full border border-black/[0.06] bg-white/70 px-4 py-2 text-[10px] font-bold uppercase tracking-[0.2em] text-[#0B2C6B]/50 backdrop-blur-md">
+                Heritage Since 2010
+              </div>
+              <div className="relative flex h-full items-center justify-center">
+                <Image
+                  src="/BDN.png"
+                  alt="BDN Team Building 2010"
+                  width={520}
+                  height={360}
+                  className="max-h-[78%] w-auto object-contain grayscale opacity-80 transition-all duration-700 group-hover:grayscale-0 group-hover:opacity-95"
+                />
+              </div>
             </motion.div>
 
           </section>
@@ -130,7 +136,7 @@ export default function JourneyPage() {
               <div className="text-base text-black/70 font-light leading-relaxed space-y-6">
                 <p>
                   <span className="text-6xl font-semibold text-[#D9A441] float-left mr-3 mt-1 leading-[0.8] font-sans">S</span>
-                  elama lebih dari 15 tahun berkiprah, kami telah diberikan kehormatan untuk mendampingi lebih dari <span className="font-bold">10.000 peserta</span> dari berbagai sektor industri. Dari jajaran direksi BUMN, manajer perusahaan multinasional swasta, institusi pendidikan terkemuka, hingga lembaga nirlaba.
+                  elama lebih dari 15 tahun berkiprah, BDN telah diberikan kehormatan untuk mendampingi lebih dari <span className="font-bold">10.000 peserta</span> dari berbagai sektor industri. Dari jajaran direksi BUMN, manajer perusahaan multinasional swasta, institusi pendidikan terkemuka, hingga lembaga nirlaba.
                 </p>
                 <p>
                   Setiap modul pembelajaran diuji langsung di lapangan, membentuk mentalitas kolaborasi tangguh, dan melahirkan sinergi tim yang kokoh. Pengalaman nyata inilah yang menjadi bahan bakar utama dalam memahami anatomi budaya organisasi di Indonesia secara mendalam.
@@ -152,8 +158,7 @@ export default function JourneyPage() {
               className="lg:col-span-6 flex flex-col items-start"
             >
               <h2 className="text-3xl md:text-4xl font-light tracking-tight text-[#0B2C6B] mb-8 leading-tight">
-                Simulasi Bisnis & <br />
-                <span className="font-semibold italic">Akurasi Berstandar Amerika</span>
+                <span className="font-semibold italic">Simulasi Bisnis Global</span>
               </h2>
 
               <div className="text-base text-black/70 font-light leading-relaxed space-y-6">

@@ -47,6 +47,22 @@ export function SuccessStep({ name, company }: SuccessStepProps) {
             </p>
           </div>
         </div>
+
+        <div className="mb-12 rounded-[28px] border border-[#D9A441]/18 bg-[#D9A441]/[0.055] p-6 text-left">
+          <span className="block text-[10px] font-bold text-[#D9A441] uppercase tracking-widest mb-4">
+            Preview Area Analisis
+          </span>
+          <p className="text-sm text-[#0B2C6B]/62 leading-relaxed font-light mb-5">
+            Berdasarkan struktur assessment, laporan Anda akan membaca pola yang berkaitan dengan:
+          </p>
+          <div className="flex flex-wrap gap-2">
+            {["Leadership Alignment", "Execution Rhythm", "Learning Culture"].map((item) => (
+              <span key={item} className="rounded-full bg-white px-4 py-2 text-[10px] font-bold uppercase tracking-[0.14em] text-[#0B2C6B]/58">
+                {item}
+              </span>
+            ))}
+          </div>
+        </div>
         
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <Link
