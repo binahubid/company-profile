@@ -46,7 +46,7 @@ export function LandingStep({ onStart }: LandingStepProps) {
     >
       {/* Hero */}
       <section className="w-full px-4 mb-12">
-        <div className="relative w-full min-h-[620px] md:h-[78svh] rounded-[32px] md:rounded-[48px] overflow-hidden flex items-center justify-center border border-black/[0.03] shadow-2xl shadow-black/10">
+        <div className="relative flex min-h-[620px] w-full items-center justify-center overflow-hidden rounded-[16px] border border-black/[0.03] shadow-2xl shadow-black/10 md:h-[78svh] md:rounded-[18px]">
           <div className="absolute inset-0 w-full h-full">
             <img
               src="/asset/bg-insight.png"
@@ -56,7 +56,7 @@ export function LandingStep({ onStart }: LandingStepProps) {
             <div className="absolute inset-0 bg-[#061A3A]/22 mix-blend-multiply" />
             <div className="absolute inset-0 bg-gradient-to-r from-[#071A33]/82 via-[#0B2C6B]/38 to-[#0B2C6B]/6" />
             <div className="absolute inset-0 bg-gradient-to-t from-black/24 via-transparent to-black/5" />
-            <div className="absolute left-[58%] top-[30%] h-72 w-72 rounded-full bg-[#D9A63A]/10 blur-3xl" />
+            <div className="absolute left-[58%] top-[30%] h-56 w-96 bg-[#D9A63A]/8 blur-3xl" />
           </div>
 
           <div className="relative z-10 grid w-full items-center justify-items-start gap-8 px-6 py-14 md:grid-cols-[60%_40%] md:px-12 lg:px-14 xl:px-16">
@@ -125,7 +125,7 @@ export function LandingStep({ onStart }: LandingStepProps) {
                 { title: "Rekomendasi prioritas", desc: "Laporan menampilkan area terendah, analisis singkat, dan aksi pengembangan yang relevan." },
               ].map((item, i) => (
                 <div key={i} className="flex gap-5 group">
-                  <div className="w-12 h-12 rounded-2xl bg-[#F5F7FA] flex items-center justify-center shrink-0 border border-black/[0.03] group-hover:bg-[#0B2C6B] group-hover:text-white transition-all duration-300">
+                    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-[12px] border border-black/[0.03] bg-[#F5F7FA] transition-all duration-300 group-hover:bg-[#0B2C6B] group-hover:text-white">
                     <Check size={20} className={i === 0 ? "text-[#D9A441]" : ""} />
                   </div>
                   <div>
@@ -140,7 +140,7 @@ export function LandingStep({ onStart }: LandingStepProps) {
           </div>
 
           <div className="relative">
-            <div className="aspect-[4/4.5] bg-[#F5F7FA] rounded-[32px] md:rounded-[48px] flex items-center justify-center p-6 md:p-10 overflow-hidden border border-black/[0.05] relative group">
+            <div className="group relative flex aspect-[4/4.5] items-center justify-center overflow-hidden rounded-[16px] border border-black/[0.05] bg-[#F5F7FA] p-6 md:p-10">
               <img
                 src="/asset/Play.png"
                 alt="Team Analysis"
@@ -169,9 +169,9 @@ export function LandingStep({ onStart }: LandingStepProps) {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="relative overflow-hidden rounded-[30px] bg-[#0B2C6B] p-7 text-white shadow-2xl shadow-[#0B2C6B]/20 md:p-9 lg:col-span-4"
+              className="relative overflow-hidden rounded-[14px] bg-[#0B2C6B] p-7 text-white shadow-2xl shadow-[#0B2C6B]/20 md:p-9 lg:col-span-4"
             >
-              <div className="absolute -right-16 -top-16 h-52 w-52 rounded-full bg-[#D9A441]/20 blur-3xl" />
+              <div className="absolute -right-16 -top-16 h-44 w-72 bg-[#D9A441]/16 blur-3xl" />
               <div className="relative z-10 flex h-full min-h-[360px] flex-col justify-between">
                 <div>
                   <Sparkles size={28} className="mb-8 text-[#D9A441]" />
@@ -184,7 +184,7 @@ export function LandingStep({ onStart }: LandingStepProps) {
                 </div>
                 <button
                   onClick={onStart}
-                  className="mt-10 h-14 w-full bg-white text-[#0B2C6B] rounded-2xl text-[11px] font-bold tracking-widest uppercase hover:bg-[#D9A441] transition-colors shadow-lg"
+                  className="mt-10 h-14 w-full rounded-[12px] bg-white text-[11px] font-bold uppercase tracking-widest text-[#0B2C6B] shadow-lg transition-colors hover:bg-[#D9A441]"
                 >
                   MULAI SEKARANG
                 </button>
@@ -199,12 +199,12 @@ export function LandingStep({ onStart }: LandingStepProps) {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.06 }}
-                  className={`group relative overflow-hidden rounded-[26px] border border-black/[0.04] bg-white p-5 transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl hover:shadow-black/5 ${
+                  className={`group relative overflow-hidden rounded-[12px] border border-black/[0.04] bg-white p-5 transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl hover:shadow-black/5 ${
                     i === 0 ? "md:col-span-2" : ""
                   }`}
                 >
                   <div className="relative z-10 flex gap-5">
-                    <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-[#F5F7FA] transition-transform duration-500 group-hover:-translate-y-1">
+                    <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-[12px] bg-[#F5F7FA] transition-transform duration-500 group-hover:-translate-y-1">
                       <PixelIcon type={dim.toLowerCase() as any} size={34} />
                     </div>
                     <div>
@@ -229,7 +229,7 @@ export function LandingStep({ onStart }: LandingStepProps) {
 
       {/* Focused CTA Section */}
       <section className="w-full px-4 md:px-8 mb-16">
-        <div className="relative w-full py-10 md:h-48 rounded-[32px] md:rounded-[40px] bg-[#0B2C6B] overflow-hidden flex flex-col md:flex-row items-center justify-between gap-8 px-6 md:px-16 border border-white/5 shadow-2xl shadow-[#0B2C6B]/10">
+        <div className="relative flex w-full flex-col items-center justify-between gap-8 overflow-hidden rounded-[16px] border border-white/5 bg-[#0B2C6B] px-6 py-10 shadow-2xl shadow-[#0B2C6B]/10 md:h-48 md:flex-row md:px-16">
           <div className="absolute inset-0 opacity-10 pointer-events-none">
             <div className="absolute top-0 left-0 w-full h-full" style={{ backgroundImage: "radial-gradient(circle, white 1px, transparent 1px)", backgroundSize: "30px 30px" }} />
           </div>
@@ -298,17 +298,17 @@ function DiagnosticPreview() {
         }}
         className="relative [transform-style:preserve-3d] will-change-transform"
       >
-        <div className="absolute inset-5 translate-x-10 translate-y-8 rounded-[30px] border border-white/10 bg-white/[0.08] shadow-2xl shadow-black/10 backdrop-blur-md [transform:translateZ(-92px)]" />
-        <div className="absolute inset-3 translate-x-5 translate-y-4 rounded-[30px] border border-white/12 bg-[#D9A441]/[0.08] shadow-2xl shadow-black/10 backdrop-blur-md [transform:translateZ(-48px)]" />
+        <div className="absolute inset-5 translate-x-10 translate-y-8 rounded-[14px] border border-white/10 bg-white/[0.08] shadow-2xl shadow-black/10 backdrop-blur-md [transform:translateZ(-92px)]" />
+        <div className="absolute inset-3 translate-x-5 translate-y-4 rounded-[14px] border border-white/12 bg-[#D9A441]/[0.08] shadow-2xl shadow-black/10 backdrop-blur-md [transform:translateZ(-48px)]" />
 
-        <div className="relative rounded-[32px] border border-white/16 bg-white/[0.11] p-4 shadow-[0_34px_90px_-42px_rgba(0,0,0,0.65)] backdrop-blur-xl [transform-style:preserve-3d]">
+        <div className="relative rounded-[16px] border border-white/16 bg-white/[0.11] p-4 shadow-[0_34px_90px_-42px_rgba(0,0,0,0.65)] backdrop-blur-xl [transform-style:preserve-3d]">
           <div className="mb-4 flex items-center justify-between [transform:translateZ(34px)]">
             <span className="text-[10px] font-bold uppercase tracking-[0.22em] text-white/52">Preview</span>
             <span className="rounded-full bg-[#D9A441]/15 px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-[#D9A441]">Live Map</span>
           </div>
-          <div className="rounded-[24px] bg-white p-5 shadow-[0_18px_48px_-34px_rgba(11,44,107,0.45)] [transform:translateZ(72px)]">
+          <div className="rounded-[14px] bg-white p-5 shadow-[0_18px_48px_-34px_rgba(11,44,107,0.45)] [transform:translateZ(72px)]">
             <div className="mb-6 flex items-center gap-3">
-              <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-[#F5F7FA]">
+              <div className="flex h-10 w-10 items-center justify-center rounded-[10px] bg-[#F5F7FA]">
                 <Radar size={19} className="text-[#0B2C6B]" />
               </div>
               <div>
@@ -317,12 +317,12 @@ function DiagnosticPreview() {
               </div>
             </div>
             <div className="grid grid-cols-[0.9fr_1.1fr] gap-3">
-              <div className="rounded-2xl bg-[#0B2C6B] p-4 text-white shadow-xl shadow-[#0B2C6B]/18">
+              <div className="rounded-[12px] bg-[#0B2C6B] p-4 text-white shadow-xl shadow-[#0B2C6B]/18">
                 <p className="text-[9px] font-bold uppercase tracking-[0.2em] text-white/44">Overall</p>
                 <p className="mt-2 text-4xl font-light">{SAMPLE_OVERALL}</p>
                 <p className="mt-1 text-[10px] font-bold uppercase tracking-widest text-[#D9A441]">Profesional</p>
               </div>
-              <div className="rounded-2xl bg-[#F5F7FA] p-4">
+              <div className="rounded-[12px] bg-[#F5F7FA] p-4">
                 <p className="text-[9px] font-bold uppercase tracking-[0.2em] text-black/34">Prioritas</p>
                 <p className="mt-2 text-lg font-light text-[#0B2C6B]">{SAMPLE_PRIORITY.label}</p>
                 <p className="mt-1 text-xs leading-relaxed text-black/46">{SAMPLE_PRIORITY.signal}</p>
@@ -330,7 +330,7 @@ function DiagnosticPreview() {
             </div>
             <div className="mt-4 grid grid-cols-3 gap-2">
               {SAMPLE_SCORES.slice(0, 3).map((item) => (
-                <div key={item.label} className="rounded-2xl bg-[#F5F7FA] p-3">
+                <div key={item.label} className="rounded-[10px] bg-[#F5F7FA] p-3">
                   <p className="text-[8px] font-bold uppercase tracking-widest text-black/34">{item.label}</p>
                   <p className="mt-1 text-lg font-light text-[#0B2C6B]">{item.value}</p>
                 </div>
@@ -345,7 +345,7 @@ function DiagnosticPreview() {
 
 function ReportPreview() {
   return (
-    <div className="relative z-10 w-full rounded-[30px] border border-black/[0.04] bg-white p-5 md:p-7 shadow-2xl shadow-black/10">
+    <div className="relative z-10 w-full rounded-[14px] border border-black/[0.04] bg-white p-5 shadow-2xl shadow-black/10 md:p-7">
       <div className="mb-6 flex items-center justify-between">
         <div>
           <p className="text-[10px] font-bold uppercase tracking-[0.22em] text-[#D9A441]">Sample Report</p>
@@ -354,12 +354,12 @@ function ReportPreview() {
         <BarChart3 className="text-[#0B2C6B]" size={26} />
       </div>
       <div className="grid grid-cols-2 gap-3">
-        <div className="rounded-2xl bg-[#0B2C6B] p-4 text-white">
+        <div className="rounded-[12px] bg-[#0B2C6B] p-4 text-white">
           <p className="text-[9px] font-bold uppercase tracking-widest text-white/38">Overall Score</p>
           <p className="mt-1 text-3xl font-light">{SAMPLE_OVERALL}/100</p>
           <p className="mt-1 text-[10px] font-bold uppercase tracking-widest text-[#D9A441]">Profesional</p>
         </div>
-        <div className="rounded-2xl bg-[#F5F7FA] p-4">
+        <div className="rounded-[12px] bg-[#F5F7FA] p-4">
           <p className="text-[9px] font-bold uppercase tracking-widest text-black/34">Lowest Signal</p>
           <p className="mt-1 text-2xl font-light text-[#0B2C6B]">{SAMPLE_PRIORITY.label}</p>
           <p className="mt-1 text-[10px] leading-relaxed text-black/46">{SAMPLE_PRIORITY.signal}</p>
@@ -385,7 +385,7 @@ function ReportPreview() {
           ["Prioritas intervensi", SAMPLE_PRIORITY.label],
           ["Output laporan", "Analisis + 5 rekomendasi"],
         ].map(([label, value]) => (
-          <div key={label} className="flex items-center justify-between rounded-2xl border border-black/[0.04] px-4 py-3">
+          <div key={label} className="flex items-center justify-between rounded-[10px] border border-black/[0.04] px-4 py-3">
             <span className="text-sm text-black/58">{label}</span>
             <span className="text-[10px] font-bold uppercase tracking-widest text-[#0B2C6B]">{value}</span>
           </div>

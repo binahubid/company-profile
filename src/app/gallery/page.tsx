@@ -42,9 +42,9 @@ export default function GalleryPage() {
     <div className="bg-[#F5F7FA] text-[#4A4C54]">
       <section className="relative overflow-hidden px-6 pb-16 pt-36 md:px-12 md:pb-24 md:pt-44 lg:px-20">
         <div className="pointer-events-none absolute inset-0">
-          <div className="absolute -left-24 top-20 h-[520px] w-[520px] rounded-full bg-[#0B2C6B]/[0.06] blur-[140px]" />
-          <div className="absolute right-0 top-32 h-[460px] w-[460px] rounded-full bg-[#D9A441]/[0.11] blur-[135px]" />
-          <div className="absolute left-[40%] bottom-20 h-[300px] w-[300px] rounded-full bg-[#D9A441]/[0.045] blur-[110px]" />
+          <div className="absolute -left-24 top-20 h-[420px] w-[680px] bg-[#0B2C6B]/[0.04] blur-[140px]" />
+          <div className="absolute right-0 top-32 h-[360px] w-[640px] bg-[#D9A441]/[0.075] blur-[135px]" />
+          <div className="absolute left-[40%] bottom-20 h-[220px] w-[500px] bg-[#D9A441]/[0.035] blur-[110px]" />
           <div className="absolute inset-0 opacity-[0.026] bg-[linear-gradient(90deg,transparent_0,transparent_96%,rgba(11,44,107,0.7)_100%)] bg-[length:84px_100%]" />
         </div>
 
@@ -65,7 +65,7 @@ export default function GalleryPage() {
           </div>
 
           <div className="mt-14 grid gap-4 lg:grid-cols-[1.35fr_0.65fr]">
-            <figure className="group relative min-h-[520px] overflow-hidden rounded-[30px] border border-white/70 bg-white shadow-[0_30px_90px_-52px_rgba(11,44,107,0.72)]">
+            <figure className="group relative min-h-[520px] overflow-hidden rounded-[14px] border border-white/70 bg-white shadow-[0_30px_90px_-52px_rgba(11,44,107,0.72)]">
               <Image
                 src={FEATURED_STORIES[0].image.src}
                 alt={FEATURED_STORIES[0].image.alt}
@@ -85,7 +85,7 @@ export default function GalleryPage() {
 
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-1">
               {FEATURED_STORIES.slice(1).map((story) => (
-                <figure key={story.title} className="group relative min-h-[252px] overflow-hidden rounded-[30px] border border-white/70 bg-white shadow-[0_22px_80px_-56px_rgba(11,44,107,0.65)]">
+                <figure key={story.title} className="group relative min-h-[252px] overflow-hidden rounded-[14px] border border-white/70 bg-white shadow-[0_22px_80px_-56px_rgba(11,44,107,0.65)]">
                   <Image
                     src={story.image.src}
                     alt={story.image.alt}
@@ -113,7 +113,7 @@ export default function GalleryPage() {
               return (
                 <figure
                   key={image.src}
-                  className={`group relative overflow-hidden rounded-[24px] border border-white/70 bg-white shadow-[0_20px_70px_-50px_rgba(11,44,107,0.62)] ${
+                  className={`group relative overflow-hidden rounded-[12px] border border-white/70 bg-white shadow-[0_20px_70px_-50px_rgba(11,44,107,0.62)] ${
                     isAnchor ? "sm:col-span-2 sm:row-span-2" : ""
                   } ${index === 4 || index === 11 ? "lg:col-span-2" : ""}`}
                 >

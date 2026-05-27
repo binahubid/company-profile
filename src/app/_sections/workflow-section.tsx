@@ -54,8 +54,8 @@ export function WorkflowSection({ onMouseMove }: WorkflowSectionProps) {
       className="relative overflow-hidden border-t border-black/[0.06] px-6 py-20 md:px-12 md:py-32 lg:px-20"
     >
       <div className="pointer-events-none absolute inset-0">
-        <div className="absolute left-0 top-20 h-[420px] w-[420px] rounded-full bg-[#0B2C6B]/[0.045] blur-[130px]" />
-        <div className="absolute right-0 bottom-10 h-[360px] w-[360px] rounded-full bg-[#D9A441]/[0.075] blur-[120px]" />
+        <div className="absolute left-0 top-20 h-[320px] w-[600px] bg-[#0B2C6B]/[0.035] blur-[130px]" />
+        <div className="absolute right-0 bottom-10 h-[280px] w-[560px] bg-[#D9A441]/[0.055] blur-[120px]" />
       </div>
 
       <div className="relative z-10 mx-auto max-w-6xl">
@@ -76,11 +76,11 @@ export function WorkflowSection({ onMouseMove }: WorkflowSectionProps) {
         </div>
 
         <div
-          className="rounded-[32px] border border-black/[0.07] bg-white p-4 shadow-[0_24px_90px_-70px_rgba(11,44,107,0.55)] md:p-6"
+          className="rounded-[14px] border border-black/[0.07] bg-white p-4 shadow-[0_24px_90px_-70px_rgba(11,44,107,0.55)] md:p-6"
           onMouseMove={onMouseMove}
         >
           <div className="grid gap-6 lg:grid-cols-[0.95fr_1.05fr]">
-            <div className="relative min-h-[260px] sm:min-h-[340px] md:min-h-[460px] xl:min-h-[520px] 2xl:min-h-[580px] overflow-hidden rounded-[26px] bg-[#071B3D]">
+            <div className="relative min-h-[260px] overflow-hidden rounded-[12px] bg-[#071B3D] sm:min-h-[340px] md:min-h-[460px] xl:min-h-[520px] 2xl:min-h-[580px]">
               <AnimatePresence mode="wait">
                 <motion.img
                   key={activeStep.n}
@@ -134,7 +134,7 @@ export function WorkflowSection({ onMouseMove }: WorkflowSectionProps) {
                         key={step.n}
                         onClick={() => setActiveIndex(index)}
                         onMouseEnter={() => setActiveIndex(index)}
-                        className={`group relative rounded-2xl border p-4 text-left transition-all duration-500 ${
+                        className={`group relative rounded-[12px] border p-4 text-left transition-all duration-500 ${
                           isActive
                             ? "border-[#D9A441]/45 bg-[#FFF8EA] shadow-[0_18px_54px_-44px_rgba(217,164,65,0.8)]"
                             : "border-black/[0.06] bg-[#F5F7FA] hover:border-[#0B2C6B]/16 hover:bg-white"

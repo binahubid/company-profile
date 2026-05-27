@@ -87,7 +87,7 @@ export default function Navbar() {
         onMouseLeave={() => setActiveDropdown(null)}
       >
         <nav
-          className={`relative flex items-center justify-between overflow-hidden rounded-[24px] border px-4 py-2.5 transition-all duration-500 md:px-5 ${scrolled
+          className={`relative flex items-center justify-between overflow-hidden rounded-[16px] border px-4 py-2.5 transition-all duration-500 md:px-5 ${scrolled
               ? "border-white/45 bg-white/90 shadow-[0_24px_70px_-30px_rgba(11,44,107,0.28)] backdrop-blur-2xl"
               : "border-white/35 bg-white/78 shadow-[0_20px_60px_-36px_rgba(11,44,107,0.2)] backdrop-blur-xl"
             }`}
@@ -117,7 +117,7 @@ export default function Navbar() {
               >
                 <Link
                   href={link.href}
-                  className={`relative flex min-w-[116px] items-center justify-center gap-2 rounded-[18px] px-5 py-4 text-[10.5px] font-bold uppercase tracking-[0.16em] transition-all duration-300 ${
+                  className={`relative flex min-w-[116px] items-center justify-center gap-2 rounded-[10px] px-5 py-4 text-[10.5px] font-bold uppercase tracking-[0.16em] transition-all duration-300 ${
                     activeDropdown === link.label
                       ? "bg-[#0B2C6B] text-white shadow-[0_18px_42px_-28px_rgba(11,44,107,0.9)]"
                       : "text-[#0B2C6B]/66 hover:bg-[#0B2C6B]/5 hover:text-[#0B2C6B]"
@@ -137,7 +137,7 @@ export default function Navbar() {
           <div className="relative z-10 flex items-center gap-4">
             <Link
               href="/insight"
-              className="hidden h-12 items-center gap-2 rounded-[18px] bg-[#0B2C6B] px-5 text-[9.5px] font-bold uppercase tracking-[0.14em] text-[#D9A441] shadow-[0_16px_38px_-24px_rgba(11,44,107,0.95)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#08245A] hover:shadow-[0_20px_48px_-26px_rgba(11,44,107,1)] active:scale-95 md:flex"
+              className="hidden h-12 items-center gap-2 rounded-[12px] bg-[#0B2C6B] px-5 text-[9.5px] font-bold uppercase tracking-[0.14em] text-[#D9A441] shadow-[0_16px_38px_-24px_rgba(11,44,107,0.95)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#08245A] hover:shadow-[0_20px_48px_-26px_rgba(11,44,107,1)] active:scale-95 md:flex"
             >
               Diagnosa Performa
               <ChevronRight size={12} strokeWidth={2} />
@@ -161,7 +161,7 @@ export default function Navbar() {
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: 8, scale: 0.99 }}
               transition={{ duration: 0.24, ease: [0.22, 1, 0.36, 1] }}
-              className="absolute left-0 right-0 top-[calc(100%+10px)] hidden overflow-hidden rounded-[24px] border border-white/10 bg-[#070A10]/94 shadow-[0_34px_90px_-42px_rgba(0,0,0,0.72)] backdrop-blur-2xl md:block"
+              className="absolute left-0 right-0 top-[calc(100%+10px)] hidden overflow-hidden rounded-[14px] border border-white/10 bg-[#070A10]/94 shadow-[0_34px_90px_-42px_rgba(0,0,0,0.72)] backdrop-blur-2xl md:block"
             >
               <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_18%_0%,rgba(217,164,65,0.12),transparent_28%),linear-gradient(90deg,rgba(255,255,255,0.04),transparent_42%)]" />
               <div className="relative grid grid-cols-2 gap-px lg:grid-cols-4">
@@ -173,7 +173,7 @@ export default function Navbar() {
                     className="group relative min-h-[118px] overflow-hidden px-6 py-5 transition-colors hover:bg-white/[0.045]"
                   >
                     <div className={`absolute inset-x-0 top-0 h-[3px] bg-[#D9A441] transition-opacity duration-300 ${index === 0 ? "opacity-100" : "opacity-0 group-hover:opacity-100"}`} />
-                    <div className="absolute bottom-0 right-0 h-24 w-24 translate-x-8 translate-y-8 rounded-full bg-[#0B2C6B]/0 blur-2xl transition-colors duration-500 group-hover:bg-[#0B2C6B]/45" />
+                    <div className="absolute bottom-0 right-0 h-[72px] w-32 translate-x-8 translate-y-8 bg-[#0B2C6B]/0 blur-2xl transition-colors duration-500 group-hover:bg-[#0B2C6B]/34" />
                     <p className="relative mb-3 text-[13px] font-medium uppercase tracking-[0.28em] text-white">
                       {sub.label}
                     </p>
@@ -194,7 +194,7 @@ export default function Navbar() {
               initial={{ opacity: 0, y: 10, scale: 0.95 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: 10, scale: 0.95 }}
-              className="absolute left-3 right-3 top-full mt-3 max-h-[76vh] overflow-y-auto rounded-[28px] border border-white/35 bg-[#F8FAFC]/94 p-3 shadow-[0_28px_90px_-46px_rgba(11,44,107,0.46)] backdrop-blur-2xl sm:left-4 sm:right-4 sm:p-4 md:hidden"
+              className="absolute left-3 right-3 top-full mt-3 max-h-[76vh] overflow-y-auto rounded-[18px] border border-white/35 bg-[#F8FAFC]/94 p-3 shadow-[0_28px_90px_-46px_rgba(11,44,107,0.46)] backdrop-blur-2xl sm:left-4 sm:right-4 sm:p-4 md:hidden"
             >
               <div className="pointer-events-none absolute inset-0 rounded-[inherit] bg-[radial-gradient(circle_at_80%_0%,rgba(217,164,65,0.16),transparent_28%),linear-gradient(135deg,rgba(255,255,255,0.86),rgba(255,255,255,0.34))]" />
               <div className="relative z-10 mb-3 flex items-center justify-between border-b border-[#0B2C6B]/8 px-3 pb-3">
@@ -215,7 +215,7 @@ export default function Navbar() {
                 {NAV_LINKS.map((link) => {
                   const isExpanded = activeMobileDropdown === link.label;
                   return (
-                    <div key={link.label} className="flex flex-col overflow-hidden rounded-[22px] border border-[#0B2C6B]/7 bg-white/72 shadow-[0_16px_52px_-44px_rgba(11,44,107,0.44)]">
+                    <div key={link.label} className="flex flex-col overflow-hidden rounded-[14px] border border-[#0B2C6B]/7 bg-white/72 shadow-[0_16px_52px_-44px_rgba(11,44,107,0.44)]">
                       {link.submenu ? (
                         <button
                           onClick={() => setActiveMobileDropdown(isExpanded ? null : link.label)}
@@ -252,7 +252,7 @@ export default function Navbar() {
                                 <Link
                                   href={link.href}
                                   onClick={() => setOpen(false)}
-                                  className="rounded-2xl border border-[#D9A441]/25 bg-[#D9A441]/8 px-4 py-3 text-center text-[9px] font-bold uppercase tracking-[0.2em] text-[#B7831E] transition-all hover:bg-[#D9A441] hover:text-white sm:text-left"
+                                  className="rounded-[10px] border border-[#D9A441]/25 bg-[#D9A441]/8 px-4 py-3 text-center text-[9px] font-bold uppercase tracking-[0.2em] text-[#B7831E] transition-all hover:bg-[#D9A441] hover:text-white sm:text-left"
                                 >
                                   Kunjungi Halaman Utama
                                 </Link>
@@ -261,7 +261,7 @@ export default function Navbar() {
                                     key={sub.label}
                                     href={sub.href}
                                     onClick={() => setOpen(false)}
-                                    className="group rounded-2xl border border-transparent bg-white/66 px-4 py-3 transition-all hover:border-[#D9A441]/20 hover:bg-[#F5F7FA] hover:shadow-[0_12px_34px_-28px_rgba(11,44,107,0.42)]"
+                                    className="group rounded-[10px] border border-transparent bg-white/66 px-4 py-3 transition-all hover:border-[#D9A441]/20 hover:bg-[#F5F7FA] hover:shadow-[0_12px_34px_-28px_rgba(11,44,107,0.42)]"
                                   >
                                     <span className="block text-[10px] font-semibold uppercase tracking-[0.18em] text-[#0B2C6B]/76 group-hover:text-[#0B2C6B]">
                                       {sub.label}
@@ -283,7 +283,7 @@ export default function Navbar() {
                 <Link
                   href="/insight"
                   onClick={() => setOpen(false)}
-                  className="flex w-full items-center justify-center gap-3 rounded-[22px] bg-[#0B2C6B] py-4 text-[11px] font-bold uppercase tracking-[0.18em] text-[#D9A441] shadow-[0_18px_46px_-28px_rgba(11,44,107,0.9)]"
+                  className="flex w-full items-center justify-center gap-3 rounded-[14px] bg-[#0B2C6B] py-4 text-[11px] font-bold uppercase tracking-[0.18em] text-[#D9A441] shadow-[0_18px_46px_-28px_rgba(11,44,107,0.9)]"
                 >
                   DIAGNOSA PERFORMA
                   <ChevronRight size={18} />

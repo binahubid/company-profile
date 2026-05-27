@@ -16,14 +16,14 @@ export function SuccessStep({ name, company }: SuccessStepProps) {
       className="relative w-full max-w-4xl px-6 py-20 flex flex-col items-center"
     >
       {/* Background Glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#D9A441]/5 blur-[120px] rounded-full pointer-events-none" />
+      <div className="pointer-events-none absolute left-1/2 top-1/2 h-[420px] w-[760px] -translate-x-1/2 -translate-y-1/2 bg-[#D9A441]/4 blur-[120px]" />
       
       <div className="relative z-10 w-full max-w-2xl text-center">
         <motion.div 
           initial={{ scale: 0.8, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           transition={{ type: "spring", damping: 15 }}
-          className="w-24 h-24 rounded-[32px] bg-emerald-50 text-emerald-500 flex items-center justify-center mb-10 mx-auto shadow-2xl shadow-emerald-500/10 border border-emerald-100"
+          className="mx-auto mb-10 flex h-24 w-24 items-center justify-center rounded-[16px] border border-emerald-100 bg-emerald-50 text-emerald-500 shadow-2xl shadow-emerald-500/10"
         >
           <Check size={48} strokeWidth={3} />
         </motion.div>
@@ -36,7 +36,7 @@ export function SuccessStep({ name, company }: SuccessStepProps) {
           Asesmen untuk <strong>{company}</strong> telah berhasil kami terima. Hasil analisa strategis lengkap akan dikirimkan langsung ke <strong>Email & WhatsApp</strong> Anda segera setelah tim kami melakukan validasi.
         </p>
 
-        <div className="bg-[#F5F7FA] rounded-3xl p-6 border border-black/[0.03] flex items-start gap-4 text-left mb-12">
+        <div className="mb-12 flex items-start gap-4 rounded-[14px] border border-black/[0.03] bg-[#F5F7FA] p-6 text-left">
           <div className="w-10 h-10 rounded-xl bg-white flex items-center justify-center shrink-0 shadow-sm">
             <Bell size={20} className="text-[#D9A441]" />
           </div>
@@ -48,7 +48,7 @@ export function SuccessStep({ name, company }: SuccessStepProps) {
           </div>
         </div>
 
-        <div className="mb-12 rounded-[28px] border border-[#D9A441]/18 bg-[#D9A441]/[0.055] p-6 text-left">
+        <div className="mb-12 rounded-[14px] border border-[#D9A441]/18 bg-[#D9A441]/[0.055] p-6 text-left">
           <span className="block text-[10px] font-bold text-[#D9A441] uppercase tracking-widest mb-4">
             Preview Area Analisis
           </span>
@@ -67,7 +67,7 @@ export function SuccessStep({ name, company }: SuccessStepProps) {
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <Link
             href="/"
-            className="h-16 px-12 bg-[#0B2C6B] text-white rounded-2xl text-[11px] font-bold tracking-[0.2em] uppercase flex items-center justify-center gap-3 hover:bg-black transition-all shadow-xl shadow-[#0B2C6B]/20 group"
+            className="group flex h-16 items-center justify-center gap-3 rounded-[12px] bg-[#0B2C6B] px-12 text-[11px] font-bold uppercase tracking-[0.2em] text-white shadow-xl shadow-[#0B2C6B]/20 transition-all hover:bg-black"
           >
             KEMBALI KE BERANDA <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
           </Link>

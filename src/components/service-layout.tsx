@@ -70,8 +70,8 @@ export default function ServiceLayout({ data }: { data: ServiceData }) {
             transition={{ delay: 0.1 }}
             className="md:col-span-5 space-y-12"
           >
-            <div className="bg-white p-6 md:p-10 rounded-[24px] md:rounded-[32px] border border-black/[0.04] shadow-xl shadow-black/[0.02]">
-              <div className="w-12 h-12 rounded-2xl bg-red-50 text-red-500 flex items-center justify-center mb-8 border border-red-100">
+            <div className="rounded-[14px] border border-black/[0.04] bg-white p-6 shadow-xl shadow-black/[0.02] md:p-10">
+              <div className="mb-8 flex h-12 w-12 items-center justify-center rounded-[12px] border border-red-100 bg-red-50 text-red-500">
                 <AlertCircle size={24} />
               </div>
               <h3 className="text-2xl font-medium mb-6">Tantangan yang Sering Dialami</h3>
@@ -99,16 +99,16 @@ export default function ServiceLayout({ data }: { data: ServiceData }) {
             className="md:col-span-7 space-y-8"
           >
             {/* Benefits */}
-            <div className="bg-[#0B2C6B] text-white p-6 md:p-10 rounded-[24px] md:rounded-[32px] border border-black/[0.04] relative overflow-hidden group">
-              <div className="absolute top-0 right-0 w-64 h-64 blur-[80px] rounded-full translate-x-20 -translate-y-20 opacity-20" style={{ backgroundColor: accentColor }} />
+            <div className="group relative overflow-hidden rounded-[14px] border border-black/[0.04] bg-[#0B2C6B] p-6 text-white md:p-10">
+              <div className="absolute right-0 top-0 h-52 w-80 translate-x-20 -translate-y-20 opacity-16 blur-[80px]" style={{ backgroundColor: accentColor }} />
               <div className="relative z-10">
-                <div className="w-12 h-12 rounded-2xl bg-white/10 text-white flex items-center justify-center mb-8 border border-white/10 backdrop-blur-sm">
+                <div className="mb-8 flex h-12 w-12 items-center justify-center rounded-[12px] border border-white/10 bg-white/10 text-white backdrop-blur-sm">
                   <Target size={24} />
                 </div>
                 <h3 className="text-2xl font-medium mb-6">{data.benefitsTitle || "Tujuan dan Manfaat"}</h3>
                 <div className="grid sm:grid-cols-2 gap-4">
                   {data.benefits.map((benefit, i) => (
-                    <div key={i} className="flex items-start gap-3 bg-white/5 p-4 rounded-2xl border border-white/5 hover:bg-white/10 transition-colors">
+                    <div key={i} className="flex items-start gap-3 rounded-[12px] border border-white/5 bg-white/5 p-4 transition-colors hover:bg-white/10">
                       <Check size={18} className="shrink-0 mt-0.5" style={{ color: accentColor }} />
                       <span className="text-[13px] text-white/80 font-light leading-relaxed">{benefit}</span>
                     </div>
@@ -118,8 +118,8 @@ export default function ServiceLayout({ data }: { data: ServiceData }) {
             </div>
 
             {/* Results */}
-            <div className="bg-white p-6 md:p-10 rounded-[24px] md:rounded-[32px] border border-black/[0.04] shadow-xl shadow-black/[0.02]">
-              <div className="w-12 h-12 rounded-2xl bg-[#F5F7FA] flex items-center justify-center mb-8 border border-black/5 text-black">
+            <div className="rounded-[14px] border border-black/[0.04] bg-white p-6 shadow-xl shadow-black/[0.02] md:p-10">
+              <div className="mb-8 flex h-12 w-12 items-center justify-center rounded-[12px] border border-black/5 bg-[#F5F7FA] text-black">
                 <TrendingUp size={24} />
               </div>
               <h3 className="text-2xl font-medium mb-6">Hasil yang Ingin Dicapai</h3>
@@ -143,7 +143,7 @@ export default function ServiceLayout({ data }: { data: ServiceData }) {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3 }}
-          className="mt-20 text-center bg-white p-6 sm:p-10 md:p-16 lg:p-20 rounded-[24px] md:rounded-[32px] border border-black/[0.03] shadow-2xl shadow-black/[0.02]"
+          className="mt-20 rounded-[16px] border border-black/[0.03] bg-white p-6 text-center shadow-2xl shadow-black/[0.02] sm:p-10 md:p-16 lg:p-20"
         >
           <div className="w-16 h-16 rounded-full bg-[#F5F7FA] mx-auto flex items-center justify-center mb-8 text-[#D9A441]">
             <Sparkles size={32} />

@@ -42,8 +42,8 @@ export function LeadCaptureStep({ formData, onChange, onNext, onPrev }: LeadCapt
       </div>
 
       <div className="grid w-full gap-6 lg:grid-cols-[0.72fr_1fr] lg:items-stretch">
-        <aside className="relative overflow-hidden rounded-[32px] bg-[#0B2C6B] p-8 text-white shadow-[0_24px_80px_-58px_rgba(11,44,107,0.68)] md:p-10">
-          <div className="absolute -right-20 -top-20 h-64 w-64 rounded-full bg-[#D9A441]/20 blur-3xl" />
+        <aside className="relative overflow-hidden rounded-[16px] bg-[#0B2C6B] p-8 text-white shadow-[0_24px_80px_-58px_rgba(11,44,107,0.68)] md:p-10">
+          <div className="absolute -right-20 -top-20 h-52 w-80 bg-[#D9A441]/16 blur-3xl" />
           <div className="absolute inset-0 opacity-[0.12]" style={{ backgroundImage: "linear-gradient(rgba(255,255,255,0.16) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.16) 1px, transparent 1px)", backgroundSize: "42px 42px" }} />
           <div className="relative z-10 flex h-full min-h-[420px] flex-col justify-between">
             <div>
@@ -61,7 +61,7 @@ export function LeadCaptureStep({ formData, onChange, onNext, onPrev }: LeadCapt
                 ["49 indikator", "Membaca 7 dimensi"],
                 ["Privat", "Dikirim ke Email & WhatsApp"],
               ].map(([value, label]) => (
-                <div key={value} className="rounded-2xl border border-white/10 bg-white/[0.06] px-5 py-4 backdrop-blur-md">
+                <div key={value} className="rounded-[12px] border border-white/10 bg-white/[0.06] px-5 py-4 backdrop-blur-md">
                   <p className="text-sm font-bold text-white">{value}</p>
                   <p className="mt-1 text-[10px] font-bold uppercase tracking-[0.14em] text-white/36">{label}</p>
                 </div>
@@ -72,7 +72,7 @@ export function LeadCaptureStep({ formData, onChange, onNext, onPrev }: LeadCapt
 
         <form
           onSubmit={onNext}
-          className="bg-white p-6 md:p-12 rounded-[32px] md:rounded-[40px] border border-black/[0.03] shadow-[0_20px_60px_rgba(0,0,0,0.06)] w-full"
+          className="w-full rounded-[16px] border border-black/[0.03] bg-white p-6 shadow-[0_20px_60px_rgba(0,0,0,0.06)] md:p-12"
         >
         <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6 mb-8 md:mb-12">
           <div className="space-y-1">
@@ -138,7 +138,7 @@ export function LeadCaptureStep({ formData, onChange, onNext, onPrev }: LeadCapt
                       initial={{ opacity: 0, y: 5, scale: 0.98 }}
                       animate={{ opacity: 1, y: 0, scale: 1 }}
                       exit={{ opacity: 0, y: 5, scale: 0.98 }}
-                      className="absolute left-0 right-0 top-full mt-2 bg-white rounded-2xl border border-black/[0.06] shadow-2xl z-[101] overflow-hidden"
+                      className="absolute left-0 right-0 top-full z-[101] mt-2 overflow-hidden rounded-[12px] border border-black/[0.06] bg-white shadow-2xl"
                     >
                       <div className="p-2 max-h-[240px] overflow-y-auto">
                         {EMPLOYEE_OPTIONS.map((opt) => {

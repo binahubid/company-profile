@@ -43,7 +43,7 @@ export function MethodologySection({ onMouseMove }: MethodologySectionProps) {
         </div>
 
         <div
-          className="rounded-3xl overflow-hidden border border-black/[0.07] flex flex-col md:block md:relative shadow-2xl shadow-black/5"
+          className="flex flex-col overflow-hidden rounded-[14px] border border-black/[0.07] shadow-2xl shadow-black/5 md:relative md:block"
           onMouseMove={onMouseMove}
         >
           <div className="relative w-full h-[220px] sm:h-[280px] md:h-[520px] xl:h-[580px] 2xl:h-[640px] shrink-0">
@@ -58,7 +58,7 @@ export function MethodologySection({ onMouseMove }: MethodologySectionProps) {
           </div>
 
           <div className="flex flex-col gap-4 p-4 md:absolute md:bottom-6 md:right-6 md:p-0 md:w-72 xl:w-80 2xl:w-96">
-            <div className="rounded-2xl border border-white/45 p-6 shadow-[0_18px_54px_-38px_rgba(11,44,107,0.65)]" style={glassStyle}>
+            <div className="rounded-[12px] border border-white/45 p-6 shadow-[0_18px_54px_-38px_rgba(11,44,107,0.65)]" style={glassStyle}>
               <Tag>PENDEKATAN</Tag>
               <h3 className="mt-3 text-lg font-bold text-[#0B2C6B] mb-2">Pengembangan Holistik</h3>
               <p className="text-sm text-[#4A4C54] leading-relaxed">
@@ -67,7 +67,7 @@ export function MethodologySection({ onMouseMove }: MethodologySectionProps) {
               </p>
             </div>
 
-            <div className="rounded-2xl border border-white/45 p-6 shadow-[0_18px_54px_-38px_rgba(11,44,107,0.65)]" style={glassStyle}>
+            <div className="rounded-[12px] border border-white/45 p-6 shadow-[0_18px_54px_-38px_rgba(11,44,107,0.65)]" style={glassStyle}>
               <div className="flex items-center gap-2 mb-2">
                 <div className="w-2 h-2 rounded-full bg-[#D9A441] animate-pulse" />
                 <span className="text-xs text-[#4A4C54]/70 tracking-widest uppercase font-bold">TERUKUR</span>

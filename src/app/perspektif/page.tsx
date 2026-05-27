@@ -16,7 +16,7 @@ export default function PerspektifPage() {
       {/* Page Header */}
       <section className="relative overflow-hidden py-16 md:py-28 px-6 md:px-12 lg:px-20 text-center">
         <div className="pointer-events-none absolute inset-0">
-          <div className="absolute left-1/2 top-10 h-[420px] w-[620px] -translate-x-1/2 rounded-full bg-[#D9A441]/[0.07] blur-[130px]" />
+          <div className="absolute left-1/2 top-10 h-[320px] w-[740px] -translate-x-1/2 bg-[#D9A441]/[0.055] blur-[130px]" />
           <div className="absolute inset-0 opacity-[0.026] bg-[linear-gradient(90deg,transparent_0,transparent_96%,rgba(11,44,107,0.72)_100%)] bg-[length:82px_100%]" />
         </div>
         <div className="relative z-10 mx-auto max-w-5xl">
@@ -40,7 +40,7 @@ export default function PerspektifPage() {
             ["02", "Learning before automation", "Teknologi harus mempercepat pembelajaran, bukan menggantikannya."],
             ["03", "Impact before activity", "Program bernilai ketika perilaku dan kinerja ikut berubah."],
           ].map(([n, title, desc]) => (
-            <div key={n} className="rounded-3xl border border-black/[0.06] bg-white/70 p-6 shadow-[0_18px_60px_-50px_rgba(11,44,107,0.42)]">
+            <div key={n} className="rounded-[12px] border border-black/[0.06] bg-white/70 p-6 shadow-[0_18px_60px_-50px_rgba(11,44,107,0.42)]">
               <span className="text-[10px] font-bold tracking-[0.24em] text-[#D9A441]">{n}</span>
               <h2 className="mt-5 text-xl font-medium tracking-tight text-[#0B2C6B]">{title}</h2>
               <p className="mt-3 text-sm font-light leading-relaxed text-black/56">{desc}</p>

@@ -97,8 +97,8 @@ export function HumanCoreValuesSection() {
       {/* Premium ambient lights */}
       {isGlowing && (
         <div className="absolute inset-0 z-0 pointer-events-none transition-opacity duration-1000">
-          <div className="absolute -top-40 -left-28 h-[560px] w-[560px] rounded-full bg-[#D9A441]/12 blur-[140px]" />
-          <div className="absolute -bottom-40 right-0 h-[620px] w-[620px] rounded-full bg-[#0B2C6B]/38 blur-[150px]" />
+          <div className="absolute -top-40 -left-28 h-[420px] w-[640px] bg-[#D9A441]/8 blur-[140px]" />
+          <div className="absolute -bottom-40 right-0 h-[480px] w-[720px] bg-[#0B2C6B]/28 blur-[150px]" />
           <div className="absolute left-[8%] right-[8%] top-1/2 h-px bg-gradient-to-r from-transparent via-[#D9A441]/26 to-transparent" />
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_55%_52%,rgba(255,255,255,0.045),transparent_34%)]" />
         </div>
@@ -108,7 +108,7 @@ export function HumanCoreValuesSection() {
         
         {/* Header Tags (Aligned to Left) */}
         <div className="text-left mb-16 flex flex-col items-start">
-          <div className={`flex h-12 w-12 items-center justify-center rounded-2xl border transition-all duration-1000 ${
+          <div className={`flex h-12 w-12 items-center justify-center rounded-[12px] border transition-all duration-1000 ${
             isGlowing
               ? "border-[#D9A441]/35 bg-white/[0.06] text-[#D9A441]"
               : "border-[#0B2C6B]/10 bg-white/60 text-[#0B2C6B]"

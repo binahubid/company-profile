@@ -9,9 +9,9 @@ export function GallerySection() {
   return (
     <section className="relative overflow-hidden bg-[#F5F7FA] px-6 py-24 md:px-12 lg:px-20">
       <div className="pointer-events-none absolute inset-0">
-        <div className="absolute -left-28 top-20 h-[420px] w-[420px] rounded-full bg-[#0B2C6B]/[0.055] blur-[120px]" />
-        <div className="absolute right-0 top-10 h-[420px] w-[420px] rounded-full bg-[#D9A441]/[0.11] blur-[130px]" />
-        <div className="absolute right-[18%] bottom-20 h-[260px] w-[260px] rounded-full bg-[#D9A441]/[0.055] blur-[100px]" />
+        <div className="absolute -left-28 top-20 h-[360px] w-[520px] bg-[#0B2C6B]/[0.035] blur-[120px]" />
+        <div className="absolute right-0 top-10 h-[340px] w-[560px] bg-[#D9A441]/[0.07] blur-[130px]" />
+        <div className="absolute right-[18%] bottom-20 h-[180px] w-[420px] bg-[#D9A441]/[0.035] blur-[100px]" />
         <div className="absolute inset-0 opacity-[0.026] bg-[linear-gradient(90deg,transparent_0,transparent_96%,rgba(11,44,107,0.68)_100%)] bg-[length:78px_100%]" />
       </div>
 
@@ -41,7 +41,7 @@ export function GallerySection() {
             <Link
               key={image.src}
               href="/gallery"
-              className={`group relative min-h-[170px] overflow-hidden rounded-[22px] border border-white/70 bg-white shadow-[0_18px_60px_-46px_rgba(11,44,107,0.55)] transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_24px_70px_-42px_rgba(11,44,107,0.65)] ${
+              className={`group relative min-h-[170px] overflow-hidden rounded-[12px] border border-white/70 bg-white shadow-[0_18px_60px_-46px_rgba(11,44,107,0.55)] transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_24px_70px_-42px_rgba(11,44,107,0.65)] ${
                 index === 0
                   ? "md:col-span-3 md:row-span-2 md:min-h-[380px]"
                   : index === 1

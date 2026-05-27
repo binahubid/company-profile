@@ -42,7 +42,7 @@ export function PainPointSection() {
   return (
     <section className="relative w-full overflow-hidden bg-[#F5F7FA] px-3 pt-[92px] pb-3 sm:px-4 md:pt-[106px] md:pb-4 xl:pt-[108px]">
       <div
-        className="relative min-h-[calc(100svh-104px)] overflow-hidden rounded-[20px] bg-[#081A38] text-white sm:min-h-[680px] md:min-h-[700px] md:rounded-[28px] lg:min-h-[clamp(540px,calc(100svh-116px),720px)] xl:min-h-[clamp(560px,calc(100svh-120px),780px)] min-[1440px]:min-h-[clamp(560px,calc(100svh-126px),820px)]"
+        className="relative min-h-[calc(100svh-104px)] overflow-hidden rounded-[14px] bg-[#081A38] text-white sm:min-h-[680px] md:min-h-[700px] md:rounded-[18px] lg:min-h-[clamp(540px,calc(100svh-116px),720px)] xl:min-h-[clamp(560px,calc(100svh-120px),780px)] min-[1440px]:min-h-[clamp(560px,calc(100svh-126px),820px)]"
       >
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_78%_18%,rgba(217,164,65,0.18),transparent_28%),radial-gradient(circle_at_18%_70%,rgba(255,255,255,0.08),transparent_26%),linear-gradient(120deg,#06152F_0%,#0B2C6B_52%,#07101F_100%)]" />
         {PAIN_POINTS.map((item, index) => (

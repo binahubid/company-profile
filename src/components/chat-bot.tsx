@@ -150,9 +150,9 @@ export function ChatBot() {
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
         onClick={() => setIsOpen(true)}
-        className={`fixed bottom-6 right-6 w-14 h-14 bg-[#0B2C6B] rounded-full shadow-2xl flex items-center justify-center z-50 border border-white/10 ${isOpen ? 'hidden' : 'flex'}`}
+        className={`fixed bottom-6 right-6 z-50 flex h-14 w-14 items-center justify-center rounded-[16px] border border-white/10 bg-[#0B2C6B] shadow-2xl ${isOpen ? 'hidden' : 'flex'}`}
       >
-        <div className="absolute inset-0 bg-[#D9A441]/20 rounded-full blur-xl animate-pulse" />
+        <div className="absolute inset-0 bg-[#D9A441]/16 blur-xl animate-pulse" />
         <MessageSquare className="text-white w-6 h-6 relative z-10" />
       </motion.button>
 
@@ -165,11 +165,11 @@ export function ChatBot() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
             transition={{ duration: 0.2 }}
-            className="fixed bottom-6 right-6 w-[calc(100vw-32px)] sm:w-[400px] h-[600px] max-h-[80vh] bg-white rounded-2xl shadow-2xl z-50 flex flex-col overflow-hidden border border-black/5"
+            className="fixed bottom-6 right-6 z-50 flex h-[600px] max-h-[80vh] w-[calc(100vw-32px)] flex-col overflow-hidden rounded-[16px] border border-black/5 bg-white shadow-2xl sm:w-[400px]"
           >
             {/* Header */}
             <div className="bg-[#0B2C6B] p-4 flex items-center justify-between relative overflow-hidden">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-[#D9A441]/10 blur-2xl rounded-full translate-x-10 -translate-y-10" />
+              <div className="absolute right-0 top-0 h-24 w-40 translate-x-10 -translate-y-10 bg-[#D9A441]/8 blur-2xl" />
               <div className="flex items-center gap-3 relative z-10">
                 <div className="w-10 h-10 rounded-full flex items-center justify-center overflow-hidden border border-white/20 relative">
                   <Image 
@@ -220,7 +220,7 @@ export function ChatBot() {
                         </div>
                       )}
                     </div>
-                    <div className={`p-3 rounded-2xl text-sm leading-relaxed ${
+                    <div className={`rounded-[12px] p-3 text-sm leading-relaxed ${
                       isBot 
                         ? 'bg-white border border-black/5 text-[#4A4C54] rounded-tl-sm' 
                         : 'bg-[#0B2C6B] text-white rounded-tr-sm'
@@ -241,7 +241,7 @@ export function ChatBot() {
                       className="object-cover"
                     />
                   </div>
-                  <div className="bg-white border border-black/5 p-4 rounded-2xl rounded-tl-sm flex items-center gap-2">
+                  <div className="flex items-center gap-2 rounded-[12px] rounded-tl-sm border border-black/5 bg-white p-4">
                     <Loader2 className="w-4 h-4 text-[#0B2C6B] animate-spin" />
                     <span className="text-xs text-gray-400">Nara sedang mengetik...</span>
                   </div>

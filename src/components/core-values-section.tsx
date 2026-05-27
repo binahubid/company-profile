@@ -66,8 +66,8 @@ export function CoreValuesSection() {
       id="values"
       className="relative overflow-hidden border-t border-black/[0.04] bg-[radial-gradient(circle_at_top_left,rgba(11,44,107,0.035),transparent_32%),linear-gradient(to_bottom,#F5F7FA,#FFFFFF)] px-6 py-24 md:px-12 md:py-32 lg:px-20"
     >
-      <div className="pointer-events-none absolute right-[-12%] top-[18%] h-[420px] w-[420px] rounded-full bg-[#D9A441]/6 blur-3xl" />
-      <div className="pointer-events-none absolute left-[-10%] bottom-[-18%] h-[420px] w-[420px] rounded-full bg-[#0B2C6B]/5 blur-3xl" />
+      <div className="pointer-events-none absolute right-[-12%] top-[18%] h-[320px] w-[640px] bg-[#D9A441]/5 blur-3xl" />
+      <div className="pointer-events-none absolute left-[-10%] bottom-[-18%] h-[320px] w-[620px] bg-[#0B2C6B]/4 blur-3xl" />
 
       <div className="relative mx-auto max-w-7xl">
         <motion.div
@@ -114,7 +114,7 @@ export function CoreValuesSection() {
                   animate={isActive ? { x: 2, scale: 1.01 } : { x: 0, scale: 1 }}
                   whileHover={{ y: -2 }}
                   transition={{ delay: index * 0.07, duration: 0.65, ease: premiumEase }}
-                  className={`group relative min-h-[84px] overflow-hidden rounded-2xl border px-5 py-4 text-left transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+                  className={`group relative min-h-[84px] overflow-hidden rounded-[12px] border px-5 py-4 text-left transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${
                     isActive
                       ? "border-[#D9A441]/40 bg-white shadow-[0_18px_60px_-42px_rgba(11,44,107,0.42),0_0_32px_-24px_rgba(217,164,65,0.7)]"
                       : "border-black/[0.055] bg-white/54 hover:border-[#D9A441]/24 hover:bg-white/78"
@@ -147,7 +147,7 @@ export function CoreValuesSection() {
 
                   <div className="relative z-10 flex items-center gap-4">
                     <div
-                      className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border transition-all duration-700 ${
+                      className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-[10px] border transition-all duration-700 ${
                         isActive
                           ? "border-[#0B2C6B]/10 bg-[#0B2C6B] text-[#D9A441]"
                           : "border-black/7 bg-black/[0.025] text-[#0B2C6B]/45 group-hover:text-[#0B2C6B]"
@@ -183,7 +183,7 @@ export function CoreValuesSection() {
             transition={{ duration: 0.7, ease: premiumEase }}
             onMouseEnter={() => setIsPaused(true)}
             onMouseLeave={() => setIsPaused(false)}
-            className="relative min-h-[470px] overflow-hidden rounded-2xl border border-[#0B2C6B]/10 bg-[#07182F] p-8 text-white shadow-[0_20px_60px_-30px_rgba(11,44,107,0.18)] md:p-12 lg:p-10 xl:p-14"
+            className="relative min-h-[470px] overflow-hidden rounded-[14px] border border-[#0B2C6B]/10 bg-[#07182F] p-8 text-white shadow-[0_20px_60px_-30px_rgba(11,44,107,0.18)] md:p-12 lg:p-10 xl:p-14"
           >
             <motion.div
               key={`texture-${active}`}
@@ -211,7 +211,7 @@ export function CoreValuesSection() {
             />
             <div className="pointer-events-none absolute inset-0 opacity-[0.035] mix-blend-soft-light bg-[repeating-radial-gradient(circle_at_50%_50%,rgba(255,255,255,0.65)_0_1px,transparent_1px_4px)]" />
             <motion.div
-              className="pointer-events-none absolute -right-24 top-8 h-64 w-64 rounded-full bg-[#D9A441]/7 blur-3xl"
+              className="pointer-events-none absolute -right-24 top-8 h-52 w-80 bg-[#D9A441]/6 blur-3xl"
               animate={{ opacity: [0.32, 0.54, 0.32], scale: [1, 1.06, 1] }}
               transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
             />
@@ -223,7 +223,7 @@ export function CoreValuesSection() {
                 <motion.div
                   whileHover={{ y: -2, rotate: -3 }}
                   transition={{ duration: 0.28, ease: "easeOut" }}
-                  className="flex h-12 w-12 items-center justify-center rounded-2xl border border-white/12 bg-white/[0.06] text-[#D9A441]"
+                  className="flex h-12 w-12 items-center justify-center rounded-[12px] border border-white/12 bg-white/[0.06] text-[#D9A441]"
                 >
                   <ValueIcon icon={value.icon} size={22} />
                 </motion.div>

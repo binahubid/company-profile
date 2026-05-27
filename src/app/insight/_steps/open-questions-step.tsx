@@ -18,7 +18,7 @@ export function OpenQuestionsStep({
   isSubmitting,
 }: OpenQuestionsStepProps) {
   const textareaClass =
-    "w-full bg-black/[0.02] border border-black/10 rounded-2xl px-5 py-4 text-base focus:outline-none focus:border-[#0B2C6B] focus:bg-white transition-all resize-none font-medium text-[#0B2C6B] placeholder:text-black/10";
+    "w-full resize-none rounded-[12px] border border-black/10 bg-black/[0.02] px-5 py-4 text-base font-medium text-[#0B2C6B] placeholder:text-black/10 transition-all focus:border-[#0B2C6B] focus:bg-white focus:outline-none";
 
   return (
     <motion.div
@@ -30,7 +30,7 @@ export function OpenQuestionsStep({
     >
       <form
         onSubmit={onSubmit}
-        className="bg-white p-8 md:p-12 rounded-[40px] border border-black/[0.03] shadow-[0_20px_60px_rgba(0,0,0,0.06)] space-y-8 text-left"
+        className="space-y-8 rounded-[16px] border border-black/[0.03] bg-white p-8 text-left shadow-[0_20px_60px_rgba(0,0,0,0.06)] md:p-12"
       >
         <div className="space-y-3">
           <label className="block text-[10px] font-medium text-[#0B2C6B]/60 uppercase tracking-widest px-1">
@@ -62,14 +62,14 @@ export function OpenQuestionsStep({
           <button
             type="button"
             onClick={onPrev}
-            className="flex-1 h-14 border border-[#0B2C6B]/10 bg-white rounded-2xl text-[11px] font-bold tracking-widest text-[#0B2C6B]/60 hover:bg-black/[0.03] hover:text-[#0B2C6B] transition-all uppercase flex items-center justify-center gap-2"
+            className="flex h-14 flex-1 items-center justify-center gap-2 rounded-[12px] border border-[#0B2C6B]/10 bg-white text-[11px] font-bold uppercase tracking-widest text-[#0B2C6B]/60 transition-all hover:bg-black/[0.03] hover:text-[#0B2C6B]"
           >
             <ArrowLeft size={16} /> KEMBALI
           </button>
           <button
             type="submit"
             disabled={isSubmitting}
-            className="flex-[2] h-14 bg-[#0B2C6B] text-white rounded-2xl text-[11px] font-bold tracking-widest hover:bg-black transition-all flex items-center justify-center gap-3 disabled:opacity-70 uppercase shadow-lg shadow-[#0B2C6B]/10 group"
+            className="group flex h-14 flex-[2] items-center justify-center gap-3 rounded-[12px] bg-[#0B2C6B] text-[11px] font-bold uppercase tracking-widest text-white shadow-lg shadow-[#0B2C6B]/10 transition-all hover:bg-black disabled:opacity-70"
           >
             {isSubmitting ? (
               <span className="flex items-center gap-3">

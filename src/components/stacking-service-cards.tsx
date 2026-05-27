@@ -55,7 +55,7 @@ export function StackingServiceCards() {
                 willChange: "transform",
               }}
             >
-              <div className="group relative bg-[#F5F7FA] rounded-2xl border border-black/[0.07] overflow-hidden cursor-pointer">
+              <div className="group relative overflow-hidden rounded-[14px] border border-black/[0.07] bg-[#F5F7FA] cursor-pointer">
 
                 {/* Mobile: image top */}
                 {service.img && (

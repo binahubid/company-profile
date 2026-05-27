@@ -133,8 +133,8 @@ export default function BinaHubOrbit({ onProductClick }: BinaHubOrbitProps) {
       </div>
 
       {/* 4. Subtle Corner Accents (Engineered and minimal) */}
-      <div className="absolute top-0 right-0 w-[320px] h-[320px] rounded-full bg-[#D9A441]/5 blur-[80px] pointer-events-none z-[3]" />
-      <div className="absolute bottom-0 left-0 w-[260px] h-[260px] rounded-full bg-[#0B2C6B]/15 blur-[60px] pointer-events-none z-[3]" />
+      <div className="pointer-events-none absolute right-0 top-0 z-[3] h-[240px] w-[420px] bg-[#D9A441]/4 blur-[80px]" />
+      <div className="pointer-events-none absolute bottom-0 left-0 z-[3] h-[220px] w-[380px] bg-[#0B2C6B]/12 blur-[60px]" />
 
       {/* 5. Animated floating particles */}
       {[...Array(12)].map((_, i) => (

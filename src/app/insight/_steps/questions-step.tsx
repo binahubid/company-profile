@@ -57,7 +57,7 @@ export function QuestionsStep({ step, answers, onAnswer }: QuestionsStepProps) {
           return (
             <div
               key={q.id}
-              className="relative bg-white p-4 md:p-8 rounded-[24px] md:rounded-[40px] border border-black/[0.03] shadow-[0_10px_30px_rgba(0,0,0,0.02)] overflow-hidden"
+              className="relative overflow-hidden rounded-[14px] border border-black/[0.03] bg-white p-4 shadow-[0_10px_30px_rgba(0,0,0,0.02)] md:p-8"
             >
               {/* Scaled Background Number - Reduced by 30% */}
               <div className="absolute top-[-5px] left-[-2px] text-[70px] font-black text-black/[0.015] leading-none pointer-events-none select-none">
@@ -70,7 +70,7 @@ export function QuestionsStep({ step, answers, onAnswer }: QuestionsStepProps) {
                 </h3>
 
                 {idx === 3 && (
-                  <div className="mb-5 rounded-2xl border border-[#D9A441]/18 bg-[#D9A441]/[0.055] px-5 py-4">
+                  <div className="mb-5 rounded-[12px] border border-[#D9A441]/18 bg-[#D9A441]/[0.055] px-5 py-4">
                     <p className="text-xs font-medium leading-relaxed text-[#0B2C6B]/62">
                       {REINFORCEMENT[pageIndex % REINFORCEMENT.length]}
                     </p>
@@ -84,7 +84,7 @@ export function QuestionsStep({ step, answers, onAnswer }: QuestionsStepProps) {
                       <button
                         key={opt.value}
                         onClick={() => onAnswer(q.id, opt.value)}
-                        className={`flex flex-col items-center justify-center py-2.5 md:py-5 rounded-xl md:rounded-2xl border transition-all duration-300 ${isSelected
+                        className={`flex flex-col items-center justify-center rounded-[10px] border py-2.5 transition-all duration-300 md:py-5 ${isSelected
                             ? "bg-[#0B2C6B] border-[#0B2C6B] text-white shadow-[0_15px_30px_rgba(10,26,58,0.25)] scale-[1.03]"
                             : "bg-[#F5F7F9] border-black/[0.03] text-black/60 hover:bg-black/[0.05] hover:border-black/10"
                           }`}

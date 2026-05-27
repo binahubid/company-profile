@@ -104,7 +104,7 @@ export default function AboutPage() {
 
       {/* Hero Section */}
       <section className="w-full px-4 md:px-8 pt-20 md:pt-28 mb-8 md:mb-16">
-        <div className="relative w-full h-[65vh] sm:h-[72vh] md:h-[80vh] min-h-[480px] rounded-[20px] md:rounded-[28px] overflow-hidden flex items-center border border-white/10 shadow-2xl shadow-black/15 bg-[#071A33]">
+        <div className="relative flex h-[65vh] min-h-[480px] w-full items-center overflow-hidden rounded-[14px] border border-white/10 bg-[#071A33] shadow-2xl shadow-black/15 sm:h-[72vh] md:h-[80vh] md:rounded-[18px]">
           <div className="absolute inset-0 z-0">
             <img
               src="/bg-about.png"
@@ -114,7 +114,7 @@ export default function AboutPage() {
             <div className="absolute inset-0 bg-[#061A3A]/30 mix-blend-multiply" />
             <div className="absolute inset-0 bg-gradient-to-r from-[#071A33]/90 via-[#0B2C6B]/50 to-[#0B2C6B]/10" />
             <div className="absolute inset-0 bg-gradient-to-t from-black/28 via-transparent to-black/5" />
-            <div className="absolute left-[32%] top-[42%] h-72 w-72 rounded-full bg-[#D9A63A]/8 blur-3xl" />
+            <div className="absolute left-[28%] top-[42%] h-56 w-96 bg-[#D9A63A]/7 blur-3xl" />
           </div>
 
           <div className="relative z-10 max-w-5xl px-8 md:px-16 lg:px-24">
@@ -219,7 +219,7 @@ export default function AboutPage() {
               transition={{ duration: 0.8, ease: "easeOut" }}
               className="relative"
             >
-              <div className="relative aspect-[5/4] overflow-hidden rounded-[28px] border border-black/5 bg-[#0B1F46] shadow-[0_40px_120px_-30px_rgba(11,44,107,0.18)]">
+              <div className="relative aspect-[5/4] overflow-hidden rounded-[14px] border border-black/5 bg-[#0B1F46] shadow-[0_40px_120px_-30px_rgba(11,44,107,0.18)]">
                 
                 <Image
                   src="/asset/bsksims2.png"
@@ -232,7 +232,7 @@ export default function AboutPage() {
                 <div className="absolute inset-0 bg-gradient-to-t from-[#071A33]/18 via-transparent to-white/5" />
 
                 {/* ambient glow */}
-                <div className="absolute -bottom-24 right-[-40px] h-64 w-64 rounded-full bg-[#D9A441]/10 blur-3xl" />
+                <div className="absolute -bottom-24 right-[-40px] h-48 w-80 bg-[#D9A441]/8 blur-3xl" />
               </div>
             </motion.div>
           </div>
@@ -241,8 +241,8 @@ export default function AboutPage() {
 
       {/* Siapa Kami (The Context Section) */}
      <section className="relative overflow-hidden bg-[#F7F8FA] px-6 md:px-12 lg:px-20 py-24 md:py-32">
-        <div className="absolute left-[-10%] top-[-20%] h-[420px] w-[420px] rounded-full bg-[#0B2C6B]/5 blur-3xl" />
-        <div className="absolute right-[-8%] bottom-[-20%] h-[420px] w-[420px] rounded-full bg-[#D9A441]/8 blur-3xl" />
+        <div className="absolute left-[-10%] top-[-20%] h-[320px] w-[560px] bg-[#0B2C6B]/4 blur-3xl" />
+        <div className="absolute right-[-8%] bottom-[-20%] h-[320px] w-[560px] bg-[#D9A441]/6 blur-3xl" />
 
         <div className="relative mx-auto grid max-w-7xl gap-16 lg:grid-cols-[0.8fr_1.2fr] lg:items-start">
           <div className="max-w-xl">
@@ -270,7 +270,7 @@ export default function AboutPage() {
               return (
                 <div
                   key={item}
-                  className={`group rounded-[24px] border border-black/5 bg-white p-6 md:p-7 shadow-[0_18px_60px_-35px_rgba(0,0,0,0.25)] transition-all duration-300 hover:-translate-y-1 hover:border-[#D9A441]/30 hover:shadow-[0_28px_80px_-40px_rgba(11,44,107,0.35)] ${
+                  className={`group rounded-[12px] border border-black/5 bg-white p-6 shadow-[0_18px_60px_-35px_rgba(0,0,0,0.25)] transition-all duration-300 hover:-translate-y-1 hover:border-[#D9A441]/30 hover:shadow-[0_28px_80px_-40px_rgba(11,44,107,0.35)] md:p-7 ${
                               isLast ? "md:col-span-2 min-h-[116px]" : "min-h-[136px]"
                             }`}
                 >
@@ -333,7 +333,7 @@ export default function AboutPage() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-70px" }}
                   transition={{ delay: i * 0.08, duration: 0.65, ease: "easeOut" }}
-                  className={`group relative min-h-[360px] overflow-hidden rounded-[22px] border p-7 md:p-8 lg:min-h-[370px] xl:min-h-[390px] backdrop-blur-sm transition-all duration-500 hover:-translate-y-1 ${
+                  className={`group relative min-h-[360px] overflow-hidden rounded-[14px] border p-7 backdrop-blur-sm transition-all duration-500 hover:-translate-y-1 md:p-8 lg:min-h-[370px] xl:min-h-[390px] ${
                     isFeatured
                       ? "border-[#0A2A63]/10 bg-[#082D70] text-white shadow-[0_28px_80px_-44px_rgba(11,44,107,0.78)] hover:bg-[#062763] hover:shadow-[0_34px_96px_-48px_rgba(11,44,107,0.86)]"
                       : "border-white bg-[linear-gradient(180deg,rgba(255,255,255,0.98),rgba(250,251,253,0.96))] text-[#1D2433] shadow-[0_24px_70px_-52px_rgba(11,44,107,0.32)] hover:border-[#D9A441]/25 hover:bg-white hover:shadow-[0_30px_92px_-50px_rgba(11,44,107,0.42)]"
@@ -373,11 +373,11 @@ export default function AboutPage() {
                   />
 
                   {/* Subtle gold accent */}
-                  <div className="pointer-events-none absolute -right-20 -top-20 h-44 w-44 rounded-full bg-[#D9A441]/10 blur-3xl opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+                  <div className="pointer-events-none absolute -right-20 -top-20 h-36 w-64 bg-[#D9A441]/8 blur-3xl opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
 
                   <div className="relative z-10 flex min-h-[304px] flex-col lg:min-h-[314px] xl:min-h-[334px]">
                     <div
-                      className={`flex h-[54px] w-[54px] items-center justify-center rounded-[16px] border shadow-[0_14px_36px_-22px_rgba(11,44,107,0.42)] transition-all duration-500 ${
+                      className={`flex h-[54px] w-[54px] items-center justify-center rounded-[10px] border shadow-[0_14px_36px_-22px_rgba(11,44,107,0.42)] transition-all duration-500 ${
                         isFeatured
                           ? "border-white/10 bg-white/92 text-[#0A2A63] group-hover:bg-[#D9A441]"
                           : "border-black/5 bg-white/90 text-[#0B2C6B] group-hover:border-[#D9A441]/30 group-hover:bg-[#D9A441]"
@@ -494,7 +494,7 @@ export default function AboutPage() {
                 </div>
 
                 <div className="mt-8">
-                  <p className="text-xs md:text-sm text-white/82 font-light leading-relaxed max-w-2xl bg-white/[0.04] backdrop-blur-md p-5 rounded-2xl border border-white/10">
+                  <p className="max-w-2xl rounded-[12px] border border-white/10 bg-white/[0.04] p-5 text-xs font-light leading-relaxed text-white/82 backdrop-blur-md md:text-sm">
                     BinaHub percaya bahwa kemajuan dan kemanusiaan bukanlah dua hal yang saling bertentangan. Teknologi, AI, dan transformasi organisasi seharusnya menjadi sarana untuk <span className="text-[#D9A441] font-semibold">meningkatkan kualitas kehidupan manusia.</span>
                   </p>
                 </div>
@@ -516,7 +516,7 @@ export default function AboutPage() {
                 onMouseEnter={() => setIsMissionPaused(true)}
                 onMouseLeave={() => setIsMissionPaused(false)}
                 transition={{ delay: missionIndex * 0.08, duration: 0.7, ease: premiumEase }}
-                className={`group/mission relative col-span-12 md:col-span-4 p-8 py-10 min-h-[190px] overflow-hidden rounded-xl border shadow-sm hover:shadow-md transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] flex flex-col justify-center ${
+                className={`group/mission relative col-span-12 flex min-h-[190px] flex-col justify-center overflow-hidden rounded-[12px] border p-8 py-10 shadow-sm transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] hover:shadow-md md:col-span-4 ${
                   isFeaturedMission
                     ? "bg-[#183F82] border-[#183F82] text-white shadow-[#0B2C6B]/14 hover:border-[#D9A441]/35"
                     : "bg-white border-black/[0.04] hover:border-[#D9A441]/30"
@@ -537,7 +537,7 @@ export default function AboutPage() {
                 <motion.div
                   whileHover={{ y: -2, rotate: -3 }}
                   transition={{ duration: 0.28, ease: "easeOut" }}
-                  className={`relative z-10 w-10 h-10 rounded-xl border flex items-center justify-center mb-4 transition-colors duration-700 ${
+                  className={`relative z-10 mb-4 flex h-10 w-10 items-center justify-center rounded-[10px] border transition-colors duration-700 ${
                     isFeaturedMission
                       ? "border-white/12 bg-white/[0.06] text-[#D9A441]"
                       : "border-black/10 text-[#0B2C6B]"
@@ -570,7 +570,7 @@ export default function AboutPage() {
                 onMouseEnter={() => setIsMissionPaused(true)}
                 onMouseLeave={() => setIsMissionPaused(false)}
                 transition={{ delay: missionIndex * 0.08, duration: 0.7, ease: premiumEase }}
-                className={`group/mission relative col-span-12 md:col-span-4 p-8 py-10 min-h-[190px] overflow-hidden rounded-xl border shadow-sm hover:shadow-md transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] flex flex-col justify-center ${
+                className={`group/mission relative col-span-12 flex min-h-[190px] flex-col justify-center overflow-hidden rounded-[12px] border p-8 py-10 shadow-sm transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] hover:shadow-md md:col-span-4 ${
                   isFeaturedMission
                     ? "bg-[#183F82] border-[#183F82] text-white shadow-[#0B2C6B]/14 hover:border-[#D9A441]/35"
                     : "bg-white border-black/[0.04] hover:border-[#D9A441]/30"
@@ -591,7 +591,7 @@ export default function AboutPage() {
                 <motion.div
                   whileHover={{ y: -2, rotate: -3 }}
                   transition={{ duration: 0.28, ease: "easeOut" }}
-                  className={`relative z-10 w-10 h-10 rounded-xl border flex items-center justify-center mb-4 transition-colors duration-700 ${
+                  className={`relative z-10 mb-4 flex h-10 w-10 items-center justify-center rounded-[10px] border transition-colors duration-700 ${
                     isFeaturedMission
                       ? "border-white/12 bg-white/[0.06] text-[#D9A441]"
                       : "border-black/10 text-[#0B2C6B]"

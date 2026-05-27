@@ -58,7 +58,7 @@ export default function LayananPage() {
 
       {/* Immersive Hero Section - Reconstructed for High Visibility */}
       <section className="w-full px-4 md:px-8 pt-20 md:pt-28 mb-8 md:mb-16">
-        <div className="relative w-full h-[75vh] sm:h-[80vh] md:h-[85vh] min-h-[500px] max-h-[900px] rounded-xl bg-[#030712] overflow-hidden flex items-center justify-center border border-white/5 shadow-lg">
+        <div className="relative flex h-[75vh] min-h-[500px] max-h-[900px] w-full items-center justify-center overflow-hidden rounded-[16px] border border-white/5 bg-[#030712] shadow-lg sm:h-[80vh] md:h-[85vh]">
           
           {/* 1. Technical Grid Lines (High Visibility) */}
           <div className="absolute inset-0 z-[1] opacity-20" 
@@ -199,7 +199,7 @@ export default function LayananPage() {
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              className="bg-[#F5F7FA] p-6 md:p-16 rounded-xl border border-black/[0.08]"
+              className="rounded-[14px] border border-black/[0.08] bg-[#F5F7FA] p-6 md:p-16"
             >
               <h3 className="text-3xl font-light mb-10 text-[#0B2C6B]">Mengapa Program <br /><span className="font-bold text-[#C85A2A] underline decoration-[#C85A2A]/30 underline-offset-8">Sering Gagal?</span></h3>
               <div className="space-y-6">
@@ -225,7 +225,7 @@ export default function LayananPage() {
               initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              className="bg-[#0B2C6B] p-6 md:p-16 rounded-xl text-white relative overflow-hidden flex flex-col justify-center border border-[#D9A441]/20"
+              className="relative flex flex-col justify-center overflow-hidden rounded-[14px] border border-[#D9A441]/20 bg-[#0B2C6B] p-6 text-white md:p-16"
             >
               {/* Background Ornaments (Subtle Grid) */}
               <div className="absolute inset-0 z-0 opacity-15 pointer-events-none" 
@@ -299,7 +299,7 @@ export default function LayananPage() {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -15 }}
                   transition={{ duration: 0.3 }}
-                  className="relative w-full max-w-[95vw] xl:max-w-7xl 2xl:max-w-[1440px] mx-auto overflow-hidden shadow-md border border-black/5 bg-white rounded-xl"
+                  className="relative mx-auto w-full max-w-[95vw] overflow-hidden rounded-[14px] border border-black/5 bg-white shadow-md xl:max-w-7xl 2xl:max-w-[1440px]"
                 >
                   <BinaHubClickable 
                     onProductClick={(productId) => {
@@ -358,7 +358,7 @@ export default function LayananPage() {
                   transition={{ delay: i * 0.05 }}
                   layoutId={product.id}
                   onClick={() => openProduct(product)}
-                  className={`group bg-white rounded-xl border border-black/[0.08] cursor-pointer hover:shadow-md hover:border-black/15 transition-all duration-300 relative overflow-hidden ${
+                  className={`group relative cursor-pointer overflow-hidden rounded-[12px] border border-black/[0.08] bg-white transition-all duration-300 hover:border-black/15 hover:shadow-md ${
                     isPrimary
                       ? "p-7 md:p-10 lg:col-span-2 min-h-[300px]"
                       : "p-6 md:p-8"
@@ -406,13 +406,13 @@ export default function LayananPage() {
 
             <motion.div
               layoutId={selectedProduct.id}
-              className="relative w-full max-w-6xl bg-white rounded-xl overflow-hidden shadow-lg flex flex-col md:flex-row max-h-[95vh] md:max-h-[85vh]"
+              className="relative flex max-h-[95vh] w-full max-w-6xl flex-col overflow-hidden rounded-[14px] bg-white shadow-lg md:max-h-[85vh] md:flex-row"
             >
               {/* Product Header Side - Now Navy */}
               <div
                 className="w-full md:w-2/5 lg:w-1/3 p-5 sm:p-6 md:p-12 text-white flex flex-col justify-between relative overflow-hidden shrink-0 bg-[#0B2C6B]"
               >
-                <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 blur-[80px] rounded-full translate-x-10 -translate-y-10" />
+                <div className="absolute right-0 top-0 h-52 w-80 translate-x-10 -translate-y-10 bg-white/8 blur-[80px]" />
                 <div className="relative z-10">
                   <div className="bg-white/5 p-5 sm:p-8 rounded-lg inline-block mb-6 sm:mb-10 border border-white/10">
                     <PixelIcon type={selectedProduct.iconType} size={64} />
@@ -420,7 +420,7 @@ export default function LayananPage() {
                   <h2 className="text-3xl sm:text-4xl md:text-3xl lg:text-4xl font-light tracking-tighter mb-4 leading-none text-white">{selectedProduct.title}</h2>
                   <p className="text-[11px] font-bold tracking-[0.3em] uppercase text-[#D9A441] mb-8">{selectedProduct.subtitle}</p>
                   {selectedProduct.tagline && (
-                    <div className="mt-10 rounded-2xl border border-white/10 bg-white/[0.045] p-5">
+                    <div className="mt-10 rounded-[12px] border border-white/10 bg-white/[0.045] p-5">
                       <p className="text-[10px] font-bold uppercase tracking-[0.24em] text-white/36 mb-3">Focus</p>
                       <p className="text-sm font-light leading-relaxed text-white/74">{selectedProduct.tagline}</p>
                     </div>
@@ -478,7 +478,7 @@ export default function LayananPage() {
                         </div>
                         <div className="grid gap-4 sm:grid-cols-2">
                           {selectedProduct.benefits.slice(0, 2).map((benefit: string, i: number) => (
-                            <div key={i} className="rounded-2xl border border-[#D9A441]/18 bg-[#D9A441]/[0.055] p-5">
+                            <div key={i} className="rounded-[12px] border border-[#D9A441]/18 bg-[#D9A441]/[0.055] p-5">
                               <Check size={18} className="mb-4 text-[#B9851F]" />
                               <p className="text-sm font-medium leading-relaxed text-black/72">{benefit}</p>
                             </div>
@@ -498,8 +498,8 @@ export default function LayananPage() {
                         <h4 className="text-[10px] font-bold tracking-[0.42em] text-black/30 uppercase mb-8">Tantangan yang Dijawab</h4>
                         <div className="grid gap-4 sm:grid-cols-2">
                           {selectedProduct.challenges.map((c: string, i: number) => (
-                            <div key={i} className="flex gap-4 rounded-2xl border border-[#D9A441]/16 bg-[#FFF8EA] p-5">
-                              <div className="w-8 h-8 rounded-xl bg-[#D9A441]/14 flex items-center justify-center shrink-0">
+                            <div key={i} className="flex gap-4 rounded-[12px] border border-[#D9A441]/16 bg-[#FFF8EA] p-5">
+                              <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-[8px] bg-[#D9A441]/14">
                                 <AlertCircle size={16} className="text-[#B9851F]" />
                               </div>
                               <p className="text-sm text-black/76 font-light leading-relaxed">{c}</p>
@@ -520,8 +520,8 @@ export default function LayananPage() {
                         <h4 className="text-[10px] font-bold tracking-[0.42em] text-black/30 uppercase mb-8">Tujuan & Manfaat</h4>
                         <div className="grid gap-4 sm:grid-cols-2">
                           {selectedProduct.benefits.map((b: string, i: number) => (
-                            <div key={i} className="flex gap-4 rounded-2xl border border-[#0B2C6B]/10 bg-[#F5F7FA] p-5">
-                              <div className="w-8 h-8 rounded-xl bg-[#0B2C6B] flex items-center justify-center shrink-0">
+                            <div key={i} className="flex gap-4 rounded-[12px] border border-[#0B2C6B]/10 bg-[#F5F7FA] p-5">
+                              <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-[8px] bg-[#0B2C6B]">
                                 <Target size={15} className="text-[#D9A441]" />
                               </div>
                               <p className="text-sm text-black/76 font-light leading-relaxed">{b}</p>
@@ -538,10 +538,10 @@ export default function LayananPage() {
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -12 }}
                         transition={{ duration: 0.32 }}
-                        className="rounded-[28px] border border-[#0B2C6B]/10 bg-[#F5F7FA] p-6 md:p-8"
+                        className="rounded-[14px] border border-[#0B2C6B]/10 bg-[#F5F7FA] p-6 md:p-8"
                       >
                         <div className="mb-8 flex items-center gap-4">
-                          <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white text-[#0B2C6B] shadow-sm">
+                          <div className="flex h-12 w-12 items-center justify-center rounded-[12px] bg-white text-[#0B2C6B] shadow-sm">
                             <TrendingUp size={22} />
                           </div>
                           <div>
@@ -551,8 +551,8 @@ export default function LayananPage() {
                         </div>
                         <div className="grid sm:grid-cols-2 gap-4">
                           {selectedProduct.results.map((r: string, i: number) => (
-                            <div key={i} className="flex gap-4 items-center rounded-2xl bg-white p-4">
-                              <div className="w-8 h-8 rounded-full bg-[#D9A441]/12 flex items-center justify-center text-[10px] font-bold text-[#B9851F] shrink-0">
+                            <div key={i} className="flex items-center gap-4 rounded-[12px] bg-white p-4">
+                              <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-[8px] bg-[#D9A441]/12 text-[10px] font-bold text-[#B9851F]">
                                 0{i + 1}
                               </div>
                               <p className="text-xs font-bold text-black/80 uppercase tracking-widest leading-relaxed">{r}</p>

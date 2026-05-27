@@ -65,7 +65,7 @@ export default function FromBdnToBinaHubPage() {
   return (
     <main className="min-h-screen overflow-hidden bg-[#F5F7FA] text-[#4A4C54]">
       <section className="relative px-4 pt-24 md:px-8 md:pt-32">
-        <div className="relative overflow-hidden rounded-[30px] border border-white/50 bg-[#FAFAF8] px-6 py-20 shadow-[0_28px_90px_-60px_rgba(11,44,107,0.36)] md:rounded-[42px] md:px-14 lg:px-20">
+        <div className="relative overflow-hidden rounded-[16px] border border-white/50 bg-[#FAFAF8] px-6 py-20 shadow-[0_28px_90px_-60px_rgba(11,44,107,0.36)] md:rounded-[18px] md:px-14 lg:px-20">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_78%_18%,rgba(217,164,65,0.14),transparent_30%),linear-gradient(135deg,rgba(11,44,107,0.06),transparent_42%)]" />
           <div className="relative z-10 grid gap-14 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
             <div>
@@ -102,7 +102,7 @@ export default function FromBdnToBinaHubPage() {
           </div>
           <div className="grid gap-4 md:grid-cols-4">
             {stats.map((item) => (
-              <div key={item.label} className="rounded-[26px] border border-black/[0.04] bg-white p-7 shadow-[0_20px_70px_-54px_rgba(11,44,107,0.34)]">
+              <div key={item.label} className="rounded-[12px] border border-black/[0.04] bg-white p-7 shadow-[0_20px_70px_-54px_rgba(11,44,107,0.34)]">
                 <p className="text-4xl font-light tracking-[-0.04em] text-[#0B2C6B] md:text-5xl">{item.value}</p>
                 <p className="mt-4 text-sm leading-relaxed text-black/50">{item.label}</p>
               </div>
@@ -127,7 +127,7 @@ export default function FromBdnToBinaHubPage() {
           </div>
           <div className="space-y-5">
             {timeline.map((item) => (
-              <div key={item.year} className="grid gap-5 rounded-[26px] border border-black/[0.04] bg-white p-6 shadow-[0_20px_80px_-62px_rgba(11,44,107,0.32)] md:grid-cols-[100px_1fr]">
+              <div key={item.year} className="grid gap-5 rounded-[12px] border border-black/[0.04] bg-white p-6 shadow-[0_20px_80px_-62px_rgba(11,44,107,0.32)] md:grid-cols-[100px_1fr]">
                 <p className="text-sm font-bold tracking-[0.24em] text-[#D9A441]">{item.year}</p>
                 <div>
                   <h3 className="text-xl font-light text-[#0B2C6B]">{item.title}</h3>
@@ -152,7 +152,7 @@ export default function FromBdnToBinaHubPage() {
           </div>
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
             {differentiators.map((item) => (
-              <div key={item.title} className="rounded-[26px] border border-black/[0.04] bg-white p-6 transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_24px_80px_-58px_rgba(11,44,107,0.42)]">
+              <div key={item.title} className="rounded-[12px] border border-black/[0.04] bg-white p-6 transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_24px_80px_-58px_rgba(11,44,107,0.42)]">
                 <CheckCircle2 className="mb-7 text-[#D9A441]" size={24} />
                 <h3 className="text-xl font-light text-[#0B2C6B]">{item.title}</h3>
                 <p className="mt-4 text-sm leading-relaxed text-black/50">{item.desc}</p>
@@ -175,7 +175,7 @@ export default function FromBdnToBinaHubPage() {
           </div>
           <div className="grid gap-3 sm:grid-cols-2">
             {industries.map((item) => (
-              <div key={item} className="rounded-2xl border border-white/10 bg-white/[0.05] px-5 py-4 text-sm font-medium text-white/78 backdrop-blur-md">
+              <div key={item} className="rounded-[10px] border border-white/10 bg-white/[0.05] px-5 py-4 text-sm font-medium text-white/78 backdrop-blur-md">
                 {item}
               </div>
             ))}
@@ -184,7 +184,7 @@ export default function FromBdnToBinaHubPage() {
       </section>
 
       <section className="px-6 py-18 md:px-12 md:py-24 lg:px-20">
-        <div className="mx-auto flex max-w-5xl flex-col items-center rounded-[34px] border border-black/[0.04] bg-white px-8 py-14 text-center shadow-[0_28px_90px_-62px_rgba(11,44,107,0.36)]">
+        <div className="mx-auto flex max-w-5xl flex-col items-center rounded-[16px] border border-black/[0.04] bg-white px-8 py-14 text-center shadow-[0_28px_90px_-62px_rgba(11,44,107,0.36)]">
           <Tag>LANGKAH BERIKUTNYA</Tag>
           <h2 className="mt-6 max-w-3xl text-4xl font-light tracking-[-0.045em] text-[#0B2C6B] md:text-6xl">
             Ingin tahu apakah BinaHub tepat untuk organisasi Anda?

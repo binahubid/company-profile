@@ -10,6 +10,11 @@ Format yang digunakan berdasarkan [Keep a Changelog](https://keepachangelog.com/
 - Menambahkan section Pain Point Intro Carousel sebagai section pertama Home sebelum hero utama untuk menjelaskan masalah organisasi sebelum brand reveal.
 
 ### Changed
+- Menerapkan radius discipline tahap awal pada Home dan Navbar: container besar dibuat lebih tegas, card kecil distandarkan, dan CTA pill tetap dipertahankan hanya untuk aksi utama.
+- Mengurangi kesan dekorasi generatif pada Home dengan mengubah beberapa ambient orb menjadi bidang lighting yang lebih architectural.
+- Menerapkan radius discipline pada halaman About dan menu Tentang Kami (`Dari BDN ke BinaHub`, `Perjalanan Kami`, dan `Gallery`) agar visual lebih editorial dan tidak terlalu bubble.
+- Menerapkan radius discipline pada halaman Layanan, Perspektif, dan Diagnosa Performa, termasuk modal layanan, workflow cards, form assessment, preview report, serta panel CTA.
+- Menyelesaikan radius discipline global pada Contact, Footer, Chatbot, orbit glow, dan komponen umum agar panel besar tidak lagi memakai radius bubble berlebihan.
 - Memperbarui hero halaman BinaInsight/diagnosa agar layout kiri-kanan lebih jelas, teks utama lebih ringkas, dan preview hasil assessment lebih fokus.
 - Meringankan tone visual hero halaman BinaInsight/diagnosa agar lebih dekat dengan atmosfer hero About yang light, warm, dan tidak terlalu biru.
 - Merombak navbar menjadi lebih premium dan lega dengan struktur menu baru: Tentang Kami, Layanan, Perspektif, dan CTA Diagnosa Performa.

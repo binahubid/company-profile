@@ -15,7 +15,7 @@ export function BentoCard({ children, className = "", delay = 0 }: BentoCardProp
   return (
     <div
       ref={ref}
-      className={`group relative rounded-2xl border border-black/[0.07] bg-[#F5F7FA] overflow-hidden transition-all duration-700 hover:border-black/[0.15] hover:bg-[#ebeae4] ${className}`}
+      className={`group relative overflow-hidden rounded-[14px] border border-black/[0.07] bg-[#F5F7FA] transition-all duration-700 hover:border-black/[0.15] hover:bg-[#ebeae4] ${className}`}
       style={{
         opacity: inView ? 1 : 0,
         transform: inView ? "translateY(0)" : "translateY(28px)",

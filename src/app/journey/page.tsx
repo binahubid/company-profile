@@ -12,8 +12,8 @@ export default function JourneyPage() {
   return (
     <div className="bg-[#F5F7FA] text-[#4A4C54] font-sans antialiased overflow-x-hidden min-h-screen pt-28 pb-24">
       {/* Decorative Editorial Background Orbs */}
-      <div className="absolute top-40 right-10 w-[600px] h-[600px] bg-[#D9A441]/5 blur-[150px] rounded-full pointer-events-none" />
-      <div className="absolute top-1/2 left-[-100px] w-[500px] h-[500px] bg-[#3B82F6]/5 blur-[120px] rounded-full pointer-events-none" />
+      <div className="pointer-events-none absolute right-10 top-40 h-[420px] w-[760px] bg-[#D9A441]/4 blur-[150px]" />
+      <div className="pointer-events-none absolute left-[-100px] top-1/2 h-[360px] w-[680px] bg-[#3B82F6]/4 blur-[120px]" />
 
       <div className="max-w-6xl mx-auto px-6 relative z-10">
 
@@ -81,7 +81,7 @@ export default function JourneyPage() {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
-              className="lg:col-span-6 relative h-[240px] sm:h-[320px] md:h-[500px] lg:h-[400px] xl:h-[500px] w-full overflow-hidden rounded-[30px] border border-black/[0.06] bg-white p-6 shadow-[0_24px_90px_-60px_rgba(11,44,107,0.48)] group"
+              className="group relative h-[240px] w-full overflow-hidden rounded-[14px] border border-black/[0.06] bg-white p-6 shadow-[0_24px_90px_-60px_rgba(11,44,107,0.48)] sm:h-[320px] md:h-[500px] lg:col-span-6 lg:h-[400px] xl:h-[500px]"
             >
               <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(11,44,107,0.08),transparent_46%,rgba(217,164,65,0.08))]" />
               <div className="absolute right-6 top-6 rounded-full border border-black/[0.06] bg-white/70 px-4 py-2 text-[10px] font-bold uppercase tracking-[0.2em] text-[#0B2C6B]/50 backdrop-blur-md">

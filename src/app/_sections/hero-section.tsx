@@ -33,7 +33,7 @@ export function HeroSection({ heroReady }: HeroSectionProps) {
   return (
     <section id="home-hero" className="relative z-0 px-4 pt-3 pb-3 md:pt-4 md:pb-4 bg-[#F5F7FA] w-full overflow-x-hidden">
       <div
-        className="relative rounded-xl overflow-hidden"
+        className="relative overflow-hidden rounded-[14px] md:rounded-[16px]"
         style={{ height: "clamp(560px, calc(100svh - 126px), 820px)" }}
       >
         {/* Background Image */}

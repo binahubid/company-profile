@@ -95,8 +95,8 @@ export default function ContactPage() {
   return (
     <div className="bg-[#F5F7FA] min-h-screen pt-28 pb-20 px-6 md:px-12 lg:px-16">
       {/* Decorative Glow Ambient Orbs */}
-      <div className="absolute top-20 right-0 w-[500px] h-[500px] bg-[#D9A441]/5 blur-[120px] rounded-full pointer-events-none" />
-      <div className="absolute bottom-20 left-0 w-[400px] h-[400px] bg-[#3B82F6]/5 blur-[100px] rounded-full pointer-events-none" />
+      <div className="pointer-events-none absolute right-0 top-20 h-[360px] w-[680px] bg-[#D9A441]/4 blur-[120px]" />
+      <div className="pointer-events-none absolute bottom-20 left-0 h-[300px] w-[620px] bg-[#3B82F6]/4 blur-[100px]" />
 
       <div className="max-w-7xl mx-auto relative z-10">
         
@@ -122,12 +122,12 @@ export default function ContactPage() {
           <div className="lg:col-span-5 flex flex-col justify-between gap-8">
             
             {/* Info Badges Card */}
-            <div className="bg-white/60 backdrop-blur-xl border border-white/50 rounded-3xl p-8 shadow-[0_8px_32px_rgba(0,0,0,0.02)] flex flex-col gap-6">
+            <div className="flex flex-col gap-6 rounded-[14px] border border-white/50 bg-white/60 p-8 shadow-[0_8px_32px_rgba(0,0,0,0.02)] backdrop-blur-xl">
               <h2 className="text-xl font-bold text-[#0B2C6B] tracking-tight mb-2">Informasi Kontak</h2>
               
               {/* Address */}
               <div className="flex gap-4 items-start">
-                <div className="w-10 h-10 rounded-2xl bg-[#D9A441]/10 flex items-center justify-center shrink-0">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-[10px] bg-[#D9A441]/10">
                   <MapPin size={18} className="text-[#D9A441]" />
                 </div>
                 <div>
@@ -142,7 +142,7 @@ export default function ContactPage() {
 
               {/* Email */}
               <div className="flex gap-4 items-start">
-                <div className="w-10 h-10 rounded-2xl bg-[#D9A441]/10 flex items-center justify-center shrink-0">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-[10px] bg-[#D9A441]/10">
                   <Mail size={18} className="text-[#D9A441]" />
                 </div>
                 <div>
@@ -155,7 +155,7 @@ export default function ContactPage() {
 
               {/* WhatsApp */}
               <div className="flex gap-4 items-start">
-                <div className="w-10 h-10 rounded-2xl bg-[#D9A441]/10 flex items-center justify-center shrink-0">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-[10px] bg-[#D9A441]/10">
                   <Clock size={18} className="text-[#D9A441]" />
                 </div>
                 <div>
@@ -168,7 +168,7 @@ export default function ContactPage() {
 
               {/* Phone */}
               <div className="flex gap-4 items-start">
-                <div className="w-10 h-10 rounded-2xl bg-[#D9A441]/10 flex items-center justify-center shrink-0">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-[10px] bg-[#D9A441]/10">
                   <Phone size={18} className="text-[#D9A441]" />
                 </div>
                 <div>
@@ -181,7 +181,7 @@ export default function ContactPage() {
             </div>
 
             {/* Google Maps Card */}
-            <div className="relative rounded-3xl overflow-hidden border border-white/50 bg-white/60 backdrop-blur-xl shadow-[0_8px_32px_rgba(0,0,0,0.02)] h-[280px] lg:h-full min-h-[250px]">
+            <div className="relative h-[280px] min-h-[250px] overflow-hidden rounded-[14px] border border-white/50 bg-white/60 shadow-[0_8px_32px_rgba(0,0,0,0.02)] backdrop-blur-xl lg:h-full">
               <iframe
                 title="BinaHub Office - Kencana Tower, Business Park Kebon Jeruk, Jakarta Barat"
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.7963243964685!2d106.74600407586469!3d-6.193820660990527!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f7b2e93a0f5b%3A0x3c8b7c4f2d1a5e9c!2sJl.%20Raya%20Meruya%20Ilir%20No.88%2C%20Meruya%20Utara%2C%20Kembangan%2C%20Jakarta%20Barat!5e0!3m2!1sen!2sid!4v1700000000000!5m2!1sen!2sid"
@@ -196,7 +196,7 @@ export default function ContactPage() {
 
           {/* Right Column: Inquiry Form Card */}
           <div className="lg:col-span-7">
-            <div className="bg-white/90 backdrop-blur-2xl border border-white rounded-3xl p-8 md:p-10 shadow-[0_12px_40px_rgba(0,0,0,0.03)] h-full flex flex-col justify-between">
+            <div className="flex h-full flex-col justify-between rounded-[14px] border border-white bg-white/90 p-8 shadow-[0_12px_40px_rgba(0,0,0,0.03)] backdrop-blur-2xl md:p-10">
               
               <AnimatePresence mode="wait">
                 {status === "success" ? (
@@ -213,14 +213,14 @@ export default function ContactPage() {
                     </p>
                     
                     {/* Secondary Direct WA Option */}
-                    <div className="bg-[#F5F7FA] rounded-2xl p-6 border border-black/[0.04] w-full max-w-sm">
+                    <div className="w-full max-w-sm rounded-[12px] border border-black/[0.04] bg-[#F5F7FA] p-6">
                       <p className="text-[11px] font-bold text-[#0B2C6B]/40 uppercase tracking-widest mb-3">Butuh Respons Cepat?</p>
                       <p className="text-xs text-black/60 mb-4 leading-relaxed">
                         Anda juga dapat langsung menghubungi kami melalui telepon atau email resmi.
                       </p>
                       <a 
                         href="tel:02129601514"
-                        className="inline-flex items-center justify-center w-full px-5 py-3 rounded-xl bg-[#0B2C6B] text-white font-bold text-xs hover:bg-[#0a2255] transition-colors shadow-[0_4px_12px_rgba(11,44,107,0.2)] mb-2"
+                        className="mb-2 inline-flex w-full items-center justify-center rounded-[10px] bg-[#0B2C6B] px-5 py-3 text-xs font-bold text-white shadow-[0_4px_12px_rgba(11,44,107,0.2)] transition-colors hover:bg-[#0a2255]"
                       >
                         021-29601514
                       </a>
@@ -360,7 +360,7 @@ export default function ContactPage() {
                         ["1x24 jam", "Estimasi respons tim"],
                         ["Gratis", "Diskusi kebutuhan awal"],
                       ].map(([title, desc]) => (
-                        <div key={title} className="rounded-2xl border border-black/[0.04] bg-[#F5F7FA] px-5 py-4">
+                        <div key={title} className="rounded-[12px] border border-black/[0.04] bg-[#F5F7FA] px-5 py-4">
                           <p className="text-sm font-bold text-[#0B2C6B]">{title}</p>
                           <p className="mt-1 text-[10px] font-bold uppercase tracking-[0.13em] text-black/34">{desc}</p>
                         </div>
@@ -376,10 +376,10 @@ export default function ContactPage() {
 
         </div>
 
-        <section className="relative mt-20 overflow-hidden rounded-[36px] border border-white/70 bg-[#071B3D] p-6 shadow-[0_26px_90px_-54px_rgba(11,44,107,0.55)] backdrop-blur-xl md:p-10">
+        <section className="relative mt-20 overflow-hidden rounded-[16px] border border-white/70 bg-[#071B3D] p-6 shadow-[0_26px_90px_-54px_rgba(11,44,107,0.55)] backdrop-blur-xl md:p-10">
           <div className="absolute inset-0 opacity-[0.16]" style={{ backgroundImage: "linear-gradient(rgba(255,255,255,0.12) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.12) 1px, transparent 1px)", backgroundSize: "48px 48px" }} />
-          <div className="absolute -right-24 -top-24 h-72 w-72 rounded-full bg-[#D9A441]/20 blur-3xl" />
-          <div className="absolute -bottom-28 left-10 h-72 w-72 rounded-full bg-[#8FA3C7]/16 blur-3xl" />
+          <div className="absolute -right-24 -top-24 h-56 w-96 bg-[#D9A441]/16 blur-3xl" />
+          <div className="absolute -bottom-28 left-10 h-56 w-96 bg-[#8FA3C7]/12 blur-3xl" />
 
           <div className="relative z-10 mb-10 grid gap-6 md:grid-cols-[0.85fr_1.15fr] md:items-end">
             <div>
@@ -402,7 +402,7 @@ export default function ContactPage() {
               return (
                 <div
                   key={item.question}
-                  className="overflow-hidden rounded-3xl border border-white/10 bg-white/[0.065] backdrop-blur-xl transition-all duration-500 hover:border-[#D9A441]/24 hover:bg-white/[0.09]"
+                  className="overflow-hidden rounded-[14px] border border-white/10 bg-white/[0.065] backdrop-blur-xl transition-all duration-500 hover:border-[#D9A441]/24 hover:bg-white/[0.09]"
                 >
                   <button
                     type="button"
@@ -416,7 +416,7 @@ export default function ContactPage() {
                       </span>
                       <span className="text-base font-medium leading-snug text-white md:text-lg">{item.question}</span>
                     </span>
-                    <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl border border-white/10 bg-white/10 text-[#D9A441] transition-transform duration-300 group-hover:border-[#D9A441]/30">
+                    <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-[10px] border border-white/10 bg-white/10 text-[#D9A441] transition-transform duration-300 group-hover:border-[#D9A441]/30">
                       <Plus size={18} className={`transition-transform duration-300 ${isOpen ? "rotate-45" : ""}`} />
                     </span>
                   </button>

@@ -16,8 +16,8 @@ const Footer = () => {
     <footer className="relative overflow-hidden border-t border-black/[0.04] bg-[linear-gradient(to_bottom,#FFFFFF,#FAFBFC)] px-6 pb-12 pt-24 md:px-12 lg:px-16">
       <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#D9A441]/35 to-transparent" />
       <div className="pointer-events-none absolute inset-x-[12%] top-0 h-20 bg-[#0B2C6B]/[0.025] blur-3xl" />
-      <div className="pointer-events-none absolute bottom-[-180px] right-[-120px] h-[520px] w-[520px] rounded-full bg-[#D9A441]/7 blur-[120px]" />
-      <div className="pointer-events-none absolute left-[-180px] top-[18%] h-[420px] w-[420px] rounded-full bg-[#0B2C6B]/[0.035] blur-[120px]" />
+      <div className="pointer-events-none absolute bottom-[-180px] right-[-120px] h-[420px] w-[760px] bg-[#D9A441]/5 blur-[120px]" />
+      <div className="pointer-events-none absolute left-[-180px] top-[18%] h-[320px] w-[680px] bg-[#0B2C6B]/[0.028] blur-[120px]" />
       <div className="pointer-events-none absolute inset-0 opacity-[0.035] bg-[repeating-linear-gradient(90deg,rgba(11,44,107,0.55)_0_1px,transparent_1px_34px)]" />
 
       <div className="relative z-10 mx-auto max-w-7xl">
