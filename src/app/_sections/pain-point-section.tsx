@@ -1,29 +1,30 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 
-const PAIN_POINTS = [
+const TRANSFORMATION_SIGNALS = [
   {
-    title: "Program berjalan, tetapi dampaknya belum terbaca.",
-    desc: "Training, workshop, dan engagement sering dilakukan. Tantangannya adalah membuktikan apa yang benar-benar berubah setelah program selesai.",
-    image: "/asset/pain1.png",
+    title: "Pertumbuhan masih dituntut. Kepastian justru semakin tipis.",
+    desc: "Tekanan biaya, daya beli, dan volatilitas pasar membuat keputusan bisnis makin hati-hati, sementara target tetap harus bergerak.",
+    image: "/asset/slide-5.png",
   },
   {
-    title: "Tim bergerak cepat, tetapi akar masalah tetap samar.",
-    desc: "Target melambat, komunikasi tersendat, atau engagement menurun sering hanya gejala. Organisasi membutuhkan cara membaca penyebabnya dengan lebih jernih.",
-    image: "/asset/pain2.png",
+    title: "Manusia terus menyesuaikan diri. Energinya tidak selalu ikut pulih.",
+    desc: "Burnout, biaya hidup, karier awal yang makin sulit, dan tuntutan belajar baru mengubah cara orang hadir di pekerjaannya.",
+    image: "/asset/slide-6.png",
   },
   {
-    title: "AI mempercepat sistem. Manusia menentukan arah.",
-    desc: "Tools bisa mempercepat pekerjaan, tetapi kesiapan belajar, kepemimpinan, adaptasi, dan makna kerja tetap menentukan kualitas transformasi.",
-    image: "/asset/pain3.png",
+    title: "Teknologi berkembang cepat. Kapabilitas belum selalu bergerak sedalam itu.",
+    desc: "Banyak inisiatif AI sudah dimulai, tetapi belum semuanya mengubah proses, keputusan, dan cara kerja sehari-hari.",
+    image: "/asset/slide-7.png",
   },
   {
-    title: "BinaHub membaca sinyal, merancang jalan, dan mengukur dampak.",
-    desc: "Kami menghubungkan assessment, learning ecosystem, coaching, simulasi, dan impact measurement dalam satu alur transformasi yang lebih terukur.",
-    image: "/asset/pain4.png",
+    title: "Perubahan tidak berhenti di workshop. Ia harus terlihat dalam cara organisasi bergerak.",
+    desc: "BinaHub membantu membaca sinyal, merancang intervensi, dan mengukur dampak agar pembelajaran benar-benar masuk ke perilaku kerja.",
+    image: "/asset/slide-8.png",
     imagePosition: "object-[center_22%] max-[1023px]:object-[62%_24%] max-[767px]:object-[68%_24%]",
   },
 ];
@@ -33,45 +34,42 @@ export function PainPointSection() {
 
   useEffect(() => {
     const timer = window.setInterval(() => {
-      setActive((current) => (current + 1) % PAIN_POINTS.length);
+      setActive((current) => (current + 1) % TRANSFORMATION_SIGNALS.length);
     }, 10000);
 
     return () => window.clearInterval(timer);
   }, []);
 
   return (
-    <section className="relative w-full overflow-hidden bg-[#F5F7FA] px-3 pt-[92px] pb-3 sm:px-4 md:pt-[106px] md:pb-4 xl:pt-[108px]">
-      <div
-        className="relative min-h-[calc(100svh-104px)] overflow-hidden rounded-[14px] bg-[#081A38] text-white sm:min-h-[680px] md:min-h-[700px] md:rounded-[18px] lg:min-h-[clamp(540px,calc(100svh-116px),720px)] xl:min-h-[clamp(560px,calc(100svh-120px),780px)] min-[1440px]:min-h-[clamp(560px,calc(100svh-126px),820px)]"
-      >
+    <section className="relative min-h-screen w-full overflow-hidden bg-[#F5F7FA]">
+      <div className="relative min-h-screen overflow-hidden bg-[#081A38] text-white">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_78%_18%,rgba(217,164,65,0.18),transparent_28%),radial-gradient(circle_at_18%_70%,rgba(255,255,255,0.08),transparent_26%),linear-gradient(120deg,#06152F_0%,#0B2C6B_52%,#07101F_100%)]" />
-        {PAIN_POINTS.map((item, index) => (
-          item.image ? (
-            <motion.img
-              key={item.image}
-              src={item.image}
-              alt=""
-              animate={{ opacity: active === index ? 1 : 0 }}
-              transition={{ duration: 0.8, ease: "easeOut" }}
-              className={`absolute inset-0 h-full w-full object-cover max-[1023px]:object-[66%_center] max-[767px]:object-[68%_center] ${item.imagePosition || "object-center"}`}
-            />
-          ) : null
+        {TRANSFORMATION_SIGNALS.map((item, index) => (
+          <motion.img
+            key={item.image}
+            src={item.image}
+            alt=""
+            animate={{ opacity: active === index ? 1 : 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className={`absolute inset-0 h-full w-full object-cover saturate-[1.08] contrast-[1.08] max-[1023px]:object-[66%_center] max-[767px]:object-[68%_center] ${item.imagePosition || "object-center"}`}
+          />
         ))}
-        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(6,21,47,0.88)_0%,rgba(6,21,47,0.68)_34%,rgba(6,21,47,0.24)_58%,rgba(6,21,47,0)_82%)] max-[1023px]:bg-[linear-gradient(90deg,rgba(6,21,47,0.90)_0%,rgba(6,21,47,0.74)_44%,rgba(6,21,47,0.30)_72%,rgba(6,21,47,0)_100%)] max-[767px]:bg-[linear-gradient(180deg,rgba(6,21,47,0.92)_0%,rgba(6,21,47,0.74)_46%,rgba(6,21,47,0.28)_78%,rgba(6,21,47,0.08)_100%)]" />
+        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(245,247,250,0.64)_0%,rgba(245,247,250,0.38)_30%,rgba(245,247,250,0.09)_62%,rgba(245,247,250,0)_100%)] max-[767px]:bg-[linear-gradient(180deg,rgba(245,247,250,0.72)_0%,rgba(245,247,250,0.30)_42%,rgba(245,247,250,0.04)_100%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_64%_42%,rgba(6,21,47,0.10),transparent_28%),linear-gradient(90deg,rgba(6,21,47,0.10)_0%,rgba(6,21,47,0.04)_42%,rgba(6,21,47,0.00)_78%)]" />
         <div className="absolute inset-y-0 left-0 w-[68%] opacity-[0.08] [background-image:linear-gradient(rgba(255,255,255,0.8)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.8)_1px,transparent_1px)] [background-size:80px_80px] [mask-image:linear-gradient(90deg,black_0%,black_58%,transparent_100%)] max-[1023px]:w-[74%] max-[767px]:inset-x-0 max-[767px]:top-0 max-[767px]:h-[62%] max-[767px]:w-full max-[767px]:[background-size:64px_64px] max-[767px]:[mask-image:linear-gradient(180deg,black_0%,black_56%,transparent_100%)]" />
-        <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/34 to-transparent max-[767px]:h-1/3" />
+        <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-[#06152F]/20 to-transparent max-[767px]:h-1/3" />
 
-        <div className="relative z-10 flex min-h-[inherit] flex-col justify-between px-5 py-8 sm:px-8 sm:py-10 md:px-12 md:py-12 lg:px-14 xl:px-16 min-[1440px]:px-20 min-[1440px]:py-16">
+        <div className="relative z-10 flex min-h-screen flex-col justify-between px-5 pb-8 pt-[116px] sm:px-8 sm:pb-10 sm:pt-[124px] md:px-12 md:pb-12 md:pt-[132px] lg:px-14 xl:px-16 min-[1440px]:px-20 min-[1440px]:pb-16 min-[1440px]:pt-[144px]">
           <div className="flex items-center justify-end gap-8">
             <div className="flex items-center gap-2.5 md:gap-3">
-              {PAIN_POINTS.map((_, index) => (
+              {TRANSFORMATION_SIGNALS.map((_, index) => (
                 <button
                   key={index}
                   onClick={() => setActive(index)}
                   className={`h-1.5 rounded-full transition-all duration-500 max-[767px]:h-1 ${
-                    active === index ? "w-10 bg-[#D9A441] md:w-12" : "w-4 bg-white/20 hover:bg-white/36 md:w-5"
+                    active === index ? "w-10 bg-[#D9A441] md:w-12" : "w-4 bg-[#0B2C6B]/20 hover:bg-[#0B2C6B]/36 md:w-5"
                   }`}
-                  aria-label={`Lihat pain point ${index + 1}`}
+                  aria-label={`Lihat transformation signal ${index + 1}`}
                 />
               ))}
             </div>
@@ -83,12 +81,12 @@ export function PainPointSection() {
               transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
               className="flex"
             >
-              {PAIN_POINTS.map((item) => (
+              {TRANSFORMATION_SIGNALS.map((item) => (
                 <article key={item.title} className="w-full shrink-0 pr-4 sm:pr-10 md:pr-16">
-                  <h2 className="max-w-[980px] text-[clamp(2.15rem,10.5vw,4.25rem)] font-light leading-[1.03] tracking-[-0.055em] sm:max-w-[760px] md:text-[clamp(3.55rem,7vw,5rem)] lg:max-w-[880px] lg:text-[clamp(4.1rem,6.4vw,5.35rem)] xl:max-w-[960px] min-[1440px]:max-w-5xl min-[1440px]:text-[86px]">
+                  <h2 className="max-w-[860px] text-[clamp(1.7rem,7.8vw,3.3rem)] font-light leading-[1.05] tracking-[-0.04em] text-[#050913] drop-shadow-[0_14px_42px_rgba(245,247,250,0.52)] sm:max-w-[700px] md:text-[clamp(2.65rem,5.2vw,3.8rem)] lg:max-w-[780px] lg:text-[clamp(3.05rem,4.85vw,4.12rem)] xl:max-w-[860px] min-[1440px]:max-w-[920px] min-[1440px]:text-[63px]">
                     {item.title}
                   </h2>
-                  <p className="mt-6 max-w-[560px] text-sm font-light leading-[1.75] text-white/66 sm:text-base md:mt-8 md:max-w-2xl md:text-lg xl:text-xl">
+                  <p className="mt-6 max-w-[620px] text-sm font-light leading-[1.78] text-[#050913]/72 sm:text-base md:mt-7 md:max-w-2xl md:text-lg xl:text-xl">
                     {item.desc}
                   </p>
                 </article>
@@ -96,20 +94,20 @@ export function PainPointSection() {
             </motion.div>
           </div>
 
-          <div className="flex flex-col gap-5 border-t border-white/10 pt-6 sm:pt-8 md:flex-row md:items-center md:justify-between">
-            <p className="max-w-xl text-xs leading-relaxed text-white/48 sm:text-sm">
-              BinaHub dimulai dari pertanyaan yang tepat, bukan dari paket program yang dipaksakan.
+          <div className="flex flex-col gap-5 border-t border-[#0B2C6B]/12 pt-6 sm:pt-8 md:flex-row md:items-center md:justify-between">
+            <p className="max-w-xl text-xs leading-relaxed text-[#050913]/54 sm:text-sm">
+              Membaca tekanan bisnis, perubahan energi kerja, dan gap transformasi sebelum menentukan langkah yang benar-benar berdampak.
             </p>
-            <a
-              href="#home-hero"
-              className="group relative inline-flex h-[52px] w-full items-center justify-center gap-3 overflow-hidden rounded-full border border-white/24 bg-white/[0.11] px-6 text-[10px] font-bold uppercase tracking-[0.16em] text-white shadow-[0_16px_46px_-34px_rgba(0,0,0,0.62)] transition-all duration-500 hover:-translate-y-0.5 hover:border-[#D9A441]/45 hover:bg-[#D9A441] hover:text-[#0B2C6B] hover:shadow-[0_20px_58px_-42px_rgba(217,164,65,0.64)] sm:h-14 sm:w-auto sm:px-8 sm:text-[11px] sm:tracking-[0.18em]"
+            <Link
+              href="/perspektif/transformation-signals-2026"
+              className="group relative inline-flex h-[52px] w-full items-center justify-center gap-3 overflow-hidden rounded-full border border-[#0B2C6B]/18 bg-white/50 px-6 text-[10px] font-bold uppercase tracking-[0.16em] text-[#0B2C6B] shadow-[0_16px_46px_-34px_rgba(11,44,107,0.42)] transition-all duration-500 hover:-translate-y-0.5 hover:border-[#D9A441]/45 hover:bg-[#D9A441] hover:text-[#0B2C6B] hover:shadow-[0_20px_58px_-42px_rgba(217,164,65,0.64)] sm:h-14 sm:w-auto sm:px-8 sm:text-[11px] sm:tracking-[0.18em]"
             >
               <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/35 to-transparent transition-transform duration-700 group-hover:translate-x-full" />
-              <span className="relative z-10">Lihat Jawaban BinaHub</span>
+              <span className="relative z-10">Lihat Sinyal Perubahan</span>
               <span className="relative z-10 flex h-7 w-7 items-center justify-center rounded-full bg-[#D9A441] text-[#0B2C6B] transition-all duration-500 group-hover:bg-[#0B2C6B] group-hover:text-[#D9A441]">
                 <ArrowRight size={14} className="transition-transform group-hover:translate-x-0.5" />
               </span>
-            </a>
+            </Link>
           </div>
         </div>
       </div>

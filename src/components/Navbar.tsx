@@ -9,6 +9,10 @@ import { usePathname } from "next/navigation"
 
 const NAV_LINKS = [
   {
+    label: "Home",
+    href: "/",
+  },
+  {
     label: "Tentang Kami",
     href: "/about",
     submenu: [
@@ -35,9 +39,9 @@ const NAV_LINKS = [
     href: "/perspektif",
     submenu: [
       { label: "Cara Pandang", href: "/perspektif", desc: "Keyakinan kami tentang manusia, AI, dan transformasi." },
+      { label: "Transformation Signals", href: "/perspektif/transformation-signals-2026", desc: "Sinyal perubahan dunia kerja Indonesia 2026." },
       { label: "Pendekatan", href: "/perspektif#pendekatan", desc: "Kerangka berpikir untuk membaca kebutuhan organisasi." },
       { label: "Alur Kerja", href: "/perspektif#alur-kerja", desc: "Proses strategis dari pemetaan hingga implementasi." },
-      { label: "Kontak", href: "/contact", desc: "Mulai percakapan strategis dengan tim BinaHub." },
     ]
   },
 ]
@@ -82,37 +86,42 @@ export default function Navbar() {
   }
 
   return (
-    <div id="global-navbar" className="fixed inset-x-0 top-0 z-[100] flex justify-center p-4 pointer-events-none md:p-6">
+    <div
+      id="global-navbar"
+      className={`fixed inset-x-0 top-0 z-[100] flex justify-center px-4 pointer-events-none transition-all duration-500 md:px-8 ${
+        scrolled ? "py-0" : "py-4 md:py-6"
+      }`}
+    >
       <motion.div
         initial={{ y: -20, opacity: 0 }}
-        animate={{ y: 0, opacity: 1, scale: scrolled ? 0.985 : 1 }}
+        animate={{ y: 0, opacity: 1, scale: scrolled ? 0.99 : 1 }}
         transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-        className="relative w-full max-w-6xl pointer-events-auto"
+        className={`relative w-full pointer-events-auto transition-all duration-500 ${scrolled ? "max-w-4xl" : "max-w-[1720px]"}`}
         onMouseLeave={() => setActiveDropdown(null)}
       >
         <nav
-          className={`relative flex items-center justify-between overflow-hidden rounded-[16px] border px-4 py-2.5 transition-all duration-500 md:px-5 ${scrolled
-              ? "border-white/45 bg-white/92 shadow-[0_20px_58px_-34px_rgba(11,44,107,0.26)] backdrop-blur-lg"
-              : "border-white/35 bg-white/84 shadow-[0_18px_52px_-38px_rgba(11,44,107,0.18)] backdrop-blur-md"
-            }`}
+          className={`relative grid items-center gap-4 transition-all duration-500 ${
+            scrolled ? "grid-cols-1 justify-items-center" : "grid-cols-[auto_1fr_auto]"
+          }`}
         >
-          <div className="pointer-events-none absolute inset-0 rounded-[inherit] bg-[linear-gradient(120deg,rgba(255,255,255,0.84),rgba(255,255,255,0.32),rgba(217,164,65,0.06))]" />
-          <div className="pointer-events-none absolute left-8 right-8 bottom-0 h-px bg-gradient-to-r from-transparent via-[#D9A441]/28 to-transparent" />
-          <div className="pointer-events-none absolute left-10 top-0 h-px w-36 bg-gradient-to-r from-transparent via-white/80 to-transparent" />
-
-          <Link href="/" className="group relative z-10 flex items-center mr-6">
-            <div className="relative h-8 w-32 transition-transform duration-500 group-hover:-translate-y-0.5 md:h-9 md:w-36">
+          <Link href="/" className={`group relative z-10 flex items-center transition-all duration-500 ${scrolled ? "pointer-events-none -translate-y-4 opacity-0 md:hidden" : "opacity-100"}`}>
+            <div className="relative h-12 w-40 transition-transform duration-500 group-hover:-translate-y-0.5 md:h-14 md:w-48">
               <Image
                 src="/full-logo.png"
                 alt="BinaHub Logo"
                 fill
+                priority
+                sizes="144px"
                 className="object-contain object-left"
               />
             </div>
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="relative z-10 hidden items-stretch md:flex">
+          <div className="relative z-10 hidden justify-center md:flex">
+            <div className={`flex items-center bg-white/96 px-3 py-2 shadow-[0_22px_58px_-34px_rgba(11,44,107,0.34)] backdrop-blur-xl transition-all duration-500 ${
+              scrolled ? "rounded-b-[22px] rounded-t-none border-x border-b border-white/70 pt-2" : "rounded-full border border-white/70"
+            }`}>
             {NAV_LINKS.map((link) => (
               <div
                 key={link.label}
@@ -121,27 +130,28 @@ export default function Navbar() {
               >
                 <Link
                   href={link.href}
-                  className={`relative flex min-w-[116px] items-center justify-center gap-2 rounded-[10px] px-5 py-4 text-[10.5px] font-bold uppercase tracking-[0.16em] transition-all duration-300 ${
+                  className={`relative flex min-w-[104px] items-center justify-center gap-2 rounded-full px-5 py-3 text-[10px] font-bold uppercase tracking-[0.12em] transition-all duration-300 ${
                     activeDropdown === link.label
-                      ? "bg-[#0B2C6B] text-white shadow-[0_18px_42px_-28px_rgba(11,44,107,0.9)]"
-                      : "text-[#0B2C6B]/66 hover:bg-[#0B2C6B]/5 hover:text-[#0B2C6B]"
+                      ? "bg-[#0B2C6B] text-white shadow-[0_16px_34px_-24px_rgba(11,44,107,0.7)]"
+                      : "text-[#0B2C6B]/66 hover:bg-[#0B2C6B]/6 hover:text-[#0B2C6B]"
                   }`}
                 >
-                  <span className={`absolute inset-x-5 top-0 h-[2px] rounded-full bg-[#D9A441] transition-opacity duration-300 ${activeDropdown === link.label ? "opacity-100" : "opacity-0"}`} />
+                  <span className={`absolute inset-x-6 bottom-1 h-[2px] rounded-full bg-[#D9A441] transition-opacity duration-300 ${activeDropdown === link.label ? "opacity-100" : "opacity-0"}`} />
                   {link.label}
                   {link.submenu && (
-                    <ChevronDown size={12} strokeWidth={1.8} className={`transition-transform duration-200 ${activeDropdown === link.label ? 'rotate-180 text-[#D9A441]' : 'text-[#0B2C6B]/45'}`} />
+                    <ChevronDown size={12} strokeWidth={1.8} className={`transition-transform duration-200 ${activeDropdown === link.label ? 'rotate-180 text-[#D9A441]' : 'text-[#0B2C6B]/42'}`} />
                   )}
                 </Link>
               </div>
             ))}
+            </div>
           </div>
 
           {/* CTA Button */}
-          <div className="relative z-10 flex items-center gap-4">
+          <div className={`relative z-10 flex items-center justify-end gap-4 transition-all duration-500 ${scrolled ? "pointer-events-none -translate-y-4 opacity-0 md:hidden" : "opacity-100"}`}>
             <Link
               href="/insight"
-              className="hidden h-12 items-center gap-2 rounded-[12px] bg-[#0B2C6B] px-5 text-[9.5px] font-bold uppercase tracking-[0.14em] text-[#D9A441] shadow-[0_16px_38px_-24px_rgba(11,44,107,0.95)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#08245A] hover:shadow-[0_20px_48px_-26px_rgba(11,44,107,1)] active:scale-95 md:flex"
+              className="hidden h-12 items-center gap-2 rounded-full bg-[#0B2C6B] px-5 text-[9.5px] font-bold uppercase tracking-[0.14em] text-[#D9A441] shadow-[0_16px_38px_-24px_rgba(11,44,107,0.95)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#D9A441] hover:text-[#0B2C6B] hover:shadow-[0_20px_48px_-26px_rgba(217,164,65,0.72)] active:scale-95 md:flex"
             >
               Diagnosa Performa
               <ChevronRight size={12} strokeWidth={2} />
@@ -150,7 +160,7 @@ export default function Navbar() {
             {/* Mobile Toggle */}
             <button
               onClick={() => setOpen(!open)}
-              className="flex h-10 w-10 items-center justify-center rounded-full bg-[#0B2C6B]/5 text-[#0B2C6B] transition-colors hover:bg-[#0B2C6B]/10 md:hidden"
+              className="flex h-12 w-12 items-center justify-center rounded-full border border-white/52 bg-white/90 text-[#0B2C6B] shadow-[0_16px_38px_-28px_rgba(11,44,107,0.5)] backdrop-blur-md transition-colors hover:bg-white md:hidden"
             >
               {open ? <X size={20} /> : <Menu size={20} />}
             </button>
@@ -159,7 +169,7 @@ export default function Navbar() {
 
         {/* Desktop Mega Dropdown */}
         <AnimatePresence>
-          {activeDropdown && (
+          {activeDropdown && NAV_LINKS.find((item) => item.label === activeDropdown)?.submenu && (
             <motion.div
               initial={{ opacity: 0, y: 12, scale: 0.985 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
@@ -169,7 +179,7 @@ export default function Navbar() {
             >
               <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_18%_0%,rgba(217,164,65,0.12),transparent_28%),linear-gradient(90deg,rgba(255,255,255,0.04),transparent_42%)]" />
               <div className="relative grid grid-cols-2 gap-px lg:grid-cols-4">
-                {NAV_LINKS.find((item) => item.label === activeDropdown)?.submenu.map((sub, index) => (
+                {NAV_LINKS.find((item) => item.label === activeDropdown)?.submenu?.map((sub, index) => (
                   <Link
                     key={sub.label}
                     href={sub.href}

@@ -3,6 +3,26 @@
 Semua perubahan yang signifikan pada proyek ini akan didokumentasikan di file ini.
 Format yang digunakan berdasarkan [Keep a Changelog](https://keepachangelog.com/id/1.0.0/), dan proyek ini mematuhi aturan [Semantic Versioning](https://semver.org/).
 
+## [0.2.2]
+### Added
+- Menambahkan halaman editorial `/perspektif/transformation-signals-2026` sebagai aset BinaHub Intelligence untuk memuat 10 sinyal perubahan dunia kerja beserta evidence fragment, implikasi, dan perspektif BinaHub.
+- Menambahkan menu `Transformation Signals` pada navigasi Perspektif.
+- Menambahkan menu `Home` pada navbar utama.
+
+### Changed
+- Mengubah section pain point Home menjadi narasi `Transformation Signals` berbasis 4 slide dengan progression: tekanan bisnis, energi pekerja, gap teknologi, dan respons BinaHub.
+- Mengganti asset visual slide pain point ke `/asset/slide-1.png` hingga `/asset/slide-4.png`.
+- Mengubah section transformation menjadi full-screen sampai area navbar, dengan treatment visual lebih light/editorial dan slideshow tetap berjalan.
+- Memperbarui copy headline dan subcopy slide agar lebih strategis, lebih manusiawi, dan mengurangi jargon berulang.
+- Menyesuaikan navbar menjadi floating white pill, logo tanpa background kapsul, CTA Diagnosa Performa di kanan, dan sticky state yang hanya menampilkan menu saat user scroll.
+- Mengurangi ukuran headline pain point sekitar 15% agar lebih seimbang dengan visual light editorial.
+- Mengubah halaman `/perspektif/transformation-signals-2026` menjadi layout documentation/docs dengan sidebar navigasi, `On this page`, system map, dan blok evidence/implication per signal.
+
+### Fixed
+- Memperbaiki runtime error navbar ketika menu tanpa submenu seperti `Home` memicu mega dropdown.
+- Memperbaiki kontras dan visual depth section transformation agar tidak terlalu gelap, terlalu milky, atau mengganggu keterbacaan headline.
+- Menghapus label `Transformation Signals 2026`, mood labels, dan marker terpisah yang membuat section terasa terlalu UI/deck-like.
+
 ## [0.2.1]
 ### Added
 - Menambahkan endpoint publik `/api/proposal/request` untuk memproses permintaan penawaran dari CTA email hasil assessment.
