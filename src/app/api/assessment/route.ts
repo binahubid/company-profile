@@ -119,15 +119,28 @@ export async function POST(req: NextRequest) {
 
     // 8. Send email
     try {
-      await sendAssessmentEmail(body, resultObj, pdfBuffer, assessment.id);
-      await supabase
+      const emailIds = await sendAssessmentEmail(body, resultObj, pdfBuffer, assessment.id);
+      const sentAt = new Date().toISOString();
+      const withEmailId = await supabase
         .from('assessments')
         .update({
           assessment_status: 'Result Email Terkirim',
-          result_email_sent_at: new Date().toISOString(),
+          result_email_sent_at: sentAt,
           proposal_status: 'Belum Diminta',
+          result_email_id: emailIds?.clientEmailId || null,
         })
         .eq('id', assessment.id);
+
+      if (withEmailId.error) {
+        await supabase
+          .from('assessments')
+          .update({
+            assessment_status: 'Result Email Terkirim',
+            result_email_sent_at: sentAt,
+            proposal_status: 'Belum Diminta',
+          })
+          .eq('id', assessment.id);
+      }
     } catch (emailError: any) {
       console.error('[API Error] Email sending failed:', emailError.message);
     }

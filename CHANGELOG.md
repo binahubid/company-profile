@@ -3,6 +3,23 @@
 Semua perubahan yang signifikan pada proyek ini akan didokumentasikan di file ini.
 Format yang digunakan berdasarkan [Keep a Changelog](https://keepachangelog.com/id/1.0.0/), dan proyek ini mematuhi aturan [Semantic Versioning](https://semver.org/).
 
+## [0.2.3]
+### Added
+- Menambahkan akses dokumen langsung dari dashboard admin untuk melihat preview isi email result assessment dan email proposal.
+- Menambahkan endpoint admin `/api/admin/assessments/documents` untuk mengambil email terkirim dan attachment PDF asli dari Resend.
+- Menambahkan tombol `Lihat Email Result`, `PDF Result`, `Lihat Email Proposal`, dan `PDF Proposal` pada detail assessment admin.
+- Menambahkan penyimpanan `result_email_id` dan `proposal_email_id` dari response Resend agar salinan email/attachment dapat diakses presisi dari dashboard.
+
+### Changed
+- Mengubah akses salinan PDF result/proposal agar mengambil dokumen asli dari Resend, bukan generate ulang PDF dari data assessment.
+- Menampilkan metadata email Resend di preview admin, termasuk status terakhir, waktu kirim, Resend ID, pengirim, penerima, dan daftar attachment.
+- Menambahkan fallback query dashboard agar tetap berjalan pada database lama yang belum memiliki kolom email ID.
+
+### Notes
+- Tambahkan kolom Supabase berikut sebelum deploy penuh fitur dokumen admin:
+  `alter table assessments add column if not exists result_email_id text, add column if not exists proposal_email_id text;`
+- Data assessment lama yang belum menyimpan Email ID perlu dikirim ulang sekali agar salinan Resend dapat dibuka langsung dari dashboard admin.
+
 ## [0.2.2]
 ### Added
 - Menambahkan halaman editorial `/perspektif/transformation-signals-2026` sebagai aset BinaHub Intelligence untuk memuat 10 sinyal perubahan dunia kerja beserta evidence fragment, implikasi, dan perspektif BinaHub.

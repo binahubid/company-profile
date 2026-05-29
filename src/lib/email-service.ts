@@ -10,6 +10,10 @@ const FROM = process.env.EMAIL_FROM && process.env.EMAIL_FROM.includes('@')
 const COMPANY_COPY = process.env.EMAIL_COMPANY_COPY || 'admin@binahub.id';
 const COMPANY_NAME = process.env.NEXT_PUBLIC_COMPANY_NAME || 'BinaHub';
 
+function resendTagValue(value?: string) {
+  return (value || 'unknown').replace(/[^a-zA-Z0-9_-]/g, '_').slice(0, 256);
+}
+
 function normalizeUrl(value?: string) {
   if (!value) return '';
   const trimmed = value.trim().replace(/\/$/, '');
@@ -172,6 +176,10 @@ export async function sendAssessmentEmail(
       to: formData.email,
       subject: `Asesmen Eksekutif Rahasia · ${formData.company}`,
       html: htmlBody,
+      tags: [
+        { name: 'category', value: 'assessment_result' },
+        { name: 'assessment_id', value: resendTagValue(assessmentId) },
+      ],
       attachments: pdfBuffer
         ? [{ 
             filename: `Laporan_Diagnostik_${formData.company.replace(/\s+/g, '_')}.pdf`, 
@@ -193,8 +201,17 @@ export async function sendAssessmentEmail(
     });
 
     console.log('[Email] Admin notification response:', adminRes);
+
+    return {
+      clientEmailId: clientRes.data?.id || null,
+      adminEmailId: adminRes.data?.id || null,
+    };
   } catch (error) {
     console.error('[Email Error] Failed to send assessment emails:', error);
+    return {
+      clientEmailId: null,
+      adminEmailId: null,
+    };
   }
 }
 
@@ -229,7 +246,8 @@ export async function sendProposalEmail(
     investmentNote?: string;
     nextStep?: string;
   },
-  pdfBuffer?: Buffer
+  pdfBuffer?: Buffer,
+  assessmentId?: string
 ) {
   const navy = '#0B2C6B';
   const gold = '#D9A441';
@@ -272,6 +290,10 @@ export async function sendProposalEmail(
     to,
     subject,
     html,
+    tags: [
+      { name: 'category', value: 'assessment_proposal' },
+      { name: 'assessment_id', value: resendTagValue(assessmentId) },
+    ],
     attachments: pdfBuffer
       ? [{
           filename: `Proposal_Penawaran_${company.replace(/\s+/g, '_')}.pdf`,

@@ -45,8 +45,10 @@ type AssessmentRow = {
   overall_score: number | null;
   assessment_status?: string | null;
   result_email_sent_at?: string | null;
+  result_email_id?: string | null;
   proposal_status?: string | null;
   proposal_sent_at?: string | null;
+  proposal_email_id?: string | null;
   proposal_requested_at?: string | null;
   proposal_data?: unknown;
   created_at: string;
@@ -249,6 +251,9 @@ export async function GET(req: NextRequest) {
   const db = createServerSupabase();
 
   const assessmentSelect =
+    "id, lead_id, form_data, scores, category, ai_analysis, recommendations, overall_score, assessment_status, result_email_sent_at, result_email_id, proposal_status, proposal_sent_at, proposal_email_id, proposal_requested_at, proposal_data, created_at";
+
+  const assessmentSelectWithoutEmailIds =
     "id, lead_id, form_data, scores, category, ai_analysis, recommendations, overall_score, assessment_status, result_email_sent_at, proposal_status, proposal_sent_at, proposal_requested_at, proposal_data, created_at";
 
   const assessmentQuery = await db
@@ -259,9 +264,16 @@ export async function GET(req: NextRequest) {
   const fallbackAssessmentQuery = assessmentQuery.error
     ? await db
         .from("assessments")
-        .select("id, lead_id, form_data, scores, category, ai_analysis, recommendations, overall_score, created_at")
+        .select(assessmentSelectWithoutEmailIds)
         .order("created_at", { ascending: false })
     : assessmentQuery;
+
+  const finalAssessmentQuery = fallbackAssessmentQuery.error
+    ? await db
+        .from("assessments")
+        .select("id, lead_id, form_data, scores, category, ai_analysis, recommendations, overall_score, created_at")
+        .order("created_at", { ascending: false })
+    : fallbackAssessmentQuery;
 
   const [{ data: leadRows }, { data: inquiryRows }] =
     await Promise.all([
@@ -276,8 +288,8 @@ export async function GET(req: NextRequest) {
         .limit(100),
     ]);
 
-  const assessmentRows = fallbackAssessmentQuery.data;
-  const assessmentError = fallbackAssessmentQuery.error;
+  const assessmentRows = finalAssessmentQuery.data;
+  const assessmentError = finalAssessmentQuery.error;
 
   if (assessmentError) {
     return NextResponse.json(
@@ -380,9 +392,11 @@ export async function GET(req: NextRequest) {
       overallScore: scores.overall,
       assessmentStatus: row.assessment_status || (row.result_email_sent_at ? "Result Email Terkirim" : "Result Otomatis Terkirim"),
       resultEmailSentAt: row.result_email_sent_at || null,
+      resultEmailId: row.result_email_id || null,
       proposalStatus: row.proposal_status || "Belum Diminta",
       proposalRequestedAt: row.proposal_requested_at || null,
       proposalSentAt: row.proposal_sent_at || null,
+      proposalEmailId: row.proposal_email_id || null,
       leadScore: lead?.lead_score || null,
       leadStatus: lead?.lead_status || null,
       createdAt: row.created_at,

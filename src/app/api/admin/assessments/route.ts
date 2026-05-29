@@ -42,6 +42,21 @@ function buildResult(row: any): AssessmentResult {
   };
 }
 
+async function updateAssessmentWithEmailIds(
+  db: ReturnType<typeof createServerSupabase>,
+  id: string,
+  payload: Record<string, unknown>,
+  fallbackPayload: Record<string, unknown>
+) {
+  const { error } = await db.from("assessments").update(payload).eq("id", id);
+  if (!error) return;
+
+  const { error: fallbackError } = await db.from("assessments").update(fallbackPayload).eq("id", id);
+  if (fallbackError) {
+    throw fallbackError;
+  }
+}
+
 export async function PATCH(req: NextRequest) {
   const admin = await requireAdmin(req);
   if ("error" in admin) {
@@ -93,14 +108,21 @@ export async function POST(req: NextRequest) {
 
     if (action === "resend_result") {
       const pdfBuffer = await generatePDFBuffer(formData, result);
-      await sendAssessmentEmail(formData, result, pdfBuffer, id);
-      await db
-        .from("assessments")
-        .update({
+      const emailIds = await sendAssessmentEmail(formData, result, pdfBuffer, id);
+      const sentAt = new Date().toISOString();
+      await updateAssessmentWithEmailIds(
+        db,
+        id,
+        {
           assessment_status: "Result Email Terkirim",
-          result_email_sent_at: new Date().toISOString(),
-        })
-        .eq("id", id);
+          result_email_sent_at: sentAt,
+          result_email_id: emailIds?.clientEmailId || null,
+        },
+        {
+          assessment_status: "Result Email Terkirim",
+          result_email_sent_at: sentAt,
+        }
+      );
       return NextResponse.json({ success: true });
     }
 
@@ -133,16 +155,25 @@ export async function POST(req: NextRequest) {
       });
 
       const proposalPdf = await generateProposalPDFBuffer(formData, proposal);
-      await sendProposalEmail(formData.email, formData.name, formData.company, proposal, proposalPdf);
-      await db
-        .from("assessments")
-        .update({
+      const proposalEmail = await sendProposalEmail(formData.email, formData.name, formData.company, proposal, proposalPdf, id);
+      const sentAt = new Date().toISOString();
+      await updateAssessmentWithEmailIds(
+        db,
+        id,
+        {
           assessment_status: "Proposal Terkirim",
           proposal_status: "Terkirim",
-          proposal_sent_at: new Date().toISOString(),
+          proposal_sent_at: sentAt,
           proposal_data: proposal,
-        })
-        .eq("id", id);
+          proposal_email_id: proposalEmail.data?.id || null,
+        },
+        {
+          assessment_status: "Proposal Terkirim",
+          proposal_status: "Terkirim",
+          proposal_sent_at: sentAt,
+          proposal_data: proposal,
+        }
+      );
 
       return NextResponse.json({ success: true, proposal });
     }

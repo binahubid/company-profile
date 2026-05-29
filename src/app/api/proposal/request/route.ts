@@ -94,16 +94,30 @@ export async function GET(req: NextRequest) {
     });
 
     const proposalPdf = await generateProposalPDFBuffer(formData, proposal);
-    await sendProposalEmail(formData.email, formData.name, formData.company, proposal, proposalPdf);
-    await db
+    const proposalEmail = await sendProposalEmail(formData.email, formData.name, formData.company, proposal, proposalPdf, assessmentId);
+    const sentAt = new Date().toISOString();
+    const withEmailId = await db
       .from("assessments")
       .update({
         assessment_status: "Proposal Terkirim",
         proposal_status: "Terkirim",
-        proposal_sent_at: new Date().toISOString(),
+        proposal_sent_at: sentAt,
         proposal_data: proposal,
+        proposal_email_id: proposalEmail.data?.id || null,
       })
       .eq("id", assessmentId);
+
+    if (withEmailId.error) {
+      await db
+        .from("assessments")
+        .update({
+          assessment_status: "Proposal Terkirim",
+          proposal_status: "Terkirim",
+          proposal_sent_at: sentAt,
+          proposal_data: proposal,
+        })
+        .eq("id", assessmentId);
+    }
 
     return htmlResponse(
       "Penawaran Sedang Dikirim",

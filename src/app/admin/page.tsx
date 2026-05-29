@@ -10,6 +10,8 @@ import {
   BriefcaseBusiness,
   ChevronDown,
   Download,
+  Eye,
+  FileText,
   LogOut,
   Mail,
   Phone,
@@ -20,6 +22,7 @@ import {
   Save,
   Trash2,
   Users,
+  X,
 } from "lucide-react";
 import { supabase } from "@/lib/supabase";
 
@@ -53,10 +56,26 @@ type AssessmentRecord = {
   answers: Record<string, number>;
   assessmentStatus: string;
   resultEmailSentAt: string | null;
+  resultEmailId: string | null;
   proposalStatus: string;
   proposalRequestedAt: string | null;
   proposalSentAt: string | null;
+  proposalEmailId: string | null;
   createdAt: string;
+};
+
+type AssessmentDocumentType = "result-pdf" | "proposal-pdf" | "result-email" | "proposal-email";
+
+type EmailPreview = {
+  recordName: string;
+  emailId?: string;
+  from?: string;
+  to?: string[];
+  createdAt?: string;
+  lastEvent?: string;
+  subject: string;
+  html: string;
+  attachments: { id?: string; label: string; filename: string; size?: number; contentType?: string; expiresAt?: string }[];
 };
 
 type ContactRecord = {
@@ -600,6 +619,75 @@ function AssessmentPanel({
   const employeeRanges = uniqueOptions(data.assessments, (item) => item.employees);
   const [actionError, setActionError] = useState("");
   const [actionId, setActionId] = useState<string | null>(null);
+  const [documentId, setDocumentId] = useState<string | null>(null);
+  const [emailPreview, setEmailPreview] = useState<EmailPreview | null>(null);
+
+  const requestAssessmentDocument = async (record: AssessmentRecord, type: AssessmentDocumentType) => {
+    const { data: sessionData } = await supabase.auth.getSession();
+    const token = sessionData.session?.access_token;
+    if (!token) {
+      throw new Error("Sesi admin tidak ditemukan.");
+    }
+
+    const response = await fetch(`/api/admin/assessments/documents?id=${encodeURIComponent(record.id)}&type=${type}`, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+
+    if (type.endsWith("email")) {
+      const json = await response.json();
+      if (!response.ok || !json.success) {
+        throw new Error(json.error || "Dokumen email tidak tersedia.");
+      }
+      return json.document as Omit<EmailPreview, "recordName">;
+    }
+
+    if (!response.ok) {
+      const contentType = response.headers.get("content-type") || "";
+      if (contentType.includes("application/json")) {
+        const json = await response.json();
+        throw new Error(json.error || "Dokumen PDF tidak tersedia.");
+      }
+      throw new Error("Dokumen PDF tidak tersedia.");
+    }
+
+    return response.blob();
+  };
+
+  const previewEmail = async (record: AssessmentRecord, type: Extract<AssessmentDocumentType, "result-email" | "proposal-email">) => {
+    setActionError("");
+    setDocumentId(`${record.id}:${type}`);
+    try {
+      const document = await requestAssessmentDocument(record, type);
+      if (document instanceof Blob) return;
+      setEmailPreview({
+        recordName: `${record.company} · ${record.name}`,
+        ...document,
+      });
+    } catch (error) {
+      setActionError(error instanceof Error ? error.message : "Gagal membuka preview email.");
+    } finally {
+      setDocumentId(null);
+    }
+  };
+
+  const downloadPdf = async (record: AssessmentRecord, type: Extract<AssessmentDocumentType, "result-pdf" | "proposal-pdf">) => {
+    setActionError("");
+    setDocumentId(`${record.id}:${type}`);
+    try {
+      const payload = await requestAssessmentDocument(record, type);
+      if (!(payload instanceof Blob)) return;
+      const url = URL.createObjectURL(payload);
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = `${type === "result-pdf" ? "Laporan_Diagnostik" : "Proposal_Penawaran"}_${record.company.replace(/[^\w.-]+/g, "_")}.pdf`;
+      link.click();
+      URL.revokeObjectURL(url);
+    } catch (error) {
+      setActionError(error instanceof Error ? error.message : "Gagal mengunduh PDF.");
+    } finally {
+      setDocumentId(null);
+    }
+  };
 
   const runAssessmentAction = async (record: AssessmentRecord, action: string) => {
     setActionError("");
@@ -635,6 +723,7 @@ function AssessmentPanel({
 
   return (
     <div className="space-y-6">
+      {emailPreview && <EmailPreviewModal preview={emailPreview} onClose={() => setEmailPreview(null)} />}
       {actionError && <AdminNotice>{actionError}</AdminNotice>}
       <div className="grid gap-3 lg:grid-cols-[1fr_180px_180px_150px_auto]">
         <div className="relative max-w-md flex-1">
@@ -787,6 +876,55 @@ function AssessmentPanel({
                         </div>
                       </div>
                     </div>
+                    <div className="rounded-[12px] border border-black/[0.05] bg-white p-5">
+                      <div className="mb-4 flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
+                        <div>
+                          <h4 className="text-sm font-semibold">Dokumen & Email</h4>
+                          <p className="mt-1 text-xs leading-relaxed text-black/45">
+                            Akses email dan attachment asli yang tersimpan di Resend.
+                          </p>
+                        </div>
+                        <span className="rounded-full bg-[#F5F7FA] px-3 py-1 text-[10px] font-bold uppercase tracking-[0.14em] text-black/42">
+                          Resend copy
+                        </span>
+                      </div>
+                      <div className="grid gap-3 md:grid-cols-2">
+                        <DocumentActionButton
+                          icon={Eye}
+                          label="Lihat Email Result"
+                          disabled={documentId === `${record.id}:result-email`}
+                          onClick={() => previewEmail(record, "result-email")}
+                        />
+                        <DocumentActionButton
+                          icon={Download}
+                          label="PDF Result"
+                          disabled={documentId === `${record.id}:result-pdf`}
+                          onClick={() => downloadPdf(record, "result-pdf")}
+                        />
+                        <DocumentActionButton
+                          icon={Eye}
+                          label="Lihat Email Proposal"
+                          disabled={documentId === `${record.id}:proposal-email`}
+                          onClick={() => previewEmail(record, "proposal-email")}
+                        />
+                        <DocumentActionButton
+                          icon={FileText}
+                          label="PDF Proposal"
+                          disabled={documentId === `${record.id}:proposal-pdf`}
+                          onClick={() => downloadPdf(record, "proposal-pdf")}
+                        />
+                      </div>
+                      {!record.proposalSentAt && (
+                        <p className="mt-3 text-xs leading-relaxed text-black/42">
+                          Proposal akan tersedia setelah proposal dibuat atau dikirim dari tombol tindakan.
+                        </p>
+                      )}
+                      {(!record.resultEmailId || (record.proposalSentAt && !record.proposalEmailId)) && (
+                        <p className="mt-3 text-xs leading-relaxed text-black/42">
+                          Data lama yang belum menyimpan Email ID perlu dikirim ulang sekali agar salinan Resend bisa dibuka langsung di sini.
+                        </p>
+                      )}
+                    </div>
                     <div>
                       <h4 className="mb-2 text-sm font-semibold">Analisis AI</h4>
                       <p className="text-sm font-light leading-relaxed text-black/58">
@@ -813,6 +951,100 @@ function AssessmentPanel({
             </div>
           );
         })}
+      </div>
+    </div>
+  );
+}
+
+function DocumentActionButton({
+  icon: Icon,
+  label,
+  disabled,
+  onClick,
+}: {
+  icon: typeof Eye;
+  label: string;
+  disabled: boolean;
+  onClick: () => void;
+}) {
+  return (
+    <button
+      onClick={onClick}
+      disabled={disabled}
+      className="flex h-12 items-center justify-center gap-2 rounded-[10px] border border-black/10 bg-[#FCFCFB] px-3 text-xs font-bold uppercase tracking-[0.12em] text-[#0B2C6B] transition hover:border-[#D9A441]/50 hover:bg-[#FFF8EA] disabled:cursor-wait disabled:opacity-50"
+    >
+      <Icon size={15} />
+      {disabled ? "Memuat..." : label}
+    </button>
+  );
+}
+
+function EmailPreviewModal({
+  preview,
+  onClose,
+}: {
+  preview: EmailPreview;
+  onClose: () => void;
+}) {
+  return (
+    <div className="fixed inset-0 z-50 bg-[#071B3D]/55 px-4 py-6 backdrop-blur-sm">
+      <div className="mx-auto flex h-full max-w-5xl flex-col overflow-hidden rounded-[16px] bg-white shadow-[0_40px_100px_-40px_rgba(7,27,61,0.55)]">
+        <div className="flex flex-col gap-4 border-b border-black/[0.06] bg-[#FAFAF8] px-5 py-4 md:flex-row md:items-start md:justify-between">
+          <div>
+            <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#D9A441]">Email Preview</p>
+            <h3 className="mt-1 text-lg font-semibold text-[#0B2C6B]">{preview.subject}</h3>
+            <p className="mt-1 text-xs text-black/45">{preview.recordName}</p>
+            <div className="mt-2 flex flex-wrap gap-2 text-[11px] text-black/45">
+              {preview.lastEvent && <span className="rounded-full bg-white px-2 py-1">Status: {preview.lastEvent}</span>}
+              {preview.createdAt && <span className="rounded-full bg-white px-2 py-1">Dikirim: {formatDate(preview.createdAt)}</span>}
+              {preview.emailId && <span className="rounded-full bg-white px-2 py-1">Resend ID: {preview.emailId}</span>}
+            </div>
+          </div>
+          <button
+            onClick={onClose}
+            className="grid h-10 w-10 place-items-center rounded-[10px] border border-black/10 bg-white text-[#0B2C6B]"
+            aria-label="Tutup preview email"
+          >
+            <X size={17} />
+          </button>
+        </div>
+        <div className="grid min-h-0 flex-1 gap-0 lg:grid-cols-[240px_1fr]">
+          <aside className="border-b border-black/[0.06] bg-white p-5 lg:border-b-0 lg:border-r">
+            <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-black/40">Attachment</p>
+            <div className="mt-3 space-y-2">
+              {(preview.from || preview.to?.length) && (
+                <div className="rounded-[10px] border border-black/[0.06] bg-white p-3">
+                  {preview.from && <p className="break-all text-[11px] leading-relaxed text-black/50">From: {preview.from}</p>}
+                  {preview.to?.length ? <p className="mt-1 break-all text-[11px] leading-relaxed text-black/50">To: {preview.to.join(", ")}</p> : null}
+                </div>
+              )}
+              {preview.attachments.map((attachment) => (
+                <div key={attachment.id || attachment.filename} className="rounded-[10px] border border-black/[0.06] bg-[#F5F7FA] p-3">
+                  <p className="text-xs font-semibold text-[#0B2C6B]">{attachment.label}</p>
+                  <p className="mt-1 break-all text-[11px] leading-relaxed text-black/45">{attachment.filename}</p>
+                  {attachment.size ? (
+                    <p className="mt-1 text-[10px] uppercase tracking-[0.12em] text-black/35">
+                      {Math.round(attachment.size / 1024)} KB
+                    </p>
+                  ) : null}
+                </div>
+              ))}
+              {!preview.attachments.length && (
+                <p className="rounded-[10px] border border-black/[0.06] bg-[#F5F7FA] p-3 text-xs leading-relaxed text-black/45">
+                  Tidak ada attachment yang tercatat di email ini.
+                </p>
+              )}
+            </div>
+          </aside>
+          <div className="min-h-0 bg-[#E2E8F0] p-3">
+            <iframe
+              title="Preview isi email"
+              srcDoc={preview.html}
+              sandbox=""
+              className="h-full min-h-[520px] w-full rounded-[10px] border border-black/10 bg-white"
+            />
+          </div>
+        </div>
       </div>
     </div>
   );
