@@ -5,6 +5,7 @@ import { useState, useEffect, useCallback } from "react";
 import { PixelIcon } from "@/components/pixel-icon";
 import { Tag } from "@/components/ui/tag";
 import { motion, AnimatePresence } from "framer-motion";
+import Image from "next/image";
 import { UserCheck, Target, Leaf, Compass, Lightbulb } from "lucide-react";
 
 type PillarPoint = {
@@ -107,10 +108,12 @@ export function AboutCarouselSection() {
             exit={{ opacity: 0, scale: 1, x: -16 }}
             transition={{ duration: 1.05, ease: [0.22, 1, 0.36, 1] }}
           >
-            <img
+            <Image
               src={slide.bgImage}
               alt=""
-              className="w-full h-full object-cover"
+              fill
+              sizes="100vw"
+              className="object-cover"
             />
           </motion.div>
         </AnimatePresence>

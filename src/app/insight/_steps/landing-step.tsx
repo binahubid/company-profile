@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { ArrowRight, Check, BarChart3, Radar, Sparkles } from "lucide-react";
 import { DIMENSIONS } from "../questions";
@@ -20,6 +21,8 @@ const DIMENSION_COPY: Record<string, string> = {
   Works: "Memetakan kejelasan KPI, proses kerja, dan disiplin eksekusi.",
   Impact: "Melihat bukti dampak program dan ROI pengembangan SDM.",
 };
+
+type DimensionIconType = "insights" | "lab" | "coach" | "play" | "academy" | "works" | "impact";
 
 const SAMPLE_SCORES = [
   { label: "Insights", value: 82, signal: "Data performa sudah kuat", tone: "bg-[#D9A441]" },
@@ -48,10 +51,13 @@ export function LandingStep({ onStart }: LandingStepProps) {
       <section className="w-full px-4 mb-12">
         <div className="relative flex min-h-[620px] w-full items-center justify-center overflow-hidden rounded-[16px] border border-black/[0.03] shadow-[0_24px_78px_-58px_rgba(11,44,107,0.52)] md:h-[78svh] md:rounded-[18px]">
           <div className="absolute inset-0 w-full h-full">
-            <img
+            <Image
               src="/asset/bg-insight.png"
               alt="Team Collaboration"
-              className="w-full h-full object-cover object-center scale-105 saturate-[0.94] brightness-[1.12]"
+              fill
+              priority
+              sizes="100vw"
+              className="object-cover object-center scale-105 saturate-[0.94] brightness-[1.12]"
             />
             <div className="absolute inset-0 bg-[#061A3A]/22 mix-blend-multiply" />
             <div className="absolute inset-0 bg-gradient-to-r from-[#071A33]/82 via-[#0B2C6B]/38 to-[#0B2C6B]/6" />
@@ -141,10 +147,12 @@ export function LandingStep({ onStart }: LandingStepProps) {
 
           <div className="relative">
             <div className="group relative flex aspect-[4/4.5] items-center justify-center overflow-hidden rounded-[16px] border border-black/[0.05] bg-[#F5F7FA] p-6 md:p-10">
-              <img
+              <Image
                 src="/asset/Play.png"
                 alt="Team Analysis"
-                className="absolute inset-0 w-full h-full object-cover opacity-18 grayscale transition-all duration-700 group-hover:scale-105 group-hover:opacity-24 group-hover:grayscale-0"
+                fill
+                sizes="(max-width: 768px) 100vw, 40vw"
+                className="object-cover opacity-18 grayscale transition-all duration-700 group-hover:scale-105 group-hover:opacity-24 group-hover:grayscale-0"
               />
               <div className="absolute inset-0 bg-gradient-to-br from-white/86 via-white/64 to-[#0B2C6B]/10" />
               <ReportPreview />
@@ -205,7 +213,7 @@ export function LandingStep({ onStart }: LandingStepProps) {
                 >
                   <div className="relative z-10 flex gap-5">
                     <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-[12px] bg-[#F5F7FA] transition-transform duration-500 group-hover:-translate-y-1">
-                      <PixelIcon type={dim.toLowerCase() as any} size={34} />
+                      <PixelIcon type={dim.toLowerCase() as DimensionIconType} size={34} />
                     </div>
                     <div>
                       <div className="mb-2 flex items-center gap-3">

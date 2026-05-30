@@ -9,11 +9,23 @@ Format yang digunakan berdasarkan [Keep a Changelog](https://keepachangelog.com/
 - Menambahkan endpoint admin `/api/admin/assessments/documents` untuk mengambil email terkirim dan attachment PDF asli dari Resend.
 - Menambahkan tombol `Lihat Email Result`, `PDF Result`, `Lihat Email Proposal`, dan `PDF Proposal` pada detail assessment admin.
 - Menambahkan penyimpanan `result_email_id` dan `proposal_email_id` dari response Resend agar salinan email/attachment dapat diakses presisi dari dashboard.
+- Menambahkan konfigurasi metadata global, Open Graph, Twitter card, canonical URL, robots, sitemap, dan OG image untuk memperkuat SEO dasar website.
+- Menambahkan metadata per route utama seperti About, Ecosystem, Insight, Perspektif, Contact, Academy, Coach, Lab, Play, Impact, Works, Journey, dan halaman BDN-to-BinaHub.
+- Menambahkan halaman `loading`, `not-found`, `error`, dan `global-error` agar fallback sistem lebih rapi dan tetap sesuai identitas visual BinaHub.
+- Menambahkan `ChatBotLoader` agar chatbot dimuat secara lazy dan tidak membebani initial render.
 
 ### Changed
 - Mengubah akses salinan PDF result/proposal agar mengambil dokumen asli dari Resend, bukan generate ulang PDF dari data assessment.
 - Menampilkan metadata email Resend di preview admin, termasuk status terakhir, waktu kirim, Resend ID, pengirim, penerima, dan daftar attachment.
 - Menambahkan fallback query dashboard agar tetap berjalan pada database lama yang belum memiliki kolom email ID.
+- Mengubah Home page menjadi Server Component kembali dengan wrapper client khusus untuk intro animation dan hero.
+- Mengubah beberapa image penting dari `<img>` ke `next/image`, termasuk intro animation, hero About, carousel About, landing Insight, dan stacking service cards.
+- Mengatur intro animation agar hanya berjalan sekali per sesi browser sehingga navigasi internal terasa lebih ringan.
+- Menambahkan header security dasar melalui `next.config.ts`, termasuk `X-Content-Type-Options`, `X-Frame-Options`, `Referrer-Policy`, HSTS, dan `Permissions-Policy`.
+- Mengaktifkan format image modern `AVIF` dan `WebP` pada konfigurasi Next image.
+
+### Fixed
+- Memperbaiki lint error pada `landing-step.tsx` dengan mengganti cast `any` untuk `PixelIcon` menjadi union type eksplisit.
 
 ### Notes
 - Tambahkan kolom Supabase berikut sebelum deploy penuh fitur dokumen admin:

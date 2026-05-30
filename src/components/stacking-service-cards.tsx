@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 import { Tag } from "@/components/ui/tag";
 import { SERVICES } from "@/data/services";
 
@@ -60,10 +61,12 @@ export function StackingServiceCards() {
                 {/* Mobile: image top */}
                 {service.img && (
                   <div className="relative w-full h-52 pointer-events-none md:hidden">
-                    <img
+                    <Image
                       src={service.img}
                       alt={service.label}
-                      className="absolute inset-0 w-full h-full object-cover object-center"
+                      fill
+                      sizes="100vw"
+                      className="object-cover object-center"
                       style={{
                         maskImage: "linear-gradient(to bottom, black 0%, black 35%, transparent 85%)",
                         WebkitMaskImage: "linear-gradient(to bottom, black 0%, black 35%, transparent 85%)",
@@ -75,10 +78,12 @@ export function StackingServiceCards() {
                 {/* Desktop: image right */}
                 {service.img && (
                   <div className="hidden md:block absolute inset-y-0 right-0 w-1/2 pointer-events-none">
-                    <img
+                    <Image
                       src={service.img}
                       alt={service.label}
-                      className="w-full h-full object-cover object-center"
+                      fill
+                      sizes="(max-width: 768px) 0px, 50vw"
+                      className="object-cover object-center"
                     />
                     <div
                       className="absolute inset-0"

@@ -106,10 +106,13 @@ export default function AboutPage() {
       <section className="w-full px-4 md:px-8 pt-20 md:pt-28 mb-8 md:mb-16">
         <div className="relative flex h-[65vh] min-h-[480px] w-full items-center overflow-hidden rounded-[14px] border border-white/10 bg-[#071A33] shadow-[0_24px_78px_-56px_rgba(11,44,107,0.48)] sm:h-[72vh] md:h-[80vh] md:rounded-[18px]">
           <div className="absolute inset-0 z-0">
-            <img
+            <Image
               src="/bg-about.png"
               alt="About BinaHub"
-              className="w-full h-full object-cover scale-[1.03]"
+              fill
+              priority
+              sizes="100vw"
+              className="object-cover scale-[1.03]"
             />
             <div className="absolute inset-0 bg-[#061A3A]/30 mix-blend-multiply" />
             <div className="absolute inset-0 bg-gradient-to-r from-[#071A33]/90 via-[#0B2C6B]/50 to-[#0B2C6B]/10" />

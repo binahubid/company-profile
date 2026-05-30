@@ -26,6 +26,24 @@ export function IntroAnimation({ onDone }: { onDone: () => void }) {
   const [curtainUp, setCurtainUp] = useState(false)
 
   useEffect(() => {
+    const SEEN_KEY = "binahub:intro-seen"
+    let alreadySeen = false
+    try {
+      alreadySeen = sessionStorage.getItem(SEEN_KEY) === "1"
+    } catch {}
+
+    // Play the intro only once per browser session so internal navigation feels instant.
+    if (alreadySeen) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
+      setPhase("done")
+      onDone()
+      return
+    }
+
+    try {
+      sessionStorage.setItem(SEEN_KEY, "1")
+    } catch {}
+
     // Tiny delay so the browser has painted before we start transitioning
     const t0 = setTimeout(() => setPhase("in"), 80)
     const t1 = setTimeout(() => setPhase("out"), LETTERS_IN_TOTAL)
@@ -74,10 +92,13 @@ export function IntroAnimation({ onDone }: { onDone: () => void }) {
             willChange: "opacity, filter, transform",
           }}
         >
-          <img
+          <Image
             src="/intro2.png"
             alt="BinaHub Intro"
-            className="w-full h-full object-contain"
+            fill
+            priority
+            sizes="(max-width: 768px) 90vw, 1024px"
+            className="object-contain"
           />
         </div>
       </div>
