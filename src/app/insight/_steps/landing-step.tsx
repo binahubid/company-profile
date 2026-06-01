@@ -3,10 +3,9 @@
 import { useState } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { ArrowRight, Check, BarChart3, Radar, Sparkles } from "lucide-react";
+import { ArrowRight, Check, BarChart3, Radar } from "lucide-react";
 import { DIMENSIONS } from "../questions";
 import { PixelIcon } from "@/components/pixel-icon";
-import { Tag } from "@/components/ui/tag";
 
 interface LandingStepProps {
   onStart: () => void;
@@ -38,6 +37,9 @@ const SAMPLE_OVERALL = Math.round(SAMPLE_SCORES.reduce((sum, item) => sum + item
 const SAMPLE_PRIORITY = [...SAMPLE_SCORES].sort((a, b) => a.value - b.value)[0];
 
 export function LandingStep({ onStart }: LandingStepProps) {
+  const [activeDimension, setActiveDimension] = useState(0);
+  const activeName = DIMENSIONS[activeDimension];
+
   return (
     <motion.div
       key="landing"
@@ -161,76 +163,144 @@ export function LandingStep({ onStart }: LandingStepProps) {
         </div>
       </section>
 
-      {/* 7 Dimensions Framework */}
-      <section className="py-16 md:py-24 lg:py-24 xl:py-32 px-6 md:px-12 lg:px-20 bg-[#F5F7FA]">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16 md:mb-20">
-            <Tag>7 DIMENSIONS</Tag>
-            <h2 className="text-3xl md:text-5xl lg:text-6xl font-light tracking-tight mt-6 md:mt-10 text-[#0B2C6B]">Spektrum Pengukuran.</h2>
-            <p className="mx-auto mt-5 max-w-2xl text-base font-light leading-relaxed text-black/54">
-              Setiap dimensi membaca sinyal berbeda dari performa manusia, sistem kerja, dan dampak pembelajaran.
-            </p>
-          </div>
+      {/* Measurement Spectrum */}
+      <section className="relative left-1/2 mb-12 w-screen -translate-x-1/2 bg-[#071A33] text-white md:mb-16 lg:mb-20">
+          <div className="relative overflow-hidden px-6 py-12 md:px-10 lg:flex lg:min-h-[460px] lg:items-center lg:px-16 lg:py-14 xl:min-h-[500px] xl:px-20">
+            <Image
+              src="/insight-spectrum-bg.png"
+              alt=""
+              fill
+              sizes="100vw"
+              className="object-cover opacity-70 saturate-[0.96] brightness-[1.06]"
+            />
+            <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(7,26,51,0.32)_0%,rgba(7,26,51,0.18)_48%,rgba(7,26,51,0.04)_100%)]" />
+            <div className="absolute inset-0 bg-[#071A33]/2" />
+            <div className="absolute inset-x-0 bottom-0 h-px bg-[#D9A441]/40" />
 
-          <div className="grid grid-cols-1 gap-5 lg:grid-cols-12">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="relative overflow-hidden rounded-[14px] bg-[#0B2C6B] p-7 text-white shadow-[0_24px_70px_-48px_rgba(11,44,107,0.72)] md:p-9 lg:col-span-4"
-            >
-              <div className="absolute -right-16 -top-16 h-44 w-72 bg-[#D9A441]/16 blur-3xl" />
-              <div className="relative z-10 flex h-full min-h-[360px] flex-col justify-between">
-                <div>
-                  <Sparkles size={28} className="mb-8 text-[#D9A441]" />
-                  <h4 className="text-3xl font-light leading-tight">
-                    Temukan Blind Spot <br /><span className="text-[#D9A441] font-bold italic">Kepemimpinan Anda.</span>
-                  </h4>
-                  <p className="mt-5 max-w-sm text-sm font-light leading-relaxed text-white/68">
-                    Tujuh dimensi ini membaca hubungan antara data, kompetensi, budaya, eksekusi, dan dampak nyata.
-                  </p>
+            <div className="relative z-10 mx-auto grid w-full max-w-7xl gap-10 lg:grid-cols-[0.82fr_1.18fr] lg:items-center">
+              <div>
+                <p className="text-[10px] font-bold uppercase tracking-[0.28em] text-[#D9A441]">7 Dimensions</p>
+                <h2 className="mt-5 max-w-3xl text-4xl font-light leading-[1.02] tracking-[-0.05em] md:text-6xl lg:text-[4.2rem]">
+                  Pilih fokus pengukuran organisasi.
+                </h2>
+                <p className="mt-6 max-w-xl text-sm font-light leading-relaxed text-white/62 md:text-base">
+                  Tujuh area ini dibaca sebagai satu spektrum. Pilih salah satu dimensi untuk melihat sinyal yang ingin dipahami sebelum menentukan prioritas intervensi.
+                </p>
+
+                <div className="mt-8 hidden items-center gap-4 lg:flex">
+                  <span className="font-mono text-sm text-[#D9A441]">{String(activeDimension + 1).padStart(2, "0")}</span>
+                  <div className="h-px flex-1 bg-white/14">
+                    <motion.div
+                      className="h-px bg-[#D9A441]"
+                      animate={{ width: `${((activeDimension + 1) / DIMENSIONS.length) * 100}%` }}
+                      transition={{ duration: 0.35, ease: "easeOut" }}
+                    />
+                  </div>
+                  <span className="font-mono text-sm text-white/32">07</span>
                 </div>
-                <button
-                  onClick={onStart}
-                  className="mt-10 h-14 w-full rounded-[12px] bg-white text-[11px] font-bold uppercase tracking-widest text-[#0B2C6B] shadow-lg transition-colors hover:bg-[#D9A441]"
-                >
-                  MULAI SEKARANG
-                </button>
               </div>
-            </motion.div>
 
-            <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:col-span-8">
-              {DIMENSIONS.map((dim, i) => (
+              <div className="hidden lg:block">
+                <div className="grid min-h-[330px] grid-cols-[0.34fr_1fr] border-y border-white/14">
+                  <div className="border-r border-white/14 py-7 pr-8">
+                    <div className="space-y-0">
+                      {DIMENSIONS.map((dim, index) => (
+                        <button
+                          key={dim}
+                          type="button"
+                          onClick={() => setActiveDimension(index)}
+                          className={`group flex w-full items-center justify-between border-b border-white/10 py-4 text-left transition-colors last:border-b-0 ${
+                            activeDimension === index ? "text-[#D9A441]" : "text-white/42 hover:text-white/72"
+                          }`}
+                        >
+                          <span className="text-sm font-semibold tracking-[-0.01em]">{dim}</span>
+                          <span className="font-mono text-xs">{String(index + 1).padStart(2, "0")}</span>
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className="flex items-center py-7 pl-10">
+                    <motion.div
+                      key={activeName}
+                      initial={{ opacity: 0, y: 18, filter: "blur(6px)" }}
+                      animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                      transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+                    >
+                      <div className="mb-8 flex h-16 w-16 items-center justify-center">
+                        <PixelIcon type={activeName.toLowerCase() as DimensionIconType} size={52} />
+                      </div>
+                      <p className="text-[10px] font-bold uppercase tracking-[0.28em] text-[#D9A441]">
+                        {String(activeDimension + 1).padStart(2, "0")} / 07
+                      </p>
+                      <h3 className="mt-4 text-6xl font-light tracking-[-0.055em] text-white xl:text-7xl">{activeName}</h3>
+                      <p className="mt-6 max-w-xl text-xl font-light leading-[1.65] text-white/68">
+                        {DIMENSION_COPY[activeName]}
+                      </p>
+                    </motion.div>
+                  </div>
+                </div>
+
+                <div className="mt-6 grid grid-cols-3 border-y border-white/12 text-[10px] font-bold uppercase tracking-[0.18em] text-white/42">
+                  <span className="border-r border-white/12 py-4">Diagnose root cause</span>
+                  <span className="border-r border-white/12 px-5 py-4">Map capability gaps</span>
+                  <span className="px-5 py-4">Prioritize intervention</span>
+                </div>
+              </div>
+
+              <div className="lg:hidden">
+                <div className="mb-6 flex snap-x gap-3 overflow-x-auto pb-2">
+                  {DIMENSIONS.map((dim, index) => (
+                    <button
+                      key={dim}
+                      type="button"
+                      onClick={() => setActiveDimension(index)}
+                      className={`snap-start whitespace-nowrap border-b px-1 pb-2 text-sm font-semibold transition-colors ${
+                        activeDimension === index ? "border-[#D9A441] text-[#D9A441]" : "border-white/18 text-white/50"
+                      }`}
+                    >
+                      {dim}
+                    </button>
+                  ))}
+                </div>
                 <motion.div
-                  key={dim}
-                  initial={{ opacity: 0, y: 18 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: i * 0.06 }}
-                  className={`group relative overflow-hidden rounded-[12px] border border-black/[0.05] bg-[#FCFCFB] p-5 transition-all duration-500 hover:-translate-y-1 hover:border-[#D9A441]/25 hover:bg-white hover:shadow-[0_18px_54px_-44px_rgba(11,44,107,0.36)] ${
-                    i === 0 ? "md:col-span-2" : ""
-                  }`}
+                  key={activeName}
+                  initial={{ opacity: 0, y: 14 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.38, ease: [0.22, 1, 0.36, 1] }}
+                  className="border-y border-white/12 py-7"
                 >
-                  <div className="relative z-10 flex gap-5">
-                    <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-[12px] bg-[#F5F7FA] transition-transform duration-500 group-hover:-translate-y-1">
+                  <div className="mb-6 flex items-center gap-4">
+                    <span className="font-mono text-sm text-[#D9A441]">{String(activeDimension + 1).padStart(2, "0")} / 07</span>
+                    <PixelIcon type={activeName.toLowerCase() as DimensionIconType} size={40} />
+                  </div>
+                  <h3 className="text-4xl font-light tracking-[-0.04em] text-white">{activeName}</h3>
+                  <p className="mt-4 text-sm font-light leading-relaxed text-white/68">{DIMENSION_COPY[activeName]}</p>
+                </motion.div>
+              </div>
+              {/* <div className="divide-y divide-white/12 border-y border-white/12 lg:hidden">
+                {DIMENSIONS.map((dim, index) => (
+                  <motion.div
+                    key={dim}
+                    initial={{ opacity: 0, y: 14 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: "-20% 0px" }}
+                    transition={{ duration: 0.42, delay: index * 0.035 }}
+                    className="grid gap-4 py-6 sm:grid-cols-[80px_1fr]"
+                  >
+                    <div className="flex items-center gap-4 sm:block">
+                      <span className="font-mono text-sm text-[#D9A441]">{String(index + 1).padStart(2, "0")}</span>
                       <PixelIcon type={dim.toLowerCase() as DimensionIconType} size={34} />
                     </div>
                     <div>
-                      <div className="mb-2 flex items-center gap-3">
-                        <span className="h-px w-8 bg-[#D9A441]/60" />
-                        <h4 className="text-xl font-light text-[#0B2C6B] transition-colors group-hover:text-[#D9A441]">{dim}</h4>
-                      </div>
-                      <p className="max-w-2xl text-sm font-light leading-relaxed text-black/50">
-                        {DIMENSION_COPY[dim]}
-                      </p>
+                      <h3 className="text-3xl font-light tracking-[-0.04em] text-white">{dim}</h3>
+                      <p className="mt-3 text-sm font-light leading-relaxed text-white/62">{DIMENSION_COPY[dim]}</p>
                     </div>
-                  </div>
-                  <div className="absolute bottom-0 left-0 h-px w-full bg-gradient-to-r from-[#D9A441]/0 via-[#D9A441]/30 to-[#D9A441]/0 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
-                </motion.div>
-              ))}
+                  </motion.div>
+                ))}
+              </div> */}
             </div>
           </div>
-        </div>
       </section>
 
       {/* Focused CTA Section */}

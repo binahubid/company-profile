@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import Link from "next/link"
 import Image from "next/image"
 import { motion, AnimatePresence } from "framer-motion"
@@ -13,14 +13,12 @@ const NAV_LINKS = [
     href: "/",
   },
   {
-    label: "Tentang Kami",
+    label: "Tentang",
     href: "/about",
     submenu: [
-      { label: "Siapa Kami", href: "/about#siapa-kami", desc: "Posisi, arah, dan nilai utama BinaHub." },
+      { label: "Siapa Kami", href: "/about#siapa-kami", desc: "Posisi, arah, dan peran BinaHub sebagai partner transformasi." },
       { label: "Dari BDN ke BinaHub", href: "/from-bdn-to-binahub", desc: "Jembatan legacy 16 tahun menuju ekosistem baru." },
-      { label: "Perjalanan Kami", href: "/journey", desc: "Akar pengalaman, momentum, dan evolusi brand." },
-      { label: "Visi & Misi", href: "/about#visi", desc: "Masa depan yang kami bangun bersama organisasi." },
-      { label: "Nilai-Nilai", href: "/about#nilai", desc: "Prinsip H.U.M.A.N yang menjaga cara kami bekerja." },
+      { label: "Visi & Nilai", href: "/about#visi", desc: "Masa depan yang kami bangun dan prinsip H.U.M.A.N yang menjaganya." },
       { label: "Gallery", href: "/gallery", desc: "Dokumentasi program, interaksi, dan aktivitas nyata." },
     ]
   },
@@ -28,10 +26,10 @@ const NAV_LINKS = [
     label: "Layanan",
     href: "/ecosystem",
     submenu: [
-      { label: "Delapan Layanan Kami", href: "/ecosystem#solusi", desc: "Rangkaian layanan yang saling terhubung." },
       { label: "Mengapa Program Gagal", href: "/ecosystem#latar-belakang", desc: "Masalah umum di balik intervensi yang tidak berdampak." },
-      { label: "Solusi Terintegrasi", href: "/ecosystem#solusi", desc: "Cara BinaHub menghubungkan diagnosa, desain, dan dampak." },
-      { label: "Detail Eksplorasi", href: "/ecosystem#detail", desc: "Telusuri karakter setiap layanan dalam ekosistem." },
+      { label: "Alur Kerja", href: "/ecosystem#alur-kerja", desc: "Proses strategis dari pemetaan hingga implementasi." },
+      { label: "Peta Layanan", href: "/ecosystem#solusi", desc: "Rangkaian layanan yang saling terhubung." },
+      { label: "Pilih Kebutuhan", href: "/ecosystem#detail", desc: "Telusuri karakter setiap layanan dalam ekosistem." },
     ]
   },
   {
@@ -41,22 +39,103 @@ const NAV_LINKS = [
       { label: "Cara Pandang", href: "/perspektif", desc: "Keyakinan kami tentang manusia, AI, dan transformasi." },
       { label: "Transformation Signals", href: "/perspektif/transformation-signals-2026", desc: "Sinyal perubahan dunia kerja Indonesia 2026." },
       { label: "Pendekatan", href: "/perspektif#pendekatan", desc: "Kerangka berpikir untuk membaca kebutuhan organisasi." },
-      { label: "Alur Kerja", href: "/perspektif#alur-kerja", desc: "Proses strategis dari pemetaan hingga implementasi." },
     ]
+  },
+  {
+    label: "Kontak",
+    href: "/contact",
   },
 ]
 
 export default function Navbar() {
   const [open, setOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
+  const [navOnDark, setNavOnDark] = useState(false)
+  const [mobileHidden, setMobileHidden] = useState(false)
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null)
   const [activeMobileDropdown, setActiveMobileDropdown] = useState<string | null>(null)
+  const dropdownCloseTimer = useRef<number | null>(null)
   const pathname = usePathname()
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 20)
+    const parseRgb = (color: string) => {
+      const match = color.match(/rgba?\(([^)]+)\)/)
+      if (!match) return null
+
+      const [r, g, b, alpha] = match[1].split(",").map((value) => Number.parseFloat(value.trim()))
+      const a = alpha ?? 1
+      if ([r, g, b].some((value) => Number.isNaN(value)) || Number.isNaN(a) || a < 0.18) {
+        return null
+      }
+
+      return { r, g, b }
+    }
+
+    const luminance = ({ r, g, b }: { r: number; g: number; b: number }) => {
+      const normalize = (value: number) => {
+        const channel = value / 255
+        return channel <= 0.03928 ? channel / 12.92 : ((channel + 0.055) / 1.055) ** 2.4
+      }
+
+      return 0.2126 * normalize(r) + 0.7152 * normalize(g) + 0.0722 * normalize(b)
+    }
+
+    const detectBackgroundTone = () => {
+      const navbar = document.getElementById("global-navbar")
+      const sampleY = window.innerWidth >= 1024 ? (window.scrollY > 16 ? 34 : 86) : 28
+      const elements = document.elementsFromPoint(window.innerWidth / 2, sampleY)
+      const target = elements.find((element) => !navbar?.contains(element))
+
+      let current: Element | null = target ?? document.body
+      let depth = 0
+      while (current && depth < 8) {
+        const className = typeof current.className === "string" ? current.className : ""
+
+        if (className.includes("text-white") || className.includes("bg-[#071A33]") || className.includes("bg-[#0B2C6B]") || className.includes("bg-[#070A10]")) {
+          setNavOnDark(true)
+          return
+        }
+
+        if (className.includes("bg-white") || className.includes("bg-[#F") || className.includes("bg-[#FA") || className.includes("bg-[#FB")) {
+          setNavOnDark(false)
+          return
+        }
+
+        const color = parseRgb(window.getComputedStyle(current).backgroundColor)
+        if (color) {
+          setNavOnDark(luminance(color) < 0.42)
+          return
+        }
+
+        current = current.parentElement
+        depth += 1
+      }
+
+      setNavOnDark(false)
+    }
+
+    const handleScroll = () => {
+      setMobileHidden(window.innerWidth < 1024 && window.scrollY > 8)
+      detectBackgroundTone()
+
+      const painPoint = document.getElementById("pain-point")
+      if (!painPoint) {
+        setScrolled(window.scrollY > 240)
+        return
+      }
+
+      const rect = painPoint.getBoundingClientRect()
+      const activationOffset = Math.min(220, rect.height * 0.22)
+      setScrolled(rect.top <= -activationOffset)
+    }
+
+    handleScroll()
     window.addEventListener("scroll", handleScroll)
-    return () => window.removeEventListener("scroll", handleScroll)
+    window.addEventListener("resize", handleScroll)
+    return () => {
+      window.removeEventListener("scroll", handleScroll)
+      window.removeEventListener("resize", handleScroll)
+    }
   }, [])
 
   useEffect(() => {
@@ -81,31 +160,70 @@ export default function Navbar() {
     return () => window.removeEventListener("hashchange", scrollToHash)
   }, [pathname])
 
+  useEffect(() => {
+    return () => {
+      if (dropdownCloseTimer.current) {
+        window.clearTimeout(dropdownCloseTimer.current)
+      }
+    }
+  }, [])
+
   if (pathname?.startsWith("/admin")) {
     return null
   }
+
+  const cancelDropdownClose = () => {
+    if (dropdownCloseTimer.current) {
+      window.clearTimeout(dropdownCloseTimer.current)
+      dropdownCloseTimer.current = null
+    }
+  }
+
+  const closeDropdownSoon = () => {
+    cancelDropdownClose()
+    dropdownCloseTimer.current = window.setTimeout(() => {
+      setActiveDropdown(null)
+    }, 180)
+  }
+
+  const desktopNavSurface = scrolled
+    ? navOnDark
+      ? "rounded-b-[22px] rounded-t-none border-x border-b border-white/18 bg-white/[0.045] pt-2 shadow-[0_20px_58px_-38px_rgba(0,0,0,0.38)] backdrop-blur-2xl before:opacity-100 after:bg-white/34"
+      : "rounded-b-[22px] rounded-t-none border-x border-b border-[#0B2C6B]/12 bg-white/[0.34] pt-2 shadow-[0_20px_58px_-38px_rgba(11,44,107,0.22)] backdrop-blur-2xl before:opacity-100 after:bg-[#0B2C6B]/14"
+    : navOnDark
+      ? "rounded-full border border-white/18 bg-[#071A33]/28 shadow-[0_22px_58px_-34px_rgba(0,0,0,0.44)] backdrop-blur-xl after:bg-white/24"
+      : "rounded-full border border-white/70 bg-white/96 shadow-[0_22px_58px_-34px_rgba(11,44,107,0.34)] backdrop-blur-xl after:bg-white/34"
+
+  const inactiveNavLinkClass = navOnDark
+    ? "text-white/78 hover:bg-white/10 hover:text-white"
+    : "text-[#0B2C6B]/66 hover:bg-[#0B2C6B]/6 hover:text-[#0B2C6B]"
+
+  const activeNavLinkClass = navOnDark
+    ? "bg-white text-[#071A33] shadow-[0_16px_34px_-24px_rgba(255,255,255,0.42)]"
+    : "bg-[#0B2C6B] text-white shadow-[0_16px_34px_-24px_rgba(11,44,107,0.7)]"
 
   return (
     <div
       id="global-navbar"
       className={`fixed inset-x-0 top-0 z-[100] flex justify-center px-4 pointer-events-none transition-all duration-500 md:px-8 ${
         scrolled ? "py-0" : "py-4 md:py-6"
-      }`}
+      } ${mobileHidden && !open ? "-translate-y-full opacity-0 lg:translate-y-0 lg:opacity-100" : "translate-y-0 opacity-100"}`}
     >
       <motion.div
         initial={{ y: -20, opacity: 0 }}
         animate={{ y: 0, opacity: 1, scale: scrolled ? 0.99 : 1 }}
-        transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+        transition={{ duration: 0.58, ease: [0.22, 1, 0.36, 1] }}
         className={`relative w-full pointer-events-auto transition-all duration-500 ${scrolled ? "max-w-4xl" : "max-w-[1720px]"}`}
-        onMouseLeave={() => setActiveDropdown(null)}
+        onMouseEnter={cancelDropdownClose}
+        onMouseLeave={closeDropdownSoon}
       >
         <nav
           className={`relative grid items-center gap-4 transition-all duration-500 ${
             scrolled ? "grid-cols-1 justify-items-center" : "grid-cols-[auto_1fr_auto]"
           }`}
         >
-          <Link href="/" className={`group relative z-10 flex items-center transition-all duration-500 ${scrolled ? "pointer-events-none -translate-y-4 opacity-0 md:hidden" : "opacity-100"}`}>
-            <div className="relative h-12 w-40 transition-transform duration-500 group-hover:-translate-y-0.5 md:h-14 md:w-48">
+          <Link href="/" className={`group relative z-10 flex items-center transition-all duration-500 ${scrolled ? "pointer-events-none -translate-y-4 opacity-0 lg:hidden" : "opacity-100"}`}>
+              <div className="relative h-12 w-40 transition-transform duration-500 group-hover:-translate-y-0.5 md:h-14 md:w-48 lg:h-14 lg:w-48">
               <Image
                 src="/full-logo.png"
                 alt="BinaHub Logo"
@@ -118,40 +236,45 @@ export default function Navbar() {
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="relative z-10 hidden justify-center md:flex">
-            <div className={`flex items-center bg-white/96 px-3 py-2 shadow-[0_22px_58px_-34px_rgba(11,44,107,0.34)] backdrop-blur-xl transition-all duration-500 ${
-              scrolled ? "rounded-b-[22px] rounded-t-none border-x border-b border-white/70 pt-2" : "rounded-full border border-white/70"
-            }`}>
+          <div className="relative z-10 hidden justify-center lg:flex">
+            <motion.div
+              layout
+              transition={{ duration: 0.46, ease: [0.22, 1, 0.36, 1] }}
+              className={`relative flex items-center overflow-hidden px-3 py-2 transition-all duration-500 before:pointer-events-none before:absolute before:inset-0 before:rounded-[inherit] before:bg-[linear-gradient(135deg,rgba(255,255,255,0.18),rgba(255,255,255,0.07)_46%,rgba(255,255,255,0.015))] before:opacity-0 before:transition-opacity before:duration-500 after:pointer-events-none after:absolute after:inset-x-5 after:top-0 after:h-px ${desktopNavSurface}`}
+            >
             {NAV_LINKS.map((link) => (
               <div
                 key={link.label}
-                className="relative group flex"
-                onMouseEnter={() => setActiveDropdown(link.label)}
+                className="relative z-10 group flex"
+                onMouseEnter={() => {
+                  cancelDropdownClose()
+                  setActiveDropdown(link.label)
+                }}
               >
                 <Link
                   href={link.href}
                   className={`relative flex min-w-[104px] items-center justify-center gap-2 rounded-full px-5 py-3 text-[10px] font-bold uppercase tracking-[0.12em] transition-all duration-300 ${
                     activeDropdown === link.label
-                      ? "bg-[#0B2C6B] text-white shadow-[0_16px_34px_-24px_rgba(11,44,107,0.7)]"
-                      : "text-[#0B2C6B]/66 hover:bg-[#0B2C6B]/6 hover:text-[#0B2C6B]"
+                      ? activeNavLinkClass
+                      : inactiveNavLinkClass
                   }`}
                 >
                   <span className={`absolute inset-x-6 bottom-1 h-[2px] rounded-full bg-[#D9A441] transition-opacity duration-300 ${activeDropdown === link.label ? "opacity-100" : "opacity-0"}`} />
                   {link.label}
                   {link.submenu && (
-                    <ChevronDown size={12} strokeWidth={1.8} className={`transition-transform duration-200 ${activeDropdown === link.label ? 'rotate-180 text-[#D9A441]' : 'text-[#0B2C6B]/42'}`} />
+                    <ChevronDown size={12} strokeWidth={1.8} className={`transition-transform duration-200 ${activeDropdown === link.label ? "rotate-180 text-[#D9A441]" : navOnDark ? "text-white/46" : "text-[#0B2C6B]/42"}`} />
                   )}
                 </Link>
               </div>
             ))}
-            </div>
+            </motion.div>
           </div>
 
           {/* CTA Button */}
-          <div className={`relative z-10 flex items-center justify-end gap-4 transition-all duration-500 ${scrolled ? "pointer-events-none -translate-y-4 opacity-0 md:hidden" : "opacity-100"}`}>
+          <div className={`relative z-10 flex items-center justify-end gap-4 transition-all duration-500 ${scrolled ? "pointer-events-none -translate-y-4 opacity-0 lg:hidden" : "opacity-100"}`}>
             <Link
               href="/insight"
-              className="hidden h-12 items-center gap-2 rounded-full bg-[#0B2C6B] px-5 text-[9.5px] font-bold uppercase tracking-[0.14em] text-[#D9A441] shadow-[0_16px_38px_-24px_rgba(11,44,107,0.95)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#D9A441] hover:text-[#0B2C6B] hover:shadow-[0_20px_48px_-26px_rgba(217,164,65,0.72)] active:scale-95 md:flex"
+              className="hidden h-12 items-center gap-2 rounded-full bg-[#0B2C6B] px-5 text-[9.5px] font-bold uppercase tracking-[0.14em] text-[#D9A441] shadow-[0_16px_38px_-24px_rgba(11,44,107,0.95)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#D9A441] hover:text-[#0B2C6B] hover:shadow-[0_20px_48px_-26px_rgba(217,164,65,0.72)] active:scale-95 lg:flex"
             >
               Diagnosa Performa
               <ChevronRight size={12} strokeWidth={2} />
@@ -160,7 +283,11 @@ export default function Navbar() {
             {/* Mobile Toggle */}
             <button
               onClick={() => setOpen(!open)}
-              className="flex h-12 w-12 items-center justify-center rounded-full border border-white/52 bg-white/90 text-[#0B2C6B] shadow-[0_16px_38px_-28px_rgba(11,44,107,0.5)] backdrop-blur-md transition-colors hover:bg-white md:hidden"
+              className={`flex h-12 w-12 items-center justify-center rounded-full border shadow-[0_16px_38px_-28px_rgba(11,44,107,0.5)] backdrop-blur-md transition-colors lg:hidden ${
+                navOnDark
+                  ? "border-white/20 bg-[#071A33]/42 text-white hover:bg-[#071A33]/62"
+                  : "border-white/52 bg-white/90 text-[#0B2C6B] hover:bg-white"
+              }`}
             >
               {open ? <X size={20} /> : <Menu size={20} />}
             </button>
@@ -175,27 +302,31 @@ export default function Navbar() {
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: 8, scale: 0.99 }}
               transition={{ duration: 0.24, ease: [0.22, 1, 0.36, 1] }}
-              className="absolute left-0 right-0 top-[calc(100%+10px)] hidden overflow-hidden rounded-[14px] border border-white/10 bg-[#070A10]/96 shadow-[0_28px_76px_-44px_rgba(0,0,0,0.68)] md:block"
+              onMouseEnter={cancelDropdownClose}
+              onMouseLeave={closeDropdownSoon}
+              className="absolute left-0 right-0 top-full hidden pt-3 lg:block"
             >
-              <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_18%_0%,rgba(217,164,65,0.12),transparent_28%),linear-gradient(90deg,rgba(255,255,255,0.04),transparent_42%)]" />
-              <div className="relative grid grid-cols-2 gap-px lg:grid-cols-4">
-                {NAV_LINKS.find((item) => item.label === activeDropdown)?.submenu?.map((sub, index) => (
-                  <Link
-                    key={sub.label}
-                    href={sub.href}
-                    onClick={() => setActiveDropdown(null)}
-                    className="group relative min-h-[118px] overflow-hidden px-6 py-5 transition-colors hover:bg-white/[0.045]"
-                  >
-                    <div className={`absolute inset-x-0 top-0 h-[3px] bg-[#D9A441] transition-opacity duration-300 ${index === 0 ? "opacity-100" : "opacity-0 group-hover:opacity-100"}`} />
-                    <div className="absolute bottom-0 right-0 h-[72px] w-32 translate-x-8 translate-y-8 bg-[#0B2C6B]/0 blur-2xl transition-colors duration-500 group-hover:bg-[#0B2C6B]/34" />
-                    <p className="relative mb-3 text-[13px] font-medium uppercase tracking-[0.28em] text-white">
-                      {sub.label}
-                    </p>
-                    <p className="relative max-w-[260px] text-sm leading-relaxed text-white/48 transition-colors group-hover:text-white/68">
-                      {sub.desc}
-                    </p>
-                  </Link>
-                ))}
+              <div className="relative overflow-hidden rounded-[14px] border border-white/10 bg-[#070A10]/96 shadow-[0_28px_76px_-44px_rgba(0,0,0,0.68)]">
+                <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_18%_0%,rgba(217,164,65,0.12),transparent_28%),linear-gradient(90deg,rgba(255,255,255,0.04),transparent_42%)]" />
+                <div className="relative grid grid-cols-2 gap-px lg:grid-cols-4">
+                  {NAV_LINKS.find((item) => item.label === activeDropdown)?.submenu?.map((sub, index) => (
+                    <Link
+                      key={sub.label}
+                      href={sub.href}
+                      onClick={() => setActiveDropdown(null)}
+                      className="group relative min-h-[118px] overflow-hidden px-6 py-5 transition-colors hover:bg-white/[0.045]"
+                    >
+                      <div className={`absolute inset-x-0 top-0 h-[3px] bg-[#D9A441] transition-opacity duration-300 ${index === 0 ? "opacity-100" : "opacity-0 group-hover:opacity-100"}`} />
+                      <div className="absolute bottom-0 right-0 h-[72px] w-32 translate-x-8 translate-y-8 bg-[#0B2C6B]/0 blur-2xl transition-colors duration-500 group-hover:bg-[#0B2C6B]/34" />
+                      <p className="relative mb-3 text-[13px] font-medium uppercase tracking-[0.28em] text-white">
+                        {sub.label}
+                      </p>
+                      <p className="relative max-w-[260px] text-sm leading-relaxed text-white/48 transition-colors group-hover:text-white/68">
+                        {sub.desc}
+                      </p>
+                    </Link>
+                  ))}
+                </div>
               </div>
             </motion.div>
           )}
@@ -208,7 +339,7 @@ export default function Navbar() {
               initial={{ opacity: 0, y: 10, scale: 0.95 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: 10, scale: 0.95 }}
-              className="absolute left-3 right-3 top-full mt-3 max-h-[76vh] overflow-y-auto rounded-[18px] border border-white/35 bg-[#F8FAFC]/96 p-3 shadow-[0_24px_72px_-48px_rgba(11,44,107,0.42)] backdrop-blur-md sm:left-4 sm:right-4 sm:p-4 md:hidden"
+              className="absolute left-3 right-3 top-full mt-3 max-h-[76vh] overflow-y-auto rounded-[18px] border border-white/35 bg-[#F8FAFC]/96 p-3 shadow-[0_24px_72px_-48px_rgba(11,44,107,0.42)] backdrop-blur-md sm:left-4 sm:right-4 sm:p-4 lg:hidden"
             >
               <div className="pointer-events-none absolute inset-0 rounded-[inherit] bg-[radial-gradient(circle_at_80%_0%,rgba(217,164,65,0.16),transparent_28%),linear-gradient(135deg,rgba(255,255,255,0.86),rgba(255,255,255,0.34))]" />
               <div className="relative z-10 mb-3 flex items-center justify-between border-b border-[#0B2C6B]/8 px-3 pb-3">

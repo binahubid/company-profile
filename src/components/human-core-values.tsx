@@ -1,202 +1,186 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { ArrowRight } from "lucide-react";
+import { useRef, useState } from "react";
+import { motion, useMotionValueEvent, useScroll, useTransform } from "framer-motion";
+import Image from "next/image";
 import Link from "next/link";
-import { Tag } from "./ui/tag";
-import { PixelIcon } from "./pixel-icon";
 
 const HUMAN_VALUES = [
-  { letter: "H", rest: "umanity" },
-  { letter: "U", rest: "ncompromising Integrity" },
-  { letter: "M", rest: "eaningful Impact" },
-  { letter: "A", rest: "daptive Growth" },
-  { letter: "N", rest: "oble Excellence" },
+  { letter: "H", rest: "umanity", word: "Humanity" },
+  { letter: "U", rest: "ncompromising Integrity", word: "Uncompromising Integrity" },
+  { letter: "M", rest: "eaningful Impact", word: "Meaningful Impact" },
+  { letter: "A", rest: "daptive Growth", word: "Adaptive Growth" },
+  { letter: "N", rest: "oble Excellence", word: "Noble Excellence" },
 ];
 
 export function HumanCoreValuesSection() {
-  const [revealedCount, setRevealedCount] = useState(0);
-  const [isGlowing, setIsGlowing] = useState(false);
-  const sectionRef = useRef<HTMLDivElement>(null);
-  const [hasStarted, setHasStarted] = useState(false);
+  const sectionRef = useRef<HTMLElement>(null);
+  const [stage, setStage] = useState(0);
 
-  // Trigger sequence when section enters viewport
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting && !hasStarted) {
-          setHasStarted(true);
-        }
-      },
-      { threshold: 0.15 }
-    );
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start 72%", "end 48%"],
+  });
 
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
+  const introX = useTransform(scrollYProgress, [0, 0.62], ["0%", "-112%"]);
+  const valuesX = useTransform(scrollYProgress, [0.22, 0.56], ["22%", "0%"]);
+  const valuesOpacity = useTransform(scrollYProgress, [0.22, 0.32], [0, 1]);
+
+  useMotionValueEvent(scrollYProgress, "change", (latest) => {
+    if (latest >= 0.82) {
+      setStage(6);
+      return;
     }
-    return () => observer.disconnect();
-  }, [hasStarted]);
 
-  // Handle the automatic looping sequence
-  useEffect(() => {
-    if (!hasStarted) return;
+    if (latest < 0.24) {
+      setStage(0);
+      return;
+    }
 
-    let active = true;
-    
-    const runSequence = async () => {
-      while (active) {
-        // Step 1: Reset to beginning
-        setIsGlowing(false);
-        setRevealedCount(0);
-        await new Promise((r) => setTimeout(r, 600));
-        if (!active) break;
+    const revealStage = Math.min(5, Math.max(1, Math.ceil((latest - 0.24) / 0.1)));
+    setStage(revealStage);
+  });
 
-        // Step 2: Reveal letters one by one (H, U, M, A, N)
-        for (let i = 1; i <= 5; i++) {
-          setRevealedCount(i);
-          await new Promise((r) => setTimeout(r, 1000));
-          if (!active) break;
-        }
-        if (!active) break;
-
-        // Step 3: All revealed, trigger golden glow in navy background
-        await new Promise((r) => setTimeout(r, 400));
-        if (!active) break;
-        setIsGlowing(true);
-
-        // Step 4: Stay in glowing state for 6.5 seconds, then repeat
-        await new Promise((r) => setTimeout(r, 6500));
-      }
-    };
-
-    runSequence();
-
-    return () => {
-      active = false;
-    };
-  }, [hasStarted]);
+  const isFinal = stage >= 6;
 
   return (
     <section
       id="values"
       ref={sectionRef}
-      className={`relative py-24 md:py-32 px-6 md:px-16 lg:px-24 transition-all duration-1000 border-t border-black/[0.06] overflow-hidden ${
-        isGlowing ? "bg-[#050E21] text-white" : "bg-[#F5F7FA] text-[#4A4C54]"
-      }`}
+      className="relative z-10 h-[118vh] w-full bg-[#F5F7FA] md:h-[128vh]"
     >
-      <div className="pointer-events-none absolute inset-0 z-0 opacity-70">
-        <div className={`absolute inset-0 transition-opacity duration-1000 ${
-          isGlowing
-            ? "opacity-40 bg-[linear-gradient(90deg,rgba(217,164,65,0.08)_0%,transparent_34%,rgba(255,255,255,0.035)_100%)]"
-            : "opacity-55 bg-[linear-gradient(90deg,rgba(11,44,107,0.045)_0%,transparent_40%,rgba(217,164,65,0.04)_100%)]"
-        }`} />
-        <div className="absolute inset-0 opacity-[0.05] bg-[linear-gradient(90deg,transparent_0,transparent_96%,rgba(11,44,107,0.75)_100%)] bg-[length:72px_100%]" />
-      </div>
+      <div className="sticky top-[84px] flex min-h-[260px] items-center overflow-hidden bg-[#F5F7FA] px-4 py-6 md:top-[92px] md:min-h-[300px] md:px-0 md:py-0">
+        <div
+          className={`relative flex min-h-[240px] w-full items-center overflow-hidden rounded-[18px] border px-5 py-7 shadow-[0_18px_58px_-46px_rgba(11,44,107,0.34)] transition-colors duration-700 md:min-h-[280px] md:rounded-none md:border-x-0 md:px-12 lg:px-16 ${
+            isFinal
+              ? "border-[#D9A441]/22 bg-[#071A33] text-white"
+              : "border-[#0B2C6B]/8 bg-white text-[#0B2C6B]"
+          }`}
+        >
+          <Image
+            src="/asset/human-texture-light-home.png"
+            alt=""
+            fill
+            priority={false}
+            sizes="100vw"
+            className={`object-cover transition-opacity duration-700 ${
+              isFinal ? "opacity-0" : "opacity-100"
+            }`}
+          />
+          <Image
+            src="/asset/human-texture-dark-home.png"
+            alt=""
+            fill
+            priority={false}
+            sizes="100vw"
+            className={`object-cover brightness-[0.82] contrast-110 saturate-[0.92] transition-opacity duration-700 ${
+              isFinal ? "opacity-100" : "opacity-0"
+            }`}
+          />
+          <div className={`pointer-events-none absolute inset-0 transition-opacity duration-700 ${
+            isFinal ? "bg-[#071A33]/62 opacity-100" : "bg-white/50 opacity-100"
+          }`} />
 
-      {/* Premium ambient lights */}
-      {isGlowing && (
-        <div className="absolute inset-0 z-0 pointer-events-none transition-opacity duration-1000">
-          <div className="absolute -top-40 -left-28 h-[420px] w-[640px] bg-[#D9A441]/8 blur-[140px]" />
-          <div className="absolute -bottom-40 right-0 h-[480px] w-[720px] bg-[#0B2C6B]/28 blur-[150px]" />
-          <div className="absolute left-[8%] right-[8%] top-1/2 h-px bg-gradient-to-r from-transparent via-[#D9A441]/26 to-transparent" />
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_55%_52%,rgba(255,255,255,0.045),transparent_34%)]" />
-        </div>
-      )}
+          <div className="relative z-10 mx-auto flex w-full max-w-[1720px] flex-col gap-7">
+            <div className="flex items-center justify-between gap-4">
+              <p className="text-[10px] font-bold uppercase tracking-[0.28em] text-[#D9A441]">
+                Nilai Utama
+              </p>
+            </div>
 
-      <div className="max-w-7xl mx-auto relative z-10 flex flex-col items-start">
-        
-        {/* Header Tags (Aligned to Left) */}
-        <div className="text-left mb-16 flex flex-col items-start">
-          <div className={`flex h-12 w-12 items-center justify-center rounded-[12px] border transition-all duration-1000 ${
-            isGlowing
-              ? "border-[#D9A441]/35 bg-white/[0.06] text-[#D9A441]"
-              : "border-[#0B2C6B]/10 bg-white/60 text-[#0B2C6B]"
-          }`}>
-            <PixelIcon type="core" size={26} />
-          </div>
-          <div className="mt-5">
-            <Tag className={isGlowing ? "bg-white/10 text-white border border-white/20 shadow-sm" : "bg-black/[0.04] text-black/40"}>
-              NILAI-NILAI UTAMA
-            </Tag>
-          </div>
-          <h2 className={`mt-4 text-sm tracking-[0.3em] uppercase transition-colors duration-1000 ${
-            isGlowing ? "text-white/80" : "text-black/40"
-          }`}>
-            Prinsip Fondasi BinaHub
-          </h2>
-        </div>
+            <div className="relative min-h-[128px] md:min-h-[152px]">
+              <motion.div
+                style={{ x: introX }}
+                className="absolute inset-0 flex items-center justify-center"
+              >
+                <p
+                  className={`mx-auto max-w-2xl text-center text-lg font-light leading-relaxed transition-colors duration-700 md:text-2xl ${
+                    isFinal ? "text-white/62" : "text-[#0B2C6B]/72"
+                  }`}
+                >
+                  Lima prinsip yang menjaga transformasi tetap manusiawi, berintegritas, berdampak, bertumbuh, dan bermakna.
+                </p>
+              </motion.div>
 
-        {/* Acronym Stack Container (Left Aligned, clean words) */}
-        <div className="flex flex-col gap-6 md:gap-8 w-full items-start pl-0">
-          {HUMAN_VALUES.map((val, idx) => {
-            const isRevealed = revealedCount > idx;
+              <motion.div
+                style={{ x: valuesX, opacity: valuesOpacity }}
+                className="absolute inset-0 flex items-center"
+              >
+                <div
+                  className={`grid w-full items-start gap-2 sm:gap-4 md:pr-40 lg:pr-44 ${
+                    isFinal ? "grid-cols-5" : "grid-cols-2 sm:grid-cols-5"
+                  }`}
+                >
+                  {HUMAN_VALUES.map((value, index) => {
+                    const isVisible = stage > index;
 
-            return (
-              <div key={val.letter} className="h-auto py-2 md:py-0 md:h-20 flex items-center w-full">
-                <AnimatePresence>
-                  {isRevealed && (
-                    <motion.div
-                      initial={{ opacity: 0, x: -35, scale: 0.95 }}
-                      animate={{ opacity: 1, x: 0, scale: 1 }}
-                      exit={{ opacity: 0, x: 20 }}
-                      transition={{ duration: 0.5, type: "spring", stiffness: 120 }}
-                      className="flex flex-col md:flex-row md:items-center justify-between w-full gap-6 px-0 py-0 transition-all duration-700 md:px-6 md:py-3"
-                    >
-                      <div className="flex items-baseline text-3xl sm:text-4xl md:text-5xl lg:text-6xl tracking-tight leading-none">
-                        {/* Big capital letter with golden neon glow when active */}
+                    return (
+                      <motion.div
+                        key={value.letter}
+                        animate={{
+                          opacity: isVisible ? 1 : 0,
+                          y: isVisible ? 0 : 14,
+                        }}
+                        transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+                        className={`text-center transition-[min-height] duration-700 ${
+                          isFinal ? "min-h-[116px] md:min-h-[132px]" : "min-h-[54px] sm:min-h-[76px]"
+                        }`}
+                      >
                         <span
-                          className={`font-extrabold font-sans transition-all duration-1000 shrink-0 select-none ${
-                            isGlowing
-                              ? "text-[#D9A441] scale-105"
-                              : "text-[#0B2C6B]"
+                          className={`block leading-none transition-all duration-700 ${
+                            isFinal
+                              ? "scale-105 text-[clamp(2.7rem,14vw,5.1rem)] font-medium tracking-[0.015em] text-[#D9A441] sm:text-[clamp(4rem,9vw,6.4rem)] lg:text-[8rem]"
+                              : "text-[clamp(1.05rem,4.4vw,1.8rem)] font-light text-[#0B2C6B] sm:text-[clamp(1.05rem,2vw,1.55rem)] lg:text-[1.85rem]"
                           }`}
                           style={{
-                            textShadow: isGlowing
-                              ? "0 0 20px rgba(217,164,65,0.32)"
-                              : "none",
+                            textShadow: "none",
                           }}
                         >
-                          {val.letter}
+                          {value.letter}
+                          {!isFinal && (
+                            <span className="font-light tracking-normal text-[#0B2C6B]/70">
+                              {value.rest}
+                            </span>
+                          )}
                         </span>
+                      </motion.div>
+                    );
+                  })}
+                </div>
+              </motion.div>
+            </div>
+          </div>
 
-                        {/* The rest of the word seamlessly attached */}
-                        <span className={`font-light transition-colors duration-1000 ${
-                          isGlowing ? "text-white" : "text-[#0B2C6B]/80"
-                        }`}>
-                          {val.rest}
-                        </span>
-                      </div>
+          <motion.div
+            animate={{ opacity: isFinal ? 1 : 0, x: isFinal ? 0 : 18 }}
+            transition={{ duration: 0.48, ease: [0.22, 1, 0.36, 1] }}
+            className="pointer-events-none absolute inset-y-0 right-5 z-20 hidden items-center md:flex lg:right-12"
+          >
+            <Link
+              href="/about#nilai"
+              className={`pointer-events-auto inline-flex h-11 shrink-0 items-center justify-center rounded-full px-5 text-[10px] font-bold uppercase tracking-[0.16em] transition-all duration-500 ${
+                isFinal
+                  ? "bg-[#D9A441] text-[#071A33] hover:bg-white"
+                  : "bg-[#0B2C6B] text-white"
+              }`}
+            >
+              Detail Nilai
+            </Link>
+          </motion.div>
 
-                      {/* If it's Noble Excellence, place the button to the right! */}
-                      {idx === 4 && (
-                        <motion.div
-                          initial={{ opacity: 0, scale: 0.95 }}
-                          animate={{ opacity: 1, scale: 1 }}
-                          transition={{ duration: 0.5, delay: 0.4 }}
-                          className="shrink-0"
-                        >
-                          <Link
-                            href="/about#nilai"
-                            className={`group inline-flex items-center gap-3 px-8 py-4 rounded-full text-[11px] font-bold tracking-[0.2em] uppercase transition-all duration-500 hover:scale-105 active:scale-95 cursor-pointer shadow-lg ${
-                              isGlowing
-                                ? "bg-[#D9A441] text-[#0A1A3A] hover:bg-white hover:text-[#0A1A3A] shadow-[#D9A441]/10"
-                                : "bg-[#0B2C6B] text-white hover:bg-[#D9A441] hover:text-[#0B2C6B] shadow-black/5"
-                            }`}
-                          >
-                            Lihat Selengkapnya
-                            <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform duration-300" />
-                          </Link>
-                        </motion.div>
-                      )}
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
-            );
-          })}
+          <motion.div
+            animate={{ opacity: isFinal ? 1 : 0, y: isFinal ? 0 : 10 }}
+            transition={{ duration: 0.48, ease: [0.22, 1, 0.36, 1] }}
+            className="absolute inset-x-5 bottom-5 z-20 md:hidden"
+          >
+            <Link
+              href="/about#nilai"
+              className="inline-flex h-11 w-full items-center justify-center rounded-full bg-[#D9A441] px-5 text-[10px] font-bold uppercase tracking-[0.16em] text-[#071A33]"
+            >
+              Detail Nilai
+            </Link>
+          </motion.div>
         </div>
-
       </div>
     </section>
   );

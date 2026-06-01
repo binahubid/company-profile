@@ -143,10 +143,64 @@ export default function AboutPage() {
         </div>
       </section>
 
+      {/* Siapa Kami (The Context Section) */}
+      <section id="siapa-kami" className="relative overflow-hidden bg-[#F7F8FA] px-6 md:px-12 lg:px-20 py-20 md:py-28">
+        <div className="relative mx-auto grid max-w-7xl gap-12 lg:grid-cols-[0.82fr_1.18fr] lg:items-start">
+          <div className="max-w-xl">
+            <Tag>SIAPA KAMI</Tag>
+
+            <h2 className="mt-6 text-4xl md:text-5xl font-light leading-[1.08] tracking-[-0.05em] text-[#0B2C6B]">
+              Mitra transformasi
+              <span className="block font-medium italic">yang berpusat pada manusia.</span>
+            </h2>
+
+            <p className="mt-8 text-base leading-[1.85] text-black/65">
+              BinaHub membantu organisasi membaca perubahan, mengembangkan kapabilitas manusia,
+              dan merancang transformasi yang tidak berhenti pada aktivitas pelatihan.
+            </p>
+
+            <p className="mt-7 text-lg leading-[1.75] font-medium text-black/82">
+              Kami percaya masa depan membutuhkan organisasi yang cerdas secara teknologi,
+              sekaligus <span className="text-[#D9A441]">matang secara manusiawi.</span>
+            </p>
+          </div>
+
+          <div className="grid gap-4 md:grid-cols-2">
+            {challenges.map((item, index) => {
+              const isLast = index === challenges.length - 1;
+
+              return (
+                <div
+                  key={item}
+                  className={`group rounded-[10px] border border-black/5 bg-white/88 p-5 shadow-[0_16px_42px_-38px_rgba(11,44,107,0.28)] transition-all duration-300 hover:-translate-y-1 hover:border-[#D9A441]/30 hover:bg-white md:p-6 ${isLast ? "md:col-span-2 min-h-[96px]" : "min-h-[112px]"
+                    }`}
+                >
+                  <div className="flex h-full flex-col justify-center">
+                    <div className="flex items-start gap-4">
+                      <div className="mt-1 flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#E84A5F]/10">
+                        <span className="h-2 w-2 rounded-full bg-[#E84A5F]" />
+                      </div>
+
+                      <div>
+                        <span className="mb-3 block h-px w-9 bg-[#D9A441]/60" />
+
+                        <h3 className="text-xs md:text-sm font-semibold uppercase leading-[1.65] tracking-[0.035em] text-[#111827]">
+                          {item}
+                        </h3>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
       {/* Perjalanan Kami */}
       <section
         id="perjalanan"
-        className="py-20 md:py-32 px-6 md:px-12 lg:px-20 bg-[#FAFAF8]"
+        className="py-20 md:py-28 px-6 md:px-12 lg:px-20 bg-[#FAFAF8]"
       >
         <div className="max-w-7xl mx-auto">
           <div className="grid lg:grid-cols-[0.95fr_1.05fr] gap-16 xl:gap-24 items-center">
@@ -157,7 +211,7 @@ export default function AboutPage() {
               transition={{ duration: 0.7, ease: "easeOut" }}
               className="max-w-2xl"
             >
-              <Tag>PERJALANAN KAMI</Tag>
+              <Tag>LEGACY & PERJALANAN</Tag>
 
               <h2 className="mt-6 max-w-[620px] text-4xl md:text-5xl lg:text-[56px] font-light tracking-[-0.045em] leading-[1.08] text-[#0B2C6B]">
                 Berakar pada{" "}
@@ -166,7 +220,7 @@ export default function AboutPage() {
                 </span>
               </h2>
 
-              <div className="mt-10 space-y-8 text-[15px] md:text-base text-black/68 font-light leading-[1.85]">
+              <div className="mt-10 space-y-7 text-[15px] md:text-base text-black/68 font-light leading-[1.85]">
                 <p>
                   BinaHub lahir sebagai <i>sister company</i> dari{" "}
                   <strong className="font-medium text-black/80">
@@ -180,7 +234,7 @@ export default function AboutPage() {
                 <p>
                   Sebagai kelanjutan strategis, BinaHub melangkah lebih jauh untuk
                   mendampingi organisasi menghadapi era otomatisasi dan disrupsi
-                  kecerdasan buatan (AI). Kami memadukan pengembangan SDM, stimulasi
+                  kecerdasan buatan (AI). Kami memadukan pengembangan SDM, simulasi
                   keputusan global bersama{" "}
                   <strong className="font-medium text-black/80">BSKSims</strong>{" "}
                   asal Amerika Serikat, kepemimpinan adaptif, dan teknologi canggih
@@ -202,16 +256,28 @@ export default function AboutPage() {
                   ))}
                 </div>
 
-                <Link
-                  href="/journey"
-                  className="mt-10 inline-flex items-center gap-3 rounded-full border border-[#D9A441]/35 px-5 py-3 text-[11px] font-semibold text-[#B8841F] hover:border-[#0B2C6B]/30 hover:text-[#0B2C6B] hover:bg-white transition-all duration-300 tracking-[0.18em] uppercase group"
-                >
-                  Baca Kisah Lengkap
-                  <ArrowRight
-                    size={14}
-                    className="transition-transform duration-300 group-hover:translate-x-1"
-                  />
-                </Link>
+                <div className="mt-10 flex flex-wrap gap-3">
+                  <Link
+                    href="/journey"
+                    className="inline-flex items-center gap-3 rounded-full border border-[#D9A441]/35 px-5 py-3 text-[11px] font-semibold text-[#B8841F] hover:border-[#0B2C6B]/30 hover:text-[#0B2C6B] hover:bg-white transition-all duration-300 tracking-[0.18em] uppercase group"
+                  >
+                    Perjalanan Kami
+                    <ArrowRight
+                      size={14}
+                      className="transition-transform duration-300 group-hover:translate-x-1"
+                    />
+                  </Link>
+                  <Link
+                    href="/from-bdn-to-binahub"
+                    className="inline-flex items-center gap-3 rounded-full border border-[#0B2C6B]/15 px-5 py-3 text-[11px] font-semibold text-[#0B2C6B]/70 hover:border-[#D9A441]/35 hover:text-[#B8841F] hover:bg-white transition-all duration-300 tracking-[0.18em] uppercase group"
+                  >
+                    Dari BDN ke BinaHub
+                    <ArrowRight
+                      size={14}
+                      className="transition-transform duration-300 group-hover:translate-x-1"
+                    />
+                  </Link>
+                </div>
               </div>
             </motion.div>
 
@@ -223,7 +289,7 @@ export default function AboutPage() {
               className="relative"
             >
               <div className="relative aspect-[5/4] overflow-hidden rounded-[14px] border border-black/5 bg-[#0B1F46] shadow-[0_40px_120px_-30px_rgba(11,44,107,0.18)]">
-                
+
                 <Image
                   src="/asset/bsksims2.png"
                   alt="Perjalanan Kami BinaHub"
@@ -242,72 +308,15 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Siapa Kami (The Context Section) */}
-     <section className="relative overflow-hidden bg-[#F7F8FA] px-6 md:px-12 lg:px-20 py-24 md:py-32">
-        <div className="absolute left-[-10%] top-[-20%] h-[320px] w-[560px] bg-[#0B2C6B]/4 blur-3xl" />
-        <div className="absolute right-[-8%] bottom-[-20%] h-[320px] w-[560px] bg-[#D9A441]/6 blur-3xl" />
-
-        <div className="relative mx-auto grid max-w-7xl gap-16 lg:grid-cols-[0.8fr_1.2fr] lg:items-start">
-          <div className="max-w-xl">
-            <h2 className="text-4xl md:text-5xl font-light leading-[1.08] tracking-[-0.05em] text-[#0B2C6B]">
-              Era Transformasi
-              <span className="block font-medium italic">Tanpa Batas.</span>
-            </h2>
-
-            <p className="mt-10 text-base leading-[1.85] text-black/65">
-              Perkembangan AI, otomatisasi, dan digitalisasi membuka peluang inovasi
-              yang besar, namun sekaligus membawa tantangan nyata bagi kemanusiaan.
-            </p>
-
-            <p className="mt-8 text-lg leading-[1.75] font-medium text-black/82">
-              Kami percaya bahwa masa depan tidak hanya membutuhkan organisasi yang
-              lebih cerdas secara teknologi, tetapi juga lebih{" "}
-              <span className="text-[#D9A441]">matang secara manusiawi.</span>
-            </p>
-          </div>
-
-          <div className="grid gap-5 md:grid-cols-2">
-            {challenges.map((item, index) => {
-              const isLast = index === challenges.length - 1;
-
-              return (
-                <div
-                  key={item}
-                  className={`group rounded-[12px] border border-black/5 bg-white p-6 shadow-[0_18px_46px_-38px_rgba(11,44,107,0.28)] transition-all duration-300 hover:-translate-y-1 hover:border-[#D9A441]/30 hover:shadow-[0_24px_64px_-48px_rgba(11,44,107,0.36)] md:p-7 ${
-                              isLast ? "md:col-span-2 min-h-[116px]" : "min-h-[136px]"
-                            }`}
-                >
-                  <div className="flex h-full flex-col justify-center">
-                    <div className="flex items-start gap-5">
-                      <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#E84A5F]/10">
-                        <span className="h-2 w-2 rounded-full bg-[#E84A5F]" />
-                      </div>
-
-                      <div>
-                        <span className="mb-4 block h-px w-10 bg-[#D9A441]/60" />
-
-                        <h3 className="text-sm md:text-[15px] font-semibold uppercase leading-[1.7] tracking-[0.035em] text-[#111827]">
-                          {item}
-                        </h3>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
       {/* Positioning & Capabilities Grid */}
-      <section className="relative overflow-hidden py-20 md:py-32 px-6 md:px-12 lg:px-20 bg-[radial-gradient(circle_at_top_left,rgba(11,44,107,0.04),transparent_34%),radial-gradient(circle_at_top_right,rgba(217,164,65,0.075),transparent_30%),linear-gradient(to_bottom,#FFFFFF,#F8F9FA)]">
+      <section className="relative overflow-hidden py-20 md:py-28 px-6 md:px-12 lg:px-20 bg-[linear-gradient(to_bottom,#FFFFFF,#F8F9FA)]">
         <div className="pointer-events-none absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-white to-transparent" />
         <div className="pointer-events-none absolute left-0 top-0 h-full w-28 bg-[linear-gradient(90deg,rgba(11,44,107,0.035),transparent)]" />
 
         <div className="relative max-w-[1428px] mx-auto overflow-x-hidden">
           <div className="grid lg:grid-cols-[0.94fr_1fr] gap-10 lg:gap-20 items-end mb-14 lg:mb-18">
             <div>
-              <Tag>OUR POSITIONING</Tag>
+              <Tag>POSISI KAMI</Tag>
 
               <h2 className="mt-6 md:mt-8 max-w-[620px] text-4xl md:text-5xl lg:text-5xl xl:text-[62px] font-light tracking-[-0.055em] leading-[1.02] text-[#0B2C6B]">
                 Mitra transformasi
@@ -316,13 +325,14 @@ export default function AboutPage() {
               </h2>
             </div>
 
-            <p className="max-w-[520px] text-base md:text-lg text-black/64 font-light leading-[1.85] lg:pb-3">
-              Kami memadukan lima pilar utama untuk memastikan organisasi Anda tidak
-              hanya bertahan, tetapi bertumbuh secara utuh di tengah perubahan.
+            <p className="max-w-[560px] text-base md:text-lg text-black/64 font-light leading-[1.85] lg:pb-3">
+              Peran kami adalah membantu organisasi menghubungkan arah bisnis,
+              kapabilitas manusia, budaya kerja, dan kesiapan teknologi dalam satu
+              sistem transformasi yang dapat dijalankan.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-5">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
             {CAPABILITIES.map((cap, i) => {
               const isFeatured = i === 0;
               const texture = CAPABILITY_TEXTURES[i];
@@ -334,30 +344,27 @@ export default function AboutPage() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-70px" }}
                   transition={{ delay: i * 0.08, duration: 0.65, ease: "easeOut" }}
-                  className={`group relative min-h-[360px] overflow-hidden rounded-[14px] border p-7 transition-all duration-500 hover:-translate-y-1 md:p-8 lg:min-h-[370px] xl:min-h-[390px] ${
-                    isFeatured
+                  className={`group relative min-h-[250px] overflow-hidden rounded-[12px] border p-6 transition-all duration-500 hover:-translate-y-1 md:min-h-[260px] lg:min-h-[300px] ${isFeatured
                       ? "border-[#0A2A63]/10 bg-[#082D70] text-white shadow-[0_24px_66px_-44px_rgba(11,44,107,0.68)] hover:bg-[#062763] hover:shadow-[0_30px_78px_-50px_rgba(11,44,107,0.74)]"
                       : "border-black/[0.045] bg-[#FCFCFB] text-[#1D2433] shadow-[0_18px_54px_-48px_rgba(11,44,107,0.28)] hover:border-[#D9A441]/25 hover:bg-white hover:shadow-[0_24px_72px_-56px_rgba(11,44,107,0.36)]"
-                  }`}
+                    }`}
                 >
-                 {/* Ambient texture */}
+                  {/* Ambient texture */}
                   <div
-                    className={`pointer-events-none absolute inset-0 z-[2] transition-all duration-500 ${
-                      isFeatured
+                    className={`pointer-events-none absolute inset-0 z-[2] transition-all duration-500 ${isFeatured
                         ? "opacity-[0.42] group-hover:opacity-[0.5]"
                         : "opacity-[0.28] group-hover:opacity-[0.36]"
-                    }`}
+                      }`}
                   >
                     <Image
                       src={texture}
                       alt=""
                       fill
                       sizes="(max-width: 768px) 100vw, 20vw"
-                      className={`object-cover scale-110 -translate-y-5 ${
-                        isFeatured
+                      className={`object-cover scale-110 -translate-y-5 ${isFeatured
                           ? "object-center mix-blend-multiply grayscale brightness-0 contrast-125"
                           : "object-top mix-blend-multiply grayscale brightness-95 contrast-150"
-                      }`}
+                        }`}
                     />
                     {isFeatured && (
                       <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[48%] bg-gradient-to-t from-[#071F4D]/80 to-transparent" />
@@ -366,23 +373,21 @@ export default function AboutPage() {
 
                   {/* Soft overlay, lower area kept cleaner for text */}
                   <div
-                    className={`pointer-events-none absolute inset-0 z-[1] ${
-                      isFeatured
+                    className={`pointer-events-none absolute inset-0 z-[1] ${isFeatured
                         ? "bg-[linear-gradient(180deg,rgba(8,45,112,0.2)_0%,rgba(8,45,112,0.58)_48%,rgba(8,45,112,0.96)_100%)]"
                         : "bg-[linear-gradient(180deg,rgba(255,255,255,0.18)_0%,rgba(255,255,255,0.56)_48%,rgba(255,255,255,0.94)_100%)]"
-                    }`}
+                      }`}
                   />
 
                   {/* Subtle gold accent */}
                   <div className="pointer-events-none absolute -right-20 -top-20 h-36 w-64 bg-[#D9A441]/8 blur-3xl opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
 
-                  <div className="relative z-10 flex min-h-[304px] flex-col lg:min-h-[314px] xl:min-h-[334px]">
+                  <div className="relative z-10 flex min-h-[200px] flex-col md:min-h-[210px] lg:min-h-[250px]">
                     <div
-                      className={`flex h-[54px] w-[54px] items-center justify-center rounded-[10px] border shadow-[0_14px_36px_-22px_rgba(11,44,107,0.42)] transition-all duration-500 ${
-                        isFeatured
+                      className={`flex h-12 w-12 items-center justify-center rounded-[10px] border shadow-[0_14px_36px_-22px_rgba(11,44,107,0.42)] transition-all duration-500 ${isFeatured
                           ? "border-white/10 bg-white/92 text-[#0A2A63] group-hover:bg-[#D9A441]"
                           : "border-black/5 bg-white/90 text-[#0B2C6B] group-hover:border-[#D9A441]/30 group-hover:bg-[#D9A441]"
-                      }`}
+                        }`}
                     >
                       {cap.icon}
                     </div>
@@ -391,9 +396,8 @@ export default function AboutPage() {
                       <span className="mb-5 block h-px w-8 bg-[#D9A441]" />
 
                       <h4
-                        className={`mb-4 text-sm md:text-[15px] font-semibold tracking-[0.16em] uppercase leading-[1.55] transition-colors ${
-                          isFeatured ? "text-white" : "text-[#1D2433]"
-                        }`}
+                        className={`mb-3 text-xs md:text-[13px] font-semibold tracking-[0.14em] uppercase leading-[1.55] transition-colors ${isFeatured ? "text-white" : "text-[#1D2433]"
+                          }`}
                       >
                         {cap.title}
                       </h4>
@@ -401,9 +405,8 @@ export default function AboutPage() {
                       <div className="mb-4 h-px w-7 bg-[#D9A441]" />
 
                       <p
-                        className={`text-sm font-light leading-[1.75] transition-colors ${
-                          isFeatured ? "text-white/72" : "text-black/62"
-                        }`}
+                        className={`text-sm font-light leading-[1.7] transition-colors ${isFeatured ? "text-white/72" : "text-black/62"
+                          }`}
                       >
                         {cap.desc}
                       </p>
@@ -506,51 +509,47 @@ export default function AboutPage() {
               const isFeaturedMission = featuredMissionIndex === missionIndex;
 
               return (
-              <motion.div
-                key={pillar.title}
-                initial={{ opacity: 0, y: 24 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-70px" }}
-                whileHover={{ y: -4, scale: 1.01 }}
-                onMouseEnter={() => setIsMissionPaused(true)}
-                onMouseLeave={() => setIsMissionPaused(false)}
-                transition={{ delay: missionIndex * 0.08, duration: 0.7, ease: premiumEase }}
-                className={`group/mission relative col-span-12 flex min-h-[190px] flex-col justify-center overflow-hidden rounded-[12px] border p-8 py-10 shadow-sm transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] hover:shadow-md md:col-span-4 ${
-                  isFeaturedMission
-                    ? "bg-[#183F82] border-[#183F82] text-white shadow-[#0B2C6B]/14 hover:border-[#D9A441]/35"
-                    : "bg-white border-black/[0.04] hover:border-[#D9A441]/30"
-                }`}
-              >
-                <div
-                  className={`pointer-events-none absolute inset-0 transition-opacity duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${MISSION_TEXTURES[missionIndex]} ${
-                    isFeaturedMission ? "opacity-[0.18]" : "opacity-[0.06]"
-                  }`}
-                />
-                <div
-                  className={`pointer-events-none absolute inset-0 transition-opacity duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${
-                    isFeaturedMission
-                      ? "opacity-100 bg-[radial-gradient(circle_at_82%_18%,rgba(217,164,65,0.1),transparent_34%)]"
-                      : "opacity-0"
-                  }`}
-                />
                 <motion.div
-                  whileHover={{ y: -2, rotate: -3 }}
-                  transition={{ duration: 0.28, ease: "easeOut" }}
-                  className={`relative z-10 mb-4 flex h-10 w-10 items-center justify-center rounded-[10px] border transition-colors duration-700 ${
-                    isFeaturedMission
-                      ? "border-white/12 bg-white/[0.06] text-[#D9A441]"
-                      : "border-black/10 text-[#0B2C6B]"
-                  }`}
+                  key={pillar.title}
+                  initial={{ opacity: 0, y: 24 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-70px" }}
+                  whileHover={{ y: -4, scale: 1.01 }}
+                  onMouseEnter={() => setIsMissionPaused(true)}
+                  onMouseLeave={() => setIsMissionPaused(false)}
+                  transition={{ delay: missionIndex * 0.08, duration: 0.7, ease: premiumEase }}
+                  className={`group/mission relative col-span-12 flex min-h-[190px] flex-col justify-center overflow-hidden rounded-[12px] border p-8 py-10 shadow-sm transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] hover:shadow-md md:col-span-4 ${isFeaturedMission
+                      ? "bg-[#183F82] border-[#183F82] text-white shadow-[#0B2C6B]/14 hover:border-[#D9A441]/35"
+                      : "bg-white border-black/[0.04] hover:border-[#D9A441]/30"
+                    }`}
                 >
-                  {pillar.icon}
+                  <div
+                    className={`pointer-events-none absolute inset-0 transition-opacity duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${MISSION_TEXTURES[missionIndex]} ${isFeaturedMission ? "opacity-[0.18]" : "opacity-[0.06]"
+                      }`}
+                  />
+                  <div
+                    className={`pointer-events-none absolute inset-0 transition-opacity duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${isFeaturedMission
+                        ? "opacity-100 bg-[radial-gradient(circle_at_82%_18%,rgba(217,164,65,0.1),transparent_34%)]"
+                        : "opacity-0"
+                      }`}
+                  />
+                  <motion.div
+                    whileHover={{ y: -2, rotate: -3 }}
+                    transition={{ duration: 0.28, ease: "easeOut" }}
+                    className={`relative z-10 mb-4 flex h-10 w-10 items-center justify-center rounded-[10px] border transition-colors duration-700 ${isFeaturedMission
+                        ? "border-white/12 bg-white/[0.06] text-[#D9A441]"
+                        : "border-black/10 text-[#0B2C6B]"
+                      }`}
+                  >
+                    {pillar.icon}
+                  </motion.div>
+                  <h3 className={`relative z-10 text-lg font-light mb-1.5 transition-colors duration-700 ${isFeaturedMission ? "text-white" : "text-[#0B2C6B]"}`}>
+                    {pillar.title}
+                  </h3>
+                  <p className={`relative z-10 text-xs leading-relaxed transition-colors duration-700 ${isFeaturedMission ? "text-white/68" : "text-black/58"}`}>
+                    {pillar.desc}
+                  </p>
                 </motion.div>
-                <h3 className={`relative z-10 text-lg font-light mb-1.5 transition-colors duration-700 ${isFeaturedMission ? "text-white" : "text-[#0B2C6B]"}`}>
-                  {pillar.title}
-                </h3>
-                <p className={`relative z-10 text-xs leading-relaxed transition-colors duration-700 ${isFeaturedMission ? "text-white/68" : "text-black/58"}`}>
-                  {pillar.desc}
-                </p>
-              </motion.div>
               );
             })}
 
@@ -560,51 +559,47 @@ export default function AboutPage() {
               const isFeaturedMission = featuredMissionIndex === missionIndex;
 
               return (
-              <motion.div
-                key={pillar.title}
-                initial={{ opacity: 0, y: 24 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-70px" }}
-                whileHover={{ y: -4, scale: 1.01 }}
-                onMouseEnter={() => setIsMissionPaused(true)}
-                onMouseLeave={() => setIsMissionPaused(false)}
-                transition={{ delay: missionIndex * 0.08, duration: 0.7, ease: premiumEase }}
-                className={`group/mission relative col-span-12 flex min-h-[190px] flex-col justify-center overflow-hidden rounded-[12px] border p-8 py-10 shadow-sm transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] hover:shadow-md md:col-span-4 ${
-                  isFeaturedMission
-                    ? "bg-[#183F82] border-[#183F82] text-white shadow-[#0B2C6B]/14 hover:border-[#D9A441]/35"
-                    : "bg-white border-black/[0.04] hover:border-[#D9A441]/30"
-                }`}
-              >
-                <div
-                  className={`pointer-events-none absolute inset-0 transition-opacity duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${MISSION_TEXTURES[missionIndex]} ${
-                    isFeaturedMission ? "opacity-[0.18]" : "opacity-[0.06]"
-                  }`}
-                />
-                <div
-                  className={`pointer-events-none absolute inset-0 transition-opacity duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${
-                    isFeaturedMission
-                      ? "opacity-100 bg-[radial-gradient(circle_at_82%_18%,rgba(217,164,65,0.1),transparent_34%)]"
-                      : "opacity-0"
-                  }`}
-                />
                 <motion.div
-                  whileHover={{ y: -2, rotate: -3 }}
-                  transition={{ duration: 0.28, ease: "easeOut" }}
-                  className={`relative z-10 mb-4 flex h-10 w-10 items-center justify-center rounded-[10px] border transition-colors duration-700 ${
-                    isFeaturedMission
-                      ? "border-white/12 bg-white/[0.06] text-[#D9A441]"
-                      : "border-black/10 text-[#0B2C6B]"
-                  }`}
+                  key={pillar.title}
+                  initial={{ opacity: 0, y: 24 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-70px" }}
+                  whileHover={{ y: -4, scale: 1.01 }}
+                  onMouseEnter={() => setIsMissionPaused(true)}
+                  onMouseLeave={() => setIsMissionPaused(false)}
+                  transition={{ delay: missionIndex * 0.08, duration: 0.7, ease: premiumEase }}
+                  className={`group/mission relative col-span-12 flex min-h-[190px] flex-col justify-center overflow-hidden rounded-[12px] border p-8 py-10 shadow-sm transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] hover:shadow-md md:col-span-4 ${isFeaturedMission
+                      ? "bg-[#183F82] border-[#183F82] text-white shadow-[#0B2C6B]/14 hover:border-[#D9A441]/35"
+                      : "bg-white border-black/[0.04] hover:border-[#D9A441]/30"
+                    }`}
                 >
-                  {pillar.icon}
+                  <div
+                    className={`pointer-events-none absolute inset-0 transition-opacity duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${MISSION_TEXTURES[missionIndex]} ${isFeaturedMission ? "opacity-[0.18]" : "opacity-[0.06]"
+                      }`}
+                  />
+                  <div
+                    className={`pointer-events-none absolute inset-0 transition-opacity duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${isFeaturedMission
+                        ? "opacity-100 bg-[radial-gradient(circle_at_82%_18%,rgba(217,164,65,0.1),transparent_34%)]"
+                        : "opacity-0"
+                      }`}
+                  />
+                  <motion.div
+                    whileHover={{ y: -2, rotate: -3 }}
+                    transition={{ duration: 0.28, ease: "easeOut" }}
+                    className={`relative z-10 mb-4 flex h-10 w-10 items-center justify-center rounded-[10px] border transition-colors duration-700 ${isFeaturedMission
+                        ? "border-white/12 bg-white/[0.06] text-[#D9A441]"
+                        : "border-black/10 text-[#0B2C6B]"
+                      }`}
+                  >
+                    {pillar.icon}
+                  </motion.div>
+                  <h3 className={`relative z-10 text-lg font-light mb-1.5 transition-colors duration-700 ${isFeaturedMission ? "text-white" : "text-[#0B2C6B]"}`}>
+                    {pillar.title}
+                  </h3>
+                  <p className={`relative z-10 text-xs leading-relaxed transition-colors duration-700 ${isFeaturedMission ? "text-white/68" : "text-black/58"}`}>
+                    {pillar.desc}
+                  </p>
                 </motion.div>
-                <h3 className={`relative z-10 text-lg font-light mb-1.5 transition-colors duration-700 ${isFeaturedMission ? "text-white" : "text-[#0B2C6B]"}`}>
-                  {pillar.title}
-                </h3>
-                <p className={`relative z-10 text-xs leading-relaxed transition-colors duration-700 ${isFeaturedMission ? "text-white/68" : "text-black/58"}`}>
-                  {pillar.desc}
-                </p>
-              </motion.div>
               );
             })}
           </div>

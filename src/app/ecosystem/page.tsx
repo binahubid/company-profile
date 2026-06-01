@@ -1,15 +1,18 @@
 "use client"
 
+import type { MouseEvent } from "react"
 import { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import Link from "next/link"
-import { AlertCircle, ArrowRight, Check, ChevronRight, Target, TrendingUp, X } from "lucide-react"
+import { AlertCircle, Check, ChevronRight, Target, TrendingUp, X } from "lucide-react"
 import { ECOSYSTEM_DATA } from "@/data/ecosystem"
-import { PixelIcon } from "@/components/pixel-icon"
+import { PixelIcon, type IconType } from "@/components/pixel-icon"
 import { Tag } from "@/components/ui/tag"
-import Image from "next/image"
 import BinaHubClickable from "@/components/BinaHubClickable"
-import BinaHubOrbit from "@/components/BinaHubOrbit"
+import { WorkflowSection } from "@/app/_sections/workflow-section"
+
+type EcosystemProduct = (typeof ECOSYSTEM_DATA)[keyof typeof ECOSYSTEM_DATA] & {
+  iconType: IconType
+}
 
 const AMBIENT_PIXELS = [
   { x: "12%", y: "18%", duration: 4.2 },
@@ -29,29 +32,34 @@ const AMBIENT_PIXELS = [
   { x: "93%", y: "49%", duration: 5.1 },
 ]
 
+const SERVICE_CATEGORIES: Record<string, string> = {
+  insight: "Diagnose",
+  academy: "Develop",
+  lab: "Develop",
+  coach: "Develop",
+  play: "Develop",
+  journey: "Develop",
+  works: "Execute",
+  impact: "Measure",
+}
+
 export default function LayananPage() {
-  const [selectedProduct, setSelectedProduct] = useState<any>(null)
-  const [activeView, setActiveView] = useState<"image" | "orbit">("image")
+  const [selectedProduct, setSelectedProduct] = useState<EcosystemProduct | null>(null)
   const [activeDetailTab, setActiveDetailTab] = useState<"overview" | "challenges" | "outcome" | "output">("overview")
-  const products = Object.values(ECOSYSTEM_DATA)
+  const products = Object.values(ECOSYSTEM_DATA) as EcosystemProduct[]
   const primaryProductIds = new Set(["insight", "academy", "works"])
 
-  const openProduct = (product: any) => {
+  const handleMouse = (e: MouseEvent<HTMLDivElement>) => {
+    const el = e.currentTarget
+    const rect = el.getBoundingClientRect()
+    el.style.setProperty("--mouse-x", `${e.clientX - rect.left}px`)
+    el.style.setProperty("--mouse-y", `${e.clientY - rect.top}px`)
+  }
+
+  const openProduct = (product: EcosystemProduct) => {
     setSelectedProduct(product)
     setActiveDetailTab("overview")
   }
-
-  // Approximate coordinate mapping for service.jpeg (Adjust top, left, w, h percentages as needed)
-  const imageMapAreas = [
-    { id: 'insight', top: '15%', left: '10%', width: '15%', height: '25%' },
-    { id: 'lab', top: '15%', left: '32%', width: '15%', height: '25%' },
-    { id: 'coach', top: '15%', left: '54%', width: '15%', height: '25%' },
-    { id: 'journey', top: '15%', left: '76%', width: '15%', height: '25%' },
-    { id: 'play', top: '55%', left: '10%', width: '15%', height: '25%' },
-    { id: 'academy', top: '55%', left: '32%', width: '15%', height: '25%' },
-    { id: 'impact', top: '55%', left: '54%', width: '15%', height: '25%' },
-    { id: 'works', top: '55%', left: '76%', width: '15%', height: '25%' },
-  ]
 
   return (
     <div className="min-h-screen bg-[#F5F7FA] text-[#4A4C54] font-sans overflow-x-hidden">
@@ -59,21 +67,21 @@ export default function LayananPage() {
       {/* Immersive Hero Section - Reconstructed for High Visibility */}
       <section className="w-full px-4 md:px-8 pt-20 md:pt-28 mb-8 md:mb-16">
         <div className="relative flex h-[75vh] min-h-[500px] max-h-[900px] w-full items-center justify-center overflow-hidden rounded-[16px] border border-white/5 bg-[#030712] shadow-lg sm:h-[80vh] md:h-[85vh]">
-          
+
           {/* 1. Technical Grid Lines (High Visibility) */}
-          <div className="absolute inset-0 z-[1] opacity-20" 
-               style={{ 
-                 backgroundImage: `
+          <div className="absolute inset-0 z-[1] opacity-20"
+            style={{
+              backgroundImage: `
                    linear-gradient(to right, rgba(255,255,255,0.1) 1px, transparent 1px),
                    linear-gradient(to bottom, rgba(255,255,255,0.1) 1px, transparent 1px)
                  `,
-                 backgroundSize: '100px 100px' 
-               }} 
+              backgroundSize: '100px 100px'
+            }}
           />
 
           {/* 2. Agitated Intersections (Visible Ornaments) */}
           <div className="absolute inset-0 z-[2] pointer-events-none opacity-40">
-            <div className="w-full h-full" style={{ 
+            <div className="w-full h-full" style={{
               backgroundImage: `radial-gradient(circle, #D9A441 1.5px, transparent 1.5px)`,
               backgroundSize: '100px 100px',
               backgroundPosition: '-0.75px -0.75px'
@@ -96,19 +104,19 @@ export default function LayananPage() {
               const responsiveR = icon.r;
 
               const x = Math.cos(rad) * responsiveR;
-              const y = Math.sin(rad) * (responsiveR * 0.75); 
-              
+              const y = Math.sin(rad) * (responsiveR * 0.75);
+
               return (
                 <motion.div
                   key={i}
                   className="absolute"
                   initial={{ x, y: y + 120, opacity: 0 }}
-                  animate={{ 
+                  animate={{
                     opacity: 0.35,
                     scale: [1, 1.15, 1],
-                    y: [y + 120, y + 110, y + 120] 
+                    y: [y + 120, y + 110, y + 120]
                   }}
-                  transition={{ 
+                  transition={{
                     scale: { duration: 2.5, repeat: Infinity, ease: "easeInOut", delay: i * 0.3 },
                     y: { duration: 4 + i % 3, repeat: Infinity, ease: "easeInOut" },
                     opacity: { duration: 1.5 }
@@ -130,16 +138,16 @@ export default function LayananPage() {
               <motion.div
                 key={i}
                 className="absolute w-1.5 h-1.5 bg-[#D9A441]/40 rounded-sm"
-                initial={{ 
+                initial={{
                   x: pixel.x,
                   y: pixel.y,
                 }}
-                animate={{ 
+                animate={{
                   y: [0, -40, 0],
                   x: [0, 10, -10, 0],
                   opacity: [0, 0.6, 0],
                 }}
-                transition={{ 
+                transition={{
                   duration: pixel.duration,
                   repeat: Infinity,
                   ease: "easeInOut"
@@ -167,9 +175,9 @@ export default function LayananPage() {
             >
               <div className="flex justify-center mb-12">
                 <PixelIcon type="ecosystem" size={56} />
-                </div>
-              
-              
+              </div>
+
+
               <div className="mb-6">
                 <Tag className="text-white/40 bg-white/5 border border-white/10 px-6 py-2 uppercase tracking-[0.3em]">THE INTEGRATED HUB</Tag>
               </div>
@@ -181,7 +189,7 @@ export default function LayananPage() {
                 <span className="text-white/24 font-light">·</span>
                 {" "}<span className="text-[#D9A441] font-normal italic">Elevated</span>
               </h1>
-              
+
               <p className="text-lg md:text-2xl text-white/62 font-light leading-[1.75] max-w-3xl mx-auto">
                 Menyatukan <span className="text-white">Potensi Manusia</span> dan <span className="text-white">Teknologi</span> dalam satu layanan terpadu untuk transformasi nyata.
               </p>
@@ -201,14 +209,14 @@ export default function LayananPage() {
               viewport={{ once: true }}
               className="rounded-[14px] border border-black/[0.08] bg-[#F5F7FA] p-6 md:p-16"
             >
-              <h3 className="text-3xl font-light mb-10 text-[#0B2C6B]">Mengapa Program <br /><span className="font-bold text-[#C85A2A] underline decoration-[#C85A2A]/30 underline-offset-8">Sering Gagal?</span></h3>
+              <h3 className="text-3xl font-light mb-10 text-[#0B2C6B]">Mengapa inisiatif pengembangan <br /><span className="font-bold text-[#C85A2A] underline decoration-[#C85A2A]/30 underline-offset-8">sering kehilangan dampak?</span></h3>
               <div className="space-y-6">
                 {[
-                  "Tidak menyentuh akar permasalahan (Root Cause)",
-                  "Hanya teoritis & tidak relevan dengan bisnis",
-                  "Momentum hilang paska sesi pelatihan",
-                  "Dampak perubahan tidak terukur secara nyata",
-                  "Terhenti di ruang kelas tanpa eksekusi"
+                  "Diagnosis awal berhenti di gejala, bukan akar masalah",
+                  "Desain program tidak terhubung dengan prioritas bisnis",
+                  "Momentum perubahan melemah setelah sesi selesai",
+                  "Perubahan perilaku tidak diikuti mekanisme eksekusi",
+                  "Dampak tidak diukur dengan indikator yang jelas"
                 ].map((item, i) => (
                   <div key={i} className="flex items-center gap-4">
                     <div className="w-6 h-6 rounded-full bg-[#C85A2A]/10 flex items-center justify-center shrink-0">
@@ -228,13 +236,13 @@ export default function LayananPage() {
               className="relative flex flex-col justify-center overflow-hidden rounded-[14px] border border-[#D9A441]/20 bg-[#0B2C6B] p-6 text-white md:p-16"
             >
               {/* Background Ornaments (Subtle Grid) */}
-              <div className="absolute inset-0 z-0 opacity-15 pointer-events-none" 
-                   style={{ 
-                     backgroundImage: 'radial-gradient(rgba(255,255,255,0.15) 1px, transparent 1px)', 
-                     backgroundSize: '24px 24px' 
-                   }} 
+              <div className="absolute inset-0 z-0 opacity-15 pointer-events-none"
+                style={{
+                  backgroundImage: 'radial-gradient(rgba(255,255,255,0.15) 1px, transparent 1px)',
+                  backgroundSize: '24px 24px'
+                }}
               />
-              
+
               {/* Decorative Corner '+' */}
               <div className="absolute top-10 left-10 w-6 h-6 opacity-40">
                 <div className="absolute top-1/2 left-0 w-full h-[1.5px] bg-[#D9A441]" />
@@ -244,7 +252,7 @@ export default function LayananPage() {
               <div className="relative z-10">
                 <h3 className="text-3xl font-light mb-10 text-white">Jawaban di Dalam <br /><span className="text-[#D9A441] font-bold italic">Satu Layanan Terintegrasi.</span></h3>
                 <p className="text-white/90 font-light leading-relaxed mb-10 text-lg">
-                  Setiap pilar BinaHub dirancang untuk saling melengkapi, memastikan transformasi yang berkesinambungan dari penggalian akar masalah hingga akselerasi kinerja nyata.
+                  Setiap layanan BinaHub dirancang untuk saling melengkapi, memastikan transformasi yang berkesinambungan dari penggalian akar masalah hingga akselerasi kinerja nyata.
                 </p>
                 {/* Stats removed as requested */}
               </div>
@@ -253,8 +261,10 @@ export default function LayananPage() {
         </div>
       </section>
 
+      <WorkflowSection onMouseMove={handleMouse} />
+
       {/* Interactive Service Map */}
-      <section id="solusi" className="py-16 md:py-32 px-6 md:px-12 lg:px-20 bg-[#F5F7FA]">
+      <section id="solusi" className="px-6 pb-14 pt-16 md:px-12 md:pb-20 md:pt-32 lg:px-20 lg:pb-24 bg-[#F5F7FA]">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16 md:mb-24">
             <Tag>EXPLORE THE HUB</Tag>
@@ -263,80 +273,33 @@ export default function LayananPage() {
             </h2>
           </div>
 
-          {/* Immersive View Switcher (Desktop & Tablet only) */}
-          <div className="hidden md:flex justify-center mb-12">
-            <div className="bg-white border border-black/5 p-1.5 rounded-lg flex items-center gap-1 shadow-sm">
-              <button
-                onClick={() => setActiveView("image")}
-                className={`px-6 py-2.5 rounded-md font-bold text-[10px] tracking-wider uppercase transition-all duration-300 ${
-                  activeView === "image"
-                    ? "bg-[#0B2C6B] text-white shadow-sm"
-                    : "text-[#0B2C6B]/60 hover:text-[#0B2C6B] hover:bg-[#F5F7FA]"
-                }`}
-              >
-                Peta Gambar (Hotspot)
-              </button>
-              <button
-                onClick={() => setActiveView("orbit")}
-                className={`px-6 py-2.5 rounded-md font-bold text-[10px] tracking-wider uppercase transition-all duration-300 ${
-                  activeView === "orbit"
-                    ? "bg-[#0B2C6B] text-white shadow-sm"
-                    : "text-[#0B2C6B]/60 hover:text-[#0B2C6B] hover:bg-[#F5F7FA]"
-                }`}
-              >
-                Skema Orbit (CSS Murni)
-              </button>
-            </div>
-          </div>
-
-          {/* Conditional Visualization Component Rendering (Desktop & Tablet only) */}
+          {/* Interactive ecosystem map */}
           <div className="hidden md:block mb-16">
-            <AnimatePresence mode="wait">
-              {activeView === "image" ? (
-                <motion.div
-                  key="image-view"
-                  initial={{ opacity: 0, y: 15 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -15 }}
-                  transition={{ duration: 0.3 }}
-                  className="relative mx-auto w-full max-w-[95vw] overflow-hidden rounded-[14px] border border-black/5 bg-white shadow-md xl:max-w-7xl 2xl:max-w-[1440px]"
-                >
-                  <BinaHubClickable 
-                    onProductClick={(productId) => {
-                      const product = products.find(p => p.id === productId);
-                      if (product) openProduct(product);
-                    }} 
-                  />
-                </motion.div>
-              ) : (
-                <motion.div
-                  key="orbit-view"
-                  initial={{ opacity: 0, y: 15 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -15 }}
-                  transition={{ duration: 0.3 }}
-                  className="w-full max-w-[95vw] xl:max-w-7xl 2xl:max-w-[1440px] mx-auto"
-                >
-                  <BinaHubOrbit 
-                    onProductClick={(productId) => {
-                      const product = products.find(p => p.id === productId);
-                      if (product) openProduct(product);
-                    }} 
-                  />
-                </motion.div>
-              )}
-            </AnimatePresence>
+            <motion.div
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.45 }}
+              className="relative mx-auto w-full max-w-[95vw] overflow-hidden rounded-[14px] border border-black/5 bg-white shadow-md xl:max-w-7xl 2xl:max-w-[1440px]"
+            >
+              <BinaHubClickable
+                onProductClick={(productId) => {
+                  const product = products.find(p => p.id === productId);
+                  if (product) openProduct(product);
+                }}
+              />
+            </motion.div>
           </div>
           {/* Visual Divider / Section Separator */}
-          <div className="relative flex items-center justify-center my-20">
+          <div id="detail" className="relative flex items-center justify-center my-20 scroll-mt-28">
             {/* Left line */}
             <div className="flex-1 h-[1px] bg-gradient-to-r from-transparent via-black/10 to-[#0B2C6B]/20" />
-            
+
             {/* Center icon / detail badge */}
             <div className="mx-6 px-6 py-2.5 bg-white border border-[#0B2C6B]/10 rounded-full shadow-sm flex items-center gap-3">
               <span className="w-1.5 h-1.5 rounded-full bg-[#D9A441] animate-ping" />
               <span className="text-[10px] font-bold text-[#0B2C6B]/60 tracking-[0.25em] uppercase">
-                Detail Eksplorasi Layanan
+                Pilih Layanan Berdasarkan Kebutuhan
               </span>
               <span className="w-1.5 h-1.5 rounded-full bg-[#D9A441]" />
             </div>
@@ -346,10 +309,10 @@ export default function LayananPage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-              {products.map((product: any, i) => {
-                const isPrimary = primaryProductIds.has(product.id)
+            {products.map((product, i) => {
+              const isPrimary = primaryProductIds.has(product.id)
 
-                return (
+              return (
                 <motion.div
                   key={product.id}
                   initial={{ opacity: 0, scale: 0.95 }}
@@ -358,11 +321,10 @@ export default function LayananPage() {
                   transition={{ delay: i * 0.05 }}
                   layoutId={product.id}
                   onClick={() => openProduct(product)}
-                  className={`group relative cursor-pointer overflow-hidden rounded-[12px] border border-black/[0.08] bg-white transition-all duration-300 hover:border-black/15 hover:shadow-md ${
-                    isPrimary
+                  className={`group relative cursor-pointer overflow-hidden rounded-[12px] border border-black/[0.08] bg-white transition-all duration-300 hover:border-black/15 hover:shadow-md ${isPrimary
                       ? "p-7 md:p-10 lg:col-span-2 min-h-[300px]"
                       : "p-6 md:p-8"
-                  }`}
+                    }`}
                 >
                   {isPrimary && (
                     <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_90%_10%,rgba(217,164,65,0.13),transparent_34%),linear-gradient(135deg,rgba(11,44,107,0.045),transparent_42%)]" />
@@ -371,11 +333,9 @@ export default function LayananPage() {
                     <div className="mb-10 transition-transform duration-300 group-hover:-translate-y-1">
                       <PixelIcon type={product.iconType} size={isPrimary ? 58 : 48} />
                     </div>
-                    {isPrimary && (
-                      <span className="mb-4 inline-flex rounded-full bg-[#D9A441]/10 px-3 py-1 text-[9px] font-bold uppercase tracking-[0.2em] text-[#B9851F]">
-                        Core
-                      </span>
-                    )}
+                    <span className="mb-4 inline-flex rounded-full bg-[#D9A441]/10 px-3 py-1 text-[9px] font-bold uppercase tracking-[0.2em] text-[#B9851F]">
+                      {SERVICE_CATEGORIES[product.id] || "Develop"}
+                    </span>
                     <h3 className={`${isPrimary ? "text-3xl md:text-4xl" : "text-2xl"} font-bold mb-2 text-[#0B2C6B] group-hover:text-[#D9A441] transition-colors`}>{product.title}</h3>
                     <p className="text-[10px] text-black/40 uppercase tracking-[0.2em] font-bold mb-8">{product.subtitle}</p>
                     <div className="flex items-center gap-3 text-[11px] font-bold text-black/40 group-hover:text-black transition-colors">
@@ -383,8 +343,9 @@ export default function LayananPage() {
                     </div>
                   </div>
                 </motion.div>
-              )})}
-            </div>
+              )
+            })}
+          </div>
 
 
         </div>
@@ -447,11 +408,10 @@ export default function LayananPage() {
                       <button
                         key={tab.id}
                         onClick={() => setActiveDetailTab(tab.id as typeof activeDetailTab)}
-                        className={`rounded-full px-4 py-2 text-[10px] font-bold uppercase tracking-[0.16em] transition-all duration-300 ${
-                          activeDetailTab === tab.id
+                        className={`rounded-full px-4 py-2 text-[10px] font-bold uppercase tracking-[0.16em] transition-all duration-300 ${activeDetailTab === tab.id
                             ? "bg-[#0B2C6B] text-white"
                             : "bg-[#F5F7FA] text-black/42 hover:text-[#0B2C6B]"
-                        }`}
+                          }`}
                       >
                         {tab.label}
                       </button>
@@ -569,44 +529,7 @@ export default function LayananPage() {
         )}
       </AnimatePresence>
 
-      {/* Slim & Full Width CTA Section */}
-      <section className="relative w-full py-16 bg-[#0B2C6B] border-y border-white/5 overflow-hidden">
-        {/* Ornaments */}
-        <div className="absolute inset-0 z-0 opacity-20 pointer-events-none">
-          <svg className="w-full h-full">
-            <line x1="0" y1="20%" x2="100%" y2="80%" stroke="#D9A441" strokeWidth="0.5" />
-            <line x1="0" y1="80%" x2="100%" y2="20%" stroke="#D9A441" strokeWidth="0.5" />
-          </svg>
-          <div className="absolute top-1/2 left-10 w-2 h-2 bg-[#D9A441] rotate-45" />
-          <div className="absolute top-1/2 right-10 w-2 h-2 bg-[#D9A441] rotate-45" />
-        </div>
-
-        <div className="max-w-7xl mx-auto px-6 relative z-10 flex flex-col md:flex-row items-center justify-between gap-8">
-          <div className="text-center md:text-left">
-            <h2 className="text-3xl md:text-4xl font-light text-white tracking-tight mb-2">
-              Mulai Transformasi <span className="text-[#D9A441] italic">Sekarang.</span>
-            </h2>
-            <p className="text-white/50 text-sm font-light uppercase tracking-[0.2em]">
-              Partnering in your journey towards excellence.
-            </p>
-          </div>
-
-          <div className="flex items-center gap-6">
-            <Link
-              href="#chatbot"
-              className="group inline-flex h-14 px-10 bg-[#D9A441] text-[#0B2C6B] rounded-lg text-[11px] font-bold tracking-[0.3em] hover:bg-white transition-all items-center justify-center uppercase"
-            >
-              KONSULTASI GRATIS <ArrowRight size={16} className="ml-3 group-hover:translate-x-1 transition-transform" />
-            </Link>
-            <div className="hidden lg:flex gap-2">
-              {[...Array(3)].map((_, i) => (
-                <div key={i} className="w-1.5 h-1.5 bg-white/20 rounded-full" />
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
     </div>
   )
 }
+

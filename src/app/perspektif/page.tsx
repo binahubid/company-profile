@@ -1,7 +1,8 @@
 "use client";
 
 import { MethodologySection } from "@/app/_sections/methodology-section";
-import { WorkflowSection } from "@/app/_sections/workflow-section";
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 
 export default function PerspektifPage() {
   const handleMouse = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -49,8 +50,33 @@ export default function PerspektifPage() {
         </div>
       </section>
 
+      <section className="pb-20">
+        <div className="relative overflow-hidden bg-[#07101F] px-6 py-14 text-white shadow-[0_22px_70px_-54px_rgba(11,44,107,0.72)] md:px-12 md:py-18 lg:px-20">
+          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_12%_0%,rgba(217,164,65,0.15),transparent_30%),linear-gradient(90deg,rgba(255,255,255,0.05),transparent_45%)]" />
+          <div className="relative z-10 mx-auto grid max-w-7xl gap-8 md:grid-cols-[1fr_auto] md:items-end">
+            <div>
+              <p className="text-[10px] font-bold uppercase tracking-[0.26em] text-[#D9A441]">
+                Executive Briefing
+              </p>
+              <h2 className="mt-4 max-w-3xl text-3xl font-light leading-tight tracking-tight md:text-5xl">
+                Transformation Signals 2026
+              </h2>
+              <p className="mt-5 max-w-2xl text-sm font-light leading-relaxed text-white/62 md:text-base">
+                Ringkasan strategis tentang tekanan ekonomi, workforce shift, dan gap transformasi yang perlu dibaca sebelum merancang agenda people development.
+              </p>
+            </div>
+            <Link
+              href="/perspektif/transformation-signals-2026"
+              className="inline-flex h-12 items-center justify-center gap-3 rounded-full bg-[#D9A441] px-6 text-[11px] font-bold uppercase tracking-[0.16em] text-[#0B2C6B] transition-colors hover:bg-white"
+            >
+              Baca Briefing
+              <ArrowRight size={15} />
+            </Link>
+          </div>
+        </div>
+      </section>
+
       <MethodologySection onMouseMove={handleMouse} />
-      <WorkflowSection onMouseMove={handleMouse} />
     </div>
   );
 }

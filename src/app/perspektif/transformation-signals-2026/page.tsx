@@ -1,9 +1,14 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import {
   ArrowLeft,
   ArrowRight,
+  BarChart3,
+  BriefcaseBusiness,
+  CheckCircle2,
   ExternalLink,
+  LineChart,
 } from "lucide-react";
 
 export const metadata: Metadata = {
@@ -135,175 +140,334 @@ const SIGNALS = [
   },
 ];
 
+const GROUP_META = [
+  {
+    title: "Economic Pressure",
+    short: "Pressure",
+    desc: "Daya beli, margin, efisiensi, dan volatilitas global menekan prioritas organisasi.",
+    icon: LineChart,
+  },
+  {
+    title: "Workforce Shift",
+    short: "Workforce",
+    desc: "Burnout, tekanan biaya hidup, dan masa depan kerja mengubah energi serta rasa aman pekerja.",
+    icon: BriefcaseBusiness,
+  },
+  {
+    title: "Transformation Gap",
+    short: "Gap",
+    desc: "AI, skill mismatch, dan upskilling divide membuat transformasi perlu desain yang lebih manusiawi.",
+    icon: BarChart3,
+  },
+];
+
+const PRIORITY_SIGNALS = [SIGNALS[1], SIGNALS[2], SIGNALS[3]];
+
+const HOME_PAIN_SIGNALS = [
+  {
+    title: "Target naik. Kepastian turun.",
+    desc: "Tekanan bisnis dan pasar menjadi konteks awal sebelum membaca sinyal lebih detail.",
+    image: "/asset/slide-5.png",
+  },
+  {
+    title: "Energi kerja menipis.",
+    desc: "Perubahan energi pekerja menjadi sinyal budaya yang perlu dibaca lebih awal.",
+    image: "/asset/slide-6.png",
+  },
+  {
+    title: "AI cepat. Kapabilitas tertinggal.",
+    desc: "Adopsi teknologi perlu disambungkan dengan kesiapan manusia dan cara kerja.",
+    image: "/asset/slide-7.png",
+  },
+  {
+    title: "Workshop selesai. Perubahan belum tentu terjadi.",
+    desc: "Briefing ini mengarah pada respons: diagnosis, desain, eksekusi, dan pengukuran.",
+    image: "/asset/slide-8.png",
+  },
+];
+
 export default function TransformationSignalsPage() {
   return (
-    <div className="min-h-screen bg-white pt-24 font-sans text-[#1F2328] antialiased">
-      <div className="mx-auto grid w-full max-w-[1440px] grid-cols-1 px-5 pb-24 md:px-8 lg:grid-cols-[260px_minmax(0,820px)_240px] lg:gap-10">
-        <aside className="hidden border-r border-[#E7E7E5] pr-6 lg:block">
-          <div className="sticky top-28">
-            <Link
-              href="/perspektif"
-              className="mb-8 inline-flex items-center gap-2 text-sm font-medium text-[#6B6F76] transition-colors hover:text-[#0B2C6B]"
-            >
-              <ArrowLeft size={14} />
-              Perspektif
-            </Link>
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#8A8F98]">
-              Documentation
-            </p>
-            <nav className="mt-4 space-y-1 text-sm">
-              <a href="#overview" className="block rounded-[6px] px-3 py-2 text-[#4A4C54] hover:bg-[#F7F8FA] hover:text-[#0B2C6B]">
-                Overview
-              </a>
-              <a href="#signals" className="block rounded-[6px] px-3 py-2 text-[#4A4C54] hover:bg-[#F7F8FA] hover:text-[#0B2C6B]">
-                The 10 Signals
-              </a>
-              <a href="#response" className="block rounded-[6px] px-3 py-2 text-[#4A4C54] hover:bg-[#F7F8FA] hover:text-[#0B2C6B]">
-                Response
-              </a>
-            </nav>
-          </div>
-        </aside>
+    <main className="min-h-screen bg-[#F4F6F8] pt-24 font-sans text-[#1F2328] antialiased">
+      <section className="px-4 pb-10 md:px-8">
+        <div className="mx-auto max-w-7xl">
+          <Link
+            href="/perspektif"
+            className="mb-6 inline-flex items-center gap-2 text-sm font-medium text-[#5F646D] transition-colors hover:text-[#0B2C6B]"
+          >
+            <ArrowLeft size={14} />
+            Perspektif
+          </Link>
 
-        <main className="min-w-0">
-          <header id="overview" className="scroll-mt-28 border-b border-[#E7E7E5] pb-10 pt-8">
-            <div className="inline-flex rounded-[6px] border border-[#E7E7E5] bg-[#F7F8FA] px-2.5 py-1 text-xs font-medium text-[#5F646D]">
-              BinaHub Intelligence / 2026
-            </div>
-            <h1 className="mt-5 text-4xl font-semibold leading-[1.08] tracking-[-0.035em] text-[#1F2328] md:text-6xl">
-              Transformation Signals
-            </h1>
-            <p className="mt-5 max-w-3xl text-lg leading-[1.75] text-[#4A4C54]">
-              A structured reference for reading changes in work, capability, and organizational pressure in Indonesia.
-            </p>
-          </header>
+          <div className="relative overflow-hidden rounded-[18px] bg-[#071A33] text-white shadow-[0_34px_100px_-72px_rgba(7,26,51,0.9)]">
+            <Image
+              src="/asset/slide-5.png"
+              alt=""
+              fill
+              priority
+              sizes="100vw"
+              className="object-cover object-center opacity-62 saturate-[1.04] contrast-[1.05]"
+            />
+            <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(7,26,51,0.96)_0%,rgba(7,26,51,0.78)_42%,rgba(7,26,51,0.34)_100%)]" />
+            <div className="absolute inset-0 bg-[linear-gradient(120deg,rgba(217,164,65,0.22),transparent_26%),linear-gradient(0deg,rgba(7,26,51,0.52),transparent_46%)]" />
 
-          <section className="mt-8 rounded-[8px] border border-[#D8E0EA] bg-[#F7FAFF] p-5">
-            <p className="text-sm font-semibold text-[#0B2C6B]">How to read this document</p>
-            <p className="mt-2 text-sm leading-relaxed text-[#4A4C54]">
-              Each signal is organized as a documentation block: current pattern, evidence fragment,
-              organizational implication, and source notes. The goal is clarity, not news reporting.
-            </p>
-          </section>
-
-          <section className="mt-10">
-            <h2 className="text-2xl font-semibold tracking-[-0.02em] text-[#1F2328]">
-              System Map
-            </h2>
-            <div className="mt-4 overflow-hidden rounded-[8px] border border-[#E7E7E5]">
-              {[
-                ["Economic Pressure", "Daya beli, margin, efisiensi, volatilitas global"],
-                ["Workforce Shift", "Burnout, biaya hidup, karier awal, job security"],
-                ["Transformation Gap", "AI adoption, skill mismatch, upskilling divide"],
-              ].map(([area, desc]) => (
-                <div key={area} className="grid gap-2 border-b border-[#E7E7E5] px-4 py-3 last:border-b-0 md:grid-cols-[180px_1fr]">
-                  <p className="text-sm font-semibold text-[#1F2328]">{area}</p>
-                  <p className="text-sm leading-relaxed text-[#5F646D]">{desc}</p>
+            <div className="relative z-10 grid gap-12 px-6 py-14 md:px-10 md:py-16 lg:grid-cols-[1fr_360px] lg:px-14">
+              <div>
+                <div className="inline-flex rounded-full border border-white/10 bg-white/10 px-4 py-2 text-[10px] font-bold uppercase tracking-[0.24em] text-[#D9A441]">
+                  Executive Briefing / 2026
                 </div>
-              ))}
+                <h1 className="mt-8 max-w-4xl text-5xl font-light leading-[0.98] tracking-[-0.052em] md:text-7xl lg:text-[88px]">
+                  Transformation Signals for Indonesia&rsquo;s workforce.
+                </h1>
+                <p className="mt-7 max-w-3xl text-base font-light leading-[1.8] text-white/68 md:text-lg">
+                  Sepuluh sinyal perubahan untuk membantu leaders membaca tekanan ekonomi, pergeseran tenaga kerja, dan gap transformasi sebelum menentukan agenda people development.
+                </p>
+              </div>
+
+              <aside className="rounded-[14px] border border-white/10 bg-white/[0.075] p-6 backdrop-blur">
+                <p className="text-[10px] font-bold uppercase tracking-[0.22em] text-white/38">Briefing snapshot</p>
+                <div className="mt-8 grid grid-cols-3 gap-4 lg:grid-cols-1">
+                  {[
+                    ["10", "signals"],
+                    ["3", "pressure areas"],
+                    ["2026", "planning lens"],
+                  ].map(([value, label]) => (
+                    <div key={label} className="border-l border-[#D9A441]/50 pl-4">
+                      <p className="text-4xl font-light tracking-[-0.04em]">{value}</p>
+                      <p className="mt-1 text-[10px] font-bold uppercase tracking-[0.16em] text-white/42">{label}</p>
+                    </div>
+                  ))}
+                </div>
+              </aside>
             </div>
-          </section>
+          </div>
+        </div>
+      </section>
 
-          <section id="signals" className="mt-12 scroll-mt-28">
-            <h2 className="text-2xl font-semibold tracking-[-0.02em] text-[#1F2328]">
-              The 10 Signals
-            </h2>
-            <p className="mt-3 text-base leading-[1.8] text-[#4A4C54]">
-              Use these as reference points for strategic diagnosis, not as isolated facts.
+      <section className="px-6 py-10 md:px-12 lg:px-20">
+        <div className="mx-auto max-w-7xl">
+          <div className="mb-8 grid gap-5 md:grid-cols-[0.85fr_1.15fr] md:items-end">
+            <div>
+              <p className="text-[11px] font-bold uppercase tracking-[0.24em] text-[#B8841F]">Connected from Home</p>
+              <h2 className="mt-3 text-4xl font-light tracking-[-0.045em] text-[#0B2C6B] md:text-6xl">
+                Dari pain point menuju briefing.
+              </h2>
+            </div>
+            <p className="max-w-2xl text-sm leading-relaxed text-black/54">
+              Empat pesan di Home menjadi pintu masuk. Halaman ini membuka konteksnya lebih dalam agar leaders bisa melihat pola, bukti, dan implikasi strategisnya.
             </p>
+          </div>
 
-            <div className="mt-8 space-y-10">
-              {SIGNALS.map((item, index) => (
-                <section
-                  id={`signal-${index + 1}`}
-                  key={item.title}
-                  className="scroll-mt-28 border-t border-[#E7E7E5] pt-7"
-                >
-                  <div className="flex flex-wrap items-center gap-2 text-xs text-[#787C82]">
-                    <span className="font-mono">{String(index + 1).padStart(2, "0")}</span>
-                    <span>{item.group}</span>
-                    <span className="rounded-[6px] bg-[#F1F3F5] px-2 py-0.5">{item.status}</span>
+          <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+            {HOME_PAIN_SIGNALS.map((item, index) => (
+              <article key={item.title} className="group relative min-h-[300px] overflow-hidden rounded-[16px] bg-[#071A33] p-5 text-white shadow-[0_22px_70px_-58px_rgba(7,26,51,0.74)]">
+                <Image
+                  src={item.image}
+                  alt=""
+                  fill
+                  sizes="(max-width: 768px) 100vw, 25vw"
+                  className="object-cover transition-transform duration-700 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(7,26,51,0.18)_0%,rgba(7,26,51,0.62)_58%,rgba(7,26,51,0.92)_100%)]" />
+                <div className="relative z-10 flex min-h-[260px] flex-col justify-between">
+                  <div className="flex items-center justify-between">
+                    <span className="font-mono text-sm text-[#D9A441]">{String(index + 1).padStart(2, "0")}</span>
+                    <span className="rounded-full border border-white/12 bg-white/10 px-3 py-1 text-[9px] font-bold uppercase tracking-[0.16em] text-white/58">
+                      Home Signal
+                    </span>
                   </div>
-                  <h3 className="mt-3 text-2xl font-semibold leading-tight tracking-[-0.02em] text-[#1F2328]">
+                  <div>
+                    <h3 className="text-2xl font-light leading-tight tracking-[-0.03em]">{item.title}</h3>
+                    <p className="mt-3 text-sm font-light leading-relaxed text-white/62">{item.desc}</p>
+                  </div>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="px-6 py-12 md:px-12 lg:px-20">
+        <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[0.8fr_1.2fr] lg:items-start">
+          <div>
+            <p className="text-[11px] font-bold uppercase tracking-[0.24em] text-[#B8841F]">Executive summary</p>
+            <h2 className="mt-4 text-4xl font-light leading-tight tracking-[-0.045em] text-[#0B2C6B] md:text-6xl">
+              Tiga tekanan besar sedang bergerak bersamaan.
+            </h2>
+          </div>
+          <div className="grid gap-4">
+            {GROUP_META.map((group) => {
+              const Icon = group.icon;
+              const count = SIGNALS.filter((item) => item.group === group.title).length;
+
+              return (
+                <article key={group.title} className="grid gap-5 rounded-[14px] border border-black/[0.06] bg-white p-6 shadow-[0_18px_54px_-48px_rgba(11,44,107,0.28)] md:grid-cols-[64px_1fr_96px] md:items-center">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-[12px] bg-[#FFF8EA] text-[#B8841F]">
+                    <Icon size={22} />
+                  </div>
+                  <div>
+                    <h3 className="text-2xl font-semibold tracking-[-0.02em] text-[#0B2C6B]">{group.title}</h3>
+                    <p className="mt-2 text-sm leading-relaxed text-black/58">{group.desc}</p>
+                  </div>
+                  <div className="rounded-full bg-[#F4F6F8] px-4 py-2 text-center text-xs font-bold uppercase tracking-[0.14em] text-[#0B2C6B]/58">
+                    {count} signals
+                  </div>
+                </article>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      <section className="px-6 py-10 md:px-12 lg:px-20">
+        <div className="mx-auto max-w-7xl">
+          <div className="mb-8 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+            <div>
+              <p className="text-[11px] font-bold uppercase tracking-[0.24em] text-[#B8841F]">Priority signals</p>
+              <h2 className="mt-3 text-4xl font-light tracking-[-0.045em] text-[#0B2C6B] md:text-6xl">
+                What leaders should discuss first.
+              </h2>
+            </div>
+            <p className="max-w-md text-sm leading-relaxed text-black/54">
+              Tiga sinyal ini paling dekat dengan keputusan strategi organisasi: efisiensi, kapabilitas, dan kesiapan AI.
+            </p>
+          </div>
+
+          <div className="grid gap-4 lg:grid-cols-3">
+            {PRIORITY_SIGNALS.map((item, index) => (
+              <article
+                key={item.title}
+                className="relative overflow-hidden rounded-[16px] border border-white/14 bg-[#071A33] p-7 text-white shadow-[0_22px_70px_-58px_rgba(7,26,51,0.72)]"
+              >
+                <Image
+                  src="/cta-footer-bg.png"
+                  alt=""
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 33vw"
+                  className="object-cover object-center opacity-80"
+                />
+                <div className="absolute inset-0 bg-[#071A33]/38" />
+                <div className="absolute inset-x-0 top-0 h-28 bg-white/[0.07] blur-2xl" />
+                <div className="absolute inset-0 bg-[linear-gradient(145deg,rgba(255,255,255,0.09)_0%,rgba(255,255,255,0.02)_36%,rgba(7,26,51,0.28)_100%)]" />
+
+                <div className="relative z-10 mb-10 flex items-center justify-between">
+                  <span className="font-mono text-sm text-[#D9A441]">{String(index + 1).padStart(2, "0")}</span>
+                  <span className="rounded-full border border-white/14 bg-white/[0.08] px-3 py-1 text-[10px] font-bold uppercase tracking-[0.14em] text-white/58 backdrop-blur-md">{item.group}</span>
+                </div>
+                <div className="relative z-10">
+                  <h3 className="text-3xl font-light leading-tight tracking-[-0.03em]">{item.title}</h3>
+                  <p className="mt-5 text-sm leading-[1.75] text-white/68">{item.signal}</p>
+                  <div className="mt-7 border-t border-white/14 pt-5">
+                    <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#D9A441]">Leadership implication</p>
+                    <p className="mt-3 text-sm leading-[1.7] text-white/76">{item.implication}</p>
+                  </div>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="signals" className="px-6 py-12 md:px-12 lg:px-20">
+        <div className="mx-auto max-w-7xl">
+          <div className="mb-8 grid gap-5 md:grid-cols-[0.9fr_1.1fr] md:items-end">
+            <div>
+              <p className="text-[11px] font-bold uppercase tracking-[0.24em] text-[#B8841F]">Signal register</p>
+              <h2 className="mt-3 text-4xl font-light tracking-[-0.045em] text-[#0B2C6B] md:text-6xl">
+                The complete briefing.
+              </h2>
+            </div>
+            <p className="max-w-2xl text-sm leading-relaxed text-black/54">
+              Dibuat untuk diagnosis strategis: tiap sinyal memuat pola, bukti, implikasi, dan sumber ringkas. Bukti ditempatkan lebih tenang agar halaman tidak terasa seperti spreadsheet.
+            </p>
+          </div>
+
+          <div className="overflow-hidden rounded-[16px] border border-black/[0.06] bg-white shadow-[0_24px_80px_-64px_rgba(11,44,107,0.34)]">
+            {SIGNALS.map((item, index) => (
+              <article
+                id={`signal-${index + 1}`}
+                key={item.title}
+                className="grid scroll-mt-28 gap-6 border-b border-black/[0.06] p-6 last:border-b-0 md:grid-cols-[88px_0.9fr_1.2fr] md:p-7 lg:p-8"
+              >
+                <div>
+                  <p className="font-mono text-sm text-[#0B2C6B]/40">{String(index + 1).padStart(2, "0")}</p>
+                  <span className="mt-4 inline-flex rounded-full bg-[#F4F6F8] px-3 py-1 text-[10px] font-bold uppercase tracking-[0.14em] text-[#0B2C6B]/52">
+                    {item.status}
+                  </span>
+                </div>
+                <div>
+                  <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#B8841F]">{item.group}</p>
+                  <h3 className="mt-3 text-2xl font-semibold leading-tight tracking-[-0.02em] text-[#0B2C6B] md:text-3xl">
                     {item.title}
                   </h3>
-                  <p className="mt-3 text-base leading-[1.8] text-[#37352F]">{item.signal}</p>
-
-                  <div className="mt-5 overflow-hidden rounded-[8px] border border-[#E7E7E5]">
-                    <div className="grid border-b border-[#E7E7E5] md:grid-cols-[180px_1fr]">
-                      <div className="bg-[#F7F8FA] px-4 py-3 text-sm font-semibold text-[#1F2328]">
-                        Evidence
-                      </div>
-                      <div className="px-4 py-3 text-sm leading-[1.75] text-[#4A4C54]">{item.evidence}</div>
-                    </div>
-                    <div className="grid md:grid-cols-[180px_1fr]">
-                      <div className="bg-[#F7F8FA] px-4 py-3 text-sm font-semibold text-[#1F2328]">
-                        Implication
-                      </div>
-                      <div className="px-4 py-3 text-sm leading-[1.75] text-[#4A4C54]">{item.implication}</div>
-                    </div>
+                  <p className="mt-4 text-sm leading-[1.75] text-black/64">{item.signal}</p>
+                </div>
+                <div className="grid gap-3">
+                  <div className="rounded-[12px] bg-[#F7F8FA] p-4">
+                    <p className="mb-2 text-[10px] font-bold uppercase tracking-[0.2em] text-[#0B2C6B]/46">Evidence</p>
+                    <p className="text-sm leading-[1.7] text-black/62">{item.evidence}</p>
                   </div>
-
-                  <div className="mt-4 flex flex-wrap gap-2">
+                  <div className="rounded-[12px] border border-[#D9A441]/18 bg-[#FFF8EA] p-4">
+                    <p className="mb-2 text-[10px] font-bold uppercase tracking-[0.2em] text-[#B8841F]">Leadership implication</p>
+                    <p className="text-sm leading-[1.7] text-black/70">{item.implication}</p>
+                  </div>
+                  <div className="flex flex-wrap gap-2">
                     {item.sources.map((source) => (
                       <span
                         key={source}
-                        className="inline-flex items-center gap-2 rounded-[6px] bg-[#F7F8FA] px-2.5 py-1.5 text-xs text-[#5F646D]"
+                        className="inline-flex items-center gap-2 rounded-full border border-black/[0.06] bg-white px-3 py-1.5 text-xs text-[#5F646D]"
                       >
                         <ExternalLink size={12} />
                         {source}
                       </span>
                     ))}
                   </div>
-                </section>
-              ))}
-            </div>
-          </section>
-
-          <section id="response" className="mt-14 scroll-mt-28 border-t border-[#E7E7E5] pt-8">
-            <h2 className="text-2xl font-semibold tracking-[-0.02em] text-[#1F2328]">Response</h2>
-            <p className="mt-4 text-base leading-[1.8] text-[#4A4C54]">
-              When signals change, human development needs a stronger operating system: diagnosis,
-              intervention design, learning experience, and impact measurement connected in one flow.
-            </p>
-            <div className="mt-7 flex flex-col gap-3 sm:flex-row">
-              <Link
-                href="/insight"
-                className="inline-flex h-11 items-center justify-center gap-2 rounded-[6px] bg-[#0B2C6B] px-4 text-sm font-semibold text-white transition-colors hover:bg-[#08245A]"
-              >
-                Mulai Diagnosa
-                <ArrowRight size={14} />
-              </Link>
-              <Link
-                href="/ecosystem"
-                className="inline-flex h-11 items-center justify-center gap-2 rounded-[6px] border border-[#D8DADf] bg-white px-4 text-sm font-semibold text-[#2F3437] transition-colors hover:bg-[#F7F8FA]"
-              >
-                Lihat Ekosistem
-                <ArrowRight size={14} />
-              </Link>
-            </div>
-          </section>
-        </main>
-
-        <aside className="hidden xl:block">
-          <div className="sticky top-28 border-l border-[#E7E7E5] pl-6">
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#8A8F98]">
-              On this page
-            </p>
-            <nav className="mt-4 max-h-[70vh] space-y-1 overflow-y-auto pr-2 text-sm">
-              {SIGNALS.map((item, index) => (
-                <a
-                  key={item.title}
-                  href={`#signal-${index + 1}`}
-                  className="block rounded-[6px] px-3 py-2 text-[#6B6F76] hover:bg-[#F7F8FA] hover:text-[#0B2C6B]"
-                >
-                  {String(index + 1).padStart(2, "0")} {item.title}
-                </a>
-              ))}
-            </nav>
+                </div>
+              </article>
+            ))}
           </div>
-        </aside>
-      </div>
-    </div>
+        </div>
+      </section>
+
+      <section id="response" className="px-6 py-12 md:px-12 md:py-16 lg:px-20">
+        <div className="mx-auto max-w-7xl rounded-[18px] bg-[#071A33] p-6 text-white md:p-10 lg:p-12">
+          <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
+            <div>
+              <p className="text-[11px] font-bold uppercase tracking-[0.24em] text-[#D9A441]">Recommended response</p>
+              <h2 className="mt-4 text-4xl font-light tracking-[-0.045em] md:text-6xl">
+                Build a people transformation operating system.
+              </h2>
+              <p className="mt-6 text-sm leading-relaxed text-white/60">
+                Ketika sinyal berubah cepat, organisasi butuh alur yang menghubungkan diagnosis, desain intervensi, pengalaman belajar, eksekusi, dan pengukuran dampak.
+              </p>
+            </div>
+            <div className="grid gap-3 sm:grid-cols-2">
+              {["Diagnose capability gaps", "Design targeted interventions", "Develop adaptive leaders", "Measure impact and execution"].map((item) => (
+                <div key={item} className="flex gap-3 rounded-[12px] border border-white/10 bg-white/[0.065] p-4">
+                  <CheckCircle2 className="mt-0.5 shrink-0 text-[#D9A441]" size={18} />
+                  <p className="text-sm font-medium leading-relaxed text-white/78">{item}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+            <Link
+              href="/insight"
+              className="inline-flex h-12 items-center justify-center gap-2 rounded-full bg-[#D9A441] px-6 text-[11px] font-bold uppercase tracking-[0.16em] text-[#071A33] transition-colors hover:bg-white"
+            >
+              Mulai Diagnosa
+              <ArrowRight size={14} />
+            </Link>
+            <Link
+              href="/ecosystem"
+              className="inline-flex h-12 items-center justify-center gap-2 rounded-full border border-white/16 bg-white/[0.04] px-6 text-[11px] font-bold uppercase tracking-[0.16em] text-white transition-colors hover:bg-white/10"
+            >
+              Lihat Layanan
+              <ArrowRight size={14} />
+            </Link>
+          </div>
+        </div>
+      </section>
+    </main>
   );
 }

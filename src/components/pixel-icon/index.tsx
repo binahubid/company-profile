@@ -17,7 +17,7 @@ import {
   drawWorks
 } from "./draw-functions";
 
-type IconType = 
+export type IconType =
   | "about" 
   | "ecosystem" 
   | "methodology" 
@@ -114,4 +114,3 @@ export function PixelIcon({ type, size = 40 }: PixelIconProps) {
     />
   );
 }
-

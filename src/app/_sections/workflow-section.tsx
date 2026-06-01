@@ -122,7 +122,6 @@ export function WorkflowSection({ onMouseMove }: WorkflowSectionProps) {
               </AnimatePresence>
 
               <div className="relative">
-                <div className="absolute left-5 top-5 hidden h-px w-[calc(100%-2.5rem)] bg-gradient-to-r from-[#D9A441]/45 via-[#0B2C6B]/12 to-[#D9A441]/45 md:block" />
                 <div className="grid gap-3 grid-cols-2 sm:grid-cols-2 md:grid-cols-4">
                   {WORKFLOW_STEPS.map((step, index) => {
                     const isActive = index === activeIndex;
@@ -139,10 +138,12 @@ export function WorkflowSection({ onMouseMove }: WorkflowSectionProps) {
                         }`}
                       >
                         <span
-                          className={`relative z-10 block h-px w-10 transition-colors ${
-                            isActive ? "bg-[#D9A441]" : "bg-black/16"
+                          className={`relative z-10 flex h-9 w-9 items-center justify-center rounded-full text-xs font-bold transition-colors ${
+                            isActive ? "bg-[#0B2C6B] text-[#D9A441]" : "bg-white text-[#0B2C6B]/46"
                           }`}
-                        />
+                        >
+                          {index + 1}
+                        </span>
                         <h4 className={`mt-5 text-sm font-semibold ${isActive ? "text-[#0B2C6B]" : "text-black/62"}`}>
                           {step.title}
                         </h4>

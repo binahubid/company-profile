@@ -65,13 +65,7 @@ const SLIDES: CarouselSlide[] = [
   },
 ];
 
-const POPUP_POSITIONS = [
-  "md:left-[3%] md:top-[6%]",
-  "md:right-[2%] md:top-[14%]",
-  "md:left-[24%] md:top-[43%]",
-  "md:left-[2%] md:bottom-[2%]",
-  "md:right-[9%] md:bottom-[6%]",
-];
+const SLIDE_DURATIONS = [6000, 6000, 5000];
 
 export function AboutCarouselSection() {
   const [displaySlide, setDisplaySlide] = useState(0);
@@ -85,7 +79,7 @@ export function AboutCarouselSection() {
   );
 
   useEffect(() => {
-    const duration = displaySlide === 2 ? 5000 : 6000;
+    const duration = SLIDE_DURATIONS[displaySlide] ?? 6000;
     const timer = setTimeout(() => {
       goToSlide((displaySlide + 1) % SLIDES.length);
     }, duration);
@@ -93,10 +87,15 @@ export function AboutCarouselSection() {
   }, [displaySlide, goToSlide]);
 
   const slide = SLIDES[displaySlide];
+  const isPillars = slide.type === "pillars";
 
   return (
-    <section id="platform" className="px-0 pb-0 bg-[#F5F7FA] relative z-10 w-full">
-      <div className="relative overflow-hidden bg-[#0A1A3A] rounded-none min-h-[600px] py-24 md:py-32 flex items-center justify-center border-b-[5px] border-[#D9A441]">
+    <section id="platform" className="relative z-10 w-full bg-[#F5F7FA] px-4 py-10 md:px-8 md:py-16">
+      <div className={`relative mx-auto flex max-w-[1720px] items-center justify-center overflow-hidden rounded-[18px] border border-white/10 bg-[#071A33] shadow-[0_24px_78px_-56px_rgba(11,44,107,0.34)] transition-colors duration-700 ${
+        isPillars
+          ? "h-[660px] max-[499px]:h-[640px] sm:h-[620px] md:h-[620px] min-[1440px]:h-[660px]"
+          : "h-[620px] max-[499px]:h-[590px] sm:h-[640px] md:h-[620px] min-[1440px]:h-[660px]"
+      }`}>
 
         {/* Background image */}
         <AnimatePresence mode="sync">
@@ -117,24 +116,26 @@ export function AboutCarouselSection() {
             />
           </motion.div>
         </AnimatePresence>
-        <div className="absolute inset-0 z-[1] bg-[#0A1A3A]/24 mix-blend-multiply" />
-        <div className="absolute inset-0 z-[2] bg-[linear-gradient(90deg,rgba(7,18,42,0.82)_0%,rgba(7,18,42,0.52)_45%,rgba(7,18,42,0.24)_100%)]" />
-        <div className="absolute inset-0 z-[3] bg-gradient-to-b from-[#0A1A3A]/8 via-[#0A1A3A]/36 to-[#0A1A3A]/84" />
-        <div className="absolute inset-x-0 bottom-0 z-[4] h-px bg-gradient-to-r from-transparent via-[#D9A441]/80 to-transparent" />
+        <div className="absolute inset-0 z-[1] bg-[#061A3A]/40 mix-blend-multiply transition-colors duration-700" />
+        <div className="absolute inset-0 z-[2] bg-[linear-gradient(90deg,rgba(7,18,42,0.88)_0%,rgba(7,18,42,0.58)_48%,rgba(7,18,42,0.22)_100%)] transition-colors duration-700" />
+        <div className="absolute inset-0 z-[3] bg-[radial-gradient(circle_at_78%_20%,rgba(217,164,65,0.12),transparent_28%),linear-gradient(180deg,rgba(10,26,58,0.08),rgba(10,26,58,0.78))]" />
+        <div className="absolute inset-x-8 bottom-0 z-[4] h-px bg-gradient-to-r from-transparent via-[#D9A441]/60 to-transparent" />
 
         {/* Content */}
-        <div className="relative z-10 w-full max-w-6xl mx-auto px-6 md:px-16 flex flex-col items-start text-left">
+        <div className="relative z-10 mx-auto flex h-full w-full max-w-6xl flex-col items-start px-5 py-7 text-left sm:px-6 md:px-12 md:py-10 lg:px-16 min-[1440px]:max-w-7xl">
 
-          <div className="mb-10 flex flex-col items-start">
-            <div className="flex h-11 w-11 items-center justify-center rounded-[12px] border border-white/15 bg-white/[0.1] text-[#D9A441]">
+          <div className="mb-6 flex shrink-0 flex-col items-start md:mb-10">
+            <div className="flex h-10 w-10 items-center justify-center rounded-[12px] border border-white/15 bg-white/[0.1] text-[#D9A441] md:h-11 md:w-11">
               <PixelIcon type="about" size={28} />
             </div>
-            <div className="mt-6">
-              <Tag className="bg-white/10 text-white border border-white/20 uppercase">{slide.title}</Tag>
+            <div className="mt-4 md:mt-6">
+              <Tag className="border border-white/20 bg-white/10 text-white uppercase">
+                {slide.title}
+              </Tag>
             </div>
           </div>
 
-          <div className="w-full min-h-[280px] flex items-center">
+          <div className="flex min-h-0 w-full flex-1 items-center">
             <AnimatePresence mode="wait">
 
               {/* Slide 1 & 2: Multi-line left-aligned heading */}
@@ -145,16 +146,21 @@ export function AboutCarouselSection() {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -20 }}
                   transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
-                  className="flex flex-col items-start gap-0"
+                  className="flex max-w-4xl flex-col items-start gap-0"
                 >
                   {slide.lines.map((line, i) => (
                     <h2
                       key={i}
-                      className="text-4xl md:text-5xl lg:text-[3.5rem] xl:text-[4.5rem] font-light tracking-tight leading-[1.16] text-white"
+                      className="text-[clamp(2.4rem,11vw,4.5rem)] font-light leading-[1.06] tracking-tight text-white md:text-5xl lg:text-[3.5rem] xl:text-[4.5rem]"
                     >
                       {line}
                     </h2>
                   ))}
+                  <p className="mt-6 max-w-xl text-sm font-light leading-relaxed text-white/62 md:mt-8 md:text-base">
+                    {slide.type === "hero"
+                      ? "BinaHub membantu organisasi menata arah pengembangan manusia agar lebih relevan dengan perubahan bisnis, teknologi, dan budaya kerja."
+                      : "Kemajuan teknologi perlu berjalan bersama kualitas manusia: kesadaran, kepemimpinan, empati, dan keberanian belajar."}
+                  </p>
                 </motion.div>
               )}
 
@@ -168,43 +174,41 @@ export function AboutCarouselSection() {
                   transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
                   className="w-full"
                 >
-                  <div className="relative w-full max-w-5xl min-h-[420px] md:min-h-[360px]">
-                    <motion.div
-                      initial={{ opacity: 0, scaleX: 0.75 }}
-                      animate={{ opacity: 1, scaleX: 1 }}
-                      transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-                      className="pointer-events-none absolute left-[10%] right-[10%] top-1/2 hidden h-px origin-center bg-gradient-to-r from-transparent via-[#D9A441]/28 to-transparent md:block"
-                    />
-                    <motion.div
-                      initial={{ opacity: 0, scale: 0.92 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-                      className="pointer-events-none absolute left-1/2 top-1/2 hidden h-24 w-24 -translate-x-1/2 -translate-y-1/2 rounded-full border border-[#D9A441]/18 bg-[#D9A441]/[0.035] md:block"
-                    />
-                    {slide.points.map((point, pIdx) => (
-                      <motion.div
-                        key={point.title}
-                        initial={{ opacity: 0, y: 26, scale: 0.92, filter: "blur(10px)" }}
-                        animate={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
-                        transition={{ delay: 0.18 + pIdx * 0.14, duration: 0.72, ease: [0.22, 1, 0.36, 1] }}
-                        className={`group relative mb-3 flex w-full items-center gap-5 rounded-[12px] border px-5 py-4 text-white shadow-[0_18px_52px_-44px_rgba(0,0,0,0.72)] transition-all duration-500 hover:-translate-y-1 md:absolute md:mb-0 md:w-[380px] ${POPUP_POSITIONS[pIdx]} ${
-                          pIdx === 1
-                            ? "border-[#D9A441]/45 bg-[#D9A441]/16"
-                            : "border-white/14 bg-[#071B3D]/48 hover:border-white/24 hover:bg-[#0B2C6B]/48"
-                        }`}
-                      >
-                        <span className="absolute -bottom-1.5 left-8 h-3 w-3 rotate-45 border-b border-r border-white/10 bg-inherit md:block" />
-                        <div className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-[10px] transition-colors duration-500 ${
-                          pIdx === 1 ? "bg-[#D9A441] text-[#0A1A3A]" : "bg-white/10 text-[#D9A441]"
-                        }`}>
-                          {point.icon}
-                        </div>
-                        <div>
-                          <span className="mb-3 block h-px w-8 bg-[#D9A441]/70" />
-                          <span className="mt-1 block text-[18px] font-semibold leading-snug tracking-tight md:text-[21px]">{point.title}</span>
-                        </div>
-                      </motion.div>
-                    ))}
+                  <div className="grid w-full gap-6 md:grid-cols-[0.78fr_1.22fr] md:items-center">
+                    <div>
+                      <h2 className="text-3xl font-light leading-tight tracking-tight text-white md:text-5xl">
+                        Misi Kami
+                      </h2>
+                      <p className="mt-4 max-w-sm text-xs font-light leading-relaxed text-white/62 sm:text-sm md:mt-5">
+                        Lima prinsip yang menjaga transformasi tetap manusiawi, adaptif, dan dapat diterjemahkan ke dalam cara kerja organisasi.
+                      </p>
+                    </div>
+                    <div className="relative grid gap-2 sm:grid-cols-2 md:gap-3">
+                      <div className="pointer-events-none absolute bottom-5 left-5 top-5 hidden w-px bg-gradient-to-b from-[#D9A441]/0 via-[#D9A441]/38 to-[#D9A441]/0 sm:block md:left-6" />
+                      {slide.points.map((point, pIdx) => (
+                        <motion.div
+                          key={point.title}
+                          initial={{ opacity: 0, y: 18 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ delay: 0.12 + pIdx * 0.08, duration: 0.46, ease: [0.22, 1, 0.36, 1] }}
+                          className={`group relative flex min-h-[58px] items-center gap-2.5 rounded-[10px] border px-3 py-2.5 transition-all duration-300 hover:-translate-y-0.5 sm:min-h-[68px] md:min-h-[78px] md:gap-4 md:px-4 ${
+                            pIdx === 1
+                              ? "border-[#D9A441]/42 bg-[#D9A441]/12"
+                              : "border-white/10 bg-white/[0.055]"
+                          }`}
+                        >
+                          <div className={`relative z-10 flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-white/12 md:h-10 md:w-10 ${
+                            pIdx === 1 ? "bg-[#D9A441] text-[#0A1A3A]" : "bg-white/10 text-[#D9A441]"
+                          }`}>
+                            {point.icon}
+                          </div>
+                          <div className="min-w-0">
+                            <span className="mb-1.5 block h-px w-7 bg-[#D9A441]/70 md:mb-2 md:w-8" />
+                            <span className="block text-[10px] font-semibold uppercase leading-snug tracking-[0.06em] text-white md:text-xs md:tracking-[0.08em]">{point.title}</span>
+                          </div>
+                        </motion.div>
+                      ))}
+                    </div>
                   </div>
                 </motion.div>
               )}
@@ -213,22 +217,25 @@ export function AboutCarouselSection() {
           </div>
 
           {/* Slide Indicators */}
-          <div className="mt-14 flex items-center gap-4">
+          <div className="mt-6 flex w-full shrink-0 items-center gap-2 md:mt-10 md:max-w-sm md:gap-3">
             {SLIDES.map((item, i) => (
               <button
                 key={item.id}
                 onClick={() => goToSlide(i)}
-                className="group flex items-center gap-3"
+                className="group h-3 flex-1 py-1"
                 aria-label={`Buka slide ${i + 1}: ${item.title}`}
               >
-                <span className={`text-[10px] font-bold tracking-[0.22em] transition-colors duration-500 ${
-                  displaySlide === i ? "text-[#D9A441]" : "text-white/34 group-hover:text-white/60"
-                }`}>
-                  {item.title}
+                <span className="relative block h-px overflow-hidden rounded-full bg-white/24 transition-colors group-hover:bg-white/42">
+                  {displaySlide === i && (
+                    <motion.span
+                      key={displaySlide}
+                      className="absolute inset-y-0 left-0 bg-[#D9A441]"
+                      initial={{ width: "0%" }}
+                      animate={{ width: "100%" }}
+                      transition={{ duration: SLIDE_DURATIONS[i] / 1000, ease: "linear" }}
+                    />
+                  )}
                 </span>
-                <span className={`h-px transition-all duration-500 ${
-                  displaySlide === i ? "w-14 bg-[#D9A441]" : "w-6 bg-white/25 group-hover:bg-white/45"
-                }`} />
               </button>
             ))}
           </div>

@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Mail, Phone, MapPin, Send, CheckCircle2, AlertCircle, Clock, Plus } from "lucide-react";
+import { Mail, Phone, MapPin, Send, CheckCircle2, AlertCircle, Clock, ChevronDown } from "lucide-react";
 import { Tag } from "@/components/ui/tag";
 
 const FAQ_ITEMS = [
@@ -27,6 +27,8 @@ const FAQ_ITEMS = [
 export default function ContactPage() {
   const [formData, setFormData] = useState({
     name: "",
+    company: "",
+    role: "",
     email: "",
     whatsapp: "",
     message: "",
@@ -39,6 +41,8 @@ export default function ContactPage() {
   const validateForm = () => {
     const newErrors: Record<string, string> = {};
     if (!formData.name.trim()) newErrors.name = "Nama lengkap wajib diisi";
+    if (!formData.company.trim()) newErrors.company = "Nama organisasi wajib diisi";
+    if (!formData.role.trim()) newErrors.role = "Jabatan atau peran wajib diisi";
     if (!formData.email.trim()) {
       newErrors.email = "Email wajib diisi";
     } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
@@ -46,8 +50,8 @@ export default function ContactPage() {
     }
     if (!formData.message.trim()) {
       newErrors.message = "Pesan wajib diisi";
-    } else if (formData.message.length < 5) {
-      newErrors.message = "Pesan minimal harus 5 karakter";
+    } else if (formData.message.length < 20) {
+      newErrors.message = "Pesan minimal 20 karakter agar konteks awal lebih jelas";
     }
 
     setErrors(newErrors);
@@ -80,7 +84,7 @@ export default function ContactPage() {
       if (response.ok && data.success) {
         setStatus("success");
         setServerMessage(data.message || "Pesan Anda berhasil dikirim!");
-        setFormData({ name: "", email: "", whatsapp: "", message: "" });
+        setFormData({ name: "", company: "", role: "", email: "", whatsapp: "", message: "" });
       } else {
         setStatus("error");
         setServerMessage(data.error || "Terjadi kesalahan saat mengirim pesan.");
@@ -276,6 +280,29 @@ export default function ContactPage() {
                         {errors.name && <span className="text-[10px] text-rose-500 font-medium">{errors.name}</span>}
                       </div>
 
+                      {/* Company Input */}
+                      <div className="flex flex-col gap-1.5">
+                        <label htmlFor="company" className="text-[10px] font-bold text-[#0B2C6B]/60 tracking-wider uppercase">
+                          Organisasi / Perusahaan <span className="text-rose-500">*</span>
+                        </label>
+                        <input
+                          type="text"
+                          id="company"
+                          name="company"
+                          value={formData.company}
+                          onChange={handleInputChange}
+                          placeholder="Contoh: PT BinaHub Solusi"
+                          className={`w-full px-4 py-3 rounded-xl border bg-black/[0.01] text-sm text-[#0B2C6B] outline-none transition-all duration-300 ${
+                            errors.company
+                              ? "border-rose-300 focus:border-rose-500 focus:ring-1 focus:ring-rose-500"
+                              : "border-black/[0.08] focus:border-[#D9A441] focus:ring-1 focus:ring-[#D9A441]"
+                          }`}
+                        />
+                        {errors.company && <span className="text-[10px] text-rose-500 font-medium">{errors.company}</span>}
+                      </div>
+                    </div>
+
+                    <div className="grid gap-6 md:grid-cols-2">
                       {/* Email Input */}
                       <div className="flex flex-col gap-1.5">
                         <label htmlFor="email" className="text-[10px] font-bold text-[#0B2C6B]/60 tracking-wider uppercase">
@@ -296,22 +323,45 @@ export default function ContactPage() {
                         />
                         {errors.email && <span className="text-[10px] text-rose-500 font-medium">{errors.email}</span>}
                       </div>
+
+                      {/* Role Input */}
+                      <div className="flex flex-col gap-1.5">
+                        <label htmlFor="role" className="text-[10px] font-bold text-[#0B2C6B]/60 tracking-wider uppercase">
+                          Jabatan / Role <span className="text-rose-500">*</span>
+                        </label>
+                        <input
+                          type="text"
+                          id="role"
+                          name="role"
+                          value={formData.role}
+                          onChange={handleInputChange}
+                          placeholder="Contoh: HR Manager, Founder, Direktur"
+                          className={`w-full px-4 py-3 rounded-xl border bg-black/[0.01] text-sm text-[#0B2C6B] outline-none transition-all duration-300 ${
+                            errors.role
+                              ? "border-rose-300 focus:border-rose-500 focus:ring-1 focus:ring-rose-500"
+                              : "border-black/[0.08] focus:border-[#D9A441] focus:ring-1 focus:ring-[#D9A441]"
+                          }`}
+                        />
+                        {errors.role && <span className="text-[10px] text-rose-500 font-medium">{errors.role}</span>}
+                      </div>
                     </div>
 
-                    {/* WhatsApp Input */}
-                    <div className="flex flex-col gap-1.5">
-                      <label htmlFor="whatsapp" className="text-[10px] font-bold text-[#0B2C6B]/60 tracking-wider uppercase">
-                        Nomor WhatsApp <span className="text-black/30 font-normal">(Opsional)</span>
-                      </label>
-                      <input
-                        type="tel"
-                        id="whatsapp"
-                        name="whatsapp"
-                        value={formData.whatsapp}
-                        onChange={handleInputChange}
-                        placeholder="Contoh: 0812XXXXXXXX"
-                        className="w-full px-4 py-3 rounded-xl border border-black/[0.08] bg-black/[0.01] text-sm text-[#0B2C6B] outline-none focus:border-[#D9A441] focus:ring-1 focus:ring-[#D9A441] transition-all duration-300"
-                      />
+                    <div className="grid gap-6 md:grid-cols-2">
+                      {/* WhatsApp Input */}
+                      <div className="flex flex-col gap-1.5">
+                        <label htmlFor="whatsapp" className="text-[10px] font-bold text-[#0B2C6B]/60 tracking-wider uppercase">
+                          Nomor WhatsApp <span className="text-black/30 font-normal">(Opsional)</span>
+                        </label>
+                        <input
+                          type="tel"
+                          id="whatsapp"
+                          name="whatsapp"
+                          value={formData.whatsapp}
+                          onChange={handleInputChange}
+                          placeholder="Contoh: 0812XXXXXXXX"
+                          className="w-full px-4 py-3 rounded-xl border border-black/[0.08] bg-black/[0.01] text-sm text-[#0B2C6B] outline-none focus:border-[#D9A441] focus:ring-1 focus:ring-[#D9A441] transition-all duration-300"
+                        />
+                      </div>
                     </div>
 
                     {/* Message Input */}
@@ -322,10 +372,10 @@ export default function ContactPage() {
                       <textarea
                         id="message"
                         name="message"
-                        rows={4}
+                        rows={5}
                         value={formData.message}
                         onChange={handleInputChange}
-                        placeholder="Tuliskan tantangan utama, kebutuhan, atau pertanyaan singkat Anda..."
+                        placeholder="Tuliskan tantangan utama, jumlah tim/perkiraan skala organisasi, dan target perubahan yang ingin dicapai..."
                         className={`w-full px-4 py-3 rounded-xl border bg-black/[0.01] text-sm text-[#0B2C6B] outline-none resize-none transition-all duration-300 ${
                           errors.message 
                             ? "border-rose-300 focus:border-rose-500 focus:ring-1 focus:ring-rose-500" 
@@ -376,46 +426,35 @@ export default function ContactPage() {
 
         </div>
 
-        <section className="relative mt-20 overflow-hidden rounded-[16px] border border-white/10 bg-[#071B3D] p-6 shadow-[0_24px_74px_-54px_rgba(11,44,107,0.58)] md:p-10">
-          <div className="absolute inset-0 opacity-[0.16]" style={{ backgroundImage: "linear-gradient(rgba(255,255,255,0.12) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.12) 1px, transparent 1px)", backgroundSize: "48px 48px" }} />
-          <div className="absolute -right-24 -top-24 h-56 w-96 bg-[#D9A441]/16 blur-3xl" />
-          <div className="absolute -bottom-28 left-10 h-56 w-96 bg-[#8FA3C7]/12 blur-3xl" />
-
-          <div className="relative z-10 mb-10 grid gap-6 md:grid-cols-[0.85fr_1.15fr] md:items-end">
+        <section className="relative left-1/2 right-1/2 mt-20 w-screen -translate-x-1/2 bg-white px-6 py-14 md:px-12 md:py-20 lg:px-20">
+          <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
             <div>
-              <span className="inline-flex rounded-full border border-white/10 bg-white/10 px-4 py-2 text-[10px] font-bold uppercase tracking-[0.22em] text-[#D9A441]">
-                FAQ
-              </span>
-              <h2 className="mt-6 text-3xl font-light leading-tight tracking-tight text-white md:text-5xl">
+              <h2 className="max-w-lg text-4xl font-light leading-[1.05] tracking-[-0.04em] text-[#0B2C6B] md:text-5xl lg:text-6xl">
                 Pertanyaan sebelum memulai.
               </h2>
+              <p className="mt-7 max-w-md text-base font-light leading-relaxed text-[#0B2C6B]/62">
+                Beberapa hal yang biasanya ingin dipastikan sebelum tim organisasi mulai berdiskusi dengan BinaHub.
+              </p>
             </div>
-            <p className="max-w-2xl text-base font-light leading-relaxed text-white/58">
-              Beberapa hal yang biasanya ingin dipastikan sebelum tim organisasi mulai berdiskusi dengan BinaHub.
-            </p>
-          </div>
 
-          <div className="relative z-10 space-y-3">
+            <div className="space-y-0">
             {FAQ_ITEMS.map((item, index) => {
               const isOpen = openFaq === index;
 
               return (
                 <div
                   key={item.question}
-                  className="overflow-hidden rounded-[14px] border border-white/10 bg-white/[0.075] transition-all duration-500 hover:border-[#D9A441]/24 hover:bg-white/[0.1]"
+                  className="border-b border-[#0B2C6B]/16 first:border-t"
                 >
                   <button
                     type="button"
                     onClick={() => setOpenFaq(isOpen ? -1 : index)}
-                    className="group flex w-full items-center justify-between gap-6 px-5 py-5 text-left md:px-7"
+                    className="group flex w-full items-start justify-between gap-6 py-6 text-left"
                     aria-expanded={isOpen}
                   >
-                    <span className="flex items-center gap-4">
-                      <span className="hidden h-px w-8 bg-[#D9A441]/70 sm:inline-block" />
-                      <span className="text-base font-medium leading-snug text-white md:text-lg">{item.question}</span>
-                    </span>
-                    <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-[10px] border border-white/10 bg-white/10 text-[#D9A441] transition-transform duration-300 group-hover:border-[#D9A441]/30">
-                      <Plus size={18} className={`transition-transform duration-300 ${isOpen ? "rotate-45" : ""}`} />
+                    <span className="max-w-2xl text-base font-semibold leading-snug text-[#0B2C6B] md:text-lg">{item.question}</span>
+                    <span className="mt-1 text-[#D9A441] transition-transform duration-300 group-hover:text-[#0B2C6B]">
+                      <ChevronDown size={18} className={`transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`} />
                     </span>
                   </button>
                   <AnimatePresence initial={false}>
@@ -426,8 +465,8 @@ export default function ContactPage() {
                         exit={{ height: 0, opacity: 0 }}
                         transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
                       >
-                        <div className="border-t border-white/10 px-5 pb-6 pt-5 md:px-7">
-                          <p className="max-w-3xl text-sm font-light leading-relaxed text-white/62">{item.answer}</p>
+                        <div className="pb-8">
+                          <p className="max-w-3xl text-sm font-light leading-[1.85] text-[#0B2C6B]/70 md:text-base">{item.answer}</p>
                         </div>
                       </motion.div>
                     )}
@@ -435,6 +474,7 @@ export default function ContactPage() {
                 </div>
               );
             })}
+            </div>
           </div>
         </section>
 

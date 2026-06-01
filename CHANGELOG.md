@@ -3,6 +3,59 @@
 Semua perubahan yang signifikan pada proyek ini akan didokumentasikan di file ini.
 Format yang digunakan berdasarkan [Keep a Changelog](https://keepachangelog.com/id/1.0.0/), dan proyek ini mematuhi aturan [Semantic Versioning](https://semver.org/).
 
+## [0.2.4]
+### Changed
+- Merapikan flow Home menjadi lebih kuratif: hero, pain point, carousel positioning/visi/misi, layanan, dan CTA akhir.
+- Memendekkan copy judul pain point agar lebih tajam dan mudah dipindai.
+- Mengubah hero Home menjadi stacking behavior di desktop, sementara mobile tetap proporsional dan tidak memakai sticky effect yang berpotensi janky.
+- Menyesuaikan ukuran container hero Home agar selaras dengan hero halaman Tentang Kami.
+- Mengubah trigger efek navbar agar baru aktif saat section pain point mulai naik ke area navigasi, bukan langsung setelah scroll kecil.
+- Mengembalikan carousel Posisi Kami dan Misi Kami ke treatment gelap/cinematic agar tidak terasa seperti section putih yang sama dengan pain point.
+- Mengembalikan H.U.M.A.N ke Home sebagai section pemisah full-width berbasis scroll/parallax: penjelasan bergeser, kepanjangan nilai muncul bertahap, lalu berubah menjadi `HUMAN` gold dengan CTA detail nilai.
+- Memusatkan intro H.U.M.A.N, mengubah transisi penjelasan menjadi slide-out tanpa fade yang bertumpuk, memakai gold solid pada state final, serta menstabilkan tinggi carousel Home agar slide positioning, visi, dan misi memakai frame yang konsisten.
+- Mengganti background light/dark H.U.M.A.N dari glow/blob menjadi abstract architectural texture berbasis grid, diagonal etching, dan solid navy/gold treatment.
+- Mengganti copy pengantar H.U.M.A.N Home agar lebih ringkas dari versi About, serta memakai satu texture dark dari H.U.M.A.N About dan generated light texture khusus untuk Home.
+- Menghapus garis melintang pada final state H.U.M.A.N dan mengganti dark background Home dengan generated HD abstract texture yang lebih bersih.
+- Mengubah trigger compact navbar agar baru aktif setelah section pain point benar-benar terscroll, menambahkan transisi layout yang lebih halus, dan memperbaiki hover bridge mega dropdown agar panel tidak mudah hilang saat dipilih.
+- Memperbaiki responsive Home untuk mobile kecil, tablet, laptop di bawah 1440px, dan layar lebar: menurunkan tinggi hero/pain point mobile, mengubah pain point menjadi headline kiri-bawah, merapikan carousel mobile, memberi ruang CTA H.U.M.A.N di tablet, dan mengubah slide misi carousel menjadi map/node compact.
+- Mengubah breakpoint navbar tablet ke mode mobile agar tidak kepotong di 768px, menyembunyikan navbar mobile saat scroll pertama, mengganti indikator carousel menjadi progress lines, dan memadatkan slide misi agar tidak overlap di mobile.
+- Merapikan flow halaman About menjadi Hero, Siapa Kami, Legacy & Perjalanan, Positioning, Visi & Misi, H.U.M.A.N, dan CTA akhir; memperjelas perbedaan tautan Perjalanan Kami dan Dari BDN ke BinaHub; serta memadatkan capabilities agar tidak tumpang tindih dengan misi.
+- Mengubah arsitektur CTA akhir menjadi bagian dari Footer route-aware: halaman yang memiliki CTA memakai satu container CTA+Footer dengan background sesuai halaman, sedangkan halaman tanpa CTA tetap memakai footer normal full-width.
+- Menghapus pendekatan ruang bawah/negative margin pada CTA lama agar tidak ada gap kecil di bawah footer dan footer panel menempel ke dasar container CTA.
+- Mengembalikan CTA Home ke light image treatment tanpa overlay navy, sementara CTA halaman Layanan, About, Journey, Dari BDN ke BinaHub, dan Transformation Signals tetap mempertahankan copy serta konteks masing-masing.
+- Merapikan halaman Layanan dengan menghapus mode orbit teknis, mempertahankan peta gambar sebagai satu-satunya eksplorasi layanan, memindahkan Alur Kerja ke halaman Layanan, dan memperbaiki anchor/detail navigasi.
+- Mempertegas copy problem section Layanan, mengganti label `Core` menjadi kategori kebutuhan Diagnose/Develop/Execute/Measure, mengarahkan CTA konsultasi Layanan ke halaman Kontak, dan mengganti indikator Alur Kerja menjadi angka 1-4.
+- Menjaga halaman Perspektif tetap fokus sebagai thought leadership dengan mempertahankan Metodologi dan memindahkan Alur Kerja yang lebih operasional ke halaman Layanan.
+- Membuat section Transformation Signals di Perspektif menjadi full-width band agar terasa lebih editorial dan menonjol sebagai aset briefing utama.
+- Memperkuat halaman Kontak sebagai jalur B2B dengan field organisasi/perusahaan dan jabatan/role, validasi pesan yang lebih kontekstual, FAQ full-width putih, serta SQL Supabase untuk kolom contact form baru.
+- Mengganti istilah user-facing `pilar` pada halaman Layanan dan nilai menjadi `layanan`/`prinsip` agar bahasa struktur lebih jelas dan tidak menimbulkan kategori baru.
+- Menyesuaikan warna teks FAQ Kontak ke navy BinaHub agar konsisten dengan tema visual halaman dan tidak terasa lepas dari brand.
+- Meredesain halaman Dari BDN ke BinaHub menjadi editorial transition page dengan hero gelap premium, proof ledger, timeline boardroom, positioning cards, dan industry context panel.
+- Meredesain Transformation Signals 2026 menjadi executive briefing dengan executive summary, priority signals, signal register yang lebih rapi, dan recommended response lens yang lebih kuat.
+- Mengubah section Spektrum Pengukuran BinaInsight dari scroll-driven menjadi click-driven full-width band agar tidak menghasilkan ruang kosong besar, dengan overlay navy lebih ringan supaya foto background tetap terlihat.
+- Menambahkan jarak bawah pada section Spektrum Pengukuran BinaInsight agar tidak menempel ke CTA berikutnya.
+- Merapikan Footer agar struktur link mengikuti navbar: Tentang, Layanan, Perspektif, CTA Diagnosa Performa, Hubungi Kami, dan kontak.
+- Menghapus tombol CTA dari panel Footer, mengganti background CTA+Footer route-aware dengan abstract navy image baru, dan mengganti background Spektrum Pengukuran BinaInsight dengan image baru.
+- Mengembalikan background CTA+Footer Home ke versi light semula, menambahkan dua variasi background CTA+Footer untuk halaman lain, dan menurunkan overlay navy Spektrum Pengukuran agar foto lebih dominan.
+- Mengubah state navbar saat scroll menjadi glossy translucent blur agar terasa lebih ringan dan modern.
+- Menghapus teks penjelasan tambahan di Footer, membuat navbar scrolled benar-benar transparent blur tanpa white fill, serta mengganti hero Perjalanan Kami dan Dari BDN ke BinaHub dengan story hero background navy-gold baru.
+- Mengubah statistik Dari BDN ke BinaHub menjadi glossy blur panel dengan background navy-gold yang selaras dengan hero.
+- Memindahkan statistik Dari BDN ke BinaHub ke pojok kanan bawah hero dengan garis minimalis dan label italic, lalu mengganti area lama menjadi positioning section glossy blur.
+- Memperbaiki statistik hero Dari BDN ke BinaHub agar tidak tumpang tindih dengan copy hero pada viewport berbeda.
+- Memindahkan positioning Dari BDN ke BinaHub ke bawah Origin Story sebagai section full-width dengan treatment glossy blur.
+- Mengganti background card Priority Signals pada halaman Transformation Signals 2026 dengan `cta-footer-bg.png` dan treatment glossy blur.
+- Memadatkan statistik hero Dari BDN ke BinaHub, merapikan jarak hero ke Origin Story, dan membalik background Positioning agar tidak sama dengan hero.
+- Membuat navbar lebih adaptif terhadap tone area di belakangnya: teks berubah terang saat berada di area gelap dan kembali navy saat berada di area terang.
+- Meredesain halaman Perjalanan Kami menjadi editorial timeline dengan masthead, chapter treatment, image frame konsisten, dan quote akhir yang lebih matang tanpa mengubah narasi utama.
+- Menyambungkan Transformation Signals 2026 dengan pain point Home melalui section visual berbasis asset slide pain point agar alur dari Home ke briefing terasa konsisten.
+- Mengubah default `npm run dev` ke `next dev --webpack` untuk menghindari lonjakan memori Turbopack di Windows/OneDrive, serta menambahkan `npm run dev:turbo` bila perlu menjalankan Turbopack secara eksplisit.
+- Merapikan struktur navigasi utama menjadi Home, Tentang, Layanan, Perspektif, Kontak, dan CTA Diagnosa Performa.
+- Mengubah halaman Transformation Signals 2026 menjadi gaya executive briefing yang lebih ringkas, strategis, dan siap dibaca decision maker.
+
+### Removed
+- Menghapus rendering section Gallery dan Marquee dari flow utama Home agar alur pesan lebih fokus.
+- Menghapus halaman khusus layanan individual lama seperti Academy, Coach, Lab, Play, Impact, dan Works dari sitemap/route karena detail layanan diarahkan ke eksplorasi modal di halaman Layanan.
+
 ## [0.2.3]
 ### Added
 - Menambahkan akses dokumen langsung dari dashboard admin untuk melihat preview isi email result assessment dan email proposal.

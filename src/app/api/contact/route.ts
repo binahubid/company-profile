@@ -11,12 +11,18 @@ const FROM = process.env.EMAIL_FROM && process.env.EMAIL_FROM.includes('@')
 const COMPANY_COPY = process.env.EMAIL_COMPANY_COPY || 'admin@binahub.id';
 const COMPANY_NAME = process.env.NEXT_PUBLIC_COMPANY_NAME || 'BinaHub';
 
+function getErrorMessage(error: unknown) {
+  return error instanceof Error ? error.message : 'Unknown error';
+}
+
 // Zod schema for inquiry validation
 const ContactInquirySchema = z.object({
   name: z.string().min(1, 'Nama wajib diisi'),
+  company: z.string().min(1, 'Nama organisasi wajib diisi'),
+  role: z.string().min(1, 'Jabatan wajib diisi'),
   email: z.string().email('Format email tidak valid'),
   whatsapp: z.string().optional().default(''),
-  message: z.string().min(5, 'Pesan minimal terdiri dari 5 karakter'),
+  message: z.string().min(20, 'Pesan minimal terdiri dari 20 karakter'),
 });
 
 export async function POST(req: NextRequest) {
@@ -32,7 +38,7 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    const { name, email, whatsapp, message } = validationResult.data;
+    const { name, company, role, email, whatsapp, message } = validationResult.data;
     const supabase = createServerSupabase();
 
     // 2. Save lead in "leads" table
@@ -44,6 +50,7 @@ export async function POST(req: NextRequest) {
           {
             name,
             email,
+            company,
             phone: whatsapp || '',
             source: 'contact_form',
             lead_status: 'New Lead',
@@ -63,23 +70,22 @@ export async function POST(req: NextRequest) {
     }
 
     // 3. Insert into "inquiries" table
-    let isSavedToInquiries = false;
     try {
       const { error: inquiryError } = await supabase
         .from('inquiries')
         .insert({
           lead_id: leadId,
           name,
+          company,
           email,
           whatsapp,
-          message,
+          role_title: role,
+          message: `Organisasi: ${company}\nJabatan: ${role}\n\n${message}`,
           source: 'contact_form',
           status: 'Baru',
         });
 
-      if (!inquiryError) {
-        isSavedToInquiries = true;
-      } else {
+      if (inquiryError) {
         console.warn('[Contact API Warning] Failed to insert into inquiries table:', inquiryError.message);
         
         // Fail-safe fallback: If inquiries table doesn't exist, we save message into lead notes if possible,
@@ -88,13 +94,13 @@ export async function POST(req: NextRequest) {
           await supabase
             .from('leads')
             .update({
-              notes: `Inquiry Message: ${message}`,
+              notes: `Organisasi: ${company}\nJabatan: ${role}\nInquiry Message: ${message}`,
             })
             .eq('id', leadId);
         }
       }
-    } catch (err: any) {
-      console.error('[Contact API Error] Inquiries table insertion failed:', err.message);
+    } catch (err: unknown) {
+      console.error('[Contact API Error] Inquiries table insertion failed:', getErrorMessage(err));
     }
 
     // 4. Send Email Notification to Admin via Resend
@@ -124,6 +130,14 @@ export async function POST(req: NextRequest) {
               <tr>
                 <td style="padding:15px 20px;border-bottom:1px solid #E2E8F0;font-weight:600;width:30%;color:#475569;font-size:14px;">Nama Pengirim</td>
                 <td style="padding:15px 20px;border-bottom:1px solid #E2E8F0;color:#0F172A;font-size:14px;">${name}</td>
+              </tr>
+              <tr>
+                <td style="padding:15px 20px;border-bottom:1px solid #E2E8F0;font-weight:600;color:#475569;font-size:14px;">Organisasi</td>
+                <td style="padding:15px 20px;border-bottom:1px solid #E2E8F0;color:#0F172A;font-size:14px;">${company}</td>
+              </tr>
+              <tr>
+                <td style="padding:15px 20px;border-bottom:1px solid #E2E8F0;font-weight:600;color:#475569;font-size:14px;">Jabatan / Role</td>
+                <td style="padding:15px 20px;border-bottom:1px solid #E2E8F0;color:#0F172A;font-size:14px;">${role}</td>
               </tr>
               <tr>
                 <td style="padding:15px 20px;border-bottom:1px solid #E2E8F0;font-weight:600;color:#475569;font-size:14px;">Email</td>
@@ -169,12 +183,12 @@ export async function POST(req: NextRequest) {
       await resend.emails.send({
         from: `${COMPANY_NAME} <${FROM}>`,
         to: COMPANY_COPY,
-        subject: `[INQUIRY BARU] ${name} - ${COMPANY_NAME} Website`,
+        subject: `[INQUIRY BARU] ${company} - ${name}`,
         html: htmlEmailContent,
       });
       console.log('[Contact API] Email notification sent successfully to admin:', COMPANY_COPY);
-    } catch (emailErr: any) {
-      console.error('[Contact API Error] Resend email sending failed:', emailErr.message);
+    } catch (emailErr: unknown) {
+      console.error('[Contact API Error] Resend email sending failed:', getErrorMessage(emailErr));
     }
 
     return NextResponse.json({
@@ -182,10 +196,10 @@ export async function POST(req: NextRequest) {
       message: 'Inquiry Anda berhasil terkirim. Tim kami akan segera menghubungi Anda.',
     });
 
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('[Contact API Error]', error);
     return NextResponse.json(
-      { success: false, error: 'Terjadi kesalahan internal server.', details: error.message },
+      { success: false, error: 'Terjadi kesalahan internal server.', details: getErrorMessage(error) },
       { status: 500 }
     );
   }

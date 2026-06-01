@@ -1,5 +1,5 @@
-import Link from "next/link";
 import { ArrowRight, CheckCircle2 } from "lucide-react";
+import Image from "next/image";
 import { Tag } from "@/components/ui/tag";
 
 const stats = [
@@ -35,7 +35,7 @@ const timeline = [
 const differentiators = [
   {
     title: "Ekosistem terintegrasi",
-    desc: "Delapan modul layanan dirancang untuk bekerja bersama, bukan menjadi program terpisah yang tidak saling terhubung.",
+    desc: "Delapan layanan dirancang untuk bekerja bersama, bukan menjadi program terpisah yang tidak saling terhubung.",
   },
   {
     title: "Dampak terukur",
@@ -63,108 +63,126 @@ const industries = [
 
 export default function FromBdnToBinaHubPage() {
   return (
-    <main className="min-h-screen overflow-hidden bg-[#F5F7FA] text-[#4A4C54]">
-      <section className="relative px-4 pt-24 md:px-8 md:pt-32">
-        <div className="relative overflow-hidden rounded-[16px] border border-white/50 bg-[#FAFAF8] px-6 py-20 shadow-[0_28px_90px_-60px_rgba(11,44,107,0.36)] md:rounded-[18px] md:px-14 lg:px-20">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_78%_18%,rgba(217,164,65,0.14),transparent_30%),linear-gradient(135deg,rgba(11,44,107,0.06),transparent_42%)]" />
-          <div className="relative z-10 grid gap-14 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
+    <main className="min-h-screen overflow-hidden bg-[#F4F6F8] text-[#4A4C54]">
+      <section className="px-4 pt-24 md:px-8 md:pt-32">
+        <div className="relative overflow-hidden rounded-[18px] bg-[#071A33] text-white shadow-[0_34px_100px_-70px_rgba(7,26,51,0.85)]">
+          <Image
+            src="/story-hero-bg.png"
+            alt=""
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover object-center"
+          />
+          <div className="absolute inset-0 bg-[#071A33]/16" />
+          <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(7,26,51,0.54)_0%,rgba(7,26,51,0.34)_48%,rgba(7,26,51,0.10)_100%)]" />
+
+          <div className="relative z-10 grid min-h-[64vh] gap-10 px-6 py-16 md:px-12 md:py-20 lg:min-h-[70vh] lg:grid-cols-[0.95fr_1.05fr] lg:items-end lg:px-20 lg:pb-10">
             <div>
-              <Tag>DARI BDN KE BINAHUB</Tag>
-              <h1 className="mt-8 max-w-4xl text-5xl font-light leading-[0.96] tracking-[-0.055em] text-[#0B2C6B] md:text-7xl lg:text-[92px]">
+              <Tag className="border-white/10 bg-white/10 text-[#D9A441]">DARI BDN KE BINAHUB</Tag>
+              <h1 className="mt-8 max-w-4xl text-5xl font-light leading-[0.94] tracking-[-0.055em] md:text-7xl lg:text-[96px]">
                 Bukan awal yang baru.
                 <span className="block italic text-[#D9A441]">Transformasi perjalanan 16 tahun.</span>
               </h1>
             </div>
-            <div className="max-w-2xl border-l border-[#D9A441]/70 pl-7">
-              <p className="text-lg font-light leading-[1.8] text-black/64 md:text-xl">
+
+            <div className="max-w-2xl border-l border-[#D9A441]/70 pl-6 md:pl-8">
+              <p className="text-lg font-light leading-[1.8] text-white/76 md:text-xl">
                 BinaHub berdiri di atas perjalanan PT Bina Daya Nugraha, perusahaan pelatihan dan team building yang telah mendampingi lebih dari 80 organisasi dan 10.000 individu sejak 2010.
               </p>
-              <p className="mt-6 text-base leading-[1.8] text-black/54">
+              <p className="mt-6 text-base leading-[1.8] text-white/56">
                 Ketika BDN menyelesaikan babaknya, kami tidak menutup buku. Kami membuka yang baru dengan ekosistem yang lebih terintegrasi, pendekatan yang lebih terukur, dan teknologi yang memperluas dampak tanpa mengorbankan kedalaman.
               </p>
             </div>
           </div>
-        </div>
-      </section>
 
-      <section className="px-6 py-18 md:px-12 md:py-24 lg:px-20">
-        <div className="mx-auto max-w-7xl">
-          <div className="mb-12 grid gap-8 lg:grid-cols-[0.8fr_1.2fr] lg:items-end">
-            <div>
-              <Tag>TRACK RECORD</Tag>
-              <h2 className="mt-6 text-4xl font-light tracking-[-0.04em] text-[#0B2C6B] md:text-6xl">
-                Angka yang dibangun dari lapangan.
-              </h2>
+          <div className="relative z-10 px-6 pb-8 md:px-12 lg:px-20">
+            <div className="ml-auto grid max-w-3xl border-y border-white/16 text-white sm:grid-cols-2 lg:grid-cols-4 lg:bg-white/[0.035] lg:backdrop-blur-xl">
+              {stats.map((item) => (
+                <div key={item.label} className="border-b border-white/12 py-3 sm:px-4 lg:border-b-0 lg:border-r lg:last:border-r-0">
+                  <p className="text-2xl font-light tracking-[-0.05em] text-white md:text-3xl">{item.value}</p>
+                  <p className="mt-1 max-w-[9rem] text-[11px] italic leading-relaxed text-white/60">{item.label}</p>
+                </div>
+              ))}
             </div>
-            <p className="max-w-2xl text-lg font-light leading-relaxed text-black/56">
-              Bukan angka pemasaran. Ini adalah akumulasi dari kerja nyata bersama organisasi di berbagai sektor industri Indonesia.
-            </p>
-          </div>
-          <div className="grid gap-4 md:grid-cols-4">
-            {stats.map((item) => (
-              <div key={item.label} className="rounded-[12px] border border-black/[0.04] bg-white p-7 shadow-[0_16px_50px_-42px_rgba(11,44,107,0.28)]">
-                <p className="text-4xl font-light tracking-[-0.04em] text-[#0B2C6B] md:text-5xl">{item.value}</p>
-                <p className="mt-4 text-sm leading-relaxed text-black/50">{item.label}</p>
-              </div>
-            ))}
           </div>
         </div>
       </section>
 
-      <section className="bg-[#FAFAF8] px-6 py-18 md:px-12 md:py-24 lg:px-20">
-        <div className="mx-auto grid max-w-7xl gap-16 lg:grid-cols-[0.85fr_1.15fr]">
-          <div>
+      <section className="px-6 pb-18 pt-12 md:px-12 md:pb-24 md:pt-16 lg:px-20 lg:pt-20">
+        <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
+          <div className="lg:sticky lg:top-28 lg:self-start">
             <Tag>ORIGIN STORY</Tag>
             <h2 className="mt-6 text-4xl font-light leading-tight tracking-[-0.045em] text-[#0B2C6B] md:text-6xl">
               Satu perjalanan, satu visi yang berkembang.
             </h2>
-            <p className="mt-8 text-lg font-light leading-[1.8] text-black/58">
+            <p className="mt-7 text-lg font-light leading-[1.8] text-black/58">
               Kami tidak memulai dari nol. Kami memulai dari tempat yang sudah terbukti, lalu bertanya: bagaimana jika pengalaman ini bisa diintegrasikan, diskalakan, dan diperkuat teknologi untuk menghasilkan transformasi yang benar-benar terukur?
             </p>
             <blockquote className="mt-10 border-l-2 border-[#D9A441] pl-6 text-2xl font-light italic leading-relaxed text-[#0B2C6B]">
-              "BinaHub adalah jawaban dari pertanyaan itu."
+              &ldquo;BinaHub adalah jawaban dari pertanyaan itu.&rdquo;
             </blockquote>
           </div>
-          <div className="space-y-5">
-            {timeline.map((item) => (
-              <div key={item.year} className="grid gap-5 rounded-[12px] border border-black/[0.04] bg-white p-6 shadow-[0_16px_56px_-48px_rgba(11,44,107,0.28)] md:grid-cols-[100px_1fr]">
-                <p className="text-sm font-bold tracking-[0.24em] text-[#D9A441]">{item.year}</p>
-                <div>
-                  <h3 className="text-xl font-light text-[#0B2C6B]">{item.title}</h3>
-                  <p className="mt-3 text-sm leading-relaxed text-black/52">{item.desc}</p>
+
+          <div className="relative">
+            <div className="absolute left-[18px] top-4 hidden h-[calc(100%-2rem)] w-px bg-[#D9A441]/30 md:block" />
+            <div className="space-y-5">
+              {timeline.map((item, index) => (
+                <article key={item.year} className="relative grid gap-5 rounded-[14px] border border-black/[0.06] bg-[#FBFAF6] p-6 shadow-[0_18px_56px_-48px_rgba(11,44,107,0.32)] md:grid-cols-[92px_1fr] md:pl-14">
+                  <span className="absolute left-4 top-7 hidden h-3 w-3 rounded-full bg-[#D9A441] ring-8 ring-[#F4F6F8] md:block" />
+                  <p className="text-sm font-bold tracking-[0.24em] text-[#D9A441]">{item.year}</p>
+                  <div>
+                    <div className="mb-4 flex items-center gap-3">
+                      <span className="font-mono text-xs text-[#0B2C6B]/34">{String(index + 1).padStart(2, "0")}</span>
+                      <span className="h-px flex-1 bg-black/[0.08]" />
+                    </div>
+                    <h3 className="text-2xl font-light leading-tight text-[#0B2C6B]">{item.title}</h3>
+                    <p className="mt-4 text-sm leading-relaxed text-black/54">{item.desc}</p>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="relative left-1/2 w-screen -translate-x-1/2 overflow-hidden bg-[#071A33] px-6 py-18 text-white md:px-12 md:py-24 lg:px-20">
+        <Image
+          src="/story-hero-bg.png"
+          alt=""
+          fill
+          sizes="100vw"
+          className="-scale-x-100 object-cover object-center opacity-86"
+        />
+        <div className="absolute inset-0 bg-[#071A33]/24" />
+        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(7,26,51,0.72)_0%,rgba(7,26,51,0.38)_55%,rgba(7,26,51,0.16)_100%)]" />
+        <div className="relative z-10 mx-auto max-w-7xl">
+          <div className="grid gap-8 border-y border-white/16 py-10 backdrop-blur-[2px] lg:grid-cols-[0.9fr_1.1fr]">
+            <div>
+              <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-[#D9A441]">POSITIONING</p>
+              <h2 className="mt-6 max-w-2xl text-4xl font-light tracking-[-0.045em] md:text-6xl">
+                Transformation partner, bukan vendor training.
+              </h2>
+            </div>
+            <div className="grid gap-4 md:grid-cols-2">
+              {differentiators.map((item, index) => (
+                <div key={item.title} className="border-t border-white/16 pt-5">
+                  <div className="mb-5 flex items-center justify-between">
+                    <CheckCircle2 className="text-[#D9A441]" size={20} />
+                    <span className="font-mono text-xs text-white/34">{String(index + 1).padStart(2, "0")}</span>
+                  </div>
+                  <h3 className="text-xl font-semibold tracking-[-0.02em] text-white">{item.title}</h3>
+                  <p className="mt-3 text-sm leading-relaxed text-white/60">{item.desc}</p>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
       <section className="px-6 py-18 md:px-12 md:py-24 lg:px-20">
-        <div className="mx-auto max-w-7xl">
-          <div className="mx-auto mb-14 max-w-3xl text-center">
-            <Tag>POSITIONING</Tag>
-            <h2 className="mt-6 text-4xl font-light tracking-[-0.045em] text-[#0B2C6B] md:text-6xl">
-              Transformation partner, bukan vendor training.
-            </h2>
-            <p className="mt-7 text-lg font-light leading-[1.8] text-black/58">
-              Banyak program pelatihan gagal bukan karena pesertanya tidak mampu, tetapi karena intervensinya tidak menyentuh akar masalah, tidak berkelanjutan, dan dampaknya tidak pernah diukur.
-            </p>
-          </div>
-          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-            {differentiators.map((item) => (
-              <div key={item.title} className="rounded-[12px] border border-black/[0.04] bg-[#FCFCFB] p-6 transition-all duration-500 hover:-translate-y-1 hover:bg-white hover:shadow-[0_18px_58px_-48px_rgba(11,44,107,0.34)]">
-                <CheckCircle2 className="mb-7 text-[#D9A441]" size={24} />
-                <h3 className="text-xl font-light text-[#0B2C6B]">{item.title}</h3>
-                <p className="mt-4 text-sm leading-relaxed text-black/50">{item.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="bg-[#0B2C6B] px-6 py-18 text-white md:px-12 md:py-24 lg:px-20">
-        <div className="mx-auto grid max-w-7xl gap-14 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
-          <div>
+        <div className="mx-auto grid max-w-7xl overflow-hidden rounded-[18px] bg-[#071A33] text-white lg:grid-cols-[0.92fr_1.08fr]">
+          <div className="p-8 md:p-12 lg:p-14">
             <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-[#D9A441]">KONTEKS INDUSTRI</p>
             <h2 className="mt-6 text-4xl font-light tracking-[-0.045em] md:text-6xl">
               Pengalaman yang memahami dinamika kerja nyata.
@@ -173,32 +191,16 @@ export default function FromBdnToBinaHubPage() {
               Pengalaman kami tidak terbatas pada satu sektor. Pemahaman terhadap dinamika workforce di masing-masing industri memungkinkan kami merancang intervensi yang relevan, bukan program generik yang sama untuk semua.
             </p>
           </div>
-          <div className="grid gap-3 sm:grid-cols-2">
-            {industries.map((item) => (
-              <div key={item} className="rounded-[10px] border border-white/10 bg-white/[0.065] px-5 py-4 text-sm font-medium text-white/78">
-                {item}
-              </div>
-            ))}
+          <div className="border-t border-white/10 p-8 md:p-12 lg:border-l lg:border-t-0 lg:p-14">
+            <div className="grid gap-3 sm:grid-cols-2">
+              {industries.map((item) => (
+                <div key={item} className="group flex items-center justify-between gap-4 rounded-[10px] border border-white/10 bg-white/[0.06] px-5 py-4 text-sm font-medium text-white/78 transition-colors hover:bg-white/[0.1]">
+                  <span>{item}</span>
+                  <ArrowRight className="shrink-0 text-[#D9A441] opacity-0 transition-opacity group-hover:opacity-100" size={14} />
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
-
-      <section className="px-6 py-18 md:px-12 md:py-24 lg:px-20">
-        <div className="mx-auto flex max-w-5xl flex-col items-center rounded-[16px] border border-black/[0.04] bg-white px-8 py-14 text-center shadow-[0_20px_68px_-54px_rgba(11,44,107,0.32)]">
-          <Tag>LANGKAH BERIKUTNYA</Tag>
-          <h2 className="mt-6 max-w-3xl text-4xl font-light tracking-[-0.045em] text-[#0B2C6B] md:text-6xl">
-            Ingin tahu apakah BinaHub tepat untuk organisasi Anda?
-          </h2>
-          <p className="mt-7 max-w-2xl text-lg font-light leading-[1.8] text-black/56">
-            Mulai dengan sesi Organizational Readiness Diagnostic untuk memahami tantangan spesifik organisasi Anda dan mengevaluasi kecocokan pendekatan kami.
-          </p>
-          <Link
-            href="/insight"
-            className="mt-10 inline-flex h-14 items-center gap-3 rounded-full bg-[#0B2C6B] px-8 text-xs font-bold uppercase tracking-[0.18em] text-[#D9A441] transition-all hover:-translate-y-0.5 hover:bg-[#08245A]"
-          >
-            Jadwalkan Readiness Session
-            <ArrowRight size={16} />
-          </Link>
         </div>
       </section>
     </main>

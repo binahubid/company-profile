@@ -31,11 +31,8 @@ export function HeroSection({ heroReady }: HeroSectionProps) {
   }, []);
 
   return (
-    <section id="home-hero" className="relative z-0 px-4 pt-3 pb-3 md:pt-4 md:pb-4 bg-[#F5F7FA] w-full overflow-x-hidden">
-      <div
-        className="relative overflow-hidden rounded-[14px] md:rounded-[16px]"
-        style={{ height: "clamp(560px, calc(100svh - 126px), 820px)" }}
-      >
+    <section id="home-hero" className="relative z-0 w-full overflow-x-hidden bg-[#F5F7FA] px-4 pt-20 mb-8 md:px-8 md:pt-28 md:mb-16">
+      <div className="relative h-[65vh] min-h-[480px] w-full overflow-hidden rounded-[14px] border border-white/10 bg-[#071A33] shadow-[0_24px_78px_-56px_rgba(11,44,107,0.48)] max-[499px]:h-[50vh] max-[499px]:min-h-[336px] sm:h-[72vh] md:h-[80vh] md:rounded-[18px]">
         {/* Background Image */}
         <Image
           src="/asset/hero2.png"
@@ -84,9 +81,9 @@ export function HeroSection({ heroReady }: HeroSectionProps) {
         <PixelBackground ready={heroReady} />
 
         {/* Hero Content */}
-        <div className="absolute inset-x-0 bottom-0 z-30 flex flex-col px-4 sm:px-6 md:px-16 pb-8 sm:pb-10 md:pb-16 lg:pb-20 xl:pb-24 max-w-5xl">
+        <div className="absolute inset-x-0 bottom-0 z-30 flex flex-col px-4 sm:px-6 md:px-16 pb-8 max-[499px]:pb-5 sm:pb-10 md:pb-16 lg:pb-20 xl:pb-24 max-w-5xl">
           <div
-            className="mb-4 sm:mb-6 relative h-[90px] sm:h-[150px] md:h-[180px] lg:h-[200px] xl:h-[220px]"
+            className="mb-4 sm:mb-6 relative h-[90px] max-[499px]:h-[72px] sm:h-[150px] md:h-[180px] lg:h-[200px] xl:h-[220px]"
             style={{
               opacity: heroReady ? 1 : 0,
               filter: heroReady ? "blur(0px)" : "blur(24px)",
@@ -102,7 +99,7 @@ export function HeroSection({ heroReady }: HeroSectionProps) {
                 animate={{ y: 0, opacity: 1 }}
                 exit={{ y: -40, opacity: 0 }}
                 transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-                className="absolute inset-0 text-3xl sm:text-6xl md:text-7xl lg:text-[5.5rem] xl:text-8xl font-light text-white leading-[1.1] tracking-tight"
+                className="absolute inset-0 text-3xl max-[499px]:text-[2rem] sm:text-6xl md:text-7xl lg:text-[5.5rem] xl:text-8xl font-light text-white leading-[1.1] tracking-tight"
               >
                 {TITLES[titleIndex].white} <br />
                 <span className="italic font-sans" style={{ color: "#D9A441" }}>
@@ -113,7 +110,7 @@ export function HeroSection({ heroReady }: HeroSectionProps) {
           </div>
 
           <p
-            className="text-sm sm:text-base md:text-lg text-white/70 max-w-xl mb-8 sm:mb-12 leading-relaxed"
+            className="text-sm max-[499px]:text-xs sm:text-base md:text-lg text-white/70 max-w-xl mb-8 max-[499px]:mb-4 sm:mb-12 leading-relaxed"
             style={{
               opacity: heroReady ? 1 : 0,
               filter: heroReady ? "blur(0px)" : "blur(16px)",
@@ -127,7 +124,7 @@ export function HeroSection({ heroReady }: HeroSectionProps) {
 
           {/* CTA Buttons */}
           <div
-            className="flex flex-wrap items-center gap-3 sm:gap-6 mb-6 sm:mb-8"
+            className="flex flex-wrap items-center gap-3 sm:gap-6 mb-6 max-[499px]:mb-0 sm:mb-8"
             style={{
               opacity: heroReady ? 1 : 0,
               transform: heroReady ? "translateY(0px)" : "translateY(20px)",
@@ -142,7 +139,7 @@ export function HeroSection({ heroReady }: HeroSectionProps) {
 
               <Link
                 href="/insight"
-                className="group relative inline-flex h-12 shrink-0 items-center justify-center gap-3 overflow-hidden rounded-full border border-[#D9A441]/30 bg-[#D9A441] px-7 text-[11px] font-bold uppercase tracking-[0.14em] text-[#0B2C6B] shadow-[0_18px_44px_-26px_rgba(217,164,65,0.9)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-white hover:shadow-[0_24px_56px_-28px_rgba(217,164,65,0.85)] active:scale-95"
+                className="group relative inline-flex h-12 max-[499px]:h-10 shrink-0 items-center justify-center gap-3 overflow-hidden rounded-full border border-[#D9A441]/30 bg-[#D9A441] px-7 max-[499px]:px-5 text-[11px] max-[499px]:text-[10px] font-bold uppercase tracking-[0.14em] text-[#0B2C6B] shadow-[0_18px_44px_-26px_rgba(217,164,65,0.9)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-white hover:shadow-[0_24px_56px_-28px_rgba(217,164,65,0.85)] active:scale-95"
               >
                 Mulai
                 <ChevronRight size={14} strokeWidth={2.2} className="transition-transform duration-300 group-hover:translate-x-0.5" />

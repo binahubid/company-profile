@@ -18,12 +18,6 @@ const ROUTES: Entry[] = [
   { path: "/from-bdn-to-binahub", priority: 0.6, changeFrequency: "yearly" },
   { path: "/gallery", priority: 0.6, changeFrequency: "monthly" },
   { path: "/contact", priority: 0.7, changeFrequency: "yearly" },
-  { path: "/academy", priority: 0.7, changeFrequency: "monthly" },
-  { path: "/coach", priority: 0.7, changeFrequency: "monthly" },
-  { path: "/lab", priority: 0.7, changeFrequency: "monthly" },
-  { path: "/play", priority: 0.7, changeFrequency: "monthly" },
-  { path: "/impact", priority: 0.7, changeFrequency: "monthly" },
-  { path: "/works", priority: 0.7, changeFrequency: "monthly" },
   { path: "/binahub", priority: 0.5, changeFrequency: "monthly" },
 ];
 
