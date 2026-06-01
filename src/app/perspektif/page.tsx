@@ -51,8 +51,12 @@ export default function PerspektifPage() {
       </section>
 
       <section className="pb-20">
-        <div className="relative overflow-hidden bg-[#07101F] px-6 py-14 text-white shadow-[0_22px_70px_-54px_rgba(11,44,107,0.72)] md:px-12 md:py-18 lg:px-20">
-          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_12%_0%,rgba(217,164,65,0.15),transparent_30%),linear-gradient(90deg,rgba(255,255,255,0.05),transparent_45%)]" />
+        <div
+          className="relative overflow-hidden bg-[#07101F] bg-cover bg-center px-6 py-14 text-white shadow-[0_22px_70px_-54px_rgba(11,44,107,0.72)] md:px-12 md:py-18 lg:px-20"
+          style={{ backgroundImage: "url('/asset/human-texture-dark-home.png')" }}
+        >
+          <div className="pointer-events-none absolute inset-0 bg-[#07101F]/42" />
+          <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(90deg,rgba(7,16,31,0.78)_0%,rgba(7,16,31,0.46)_48%,rgba(7,16,31,0.18)_100%)]" />
           <div className="relative z-10 mx-auto grid max-w-7xl gap-8 md:grid-cols-[1fr_auto] md:items-end">
             <div>
               <p className="text-[10px] font-bold uppercase tracking-[0.26em] text-[#D9A441]">

@@ -46,6 +46,7 @@ Format yang digunakan berdasarkan [Keep a Changelog](https://keepachangelog.com/
 - Mengganti background card Priority Signals pada halaman Transformation Signals 2026 dengan `cta-footer-bg.png` dan treatment glossy blur.
 - Memadatkan statistik hero Dari BDN ke BinaHub, merapikan jarak hero ke Origin Story, dan membalik background Positioning agar tidak sama dengan hero.
 - Membuat navbar lebih adaptif terhadap tone area di belakangnya: teks berubah terang saat berada di area gelap dan kembali navy saat berada di area terang.
+- Mengganti background section Transformation Signals di halaman Perspektif dengan `human-texture-dark-home.png` agar selaras dengan bahasa visual H.U.M.A.N.
 - Meredesain halaman Perjalanan Kami menjadi editorial timeline dengan masthead, chapter treatment, image frame konsisten, dan quote akhir yang lebih matang tanpa mengubah narasi utama.
 - Menyambungkan Transformation Signals 2026 dengan pain point Home melalui section visual berbasis asset slide pain point agar alur dari Home ke briefing terasa konsisten.
 - Mengubah default `npm run dev` ke `next dev --webpack` untuk menghindari lonjakan memori Turbopack di Windows/OneDrive, serta menambahkan `npm run dev:turbo` bila perlu menjalankan Turbopack secara eksplisit.
