@@ -24,13 +24,13 @@ export function LanguageSwitcher({ variant = "desktop", onNavigate }: LanguageSw
     <div
       className={
         isMobile
-          ? "flex w-full items-center justify-between gap-3 rounded-[14px] border border-[#0B2C6B]/8 bg-white/78 px-3 py-3"
-          : "hidden h-12 items-center gap-1 rounded-full border border-white/70 bg-white/94 px-1 shadow-[0_16px_38px_-28px_rgba(11,44,107,0.42)] backdrop-blur-xl lg:flex"
+          ? "flex w-full items-center justify-between gap-3 rounded-[14px] border border-[#0B2C6B]/8 bg-[#0B2C6B] px-3 py-3"
+          : "hidden h-12 items-center gap-1 rounded-full border border-white/24 bg-[#0B2C6B] px-1 shadow-[0_16px_38px_-28px_rgba(11,44,107,0.42)] backdrop-blur-xl lg:flex"
       }
       aria-label="Language selector"
     >
       {isMobile && (
-        <div className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.16em] text-[#0B2C6B]/58">
+        <div className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.16em] text-white/72">
           <Languages size={15} className="text-[#D9A441]" />
           Bahasa
         </div>
@@ -48,8 +48,8 @@ export function LanguageSwitcher({ variant = "desktop", onNavigate }: LanguageSw
               title={locale === "id" ? "Tampilkan dalam Bahasa Indonesia" : "Show in English"}
               className={`inline-flex h-9 min-w-10 items-center justify-center rounded-full px-3 text-[10px] font-black uppercase tracking-[0.12em] transition-all ${
                 isActive
-                  ? "bg-[#0B2C6B] text-[#D9A441] shadow-[0_12px_26px_-20px_rgba(11,44,107,0.9)]"
-                  : "text-[#0B2C6B]/54 hover:bg-[#0B2C6B]/7 hover:text-[#0B2C6B]"
+                  ? "bg-white/16 text-white shadow-[0_12px_26px_-20px_rgba(11,44,107,0.9)]"
+                  : "text-white/68 hover:bg-white/10 hover:text-white"
               }`}
             >
               {LANGUAGE_LABELS[locale]}

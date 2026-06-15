@@ -19,6 +19,11 @@ const SOCIAL_LINKS = [
     href: "https://www.tiktok.com/@binahub.id",
     icon: TiktokIcon,
   },
+  {
+    label: "LinkedIn",
+    href: "https://www.linkedin.com/company/binahub-id",
+    icon: LinkedinIcon,
+  },
 ] as const;
 
 function FooterContent({ year, locale }: { year: number; locale: Locale }) {
@@ -316,6 +321,14 @@ function TiktokIcon(props: SVGProps<SVGSVGElement>) {
   );
 }
 
+function LinkedinIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" {...props}>
+      <path d="M5.1 8.8h3.3v10.6H5.1V8.8Zm1.7-5.2c1.1 0 1.9.8 1.9 1.8 0 1.1-.8 1.9-1.9 1.9S4.9 6.5 4.9 5.4c0-1 .8-1.8 1.9-1.8Zm3.7 5.2h3.1v1.4h.1c.4-.8 1.5-1.7 3.1-1.7 3.3 0 3.9 2.2 3.9 5v5.9h-3.3v-5.2c0-1.2 0-2.8-1.7-2.8s-2 1.3-2 2.7v5.3h-3.3V8.8Z" />
+    </svg>
+  );
+}
+
 function FooterCta({ config, locale }: { config: CtaConfig; locale: Locale }) {
   const isHome = config.variant === "home";
   const isBlue = config.variant === "blue";
@@ -384,8 +397,8 @@ const Footer = () => {
       <footer className="relative overflow-hidden border-t border-black/[0.04] bg-[linear-gradient(to_bottom,#FFFFFF,#FAFBFC)] px-5 pb-8 pt-14 text-[#0B2C6B] md:px-12 md:pb-12 md:pt-24 lg:px-16">
         <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#D9A441]/35 to-transparent" />
         <div className="pointer-events-none absolute inset-x-[12%] top-0 h-20 bg-[#0B2C6B]/[0.025] blur-3xl" />
-        <div className="pointer-events-none absolute bottom-[-180px] right-[-120px] h-[420px] w-[760px] bg-[#D9A441]/5 blur-[120px]" />
-        <div className="pointer-events-none absolute left-[-180px] top-[18%] h-[320px] w-[680px] bg-[#0B2C6B]/[0.028] blur-[120px]" />
+        <div className="pointer-events-none absolute bottom-[-180px] right-[-120px] hidden h-[420px] w-[760px] bg-[#D9A441]/5 blur-[120px] md:block" />
+        <div className="pointer-events-none absolute left-[-180px] top-[18%] hidden h-[320px] w-[680px] bg-[#0B2C6B]/[0.028] blur-[120px] md:block" />
         <div className="pointer-events-none absolute inset-0 bg-[repeating-linear-gradient(90deg,rgba(11,44,107,0.55)_0_1px,transparent_1px_34px)] opacity-[0.035]" />
 
         <div className="relative z-10 mx-auto max-w-7xl">

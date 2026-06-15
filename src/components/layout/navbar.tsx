@@ -81,7 +81,7 @@ export default function Navbar() {
     }
 
     const handleScroll = () => {
-      setMobileHidden(window.innerWidth < 1024 && window.scrollY > 8)
+      setMobileHidden(false)
       detectBackgroundTone()
 
       const painPoint = document.getElementById("pain-point")
@@ -161,12 +161,12 @@ export default function Navbar() {
       : "rounded-full border border-white/70 bg-white/96 shadow-[0_22px_58px_-34px_rgba(11,44,107,0.34)] backdrop-blur-xl after:bg-white/34"
 
   const inactiveNavLinkClass = navOnDark
-    ? "text-white/78 hover:bg-white/10 hover:text-white"
-    : "text-[#0B2C6B]/66 hover:bg-[#0B2C6B]/6 hover:text-[#0B2C6B]"
+    ? "text-white/72 hover:bg-white/8 hover:text-white"
+    : "text-[#0B2C6B]/62 hover:bg-[#0B2C6B]/5 hover:text-[#0B2C6B]"
 
   const activeNavLinkClass = navOnDark
-    ? "bg-white text-[#071A33] shadow-[0_16px_34px_-24px_rgba(255,255,255,0.42)]"
-    : "bg-[#0B2C6B] text-white shadow-[0_16px_34px_-24px_rgba(11,44,107,0.7)]"
+    ? "text-white"
+    : "text-[#0B2C6B]"
 
   return (
     <div
@@ -241,7 +241,7 @@ export default function Navbar() {
             <LanguageSwitcher />
             <Link
               href={localizePath("/insight", locale)}
-              className="hidden h-12 items-center gap-2 rounded-full bg-[#0B2C6B] px-5 text-[9.5px] font-bold uppercase tracking-[0.14em] text-[#D9A441] shadow-[0_16px_38px_-24px_rgba(11,44,107,0.95)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#D9A441] hover:text-[#0B2C6B] hover:shadow-[0_20px_48px_-26px_rgba(217,164,65,0.72)] active:scale-95 lg:flex"
+              className="hidden h-12 items-center gap-2 rounded-full bg-[#0B2C6B] px-5 text-[10px] font-bold uppercase tracking-[0.13em] text-white shadow-[0_16px_38px_-24px_rgba(11,44,107,0.95)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#071A33] hover:shadow-[0_20px_48px_-26px_rgba(11,44,107,0.78)] active:scale-95 lg:flex"
             >
               {navCopy.ctaLabel}
               <ChevronRight size={12} strokeWidth={2} />

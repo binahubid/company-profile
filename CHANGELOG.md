@@ -3,6 +3,27 @@
 Semua perubahan yang signifikan pada proyek ini akan didokumentasikan di file ini.
 Format yang digunakan berdasarkan [Keep a Changelog](https://keepachangelog.com/id/1.0.0/), dan proyek ini mematuhi aturan [Semantic Versioning](https://semver.org/).
 
+## [0.2.10]
+### Added
+- Menambahkan background poster statis `bg-hero-nodes-poster-crop.jpg` untuk section Misi Kami agar visualnya konsisten dengan atmosfer hero Home tanpa harus memutar video di area carousel.
+- Menambahkan deskripsi singkat pada setiap poin Misi Kami di carousel Home, mengambil substansi dari section misi halaman Tentang Kami agar kartu tidak hanya berisi label.
+
+### Changed
+- Meredesain hero Home menjadi komposisi light executive berbasis video globe nodes, headline animasi, CTA compact, dan background line gold yang lebih ringan.
+- Mengubah section Posisi Kami dan Visi Kami di Home menjadi satu carousel full-width berbasis foto gelap dengan headline dua baris dan teks kontras tanpa translucent panel.
+- Mengubah section Misi Kami di Home menjadi layout full-width 35/65 dengan narasi kiri dan carousel kartu perspektif di kanan, memakai navigasi panah manual di sisi carousel.
+- Menyesuaikan carousel Misi Kami agar tidak auto-rolling, memiliki depth perspektif, dan menampilkan 5 prinsip secara bergeser satu per satu.
+- Memperlebar area konten Misi Kami pada desktop agar jarak kanan-kiri lebih lega dan section tidak terasa sempit.
+- Menyesuaikan responsive hero Home pada mobile: headline tidak lagi memotong kata, blok konten diturunkan, CTA diperkecil, dan tinggi section dipadatkan agar tidak menyisakan ruang kosong berlebihan.
+- Menyamakan tinggi dan skala teks hero halaman Tentang dan Layanan dengan hero Home hanya pada breakpoint mobile, sementara ukuran desktop/laptop tetap mengikuti desain halaman masing-masing.
+- Merapikan section Siapa Kami di halaman Tentang agar tetap fokus pada narasi utama tanpa mengembalikan daftar poin tantangan yang sudah dihapus.
+
+### Fixed
+- Memperbaiki hamburger menu yang tidak muncul konsisten di halaman Kontak dengan menjaga navbar mobile tetap terlihat saat halaman berada pada posisi scroll berbeda.
+- Memperbaiki horizontal overflow mobile dari dekorasi glow Footer yang melebar keluar viewport.
+- Menghapus gap tidak diinginkan antara carousel Posisi/Visi dan Misi Kami pada Home.
+- Menghapus garis dekoratif pada section Misi Kami agar background lebih bersih dan tidak bentrok dengan visual hero.
+
 ## [0.2.9]
 ### Added
 - Menambahkan komponen `AdminModal` reusable untuk form admin besar agar input operasional bisa dibuka sebagai pop-up dan tidak memenuhi dashboard utama.
@@ -12,6 +33,7 @@ Format yang digunakan berdasarkan [Keep a Changelog](https://keepachangelog.com/
 - Menambahkan aliran data Automation Center ke Project Assignment, termasuk ringkasan project dan assignment AI yang sudah dibuat autopilot.
 
 ### Changed
+- Mengubah hero Home agar memakai background video globe nodes network H.264 yang kompatibel di Chrome, dengan overlay lebih ringan, animasi garis gold 20 path yang lebih hemat performa, dan komposisi headline, subheadline, serta CTA rata kiri yang sedikit lebih rendah.
 - Mengubah Automation Center agar form Project Autopilot tersembunyi di balik tombol `+ Buat Project` dan dibuka melalui modal.
 - Mengubah Associate Network agar form tambah/edit associate tersembunyi di balik tombol `Tambah Associate`; tombol edit associate sekarang membuka modal yang sama.
 - Mengubah Project Assignment agar form assignment, availability, histori sesi, dan dokumen/kontrak tersembunyi di balik tombol `Tambah Data Assignment`.

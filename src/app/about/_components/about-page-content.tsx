@@ -11,14 +11,6 @@ import { Tag } from "@/components/ui/tag"
 import { Counter } from "@/components/ui/counter"
 import { CoreValuesSection } from "@/components/core-values-section"
 
-const challenges = [
-  "Hilangnya banyak jenis pekerjaan",
-  "Meningkatnya tekanan dan burnout",
-  "Krisis kepemimpinan di era digital",
-  "Menurunnya kualitas hubungan manusia",
-  "Organisasi yang kehilangan makna & nilai"
-];
-
 const CAPABILITY_TEXTURES = [
   "/asset/human-grid.png",
   "/asset/architecture-lines.png",
@@ -213,8 +205,8 @@ export default function AboutPage() {
     <div className="bg-[#F5F7FA] text-[#4A4C54] font-sans antialiased overflow-x-hidden">
 
       {/* Hero Section */}
-      <section className="w-full px-4 md:px-8 pt-20 md:pt-28 mb-8 md:mb-16">
-        <div className="relative flex h-[65vh] min-h-[480px] w-full items-center overflow-hidden rounded-[14px] border border-white/10 bg-[#071A33] shadow-[0_24px_78px_-56px_rgba(11,44,107,0.48)] sm:h-[72vh] md:h-[80vh] md:rounded-[18px]">
+      <section className="w-full px-4 pt-20 md:px-8 md:pt-28 md:mb-16">
+        <div className="relative flex min-h-[76svh] w-full items-center overflow-hidden rounded-[14px] border border-white/10 bg-[#071A33] shadow-[0_24px_78px_-56px_rgba(11,44,107,0.48)] sm:h-[72vh] md:h-[80vh] md:min-h-[480px] md:rounded-[18px]">
           <div className="absolute inset-0 z-0">
             <Image
               src="/bg-about.png"
@@ -230,21 +222,21 @@ export default function AboutPage() {
             <div className="absolute left-[28%] top-[42%] h-56 w-96 bg-[#D9A63A]/7 blur-3xl" />
           </div>
 
-          <div className="relative z-10 max-w-5xl px-8 md:px-16 lg:px-24">
-            <Tag className="mb-8 text-[11px] tracking-[0.28em] uppercase text-white/35">
+          <div className="relative z-10 max-w-5xl px-6 py-12 md:px-16 lg:px-24">
+            <Tag className="mb-6 text-[10px] uppercase tracking-[0.22em] text-white/44 md:mb-8 md:text-[11px] md:tracking-[0.28em]">
               {copy.heroTag}
             </Tag>
 
-            <h1 className="max-w-4xl text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-light leading-[0.95] tracking-[-0.055em] text-white">
+            <h1 className="max-w-4xl text-[clamp(2rem,9.2vw,3rem)] font-light leading-[1.04] tracking-[-0.025em] text-white md:text-[clamp(3.25rem,4.75vw,4.85rem)] md:tracking-[-0.035em]">
               {copy.heroTitle}
               <span className="block text-[#D9A63A]">
                 {copy.heroAccent}
               </span>
             </h1>
 
-            <div className="mt-10 flex max-w-xl gap-6">
-              <div className="mt-1 h-24 w-px shrink-0 bg-[#D9A63A]" />
-              <p className="text-base md:text-lg leading-[1.75] text-white/86">
+            <div className="mt-7 flex max-w-xl gap-4 md:mt-10 md:gap-6">
+              <div className="mt-1 hidden h-24 w-px shrink-0 bg-[#D9A63A] sm:block" />
+              <p className="text-sm leading-[1.65] text-white/86 md:text-lg md:leading-[1.75]">
                 {copy.heroDesc}
               </p>
             </div>
@@ -253,52 +245,24 @@ export default function AboutPage() {
       </section>
 
       {/* Siapa Kami (The Context Section) */}
-      <section id="siapa-kami" className="relative overflow-hidden bg-[#F7F8FA] px-6 md:px-12 lg:px-20 py-20 md:py-28">
-        <div className="relative mx-auto grid max-w-7xl gap-12 lg:grid-cols-[0.82fr_1.18fr] lg:items-start">
-          <div className="max-w-xl">
+      <section id="siapa-kami" className="relative overflow-hidden bg-[#F7F8FA] px-6 py-20 md:px-12 md:py-24 lg:px-20 lg:py-28">
+        <div className="relative mx-auto grid max-w-7xl gap-10 md:grid-cols-[0.95fr_1.05fr] md:items-start lg:gap-16 xl:gap-24">
+          <div className="max-w-2xl">
             <Tag>{copy.whoTag}</Tag>
 
-            <h2 className="mt-6 text-4xl md:text-5xl font-light leading-[1.08] tracking-[-0.05em] text-[#0B2C6B]">
+            <h2 className="mt-6 text-3xl font-light leading-[1.08] tracking-[-0.04em] text-[#0B2C6B] md:text-4xl lg:text-5xl lg:tracking-[-0.05em]">
               {copy.whoTitle}
             </h2>
+          </div>
 
-            <p className="mt-8 text-base leading-[1.85] text-black/65">
+          <div className="max-w-2xl md:pt-12 lg:pt-14">
+            <p className="text-[15px] leading-[1.8] text-black/65 md:text-base md:leading-[1.85]">
               {copy.whoP1}
             </p>
 
-            <p className="mt-7 text-lg leading-[1.75] font-medium text-black/82">
+            <p className="mt-6 text-base font-medium leading-[1.75] text-black/82 md:text-lg">
               {copy.whoP2}
             </p>
-          </div>
-
-          <div className="grid gap-4 md:grid-cols-2">
-            {copy.challenges.map((item, index) => {
-              const isLast = index === challenges.length - 1;
-
-              return (
-                <div
-                  key={item}
-                  className={`group rounded-[10px] border border-black/5 bg-white/88 p-5 shadow-[0_16px_42px_-38px_rgba(11,44,107,0.28)] transition-all duration-300 hover:-translate-y-1 hover:border-[#D9A441]/30 hover:bg-white md:p-6 ${isLast ? "md:col-span-2 min-h-[96px]" : "min-h-[112px]"
-                    }`}
-                >
-                  <div className="flex h-full flex-col justify-center">
-                    <div className="flex items-start gap-4">
-                      <div className="mt-1 flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#E84A5F]/10">
-                        <span className="h-2 w-2 rounded-full bg-[#E84A5F]" />
-                      </div>
-
-                      <div>
-                        <span className="mb-3 block h-px w-9 bg-[#D9A441]/60" />
-
-                        <h3 className="text-xs md:text-sm font-semibold uppercase leading-[1.65] tracking-[0.035em] text-[#111827]">
-                          {item}
-                        </h3>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              );
-            })}
           </div>
         </div>
       </section>

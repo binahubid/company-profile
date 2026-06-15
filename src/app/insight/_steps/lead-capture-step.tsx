@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowLeft, ArrowRight, Building2, User, Mail, Briefcase, Phone, Users, ChevronDown, Check } from "lucide-react";
+import { ArrowLeft, ArrowRight, Building2, User, Briefcase, Users, ChevronDown, Check } from "lucide-react";
 import { FormData } from "../_types";
 import { useLocale } from "@/i18n/use-locale";
 
@@ -36,16 +36,12 @@ const COPY = {
       role: "Jabatan *",
       company: "Nama Perusahaan *",
       employees: "Jumlah Karyawan *",
-      email: "Email Profesional *",
-      whatsapp: "WhatsApp Aktif *",
     },
     placeholders: {
       name: "Contoh: Budi Santoso",
       role: "Contoh: CEO / HR Director",
       company: "Nama PT / Instansi",
       employees: "Pilih skala perusahaan...",
-      email: "email@perusahaan.com",
-      whatsapp: "0812xxxx",
     },
     back: "Kembali",
     next: "Lanjut ke Instruksi",
@@ -66,16 +62,12 @@ const COPY = {
       role: "Role *",
       company: "Company Name *",
       employees: "Number of Employees *",
-      email: "Professional Email *",
-      whatsapp: "Active WhatsApp *",
     },
     placeholders: {
       name: "Example: Sarah Johnson",
       role: "Example: CEO / HR Director",
       company: "Company / Institution name",
       employees: "Select company scale...",
-      email: "name@company.com",
-      whatsapp: "+62 812xxxx",
     },
     back: "Back",
     next: "Continue to Instructions",
@@ -231,32 +223,6 @@ export function LeadCaptureStep({ formData, onChange, onNext, onPrev }: LeadCapt
             </div>
           </div>
 
-          <div className="space-y-1">
-            <label className={labelClass}>
-              <Mail size={14} className="text-[#D9A441]" /> {copy.fields.email}
-            </label>
-            <input
-              required
-              type="email"
-              placeholder={copy.placeholders.email}
-              value={formData.email}
-              onChange={(e) => onChange({ email: e.target.value })}
-              className={inputClass}
-            />
-          </div>
-          <div className="space-y-1">
-            <label className={labelClass}>
-              <Phone size={14} className="text-[#D9A441]" /> {copy.fields.whatsapp}
-            </label>
-            <input
-              required
-              type="tel"
-              placeholder={copy.placeholders.whatsapp}
-              value={formData.whatsapp}
-              onChange={(e) => onChange({ whatsapp: e.target.value })}
-              className={inputClass}
-            />
-          </div>
         </div>
 
         <div className="flex items-center justify-between gap-4">

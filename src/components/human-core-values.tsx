@@ -61,9 +61,9 @@ export function HumanCoreValuesSection() {
     <section
       id="values"
       ref={sectionRef}
-      className="relative z-10 h-[118vh] w-full bg-[#F5F7FA] md:h-[128vh]"
+      className="relative z-10 h-[82vh] w-full bg-[#F5F7FA] md:h-[88vh] lg:h-[92vh]"
     >
-      <div className="sticky top-[84px] flex min-h-[260px] items-center overflow-hidden bg-[#F5F7FA] px-4 py-6 md:top-[92px] md:min-h-[300px] md:px-0 md:py-0">
+      <div className="sticky top-[calc(50vh-150px)] flex min-h-[300px] items-center overflow-hidden bg-[#F5F7FA] px-4 py-6 md:top-[calc(50vh-150px)] md:min-h-[300px] md:px-0 md:py-0">
         <div
           className={`relative flex min-h-[240px] w-full items-center overflow-hidden rounded-[18px] border px-5 py-7 shadow-[0_18px_58px_-46px_rgba(11,44,107,0.34)] transition-colors duration-700 md:min-h-[280px] md:rounded-none md:border-x-0 md:px-12 lg:px-16 ${
             isFinal
@@ -121,9 +121,9 @@ export function HumanCoreValuesSection() {
                 className="absolute inset-0 flex items-center"
               >
                 <div
-                  className={`grid w-full items-start gap-2 sm:gap-4 md:pr-40 lg:pr-44 ${
+                  className={`grid w-full items-start gap-3 sm:gap-5 ${
                     isFinal ? "grid-cols-5" : "grid-cols-2 sm:grid-cols-5"
-                  }`}
+                  } ${isFinal ? "md:pr-44 lg:pr-48 xl:pr-52" : ""}`}
                 >
                   {HUMAN_VALUES.map((value, index) => {
                     const isVisible = stage > index;
@@ -136,7 +136,7 @@ export function HumanCoreValuesSection() {
                           y: isVisible ? 0 : 14,
                         }}
                         transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-                        className={`text-center transition-[min-height] duration-700 ${
+                        className={`min-w-0 text-center transition-[min-height] duration-700 ${
                           isFinal ? "min-h-[116px] md:min-h-[132px]" : "min-h-[54px] sm:min-h-[76px]"
                         }`}
                       >
@@ -144,18 +144,13 @@ export function HumanCoreValuesSection() {
                           className={`block leading-none transition-all duration-700 ${
                             isFinal
                               ? "scale-105 text-[clamp(2.7rem,14vw,5.1rem)] font-medium tracking-[0.015em] text-[#D9A441] sm:text-[clamp(4rem,9vw,6.4rem)] lg:text-[8rem]"
-                              : "text-[clamp(1.05rem,4.4vw,1.8rem)] font-light text-[#0B2C6B] sm:text-[clamp(1.05rem,2vw,1.55rem)] lg:text-[1.85rem]"
+                              : "text-[clamp(1.05rem,4.4vw,1.8rem)] font-light text-[#0B2C6B] sm:text-[clamp(0.98rem,1.72vw,1.52rem)] lg:text-[1.74rem] xl:text-[1.92rem]"
                           }`}
                           style={{
                             textShadow: "none",
                           }}
                         >
-                          {value.letter}
-                          {!isFinal && (
-                            <span className="font-light tracking-normal text-[#0B2C6B]/70">
-                              {value.rest}
-                            </span>
-                          )}
+                          {isFinal ? value.letter : value.word}
                         </span>
                       </motion.div>
                     );

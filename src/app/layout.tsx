@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Poppins, Inter } from "next/font/google";
+import { Inter, Plus_Jakarta_Sans } from "next/font/google";
 import { headers } from "next/headers";
 import "./globals.css";
 import Navbar from "../components/Navbar";
@@ -9,10 +9,10 @@ import { PublicContentTranslator } from "@/components/public-content-translator"
 import { SITE_URL, SITE_NAME, SITE_TAGLINE, SITE_DESCRIPTION, SITE_DESCRIPTION_EN, SITE_KEYWORDS, SITE_KEYWORDS_EN } from "@/lib/site";
 import { defaultLocale, hasLocale } from "@/i18n/config";
 
-const poppins = Poppins({
+const jakartaSans = Plus_Jakarta_Sans({
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700"],
-  variable: "--font-poppins",
+  variable: "--font-jakarta-sans",
   display: "swap",
 });
 
@@ -94,8 +94,8 @@ export default async function RootLayout({
   const locale = hasLocale(localeHeader) ? localeHeader : defaultLocale;
 
   return (
-    <html lang={locale} className={`scroll-smooth ${poppins.variable} ${inter.variable}`}>
-      <body className={`min-h-screen flex flex-col selection:bg-[#0B2C6B] selection:text-white ${poppins.className}`}>
+    <html lang={locale} className={`scroll-smooth ${jakartaSans.variable} ${inter.variable}`}>
+      <body className={`min-h-screen flex flex-col selection:bg-[#0B2C6B] selection:text-white ${jakartaSans.className}`}>
         <Navbar />
         <main className="flex-grow flex flex-col">{children}</main>
         <Footer />

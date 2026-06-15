@@ -32,7 +32,7 @@
 }
 
 @theme inline {
-  --font-sans: var(--font-poppins), 'Segoe UI', sans-serif;
+  --font-sans: var(--font-jakarta-sans), 'Segoe UI', sans-serif;
   --font-secondary: var(--font-inter), 'Helvetica Neue', Arial, sans-serif;
   --font-mono: 'Geist Mono', monospace;
   --color-background: var(--background);
@@ -56,7 +56,7 @@
   html, body {
     background-color: #FFFFFF;
     color: #4A4C54;
-    font-family: var(--font-poppins), 'Segoe UI', sans-serif;
+    font-family: var(--font-jakarta-sans), 'Segoe UI', sans-serif;
     -webkit-font-smoothing: antialiased;
     /* Hide scrollbar for IE, Edge and Firefox */
     -ms-overflow-style: none;
@@ -117,8 +117,113 @@
   }
 }
 
+.hero-lite-lines {
+  transform: translateZ(0);
+}
+
+.hero-lite-line-drift {
+  animation: heroLiteLineDrift 34s ease-in-out infinite;
+  transform-box: fill-box;
+  transform-origin: center bottom;
+}
+
+.hero-lite-line {
+  stroke-dasharray: 0.48 1;
+  stroke-dashoffset: 0.16;
+  animation: heroLiteLineFlow 22s linear infinite;
+}
+
+.hero-lite-line-2 {
+  stroke-dasharray: 0.58 1;
+  animation-duration: 24s;
+  animation-delay: -3s;
+}
+
+.hero-lite-line-3 {
+  stroke-dasharray: 0.38 1;
+  animation-duration: 20s;
+  animation-delay: -6s;
+}
+
+.hero-lite-line-4 {
+  stroke-dasharray: 0.68 1;
+  animation-duration: 26s;
+  animation-delay: -9s;
+}
+
+.hero-lite-line-5 {
+  stroke-dasharray: 0.44 1;
+  animation-duration: 23s;
+  animation-delay: -12s;
+}
+
+@keyframes heroLiteLineFlow {
+  0% {
+    stroke-dashoffset: 0.16;
+    opacity: 0.7;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    stroke-dashoffset: -1.16;
+    opacity: 0.76;
+  }
+}
+
+@keyframes heroLiteLineDrift {
+  0%, 100% {
+    transform: translate3d(-12px, 10px, 0) rotate(-0.18deg);
+  }
+
+  50% {
+    transform: translate3d(14px, -8px, 0) rotate(0.16deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-lite-line-drift,
+  .hero-lite-line {
+    animation: none;
+  }
+}
+
 .animate-scroll-line {
   animation: scroll-line 2s cubic-bezier(0.76, 0, 0.24, 1) infinite;
+}
+
+.liquid-glass {
+  background: rgba(0, 0, 0, 0.4);
+  background-blend-mode: luminosity;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border: none;
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.liquid-glass::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1.4px;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.3) 0%,
+    rgba(255, 255, 255, 0.1) 20%,
+    rgba(255, 255, 255, 0) 40%,
+    rgba(255, 255, 255, 0) 60%,
+    rgba(255, 255, 255, 0.1) 80%,
+    rgba(255, 255, 255, 0.3) 100%
+  );
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
 }
 
 /* 3D BinaHub Navy Pixel-Art Game Button - Borderless Stepped Look */

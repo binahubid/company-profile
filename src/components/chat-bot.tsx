@@ -17,21 +17,21 @@ export function ChatBot() {
   const locale = useLocale();
   const copy = useMemo(() => locale === 'en'
     ? ({
-        greeting: 'Hi! I am Nara, BinaHub Executive Concierge. How can I help with your business operations or people transformation needs?',
+        greeting: 'Hi! I am Bina, BinaHub Executive Concierge. How can I help with your business operations or people transformation needs?',
         returning: (name: string, company: string, score: string) =>
-          `Welcome back, ${name}. I am Nara, BinaHub Executive Concierge. I have received the diagnostic summary for ${company} with an index score of ${score}/100. Before we discuss the most relevant strategic recommendations, may I confirm that this profile data is correct?`,
+          `Welcome back, ${name}. I am Bina, BinaHub Executive Concierge. I have received the diagnostic summary for ${company} with an index score of ${score}/100. Before we discuss the most relevant strategic recommendations, may I confirm that this profile data is correct?`,
         systemError: 'Sorry, my system is currently having trouble. Please try again in a moment.',
         connectionError: 'Connection lost. Please check your network and try again.',
-        typing: 'Nara is typing...',
+        typing: 'Bina is typing...',
         placeholder: 'Type your message here...',
       })
     : ({
-        greeting: 'Halo! Saya Nara, Executive Concierge BinaHub. Ada yang bisa saya bantu terkait operasional bisnis atau SDM perusahaan Anda?',
+        greeting: 'Halo! Saya Bina, Executive Concierge BinaHub. Ada yang bisa saya bantu terkait operasional bisnis atau SDM perusahaan Anda?',
         returning: (name: string, company: string, score: string) =>
-          `Selamat datang kembali, Bapak/Ibu ${name}. Saya Nara, Executive Concierge BinaHub. Saya telah menerima ringkasan laporan diagnostik untuk ${company} dengan skor indeks ${score}/100. Sebelum kita berdiskusi lebih dalam mengenai rekomendasi strategis yang sesuai, bolehkah saya mengonfirmasi apakah data profil ini sudah benar?`,
+          `Selamat datang kembali, Bapak/Ibu ${name}. Saya Bina, Executive Concierge BinaHub. Saya telah menerima ringkasan laporan diagnostik untuk ${company} dengan skor indeks ${score}/100. Sebelum kita berdiskusi lebih dalam mengenai rekomendasi strategis yang sesuai, bolehkah saya mengonfirmasi apakah data profil ini sudah benar?`,
         systemError: 'Maaf, sistem saya sedang mengalami gangguan. Silakan coba beberapa saat lagi.',
         connectionError: 'Koneksi terputus. Mohon periksa jaringan Anda.',
-        typing: 'Nara sedang mengetik...',
+        typing: 'Bina sedang mengetik...',
         placeholder: 'Ketik pesan Anda di sini...',
       }), [locale]);
   const [isOpen, setIsOpen] = useState(false);
@@ -52,7 +52,7 @@ export function ChatBot() {
         if (
           current.length === 1 &&
           current[0].role === 'assistant' &&
-          (current[0].content.includes('Halo! Saya Nara') || current[0].content.includes('Hi! I am Nara'))
+          current[0].content.includes('Executive Concierge')
         ) {
           return [{ role: 'assistant', content: copy.greeting }];
         }
@@ -214,15 +214,15 @@ export function ChatBot() {
               <div className="flex items-center gap-3 relative z-10">
                 <div className="w-10 h-10 rounded-full flex items-center justify-center overflow-hidden border border-white/20 relative">
                   <Image 
-                    src="/Avatar-Nara.png" 
-                    alt="Nara" 
+                    src="/Avatar-Bina.png" 
+                    alt="Bina" 
                     fill 
                     sizes="40px"
                     className="object-cover"
                   />
                 </div>
                 <div>
-                  <h3 className="text-white font-semibold text-sm">Nara</h3>
+                  <h3 className="text-white font-semibold text-sm">Bina</h3>
                   <p className="text-white/60 text-xs">Executive Concierge AI</p>
                 </div>
               </div>
@@ -249,8 +249,8 @@ export function ChatBot() {
                     <div className="w-8 h-8 rounded-full flex-shrink-0 flex items-center justify-center overflow-hidden border border-black/5 relative">
                       {isBot ? (
                         <Image 
-                          src="/Avatar-Nara.png" 
-                          alt="Nara" 
+                          src="/Avatar-Bina.png" 
+                          alt="Bina" 
                           fill 
                           sizes="32px"
                           className="object-cover"
@@ -275,8 +275,8 @@ export function ChatBot() {
                 <div className="flex gap-3 max-w-[85%] self-start">
                   <div className="w-8 h-8 rounded-full flex-shrink-0 flex items-center justify-center overflow-hidden border border-black/5 relative">
                     <Image 
-                      src="/Avatar-Nara.png" 
-                      alt="Nara" 
+                      src="/Avatar-Bina.png" 
+                      alt="Bina" 
                       fill 
                       sizes="32px"
                       className="object-cover"

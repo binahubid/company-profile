@@ -12,12 +12,13 @@ import { LeadCaptureStep } from "./_steps/lead-capture-step";
 import { InstructionStep } from "./_steps/instruction-step";
 import { QuestionsStep } from "./_steps/questions-step";
 import { OpenQuestionsStep } from "./_steps/open-questions-step";
+import { ContactStep } from "./_steps/contact-step";
 import { SuccessStep } from "./_steps/success-step";
 import { PixelIcon, type IconType } from "@/components/pixel-icon";
 import { localizePath } from "@/i18n/config";
 import { useLocale } from "@/i18n/use-locale";
 
-const TOTAL_STEPS = 10;
+const TOTAL_STEPS = 11;
 const SPEED_LINES = [
   { width: 46, duration: 0.48 },
   { width: 72, duration: 0.66 },
@@ -31,6 +32,7 @@ const STEP_CONTEXT = [
     title: `Menganalisis ${dimension}`,
   })),
   { eyebrow: "Konteks Strategis", title: "Menangkap prioritas 3-6 bulan" },
+  { eyebrow: "Kontak Laporan", title: "Mengonfirmasi email dan WhatsApp" },
 ];
 
 const STEP_CONTEXT_EN = [
@@ -41,10 +43,12 @@ const STEP_CONTEXT_EN = [
     title: `Analyzing ${dimension}`,
   })),
   { eyebrow: "Strategic Context", title: "Capture the next 3-6 month priorities" },
+  { eyebrow: "Report Contact", title: "Confirm email and WhatsApp" },
 ];
 
 export default function InsightPage() {
   const locale = useLocale();
+  const appInsightUrl = `${process.env.NEXT_PUBLIC_APP_URL || "https://app.binahub.id"}/insight`;
   const [step, setStep] = useState(-1);
   const [formData, setFormData] = useState<FormData>({
     email: "", company: "", employees: "", name: "",
@@ -57,7 +61,7 @@ export default function InsightPage() {
   // ── Safety Measures ────────────────────────────────────────────────────────
   useEffect(() => {
     const handleBeforeUnload = (e: BeforeUnloadEvent) => {
-      if (step > 0 && step < 10) {
+      if (step > 0 && step < 11) {
         e.preventDefault();
         e.returnValue = "";
       }
@@ -71,7 +75,7 @@ export default function InsightPage() {
       window.history.pushState({ trap: true }, "", window.location.href);
     }
     const handlePopState = () => {
-      if (step > 0 && step < 10) {
+      if (step > 0 && step < 11) {
         setShowExitConfirm(true);
         window.history.pushState({ trap: true }, "", window.location.href);
       }
@@ -153,7 +157,7 @@ export default function InsightPage() {
   };
 
   const progressPercent = step >= 0 ? Math.min(100, (step / TOTAL_STEPS) * 100) : 0;
-  const currentContext = step >= 0 && step < 10 ? (locale === "en" ? STEP_CONTEXT_EN : STEP_CONTEXT)[step] : null;
+  const currentContext = step >= 0 && step < 11 ? (locale === "en" ? STEP_CONTEXT_EN : STEP_CONTEXT)[step] : null;
   const copy = locale === "en"
     ? {
         submitError: "Failed to submit assessment: ",
@@ -255,7 +259,7 @@ export default function InsightPage() {
         <header className="insight-header fixed top-0 inset-x-0 h-16 flex items-center justify-between px-6 md:px-12 z-50 bg-white/92 backdrop-blur-sm border-b border-black/[0.03]">
           <button 
             onClick={() => {
-              if (step > 0 && step < 10) {
+              if (step > 0 && step < 11) {
                 setShowExitConfirm(true);
               } else {
                 window.location.href = localizePath("/", locale);
@@ -273,7 +277,7 @@ export default function InsightPage() {
           </button>
           <div className="text-right">
             <div className="text-[10px] font-bold tracking-[0.2em] text-black/24 uppercase">
-              {step === 10 ? copy.done : `${copy.step} ${step + 1} ${copy.of} ${TOTAL_STEPS}`}
+              {step === 11 ? copy.done : `${copy.step} ${step + 1} ${copy.of} ${TOTAL_STEPS}`}
             </div>
             {currentContext && (
               <div className="mt-1 hidden text-[11px] font-medium text-[#0B2C6B]/60 md:block">
@@ -285,7 +289,7 @@ export default function InsightPage() {
       )}
 
       {/* Progress bar */}
-      {step >= 0 && step < 10 && (
+      {step >= 0 && step < 11 && (
         <div className="fixed top-16 left-0 h-1 bg-black/5 w-full z-50">
           <div className="h-full bg-[#D9A441] transition-all duration-700 ease-out" style={{ width: `${progressPercent}%` }} />
         </div>
@@ -294,12 +298,15 @@ export default function InsightPage() {
       {/* Main content */}
       <main className={`flex-1 flex flex-col items-center w-full ${step === -1 ? "" : "justify-center mt-16 pb-24"}`}>
         <AnimatePresence mode="wait">
-          {step === -1 && !isSubmitting && <LandingStep onStart={nextStep} />}
+          {step === -1 && !isSubmitting && <LandingStep onStart={() => {
+            window.location.href = appInsightUrl;
+          }} />}
           {step === 0  && !isSubmitting && <LeadCaptureStep formData={formData} onChange={handleFormChange} onNext={handleSubmitLead} onPrev={prevStep} />}
           {step === 1  && !isSubmitting && <InstructionStep onNext={nextStep} onPrev={prevStep} />}
           {step >= 2 && step <= 8 && !isSubmitting && <QuestionsStep step={step} answers={answers} onAnswer={handleAnswer} />}
-          {step === 9  && <OpenQuestionsStep formData={formData} onChange={handleFormChange} onSubmit={handleSubmitFinal} onPrev={prevStep} isSubmitting={isSubmitting} />}
-          {step === 10 && !isSubmitting && <SuccessStep name={formData.name} company={formData.company} />}
+          {step === 9  && <OpenQuestionsStep formData={formData} onChange={handleFormChange} onNext={handleSubmitLead} onPrev={prevStep} isSubmitting={isSubmitting} />}
+          {step === 10 && <ContactStep formData={formData} onChange={handleFormChange} onSubmit={handleSubmitFinal} onPrev={prevStep} isSubmitting={isSubmitting} />}
+          {step === 11 && !isSubmitting && <SuccessStep name={formData.name} company={formData.company} />}
         </AnimatePresence>
 
         {/* Dynamic Full Screen Loading Overlay */}

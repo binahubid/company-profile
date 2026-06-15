@@ -6,7 +6,7 @@ import { useLocale } from "@/i18n/use-locale";
 interface OpenQuestionsStepProps {
   formData: FormData;
   onChange: (data: Partial<FormData>) => void;
-  onSubmit: (e: React.FormEvent) => void;
+  onNext: (e: React.FormEvent) => void;
   onPrev: () => void;
   isSubmitting: boolean;
 }
@@ -19,7 +19,7 @@ const COPY = {
     targetPlaceholder: "Tuliskan target strategis...",
     back: "Kembali",
     processing: "Memproses Data...",
-    submit: "Submit & Selesai",
+    submit: "Lanjut ke Kontak",
   },
   en: {
     challenge: "What is your team's biggest challenge right now?",
@@ -28,14 +28,14 @@ const COPY = {
     targetPlaceholder: "Write the strategic target...",
     back: "Back",
     processing: "Processing Data...",
-    submit: "Submit & Finish",
+    submit: "Continue to Contact",
   },
 };
 
 export function OpenQuestionsStep({
   formData,
   onChange,
-  onSubmit,
+  onNext,
   onPrev,
   isSubmitting,
 }: OpenQuestionsStepProps) {
@@ -53,7 +53,7 @@ export function OpenQuestionsStep({
       className="w-full max-w-2xl px-4 py-12"
     >
       <form
-        onSubmit={onSubmit}
+        onSubmit={onNext}
         className="space-y-8 rounded-[16px] border border-black/[0.04] bg-white p-8 text-left shadow-[0_18px_54px_-44px_rgba(11,44,107,0.34)] md:p-12"
       >
         <div className="space-y-3">

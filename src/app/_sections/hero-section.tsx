@@ -1,42 +1,24 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, ChevronRight } from "lucide-react";
-import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import PixelBackground from "@/components/pixel-background";
 import { localizePath } from "@/i18n/config";
 import { useLocale } from "@/i18n/use-locale";
 
 const COPY = {
   id: {
-    titles: [
-      { white: "AI Power", gold: "Human synergy" },
-      { white: "AI for", gold: "Human Growth" },
-      { white: "Building Adaptive", gold: "Organizations" },
-      { white: "Human-Centered", gold: "Intelligence" },
-      { white: "AI That", gold: "Develops People" },
-      { white: "Technology With", gold: "Human Direction" },
-    ],
-    desc: "Menciptakan masa depan organisasi yang adaptif terhadap teknologi dan bertumbuh secara manusiawi.",
+    title: "Membantu Organisasi Bertumbuh",
+    desc: "BinaHub membantu perusahaan membangun pemimpin yang efektif, tim yang unggul, dan budaya kerja yang adaptif melalui pendekatan terintegrasi yang didukung AI.",
     journey: "Perjalanan Anda Dimulai dari sini",
     cta: "Mulai",
-    scroll: "Scroll",
+    secondaryCta: "Lihat Perspektif",
   },
   en: {
-    titles: [
-      { white: "AI Power", gold: "Human Synergy" },
-      { white: "AI for", gold: "Human Growth" },
-      { white: "Building Adaptive", gold: "Organizations" },
-      { white: "Human-Centered", gold: "Intelligence" },
-      { white: "AI That", gold: "Develops People" },
-      { white: "Technology With", gold: "Human Direction" },
-    ],
-    desc: "Creating a future-ready organization that adapts to technology while growing in a deeply human way.",
+    title: "Helping Organizations Grow",
+    desc: "BinaHub helps companies build effective leaders, high-performing teams, and adaptive work cultures through an integrated, AI-supported approach.",
     journey: "Your journey starts here",
     cta: "Start",
-    scroll: "Scroll",
+    secondaryCta: "View Perspective",
   },
 };
 
@@ -44,149 +26,181 @@ interface HeroSectionProps {
   heroReady: boolean;
 }
 
+function AnimatedHeading({ text, ready }: { text: string; ready: boolean }) {
+  const words = text.split(" ");
+  const accentWord = words.at(-1) ?? "";
+  const firstLine = words.slice(0, -1).join(" ");
+  const lines = [firstLine, accentWord];
+
+  const charDelay = 30;
+  let charOffset = 0;
+
+  return (
+    <h1 className="max-w-[780px] text-left text-[clamp(2rem,9.2vw,3rem)] font-normal leading-[1.04] tracking-[-0.025em] text-[#071A33] md:text-[clamp(3.25rem,4.75vw,4.85rem)] md:tracking-[-0.035em]">
+      {lines.map((line, lineIndex) => {
+        const currentOffset = charOffset;
+        charOffset += line.length;
+
+        return (
+          <span
+            key={lineIndex}
+            className={lineIndex === 1 ? "mt-1 block font-light italic text-[#D9A441] md:mt-2" : "block"}
+          >
+            {line.split(" ").map((word, wordIndex) => (
+              <span
+                key={`${lineIndex}-${wordIndex}`}
+                className="mr-[0.22em] inline-block whitespace-nowrap last:mr-0"
+              >
+                {word.split("").map((char, charIndex) => (
+                  <span
+                    key={`${lineIndex}-${wordIndex}-${charIndex}`}
+                    className="inline-block transition-[opacity,transform] duration-500 ease-out"
+                    style={{
+                      opacity: ready ? 1 : 0,
+                      transform: ready ? "translateX(0)" : "translateX(-18px)",
+                      transitionDelay: `${200 + (currentOffset + wordIndex + charIndex) * charDelay}ms`,
+                    }}
+                  >
+                    {char}
+                  </span>
+                ))}
+              </span>
+            ))}
+          </span>
+        );
+      })}
+    </h1>
+  );
+}
+
+const LITE_FLOW_PATHS = Array.from({ length: 20 }, (_, index) => {
+  const y = 575 + index * 18;
+  const wave = index % 2 === 0 ? 1 : -1;
+  const startX = -240 + (index % 5) * 22;
+  const midX = 570 + index * 9;
+  const endX = 1620 - (index % 4) * 16;
+
+  return `M${startX} ${y} C125 ${y - 26 + wave * 8} 330 ${y - 10 + wave * 6} ${midX} ${y + 26} C825 ${y + 70} 1065 ${y + 108 - wave * 5} ${endX} ${y + 154}`;
+});
+
+function HeroLiteLines() {
+  return (
+    <svg
+      className="hero-lite-lines absolute inset-0 h-full w-full mix-blend-multiply"
+      viewBox="0 0 1440 900"
+      preserveAspectRatio="xMidYMid slice"
+    >
+      <defs>
+        <linearGradient id="heroLiteLine" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%" stopColor="#F8E6B2" stopOpacity="0.28" />
+          <stop offset="42%" stopColor="#D9A441" stopOpacity="0.9" />
+          <stop offset="100%" stopColor="#8A560A" stopOpacity="1" />
+        </linearGradient>
+      </defs>
+      <g className="hero-lite-line-drift">
+        {LITE_FLOW_PATHS.map((path, index) => (
+          <path
+            key={path}
+            className={`hero-lite-line hero-lite-line-${(index % 5) + 1}`}
+            d={path}
+            fill="none"
+            pathLength="1"
+            stroke="url(#heroLiteLine)"
+            strokeLinecap="round"
+            strokeOpacity={0.48 + index * 0.02}
+            strokeWidth={1 + index * 0.04}
+          />
+        ))}
+      </g>
+    </svg>
+  );
+}
+
+function HeroVideoBackground() {
+  return (
+    <div className="pointer-events-none absolute inset-0 overflow-hidden bg-white" aria-hidden="true">
+      <video
+        className="absolute inset-0 h-full w-full scale-[1.16] object-cover object-center opacity-[0.56] md:scale-[1.2]"
+        autoPlay
+        loop
+        muted
+        playsInline
+        preload="auto"
+      >
+        <source src="/bg-hero-nodes-h264.mp4" type="video/mp4" />
+      </video>
+      <div className="absolute inset-0 bg-white/10" />
+      <div className="absolute inset-x-0 top-0 h-44 bg-gradient-to-b from-white/58 via-white/22 to-transparent" />
+      <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-white/68 via-white/22 to-transparent" />
+      <div className="absolute inset-y-0 left-0 w-[22%] bg-gradient-to-r from-white/56 to-transparent" />
+      <HeroLiteLines />
+    </div>
+  );
+}
+
+function FadeIn({
+  children,
+  delay,
+  ready,
+  className,
+}: {
+  children: React.ReactNode;
+  delay: number;
+  ready: boolean;
+  className?: string;
+}) {
+  return (
+    <div
+      className={`transition-[opacity,transform,filter] duration-1000 ease-out ${className ?? ""}`}
+      style={{
+        opacity: ready ? 1 : 0,
+        transform: ready ? "translateY(0)" : "translateY(18px)",
+        filter: ready ? "blur(0)" : "blur(12px)",
+        transitionDelay: `${delay}ms`,
+      }}
+    >
+      {children}
+    </div>
+  );
+}
+
 export function HeroSection({ heroReady }: HeroSectionProps) {
   const locale = useLocale();
   const copy = COPY[locale];
-  const [titleIndex, setTitleIndex] = useState(0);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setTitleIndex((prev) => (prev + 1) % copy.titles.length);
-    }, 4000);
-    return () => clearInterval(interval);
-  }, [copy.titles.length]);
 
   return (
-    <section id="home-hero" className="relative z-0 w-full overflow-x-hidden bg-[#F5F7FA] px-4 pt-20 mb-8 md:px-8 md:pt-28 md:mb-16">
-      <div className="relative h-[65vh] min-h-[480px] w-full overflow-hidden rounded-[14px] border border-white/10 bg-[#071A33] shadow-[0_24px_78px_-56px_rgba(11,44,107,0.48)] max-[499px]:h-[50vh] max-[499px]:min-h-[336px] sm:h-[72vh] md:h-[80vh] md:rounded-[18px]">
-        {/* Background Image */}
-        <Image
-          src="/asset/hero2.png"
-          alt="BinaHub Hero Background"
-          fill
-          priority
-          className="object-cover object-center"
-        />
+    <section id="home-hero" className="relative z-0 -mt-24 w-full overflow-x-hidden bg-white md:-mt-28">
+      <div className="relative min-h-[76svh] overflow-hidden bg-white text-[#071A33] md:min-h-[112svh]">
+        <HeroVideoBackground />
 
-        {/* Dark scrim */}
-        <div
-          className="absolute inset-0 pointer-events-none z-[1]"
-          style={{ background: "rgba(10,8,6,0.35)" }}
-        />
+        <div className="relative z-10 flex min-h-[76svh] flex-col items-start justify-end px-6 pb-9 pt-32 text-left md:min-h-[112svh] md:justify-center md:px-12 md:pb-6 md:pt-64 lg:px-20 xl:px-28">
+          <div className="flex w-full max-w-[780px] flex-col items-start">
+              <AnimatedHeading text={copy.title} ready={heroReady} />
 
-        {/* Left readability atmosphere */}
-        <div className="absolute inset-0 pointer-events-none z-[2] bg-[linear-gradient(90deg,rgba(7,21,46,0.88)_0%,rgba(7,21,46,0.62)_42%,rgba(7,21,46,0.18)_72%,transparent_100%)]" />
+              <FadeIn ready={heroReady} delay={850}>
+                <p className="mt-5 max-w-[690px] text-balance text-[14px] font-normal leading-[1.65] tracking-[-0.005em] text-[#30405C] md:mt-6 md:text-lg lg:text-[19px]">
+                  {copy.desc}
+                </p>
+              </FadeIn>
 
-        {/* Subtle human-tech dust */}
-        <div className="absolute right-[8%] top-[18%] z-[3] h-[42%] w-[36%] pointer-events-none opacity-35">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_60%_42%,rgba(217,164,65,0.18),transparent_34%),radial-gradient(circle_at_78%_62%,rgba(255,255,255,0.10),transparent_28%)]" />
-          <div className="absolute left-1/4 top-1/2 h-px w-3/4 -rotate-12 bg-gradient-to-r from-transparent via-[#D9A441]/35 to-transparent" />
-          <div className="absolute left-1/2 top-1/3 h-px w-1/2 rotate-6 bg-gradient-to-r from-transparent via-white/20 to-transparent" />
-        </div>
-
-        {/* Vignette */}
-        <div
-          className="absolute inset-0 pointer-events-none z-[4]"
-          style={{
-            background:
-              "radial-gradient(ellipse 90% 85% at 50% 40%, transparent 35%, rgba(8,6,4,0.60) 100%)",
-          }}
-        />
-
-        {/* Bottom gradient */}
-        <div
-          className="absolute inset-x-0 bottom-0 pointer-events-none z-[5]"
-          style={{
-            height: "60%",
-            background:
-              "linear-gradient(to top, rgba(10,8,6,0.94) 0%, rgba(10,8,6,0.50) 45%, transparent 100%)",
-          }}
-        />
-
-        {/* Pixel entity canvas */}
-        <PixelBackground ready={heroReady} />
-
-        {/* Hero Content */}
-        <div className="absolute inset-x-0 bottom-0 z-30 flex flex-col px-4 sm:px-6 md:px-16 pb-8 max-[499px]:pb-5 sm:pb-10 md:pb-16 lg:pb-20 xl:pb-24 max-w-5xl">
-          <div
-            className="mb-4 sm:mb-6 relative h-[90px] max-[499px]:h-[72px] sm:h-[150px] md:h-[180px] lg:h-[200px] xl:h-[220px]"
-            style={{
-              opacity: heroReady ? 1 : 0,
-              filter: heroReady ? "blur(0px)" : "blur(24px)",
-              transform: heroReady ? "translateY(0px)" : "translateY(32px)",
-              transition:
-                "opacity 1s cubic-bezier(0.16,1,0.3,1) 0ms, filter 1s cubic-bezier(0.16,1,0.3,1) 0ms, transform 1s cubic-bezier(0.16,1,0.3,1) 0ms",
-            }}
-          >
-            <AnimatePresence mode="popLayout">
-              <motion.h1
-                key={titleIndex}
-                initial={{ y: 40, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                exit={{ y: -40, opacity: 0 }}
-                transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-                className="absolute inset-0 text-3xl max-[499px]:text-[2rem] sm:text-6xl md:text-7xl lg:text-[5.5rem] xl:text-8xl font-light text-white leading-[1.1] tracking-tight"
-              >
-                {copy.titles[titleIndex].white} <br />
-                <span className="italic font-sans" style={{ color: "#D9A441" }}>
-                  {copy.titles[titleIndex].gold}
-                </span>
-              </motion.h1>
-            </AnimatePresence>
-          </div>
-
-          <p
-            className="text-sm max-[499px]:text-xs sm:text-base md:text-lg text-white/70 max-w-xl mb-8 max-[499px]:mb-4 sm:mb-12 leading-relaxed"
-            style={{
-              opacity: heroReady ? 1 : 0,
-              filter: heroReady ? "blur(0px)" : "blur(16px)",
-              transform: heroReady ? "translateY(0px)" : "translateY(24px)",
-              transition:
-                "opacity 1s cubic-bezier(0.16,1,0.3,1) 100ms, filter 1s cubic-bezier(0.16,1,0.3,1) 100ms, transform 1s cubic-bezier(0.16,1,0.3,1) 100ms",
-            }}
-          >
-            {copy.desc}
-          </p>
-
-          {/* CTA Buttons */}
-          <div
-            className="flex flex-wrap items-center gap-3 sm:gap-6 mb-6 max-[499px]:mb-0 sm:mb-8"
-            style={{
-              opacity: heroReady ? 1 : 0,
-              transform: heroReady ? "translateY(0px)" : "translateY(20px)",
-              transition:
-                "opacity 1s cubic-bezier(0.16,1,0.3,1) 300ms, transform 1s cubic-bezier(0.16,1,0.3,1) 300ms",
-            }}
-          >
-            <div className="flex items-center gap-2.5">
-              <span className="text-white/60 text-sm italic hidden md:flex items-center tracking-wide shrink-0">
-                {copy.journey} <ArrowRight className="inline ml-2.5" size={16}/>
-              </span>
-
-              <Link
-                href={localizePath("/insight", locale)}
-                className="group relative inline-flex h-12 max-[499px]:h-10 shrink-0 items-center justify-center gap-3 overflow-hidden rounded-full border border-[#D9A441]/30 bg-[#D9A441] px-7 max-[499px]:px-5 text-[11px] max-[499px]:text-[10px] font-bold uppercase tracking-[0.14em] text-[#0B2C6B] shadow-[0_18px_44px_-26px_rgba(217,164,65,0.9)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-white hover:shadow-[0_24px_56px_-28px_rgba(217,164,65,0.85)] active:scale-95"
-              >
-                {copy.cta}
-                <ChevronRight size={14} strokeWidth={2.2} className="transition-transform duration-300 group-hover:translate-x-0.5" />
-              </Link>
-            </div>
-          </div>
-        </div>
-
-        {/* Scroll Indicator */}
-        <div
-          className="hidden md:flex absolute bottom-10 right-10 z-30 flex-col items-center gap-2"
-          style={{
-            opacity: heroReady ? 1 : 0,
-            transition: "opacity 1.5s ease 1s",
-          }}
-        >
-          <span className="text-[10px] tracking-[0.3em] text-white/30 uppercase font-medium">
-            {copy.scroll}
-          </span>
-          <div className="w-[1px] h-12 bg-gradient-to-b from-white/30 to-transparent relative overflow-hidden">
-            <div className="absolute top-0 left-0 w-full h-1/2 bg-white/55 animate-scroll-line" />
+              <FadeIn ready={heroReady} delay={1150}>
+                <div className="mt-6 flex w-full flex-wrap items-center justify-start gap-2.5 md:mt-8 md:gap-4">
+                  <Link
+                    href={localizePath("/insight", locale)}
+                    className="inline-flex h-10 items-center justify-center gap-2 rounded-[9px] bg-[#0B2C6B] px-5 text-[10px] font-extrabold uppercase tracking-[0.12em] text-white shadow-[0_22px_56px_-30px_rgba(11,44,107,0.95)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#071A33] hover:shadow-[0_28px_64px_-34px_rgba(11,44,107,0.9)] md:h-12 md:gap-3 md:px-8 md:text-[12px] md:tracking-[0.14em]"
+                  >
+                    {copy.cta}
+                    <ChevronRight size={14} strokeWidth={2.2} className="md:h-4 md:w-4" />
+                  </Link>
+                  <Link
+                    href={localizePath("/perspektif", locale)}
+                    className="inline-flex h-10 items-center justify-center gap-2 rounded-[9px] border border-[#0B2C6B]/20 bg-white/58 px-5 text-[10px] font-extrabold uppercase tracking-[0.12em] text-[#071A33] shadow-[0_18px_54px_-38px_rgba(11,44,107,0.5)] backdrop-blur-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-[#0B2C6B]/40 hover:bg-white md:h-12 md:gap-3 md:px-8 md:text-[12px] md:tracking-[0.14em]"
+                  >
+                    {copy.secondaryCta}
+                    <ArrowRight size={14} strokeWidth={2.1} className="md:h-4 md:w-4" />
+                  </Link>
+                </div>
+              </FadeIn>
           </div>
         </div>
       </div>

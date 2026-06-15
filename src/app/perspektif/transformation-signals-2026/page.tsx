@@ -12,7 +12,7 @@ export async function generateMetadata(): Promise<Metadata> {
   return {
     title: "Transformation Signals 2026 | BinaHub Perspective",
     description: isEnglish
-      ? "Ten change signals for Indonesia's 2026 workforce and their implications for people, organizational, and AI transformation strategy."
+      ? "Ten signals shaping Indonesia's 2026 world of work and what they mean for people, organizational, and AI transformation strategy."
       : "Sepuluh sinyal perubahan dunia kerja Indonesia 2026 dan implikasinya bagi strategi transformasi manusia, organisasi, dan AI.",
     alternates: {
       canonical: isEnglish ? "/en/perspektif/transformation-signals-2026" : "/perspektif/transformation-signals-2026",
@@ -22,7 +22,7 @@ export async function generateMetadata(): Promise<Metadata> {
         ? "Transformation Signals 2026 | BinaHub Perspective"
         : "Transformation Signals 2026 | BinaHub Perspektif",
       description: isEnglish
-        ? "A strategic briefing on economic pressure, workforce shifts, and transformation gaps for leaders."
+        ? "A strategic briefing for leaders on economic pressure, workforce shifts, and transformation gaps."
         : "Briefing strategis tentang tekanan ekonomi, pergeseran tenaga kerja, dan gap transformasi untuk para pemimpin.",
       url: isEnglish ? "/en/perspektif/transformation-signals-2026" : "/perspektif/transformation-signals-2026",
     },

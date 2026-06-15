@@ -123,8 +123,8 @@ export default function LayananPage() {
     <div className="min-h-screen bg-[#F5F7FA] text-[#4A4C54] font-sans overflow-x-hidden">
 
       {/* Immersive Hero Section - Reconstructed for High Visibility */}
-      <section className="w-full px-4 md:px-8 pt-20 md:pt-28 mb-8 md:mb-16">
-        <div className="relative flex h-[75vh] min-h-[500px] max-h-[900px] w-full items-center justify-center overflow-hidden rounded-[16px] border border-white/5 bg-[#030712] shadow-lg sm:h-[80vh] md:h-[85vh]">
+      <section className="w-full px-4 pt-20 md:px-8 md:pt-28 md:mb-16">
+        <div className="relative flex min-h-[76svh] w-full items-center justify-center overflow-hidden rounded-[16px] border border-white/5 bg-[#030712] shadow-lg md:h-[85vh] md:min-h-[500px] md:max-h-[900px]">
 
           {/* 1. Technical Grid Lines (High Visibility) */}
           <div className="absolute inset-0 z-[1] opacity-20"
@@ -231,24 +231,24 @@ export default function LayananPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, ease: "easeOut" }}
             >
-              <div className="flex justify-center mb-12">
-                <PixelIcon type="ecosystem" size={56} />
+              <div className="mb-8 flex justify-center md:mb-12">
+                <PixelIcon type="ecosystem" size={48} />
               </div>
 
 
-              <div className="mb-6">
-                <Tag className="text-white/40 bg-white/5 border border-white/10 px-6 py-2 uppercase tracking-[0.3em]">{copy.heroTag}</Tag>
+              <div className="mb-5 md:mb-6">
+                <Tag className="border border-white/10 bg-white/5 px-5 py-2 text-white/40 uppercase tracking-[0.24em] md:px-6 md:tracking-[0.3em]">{copy.heroTag}</Tag>
               </div>
 
-              <h1 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl xl:text-7xl font-light tracking-tight leading-tight text-white mb-6 sm:mb-10 text-center">
+              <h1 className="mb-5 text-center text-[clamp(2rem,9.2vw,3rem)] font-light leading-[1.04] tracking-[-0.025em] text-white md:mb-8 md:text-[clamp(3.25rem,4.75vw,4.85rem)] md:tracking-[-0.035em]">
                 People{" "}
-                <span className="text-white/24 font-light">/</span>
+                <span className="text-white/24 font-light">-</span>
                 {" "}Learning{" "}
-                <span className="text-white/24 font-light">/</span>
+                <span className="text-white/24 font-light">-</span>
                 {" "}<span className="text-[#D9A441] font-normal italic">Elevated</span>
               </h1>
 
-              <p className="text-lg md:text-2xl text-white/62 font-light leading-[1.75] max-w-3xl mx-auto">
+              <p className="mx-auto max-w-3xl text-sm font-light leading-[1.65] text-white/62 md:text-lg md:leading-[1.75] lg:text-xl">
                 {copy.heroDesc}
               </p>
             </motion.div>

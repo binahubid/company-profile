@@ -277,7 +277,7 @@ export default function ContactPage() {
             <div className="relative h-[280px] min-h-[250px] overflow-hidden rounded-[14px] border border-black/[0.045] bg-white shadow-[0_16px_48px_-42px_rgba(11,44,107,0.32)] lg:h-full">
               <iframe
                 title="BinaHub Office - Kencana Tower, Business Park Kebon Jeruk, Jakarta Barat"
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.7963243964685!2d106.74600407586469!3d-6.193820660990527!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f7b2e93a0f5b%3A0x3c8b7c4f2d1a5e9c!2sJl.%20Raya%20Meruya%20Ilir%20No.88%2C%20Meruya%20Utara%2C%20Kembangan%2C%20Jakarta%20Barat!5e0!3m2!1sen!2sid!4v1700000000000!5m2!1sen!2sid"
+                src="https://www.google.com/maps?q=Kencana%20Tower%2C%20Business%20Park%20Kebon%20Jeruk%2C%20Jakarta%20Barat&output=embed"
                 className="w-full h-full border-0 grayscale hover:grayscale-0 transition-all duration-700"
                 allowFullScreen={true}
                 loading="lazy"

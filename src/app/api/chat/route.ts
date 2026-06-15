@@ -54,7 +54,7 @@ export async function POST(req: NextRequest) {
           
           if (toolCall.tool === 'save_chat_lead' && toolCall.args) {
             isToolExecution = true;
-            console.log('[Nara Agent] Executing save_chat_lead tool:', toolCall.args);
+            console.log('[Bina Agent] Executing save_chat_lead tool:', toolCall.args);
             
             // Background lead save
             await supabase.from('leads').upsert({
@@ -70,7 +70,7 @@ export async function POST(req: NextRequest) {
           }
         }
       } catch (e) {
-        console.error('[Nara Agent] Tool parsing failed:', e);
+        console.error('[Bina Agent] Tool parsing failed:', e);
         // Fallback if parsing fails
         if (aiResponseText.includes('{"tool":')) {
            aiResponseText = locale === 'en'

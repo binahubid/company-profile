@@ -1,18 +1,18 @@
 "use client";
 
 import type { ReactNode } from "react";
-import { useState, useEffect, useCallback } from "react";
-import { PixelIcon } from "@/components/pixel-icon";
-import { Tag } from "@/components/ui/tag";
-import { motion, AnimatePresence } from "framer-motion";
+import { useEffect, useState } from "react";
 import Image from "next/image";
-import { UserCheck, Target, Leaf, Compass, Lightbulb } from "lucide-react";
+import { AnimatePresence, motion } from "framer-motion";
+import { ChevronLeft, ChevronRight, Compass, Leaf, Lightbulb, Target, UserCheck } from "lucide-react";
+import { Tag } from "@/components/ui/tag";
 import { useLocale } from "@/i18n/use-locale";
 import type { Locale } from "@/i18n/config";
 
 type PillarPoint = {
   icon: ReactNode;
   title: string;
+  desc: string;
 };
 
 type TextSlide = {
@@ -56,11 +56,11 @@ const COPY = {
         type: "pillars" as const,
         bgImage: "/asset/slide3.png",
         points: [
-          { icon: <UserCheck size={22} />, title: "People Development" },
-          { icon: <Target size={22} />, title: "Adaptive Leadership & Kemampuan Beradaptasi" },
-          { icon: <Leaf size={22} />, title: "Healthy Culture" },
-          { icon: <Compass size={22} />, title: "Future Capability Partner" },
-          { icon: <Lightbulb size={22} />, title: "AI-Powered Insights" },
+          { icon: <UserCheck size={22} />, title: "People Development", desc: "Membangun kapabilitas masa depan dengan memastikan manusia tetap menjadi inti dari setiap transformasi." },
+          { icon: <Target size={22} />, title: "Adaptive Leadership & Kemampuan Beradaptasi", desc: "Mengembangkan kepemimpinan yang dibangun dengan kecerdasan, integritas, kebijaksanaan, dan empati." },
+          { icon: <Leaf size={22} />, title: "Healthy Culture", desc: "Menciptakan budaya kerja yang sehat dan bertumbuh di tengah otomatisasi dan era digitalisasi AI." },
+          { icon: <Compass size={22} />, title: "Future Capability Partner", desc: "Membantu organisasi mendesain sistem yang adaptif, resilien, dan siap menyongsong perubahan era global." },
+          { icon: <Lightbulb size={22} />, title: "AI-Powered Insights", desc: "Memadukan AI dan data analitik modern sebagai pendorong utama dalam pengambilan keputusan strategis yang presisi." },
         ],
       },
     ] satisfies CarouselSlide[],
@@ -92,11 +92,11 @@ const COPY = {
         type: "pillars" as const,
         bgImage: "/asset/slide3.png",
         points: [
-          { icon: <UserCheck size={22} />, title: "People Development" },
-          { icon: <Target size={22} />, title: "Adaptive Leadership & Adaptability" },
-          { icon: <Leaf size={22} />, title: "Healthy Culture" },
-          { icon: <Compass size={22} />, title: "Future Capability Partner" },
-          { icon: <Lightbulb size={22} />, title: "AI-Powered Insights" },
+          { icon: <UserCheck size={22} />, title: "People Development", desc: "Build future capability by ensuring people remain at the center of every transformation." },
+          { icon: <Target size={22} />, title: "Adaptive Leadership & Adaptability", desc: "Develop leadership built on intelligence, integrity, wisdom, and empathy." },
+          { icon: <Leaf size={22} />, title: "Healthy Culture", desc: "Create a healthy work culture that grows amid automation and the AI digital era." },
+          { icon: <Compass size={22} />, title: "Future Capability Partner", desc: "Help organizations design adaptive, resilient systems ready for global change." },
+          { icon: <Lightbulb size={22} />, title: "AI-Powered Insights", desc: "Combine AI and modern data analytics as key drivers for precise strategic decisions." },
         ],
       },
     ] satisfies CarouselSlide[],
@@ -115,185 +115,243 @@ const COPY = {
   openSlide: string;
 }>;
 
-const SLIDE_DURATIONS = [6000, 6000, 5000];
+function PositionSlide({
+  slide,
+  description,
+}: {
+  slide: TextSlide;
+  description: string;
+}) {
+  const headline = slide.lines.length > 2
+    ? [`${slide.lines[0]} ${slide.lines[1]}`, slide.lines.slice(2).join(" ")]
+    : slide.lines;
+
+  return (
+    <motion.div
+      className="absolute inset-0"
+      initial={{ opacity: 0, x: 24 }}
+      animate={{ opacity: 1, x: 0 }}
+      exit={{ opacity: 0, x: -24 }}
+      transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+    >
+      <Image
+        src={slide.bgImage}
+        alt=""
+        fill
+        priority
+        sizes="100vw"
+        className="object-cover"
+      />
+      <div className="absolute inset-0 bg-[#041427]/34 mix-blend-multiply" />
+      <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(3,12,28,0.16)_0%,rgba(3,12,28,0.5)_58%,rgba(3,12,28,0.82)_100%)]" />
+
+      <div className="relative z-10 flex h-full flex-col items-center justify-center px-6 py-10 text-center md:px-12">
+        <Tag className="border border-white/18 bg-white/10 text-white">
+          {slide.title}
+        </Tag>
+        <h2 className="mt-5 max-w-5xl text-[clamp(2rem,4vw,3rem)] font-semibold leading-[1.2] tracking-[-0.025em] text-white">
+          {headline.map((line) => (
+            <span key={line} className="block">
+              {line}
+            </span>
+          ))}
+        </h2>
+        <p className="font-secondary mt-5 max-w-2xl text-sm font-normal leading-[1.6] text-white/72 md:text-base">
+          {description}
+        </p>
+      </div>
+    </motion.div>
+  );
+}
+
+function MissionCard({
+  slide,
+  title,
+  description,
+  activeIndex,
+  onPrevious,
+  onNext,
+}: {
+  slide: PillarSlide;
+  title: string;
+  description: string;
+  activeIndex: number;
+  onPrevious: () => void;
+  onNext: () => void;
+}) {
+  const getPosition = (index: number) => {
+    const total = slide.points.length;
+    const diff = (index - activeIndex + total) % total;
+    return diff > total / 2 ? diff - total : diff;
+  };
+
+  return (
+    <motion.div
+      className="relative min-h-[500px] w-full overflow-hidden bg-white text-[#0B2C6B] sm:min-h-[520px] md:h-[44svh] md:min-h-[320px]"
+      initial={{ opacity: 0, y: 24 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-80px" }}
+      transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+    >
+      <Image
+        src="/bg-hero-nodes-poster-crop.jpg"
+        alt=""
+        fill
+        sizes="100vw"
+        className="object-cover opacity-45"
+      />
+      <div className="absolute inset-0 bg-white/62" />
+
+      <div className="relative z-10 mx-auto grid h-full max-w-6xl items-center gap-6 px-5 pb-8 pt-12 sm:px-6 sm:pb-9 sm:pt-14 md:max-w-[1304px] md:grid-cols-[0.4fr_0.6fr] md:gap-8 md:px-8 md:py-7 lg:gap-10">
+        <div className="mx-auto max-w-md text-center md:mx-0 md:text-left">
+          <div>
+            <h2 className="text-[clamp(2rem,4vw,3rem)] font-semibold leading-[1.2] tracking-[-0.025em] text-[#071A33]">
+              {title}
+            </h2>
+            <p className="font-secondary mt-4 max-w-md text-sm font-normal leading-[1.6] text-[#0B2C6B]/68 md:text-base">
+              {description}
+            </p>
+          </div>
+        </div>
+
+        <div className="relative min-w-0">
+          <button
+            type="button"
+            onClick={onPrevious}
+            className="absolute left-0 top-1/2 z-20 flex h-10 w-10 -translate-y-1/2 items-center justify-center border border-[#0B2C6B]/12 bg-white/80 text-[#0B2C6B] shadow-[0_18px_46px_-36px_rgba(11,44,107,0.5)] transition-colors hover:bg-white md:left-2"
+            aria-label="Previous mission"
+          >
+            <ChevronLeft size={18} />
+          </button>
+          <button
+            type="button"
+            onClick={onNext}
+            className="absolute right-0 top-1/2 z-20 flex h-10 w-10 -translate-y-1/2 items-center justify-center border border-[#0B2C6B]/12 bg-white/80 text-[#0B2C6B] shadow-[0_18px_46px_-36px_rgba(11,44,107,0.5)] transition-colors hover:bg-white md:right-2"
+            aria-label="Next mission"
+          >
+            <ChevronRight size={18} />
+          </button>
+
+          <div className="relative mx-auto h-[250px] max-w-[680px] overflow-hidden [perspective:1300px] md:h-[270px]">
+            {slide.points.map((point, index) => {
+              const position = getPosition(index);
+              const hidden = Math.abs(position) > 2;
+              const absPosition = Math.abs(position);
+
+                return (
+                  <motion.div
+                    key={point.title}
+                    className="absolute left-1/2 top-1/2 flex min-h-[168px] w-[min(68vw,350px)] flex-col justify-center gap-3 border border-[#0B2C6B]/10 bg-[#F5F7FA] px-5 py-5 text-[#0B2C6B] shadow-[0_30px_82px_-52px_rgba(11,44,107,0.5)] md:w-[380px]"
+                    animate={{
+                      opacity: hidden ? 0 : 1 - absPosition * 0.2,
+                    x: `calc(-50% + ${position * 122}px)`,
+                    y: "-50%",
+                    z: -absPosition * 90,
+                    rotateY: position * 20,
+                    scale: 1 - absPosition * 0.08,
+                  }}
+                  transition={{ duration: 0.74, ease: [0.22, 1, 0.36, 1] }}
+                  style={{
+                    zIndex: 10 - absPosition,
+                    transformStyle: "preserve-3d",
+                    pointerEvents: position === 0 ? "auto" : "none",
+                  }}
+                >
+                    <div className="flex items-center gap-3">
+                      <span className={position === 0 ? "text-[#D9A441]" : "text-[#0B2C6B]/30"}>
+                        {point.icon}
+                      </span>
+                      <span className={`text-[clamp(1.05rem,1.85vw,1.45rem)] font-semibold leading-[1.2] tracking-[-0.01em] ${
+                        position === 0 ? "text-[#071A33]" : "text-[#0B2C6B]/44"
+                      }`}>
+                        {point.title}
+                      </span>
+                    </div>
+                    <p className={`font-secondary text-sm font-normal leading-[1.6] transition-colors ${
+                      position === 0 ? "text-[#0B2C6B]/68" : "text-[#0B2C6B]/0"
+                    }`}>
+                      {point.desc}
+                    </p>
+                </motion.div>
+              );
+            })}
+          </div>
+        </div>
+      </div>
+    </motion.div>
+  );
+}
 
 export function AboutCarouselSection() {
   const locale = useLocale();
   const copy = COPY[locale];
-  const slides = copy.slides;
-  const [displaySlide, setDisplaySlide] = useState(0);
-
-  const goToSlide = useCallback(
-    (next: number) => {
-      if (next === displaySlide) return;
-      setDisplaySlide(next);
-    },
-    [displaySlide]
-  );
+  const positionSlide = copy.slides[0] as TextSlide;
+  const visionSlide = copy.slides[1] as TextSlide;
+  const missionSlide = copy.slides[2] as PillarSlide;
+  const [activeSlide, setActiveSlide] = useState(0);
+  const [activeMission, setActiveMission] = useState(0);
 
   useEffect(() => {
-    const duration = SLIDE_DURATIONS[displaySlide] ?? 6000;
-    const timer = setTimeout(() => {
-      goToSlide((displaySlide + 1) % slides.length);
-    }, duration);
-    return () => clearTimeout(timer);
-  }, [displaySlide, goToSlide, slides.length]);
+    const timer = window.setInterval(() => {
+      setActiveSlide((current) => (current + 1) % 2);
+    }, 6800);
 
-  const slide = slides[displaySlide];
-  const isPillars = slide.type === "pillars";
+    return () => window.clearInterval(timer);
+  }, []);
 
   return (
-    <section id="platform" className="relative z-10 w-full bg-[#F5F7FA] px-4 py-10 md:px-8 md:py-16">
-      <div className={`relative mx-auto flex max-w-[1720px] items-center justify-center overflow-hidden rounded-[18px] border border-white/10 bg-[#071A33] shadow-[0_24px_78px_-56px_rgba(11,44,107,0.34)] transition-colors duration-700 ${
-        isPillars
-          ? "h-[660px] max-[499px]:h-[640px] sm:h-[620px] md:h-[620px] min-[1440px]:h-[660px]"
-          : "h-[620px] max-[499px]:h-[590px] sm:h-[640px] md:h-[620px] min-[1440px]:h-[660px]"
-      }`}>
-
-        {/* Background image */}
-        <AnimatePresence mode="sync">
-          <motion.div
-            key={slide.id}
-            className="absolute inset-0 z-0"
-            initial={{ opacity: 0, scale: 1.045, x: 16 }}
-            animate={{ opacity: 1, scale: 1.02, x: 0 }}
-            exit={{ opacity: 0, scale: 1, x: -16 }}
-            transition={{ duration: 1.05, ease: [0.22, 1, 0.36, 1] }}
-          >
-            <Image
-              src={slide.bgImage}
-              alt=""
-              fill
-              sizes="100vw"
-              className="object-cover"
+    <section
+      id="platform"
+      className="relative z-10 w-full overflow-hidden bg-[#F5F7FA]"
+      style={{ fontFamily: "Poppins, 'Segoe UI', sans-serif" }}
+    >
+      <div className="relative h-[50svh] min-h-[380px] w-full overflow-hidden bg-[#071A33]">
+        <AnimatePresence mode="wait">
+          {activeSlide === 0 ? (
+            <PositionSlide
+              key="position"
+              slide={positionSlide}
+              description={copy.heroDesc}
             />
-          </motion.div>
+          ) : (
+            <PositionSlide
+              key="vision"
+              slide={visionSlide}
+              description={copy.visionDesc}
+            />
+          )}
         </AnimatePresence>
-        <div className="absolute inset-0 z-[1] bg-[#061A3A]/40 mix-blend-multiply transition-colors duration-700" />
-        <div className="absolute inset-0 z-[2] bg-[linear-gradient(90deg,rgba(7,18,42,0.88)_0%,rgba(7,18,42,0.58)_48%,rgba(7,18,42,0.22)_100%)] transition-colors duration-700" />
-        <div className="absolute inset-0 z-[3] bg-[radial-gradient(circle_at_78%_20%,rgba(217,164,65,0.12),transparent_28%),linear-gradient(180deg,rgba(10,26,58,0.08),rgba(10,26,58,0.78))]" />
-        <div className="absolute inset-x-8 bottom-0 z-[4] h-px bg-gradient-to-r from-transparent via-[#D9A441]/60 to-transparent" />
 
-        {/* Content */}
-        <div className="relative z-10 mx-auto flex h-full w-full max-w-6xl flex-col items-start px-5 py-7 text-left sm:px-6 md:px-12 md:py-10 lg:px-16 min-[1440px]:max-w-7xl">
-
-          <div className="mb-6 flex shrink-0 flex-col items-start md:mb-10">
-            <div className="flex h-10 w-10 items-center justify-center rounded-[12px] border border-white/15 bg-white/[0.1] text-[#D9A441] md:h-11 md:w-11">
-              <PixelIcon type="about" size={28} />
-            </div>
-            <div className="mt-4 md:mt-6">
-              <Tag className="border border-white/20 bg-white/10 text-white uppercase">
-                {slide.title}
-              </Tag>
-            </div>
-          </div>
-
-          <div className="flex min-h-0 w-full flex-1 items-center">
-            <AnimatePresence mode="wait">
-
-              {/* Slide 1 & 2: Multi-line left-aligned heading */}
-              {(slide.type === "hero" || slide.type === "vision") && (
-                <motion.div
-                  key={slide.id}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -20 }}
-                  transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
-                  className="flex max-w-4xl flex-col items-start gap-0"
-                >
-                  {slide.lines.map((line, i) => (
-                    <h2
-                      key={i}
-                      className="text-[clamp(2.4rem,11vw,4.5rem)] font-light leading-[1.06] tracking-tight text-white md:text-5xl lg:text-[3.5rem] xl:text-[4.5rem]"
-                    >
-                      {line}
-                    </h2>
-                  ))}
-                  <p className="mt-6 max-w-xl text-sm font-light leading-relaxed text-white/62 md:mt-8 md:text-base">
-                    {slide.type === "hero"
-                      ? copy.heroDesc
-                      : copy.visionDesc}
-                  </p>
-                </motion.div>
-              )}
-
-              {/* Slide 3: Diamond-scattered grid */}
-              {slide.type === "pillars" && (
-                <motion.div
-                  key={slide.id}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -20 }}
-                  transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
-                  className="w-full"
-                >
-                  <div className="grid w-full gap-6 md:grid-cols-[0.78fr_1.22fr] md:items-center">
-                    <div>
-                      <h2 className="text-3xl font-light leading-tight tracking-tight text-white md:text-5xl">
-                        {copy.missionTitle}
-                      </h2>
-                      <p className="mt-4 max-w-sm text-xs font-light leading-relaxed text-white/62 sm:text-sm md:mt-5">
-                        {copy.missionDesc}
-                      </p>
-                    </div>
-                    <div className="relative grid gap-2 sm:grid-cols-2 md:gap-3">
-                      <div className="pointer-events-none absolute bottom-5 left-5 top-5 hidden w-px bg-gradient-to-b from-[#D9A441]/0 via-[#D9A441]/38 to-[#D9A441]/0 sm:block md:left-6" />
-                      {slide.points.map((point, pIdx) => (
-                        <motion.div
-                          key={point.title}
-                          initial={{ opacity: 0, y: 18 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          transition={{ delay: 0.12 + pIdx * 0.08, duration: 0.46, ease: [0.22, 1, 0.36, 1] }}
-                          className={`group relative flex min-h-[58px] items-center gap-2.5 rounded-[10px] border px-3 py-2.5 transition-all duration-300 hover:-translate-y-0.5 sm:min-h-[68px] md:min-h-[78px] md:gap-4 md:px-4 ${
-                            pIdx === 1
-                              ? "border-[#D9A441]/42 bg-[#D9A441]/12"
-                              : "border-white/10 bg-white/[0.055]"
-                          }`}
-                        >
-                          <div className={`relative z-10 flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-white/12 md:h-10 md:w-10 ${
-                            pIdx === 1 ? "bg-[#D9A441] text-[#0A1A3A]" : "bg-white/10 text-[#D9A441]"
-                          }`}>
-                            {point.icon}
-                          </div>
-                          <div className="min-w-0">
-                            <span className="mb-1.5 block h-px w-7 bg-[#D9A441]/70 md:mb-2 md:w-8" />
-                            <span className="block text-[10px] font-semibold uppercase leading-snug tracking-[0.06em] text-white md:text-xs md:tracking-[0.08em]">{point.title}</span>
-                          </div>
-                        </motion.div>
-                      ))}
-                    </div>
-                  </div>
-                </motion.div>
-              )}
-
-            </AnimatePresence>
-          </div>
-
-          {/* Slide Indicators */}
-          <div className="mt-6 flex w-full shrink-0 items-center gap-2 md:mt-10 md:max-w-sm md:gap-3">
-            {slides.map((item, i) => (
-              <button
-                key={item.id}
-                onClick={() => goToSlide(i)}
-                className="group h-3 flex-1 py-1"
-                aria-label={`${copy.openSlide} ${i + 1}: ${item.title}`}
-              >
-                <span className="relative block h-px overflow-hidden rounded-full bg-white/24 transition-colors group-hover:bg-white/42">
-                  {displaySlide === i && (
-                    <motion.span
-                      key={displaySlide}
-                      className="absolute inset-y-0 left-0 bg-[#D9A441]"
-                      initial={{ width: "0%" }}
-                      animate={{ width: "100%" }}
-                      transition={{ duration: SLIDE_DURATIONS[i] / 1000, ease: "linear" }}
-                    />
-                  )}
-                </span>
-              </button>
-            ))}
-          </div>
-
+        <div className="absolute bottom-5 left-1/2 z-20 flex -translate-x-1/2 items-center gap-2">
+          {[positionSlide.title, visionSlide.title].map((label, index) => (
+            <button
+              key={label}
+              type="button"
+              onClick={() => setActiveSlide(index)}
+              className={`h-1.5 w-10 transition-colors duration-300 ${
+                activeSlide === index ? "bg-[#D9A441]" : "bg-white/28"
+              }`}
+              aria-label={`${copy.openSlide} ${index + 1}: ${label}`}
+            />
+          ))}
         </div>
+      </div>
+
+      <div>
+        <MissionCard
+          slide={missionSlide}
+          title={copy.missionTitle}
+          description={copy.missionDesc}
+          activeIndex={activeMission}
+          onPrevious={() => {
+            const total = missionSlide.points.length;
+            setActiveMission((current) => (current - 1 + total) % total);
+          }}
+          onNext={() => {
+            const total = missionSlide.points.length;
+            setActiveMission((current) => (current + 1) % total);
+          }}
+        />
       </div>
     </section>
   );
