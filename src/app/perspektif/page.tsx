@@ -17,38 +17,25 @@ const COPY = {
       ["Learning before automation", "Teknologi harus mempercepat pembelajaran, bukan menggantikannya."],
       ["Impact before activity", "Program bernilai ketika perilaku dan kinerja ikut berubah."],
     ],
-    briefingEyebrow: "Executive Briefing",
     briefingTitle: "Transformation Signals 2026",
-    briefingDesc: "Ringkasan strategis tentang tekanan ekonomi, workforce shift, dan gap transformasi yang perlu dibaca sebelum merancang agenda people development.",
     cta: "Baca Briefing",
+    painSectionTitle: "Apa yang sedang berubah?",
     painCards: [
       {
-        title: "Target naik. Kepastian turun.",
-        desc: "Tekanan biaya, daya beli, dan volatilitas pasar membuat keputusan bisnis makin hati-hati.",
+        title: "Economic Pressure",
+        desc: "Global growth melambat, tekanan biaya meningkat.",
         image: "/asset/slide-5.png",
       },
       {
-        title: "Energi kerja menipis.",
-        desc: "Burnout, biaya hidup, dan tuntutan belajar baru mengubah cara orang hadir di pekerjaannya.",
+        title: "AI Transformation Gap",
+        desc: "Adopsi AI meningkat lebih cepat dibanding kesiapan organisasi.",
         image: "/asset/slide-6.png",
       },
       {
-        title: "AI cepat. Kapabilitas tertinggal.",
-        desc: "Inisiatif AI perlu tersambung dengan proses, keputusan, dan cara kerja sehari-hari.",
+        title: "Workforce Shift",
+        desc: "Jalur karier, pembelajaran, dan ekspektasi kerja berubah.",
         image: "/asset/slide-7.png",
       },
-      {
-        title: "Workshop selesai. Perubahan belum tentu terjadi.",
-        desc: "Intervensi perlu dibaca, dirancang, dieksekusi, dan diukur sampai masuk ke perilaku kerja.",
-        image: "/asset/slide-8.png",
-      },
-    ],
-    pressurePoints: [
-      "Hilangnya banyak jenis pekerjaan",
-      "Meningkatnya tekanan dan burnout",
-      "Krisis kepemimpinan di era digital",
-      "Menurunnya kualitas hubungan manusia",
-      "Organisasi yang kehilangan makna & nilai",
     ],
   },
   en: {
@@ -60,38 +47,25 @@ const COPY = {
       ["Learning before automation", "Technology should accelerate learning, not replace it."],
       ["Impact before activity", "A program creates value when behavior and performance also change."],
     ],
-    briefingEyebrow: "Executive Briefing",
     briefingTitle: "Transformation Signals 2026",
-    briefingDesc: "A strategic summary of economic pressure, workforce shifts, and transformation gaps to read before designing a people development agenda.",
     cta: "Read Briefing",
+    painSectionTitle: "What is changing?",
     painCards: [
       {
-        title: "Targets rise. Certainty drops.",
-        desc: "Cost pressure, purchasing power shifts, and market volatility make business decisions more cautious.",
+        title: "Economic Pressure",
+        desc: "Global growth is slowing, cost pressure is rising.",
         image: "/asset/slide-5.png",
       },
       {
-        title: "Work energy is thinning.",
-        desc: "Burnout, living costs, and new learning demands are changing how people show up at work.",
+        title: "AI Transformation Gap",
+        desc: "AI adoption is moving faster than organizational readiness.",
         image: "/asset/slide-6.png",
       },
       {
-        title: "AI moves fast. Capability lags.",
-        desc: "AI initiatives need to connect with processes, decisions, and daily ways of working.",
+        title: "Workforce Shift",
+        desc: "Career paths, learning, and work expectations are changing.",
         image: "/asset/slide-7.png",
       },
-      {
-        title: "The workshop ends. Change may not.",
-        desc: "Interventions need to be read, designed, executed, and measured into workplace behavior.",
-        image: "/asset/slide-8.png",
-      },
-    ],
-    pressurePoints: [
-      "Many types of jobs are disappearing",
-      "Pressure and burnout are increasing",
-      "Leadership crisis in the digital era",
-      "The quality of human connection is declining",
-      "Organizations are losing meaning and values",
     ],
   },
 };
@@ -141,7 +115,13 @@ export default function PerspektifPage() {
 
       <section className="px-4 py-8 md:min-h-[calc(100svh-96px)] md:px-8 md:py-8 lg:px-12">
         <div className="mx-auto flex max-w-[1800px] flex-col justify-center gap-5 md:min-h-[calc(100svh-160px)] lg:gap-6">
-          <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-4">
+          <div className="mx-auto w-full max-w-6xl">
+            <h2 className="text-3xl font-light leading-tight tracking-[-0.045em] text-[#0B2C6B] md:text-5xl">
+              {copy.painSectionTitle}
+            </h2>
+          </div>
+
+          <div className="mx-auto grid w-full max-w-6xl gap-5 md:grid-cols-3">
             {copy.painCards.map((card) => (
               <article key={card.title} className="group min-w-0">
                 <div className="relative h-52 overflow-hidden bg-[#071A33] md:h-[22vh] md:min-h-[150px] md:max-h-[220px]">
@@ -155,9 +135,9 @@ export default function PerspektifPage() {
                   <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(7,26,51,0.02)_0%,rgba(7,26,51,0.08)_48%,rgba(7,26,51,0.24)_100%)]" />
                 </div>
                 <div className="pt-5 md:pt-4">
-                  <h2 className="text-[1.35rem] font-light leading-tight tracking-[-0.035em] text-[#050913] md:text-[clamp(1.15rem,1.8vw,1.75rem)]">
+                  <h3 className="text-[1.35rem] font-light leading-tight tracking-[-0.035em] text-[#050913] md:text-[clamp(1.15rem,1.8vw,1.75rem)]">
                     {card.title}
-                  </h2>
+                  </h3>
                   <p className="mt-3 max-w-[34rem] text-sm font-medium leading-relaxed text-black/72 md:text-[13px] lg:text-sm">
                     {card.desc}
                   </p>
@@ -166,38 +146,17 @@ export default function PerspektifPage() {
             ))}
           </div>
 
-          <div className="relative overflow-hidden border-y border-black/10 py-4 md:py-5">
-            <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-16 bg-gradient-to-r from-[#F5F7FA] to-transparent" />
-            <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 bg-gradient-to-l from-[#F5F7FA] to-transparent" />
-            <div className="flex w-max animate-[marqueeLeft_28s_linear_infinite] items-center gap-4">
-              {[...copy.pressurePoints, ...copy.pressurePoints].map((point, index) => (
-                <div key={`${point}-${index}`} className="flex items-center gap-4">
-                  <span className="h-2 w-2 rounded-full bg-[#D9A441]" />
-                  <span className="whitespace-nowrap text-sm font-semibold uppercase tracking-[0.08em] text-[#0B2C6B] md:text-base">
-                    {point}
-                  </span>
-                </div>
-              ))}
-            </div>
-          </div>
-
           <div
-            className="relative overflow-hidden bg-[#07101F] bg-cover bg-center px-5 py-6 text-white shadow-[0_22px_70px_-54px_rgba(11,44,107,0.72)] md:px-8 md:py-7 lg:px-10"
+            className="relative mx-auto w-full max-w-6xl overflow-hidden bg-[#07101F] bg-cover bg-center px-5 py-6 text-white shadow-[0_22px_70px_-54px_rgba(11,44,107,0.72)] md:px-8 md:py-7 lg:px-10"
             style={{ backgroundImage: "url('/asset/transformation-texture-bg.png')" }}
           >
             <div className="pointer-events-none absolute inset-0 bg-[#07101F]/42" />
             <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(90deg,rgba(7,16,31,0.82)_0%,rgba(7,16,31,0.55)_56%,rgba(7,16,31,0.24)_100%)]" />
             <div className="relative z-10 grid gap-5 md:grid-cols-[1fr_auto] md:items-end">
               <div>
-                <p className="text-[10px] font-bold uppercase tracking-[0.26em] text-[#D9A441]">
-                  {copy.briefingEyebrow}
-                </p>
-                <h2 className="mt-3 max-w-3xl text-3xl font-light leading-tight tracking-tight md:text-[clamp(2rem,3.8vw,3.8rem)]">
+                <h2 className="max-w-3xl text-3xl font-light leading-tight tracking-tight md:text-[clamp(2rem,3.8vw,3.8rem)]">
                   {copy.briefingTitle}
                 </h2>
-                <p className="mt-3 max-w-2xl text-sm font-light leading-relaxed text-white/64 md:text-base">
-                  {copy.briefingDesc}
-                </p>
               </div>
               <Link
                 href={localizePath("/perspektif/transformation-signals-2026", locale)}

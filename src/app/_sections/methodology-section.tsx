@@ -225,7 +225,7 @@ export function MethodologySection({ onMouseMove }: MethodologySectionProps) {
               </div>
             </div>
 
-            <div>
+            <div className="w-full max-w-[720px] justify-self-center xl:justify-self-end">
               <div className="mb-3 grid grid-cols-3 gap-2">
                 {tabs.map((item, index) => (
                   <ProgressIndicator
@@ -237,7 +237,7 @@ export function MethodologySection({ onMouseMove }: MethodologySectionProps) {
                 ))}
               </div>
               <div className="relative overflow-hidden bg-white shadow-[0_28px_100px_-58px_rgba(0,0,0,0.72)]">
-                <div className="relative min-h-[420px] md:min-h-[600px] xl:min-h-[720px]">
+                <div className="relative aspect-square w-full">
                   {tabs.map((item, index) => (
                     <ArchitectureSlide
                       key={item.code}

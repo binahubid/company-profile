@@ -9,6 +9,9 @@ Format yang digunakan berdasarkan [Keep a Changelog](https://keepachangelog.com/
 - Menambahkan deskripsi singkat pada setiap poin Misi Kami di carousel Home, mengambil substansi dari section misi halaman Tentang Kami agar kartu tidak hanya berisi label.
 - Menambahkan section rekam jejak BDN pada halaman About dengan statistik `15+`, `10k+`, dan `80+` sebagai social proof utama serta marquee logo organisasi sebagai penguat visual.
 - Menambahkan archive wall rekam jejak BDN pada halaman Perjalanan Kami dengan treatment grid gelap yang berbeda dari halaman About.
+- Menambahkan evidence asset untuk halaman Transformation Signals berupa cuplikan media eksternal yang dipakai sebagai konteks pembacaan sinyal, bukan sebagai konten utama.
+- Menambahkan market signal cards langsung di dalam Complete Briefing pada signal yang relevan agar cuplikan media menjadi bagian dari argumen, bukan section terpisah.
+- Menambahkan tautan sumber eksternal pada market signal cards agar cuplikan media di Transformation Signals bisa dibuka ke artikel aslinya.
 
 ### Changed
 - Meredesain hero Home menjadi komposisi light executive berbasis video globe nodes, headline animasi, CTA compact, dan background line gold yang lebih ringan.
@@ -22,6 +25,13 @@ Format yang digunakan berdasarkan [Keep a Changelog](https://keepachangelog.com/
 - Mengubah framing logo organisasi menjadi narasi rekam jejak pembelajaran BDN yang membentuk fondasi BinaHub, tanpa memakai disclaimer eksplisit yang terasa defensif.
 - Memindahkan penekanan statistik `15+ tahun`, `10k+ peserta`, dan `80+ organisasi` ke section rekam jejak BDN agar tidak berulang di section Legacy & Perjalanan.
 - Memadatkan archive wall Perjalanan Kami, memperlebar container timeline, dan memperbesar visual BSKSims pada chapter simulasi global agar ritme halaman lebih editorial.
+- Menjaga halaman Perspektif tetap sebagai worldview dengan hanya menambahkan konteks sumber kecil pada teaser signal, tanpa mengubahnya menjadi halaman kumpulan berita.
+- Mengubah copy market signal cards dari parafrase berita menjadi insight organisasi berbasis `What leaders should notice`.
+- Mengubah Complete Briefing dari daftar 10 signal memanjang menjadi carousel dua sisi dengan detail signal di kiri, market signal di kanan, dan navigasi panah kiri/kanan.
+- Mengurutkan Complete Briefing agar `Tekanan efisiensi dan margin` menjadi signal #01, sementara `Bingung transformasi AI` tetap #04 dan `Entry-level makin sulit` tetap #09.
+- Mengubah pain point halaman Perspektif menjadi tiga sinyal utama `Economic Pressure`, `AI Transformation Gap`, dan `Workforce Shift` agar langsung selaras dengan Transformation Signals 2026.
+- Menghapus marquee pressure points, source badge, eyebrow Executive Briefing, dan deskripsi panjang pada CTA Transformation Signals di halaman Perspektif agar section lebih fokus.
+- Menyesuaikan container gambar Transformation Architecture agar mengikuti rasio square aset, sekaligus menyamakan lebar progress indicator dan tab bawah dengan lebar gambar.
 
 ### Fixed
 - Memperbaiki hamburger menu yang tidak muncul konsisten di halaman Kontak dengan menjaga navbar mobile tetap terlihat saat halaman berada pada posisi scroll berbeda.

@@ -6,9 +6,9 @@ import {
   ArrowLeft,
   ArrowRight,
   CheckCircle2,
-  ExternalLink,
 } from "lucide-react";
 import { defaultLocale, hasLocale, localizePath } from "@/i18n/config";
+import { VisualBriefingCarousel } from "./visual-briefing-carousel";
 
 export const metadata: Metadata = {
   title: "Transformation Signals 2026 | BinaHub Perspektif",
@@ -17,18 +17,6 @@ export const metadata: Metadata = {
 };
 
 const SIGNALS = [
-  {
-    group: "Economic Pressure",
-    title: "Daya beli melemah",
-    status: "Terbukti",
-    signal:
-      "Konsumen semakin berhati-hati menjaga keamanan finansial ketika upah riil dan penghasilan terasa tertahan.",
-    evidence:
-      "Analisis NEXT Indonesia Center menyebut upah Agustus 2025 naik 1,94% yoy, sementara inflasi 2,31% yoy, sehingga upah riil terkontraksi 0,37%. IPSI BPS juga sempat turun dari 120,2 pada Juni 2025 ke 112,9 pada September 2025.",
-    implication:
-      "Organisasi tidak bisa lagi mengandalkan asumsi daya beli yang stabil. Strategi people development perlu semakin dekat dengan produktivitas, prioritas bisnis, dan kemampuan tim merespons tekanan pasar.",
-    sources: ["NEXT Indonesia Center", "BPS - Indeks Penghasilan Saat Ini"],
-  },
   {
     group: "Economic Pressure",
     title: "Tekanan efisiensi dan margin",
@@ -40,6 +28,18 @@ const SIGNALS = [
     implication:
       "Dalam fase defensif, pelatihan yang terlalu generik makin sulit dibenarkan. Program perlu langsung terkait dengan prioritas kapabilitas, perubahan perilaku, dan ukuran dampak.",
     sources: ["S&P Global PMI", "PMSM Indonesia", "Data pasar keuangan"],
+  },
+  {
+    group: "Economic Pressure",
+    title: "Daya beli melemah",
+    status: "Terbukti",
+    signal:
+      "Konsumen semakin berhati-hati menjaga keamanan finansial ketika upah riil dan penghasilan terasa tertahan.",
+    evidence:
+      "Analisis NEXT Indonesia Center menyebut upah Agustus 2025 naik 1,94% yoy, sementara inflasi 2,31% yoy, sehingga upah riil terkontraksi 0,37%. IPSI BPS juga sempat turun dari 120,2 pada Juni 2025 ke 112,9 pada September 2025.",
+    implication:
+      "Organisasi tidak bisa lagi mengandalkan asumsi daya beli yang stabil. Strategi people development perlu semakin dekat dengan produktivitas, prioritas bisnis, dan kemampuan tim merespons tekanan pasar.",
+    sources: ["NEXT Indonesia Center", "BPS - Indeks Penghasilan Saat Ini"],
   },
   {
     group: "Transformation Gap",
@@ -142,21 +142,21 @@ const SIGNALS = [
 const SIGNALS_EN: typeof SIGNALS = [
   {
     group: "Economic Pressure",
-    title: "Purchasing power weakens",
-    status: "Validated",
-    signal: "Consumers are becoming more cautious with spending as real wages and household income remain under pressure.",
-    evidence: "NEXT Indonesia Center analysis noted August 2025 wages rose 1.94% yoy while inflation reached 2.31% yoy, contracting real wages by 0.37%. BPS' Current Income Index also fell from 120.2 in June 2025 to 112.9 in September 2025.",
-    implication: "Organizations can no longer assume stable purchasing power. People development strategy needs to stay close to productivity, business priorities, and the team capabilities required to respond to market pressure.",
-    sources: ["NEXT Indonesia Center", "BPS - Current Income Index"],
-  },
-  {
-    group: "Economic Pressure",
     title: "Efficiency and margin pressure",
     status: "Validated",
     signal: "Many companies are slowing expansion, streamlining structures, and looking for more efficient ways of working without sacrificing performance.",
     evidence: "Indonesia's manufacturing PMI in April 2026 was contractionary at 49.1. Rupiah weakness, capital market pressure, and HR practitioner confirmation around efficiency reinforce this signal.",
     implication: "In a defensive phase, generic training becomes harder to justify. Programs need to connect directly to capability priorities, behavior change, and measurable impact.",
     sources: ["S&P Global PMI", "PMSM Indonesia", "Financial market data"],
+  },
+  {
+    group: "Economic Pressure",
+    title: "Purchasing power weakens",
+    status: "Validated",
+    signal: "Consumers are becoming more cautious with spending as real wages and household income remain under pressure.",
+    evidence: "NEXT Indonesia Center analysis noted August 2025 wages rose 1.94% yoy while inflation reached 2.31% yoy, contracting real wages by 0.37%. BPS' Current Income Index also fell from 120.2 in June 2025 to 112.9 in September 2025.",
+    implication: "Organizations can no longer assume stable purchasing power. People development strategy needs to stay close to productivity, business priorities, and the team capabilities required to respond to market pressure.",
+    sources: ["NEXT Indonesia Center", "BPS - Current Income Index"],
   },
   {
     group: "Transformation Gap",
@@ -248,10 +248,16 @@ const COPY = {
     priority: "Priority signals",
     priorityTitle: "What leaders should discuss first.",
     priorityDesc: "Tiga sinyal ini paling dekat dengan keputusan strategi organisasi: efisiensi, kapabilitas, dan kesiapan AI.",
+    mediaSignal: "Sinyal eksternal yang memperkuat agenda ini.",
+    notice: "What leaders should notice",
+    previous: "Signal sebelumnya",
+    next: "Signal berikutnya",
+    relatedSignals: "Related signals",
+    sourceLinks: "Source links",
     leadershipImplication: "Leadership implication",
     register: "Signal register",
     registerTitle: "The complete briefing.",
-    registerDesc: "Dibuat untuk diagnosis strategis: tiap sinyal memuat pola, bukti, implikasi, dan sumber ringkas. Bukti ditempatkan lebih tenang agar halaman tidak terasa seperti spreadsheet.",
+    registerDesc: "Dibuat untuk diagnosis strategis: tiap sinyal memuat pola, hard evidence, market signal, implikasi kepemimpinan, dan sumber ringkas. Screenshot ditempatkan sebagai konteks lapangan, bukan sebagai klaim utama.",
     evidence: "Evidence",
     response: "Recommended response",
     responseTitle: "Build a people transformation operating system.",
@@ -275,10 +281,16 @@ const COPY = {
     priority: "Priority signals",
     priorityTitle: "What leaders should discuss first.",
     priorityDesc: "These three signals sit closest to organizational strategy decisions: efficiency, capability, and AI readiness.",
+    mediaSignal: "External signals strengthening this agenda.",
+    notice: "What leaders should notice",
+    previous: "Previous signal",
+    next: "Next signal",
+    relatedSignals: "Related signals",
+    sourceLinks: "Source links",
     leadershipImplication: "Leadership implication",
     register: "Signal register",
     registerTitle: "The complete briefing.",
-    registerDesc: "Built for strategic diagnosis: each signal contains a pattern, evidence, implication, and concise sources. Evidence is presented calmly so the page does not feel like a spreadsheet.",
+    registerDesc: "Built for strategic diagnosis: each signal contains a pattern, hard evidence, market signal, leadership implication, and concise sources. Screenshots are placed as field context, not as the main claim.",
     evidence: "Evidence",
     response: "Recommended response",
     responseTitle: "Build a people transformation operating system.",
@@ -289,13 +301,116 @@ const COPY = {
   },
 };
 
+const EVIDENCE_CLIPS = [
+  {
+    source: "The Guardian",
+    date: "11 Jun 2026",
+    image: "/evidence/guardian-global-growth.jpeg",
+    objectPosition: "center top",
+    url: "https://www.theguardian.com/business/2026/jun/11/global-growth-is-slowing-to-lowest-level-since-pandemic-says-world-bank",
+    signalNumbers: [1, 5],
+    headline: {
+      id: "Global growth is slowing to lowest level since pandemic, says World Bank",
+      en: "Global growth is slowing to lowest level since pandemic, says World Bank",
+    },
+    theme: {
+      id: "Economic Pressure",
+      en: "Economic Pressure",
+    },
+    notice: {
+      id: "Efisiensi akan masuk ke agenda hampir setiap organisasi. Tantangannya bukan sekadar memangkas biaya, tetapi menjaga kapabilitas inti tetap tumbuh.",
+      en: "Efficiency will enter almost every organizational agenda. The challenge is not merely cutting costs, but keeping core capabilities growing.",
+    },
+  },
+  {
+    source: "CNBC Indonesia",
+    date: "11 Jun 2026",
+    image: "/evidence/cnbc-bank-ai-risk.jpeg",
+    objectPosition: "center top",
+    url: "https://www.cnbcindonesia.com/tech/20260611135000-37-742023/bank-bank-seluruh-dunia-diminta-siaga-penuh-hadapi-petaka",
+    signalNumbers: [4],
+    headline: {
+      id: "Bank-bank seluruh dunia diminta siaga penuh hadapi petaka",
+      en: "Banks around the world are asked to stay alert to emerging AI risk",
+    },
+    theme: {
+      id: "AI Governance",
+      en: "AI Governance",
+    },
+    notice: {
+      id: "Pertanyaan AI bergeser dari adopsi ke akuntabilitas: siapa yang bertanggung jawab ketika keputusan kerja mulai dibantu sistem cerdas?",
+      en: "The AI question is shifting from adoption to accountability: who is responsible when work decisions are increasingly assisted by intelligent systems?",
+    },
+  },
+  {
+    source: "Bloomberg Technoz",
+    date: "11 Jun 2026",
+    image: "/evidence/bloomberg-ai-risk.jpeg",
+    objectPosition: "center top",
+    url: "https://www.bloombergtechnoz.com/detail-news/111633/studi-ai-punya-naluri-bertahan-sampai-melindungi-ai-lainnya",
+    signalNumbers: [4],
+    headline: {
+      id: "Studi: AI punya naluri bertahan, sampai melindungi AI lainnya",
+      en: "Study: AI shows self-preservation and protects other AI systems",
+    },
+    theme: {
+      id: "AI Control",
+      en: "AI Control",
+    },
+    notice: {
+      id: "Perdebatan AI bergeser dari kemampuan ke kontrol. Aturan penggunaan perlu disiapkan sebelum skala adopsi meningkat.",
+      en: "The AI debate is moving from capability to control. Usage rules need to be ready before adoption scales.",
+    },
+  },
+  {
+    source: "CNBC Indonesia",
+    date: "13 Jun 2026",
+    image: "/evidence/cnbc-high-paying-jobs.jpeg",
+    objectPosition: "center top",
+    url: "https://www.cnbcindonesia.com/tech/20260613083820-37-742528/pekerjaan-bergaji-tinggi-sekarang-jadi-ladang-pengangguran",
+    signalNumbers: [9],
+    headline: {
+      id: "Pekerjaan bergaji tinggi sekarang jadi ladang pengangguran",
+      en: "High-paying roles are becoming exposed to unemployment pressure",
+    },
+    theme: {
+      id: "Workforce Shift",
+      en: "Workforce Shift",
+    },
+    notice: {
+      id: "Jalur pengembangan talenta tidak lagi berjalan seperti sebelumnya. Posisi entry-level makin berkurang, sementara tuntutan kompetensi sejak hari pertama makin tinggi.",
+      en: "Talent development pathways no longer work as they used to. Entry-level roles are shrinking while day-one capability expectations are rising.",
+    },
+  },
+  {
+    source: "BT Survey",
+    date: "2026",
+    image: "/evidence/bt-ai-adoption-asean.jpeg",
+    objectPosition: "center top",
+    url: "https://www.businesstimes.com.sg/asean/intelligence/indonesia-leads-asean-ai-adoption-demand-sovereign-models-rises-bt-survey",
+    signalNumbers: [4],
+    headline: {
+      id: "Indonesia leads ASEAN in AI adoption as demand for sovereign models rises",
+      en: "Indonesia leads ASEAN in AI adoption as demand for sovereign models rises",
+    },
+    theme: {
+      id: "Adoption Gap",
+      en: "Adoption Gap",
+    },
+    notice: {
+      id: "Adopsi teknologi bergerak lebih cepat dibanding perubahan cara kerja. Menggunakan AI tidak otomatis menghasilkan transformasi.",
+      en: "Technology adoption is moving faster than changes in ways of working. Using AI does not automatically create transformation.",
+    },
+  },
+] as const;
+
 export default async function TransformationSignalsPage() {
   const headerList = await headers();
   const localeHeader = headerList.get("x-binahub-locale");
   const locale = hasLocale(localeHeader) ? localeHeader : defaultLocale;
   const isEnglish = locale === "en";
   const signals = isEnglish ? SIGNALS_EN : SIGNALS;
-  const prioritySignals = [signals[1], signals[2], signals[3]];
+  const prioritySignals = [signals[0], signals[2], signals[3]];
   const copy = COPY[locale];
 
   return (
@@ -368,47 +483,21 @@ export default async function TransformationSignalsPage() {
             </p>
           </div>
 
-          <div className="overflow-hidden rounded-[16px] border border-black/[0.06] bg-white shadow-[0_24px_80px_-64px_rgba(11,44,107,0.34)]">
-            {signals.map((item, index) => (
-              <article
-                id={`signal-${index + 1}`}
-                key={item.title}
-                className="grid scroll-mt-28 gap-6 border-b border-black/[0.06] p-6 last:border-b-0 md:grid-cols-[88px_0.9fr_1.2fr] md:p-7 lg:p-8"
-              >
-                <div>
-                  <p className="font-mono text-sm text-[#0B2C6B]/40">{String(index + 1).padStart(2, "0")}</p>
-                </div>
-                <div>
-                  <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#B8841F]">{item.group}</p>
-                  <h3 className="mt-3 text-2xl font-semibold leading-tight tracking-[-0.02em] text-[#0B2C6B] md:text-3xl">
-                    {item.title}
-                  </h3>
-                  <p className="mt-4 text-sm leading-[1.75] text-black/64">{item.signal}</p>
-                </div>
-                <div className="grid gap-3">
-                  <div className="rounded-[12px] bg-[#F7F8FA] p-4">
-                    <p className="mb-2 text-[10px] font-bold uppercase tracking-[0.2em] text-[#0B2C6B]/46">{copy.evidence}</p>
-                    <p className="text-sm leading-[1.7] text-black/62">{item.evidence}</p>
-                  </div>
-                  <div className="rounded-[12px] border border-[#D9A441]/18 bg-[#FFF8EA] p-4">
-                    <p className="mb-2 text-[10px] font-bold uppercase tracking-[0.2em] text-[#B8841F]">{copy.leadershipImplication}</p>
-                    <p className="text-sm leading-[1.7] text-black/70">{item.implication}</p>
-                  </div>
-                  <div className="flex flex-wrap gap-2">
-                    {item.sources.map((source) => (
-                      <span
-                        key={source}
-                        className="inline-flex items-center gap-2 rounded-full border border-black/[0.06] bg-white px-3 py-1.5 text-xs text-[#5F646D]"
-                      >
-                        <ExternalLink size={12} />
-                        {source}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              </article>
-            ))}
-          </div>
+          <VisualBriefingCarousel
+            signals={signals}
+            evidenceClips={EVIDENCE_CLIPS}
+            locale={locale}
+            copy={{
+              evidence: copy.evidence,
+              leadershipImplication: copy.leadershipImplication,
+              mediaSignal: copy.mediaSignal,
+              notice: copy.notice,
+              previous: copy.previous,
+              next: copy.next,
+              relatedSignals: copy.relatedSignals,
+              sourceLinks: copy.sourceLinks,
+            }}
+          />
         </div>
       </section>
 

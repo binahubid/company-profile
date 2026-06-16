@@ -10,14 +10,14 @@ const COPY = {
     title: "Membantu Organisasi Bertumbuh",
     desc: "BinaHub membantu perusahaan membangun pemimpin yang efektif, tim yang unggul, dan budaya kerja yang adaptif melalui pendekatan terintegrasi yang didukung AI.",
     journey: "Perjalanan Anda Dimulai dari sini",
-    cta: "Mulai",
+    cta: "Mulai Diagnosa",
     secondaryCta: "Lihat Perspektif",
   },
   en: {
     title: "Helping Organizations Grow",
     desc: "BinaHub helps companies build effective leaders, high-performing teams, and adaptive work cultures through an integrated, AI-supported approach.",
     journey: "Your journey starts here",
-    cta: "Start",
+    cta: "Start Diagnostic",
     secondaryCta: "View Perspective",
   },
 };
@@ -36,7 +36,7 @@ function AnimatedHeading({ text, ready }: { text: string; ready: boolean }) {
   let charOffset = 0;
 
   return (
-    <h1 className="max-w-[780px] text-left text-[clamp(2rem,9.2vw,3rem)] font-normal leading-[1.04] tracking-[-0.025em] text-[#071A33] md:text-[clamp(3.25rem,4.75vw,4.85rem)] md:tracking-[-0.035em]">
+    <h1 className="max-w-[780px] text-center text-[clamp(1.85rem,8.6vw,2.45rem)] font-normal leading-[1.04] tracking-[-0.025em] text-[#071A33] md:text-left md:text-[clamp(3.25rem,4.75vw,4.85rem)] md:tracking-[-0.035em]">
       {lines.map((line, lineIndex) => {
         const currentOffset = charOffset;
         charOffset += line.length;
@@ -44,7 +44,7 @@ function AnimatedHeading({ text, ready }: { text: string; ready: boolean }) {
         return (
           <span
             key={lineIndex}
-            className={lineIndex === 1 ? "mt-1 block font-light italic text-[#D9A441] md:mt-2" : "block"}
+            className={lineIndex === 1 ? "mt-1 block whitespace-nowrap font-light italic text-[#D9A441] md:mt-2" : "block whitespace-nowrap"}
           >
             {line.split(" ").map((word, wordIndex) => (
               <span
@@ -120,7 +120,18 @@ function HeroVideoBackground() {
   return (
     <div className="pointer-events-none absolute inset-0 overflow-hidden bg-white" aria-hidden="true">
       <video
-        className="absolute inset-0 h-full w-full scale-[1.16] object-cover object-center opacity-[0.56] md:scale-[1.2]"
+        className="absolute inset-0 h-full w-full scale-[1.04] object-cover object-bottom opacity-[0.74] md:hidden"
+        autoPlay
+        loop
+        muted
+        playsInline
+        preload="auto"
+        poster="/hero-mobile-globe-poster.jpg"
+      >
+        <source src="/hero-mobile-globe-center.mp4" type="video/mp4" />
+      </video>
+      <video
+        className="absolute inset-0 hidden h-full w-full scale-[1.2] object-cover object-center opacity-[0.56] md:block"
         autoPlay
         loop
         muted
@@ -129,10 +140,10 @@ function HeroVideoBackground() {
       >
         <source src="/bg-hero-nodes-h264.mp4" type="video/mp4" />
       </video>
-      <div className="absolute inset-0 bg-white/10" />
-      <div className="absolute inset-x-0 top-0 h-44 bg-gradient-to-b from-white/58 via-white/22 to-transparent" />
-      <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-white/68 via-white/22 to-transparent" />
-      <div className="absolute inset-y-0 left-0 w-[22%] bg-gradient-to-r from-white/56 to-transparent" />
+      <div className="absolute inset-0 bg-white/18 md:bg-white/10" />
+      <div className="absolute inset-x-0 top-0 h-48 bg-gradient-to-b from-white/72 via-white/28 to-transparent md:h-44 md:from-white/58 md:via-white/22" />
+      <div className="absolute inset-x-0 bottom-0 h-[58%] bg-gradient-to-t from-white/78 via-white/28 to-transparent md:h-1/2 md:from-white/68 md:via-white/22" />
+      <div className="absolute inset-y-0 left-0 hidden w-[22%] bg-gradient-to-r from-white/56 to-transparent md:block" />
       <HeroLiteLines />
     </div>
   );
@@ -170,24 +181,24 @@ export function HeroSection({ heroReady }: HeroSectionProps) {
 
   return (
     <section id="home-hero" className="relative z-0 -mt-24 w-full overflow-x-hidden bg-white md:-mt-28">
-      <div className="relative min-h-[76svh] overflow-hidden bg-white text-[#071A33] md:min-h-[112svh]">
+      <div className="relative min-h-[calc(100svh+6rem)] overflow-hidden bg-white text-[#071A33] md:min-h-[112svh]">
         <HeroVideoBackground />
 
-        <div className="relative z-10 flex min-h-[76svh] flex-col items-start justify-end px-6 pb-9 pt-32 text-left md:min-h-[112svh] md:justify-center md:px-12 md:pb-6 md:pt-64 lg:px-20 xl:px-28">
-          <div className="flex w-full max-w-[780px] flex-col items-start">
+        <div className="relative z-10 flex min-h-[calc(100svh+6rem)] flex-col items-center justify-center px-6 pb-32 pt-10 text-center md:min-h-[112svh] md:items-start md:justify-center md:px-12 md:pb-6 md:pt-64 md:text-left lg:px-20 xl:px-28">
+          <div className="flex w-full max-w-[780px] flex-col items-center md:items-start">
               <AnimatedHeading text={copy.title} ready={heroReady} />
 
               <FadeIn ready={heroReady} delay={850}>
-                <p className="mt-5 max-w-[690px] text-balance text-[14px] font-normal leading-[1.65] tracking-[-0.005em] text-[#30405C] md:mt-6 md:text-lg lg:text-[19px]">
+                <p className="mx-auto mt-5 max-w-[690px] text-balance text-center text-[14px] font-normal leading-[1.65] tracking-[-0.005em] text-[#30405C] md:mx-0 md:mt-6 md:text-left md:text-lg lg:text-[19px]">
                   {copy.desc}
                 </p>
               </FadeIn>
 
               <FadeIn ready={heroReady} delay={1150}>
-                <div className="mt-6 flex w-full flex-wrap items-center justify-start gap-2.5 md:mt-8 md:gap-4">
+                <div className="mt-6 flex w-full flex-wrap items-center justify-center gap-2.5 md:mt-8 md:justify-start md:gap-4">
                   <Link
                     href={localizePath("/insight", locale)}
-                    className="inline-flex h-10 items-center justify-center gap-2 rounded-[9px] bg-[#0B2C6B] px-5 text-[10px] font-extrabold uppercase tracking-[0.12em] text-white shadow-[0_22px_56px_-30px_rgba(11,44,107,0.95)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#071A33] hover:shadow-[0_28px_64px_-34px_rgba(11,44,107,0.9)] md:h-12 md:gap-3 md:px-8 md:text-[12px] md:tracking-[0.14em]"
+                    className="inline-flex h-10 items-center justify-center gap-2 rounded-[9px] bg-[#0B2C6B] px-5 text-[10px] font-extrabold uppercase tracking-[0.11em] text-white shadow-[0_22px_56px_-30px_rgba(11,44,107,0.95)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#071A33] hover:shadow-[0_28px_64px_-34px_rgba(11,44,107,0.9)] md:h-12 md:gap-3 md:px-8 md:text-[12px] md:tracking-[0.14em]"
                   >
                     {copy.cta}
                     <ChevronRight size={14} strokeWidth={2.2} className="md:h-4 md:w-4" />
