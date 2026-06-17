@@ -72,7 +72,7 @@ function FooterContent({ year, locale }: { year: number; locale: Locale }) {
 
           <div className="mt-8 grid gap-4 text-sm font-medium leading-relaxed text-[#0B2C6B]/82">
             <div>
-              <p>Kencana Tower, Level Mezzanine</p>
+              <p>Kencana Tower, Level Mezzanine,</p>
               <p>Business Park Kebon Jeruk, Jakarta Barat 11620</p>
             </div>
             <div className="space-y-1">

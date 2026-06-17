@@ -239,7 +239,7 @@ export default function ContactPage() {
                 <div>
                   <span className="block text-[10px] font-bold text-[#0B2C6B]/40 uppercase tracking-widest mb-1">{copy.office}</span>
                   <p className="text-[#0B2C6B]/70 leading-relaxed text-sm font-light">
-                    Kencana Tower, Level Mezzanine<br />
+                    Kencana Tower, Level Mezzanine,<br />
                     Jl. Raya Meruya Ilir No. 88, Business Park Kebon Jeruk<br />
                     Meruya Utara, Kembangan, Jakarta Barat 11620
                   </p>
