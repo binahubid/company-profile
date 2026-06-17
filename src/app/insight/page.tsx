@@ -48,7 +48,7 @@ const STEP_CONTEXT_EN = [
 
 export default function InsightPage() {
   const locale = useLocale();
-  const appInsightUrl = "https://app-binahub.vercel.app/insight#about-insight";
+  const appInsightUrl = "https://app.binahub.id/insight";
   const [step, setStep] = useState(-1);
   const [formData, setFormData] = useState<FormData>({
     email: "", company: "", employees: "", name: "",
