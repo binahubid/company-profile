@@ -2,7 +2,8 @@
 
 import { useEffect } from "react"
 import { usePathname } from "next/navigation"
-import { getLocaleFromPathname, hasLocale, localizePath, shouldBypassLocale, type Locale } from "@/i18n/config"
+import { hasLocale, localizePath, shouldBypassLocale, type Locale } from "@/i18n/config"
+import { useLocale } from "@/i18n/use-locale"
 import { publicSiteTranslations } from "@/i18n/site-translations"
 
 const translatedAttributes = ["aria-label", "placeholder", "title", "alt"] as const
@@ -113,7 +114,7 @@ function translateTree(root: ParentNode, locale: Locale, shouldTranslateText: bo
 
 export function PublicContentTranslator() {
   const pathname = usePathname()
-  const locale = getLocaleFromPathname(pathname)
+  const locale = useLocale()
 
   useEffect(() => {
     if (pathname?.startsWith("/admin")) {

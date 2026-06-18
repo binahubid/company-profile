@@ -1,9 +1,8 @@
 "use client"
 
-import Link from "next/link"
 import { Languages } from "lucide-react"
-import { usePathname } from "next/navigation"
-import { getLocaleFromPathname, locales, switchLocalePath, type Locale } from "@/i18n/config"
+import { locales, localeStorageKey, type Locale } from "@/i18n/config"
+import { useLocale } from "@/i18n/use-locale"
 
 type LanguageSwitcherProps = {
   variant?: "desktop" | "mobile"
@@ -16,9 +15,14 @@ const LANGUAGE_LABELS: Record<Locale, string> = {
 }
 
 export function LanguageSwitcher({ variant = "desktop", onNavigate }: LanguageSwitcherProps) {
-  const pathname = usePathname() || "/"
-  const activeLocale = getLocaleFromPathname(pathname)
+  const activeLocale = useLocale()
   const isMobile = variant === "mobile"
+
+  function changeLocale(locale: Locale) {
+    window.localStorage.setItem(localeStorageKey, locale)
+    window.dispatchEvent(new CustomEvent("binahub-locale-change", { detail: locale }))
+    onNavigate?.()
+  }
 
   return (
     <div
@@ -40,10 +44,10 @@ export function LanguageSwitcher({ variant = "desktop", onNavigate }: LanguageSw
           const isActive = locale === activeLocale
 
           return (
-            <Link
+            <button
+              type="button"
               key={locale}
-              href={switchLocalePath(pathname, locale)}
-              onClick={onNavigate}
+              onClick={() => changeLocale(locale)}
               aria-current={isActive ? "page" : undefined}
               title={locale === "id" ? "Tampilkan dalam Bahasa Indonesia" : "Show in English"}
               className={`inline-flex h-9 min-w-10 items-center justify-center rounded-full px-3 text-[10px] font-black uppercase tracking-[0.12em] transition-all ${
@@ -53,7 +57,7 @@ export function LanguageSwitcher({ variant = "desktop", onNavigate }: LanguageSw
               }`}
             >
               {LANGUAGE_LABELS[locale]}
-            </Link>
+            </button>
           )
         })}
       </div>

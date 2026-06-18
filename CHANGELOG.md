@@ -3,6 +3,23 @@
 Semua perubahan yang signifikan pada proyek ini akan didokumentasikan di file ini.
 Format yang digunakan berdasarkan [Keep a Changelog](https://keepachangelog.com/id/1.0.0/), dan proyek ini mematuhi aturan [Semantic Versioning](https://semver.org/).
 
+## [0.2.12]
+### Changed
+- Memisahkan ulang `website-prod` sebagai company profile publik dengan mayoritas halaman dirender statis, sementara fungsi chatbot dan kontak tetap dipertahankan melalui `/api/chat` dan `/api/contact`.
+- Mengubah halaman `/insight` di `binahub.id` menjadi bridge ringan menuju `https://app.binahub.id/insight`, agar flow diagnostik utama berjalan langsung di aplikasi operasional.
+- Menghapus dependency operasional yang tidak lagi dipakai di company profile, termasuk PDF generation, image processing server-side, bundle analyzer, dan tipe terkait.
+- Mengubah sistem language switcher dari path/proxy locale menjadi client-side locale preference agar halaman publik tidak bergantung pada server headers.
+- Menambahkan `turbopack.root` pada konfigurasi Next.js untuk menghilangkan warning workspace root akibat lockfile di parent directory.
+
+### Removed
+- Menghapus dashboard admin, route admin API, assessment internal, home quiz API, proposal request API, dan komponen quiz pop-up dari `website-prod` karena fungsi operasional sudah dipindahkan ke `app.binahub.id`.
+- Menghapus proxy/middleware locale yang membuat halaman publik terbaca dynamic di build Next.js.
+- Menghapus lockfile nyasar di parent user directory yang membuat Next.js salah menebak workspace root.
+
+### Fixed
+- Memperbaiki icon orbit hero Home yang crash saat deploy Linux/Hostinger dengan memakai nama file asset yang benar secara case-sensitive.
+- Memastikan hasil build hanya menyisakan `/api/chat` dan `/api/contact` sebagai dynamic routes; halaman publik lain sudah static prerender.
+
 ## [0.2.11]
 ### Added
 - Menambahkan visual orbit layanan pada hero Home dengan logo 3D BinaHub di tengah dan 8 icon layanan yang bergerak mengelilingi logo secara halus.

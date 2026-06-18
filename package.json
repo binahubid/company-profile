@@ -8,26 +8,20 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "lint:admin": "eslint src/app/admin/page.tsx src/app/admin/_components/associate-panel.tsx src/app/admin/_components/assessment-panel.tsx src/app/admin/_components/smart-center-panel.tsx src/app/admin/_components/overview.tsx src/app/admin/_components/shared.tsx src/app/admin/_components/contacts-panel.tsx src/app/admin/_components/inquiries-panel.tsx src/app/admin/_lib/constants.ts src/app/admin/_lib/types.ts src/app/admin/_lib/utils.ts src/lib/admin-api.ts src/app/api/admin/projects/route.ts src/app/api/admin/project-autopilot/route.ts src/app/api/admin/follow-up/route.ts src/app/api/admin/coaches/route.ts src/app/api/admin/coach-ops/route.ts src/app/api/admin/smart-actions/route.ts",
-    "lint:public": "eslint src/app/about src/app/ecosystem src/app/contact src/app/perspektif src/app/insight src/app/journey src/app/from-bdn-to-binahub src/app/gallery src/app/_sections src/components",
+    "lint:public": "eslint src/app/about src/app/ecosystem src/app/contact src/app/perspektif src/app/insight src/app/journey src/app/from-bdn-to-binahub src/app/gallery src/app/_sections src/app/api/chat src/app/api/contact src/components src/lib",
     "typecheck": "tsc --noEmit",
-    "quality:admin": "npm run lint:admin && npm run typecheck",
     "quality:public": "npm run lint:public && npm run typecheck",
-    "quality:repo": "npm run quality:admin && npm run lint:public"
+    "quality:repo": "npm run quality:public"
   },
   "dependencies": {
-    "@next/bundle-analyzer": "^16.2.9",
-    "@react-pdf/renderer": "^4.5.1",
     "@supabase/supabase-js": "^2.105.4",
     "framer-motion": "^12.38.0",
-    "jimp": "^1.6.1",
     "lucide-react": "^1.14.0",
     "next": "16.2.6",
     "openai": "^6.38.0",
     "react": "19.2.4",
     "react-dom": "19.2.4",
     "resend": "^6.12.3",
-    "uuid": "^14.0.0",
     "zod": "^4.4.3"
   },
   "devDependencies": {
@@ -35,7 +29,6 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
-    "@types/uuid": "^10.0.0",
     "eslint": "^9",
     "eslint-config-next": "16.2.6",
     "tailwindcss": "^4",

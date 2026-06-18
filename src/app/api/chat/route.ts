@@ -43,7 +43,6 @@ export async function POST(req: NextRequest) {
 
     // Get AI response
     let aiResponseText = await chatWithAI(message, chatHistory, context);
-    let isToolExecution = false;
 
     // Agentic Tool Execution Interceptor
     if (aiResponseText.includes('{"tool":')) {
@@ -53,7 +52,6 @@ export async function POST(req: NextRequest) {
           const toolCall = JSON.parse(jsonMatch[0]);
           
           if (toolCall.tool === 'save_chat_lead' && toolCall.args) {
-            isToolExecution = true;
             console.log('[Bina Agent] Executing save_chat_lead tool:', toolCall.args);
             
             // Background lead save
@@ -115,7 +113,7 @@ export async function POST(req: NextRequest) {
       response: aiResponseText,
       sessionId: finalSessionId,
     });
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('[Chat API Error]', error);
     return NextResponse.json({ 
       success: false, 

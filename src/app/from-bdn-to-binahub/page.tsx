@@ -1,8 +1,7 @@
 import { ArrowRight, CheckCircle2 } from "lucide-react";
 import Image from "next/image";
-import { headers } from "next/headers";
 import { Tag } from "@/components/ui/tag";
-import { defaultLocale, hasLocale } from "@/i18n/config";
+import { defaultLocale } from "@/i18n/config";
 
 const stats = [
   { value: "16+", label: "Tahun pengalaman sejak 2010" },
@@ -157,10 +156,8 @@ const COPY = {
   },
 };
 
-export default async function FromBdnToBinaHubPage() {
-  const headerList = await headers();
-  const localeHeader = headerList.get("x-binahub-locale");
-  const locale = hasLocale(localeHeader) ? localeHeader : defaultLocale;
+export default function FromBdnToBinaHubPage() {
+  const locale = defaultLocale;
   const copy = COPY[locale];
 
   return (

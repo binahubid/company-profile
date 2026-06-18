@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { headers } from "next/headers";
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -7,7 +6,7 @@ import {
   ArrowRight,
   CheckCircle2,
 } from "lucide-react";
-import { defaultLocale, hasLocale, localizePath } from "@/i18n/config";
+import { defaultLocale, localizePath } from "@/i18n/config";
 import { VisualBriefingCarousel } from "./visual-briefing-carousel";
 
 export const metadata: Metadata = {
@@ -404,10 +403,8 @@ const EVIDENCE_CLIPS = [
   },
 ] as const;
 
-export default async function TransformationSignalsPage() {
-  const headerList = await headers();
-  const localeHeader = headerList.get("x-binahub-locale");
-  const locale = hasLocale(localeHeader) ? localeHeader : defaultLocale;
+export default function TransformationSignalsPage() {
+  const locale = defaultLocale;
   const isEnglish = locale === "en";
   const signals = isEnglish ? SIGNALS_EN : SIGNALS;
   const prioritySignals = [signals[0], signals[2], signals[3]];

@@ -1,7 +1,6 @@
 import Link from "next/link";
 import type { Metadata } from "next";
-import { headers } from "next/headers";
-import { defaultLocale, hasLocale, localizePath } from "@/i18n/config";
+import { defaultLocale, localizePath } from "@/i18n/config";
 
 const COPY = {
   id: {
@@ -22,21 +21,13 @@ const COPY = {
   },
 };
 
-export async function generateMetadata(): Promise<Metadata> {
-  const headerList = await headers();
-  const localeHeader = headerList.get("x-binahub-locale");
-  const locale = hasLocale(localeHeader) ? localeHeader : defaultLocale;
+export const metadata: Metadata = {
+  title: COPY[defaultLocale].title,
+  robots: { index: false, follow: false },
+};
 
-  return {
-    title: COPY[locale].title,
-    robots: { index: false, follow: false },
-  };
-}
-
-export default async function NotFound() {
-  const headerList = await headers();
-  const localeHeader = headerList.get("x-binahub-locale");
-  const locale = hasLocale(localeHeader) ? localeHeader : defaultLocale;
+export default function NotFound() {
+  const locale = defaultLocale;
   const copy = COPY[locale];
 
   return (
