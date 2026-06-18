@@ -29,13 +29,13 @@ interface HeroSectionProps {
 
 const ORBIT_ICONS = [
   { src: "/asset/insights.png", label: "BinaInsight", angle: 0 },
-  { src: "/asset/Academy.png", label: "BinaAcademy", angle: 45 },
-  { src: "/asset/Coach.png", label: "BinaCoach", angle: 90 },
-  { src: "/asset/Lab.png", label: "BinaLab", angle: 135 },
-  { src: "/asset/Play.png", label: "BinaPlay", angle: 180 },
-  { src: "/asset/Impact.png", label: "BinaImpact", angle: 225 },
-  { src: "/asset/Journey.png", label: "BinaJourney", angle: 270 },
-  { src: "/asset/Works.png", label: "BinaWorks", angle: 315 },
+  { src: "/asset/academy.png", label: "BinaAcademy", angle: 45 },
+  { src: "/asset/coach.png", label: "BinaCoach", angle: 90 },
+  { src: "/asset/lab.png", label: "BinaLab", angle: 135 },
+  { src: "/asset/play.png", label: "BinaPlay", angle: 180 },
+  { src: "/asset/impact.png", label: "BinaImpact", angle: 225 },
+  { src: "/asset/journey.png", label: "BinaJourney", angle: 270 },
+  { src: "/asset/works.png", label: "BinaWorks", angle: 315 },
 ] as const;
 
 function AnimatedHeading({ text, ready }: { text: string; ready: boolean }) {
@@ -302,7 +302,7 @@ export function HeroSection({ heroReady }: HeroSectionProps) {
               <AnimatedHeading text={copy.title} ready={heroReady} />
 
               <FadeIn ready={heroReady} delay={850}>
-<p className="mx-auto mt-8 max-w-[690px] text-balance text-center text-[14px] font-normal leading-[1.65] tracking-[-0.005em] text-[#30405C] md:mx-0 md:mt-6 md:text-left md:text-lg lg:text-[19px]">
+                <p className="mx-auto mt-8 max-w-[690px] text-balance text-center text-[14px] font-normal leading-[1.65] tracking-[-0.005em] text-[#30405C] md:mx-0 md:mt-6 md:text-left md:text-lg lg:text-[19px]">
                   {copy.desc}
                 </p>
               </FadeIn>
