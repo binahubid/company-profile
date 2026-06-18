@@ -3,6 +3,24 @@
 Semua perubahan yang signifikan pada proyek ini akan didokumentasikan di file ini.
 Format yang digunakan berdasarkan [Keep a Changelog](https://keepachangelog.com/id/1.0.0/), dan proyek ini mematuhi aturan [Semantic Versioning](https://semver.org/).
 
+## [0.2.11]
+### Added
+- Menambahkan visual orbit layanan pada hero Home dengan logo 3D BinaHub di tengah dan 8 icon layanan yang bergerak mengelilingi logo secara halus.
+- Menambahkan beberapa lapis garis orbit bergradient gold dengan animasi rotasi untuk memperkuat kesan futuristik tanpa memakai video.
+- Menambahkan animasi kontur garis gold di pojok kiri bawah hero sebagai aksen visual tambahan, sambil tetap mempertahankan animasi garis flow existing.
+- Menambahkan interaksi hover pada icon layanan agar icon bersinar dan terasa responsif saat diarahkan pointer.
+
+### Changed
+- Mengubah background hero Home dari video/globe image menjadi latar putih bersih agar fokus visual berpindah ke logo 3D dan orbit layanan.
+- Memperbesar proporsi logo 3D dan orbit pada desktop agar sisi kanan hero lebih seimbang dengan headline dan CTA.
+- Mengubah responsive mobile hero agar blok headline, subheadline, dan CTA tetap menjadi fokus utama, sementara orbit logo di-anchor ke area bawah hero tanpa mendorong konten ke atas.
+- Memperkuat efek tilt logo 3D agar respons pointer terasa lebih agresif dengan depth dan shadow yang lebih nyata.
+- Menonaktifkan image optimizer Next.js secara global melalui `images.unoptimized` agar gambar bisa dilayani dari CDN tanpa membebani server Hostinger.
+
+### Fixed
+- Menghapus glow pada logo 3D agar efek cahaya hanya terjadi pada icon orbit, sehingga visual logo tetap clean dan tidak terlalu ramai.
+- Memperbaiki komposisi mobile hero yang sebelumnya membuat orbit muncul terlalu tengah dan mengganggu hierarchy headline.
+
 ## [0.2.10]
 ### Added
 - Menambahkan background poster statis `bg-hero-nodes-poster-crop.jpg` untuk section Misi Kami agar visualnya konsisten dengan atmosfer hero Home tanpa harus memutar video di area carousel.

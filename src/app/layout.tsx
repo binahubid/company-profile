@@ -77,9 +77,9 @@ export async function generateMetadata(): Promise<Metadata> {
       },
     },
     icons: {
-      icon: "/logo.png",
-      shortcut: "/logo.png",
-      apple: "/logo.png",
+      icon: "/logo.webp",
+      shortcut: "/logo.webp",
+      apple: "/logo.webp",
     },
   };
 }
