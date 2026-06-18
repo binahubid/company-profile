@@ -3,8 +3,6 @@ export const locales = ["id", "en"] as const
 export type Locale = (typeof locales)[number]
 
 export const defaultLocale: Locale = "id"
-export const localeCookieName = "NEXT_LOCALE"
-export const localeStorageKey = "binahub-locale"
 
 const localizedAssetPattern = /\.(.*)$/
 
@@ -60,7 +58,7 @@ export function localizePath(href: string, locale: Locale): string {
   }
 
   const cleanPath = stripLocaleFromPathname(pathname || "/")
-  const localizedPath = locale === defaultLocale ? cleanPath : cleanPath
+  const localizedPath = cleanPath === "/" ? `/${locale}` : `/${locale}${cleanPath}`
   return hash ? `${localizedPath}#${hash}` : localizedPath
 }
 
@@ -69,5 +67,6 @@ export function switchLocalePath(pathname: string, locale: Locale): string {
     return pathname
   }
 
-  return stripLocaleFromPathname(pathname || "/")
+  const cleanPath = stripLocaleFromPathname(pathname || "/")
+  return cleanPath === "/" ? `/${locale}` : `/${locale}${cleanPath}`
 }

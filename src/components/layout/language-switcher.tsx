@@ -1,7 +1,8 @@
 "use client"
 
 import { Languages } from "lucide-react"
-import { locales, localeStorageKey, type Locale } from "@/i18n/config"
+import { usePathname, useRouter } from "next/navigation"
+import { locales, switchLocalePath, type Locale } from "@/i18n/config"
 import { useLocale } from "@/i18n/use-locale"
 
 type LanguageSwitcherProps = {
@@ -15,12 +16,13 @@ const LANGUAGE_LABELS: Record<Locale, string> = {
 }
 
 export function LanguageSwitcher({ variant = "desktop", onNavigate }: LanguageSwitcherProps) {
+  const pathname = usePathname()
+  const router = useRouter()
   const activeLocale = useLocale()
   const isMobile = variant === "mobile"
 
   function changeLocale(locale: Locale) {
-    window.localStorage.setItem(localeStorageKey, locale)
-    window.dispatchEvent(new CustomEvent("binahub-locale-change", { detail: locale }))
+    router.push(switchLocalePath(pathname || "/", locale))
     onNavigate?.()
   }
 

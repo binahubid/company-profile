@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Mail, Phone, MapPin, Send, CheckCircle2, AlertCircle, ChevronDown } from "lucide-react";
 import { useLocale } from "@/i18n/use-locale";
+import { appApiUrl } from "@/lib/public-api";
 
 const COPY = {
   id: {
@@ -183,7 +184,7 @@ export default function ContactPage() {
     setStatus("loading");
 
     try {
-      const response = await fetch("/api/contact", {
+      const response = await fetch(appApiUrl("/api/contact"), {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ ...formData, locale }),

@@ -6,6 +6,7 @@ import { MessageSquare, X, Send, User, Loader2 } from 'lucide-react';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { useLocale } from '@/i18n/use-locale';
+import { appApiUrl } from '@/lib/public-api';
 
 interface Message {
   role: 'system' | 'user' | 'assistant';
@@ -143,7 +144,7 @@ export function ChatBot() {
     setIsLoading(true);
 
     try {
-      const response = await fetch('/api/chat', {
+      const response = await fetch(appApiUrl('/api/chat'), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

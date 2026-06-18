@@ -4,21 +4,31 @@ Semua perubahan yang signifikan pada proyek ini akan didokumentasikan di file in
 Format yang digunakan berdasarkan [Keep a Changelog](https://keepachangelog.com/id/1.0.0/), dan proyek ini mematuhi aturan [Semantic Versioning](https://semver.org/).
 
 ## [0.2.12]
+### Added
+- Menambahkan route URL-based locale `/id` dan `/en` untuk seluruh halaman publik utama, termasuk About, Contact, Ecosystem, Insight, Journey, Gallery, Perspektif, dan Transformation Signals.
+- Menambahkan endpoint publik `/api/chat` dan `/api/contact` di repo `app-binahub` lengkap dengan CORS untuk konsumsi dari `binahub.id`.
+
 ### Changed
-- Memisahkan ulang `website-prod` sebagai company profile publik dengan mayoritas halaman dirender statis, sementara fungsi chatbot dan kontak tetap dipertahankan melalui `/api/chat` dan `/api/contact`.
+- Memisahkan ulang `website-prod` sebagai company profile publik static, sementara fungsi chatbot dan kontak tetap aktif melalui API di `app-binahub`.
 - Mengubah halaman `/insight` di `binahub.id` menjadi bridge ringan menuju `https://app.binahub.id/insight`, agar flow diagnostik utama berjalan langsung di aplikasi operasional.
 - Menghapus dependency operasional yang tidak lagi dipakai di company profile, termasuk PDF generation, image processing server-side, bundle analyzer, dan tipe terkait.
-- Mengubah sistem language switcher dari path/proxy locale menjadi client-side locale preference agar halaman publik tidak bergantung pada server headers.
+- Mengubah sistem language switcher dari DOM translator/localStorage preference menjadi URL-based locale agar bahasa memiliki single source of truth dan tidak lagi tercampur saat toggle ID/EN.
+- Mengubah chatbot dan contact form di `website-prod` agar mengirim request ke `https://app.binahub.id/api/chat` dan `https://app.binahub.id/api/contact`.
+- Mengaktifkan `output: "export"` pada `website-prod` sehingga hasil build menghasilkan folder `out/` untuk static hosting.
+- Mengubah sitemap agar menghasilkan URL terpisah untuk `/id` dan `/en`.
 - Menambahkan `turbopack.root` pada konfigurasi Next.js untuk menghilangkan warning workspace root akibat lockfile di parent directory.
 
 ### Removed
 - Menghapus dashboard admin, route admin API, assessment internal, home quiz API, proposal request API, dan komponen quiz pop-up dari `website-prod` karena fungsi operasional sudah dipindahkan ke `app.binahub.id`.
 - Menghapus proxy/middleware locale yang membuat halaman publik terbaca dynamic di build Next.js.
+- Menghapus `PublicContentTranslator` yang sebelumnya memutasi DOM dan menyebabkan teks campur saat berpindah bahasa.
+- Menghapus `/api/chat` dan `/api/contact` lokal dari `website-prod` agar company profile tidak lagi membutuhkan server runtime.
+- Menghapus dependency backend `@supabase/supabase-js`, `openai`, `resend`, dan `zod` dari `website-prod`.
 - Menghapus lockfile nyasar di parent user directory yang membuat Next.js salah menebak workspace root.
 
 ### Fixed
 - Memperbaiki icon orbit hero Home yang crash saat deploy Linux/Hostinger dengan memakai nama file asset yang benar secara case-sensitive.
-- Memastikan hasil build hanya menyisakan `/api/chat` dan `/api/contact` sebagai dynamic routes; halaman publik lain sudah static prerender.
+- Memastikan hasil build `website-prod` tidak lagi memiliki dynamic routes; semua halaman publik menjadi static/SSG dan siap di-serve sebagai file statis.
 
 ## [0.2.11]
 ### Added

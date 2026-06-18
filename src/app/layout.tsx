@@ -4,7 +4,6 @@ import "./globals.css";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { ChatBotLoader } from "../components/chat-bot-loader";
-import { PublicContentTranslator } from "@/components/public-content-translator";
 import { SITE_URL, SITE_NAME, SITE_TAGLINE, SITE_DESCRIPTION, SITE_KEYWORDS } from "@/lib/site";
 import { defaultLocale } from "@/i18n/config";
 
@@ -37,9 +36,10 @@ export const metadata: Metadata = {
   creator: SITE_NAME,
   publisher: SITE_NAME,
   alternates: {
-    canonical: "/",
+    canonical: "/id",
     languages: {
-      id: "/",
+      id: "/id",
+      en: "/en",
     },
   },
   openGraph: {
@@ -85,7 +85,6 @@ export default function RootLayout({
         <main className="flex-grow flex flex-col">{children}</main>
         <Footer />
         <ChatBotLoader />
-        <PublicContentTranslator />
       </body>
     </html>
   );

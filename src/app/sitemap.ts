@@ -1,5 +1,8 @@
 import type { MetadataRoute } from "next";
+import { locales } from "@/i18n/config";
 import { SITE_URL } from "@/lib/site";
+
+export const dynamic = "force-static";
 
 type Entry = {
   path: string;
@@ -23,10 +26,16 @@ const ROUTES: Entry[] = [
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
-  return ROUTES.map((route) => ({
-    url: `${SITE_URL}${route.path}`,
-    lastModified: now,
-    changeFrequency: route.changeFrequency,
-    priority: route.priority,
-  }));
+  return ROUTES.flatMap((route) =>
+    locales.map((locale) => {
+      const localizedPath = route.path === "/" ? `/${locale}` : `/${locale}${route.path}`;
+
+      return {
+        url: `${SITE_URL}${localizedPath}`,
+        lastModified: now,
+        changeFrequency: route.changeFrequency,
+        priority: route.priority,
+      };
+    }),
+  );
 }
