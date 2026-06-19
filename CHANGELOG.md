@@ -6,22 +6,26 @@ Format yang digunakan berdasarkan [Keep a Changelog](https://keepachangelog.com/
 ## [0.2.12]
 ### Added
 - Menambahkan route URL-based locale `/id` dan `/en` untuk seluruh halaman publik utama, termasuk About, Contact, Ecosystem, Insight, Journey, Gallery, Perspektif, dan Transformation Signals.
-- Menambahkan endpoint publik `/api/chat` dan `/api/contact` di repo `app-binahub` lengkap dengan CORS untuk konsumsi dari `binahub.id`.
+- Menambahkan project backend terpisah `binahub-api` untuk deployment Vercel di `api.binahub.id`, berisi seluruh API operasional dari app.
+- Menambahkan endpoint publik `/api/chat` dan `/api/contact` di `binahub-api` lengkap dengan CORS untuk konsumsi dari `binahub.id`.
 - Memperluas header CORS endpoint publik agar preflight menerima `Content-Type`, `Authorization`, dan `X-Requested-With`.
+- Menambahkan CORS proxy terpusat di `binahub-api` untuk origin `binahub.id`, `www.binahub.id`, `app.binahub.id`, dan local development.
+- Menambahkan `ApiFetchBridge` di `app-binahub` agar semua fetch `/api/*` diarahkan ke `https://api.binahub.id` dengan credentials dan token Supabase otomatis.
 
 ### Changed
-- Memisahkan ulang `website-prod` sebagai company profile publik static, sementara fungsi chatbot dan kontak tetap aktif melalui API di `app-binahub`.
+- Memisahkan ulang `website-prod` sebagai company profile publik static, sementara fungsi chatbot dan kontak tetap aktif melalui API di `api.binahub.id`.
 - Mengubah halaman `/insight` di `binahub.id` menjadi bridge ringan menuju `https://app.binahub.id/insight`, agar flow diagnostik utama berjalan langsung di aplikasi operasional.
 - Menghapus dependency operasional yang tidak lagi dipakai di company profile, termasuk PDF generation, image processing server-side, bundle analyzer, dan tipe terkait.
 - Mengubah sistem language switcher dari DOM translator/localStorage preference menjadi URL-based locale agar bahasa memiliki single source of truth dan tidak lagi tercampur saat toggle ID/EN.
-- Mengubah chatbot dan contact form di `website-prod` agar mengirim request ke base URL API publik `https://app-binahub.vercel.app`.
-- Memakai domain Vercel untuk API sementara karena `app.binahub.id` masih dilindungi HCDN browser challenge yang memblokir request API/fetch.
+- Mengubah chatbot dan contact form di `website-prod` agar mengirim request ke base URL API publik `https://api.binahub.id`.
+- Mengubah base URL API publik menjadi `https://api.binahub.id` agar `binahub.id` dan `app.binahub.id` bisa tetap static, sementara seluruh backend berada di Vercel.
+- Mengubah `app-binahub` menjadi static export dengan `output: "export"` dan memindahkan semua route API keluar ke `binahub-api`.
 - Mengaktifkan `output: "export"` pada `website-prod` sehingga hasil build menghasilkan folder `out/` untuk static hosting.
 - Mengubah sitemap agar menghasilkan URL terpisah untuk `/id` dan `/en`.
 - Menambahkan `turbopack.root` pada konfigurasi Next.js untuk menghilangkan warning workspace root akibat lockfile di parent directory.
 
 ### Removed
-- Menghapus dashboard admin, route admin API, assessment internal, home quiz API, proposal request API, dan komponen quiz pop-up dari `website-prod` karena fungsi operasional sudah dipindahkan ke `app.binahub.id`.
+- Menghapus dashboard admin, route admin API, assessment internal, home quiz API, proposal request API, dan komponen quiz pop-up dari `website-prod` karena fungsi operasional sudah dipindahkan ke backend/API terpisah.
 - Menghapus proxy/middleware locale yang membuat halaman publik terbaca dynamic di build Next.js.
 - Menghapus `PublicContentTranslator` yang sebelumnya memutasi DOM dan menyebabkan teks campur saat berpindah bahasa.
 - Menghapus `/api/chat` dan `/api/contact` lokal dari `website-prod` agar company profile tidak lagi membutuhkan server runtime.
