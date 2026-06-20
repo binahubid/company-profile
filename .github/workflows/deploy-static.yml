@@ -10,24 +10,28 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-      - uses: actions/setup-node@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
           node-version: 22
           cache: npm
 
-      - run: npm ci
+      - name: Install dependencies
+        run: npm ci
 
-      - run: npm run build
+      - name: Build static export
+        run: npm run build
 
-      - name: Deploy to Hostinger
+      - name: Deploy out folder to Hostinger FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
-          server: 145.223.108.154
-          username: u121546743.indigo-quetzal-137652.hostingersite.com
-          password: Admin1@binahub.idAdmin1@binahub.id
-          port: 21
-          protocol: ftp
-          local-dir: out/
-          server-dir: public_html/
+          server: ${{ secrets.FTP_HOST }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          port: ${{ secrets.FTP_PORT }}
+          local-dir: ./out/
+          server-dir: /public_html/
+          dangerous-clean-slate: true
