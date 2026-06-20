@@ -5,7 +5,7 @@ const root = process.cwd();
 const outDir = path.join(root, "out");
 const publicDir = path.join(root, "public");
 const scanExtensions = new Set([".html", ".js", ".css"]);
-const assetRefPattern = /["'`(](\/(?:asset|icon|_next\/static|gallery|partner|evidence)\/[^"'`)<>\s]+)/g;
+const assetRefPattern = /["'`(](\/(?:asset|icon|_next\/static|gallery|partner|evidence)\/[^"'`)<>\s\\]+)/g;
 
 function walk(dir) {
   const files = [];
@@ -27,7 +27,7 @@ function walk(dir) {
 }
 
 function publicAssetExists(ref) {
-  const cleanRef = ref.split(/[?#]/)[0].slice(1);
+  const cleanRef = ref.replace(/\\+$/g, "").split(/[?#]/)[0].slice(1);
   return existsSync(path.join(outDir, cleanRef)) || existsSync(path.join(publicDir, cleanRef));
 }
 
