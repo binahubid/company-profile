@@ -8,6 +8,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
+    "check:static-assets": "node tools/check-static-assets.mjs",
     "lint:public": "eslint src/app/about src/app/ecosystem src/app/contact src/app/perspektif src/app/insight src/app/journey src/app/from-bdn-to-binahub src/app/gallery src/app/_sections src/app/[locale] src/components src/lib",
     "typecheck": "tsc --noEmit",
     "quality:public": "npm run lint:public && npm run typecheck",

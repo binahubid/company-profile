@@ -38,14 +38,25 @@ interface PixelIconProps {
   size?: number;
 }
 
+const PNG_ICON_SRC: Partial<Record<IconType, string>> = {
+  insights: "/asset/insights.png",
+  lab: "/asset/lab.png",
+  coach: "/asset/coach.png",
+  journey: "/asset/journey.png",
+  play: "/asset/play.png",
+  academy: "/asset/academy.png",
+  impact: "/asset/impact.png",
+  works: "/asset/works.png",
+};
+
 export function PixelIcon({ type, size = 40 }: PixelIconProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const rafRef = useRef<number>(0);
   
-  const isPng = ["insights", "lab", "coach", "journey", "play", "academy", "impact", "works"].includes(type);
+  const pngSrc = PNG_ICON_SRC[type];
 
   useEffect(() => {
-    if (isPng) return;
+    if (pngSrc) return;
     const canvas = canvasRef.current;
     if (!canvas) return;
     const ctx = canvas.getContext("2d")!;
@@ -79,14 +90,12 @@ export function PixelIcon({ type, size = 40 }: PixelIconProps) {
 
     rafRef.current = requestAnimationFrame(draw);
     return () => cancelAnimationFrame(rafRef.current);
-  }, [type, size, isPng]);
+  }, [type, size, pngSrc]);
 
-  if (isPng) {
-    const typeStr = type as string;
-    const filename = typeStr === "insights" ? "insights" : typeStr.charAt(0).toUpperCase() + typeStr.slice(1);
+  if (pngSrc) {
     return (
       <Image
-        src={`/asset/${filename}.png`}
+        src={pngSrc}
         alt={`${type} icon`}
         width={size}
         height={size}
