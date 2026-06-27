@@ -3,7 +3,7 @@
 import type { MouseEvent } from "react"
 import { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { AlertCircle, Check, ChevronRight, Target, TrendingUp, X } from "lucide-react"
+import { ChevronDown, ChevronRight, X } from "lucide-react"
 import { getEcosystemData, type EcosystemData } from "@/data/ecosystem"
 import { PixelIcon, type IconType } from "@/components/pixel-icon"
 import { Tag } from "@/components/ui/tag"
@@ -48,7 +48,7 @@ const COPY = {
   id: {
     heroTag: "THE INTEGRATED HUB",
     heroDesc: <>Menyatukan <span className="text-white">Potensi Manusia</span> dan <span className="text-white">Teknologi</span> dalam satu layanan terpadu untuk transformasi nyata.</>,
-    failureTitle: <>Mengapa inisiatif pengembangan <br /><span className="font-bold text-[#C85A2A] underline decoration-[#C85A2A]/30 underline-offset-8">sering kehilangan dampak?</span></>,
+    failureTitle: <>Mengapa inisiatif pengembangan <br /><span className="font-bold text-[#C85A2A] underline decoration-[#C85A2A]/30 underline-offset-8">sering kurang efektif bahkan gagal?</span></>,
     failureItems: [
       "Diagnosis awal berhenti di gejala, bukan akar masalah",
       "Desain program tidak terhubung dengan prioritas bisnis",
@@ -64,17 +64,17 @@ const COPY = {
     learnDetail: "PELAJARI DETAIL",
     focus: "Focus",
     closeDetail: "TUTUP DETAIL",
-    tabs: { overview: "Overview", challenges: "Tantangan", outcome: "Outcome", output: "Output" },
+    tabs: { overview: "Overview", challenges: "Tantangan", outcome: "Tujuan", output: "Hasil" },
     overviewTitle: "Filosofi & Pendekatan",
     challengesTitle: "Tantangan yang Dijawab",
     outcomeTitle: "Tujuan & Manfaat",
-    outputTitle: "Hasil & Output Nyata",
+    outputTitle: "Hasil & Dampak Nyata",
     outputDesc: "Artifact yang membantu pengambilan keputusan dan eksekusi.",
   },
   en: {
     heroTag: "THE INTEGRATED HUB",
     heroDesc: <>Uniting <span className="text-white">Human Potential</span> and <span className="text-white">Technology</span> in one integrated service ecosystem for real transformation.</>,
-    failureTitle: <>Why do development initiatives <br /><span className="font-bold text-[#C85A2A] underline decoration-[#C85A2A]/30 underline-offset-8">often lose impact?</span></>,
+    failureTitle: <>Ineffective <br /><span className="font-bold text-[#C85A2A] underline decoration-[#C85A2A]/30 underline-offset-8">or even failing?</span></>,
     failureItems: [
       "Initial diagnosis stops at symptoms, not root causes",
       "Program design is disconnected from business priorities",
@@ -90,7 +90,7 @@ const COPY = {
     learnDetail: "LEARN MORE",
     focus: "Focus",
     closeDetail: "CLOSE DETAIL",
-    tabs: { overview: "Overview", challenges: "Challenges", outcome: "Outcome", output: "Output" },
+    tabs: { overview: "Overview", challenges: "Challenges", outcome: "Goals", output: "Results" },
     overviewTitle: "Philosophy & Approach",
     challengesTitle: "Challenges Addressed",
     outcomeTitle: "Goals & Benefits",
@@ -103,7 +103,7 @@ export default function LayananPage() {
   const locale = useLocale()
   const copy = COPY[locale]
   const [selectedProduct, setSelectedProduct] = useState<EcosystemProduct | null>(null)
-  const [activeDetailTab, setActiveDetailTab] = useState<"overview" | "challenges" | "outcome" | "output">("overview")
+  const [openAccordion, setOpenAccordion] = useState<string | null>("overview")
   const products = Object.values(getEcosystemData(locale)) as EcosystemProduct[]
   const primaryProductIds = new Set(["insight", "academy", "works"])
 
@@ -116,7 +116,11 @@ export default function LayananPage() {
 
   const openProduct = (product: EcosystemProduct) => {
     setSelectedProduct(product)
-    setActiveDetailTab("overview")
+    setOpenAccordion("overview")
+  }
+
+  const toggleAccordion = (id: string) => {
+    setOpenAccordion(openAccordion === id ? null : id)
   }
 
   return (
@@ -342,8 +346,8 @@ export default function LayananPage() {
               />
             </motion.div>
           </div>
-          {/* Visual Divider / Section Separator */}
-          <div id="detail" className="relative flex items-center justify-center my-20 scroll-mt-28">
+          {/* Visual Divider / Section Separator - Mobile only */}
+          <div id="detail" className="relative flex items-center justify-center my-10 md:hidden scroll-mt-28">
             {/* Left line */}
             <div className="flex-1 h-[1px] bg-gradient-to-r from-transparent via-black/10 to-[#0B2C6B]/20" />
 
@@ -360,7 +364,7 @@ export default function LayananPage() {
             <div className="flex-1 h-[1px] bg-gradient-to-l from-transparent via-black/10 to-[#0B2C6B]/20" />
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+          <div className="md:hidden grid grid-cols-1 gap-6">
             {products.map((product, i) => {
               const isPrimary = primaryProductIds.has(product.id)
 
@@ -403,7 +407,7 @@ export default function LayananPage() {
         </div>
       </section>
 
-      {/* Product Detail Modal Immersive */}
+      {/* Product Detail Modal - Modern Accordion Style */}
       <AnimatePresence>
         {selectedProduct && (
           <motion.div
@@ -419,161 +423,98 @@ export default function LayananPage() {
 
             <motion.div
               layoutId={selectedProduct.id}
-              className="relative flex max-h-[95vh] w-full max-w-6xl flex-col overflow-hidden rounded-[14px] bg-white shadow-lg md:max-h-[85vh] md:flex-row"
+              className="relative flex max-h-[95vh] w-full max-w-5xl flex-col overflow-hidden rounded-[20px] bg-white shadow-2xl md:max-h-[85vh] md:flex-row"
             >
-              {/* Product Header Side - Now Navy */}
-              <div
-                className="w-full md:w-2/5 lg:w-1/3 p-5 sm:p-6 md:p-12 text-white flex flex-col justify-between relative overflow-hidden shrink-0 bg-[#0B2C6B]"
+              {/* Close Button - Top Right */}
+              <button
+                onClick={() => setSelectedProduct(null)}
+                className="absolute top-4 right-4 z-50 flex h-10 w-10 items-center justify-center rounded-full bg-black/5 text-black/40 hover:bg-black/10 hover:text-black/70 transition-all group"
               >
-                <div className="absolute right-0 top-0 h-52 w-80 translate-x-10 -translate-y-10 bg-white/8 blur-[80px]" />
+                <X size={18} className="group-hover:rotate-90 transition-transform" />
+              </button>
+
+              {/* Left Side - Product Info */}
+              <div className="w-full md:w-[35%] p-6 sm:p-8 md:p-10 flex flex-col justify-center relative overflow-hidden shrink-0 bg-gradient-to-b from-[#0B2C6B] to-[#0A2455]">
+                <div className="absolute right-0 top-0 h-40 w-60 translate-x-8 -translate-y-8 bg-white/5 blur-[60px]" />
+                <div className="absolute left-0 bottom-0 h-32 w-48 -translate-x-8 translate-y-8 bg-[#D9A441]/10 blur-[50px]" />
                 <div className="relative z-10">
-                  <div className="bg-white/5 p-5 sm:p-8 rounded-lg inline-block mb-6 sm:mb-10 border border-white/10">
-                    <PixelIcon type={selectedProduct.iconType} size={64} />
+                  <div className="bg-white/10 p-4 rounded-2xl inline-block mb-5 border border-white/10">
+                    <PixelIcon type={selectedProduct.iconType} size={48} />
                   </div>
-                  <h2 className="text-3xl sm:text-4xl md:text-3xl lg:text-4xl font-light tracking-tighter mb-4 leading-none text-white">{selectedProduct.title}</h2>
-                  <p className="text-[11px] font-bold tracking-[0.3em] uppercase text-[#D9A441] mb-8">{selectedProduct.subtitle}</p>
+                  <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight mb-2 leading-tight text-white">{selectedProduct.title}</h2>
+                  <p className="text-[10px] font-bold tracking-[0.2em] uppercase text-[#D9A441] mb-5">{selectedProduct.subtitle}</p>
+                  <div className="w-8 h-[2px] bg-[#D9A441]/60 mb-5" />
                   {selectedProduct.tagline && (
-                    <div className="mt-10 rounded-[12px] border border-white/10 bg-white/[0.045] p-5">
-                      <p className="text-[10px] font-bold uppercase tracking-[0.24em] text-white/36 mb-3">{copy.focus}</p>
-                      <p className="text-sm font-light leading-relaxed text-white/74">{selectedProduct.tagline}</p>
+                    <div className="rounded-xl border border-white/10 bg-white/[0.06] p-4">
+                      <p className="text-[9px] font-bold uppercase tracking-[0.18em] text-white/40 mb-2">{copy.focus}</p>
+                      <p className="text-xs font-light leading-relaxed text-white/75">{selectedProduct.tagline}</p>
                     </div>
                   )}
                 </div>
-                <button
-                  onClick={() => setSelectedProduct(null)}
-                  className="mt-12 md:mt-0 flex items-center gap-4 text-[10px] font-bold tracking-[0.3em] uppercase hover:text-[#D9A441] transition-colors group"
-                >
-                  <X size={24} className="group-hover:rotate-90 transition-transform" /> {copy.closeDetail}
-                </button>
               </div>
 
-              {/* Product Content Side */}
-              <div className="flex-1 overflow-y-auto custom-scrollbar bg-white">
-                <div className="sticky top-0 z-20 border-b border-black/[0.06] bg-white px-6 py-4 shadow-[0_10px_34px_-30px_rgba(11,44,107,0.26)] md:px-12">
-                  <div className="flex flex-wrap gap-2">
-                    {[
-                      { id: "overview", label: copy.tabs.overview },
-                      { id: "challenges", label: copy.tabs.challenges },
-                      { id: "outcome", label: copy.tabs.outcome },
-                      { id: "output", label: copy.tabs.output },
-                    ].map((tab) => (
-                      <button
-                        key={tab.id}
-                        onClick={() => setActiveDetailTab(tab.id as typeof activeDetailTab)}
-                        className={`rounded-full px-4 py-2 text-[10px] font-bold uppercase tracking-[0.16em] transition-all duration-300 ${activeDetailTab === tab.id
-                            ? "bg-[#0B2C6B] text-white"
-                            : "bg-[#F5F7FA] text-black/42 hover:text-[#0B2C6B]"
-                          }`}
-                      >
-                        {tab.label}
-                      </button>
-                    ))}
+              {/* Right Side - Content */}
+              <div className="flex-1 overflow-y-auto custom-scrollbar bg-[#FAFBFC]">
+                <div className="p-6 sm:p-8 md:p-10">
+                  {/* Overview - Always Visible, Not Accordion */}
+                  <div className="mb-8">
+                    <h3 className="text-lg font-semibold text-[#0B2C6B] mb-4">{copy.tabs.overview}</h3>
+                    <p className="text-sm md:text-base text-black/60 font-light leading-[1.8]">
+                      {selectedProduct.description}
+                    </p>
+                    {selectedProduct.summary && (
+                      <div className="mt-4 inline-flex items-center gap-2 rounded-full bg-[#0B2C6B]/8 px-4 py-2">
+                        <span className="w-1.5 h-1.5 rounded-full bg-[#D9A441]" />
+                        <p className="text-xs font-medium text-[#0B2C6B]">{selectedProduct.summary}</p>
+                      </div>
+                    )}
                   </div>
-                </div>
 
-                <div className="p-6 md:p-12">
-                  <AnimatePresence mode="wait">
-                    {activeDetailTab === "overview" && (
-                      <motion.div
-                        key="overview"
-                        initial={{ opacity: 0, y: 12 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -12 }}
-                        transition={{ duration: 0.32 }}
-                        className="space-y-10"
-                      >
-                        <div>
-                          <h4 className="text-[10px] font-bold tracking-[0.42em] text-black/30 uppercase mb-7">{copy.overviewTitle}</h4>
-                          <p className="text-xl md:text-2xl text-black/75 font-light leading-relaxed">
-                            {selectedProduct.description}
-                          </p>
-                        </div>
-                        <div className="grid gap-4 sm:grid-cols-2">
-                          {selectedProduct.benefits.slice(0, 2).map((benefit: string, i: number) => (
-                            <div key={i} className="rounded-[12px] border border-[#D9A441]/18 bg-[#D9A441]/[0.055] p-5">
-                              <Check size={18} className="mb-4 text-[#B9851F]" />
-                              <p className="text-sm font-medium leading-relaxed text-black/72">{benefit}</p>
-                            </div>
-                          ))}
-                        </div>
-                      </motion.div>
-                    )}
+                  {/* Divider */}
+                  <div className="h-px bg-black/5 mb-6" />
 
-                    {activeDetailTab === "challenges" && (
-                      <motion.div
-                        key="challenges"
-                        initial={{ opacity: 0, y: 12 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -12 }}
-                        transition={{ duration: 0.32 }}
-                      >
-                        <h4 className="text-[10px] font-bold tracking-[0.42em] text-black/30 uppercase mb-8">{copy.challengesTitle}</h4>
-                        <div className="grid gap-4 sm:grid-cols-2">
-                          {selectedProduct.challenges.map((c: string, i: number) => (
-                            <div key={i} className="flex gap-4 rounded-[12px] border border-[#D9A441]/16 bg-[#FFF8EA] p-5">
-                              <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-[8px] bg-[#D9A441]/14">
-                                <AlertCircle size={16} className="text-[#B9851F]" />
-                              </div>
-                              <p className="text-sm text-black/76 font-light leading-relaxed">{c}</p>
-                            </div>
-                          ))}
+                  {/* Accordion Items */}
+                  <div className="space-y-3">
+                    {[
+                      { id: "challenges", title: copy.tabs.challenges, content: selectedProduct.challenges },
+                      { id: "outcome", title: copy.tabs.outcome, content: selectedProduct.benefits },
+                      { id: "output", title: copy.tabs.output, content: selectedProduct.results },
+                    ].map((item) => {
+                      const isOpen = openAccordion === item.id
+                      return (
+                        <div key={item.id} className="rounded-xl border border-black/[0.06] overflow-hidden bg-white">
+                          <button
+                            onClick={() => toggleAccordion(item.id)}
+                            className="w-full flex items-center justify-between p-4 hover:bg-[#F5F7FA] transition-colors"
+                          >
+                            <span className="text-sm font-semibold text-[#0B2C6B]">{item.title}</span>
+                            <ChevronDown
+                              size={16}
+                              className={`text-black/30 transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`}
+                            />
+                          </button>
+                          <AnimatePresence>
+                            {isOpen && (
+                              <motion.div
+                                initial={{ height: 0, opacity: 0 }}
+                                animate={{ height: "auto", opacity: 1 }}
+                                exit={{ height: 0, opacity: 0 }}
+                                transition={{ duration: 0.25, ease: "easeInOut" }}
+                                className="overflow-hidden"
+                              >
+                                <div className="px-4 pb-4 pt-0">
+                                  <div className="h-px bg-black/5 mb-3" />
+                                  <p className="text-sm text-black/55 font-light leading-[1.8]">
+                                    {item.content}
+                                  </p>
+                                </div>
+                              </motion.div>
+                            )}
+                          </AnimatePresence>
                         </div>
-                      </motion.div>
-                    )}
-
-                    {activeDetailTab === "outcome" && (
-                      <motion.div
-                        key="outcome"
-                        initial={{ opacity: 0, y: 12 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -12 }}
-                        transition={{ duration: 0.32 }}
-                      >
-                        <h4 className="text-[10px] font-bold tracking-[0.42em] text-black/30 uppercase mb-8">{copy.outcomeTitle}</h4>
-                        <div className="grid gap-4 sm:grid-cols-2">
-                          {selectedProduct.benefits.map((b: string, i: number) => (
-                            <div key={i} className="flex gap-4 rounded-[12px] border border-[#0B2C6B]/10 bg-[#F5F7FA] p-5">
-                              <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-[8px] bg-[#0B2C6B]">
-                                <Target size={15} className="text-[#D9A441]" />
-                              </div>
-                              <p className="text-sm text-black/76 font-light leading-relaxed">{b}</p>
-                            </div>
-                          ))}
-                        </div>
-                      </motion.div>
-                    )}
-
-                    {activeDetailTab === "output" && (
-                      <motion.div
-                        key="output"
-                        initial={{ opacity: 0, y: 12 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -12 }}
-                        transition={{ duration: 0.32 }}
-                        className="rounded-[14px] border border-[#0B2C6B]/10 bg-[#F5F7FA] p-6 md:p-8"
-                      >
-                        <div className="mb-8 flex items-center gap-4">
-                          <div className="flex h-12 w-12 items-center justify-center rounded-[12px] bg-white text-[#0B2C6B] shadow-sm">
-                            <TrendingUp size={22} />
-                          </div>
-                          <div>
-                            <h4 className="text-[10px] font-bold tracking-[0.42em] text-black/30 uppercase">{copy.outputTitle}</h4>
-                            <p className="mt-1 text-sm text-black/48">{copy.outputDesc}</p>
-                          </div>
-                        </div>
-                        <div className="grid sm:grid-cols-2 gap-4">
-                          {selectedProduct.results.map((r: string, i: number) => (
-                            <div key={i} className="flex items-center gap-4 rounded-[12px] bg-white p-4">
-                              <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-[8px] bg-[#D9A441]/12 text-[10px] font-bold text-[#B9851F]">
-                                0{i + 1}
-                              </div>
-                              <p className="text-xs font-bold text-black/80 uppercase tracking-widest leading-relaxed">{r}</p>
-                            </div>
-                          ))}
-                        </div>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
+                      )
+                    })}
+                  </div>
                 </div>
               </div>
             </motion.div>

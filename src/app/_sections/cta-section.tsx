@@ -17,7 +17,7 @@ export function CTASection() {
       <div className="absolute inset-0 bg-white/[0.04]" />
       <div className="relative z-10 max-w-4xl mx-auto text-center">
         <h2 className="text-3xl md:text-5xl lg:text-6xl font-light tracking-tight leading-[1.05] mb-6 text-[#0B2C6B]">
-          Mulai manusiakan<br />masa depan Anda.
+          Tertarik untuk mengetahui<br />lebih jauh?
         </h2>
         <p className="text-lg text-[#4A4C54]/62 font-light leading-relaxed mb-12 max-w-2xl mx-auto">
           Hubungi kami untuk konsultasi strategis dan mulailah perjalanan transformasi organisasi

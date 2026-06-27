@@ -4,7 +4,7 @@ import type { ReactNode } from "react";
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
-import { ChevronLeft, ChevronRight, Compass, Leaf, Lightbulb, Target, UserCheck } from "lucide-react";
+import { ChevronLeft, ChevronRight, Compass, Leaf, Lightbulb, Target, UserCheck, Users } from "lucide-react";
 import { Tag } from "@/components/ui/tag";
 import { useLocale } from "@/i18n/use-locale";
 import type { Locale } from "@/i18n/config";
@@ -38,7 +38,7 @@ const COPY = {
     slides: [
       {
         id: 1,
-        title: "Posisi Kami",
+        title: "Siapa Kami",
         lines: ["Mitra", "Transformasi &", "Kapabilitas Masa Depan."],
         type: "hero" as const,
         bgImage: "/asset/slide1.png",
@@ -46,7 +46,7 @@ const COPY = {
       {
         id: 2,
         title: "Visi Kami",
-        lines: ["Masa depan di mana", "kemanusiaan dan kemajuan", "berjalan beriringan."],
+        lines: ["Masa depan di mana kemanusiaan dan", "kemajuan berjalan beriringan."],
         type: "vision" as const,
         bgImage: "/asset/slide2.png",
       },
@@ -56,25 +56,26 @@ const COPY = {
         type: "pillars" as const,
         bgImage: "/asset/slide3.png",
         points: [
-          { icon: <UserCheck size={22} />, title: "People Development", desc: "Membangun kapabilitas masa depan dengan memastikan manusia tetap menjadi inti dari setiap transformasi." },
-          { icon: <Target size={22} />, title: "Adaptive Leadership & Kemampuan Beradaptasi", desc: "Mengembangkan kepemimpinan yang dibangun dengan kecerdasan, integritas, kebijaksanaan, dan empati." },
-          { icon: <Leaf size={22} />, title: "Healthy Culture", desc: "Menciptakan budaya kerja yang sehat dan bertumbuh di tengah otomatisasi dan era digitalisasi AI." },
-          { icon: <Compass size={22} />, title: "Future Capability Partner", desc: "Membantu organisasi mendesain sistem yang adaptif, resilien, dan siap menyongsong perubahan era global." },
-          { icon: <Lightbulb size={22} />, title: "AI-Powered Insights", desc: "Memadukan AI dan data analitik modern sebagai pendorong utama dalam pengambilan keputusan strategis yang presisi." },
+          { icon: <UserCheck size={22} />, title: "People Development", desc: "Membantu individu berkembang menuju versi terbaik dirinya." },
+          { icon: <Target size={22} />, title: "Adaptive Leadership & Future Readiness", desc: "Membantu pemimpin dan organisasi lebih siap menghadapi tantangan masa depan dan beradaptasi dengan perubahan." },
+          { icon: <Leaf size={22} />, title: "Healthy Culture", desc: "Membangun budaya kerja yang sehat dan positif." },
+          { icon: <Compass size={22} />, title: "Future Readiness Partner", desc: "Mendampingi transformasi agar strategi menjadi aksi dan hasil nyata." },
+          { icon: <Lightbulb size={22} />, title: "AI-Powered Enabler", desc: "Memanfaatkan AI dan teknologi untuk membantu manusia bekerja lebih cerdas." },
+          { icon: <Users size={22} />, title: "Collaboration & Synergy", desc: "Membangun kolaborasi dan sinergi untuk menciptakan masa depan yang lebih baik." },
         ],
       },
     ] satisfies CarouselSlide[],
-    heroDesc: "BinaHub membantu organisasi menata arah pengembangan manusia agar lebih relevan dengan perubahan bisnis, teknologi, dan budaya kerja.",
-    visionDesc: "Kemajuan teknologi perlu berjalan bersama kualitas manusia: kesadaran, kepemimpinan, empati, dan keberanian belajar.",
+    heroDesc: "BinaHub membantu organisasi menata arah pengembangan manusia dan mendampingi organisasi agar lebih relevan dengan perubahan bisnis, teknologi, dan budaya kerja.",
+    visionDesc: "Kemajuan untuk manusia, manusia untuk kemajuan.",
     missionTitle: "Misi Kami",
-    missionDesc: "Lima prinsip yang menjaga transformasi tetap manusiawi, adaptif, dan dapat diterjemahkan ke dalam cara kerja organisasi.",
+    missionDesc: "Enam misi yang kami usung untuk menjaga transformasi tetap manusiawi, adaptif, dan dapat diterjemahkan ke dalam cara kerja organisasi.",
     openSlide: "Buka slide",
   },
   en: {
     slides: [
       {
         id: 1,
-        title: "Our Position",
+        title: "Who We Are",
         lines: ["Transformation", "Partner & Future", "Capability Builder."],
         type: "hero" as const,
         bgImage: "/asset/slide1.png",
@@ -92,18 +93,19 @@ const COPY = {
         type: "pillars" as const,
         bgImage: "/asset/slide3.png",
         points: [
-          { icon: <UserCheck size={22} />, title: "People Development", desc: "Build future capability by ensuring people remain at the center of every transformation." },
-          { icon: <Target size={22} />, title: "Adaptive Leadership & Adaptability", desc: "Develop leadership built on intelligence, integrity, wisdom, and empathy." },
-          { icon: <Leaf size={22} />, title: "Healthy Culture", desc: "Create a healthy work culture that grows amid automation and the AI digital era." },
-          { icon: <Compass size={22} />, title: "Future Capability Partner", desc: "Help organizations design adaptive, resilient systems ready for global change." },
-          { icon: <Lightbulb size={22} />, title: "AI-Powered Insights", desc: "Combine AI and modern data analytics as key drivers for precise strategic decisions." },
+          { icon: <UserCheck size={22} />, title: "People Development", desc: "Helping individuals grow into the best version of themselves." },
+          { icon: <Target size={22} />, title: "Adaptive Leadership & Future Readiness", desc: "Helping leaders and organizations be more prepared to face future challenges and adapt to change." },
+          { icon: <Leaf size={22} />, title: "Healthy Culture", desc: "Building a healthy and positive work culture." },
+          { icon: <Compass size={22} />, title: "Future Readiness Partner", desc: "Accompanying transformation so that strategy becomes action and real results." },
+          { icon: <Lightbulb size={22} />, title: "AI-Powered Enabler", desc: "Leveraging AI and technology to help humans work smarter." },
+          { icon: <Users size={22} />, title: "Collaboration & Synergy", desc: "Building collaboration and synergy to create a better future." },
         ],
       },
     ] satisfies CarouselSlide[],
-    heroDesc: "BinaHub helps organizations shape human development direction so it stays relevant to business change, technology, and work culture.",
-    visionDesc: "Technological progress needs to grow with human quality: awareness, leadership, empathy, and the courage to keep learning.",
+    heroDesc: "BinaHub helps organizations shape the direction of human development and accompany organizations to stay relevant to business, technology, and work culture change.",
+    visionDesc: "Progress for people, people for progress.",
     missionTitle: "Our Mission",
-    missionDesc: "Five principles that keep transformation human, adaptive, and translatable into how organizations work.",
+    missionDesc: "Six missions we uphold to keep transformation human, adaptive, and translatable into how organizations work.",
     openSlide: "Open slide",
   },
 } satisfies Record<Locale, {

@@ -145,9 +145,9 @@ export const layoutCopy = {
       "/": {
         title: (
           <>
-            Mulai manusiakan
+            Tertarik untuk mengetahui
             <br />
-            masa depan Anda.
+            lebih jauh?
           </>
         ),
         description: "Hubungi kami untuk konsultasi strategis dan mulailah perjalanan transformasi organisasi Anda.",
@@ -189,10 +189,10 @@ export const layoutCopy = {
       },
       "/perspektif/transformation-signals-2026": {
         eyebrow: "RECOMMENDED RESPONSE",
-        title: "Build a people transformation operating system.",
-        description: "Hubungkan diagnosis, desain intervensi, pengalaman belajar, eksekusi, dan pengukuran dampak dalam satu alur transformasi.",
+        title: "Siap merespons sinyal ini?",
+        description: "Mulai dari diagnosis, desain intervensi, pengalaman belajar, eksekusi, hingga pengukuran dampak dalam satu alur transformasi.",
         primary: { label: "Mulai Diagnosa", href: "/insight" },
-        secondary: { label: "Lihat Ekosistem", href: "/ecosystem" },
+        secondary: { label: "Lihat Layanan", href: "/ecosystem" },
         variant: "navy",
       },
     } satisfies Record<string, CtaConfig>,
@@ -344,10 +344,10 @@ export const layoutCopy = {
       },
       "/perspektif/transformation-signals-2026": {
         eyebrow: "RECOMMENDED RESPONSE",
-        title: "Build a people transformation operating system.",
-        description: "Connect diagnosis, intervention design, learning experience, execution, and impact measurement in one transformation flow.",
+        title: "Ready to respond to these signals?",
+        description: "Start from diagnosis, intervention design, learning experience, execution, to impact measurement in one transformation flow.",
         primary: { label: "Start Diagnostic", href: "/insight" },
-        secondary: { label: "View Ecosystem", href: "/ecosystem" },
+        secondary: { label: "View Services", href: "/ecosystem" },
         variant: "navy",
       },
     } satisfies Record<string, CtaConfig>,

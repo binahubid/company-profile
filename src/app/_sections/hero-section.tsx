@@ -8,15 +8,17 @@ import { useLocale } from "@/i18n/use-locale";
 
 const COPY = {
   id: {
-    title: "Membantu Organisasi Bertumbuh",
-    desc: "BinaHub membantu perusahaan membangun pemimpin yang efektif, tim yang unggul, dan budaya kerja yang adaptif melalui pendekatan terintegrasi yang didukung AI.",
+    title: "Membantu Organisasi",
+    accent: "Bertumbuh dan Berkembang",
+    desc: "BinaHub membantu perusahaan membangun kepemimpinan yang efektif, tim yang solid, dan budaya kerja yang adaptif melalui pendekatan terintegrasi yang didukung teknologi AI.",
     journey: "Perjalanan Anda Dimulai dari sini",
     cta: "Mulai Diagnosa",
     secondaryCta: "Lihat Perspektif",
   },
   en: {
-    title: "Helping Organizations Grow",
-    desc: "BinaHub helps companies build effective leaders, high-performing teams, and adaptive work cultures through an integrated, AI-supported approach.",
+    title: "Helping Organizations",
+    accent: "Grow and Develop",
+    desc: "BinaHub helps companies build effective leadership, solid teams, and adaptive work cultures through an integrated approach supported by AI technology.",
     journey: "Your journey starts here",
     cta: "Start Diagnostic",
     secondaryCta: "View Perspective",
@@ -38,11 +40,8 @@ const ORBIT_ICONS = [
   { src: "/icon/iconworks.png", label: "BinaWorks", angle: 315 },
 ] as const;
 
-function AnimatedHeading({ text, ready }: { text: string; ready: boolean }) {
-  const words = text.split(" ");
-  const accentWord = words.at(-1) ?? "";
-  const firstLine = words.slice(0, -1).join(" ");
-  const lines = [firstLine, accentWord];
+function AnimatedHeading({ title, accent, ready }: { title: string; accent: string; ready: boolean }) {
+  const lines = [title, accent];
 
   const charDelay = 30;
   let charOffset = 0;
@@ -299,7 +298,7 @@ export function HeroSection({ heroReady }: HeroSectionProps) {
         <div className="relative z-10 flex min-h-[calc(100svh+6rem)] flex-col items-center justify-start px-6 pb-20 pt-[16rem] text-center md:min-h-[112svh] md:justify-center md:px-12 md:pb-8 md:pt-48 md:text-left lg:px-20 xl:px-28">
           <div className="grid w-full max-w-[1580px] items-center gap-8 md:grid-cols-[minmax(0,0.82fr)_minmax(500px,1.18fr)] md:gap-8 lg:gap-10 xl:gap-12">
             <div className="relative z-10 flex w-full max-w-[780px] flex-col items-center md:items-start">
-              <AnimatedHeading text={copy.title} ready={heroReady} />
+              <AnimatedHeading title={copy.title} accent={copy.accent} ready={heroReady} />
 
               <FadeIn ready={heroReady} delay={850}>
                 <p className="mx-auto mt-8 max-w-[690px] text-balance text-center text-[14px] font-normal leading-[1.65] tracking-[-0.005em] text-[#30405C] md:mx-0 md:mt-6 md:text-left md:text-lg lg:text-[19px]">

@@ -1,4 +1,4 @@
-import { ArrowRight, CheckCircle2 } from "lucide-react";
+import { CheckCircle2 } from "lucide-react";
 import Image from "next/image";
 import { Tag } from "@/components/ui/tag";
 import { defaultLocale } from "@/i18n/config";
@@ -36,37 +36,27 @@ const timeline = [
 const differentiators = [
   {
     title: "Ekosistem terintegrasi",
-    desc: "Delapan layanan dirancang untuk bekerja bersama, bukan menjadi program terpisah yang tidak saling terhubung.",
+    desc: "Delapan layanan komprehensif yang dirancang untuk saling menguatkan.",
   },
   {
     title: "Dampak terukur",
-    desc: "Setiap engagement membawa mekanisme pengukuran agar dampak pengembangan tidak berhenti sebagai klaim.",
+    desc: "Setiap engagement membawa mekanisme pengukuran agar dampak lebih jelas.",
   },
   {
     title: "AI sebagai enabler",
-    desc: "Teknologi digunakan untuk personalisasi, analitik, dan skalabilitas tanpa menggantikan kedalaman manusia.",
+    desc: "Teknologi digunakan untuk personalisasi, analitik, alat bantu, dan skalabilitas untuk membantu manusia lebih produktif dan efektif dalam membuat keputusan.",
   },
   {
     title: "Pengalaman korporat nyata",
-    desc: "Pengalaman 16 tahun bersama manufaktur, multinasional, dan korporasi nasional memberi konteks yang tidak bisa digantikan teori.",
+    desc: "Pengalaman 16 tahun bersama manufaktur, multinasional, dan korporasi memberi konteks yang tidak bisa digantikan teori.",
   },
-];
-
-const industries = [
-  "Manufaktur",
-  "Distribusi & logistik nasional",
-  "Minyak & pertambangan",
-  "Jasa keuangan",
-  "Ritel & consumer goods",
-  "Pendidikan & sektor pemerintahan",
-  "Perusahaan multinasional di Indonesia",
 ];
 
 const COPY = {
   id: {
     tag: "DARI BDN KE BINAHUB",
     title: "Bukan awal yang baru.",
-    accent: "Transformasi perjalanan 16 tahun.",
+    accent: "Transformasi Perjalanan 16 Tahun.",
     intro: "BinaHub berdiri di atas perjalanan PT Bina Daya Nugraha, perusahaan pelatihan dan team building yang telah mendampingi lebih dari 80 organisasi dan 10.000 individu sejak 2010.",
     intro2: "Ketika BDN menyelesaikan babaknya, kami tidak menutup buku. Kami membuka yang baru dengan ekosistem yang lebih terintegrasi, pendekatan yang lebih terukur, dan teknologi yang memperluas dampak tanpa mengorbankan kedalaman.",
     stats,
@@ -76,17 +66,13 @@ const COPY = {
     quote: "BinaHub adalah jawaban dari pertanyaan itu.",
     timeline,
     positioning: "POSITIONING",
-    positioningTitle: "Transformation partner, bukan vendor training.",
+    positioningTitle: "Transformation partner, bukan sekedar vendor training.",
     differentiators,
-    industryTag: "KONTEKS INDUSTRI",
-    industryTitle: "Pengalaman yang memahami dinamika kerja nyata.",
-    industryDesc: "Pengalaman kami tidak terbatas pada satu sektor. Pemahaman terhadap dinamika workforce di masing-masing industri memungkinkan kami merancang intervensi yang relevan, bukan program generik yang sama untuk semua.",
-    industries,
   },
   en: {
     tag: "FROM BDN TO BINAHUB",
-    title: "Not a new beginning.",
-    accent: "A 16-year journey transformed.",
+    title: "A 16-Year Journey",
+    accent: "Transformed.",
     intro: "BinaHub stands on the journey of PT Bina Daya Nugraha, a training and team building company that has accompanied more than 80 organizations and 10,000 individuals since 2010.",
     intro2: "When BDN completed its chapter, we did not close the book. We opened a new one with a more integrated ecosystem, a more measurable approach, and technology that expands impact without sacrificing depth.",
     stats: [
@@ -126,11 +112,11 @@ const COPY = {
     differentiators: [
       {
         title: "Integrated ecosystem",
-        desc: "Eight services are designed to work together, not as disconnected standalone programs.",
+        desc: "Eight comprehensive services designed to work together and reinforce each other.",
       },
       {
         title: "Measurable impact",
-        desc: "Every engagement carries a measurement mechanism so development impact does not stop as a claim.",
+        desc: "Every engagement carries a measurement mechanism so development impact does not stop as a claim, but becomes clearer.",
       },
       {
         title: "AI as an enabler",
@@ -141,18 +127,6 @@ const COPY = {
         desc: "Sixteen years with manufacturing, multinational companies, and national corporations gives context that theory cannot replace.",
       },
     ],
-    industryTag: "INDUSTRY CONTEXT",
-    industryTitle: "Experience that understands real workplace dynamics.",
-    industryDesc: "Our experience is not limited to one sector. Understanding workforce dynamics across industries enables us to design relevant interventions, not generic programs applied equally to everyone.",
-    industries: [
-      "Manufacturing",
-      "National distribution and logistics",
-      "Oil and mining",
-      "Financial services",
-      "Retail and consumer goods",
-      "Education and government sector",
-      "Multinational companies in Indonesia",
-    ],
   },
 };
 
@@ -162,7 +136,7 @@ export default function FromBdnToBinaHubPage() {
 
   return (
     <main className="min-h-screen overflow-hidden bg-[#F4F6F8] text-[#4A4C54]">
-      <section className="px-4 pt-24 md:px-8 md:pt-32">
+      <section className="px-4 pt-20 md:px-8 md:pt-24">
         <div className="relative overflow-hidden rounded-[18px] bg-[#071A33] text-white shadow-[0_34px_100px_-70px_rgba(7,26,51,0.85)]">
           <Image
             src="/story-hero-bg.png"
@@ -175,20 +149,20 @@ export default function FromBdnToBinaHubPage() {
           <div className="absolute inset-0 bg-[#071A33]/16" />
           <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(7,26,51,0.54)_0%,rgba(7,26,51,0.34)_48%,rgba(7,26,51,0.10)_100%)]" />
 
-          <div className="relative z-10 grid min-h-[64vh] gap-10 px-6 py-16 md:px-12 md:py-20 lg:min-h-[70vh] lg:grid-cols-[0.95fr_1.05fr] lg:items-end lg:px-20 lg:pb-10">
+          <div className="relative z-10 grid min-h-[50vh] gap-8 px-5 py-10 sm:px-6 sm:py-12 md:px-10 md:py-14 lg:min-h-[60vh] lg:grid-cols-[0.95fr_1.05fr] lg:items-center lg:px-16 lg:py-16 xl:px-20">
             <div>
-              <Tag className="border-white/10 bg-white/10 text-[#D9A441]">{copy.tag}</Tag>
-              <h1 className="mt-8 max-w-4xl text-5xl font-light leading-[0.94] tracking-[-0.055em] md:text-7xl lg:text-[96px]">
+              <Tag className="border-white/15 bg-white/8 text-white/80">{copy.tag}</Tag>
+              <h1 className="mt-6 max-w-4xl text-[28px] font-light leading-[1.1] tracking-[-0.035em] sm:text-[32px] md:text-4xl lg:text-5xl xl:text-6xl">
                 {copy.title}
                 <span className="block italic text-[#D9A441]">{copy.accent}</span>
               </h1>
             </div>
 
-            <div className="max-w-2xl border-l border-[#D9A441]/70 pl-6 md:pl-8">
-              <p className="text-lg font-light leading-[1.8] text-white/76 md:text-xl">
+            <div className="max-w-2xl border-l border-[#D9A441]/70 pl-5 sm:pl-6 md:pl-8">
+              <p className="text-sm font-light leading-[1.8] text-white/76 md:text-base lg:text-lg">
                 {copy.intro}
               </p>
-              <p className="mt-6 text-base leading-[1.8] text-white/56">
+              <p className="mt-4 text-xs leading-[1.8] text-white/56 sm:text-sm md:text-base">
                 {copy.intro2}
               </p>
             </div>
@@ -271,30 +245,6 @@ export default function FromBdnToBinaHubPage() {
                   </div>
                   <h3 className="text-xl font-semibold tracking-[-0.02em] text-white">{item.title}</h3>
                   <p className="mt-3 text-sm leading-relaxed text-white/60">{item.desc}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="px-6 py-18 md:px-12 md:py-24 lg:px-20">
-        <div className="mx-auto grid max-w-7xl overflow-hidden rounded-[18px] bg-[#071A33] text-white lg:grid-cols-[0.92fr_1.08fr]">
-          <div className="p-8 md:p-12 lg:p-14">
-            <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-[#D9A441]">{copy.industryTag}</p>
-            <h2 className="mt-6 text-4xl font-light tracking-[-0.045em] md:text-6xl">
-              {copy.industryTitle}
-            </h2>
-            <p className="mt-7 text-lg font-light leading-[1.8] text-white/64">
-              {copy.industryDesc}
-            </p>
-          </div>
-          <div className="border-t border-white/10 p-8 md:p-12 lg:border-l lg:border-t-0 lg:p-14">
-            <div className="grid gap-3 sm:grid-cols-2">
-              {copy.industries.map((item) => (
-                <div key={item} className="group flex items-center justify-between gap-4 rounded-[10px] border border-white/10 bg-white/[0.06] px-5 py-4 text-sm font-medium text-white/78 transition-colors hover:bg-white/[0.1]">
-                  <span>{item}</span>
-                  <ArrowRight className="shrink-0 text-[#D9A441] opacity-0 transition-opacity group-hover:opacity-100" size={14} />
                 </div>
               ))}
             </div>

@@ -306,7 +306,7 @@ const EVIDENCE_CLIPS = [
     date: "11 Jun 2026",
     image: "/evidence/guardian-global-growth.jpeg",
     objectPosition: "center top",
-    url: "https://www.theguardian.com/business/2026/jun/11/global-growth-is-slowing-to-lowest-level-since-pandemic-says-world-bank",
+    url: "https://www.theguardian.com/business/2026/jun/11/global-growth-slow-lowest-level-pandemic-world-bank",
     signalNumbers: [1, 5],
     headline: {
       id: "Global growth is slowing to lowest level since pandemic, says World Bank",
@@ -386,7 +386,7 @@ const EVIDENCE_CLIPS = [
     date: "2026",
     image: "/evidence/bt-ai-adoption-asean.jpeg",
     objectPosition: "center top",
-    url: "https://www.businesstimes.com.sg/asean/intelligence/indonesia-leads-asean-ai-adoption-demand-sovereign-models-rises-bt-survey",
+    url: "https://www.businesstimes.com.sg/singapore/indonesia-leads-asean-ai-adoption-demand-sovereign-models-rises-bt-survey",
     signalNumbers: [4],
     headline: {
       id: "Indonesia leads ASEAN in AI adoption as demand for sovereign models rises",
@@ -436,21 +436,21 @@ export default function TransformationSignalsPage() {
             {prioritySignals.map((item, index) => (
               <article
                 key={item.title}
-                className="relative overflow-hidden rounded-[16px] border border-white/14 bg-[#071A33] p-7 text-white shadow-[0_22px_70px_-58px_rgba(7,26,51,0.72)]"
+                className="group relative overflow-hidden rounded-2xl border border-white/14 bg-[#071A33] p-7 text-white shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:border-[#D9A441]/30"
               >
                 <Image
                   src="/cta-footer-bg.png"
                   alt=""
                   fill
                   sizes="(max-width: 1024px) 100vw, 33vw"
-                  className="object-cover object-center opacity-80"
+                  className="object-cover object-center opacity-80 transition-transform duration-500 group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-[#071A33]/38" />
                 <div className="absolute inset-x-0 top-0 h-28 bg-white/[0.07] blur-2xl" />
                 <div className="absolute inset-0 bg-[linear-gradient(145deg,rgba(255,255,255,0.09)_0%,rgba(255,255,255,0.02)_36%,rgba(7,26,51,0.28)_100%)]" />
 
                 <div className="relative z-10 mb-10 flex items-center justify-between">
-                  <span className="font-mono text-sm text-[#D9A441]">{String(index + 1).padStart(2, "0")}</span>
+                  <span className="font-mono text-sm text-[#D9A441] transition-transform duration-300 group-hover:scale-110">{String(index + 1).padStart(2, "0")}</span>
                   <span className="rounded-full border border-white/14 bg-white/[0.08] px-3 py-1 text-[10px] font-bold uppercase tracking-[0.14em] text-white/58 backdrop-blur-md">{item.group}</span>
                 </div>
                 <div className="relative z-10">
@@ -499,7 +499,7 @@ export default function TransformationSignalsPage() {
       </section>
 
       <section id="response" className="px-6 py-12 md:px-12 md:py-16 lg:px-20">
-        <div className="mx-auto max-w-7xl rounded-[18px] bg-[#071A33] p-6 text-white md:p-10 lg:p-12">
+        <div className="mx-auto max-w-7xl rounded-3xl bg-[#071A33] p-6 text-white shadow-xl md:p-10 lg:p-12">
           <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
             <div>
               <p className="text-[11px] font-bold uppercase tracking-[0.24em] text-[#D9A441]">{copy.response}</p>
@@ -512,28 +512,12 @@ export default function TransformationSignalsPage() {
             </div>
             <div className="grid gap-3 sm:grid-cols-2">
               {copy.responseItems.map((item) => (
-                <div key={item} className="flex gap-3 rounded-[12px] border border-white/10 bg-white/[0.065] p-4">
-                  <CheckCircle2 className="mt-0.5 shrink-0 text-[#D9A441]" size={18} />
+                <div key={item} className="group flex gap-3 rounded-xl border border-white/10 bg-white/[0.065] p-4 transition-all duration-200 hover:bg-white/[0.1] hover:border-[#D9A441]/20">
+                  <CheckCircle2 className="mt-0.5 shrink-0 text-[#D9A441] transition-transform duration-200 group-hover:scale-110" size={18} />
                   <p className="text-sm font-medium leading-relaxed text-white/78">{item}</p>
                 </div>
               ))}
             </div>
-          </div>
-          <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-            <Link
-              href={localizePath("/insight", locale)}
-              className="inline-flex h-12 items-center justify-center gap-2 rounded-full bg-[#D9A441] px-6 text-[11px] font-bold uppercase tracking-[0.16em] text-[#071A33] transition-colors hover:bg-white"
-            >
-              {copy.startDiagnosis}
-              <ArrowRight size={14} />
-            </Link>
-            <Link
-              href={localizePath("/ecosystem", locale)}
-              className="inline-flex h-12 items-center justify-center gap-2 rounded-full border border-white/16 bg-white/[0.04] px-6 text-[11px] font-bold uppercase tracking-[0.16em] text-white transition-colors hover:bg-white/10"
-            >
-              {copy.viewServices}
-              <ArrowRight size={14} />
-            </Link>
           </div>
         </div>
       </section>

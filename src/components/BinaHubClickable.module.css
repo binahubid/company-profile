@@ -30,14 +30,9 @@
   outline: none;
   border: none;
   padding: 0;
-  /* Subtle frosted glass base */
-  backdrop-filter: blur(0px);
-  -webkit-backdrop-filter: blur(0px);
   transition:
     background 200ms ease,
-    box-shadow 200ms ease,
-    backdrop-filter 200ms ease,
-    -webkit-backdrop-filter 200ms ease;
+    box-shadow 200ms ease;
 }
 
 /* Glossy shimmer pseudo-element */
@@ -70,9 +65,9 @@
 
 /* Hover: glassy white with subtle glow */
 .hotspot:hover {
-  background: rgba(255, 255, 255, 0.14);
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
+  background: rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(0px);
+  -webkit-backdrop-filter: blur(0px);
 }
 
 .hotspot:hover::before {

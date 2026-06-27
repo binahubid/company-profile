@@ -1,7 +1,7 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { Compass, Target, ArrowRight, Zap, Shield, Heart, Globe, Cpu, UserCheck, Leaf } from "lucide-react"
+import { Compass, Target, ArrowRight, Zap, Shield, Heart, Globe, Cpu, UserCheck, Leaf, Users } from "lucide-react"
 import { useEffect, useState } from "react"
 import Link from "next/link"
 import Image from "next/image"
@@ -22,32 +22,38 @@ const MISI_PILLARS = [
   {
     icon: <UserCheck size={20} />,
     title: "People Development",
-    desc: "Membangun kapabilitas masa depan dengan memastikan manusia tetap menjadi inti dari setiap transformasi.",
+    desc: "Membantu individu berkembang menuju versi terbaik dirinya.",
     delay: 120,
   },
   {
     icon: <Target size={20} />,
-    title: "Adaptive Leadership",
-    desc: "Mengembangkan kepemimpinan yang dibangun dengan kecerdasan, integritas, kebijaksanaan, dan empati.",
+    title: "Adaptive Leadership & Future Readiness",
+    desc: "Membantu pemimpin dan organisasi lebih siap menghadapi tantangan masa depan dan beradaptasi dengan perubahan.",
     delay: 160,
   },
   {
     icon: <Leaf size={20} />,
     title: "Healthy Culture",
-    desc: "Menciptakan budaya kerja yang sehat dan bertumbuh di tengah otomatisasi dan era digitalisasi AI.",
+    desc: "Membangun budaya kerja yang sehat dan positif.",
     delay: 200,
   },
   {
     icon: <Compass size={20} />,
-    title: "Future Capability Partner",
-    desc: "Membantu organisasi mendesain sistem yang adaptif, resilien, dan siap menyongsong perubahan era global.",
+    title: "Future Readiness Partner",
+    desc: "Mendampingi transformasi agar strategi menjadi aksi dan hasil nyata.",
     delay: 240,
   },
   {
     icon: <Cpu size={20} />,
-    title: "AI-Powered Insights",
-    desc: "Memadukan AI dan data analitik modern sebagai pendorong utama dalam pengambilan keputusan strategis yang presisi.",
+    title: "AI-Powered Enabler",
+    desc: "Memanfaatkan AI dan teknologi untuk membantu manusia bekerja lebih cerdas.",
     delay: 280,
+  },
+  {
+    icon: <Users size={20} />,
+    title: "Collaboration & Synergy",
+    desc: "Membangun kolaborasi dan sinergi untuk menciptakan masa depan yang lebih baik.",
+    delay: 320,
   },
 ];
 
@@ -57,6 +63,7 @@ const MISSION_TEXTURES = [
   "bg-[radial-gradient(circle_at_78%_18%,rgba(255,255,255,0.28),transparent_20%),repeating-linear-gradient(150deg,rgba(255,255,255,0.2)_0_1px,transparent_1px_16px)]",
   "bg-[linear-gradient(130deg,transparent_0%,transparent_44%,rgba(255,255,255,0.32)_45%,transparent_46%),repeating-linear-gradient(0deg,rgba(255,255,255,0.15)_0_1px,transparent_1px_20px)]",
   "bg-[radial-gradient(circle_at_78%_28%,rgba(255,255,255,0.3),transparent_18%),repeating-linear-gradient(45deg,rgba(255,255,255,0.18)_0_1px,transparent_1px_14px)]",
+  "bg-[radial-gradient(circle_at_35%_30%,rgba(255,255,255,0.3),transparent_18%),repeating-linear-gradient(120deg,rgba(255,255,255,0.16)_0_1px,transparent_1px_16px)]",
 ];
 
 const CAPABILITIES = [
@@ -104,7 +111,7 @@ const ABOUT_COPY = {
     heroAccent: "Masa Depan.",
     heroDesc: "BinaHub hadir sebagai mitra transformasi dan kapabilitas masa depan di era perubahan.",
     whoTag: "SIAPA KAMI",
-    whoTitle: <>Mitra transformasi<span className="block font-medium italic">yang berpusat pada manusia.</span></>,
+    whoTitle: <>Mitra Transformasi &<br /><span className="block font-medium italic">Kapabilitas Masa Depan.</span></>,
     whoP1: "BinaHub membantu organisasi membaca perubahan, mengembangkan kapabilitas manusia, dan merancang transformasi yang tidak berhenti pada aktivitas pelatihan.",
     whoP2: <>Kami percaya masa depan membutuhkan organisasi yang cerdas secara teknologi, sekaligus <span className="text-[#D9A441]">matang secara manusiawi.</span></>,
     challenges: [
@@ -116,13 +123,13 @@ const ABOUT_COPY = {
     ],
     journeyTag: "LEGACY & PERJALANAN",
     journeyTitle: <>Berakar pada{" "}<span className="font-medium italic text-[#D9A441]">Pengembangan Manusia.</span></>,
-    journeyP1: <>BinaHub lahir sebagai <i>sister company</i> dari{" "}<strong className="font-medium text-black/80">BDN (Bina Daya Nugraha)</strong>{" "}-- spesialis pelatihan berbasis pengalaman yang telah berkiprah sejak tahun 2010 dan menjangkau lebih dari 10.000+ peserta dari 80+ organisasi nasional.</>,
-    journeyP2: <>Sebagai kelanjutan strategis, BinaHub melangkah lebih jauh untuk mendampingi organisasi menghadapi era otomatisasi dan disrupsi kecerdasan buatan (AI). Kami memadukan pengembangan SDM, simulasi keputusan global bersama{" "}<strong className="font-medium text-black/80">BSKSims</strong>{" "}asal Amerika Serikat, kepemimpinan adaptif, dan teknologi canggih dalam satu ekosistem transformasi yang utuh.</>,
+    journeyP1: <>BinaHub lahir sebagai <i>evolusi</i> dari{" "}<strong className="font-medium text-black/80">BDN (Bina Daya Nugraha)</strong>{" "}— spesialis pelatihan berbasis pengalaman yang telah berkiprah sejak tahun 2010 dan menjangkau lebih dari 10.000+ peserta dari 80+ organisasi, serta menjadi perwakilan resmi BSKSims inc, penyedia business simulations berbasis AI dan data-driven yang digunakan untuk pelatihan, asesmen, dan pengembangan SDM yang berbasiskan di USA.</>,
+    journeyP2: <>Sebagai kelanjutan strategis, BinaHub melangkah lebih jauh untuk mendampingi organisasi menghadapi era perubahan khususnya otomatisasi dan disrupsi kecerdasan buatan (AI) dalam satu ekosistem transformasi yang utuh.</>,
     journeyCta: "Perjalanan Kami",
     bdnCta: "Dari BDN ke BinaHub",
     proofEyebrow: "Rekam Jejak BDN",
     proofTitle: "Pengalaman yang menjadi fondasi lahirnya BinaHub",
-    proofDesc: "Sebelum BinaHub hadir, tim kami telah mendampingi berbagai organisasi melalui Bina Daya Nugraha sejak 2010. Pengalaman tersebut menjadi salah satu fondasi lahirnya BinaHub.",
+    proofDesc: "Sebelum BinaHub hadir, kami telah mendampingi berbagai organisasi melalui PT Bina Daya Nugraha (BDN) sejak 2010. Pengalaman tersebut menjadi salah satu fondasi lahirnya BinaHub.",
     proofStats: [
       { value: "15+", label: "Tahun Pengalaman" },
       { value: "10k+", label: "Peserta" },
@@ -130,7 +137,7 @@ const ABOUT_COPY = {
     ],
     positionTag: "POSISI KAMI",
     positionTitle: <>Mitra transformasi<span className="block">& kapabilitas</span><span className="block font-medium">masa depan.</span></>,
-    positionDesc: "Peran kami adalah membantu organisasi menghubungkan arah bisnis, kapabilitas manusia, budaya kerja, dan kesiapan teknologi dalam satu sistem transformasi yang dapat dijalankan.",
+    positionDesc: "Peran kami adalah membantu organisasi menghubungkan arah bisnis, kapabilitas manusia, budaya kerja, dan kesiapan teknologi dalam satu sistem transformasi yang dapat dieksekusi.",
     capabilities: [
       { title: "Pengembangan Manusia", desc: "Menumbuhkan potensi utuh individu." },
       { title: "Transformasi Organisasi", desc: "Membangun sistem yang adaptif & resilien." },
@@ -141,14 +148,15 @@ const ABOUT_COPY = {
     visionTag: "VISI & MISI",
     visionEyebrow: "Visi Kami",
     visionTitle: <>Masa depan di mana <span className="italic font-normal">kemanusiaan</span> dan kemajuan berjalan beriringan.</>,
-    visionSub: "A future where humanity and progress grow in harmony.",
+    visionSub: "Kemajuan untuk manusia, manusia untuk kemajuan.",
     visionDesc: <>BinaHub percaya bahwa kemajuan dan kemanusiaan bukanlah dua hal yang saling bertentangan. Teknologi, AI, dan transformasi organisasi seharusnya menjadi sarana untuk <span className="text-[#D9A441] font-semibold">meningkatkan kualitas kehidupan manusia.</span></>,
     missionPillars: [
-      "Membangun kapabilitas masa depan dengan memastikan manusia tetap menjadi inti dari setiap transformasi.",
-      "Mengembangkan kepemimpinan yang dibangun dengan kecerdasan, integritas, kebijaksanaan, dan empati.",
-      "Menciptakan budaya kerja yang sehat dan bertumbuh di tengah otomatisasi dan era digitalisasi AI.",
-      "Membantu organisasi mendesain sistem yang adaptif, resilien, dan siap menyongsong perubahan era global.",
-      "Memadukan AI dan data analitik modern sebagai pendorong utama dalam pengambilan keputusan strategis yang presisi."
+      "Membantu individu berkembang menuju versi terbaik dirinya.",
+      "Membantu pemimpin dan organisasi lebih siap menghadapi tantangan masa depan dan beradaptasi dengan perubahan.",
+      "Membangun budaya kerja yang sehat dan positif.",
+      "Mendampingi transformasi agar strategi menjadi aksi dan hasil nyata.",
+      "Memanfaatkan AI dan teknologi untuk membantu manusia bekerja lebih cerdas.",
+      "Membangun kolaborasi dan sinergi untuk menciptakan masa depan yang lebih baik."
     ],
   },
   en: {
@@ -157,7 +165,7 @@ const ABOUT_COPY = {
     heroAccent: "The Future.",
     heroDesc: "BinaHub is a transformation and future capability partner for an era of continuous change.",
     whoTag: "WHO WE ARE",
-    whoTitle: <>A transformation partner<span className="block font-medium italic">centered on people.</span></>,
+    whoTitle: <>Transformation & Future<br /><span className="block font-medium italic">Capability Partner.</span></>,
     whoP1: "BinaHub helps organizations read change, develop human capability, and design transformation that goes beyond training activities.",
     whoP2: <>We believe the future needs organizations that are technologically intelligent and <span className="text-[#D9A441]">humanly mature.</span></>,
     challenges: [
@@ -169,13 +177,13 @@ const ABOUT_COPY = {
     ],
     journeyTag: "LEGACY & JOURNEY",
     journeyTitle: <>Rooted in{" "}<span className="font-medium italic text-[#D9A441]">Human Development.</span></>,
-    journeyP1: <>BinaHub was born as a <i>sister company</i> of{" "}<strong className="font-medium text-black/80">BDN (Bina Daya Nugraha)</strong>{" "}-- an experience-based training specialist active since 2010, reaching more than 10,000 participants across 80+ national organizations.</>,
-    journeyP2: <>As a strategic continuation, BinaHub goes further in helping organizations face automation and artificial intelligence disruption. We combine people development, global decision simulation with{" "}<strong className="font-medium text-black/80">BSKSims</strong>{" "}from the United States, adaptive leadership, and advanced technology into one complete transformation ecosystem.</>,
+    journeyP1: <>BinaHub was born as an <i>evolution</i> of{" "}<strong className="font-medium text-black/80">BDN (Bina Daya Nugraha)</strong>{" "}— an experience-based training specialist active since 2010, reaching more than 10,000 participants across 80+ organizations, and becoming an official representative of BSKSims inc, a US-based provider of AI and data-driven business simulations used for training, assessment, and human resource development.</>,
+    journeyP2: <>As a strategic continuation, BinaHub goes further in helping organizations face the era of change, especially automation and artificial intelligence disruption. We combine people development, adaptive leadership, and advanced technology into one complete transformation ecosystem.</>,
     journeyCta: "Our Journey",
     bdnCta: "From BDN to BinaHub",
     proofEyebrow: "BDN Track Record",
-    proofTitle: "Experience that became the foundation for BinaHub",
-    proofDesc: "Before BinaHub was established, our team accompanied diverse organizations through Bina Daya Nugraha since 2010. That experience became one of the foundations for BinaHub.",
+    proofTitle: "Experience that became the foundation for the birth of BinaHub",
+    proofDesc: "Before BinaHub was established, our team accompanied diverse organizations through PT Bina Daya Nugraha (BDN) since 2010. That experience became one of the foundations for BinaHub.",
     proofStats: [
       { value: "15+", label: "Years of Experience" },
       { value: "10k+", label: "Participants" },
@@ -194,14 +202,15 @@ const ABOUT_COPY = {
     visionTag: "VISION & MISSION",
     visionEyebrow: "Our Vision",
     visionTitle: <>A future where <span className="italic font-normal">humanity</span> and progress move together.</>,
-    visionSub: "A future where humanity and progress grow in harmony.",
+    visionSub: "Progress for people, people for progress.",
     visionDesc: <>BinaHub believes progress and humanity are not opposing forces. Technology, AI, and organizational transformation should become a way to <span className="text-[#D9A441] font-semibold">improve the quality of human life.</span></>,
     missionPillars: [
-      "Build future capability by ensuring people remain at the center of every transformation.",
-      "Develop leadership built on intelligence, integrity, wisdom, and empathy.",
-      "Create a healthy work culture that grows amid automation and the AI digital era.",
-      "Help organizations design adaptive, resilient systems ready for global change.",
-      "Combine AI and modern data analytics as key drivers for precise strategic decisions."
+      "Helping individuals grow into the best version of themselves.",
+      "Helping leaders and organizations be more prepared to face future challenges and adapt to change.",
+      "Building a healthy and positive work culture.",
+      "Accompanying transformation so that strategy becomes action and real results.",
+      "Leveraging AI and technology to help humans work smarter.",
+      "Building collaboration and synergy to create a better future."
     ],
   },
 };
@@ -413,25 +422,8 @@ export default function AboutPage() {
               )}
 
               <div className={`mt-10 space-y-7 text-[15px] md:text-base text-black/68 font-light leading-[1.85] ${locale === "en" ? "hidden" : ""}`}>
-                <p>
-                  BinaHub lahir sebagai <i>sister company</i> dari{" "}
-                  <strong className="font-medium text-black/80">
-                    BDN (Bina Daya Nugraha)
-                  </strong>{" "}
-                  — spesialis pelatihan berbasis pengalaman yang telah berkiprah
-                  sejak tahun 2010 dan menjangkau lebih dari 10.000+ peserta dari
-                  80+ organisasi nasional.
-                </p>
-
-                <p>
-                  Sebagai kelanjutan strategis, BinaHub melangkah lebih jauh untuk
-                  mendampingi organisasi menghadapi era otomatisasi dan disrupsi
-                  kecerdasan buatan (AI). Kami memadukan pengembangan SDM, simulasi
-                  keputusan global bersama{" "}
-                  <strong className="font-medium text-black/80">BSKSims</strong>{" "}
-                  asal Amerika Serikat, kepemimpinan adaptif, dan teknologi canggih
-                  dalam satu ekosistem transformasi yang utuh.
-                </p>
+                <p>{copy.journeyP1}</p>
+                <p>{copy.journeyP2}</p>
               </div>
 
               <div className="mt-10 border-t border-black/7 pt-8">
@@ -512,91 +504,6 @@ export default function AboutPage() {
             <p className="max-w-[560px] text-base md:text-lg text-black/64 font-light leading-[1.85] lg:pb-3">
               {copy.positionDesc}
             </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
-            {localizedCapabilities.map((cap, i) => {
-              const isFeatured = i === 0;
-              const texture = CAPABILITY_TEXTURES[i];
-
-              return (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, y: 28 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-70px" }}
-                  transition={{ delay: i * 0.08, duration: 0.65, ease: "easeOut" }}
-                  className={`group relative min-h-[250px] overflow-hidden rounded-[12px] border p-6 transition-all duration-500 hover:-translate-y-1 md:min-h-[260px] lg:min-h-[300px] ${isFeatured
-                      ? "border-[#0A2A63]/10 bg-[#082D70] text-white shadow-[0_24px_66px_-44px_rgba(11,44,107,0.68)] hover:bg-[#062763] hover:shadow-[0_30px_78px_-50px_rgba(11,44,107,0.74)]"
-                      : "border-black/[0.045] bg-[#FCFCFB] text-[#1D2433] shadow-[0_18px_54px_-48px_rgba(11,44,107,0.28)] hover:border-[#D9A441]/25 hover:bg-white hover:shadow-[0_24px_72px_-56px_rgba(11,44,107,0.36)]"
-                    }`}
-                >
-                  {/* Ambient texture */}
-                  <div
-                    className={`pointer-events-none absolute inset-0 z-[2] transition-all duration-500 ${isFeatured
-                        ? "opacity-[0.42] group-hover:opacity-[0.5]"
-                        : "opacity-[0.28] group-hover:opacity-[0.36]"
-                      }`}
-                  >
-                    <Image
-                      src={texture}
-                      alt=""
-                      fill
-                      sizes="(max-width: 768px) 100vw, 20vw"
-                      className={`object-cover scale-110 -translate-y-5 ${isFeatured
-                          ? "object-center mix-blend-multiply grayscale brightness-0 contrast-125"
-                          : "object-top mix-blend-multiply grayscale brightness-95 contrast-150"
-                        }`}
-                    />
-                    {isFeatured && (
-                      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[48%] bg-gradient-to-t from-[#071F4D]/80 to-transparent" />
-                    )}
-                  </div>
-
-                  {/* Soft overlay, lower area kept cleaner for text */}
-                  <div
-                    className={`pointer-events-none absolute inset-0 z-[1] ${isFeatured
-                        ? "bg-[linear-gradient(180deg,rgba(8,45,112,0.2)_0%,rgba(8,45,112,0.58)_48%,rgba(8,45,112,0.96)_100%)]"
-                        : "bg-[linear-gradient(180deg,rgba(255,255,255,0.18)_0%,rgba(255,255,255,0.56)_48%,rgba(255,255,255,0.94)_100%)]"
-                      }`}
-                  />
-
-                  {/* Subtle gold accent */}
-                  <div className="pointer-events-none absolute -right-20 -top-20 h-36 w-64 bg-[#D9A441]/8 blur-3xl opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
-
-                  <div className="relative z-10 flex min-h-[200px] flex-col md:min-h-[210px] lg:min-h-[250px]">
-                    <div
-                      className={`flex h-12 w-12 items-center justify-center rounded-[10px] border shadow-[0_14px_36px_-22px_rgba(11,44,107,0.42)] transition-all duration-500 ${isFeatured
-                          ? "border-white/10 bg-white/92 text-[#0A2A63] group-hover:bg-[#D9A441]"
-                          : "border-black/5 bg-white/90 text-[#0B2C6B] group-hover:border-[#D9A441]/30 group-hover:bg-[#D9A441]"
-                        }`}
-                    >
-                      {cap.icon}
-                    </div>
-
-                    <div className="mt-auto">
-                      <span className="mb-5 block h-px w-8 bg-[#D9A441]" />
-
-                      <h4
-                        className={`mb-3 text-xs md:text-[13px] font-semibold tracking-[0.14em] uppercase leading-[1.55] transition-colors ${isFeatured ? "text-white" : "text-[#1D2433]"
-                          }`}
-                      >
-                        {cap.title}
-                      </h4>
-
-                      <div className="mb-4 h-px w-7 bg-[#D9A441]" />
-
-                      <p
-                        className={`text-sm font-light leading-[1.7] transition-colors ${isFeatured ? "text-white/72" : "text-black/62"
-                          }`}
-                      >
-                        {cap.desc}
-                      </p>
-                    </div>
-                  </div>
-                </motion.div>
-              );
-            })}
           </div>
 
         </div>
@@ -735,8 +642,8 @@ export default function AboutPage() {
               );
             })}
 
-            {/* Bottom Mission Bento Cards (3 cards at the bottom) */}
-            {localizedMissionPillars.slice(2, 5).map((pillar, index) => {
+            {/* Bottom Mission Bento Cards (4 cards at the bottom) */}
+            {localizedMissionPillars.slice(2, 6).map((pillar, index) => {
               const missionIndex = index + 2;
               const isFeaturedMission = featuredMissionIndex === missionIndex;
 
@@ -750,7 +657,7 @@ export default function AboutPage() {
                   onMouseEnter={() => setIsMissionPaused(true)}
                   onMouseLeave={() => setIsMissionPaused(false)}
                   transition={{ delay: missionIndex * 0.08, duration: 0.7, ease: premiumEase }}
-                  className={`group/mission relative col-span-12 flex min-h-[190px] flex-col justify-center overflow-hidden rounded-[12px] border p-8 py-10 shadow-sm transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] hover:shadow-md md:col-span-4 ${isFeaturedMission
+                  className={`group/mission relative col-span-12 flex min-h-[190px] flex-col justify-center overflow-hidden rounded-[12px] border p-8 py-10 shadow-sm transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] hover:shadow-md md:col-span-3 ${isFeaturedMission
                       ? "bg-[#183F82] border-[#183F82] text-white shadow-[#0B2C6B]/14 hover:border-[#D9A441]/35"
                       : "bg-white border-black/[0.04] hover:border-[#D9A441]/30"
                     }`}

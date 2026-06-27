@@ -11,18 +11,23 @@ import { layoutCopy, type CtaConfig, type FooterGroup } from "@/i18n/layout-copy
 const SOCIAL_LINKS = [
   {
     label: "Instagram",
-    href: "https://www.instagram.com/binahub.id",
+    href: "https://instagram.com/binahub.id",
     icon: InstagramIcon,
   },
   {
     label: "TikTok",
-    href: "https://www.tiktok.com/@binahub.id",
+    href: "https://tiktok.com/@binahub.id",
     icon: TiktokIcon,
   },
   {
     label: "LinkedIn",
-    href: "https://www.linkedin.com/company/binahub-id",
+    href: "https://linkedin.com/company/binahub",
     icon: LinkedinIcon,
+  },
+  {
+    label: "YouTube",
+    href: "https://youtube.com/@binahubid",
+    icon: YoutubeIcon,
   },
 ] as const;
 
@@ -325,6 +330,14 @@ function LinkedinIcon(props: SVGProps<SVGSVGElement>) {
   return (
     <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" {...props}>
       <path d="M5.1 8.8h3.3v10.6H5.1V8.8Zm1.7-5.2c1.1 0 1.9.8 1.9 1.8 0 1.1-.8 1.9-1.9 1.9S4.9 6.5 4.9 5.4c0-1 .8-1.8 1.9-1.8Zm3.7 5.2h3.1v1.4h.1c.4-.8 1.5-1.7 3.1-1.7 3.3 0 3.9 2.2 3.9 5v5.9h-3.3v-5.2c0-1.2 0-2.8-1.7-2.8s-2 1.3-2 2.7v5.3h-3.3V8.8Z" />
+    </svg>
+  );
+}
+
+function YoutubeIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" {...props}>
+      <path d="M23.5 6.5a3 3 0 0 0-2.1-2.1C19.5 4 12 4 12 4s-7.5 0-9.4.4a3 3 0 0 0-2.1 2.1A31 31 0 0 0 0 12a31 31 0 0 0 .5 5.5 3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.5zM9.75 15.02V8.48L15.5 12l-5.75 3.02z" />
     </svg>
   );
 }

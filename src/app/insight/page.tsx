@@ -17,6 +17,7 @@ import { SuccessStep } from "./_steps/success-step";
 import { PixelIcon, type IconType } from "@/components/pixel-icon";
 import { localizePath } from "@/i18n/config";
 import { useLocale } from "@/i18n/use-locale";
+import { appApiUrl } from "@/lib/public-api";
 
 const TOTAL_STEPS = 11;
 const SPEED_LINES = [
@@ -120,7 +121,7 @@ export default function InsightPage() {
     setIsSubmitting(true);
     
     try {
-      const response = await fetch("/api/assessment", {
+      const response = await fetch(appApiUrl("/api/assessment"), {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

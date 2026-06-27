@@ -3,6 +3,57 @@
 Semua perubahan yang signifikan pada proyek ini akan didokumentasikan di file ini.
 Format yang digunakan berdasarkan [Keep a Changelog](https://keepachangelog.com/id/1.0.0/), dan proyek ini mematuhi aturan [Semantic Versioning](https://semver.org/).
 
+## [0.2.13]
+
+### Added
+- Menambahkan animasi transisi (`framer-motion`) pada carousel Transformation Signals untuk perpindahan sinyal yang lebih smooth.
+- Menambahkan progress bar animated di bagian atas container carousel yang bergerak mengikuti index sinyal aktif.
+- Menambahkan micro-interactions pada kartu priority signals, evidence cards, dan CTA buttons (hover scale, translate, shadow).
+- Menambahkan staggered animation pada evidence item chips agar muncul bertahap saat sinyal berubah.
+- Menambahkan background image `persfektif-bg.webp` pada hero section Perspektif dengan overlay navy untuk keterbacaan teks.
+
+### Changed
+- Mengubah headline hero Home dari "Membantu Organisasi Bertumbuh dan Berkembang" menjadi "Membantu Organisasi" (baris 1) + "Bertumbuh dan Berkembang" (baris 2, gold italic).
+- Mengubah deskripsi hero: "pemimpin" → "kepemimpinan", "unggul" → "solid", "AI" → "teknologi AI".
+- Mengubah CTA footer dari "Mulai manusiakan masa depan Anda" menjadi "Tertarik untuk mengetahui lebih jauh?".
+- Mengubah judul carousel About dari "Posisi Kami" menjadi "Siapa Kami" dengan vision 2 baris.
+- Mengubah judul About page menjadi "Mitra Transformasi & Kapabilitas Masa Depan".
+- Menghapus cards capabilities dari About page dan mengganti dengan teks deskriptif.
+- Mengubah judul From BDN to BinaHub menjadi "Bukan awal yang baru." + "Transformasi Perjalanan 16 Tahun."
+- Mengubah tag warna From BDN to BinaHub dari putih menjadi abu-abu.
+- Mengubah responsive font From BDN to BinaHub dan menghapus `whitespace-nowrap`.
+- Mengubah judul Ecosystem menjadi "Mengapa inisiatif pengembangan sering kurang efektif bahkan gagal?".
+- Mengubah semua 8 data layanan menjadi format paragraph sesuai tabel CEO.
+- Mengubah modal layanan: overview selalu terbuka (bukan accordion), accordion hanya untuk tantangan/tujuan/hasil.
+- Menghapus backdrop blur pada hotspot BinaHubClickable agar teks tetap terbaca.
+- Meredesain hero Perspektif menjadi two-column layout dengan dark navy background dan interactive principles.
+- Mengubah principles Perspektif menjadi expand/collapse dengan details.
+- Memindahkan "Kami percaya..." ke kanan atas principles, "Dengan perspektif ini..." ke kanan bawah.
+- Menghapus section "KONTEKS INDUSTRI" dari From BDN to BinaHub.
+- Memperbaiki positioning "bukan sekedar vendor training" pada From BDN to BinaHub.
+- Mengubah differentiators menjadi ekosistem, dampak, AI.
+- Menghapus dots bar dari carousel Transformation Signals (redundan dengan progress bar).
+- Memindahkan progress bar ke bagian paling atas container (menempel border).
+- Memindahkan nomor urut (#01/10) dan tombol navigasi ke dalam content area di bawah header.
+- Menghapus teks "THE COMPLETE BRIEFING" dari header carousel.
+- Mengubah warna Leadership Implication card dari gold/warm menjadi navy.
+- Menghapus efek grayscale pada foto berita evidence cards.
+- Menghapus CTA buttons dari response section (redundan dengan CTA bawah).
+- Mengubah CTA section Perspektif: title "Siap merespons sinyal ini?" dan button "Lihat Layanan".
+- Mengubah URL The Guardian dan Business Times ke link terbaru.
+- Memperbarui social media links di footer dari folder `links-binahub`.
+
+### Removed
+- Menghapus cards capabilities dari halaman About.
+- Menghapus section "KONTEKS INDUSTRI" dari From BDN to BinaHub.
+- Menghapus dots navigation dari carousel Transformation Signals.
+- Menghapus CTA buttons dari response section Transformation Signals.
+
+### Fixed
+- Memperbaiki garis vertical principle list tumpang tindih dengan bulatan nomor di Perspektif.
+- Memperbaiki responsive font From BDN to BinaHub agar tidak overflow.
+- Memperbaiki hotspot text readability pada BinaHubClickable dengan menghapus blur.
+
 ## [0.2.12]
 ### Added
 - Menambahkan route URL-based locale `/id` dan `/en` untuk seluruh halaman publik utama, termasuk About, Contact, Ecosystem, Insight, Journey, Gallery, Perspektif, dan Transformation Signals.
