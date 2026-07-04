@@ -57,7 +57,7 @@ export const publicSiteTranslations: Record<string, string> = {
   "berjalan beriringan.": "move forward together.",
   "Kemajuan teknologi perlu berjalan bersama kualitas manusia: kesadaran, kepemimpinan, empati, dan keberanian belajar.": "Technological progress needs to move together with human quality: awareness, leadership, empathy, and the courage to learn.",
   "Kemajuan untuk manusia, manusia untuk kemajuan.": "Progress for people, people for progress.",
-  "BinaHub membantu organisasi menata arah pengembangan manusia agar lebih relevan dengan perubahan bisnis, teknologi, dan budaya kerja.": "BinaHub helps organizations shape the direction of people development so it stays relevant to business, technology, and culture change.",
+  "BinaHub membantu organisasi menata arah pengembangan manusia agar lebih relevan dengan perubahan bisnis, teknologi, dan budaya kerja.": "We help organizations align strategies, develop people, strengthen work culture, and leverage technology so transformation runs more effectively and delivers real results.",
   "Enam prinsip yang menjaga transformasi tetap manusiawi, adaptif, dan dapat diterjemahkan ke dalam cara kerja organisasi.": "Six principles that keep transformation human, adaptive, and translatable into how the organization works.",
   "Enam misi yang kami usung untuk menjaga transformasi tetap manusiawi, adaptif, dan dapat diterjemahkan ke dalam cara kerja organisasi.": "Six missions we uphold to keep transformation human, adaptive, and translatable into how the organization works.",
   "Lima prinsip yang menjaga transformasi tetap manusiawi, berintegritas, berdampak, bertumbuh, dan bermakna.": "Five principles that keep transformation humane, ethical, impactful, growing, and meaningful.",
@@ -145,7 +145,7 @@ export const publicSiteTranslations: Record<string, string> = {
   "BDN menyelesaikan babaknya. BinaHub membuka yang berikutnya.": "BDN closes its chapter. BinaHub opens the next one.",
   "Berbasis Pengalaman": "Built on Experience",
   "Berakar pada Pembelajaran": "Rooted in Learning",
-  "Tim yang sama, metodologi dan keahlian yang sama, dengan ambisi yang lebih besar untuk menghadirkan transformasi manusia yang terukur.": "The same team, methodology, and expertise, with a larger ambition to deliver measurable people transformation.",
+  "Dengan membawa kekuatan tim, metodologi, keahlian, DNA BDN yang dikembangkan lebih lanjut, menyesuaikan kebutuhan zaman untuk menghadirkan transformasi yang lebih efektif.": "Bringing the strength of the team, methodology, expertise, and further developed BDN DNA, adapting to the needs of the times to deliver more effective transformation.",
 
   "Dokumentasi kegiatan, ruang belajar, dan perjalanan transformasi BinaHub.": "Documentation of BinaHub activities, learning spaces, and transformation journeys.",
   "Gallery": "Gallery",

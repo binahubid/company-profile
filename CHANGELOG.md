@@ -3,10 +3,18 @@
 Semua perubahan yang signifikan pada proyek ini akan didokumentasikan di file ini.
 Format yang digunakan berdasarkan [Keep a Changelog](https://keepachangelog.com/id/1.0.0/), dan proyek ini mematuhi aturan [Semantic Versioning](https://semver.org/).
 
+## [0.2.15]
+
+### Changed
+- Memperbarui tautan LinkedIn di bagian footer menjadi `https://www.linkedin.com/company/binahubid/`.
+- Memperbarui deskripsi pencapaian tahun 2026 di halaman "Dari BDN ke BinaHub" (bahasa Indonesia dan bahasa Inggris, serta kunci terjemahan).
+- Mengubah background hero section di halaman Perspektif menjadi rounded card dengan padding luar agar konsisten dengan halaman Tentang.
+- Menerapkan pola Split-Click pada menu hamburger mobile di mana teks menu langsung menavigasi ke halaman utama dan ikon chevron secara khusus mengontrol ekspansi akordeon, serta menghapus tombol "Kunjungi Halaman Utama".
+
 ## [0.2.14]
 
 ### Changed
-- Mengganti gambar section "Perjalanan Kami" (About) dan Chapter 03 Journey dari `bsksims2.png` menjadi `bsksims-representatives.webp`.
+- Mengganti gambar section "Perjalanan Kami" (About) dan Chapter 03 Journey dari `bsksims2.png` menjadi `bsksims.webp`.
 - Meredesain responsive hero Home: single column (logo atas + teks bawah) untuk mobile hingga md (768-990px), dua kolom untuk lg (1024px+).
 - Menambahkan orbit rings dan icons pada breakpoint md (768-990px) dengan stage 320px.
 - Menyesuaikan font headline: mobile `clamp(1.75rem,7vw,2.5rem)`, lg `clamp(3rem,4.5vw,4.5rem)`.

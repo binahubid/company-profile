@@ -29,7 +29,7 @@ const timeline = [
   {
     year: "2026",
     title: "BDN menyelesaikan babaknya. BinaHub membuka yang berikutnya.",
-    desc: "Tim yang sama, metodologi dan keahlian yang sama, dengan ambisi yang lebih besar untuk menghadirkan transformasi manusia yang terukur.",
+    desc: "Dengan membawa kekuatan tim, metodologi, keahlian, DNA BDN yang dikembangkan lebih lanjut, menyesuaikan kebutuhan zaman untuk menghadirkan transformasi yang lebih efektif.",
   },
 ];
 
@@ -57,7 +57,7 @@ const COPY = {
     tag: "DARI BDN KE BINAHUB",
     title: "Bukan awal yang baru.",
     accent: "Transformasi Perjalanan 16 Tahun.",
-    intro: "BinaHub berdiri di atas perjalanan PT Bina Daya Nugraha, perusahaan pelatihan dan team building yang telah mendampingi lebih dari 80 organisasi dan 10.000 individu sejak 2010.",
+    intro: "BinaHub berdiri di atas perjalanan PT Bina Daya Nugraha (BDN), perusahaan pelatihan dan team building yang telah mendampingi lebih dari 80 organisasi dan 10.000 individu sejak 2010.",
     intro2: "Ketika BDN menyelesaikan babaknya, kami tidak menutup buku. Kami membuka yang baru dengan ekosistem yang lebih terintegrasi, pendekatan yang lebih terukur, dan teknologi yang memperluas dampak tanpa mengorbankan kedalaman.",
     stats,
     originTag: "ORIGIN STORY",
@@ -104,7 +104,7 @@ const COPY = {
       {
         year: "2026",
         title: "BDN completed its chapter. BinaHub opened the next.",
-        desc: "The same team, methodology, and expertise, with a bigger ambition to deliver measurable human transformation.",
+        desc: "Bringing the strength of the team, methodology, expertise, and further developed BDN DNA, adapting to the needs of the times to deliver more effective transformation.",
       },
     ],
     positioning: "POSITIONING",

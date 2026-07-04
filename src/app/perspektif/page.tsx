@@ -136,16 +136,17 @@ export default function PerspektifPage() {
   return (
     <div className="bg-[#F5F7FA] text-[#4A4C54] min-h-screen font-sans antialiased">
       {/* Hero Section - Dark Navy with Interactive Principles */}
-      <section className="relative overflow-hidden min-h-screen flex items-center">
-        {/* Background image */}
-        <div 
-          className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
-          style={{ backgroundImage: "url('/persfektif-bg.webp')" }}
-        />
-        {/* Dark overlay for text readability */}
-        <div className="absolute inset-0 z-0 bg-[#071A33]/60" />
+      <section className="w-full px-4 pt-20 md:px-8 md:pt-28 md:mb-16">
+        <div className="relative flex min-h-[76svh] w-full items-center overflow-hidden rounded-[14px] border border-white/10 bg-[#071A33] shadow-[0_24px_78px_-56px_rgba(11,44,107,0.48)] md:min-h-[480px] md:rounded-[18px]">
+          {/* Background image */}
+          <div 
+            className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
+            style={{ backgroundImage: "url('/persfektif-bg.webp')" }}
+          />
+          {/* Dark overlay for text readability */}
+          <div className="absolute inset-0 z-0 bg-[#071A33]/60" />
 
-        <div className="relative z-10 w-full px-6 md:px-12 lg:px-20 pt-28 md:pt-36 pb-16 md:pb-24">
+          <div className="relative z-10 w-full px-6 md:px-12 lg:px-20 pt-12 pb-12 md:pt-20 md:pb-20">
           <div className="mx-auto max-w-7xl grid lg:grid-cols-[1fr_1fr] gap-12 lg:gap-20 items-start">
             {/* Left Side - Headline */}
             <div className="lg:sticky lg:top-32">
@@ -235,7 +236,8 @@ export default function PerspektifPage() {
             </div>
           </div>
         </div>
-      </section>
+      </div>
+    </section>
 
       <section className="px-4 py-8 md:min-h-[calc(100svh-96px)] md:px-8 md:py-8 lg:px-12">
         <div className="mx-auto flex max-w-[1800px] flex-col justify-center gap-5 md:min-h-[calc(100svh-160px)] lg:gap-6">

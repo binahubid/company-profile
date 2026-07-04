@@ -66,40 +66,35 @@ const MISSION_TEXTURES = [
   "bg-[radial-gradient(circle_at_35%_30%,rgba(255,255,255,0.3),transparent_18%),repeating-linear-gradient(120deg,rgba(255,255,255,0.16)_0_1px,transparent_1px_16px)]",
 ];
 
-const CAPABILITIES = [
-  { title: "Pengembangan Manusia", icon: <Heart size={20} />, desc: "Menumbuhkan potensi utuh individu." },
-  { title: "Transformasi Organisasi", icon: <Globe size={20} />, desc: "Membangun sistem yang adaptif & resilien." },
-  { title: "Pembelajaran Strategis", icon: <Zap size={20} />, desc: "Edukasi yang relevan dengan masa depan." },
-  { title: "Kepemimpinan", icon: <Shield size={20} />, desc: "Membentuk pemimpin berintegritas tinggi." },
-  { title: "Kesiapan Era AI", icon: <Cpu size={20} />, desc: "Tetap relevan di tengah disrupsi teknologi." }
-];
-
-const PARTNER_LOGOS = [
-  { name: "Acer", src: "/partner/acer.png" },
-  { name: "Astra Honda Motor", src: "/partner/AHM.svg" },
-  { name: "AirNav Indonesia", src: "/partner/airnav.webp" },
+const PARTNER_LOGOS: { name: string; src: string; className?: string }[] = [
+  { name: "Acer", src: "/partner/acer.png", className: "scale-90" },
+  { name: "Astra Honda Motor", src: "/partner/AHM.svg", className: "scale-[2.25]" },
+  { name: "AirNav Indonesia", src: "/partner/airnav.webp", className: "scale-150" },
   { name: "Aldena", src: "/partner/Aldena.png" },
-  { name: "Alkagra", src: "/partner/alkagra.png" },
+  { name: "Alkagra", src: "/partner/alkagra.png", className: "scale-90" },
+  { name: "Bata", src: "/partner/bata.webp", className: "scale-90" },
   { name: "Castrol", src: "/partner/castrol.png" },
-  { name: "Chandra Asri", src: "/partner/chandraasri.png" },
-  { name: "Ciputra", src: "/partner/ciputra.png" },
+  { name: "Chandra Asri", src: "/partner/chandraasri.png", className: "scale-110" },
+  { name: "Ciputra", src: "/partner/ciputra.png", className: "scale-110" },
   { name: "Dattabot", src: "/partner/dattabot.png" },
   { name: "DDI", src: "/partner/ddi.png" },
-  { name: "Holcim", src: "/partner/holcim.png" },
-  { name: "IBCSD", src: "/partner/ibcsd.png" },
-  { name: "Indosat", src: "/partner/indosat.png" },
+  { name: "Holcim", src: "/partner/holcim.png", className: "scale-110" },
+  { name: "IBCSD", src: "/partner/ibcsd.png", className: "scale-110" },
+  { name: "Indosat", src: "/partner/indosat.png", className: "scale-125" },
+  { name: "Kompas Gramedia", src: "/partner/kompas-gramedia.svg", className: "scale-110" },
   { name: "Kiroyan", src: "/partner/kiroyan.png" },
-  { name: "MS Coal", src: "/partner/mscoal.png" },
+  { name: "MS Coal", src: "/partner/mscoal.png", className: "scale-90" },
+  { name: "PTC", src: "/partner/ptc.webp", className: "scale-110" },
   { name: "Prowell Energy", src: "/partner/prowellenergy.png" },
   { name: "Safran", src: "/partner/safran.svg" },
-  { name: "Sampoerna", src: "/partner/sampurna.png" },
-  { name: "Sarana Jaya", src: "/partner/saranajaya.webp" },
+  { name: "Sampoerna", src: "/partner/sampurna.png", className: "scale-125" },
+  { name: "Sarana Jaya", src: "/partner/saranajaya.webp", className: "scale-110" },
   { name: "Siap Siaga", src: "/partner/siapsiaga.png" },
-  { name: "Sqiva", src: "/partner/Sqiva.png" },
+  { name: "Sqiva", src: "/partner/Sqiva.png", className: "scale-90" },
   { name: "Swisscontact", src: "/partner/swisscontact.png" },
-  { name: "Syngenta", src: "/partner/syngenta.png" },
+  { name: "Syngenta", src: "/partner/syngenta.png", className: "scale-90" },
   { name: "Telin", src: "/partner/Telin.png" },
-  { name: "Telkom Infra", src: "/partner/Telkomimetra.png" },
+  { name: "Telkom Infra", src: "/partner/Telkomimetra.png", className: "scale-110" },
   { name: "Transcorp", src: "/partner/transcorp.svg" },
   { name: "Umira", src: "/partner/umira.png" },
 ];
@@ -112,8 +107,8 @@ const ABOUT_COPY = {
     heroDesc: "BinaHub hadir sebagai mitra transformasi dan kapabilitas masa depan di era perubahan.",
     whoTag: "SIAPA KAMI",
     whoTitle: <>Mitra Transformasi &<br /><span className="block font-medium italic">Kapabilitas Masa Depan.</span></>,
-    whoP1: "BinaHub membantu organisasi membaca perubahan, mengembangkan kapabilitas manusia, dan merancang transformasi yang tidak berhenti pada aktivitas pelatihan.",
-    whoP2: <>Kami percaya masa depan membutuhkan organisasi yang cerdas secara teknologi, sekaligus <span className="text-[#D9A441]">matang secara manusiawi.</span></>,
+    whoP1: "BinaHub membantu organisasi membaca perubahan, mengembangkan kapabilitas manusia, dan merancang transformasi individu, tim, dan organisasi. Untuk beradaptasi dengan perubahan tersebut.",
+    whoP2: <>Kami membantu organisasi menyelaraskan strategi, mengembangkan manusia, memperkuat budaya kerja, dan memanfaatkan teknologi agar transformasi berjalan lebih efektif dan memberikan hasil nyata.<br /><br /><strong>Kami percaya masa depan membutuhkan organisasi yang mampu memanfaatkan teknologi dengan baik, tanpa melupakan peran manusia.</strong></>,
     challenges: [
       "Hilangnya banyak jenis pekerjaan",
       "Meningkatnya tekanan dan burnout",
@@ -123,27 +118,17 @@ const ABOUT_COPY = {
     ],
     journeyTag: "LEGACY & PERJALANAN",
     journeyTitle: <>Berakar pada{" "}<span className="font-medium italic text-[#D9A441]">Pengembangan Manusia.</span></>,
-    journeyP1: <>BinaHub lahir sebagai <i>evolusi</i> dari{" "}<strong className="font-medium text-black/80">BDN (Bina Daya Nugraha)</strong>{" "}— spesialis pelatihan berbasis pengalaman yang telah berkiprah sejak tahun 2010 dan menjangkau lebih dari 10.000+ peserta dari 80+ organisasi, serta menjadi perwakilan resmi BSKSims inc, penyedia business simulations berbasis AI dan data-driven yang digunakan untuk pelatihan, asesmen, dan pengembangan SDM yang berbasiskan di USA.</>,
-    journeyP2: <>Sebagai kelanjutan strategis, BinaHub melangkah lebih jauh untuk mendampingi organisasi menghadapi era perubahan khususnya otomatisasi dan disrupsi kecerdasan buatan (AI) dalam satu ekosistem transformasi yang utuh.</>,
+    journeyP1: <>BinaHub lahir sebagai <i>evolusi</i> dari{" "}<strong className="font-medium text-black/80">BDN (Bina Daya Nugraha)</strong>{" "}— spesialis pelatihan berbasis pengalaman yang telah berkiprah sejak tahun 2010 dan menjangkau lebih dari 10.000+ peserta dari 80+ organisasi, serta menjadi perwakilan resmi BSKSims, penyedia business simulations berbasis AI dan data-driven yang digunakan untuk pelatihan, asesmen, dan pengembangan SDM yang berbasiskan di Amerika.</>,
+    journeyP2: <>Sebagai kelanjutan strategis, BinaHub melangkah lebih jauh untuk mendampingi organisasi menghadapi era perubahan khususnya otomatisasi dan disrupsi kecerdasan buatan (AI) dalam satu ekosistem transformasi yang lebih komprehensif.</>,
     journeyCta: "Perjalanan Kami",
     bdnCta: "Dari BDN ke BinaHub",
     proofEyebrow: "Rekam Jejak BDN",
     proofTitle: "Pengalaman yang menjadi fondasi lahirnya BinaHub",
     proofDesc: "Sebelum BinaHub hadir, kami telah mendampingi berbagai organisasi melalui PT Bina Daya Nugraha (BDN) sejak 2010. Pengalaman tersebut menjadi salah satu fondasi lahirnya BinaHub.",
     proofStats: [
-      { value: "15+", label: "Tahun Pengalaman" },
+      { value: "16+", label: "Tahun Pengalaman" },
       { value: "10k+", label: "Peserta" },
       { value: "80+", label: "Organisasi Nasional" },
-    ],
-    positionTag: "POSISI KAMI",
-    positionTitle: <>Mitra transformasi<span className="block">& kapabilitas</span><span className="block font-medium">masa depan.</span></>,
-    positionDesc: "Peran kami adalah membantu organisasi menghubungkan arah bisnis, kapabilitas manusia, budaya kerja, dan kesiapan teknologi dalam satu sistem transformasi yang dapat dieksekusi.",
-    capabilities: [
-      { title: "Pengembangan Manusia", desc: "Menumbuhkan potensi utuh individu." },
-      { title: "Transformasi Organisasi", desc: "Membangun sistem yang adaptif & resilien." },
-      { title: "Pembelajaran Strategis", desc: "Edukasi yang relevan dengan masa depan." },
-      { title: "Kepemimpinan", desc: "Membentuk pemimpin berintegritas tinggi." },
-      { title: "Kesiapan Era AI", desc: "Tetap relevan di tengah disrupsi teknologi." }
     ],
     visionTag: "VISI & MISI",
     visionEyebrow: "Visi Kami",
@@ -166,8 +151,8 @@ const ABOUT_COPY = {
     heroDesc: "BinaHub is a transformation and future capability partner for an era of continuous change.",
     whoTag: "WHO WE ARE",
     whoTitle: <>Transformation & Future<br /><span className="block font-medium italic">Capability Partner.</span></>,
-    whoP1: "BinaHub helps organizations read change, develop human capability, and design transformation that goes beyond training activities.",
-    whoP2: <>We believe the future needs organizations that are technologically intelligent and <span className="text-[#D9A441]">humanly mature.</span></>,
+    whoP1: "BinaHub helps organizations read change, develop human capability, and design transformation for individuals, teams, and organizations. To adapt to these changes.",
+    whoP2: <>We help organizations align strategies, develop people, strengthen work culture, and leverage technology so transformation runs more effectively and delivers real results.<br /><br /><strong>We believe the future needs organizations that can leverage technology well, without forgetting the role of people.</strong></>,
     challenges: [
       "The disappearance of many types of work",
       "Rising pressure and burnout",
@@ -177,27 +162,17 @@ const ABOUT_COPY = {
     ],
     journeyTag: "LEGACY & JOURNEY",
     journeyTitle: <>Rooted in{" "}<span className="font-medium italic text-[#D9A441]">Human Development.</span></>,
-    journeyP1: <>BinaHub was born as an <i>evolution</i> of{" "}<strong className="font-medium text-black/80">BDN (Bina Daya Nugraha)</strong>{" "}— an experience-based training specialist active since 2010, reaching more than 10,000 participants across 80+ organizations, and becoming an official representative of BSKSims inc, a US-based provider of AI and data-driven business simulations used for training, assessment, and human resource development.</>,
-    journeyP2: <>As a strategic continuation, BinaHub goes further in helping organizations face the era of change, especially automation and artificial intelligence disruption. We combine people development, adaptive leadership, and advanced technology into one complete transformation ecosystem.</>,
+    journeyP1: <>BinaHub was born as an <i>evolution</i> of{" "}<strong className="font-medium text-black/80">BDN (Bina Daya Nugraha)</strong>{" "}— an experience-based training specialist active since 2010, reaching more than 10,000 participants across 80+ organizations, and becoming an official representative of BSKSims, a US-based provider of AI and data-driven business simulations used for training, assessment, and human resource development.</>,
+    journeyP2: <>As a strategic continuation, BinaHub goes further in helping organizations face the era of change, especially automation and artificial intelligence disruption. We combine people development, adaptive leadership, and advanced technology into one more comprehensive transformation ecosystem.</>,
     journeyCta: "Our Journey",
     bdnCta: "From BDN to BinaHub",
     proofEyebrow: "BDN Track Record",
     proofTitle: "Experience that became the foundation for the birth of BinaHub",
     proofDesc: "Before BinaHub was established, our team accompanied diverse organizations through PT Bina Daya Nugraha (BDN) since 2010. That experience became one of the foundations for BinaHub.",
     proofStats: [
-      { value: "15+", label: "Years of Experience" },
+      { value: "16+", label: "Years of Experience" },
       { value: "10k+", label: "Participants" },
       { value: "80+", label: "National Organizations" },
-    ],
-    positionTag: "OUR POSITION",
-    positionTitle: <>Transformation partner<span className="block">& future</span><span className="block font-medium">capability builder.</span></>,
-    positionDesc: "Our role is to help organizations connect business direction, human capability, work culture, and technology readiness into one executable transformation system.",
-    capabilities: [
-      { title: "Human Development", desc: "Growing the whole potential of individuals." },
-      { title: "Organizational Transformation", desc: "Building adaptive and resilient systems." },
-      { title: "Strategic Learning", desc: "Education that stays relevant to the future." },
-      { title: "Leadership", desc: "Shaping leaders with strong integrity." },
-      { title: "AI Era Readiness", desc: "Staying relevant amid technological disruption." }
     ],
     visionTag: "VISION & MISSION",
     visionEyebrow: "Our Vision",
@@ -285,7 +260,7 @@ function BdnProofLogos({
                       width={132}
                       height={48}
                       sizes="144px"
-                      className="max-h-8 w-auto max-w-full object-contain grayscale opacity-38 transition duration-300 group-hover:grayscale-0 group-hover:opacity-90"
+                      className={`max-h-8 w-auto max-w-full object-contain grayscale opacity-38 transition duration-300 group-hover:grayscale-0 group-hover:opacity-90 ${logo.className ?? ""}`}
                     />
                   </div>
                 ))}
@@ -312,16 +287,10 @@ export default function AboutPage() {
 
     const timer = window.setInterval(() => {
       setFeaturedMissionIndex((current) => (current + 1) % MISI_PILLARS.length);
-    }, 7000);
+    }, 5000);
 
     return () => window.clearInterval(timer);
   }, [isMissionPaused]);
-
-  const localizedCapabilities = CAPABILITIES.map((capability, index) => ({
-    ...capability,
-    title: copy.capabilities[index]?.title ?? capability.title,
-    desc: copy.capabilities[index]?.desc ?? capability.desc,
-  }));
 
   const localizedMissionPillars = MISI_PILLARS.map((pillar, index) => ({
     ...pillar,
@@ -387,7 +356,7 @@ export default function AboutPage() {
               {copy.whoP1}
             </p>
 
-            <p className="mt-6 text-base font-medium leading-[1.75] text-black/82 md:text-lg">
+            <p className="mt-6 text-[15px] leading-[1.8] text-black/65 md:text-base md:leading-[1.85]">
               {copy.whoP2}
             </p>
           </div>
@@ -462,7 +431,7 @@ export default function AboutPage() {
               <div className="relative aspect-[5/4] overflow-hidden rounded-[14px] border border-black/5 bg-[#0B1F46] shadow-[0_40px_120px_-30px_rgba(11,44,107,0.18)]">
 
                 <Image
-                  src="/asset/bsksims-representatives.webp"
+                  src="/asset/bsksims.webp"
                   alt="Perjalanan Kami BinaHub"
                   fill
                   className="object-cover object-[60%_center] scale-[1.02]"
@@ -483,29 +452,6 @@ export default function AboutPage() {
             description={copy.proofDesc}
             stats={copy.proofStats}
           />
-        </div>
-      </section>
-
-      {/* Positioning & Capabilities Grid */}
-      <section className="relative overflow-hidden py-20 md:py-28 px-6 md:px-12 lg:px-20 bg-[linear-gradient(to_bottom,#FFFFFF,#F8F9FA)]">
-        <div className="pointer-events-none absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-white to-transparent" />
-        <div className="pointer-events-none absolute left-0 top-0 h-full w-28 bg-[linear-gradient(90deg,rgba(11,44,107,0.035),transparent)]" />
-
-        <div className="relative max-w-[1428px] mx-auto overflow-x-hidden">
-          <div className="grid lg:grid-cols-[0.94fr_1fr] gap-10 lg:gap-20 items-end mb-14 lg:mb-18">
-            <div>
-              <Tag>{copy.positionTag}</Tag>
-
-              <h2 className="mt-6 md:mt-8 max-w-[620px] text-4xl md:text-5xl lg:text-5xl xl:text-[62px] font-light tracking-[-0.055em] leading-[1.02] text-[#0B2C6B]">
-                {copy.positionTitle}
-              </h2>
-            </div>
-
-            <p className="max-w-[560px] text-base md:text-lg text-black/64 font-light leading-[1.85] lg:pb-3">
-              {copy.positionDesc}
-            </p>
-          </div>
-
         </div>
       </section>
 
@@ -608,8 +554,8 @@ export default function AboutPage() {
                   onMouseLeave={() => setIsMissionPaused(false)}
                   transition={{ delay: missionIndex * 0.08, duration: 0.7, ease: premiumEase }}
                   className={`group/mission relative col-span-12 flex min-h-[190px] flex-col justify-center overflow-hidden rounded-[12px] border p-8 py-10 shadow-sm transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] hover:shadow-md md:col-span-4 ${isFeaturedMission
-                      ? "bg-[#183F82] border-[#183F82] text-white shadow-[#0B2C6B]/14 hover:border-[#D9A441]/35"
-                      : "bg-white border-black/[0.04] hover:border-[#D9A441]/30"
+                    ? "bg-[#183F82] border-[#183F82] text-white shadow-[#0B2C6B]/14 hover:border-[#D9A441]/35"
+                    : "bg-white border-black/[0.04] hover:border-[#D9A441]/30"
                     }`}
                 >
                   <div
@@ -618,16 +564,16 @@ export default function AboutPage() {
                   />
                   <div
                     className={`pointer-events-none absolute inset-0 transition-opacity duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${isFeaturedMission
-                        ? "opacity-100 bg-[radial-gradient(circle_at_82%_18%,rgba(217,164,65,0.1),transparent_34%)]"
-                        : "opacity-0"
+                      ? "opacity-100 bg-[radial-gradient(circle_at_82%_18%,rgba(217,164,65,0.1),transparent_34%)]"
+                      : "opacity-0"
                       }`}
                   />
                   <motion.div
                     whileHover={{ y: -2, rotate: -3 }}
                     transition={{ duration: 0.28, ease: "easeOut" }}
                     className={`relative z-10 mb-4 flex h-10 w-10 items-center justify-center rounded-[10px] border transition-colors duration-700 ${isFeaturedMission
-                        ? "border-white/12 bg-white/[0.06] text-[#D9A441]"
-                        : "border-black/10 text-[#0B2C6B]"
+                      ? "border-white/12 bg-white/[0.06] text-[#D9A441]"
+                      : "border-black/10 text-[#0B2C6B]"
                       }`}
                   >
                     {pillar.icon}
@@ -658,8 +604,8 @@ export default function AboutPage() {
                   onMouseLeave={() => setIsMissionPaused(false)}
                   transition={{ delay: missionIndex * 0.08, duration: 0.7, ease: premiumEase }}
                   className={`group/mission relative col-span-12 flex min-h-[190px] flex-col justify-center overflow-hidden rounded-[12px] border p-8 py-10 shadow-sm transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] hover:shadow-md md:col-span-3 ${isFeaturedMission
-                      ? "bg-[#183F82] border-[#183F82] text-white shadow-[#0B2C6B]/14 hover:border-[#D9A441]/35"
-                      : "bg-white border-black/[0.04] hover:border-[#D9A441]/30"
+                    ? "bg-[#183F82] border-[#183F82] text-white shadow-[#0B2C6B]/14 hover:border-[#D9A441]/35"
+                    : "bg-white border-black/[0.04] hover:border-[#D9A441]/30"
                     }`}
                 >
                   <div
@@ -668,16 +614,16 @@ export default function AboutPage() {
                   />
                   <div
                     className={`pointer-events-none absolute inset-0 transition-opacity duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${isFeaturedMission
-                        ? "opacity-100 bg-[radial-gradient(circle_at_82%_18%,rgba(217,164,65,0.1),transparent_34%)]"
-                        : "opacity-0"
+                      ? "opacity-100 bg-[radial-gradient(circle_at_82%_18%,rgba(217,164,65,0.1),transparent_34%)]"
+                      : "opacity-0"
                       }`}
                   />
                   <motion.div
                     whileHover={{ y: -2, rotate: -3 }}
                     transition={{ duration: 0.28, ease: "easeOut" }}
                     className={`relative z-10 mb-4 flex h-10 w-10 items-center justify-center rounded-[10px] border transition-colors duration-700 ${isFeaturedMission
-                        ? "border-white/12 bg-white/[0.06] text-[#D9A441]"
-                        : "border-black/10 text-[#0B2C6B]"
+                      ? "border-white/12 bg-white/[0.06] text-[#D9A441]"
+                      : "border-black/10 text-[#0B2C6B]"
                       }`}
                   >
                     {pillar.icon}

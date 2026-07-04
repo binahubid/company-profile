@@ -21,7 +21,7 @@ const SOCIAL_LINKS = [
   },
   {
     label: "LinkedIn",
-    href: "https://linkedin.com/company/binahub",
+    href: "https://www.linkedin.com/company/binahubid/",
     icon: LinkedinIcon,
   },
   {

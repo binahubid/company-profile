@@ -57,8 +57,8 @@ const COPY = {
       "Dampak tidak diukur dengan indikator yang jelas"
     ],
     synergyTitle: <>Jawaban di Dalam <br /><span className="text-[#D9A441] font-bold italic">Satu Layanan Terintegrasi.</span></>,
-    synergyDesc: "Setiap layanan BinaHub dirancang untuk saling melengkapi, memastikan transformasi yang berkesinambungan dari penggalian akar masalah hingga akselerasi kinerja nyata.",
-    exploreTag: "EXPLORE THE HUB",
+    synergyDesc: "Setiap layanan BinaHub dirancang untuk saling melengkapi dan saling menguatkan untuk memastikan transformasi yang berkesinambungan.",
+    exploreTag: "EKSPLORASI LAYANAN KAMI",
     exploreTitle: <>Solusi Pembelajaran & <br />Pengembangan Terintegrasi.</>,
     detailBadge: "Pilih Layanan Berdasarkan Kebutuhan",
     learnDetail: "PELAJARI DETAIL",
@@ -83,8 +83,8 @@ const COPY = {
       "Impact is not measured with clear indicators"
     ],
     synergyTitle: <>The answer sits inside <br /><span className="text-[#D9A441] font-bold italic">one integrated service.</span></>,
-    synergyDesc: "Every BinaHub service is designed to complement the others, ensuring continuous transformation from root-cause discovery to real performance acceleration.",
-    exploreTag: "EXPLORE THE HUB",
+    synergyDesc: "Every BinaHub service is designed to complement and reinforce each other to ensure continuous transformation.",
+    exploreTag: "EXPLORE OUR SERVICES",
     exploreTitle: <>Integrated Learning & <br />Development Solutions.</>,
     detailBadge: "Choose a Service Based on Your Need",
     learnDetail: "LEARN MORE",

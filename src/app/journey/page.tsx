@@ -15,7 +15,7 @@ const chapters = [
     emphasis: "Berbasis Pengalaman",
     image: "/BDN.png",
     imageAlt: "BDN Team Building 2010",
-    imageMode: "contain",
+    imageMode: "cover",
     kicker: "Heritage Since 2010",
     drop: "B",
     body: [
@@ -47,14 +47,14 @@ const chapters = [
     year: "Global",
     title: "Simulasi Bisnis Global",
     emphasis: "",
-    image: "/asset/bsksims-representatives.webp",
+    image: "/asset/bsksims.webp",
     imageAlt: "BSKSims Strategic Partnerships",
     imageMode: "cover",
     kicker: "Global Simulation",
     drop: "K",
     body: [
       <>
-        omitmen kami dalam membawa standar terbaik diwujudkan dengan menjadi mitra resmi di Indonesia dari <span className="font-bold">BSKSims (www.bsksims.com)</span> — penyedia platform simulasi keputusan strategis terkemuka asal Amerika Serikat.
+        omitmen kami dalam membawa standar terbaik diwujudkan dengan menjadi mitra resmi di Indonesia dari <span className="font-bold">BSKSims (www.bsksims.com)</span> — penyedia platform simulasi keputusan strategis terkemuka asal Amerika.
       </>,
       <>Melalui kolaborasi global ini, kami mengintegrasikan teknologi simulasi bisnis ke dalam sistem pengembangan kepemimpinan dan asesmen talenta di Indonesia. Simulasi interaktif ini memaksa para pemimpin masa depan untuk mengambil keputusan taktis secara presisi di tengah dinamika pasar digital yang dinamis dan kompetitif.</>,
     ],
@@ -72,7 +72,7 @@ const chapters = [
     body: [
       <>unia kerja terus bergerak dengan kecepatan disrupsi yang luar biasa. Masuknya era kecerdasan buatan (AI) dan otomatisasi membawa tantangan baru bagi eksistensi manusia di dalam organisasi.</>,
       <>
-        BinaHub lahir sebagai <span className="font-bold">sister company</span> BDN untuk menjawab tantangan makro ini. Jika BDN berfokus penuh pada pelatihan berbasis pengalaman (<span className="font-bold">experiential learning</span>), BinaHub hadir melangkah lebih jauh sebagai <span className="font-bold">mitra transformasi organisasi menyeluruh</span> yang menyinergikan kapasitas manusia, kedalaman budaya kerja, kekuatan ekosistem teknologi, dan ketepatan data analitik AI.
+        BinaHub lahir sebagai <span className="italic">evolusi</span> BDN untuk menjawab tantangan makro ini. Jika BDN berfokus penuh pada pelatihan berbasis pengalaman (<span className="font-bold">experiential learning</span>), BinaHub hadir melangkah lebih jauh sebagai <span className="font-bold">mitra transformasi organisasi menyeluruh</span> yang menyinergikan kapasitas manusia, kedalaman budaya kerja, kekuatan ekosistem teknologi, dan analitik AI.
       </>,
     ],
   },
@@ -86,7 +86,7 @@ const chaptersEn: typeof chapters = [
     emphasis: "Through Experience",
     image: "/BDN.png",
     imageAlt: "BDN Team Building 2010",
-    imageMode: "contain",
+    imageMode: "cover",
     kicker: "Heritage Since 2010",
     drop: "B",
     body: [
@@ -118,7 +118,7 @@ const chaptersEn: typeof chapters = [
     year: "Global",
     title: "Global Business Simulation",
     emphasis: "",
-    image: "/asset/bsksims-representatives.webp",
+    image: "/asset/bsksims.webp",
     imageAlt: "BSKSims Strategic Partnerships",
     imageMode: "cover",
     kicker: "Global Simulation",
@@ -143,38 +143,41 @@ const chaptersEn: typeof chapters = [
     body: [
       <>he world of work continues to move at extraordinary disruption speed. The rise of artificial intelligence and automation brings new challenges for human existence inside organizations.</>,
       <>
-        BinaHub was born as BDN&apos;s <span className="font-bold">sister company</span> to answer this macro challenge. If BDN focused fully on experience-based training (<span className="font-bold">experiential learning</span>), BinaHub goes further as a <span className="font-bold">holistic organizational transformation partner</span> that connects human capacity, cultural depth, technology ecosystem strength, and AI data analytics precision.
+        BinaHub was born as BDN&apos;s <span className="italic">evolution</span> to answer this macro challenge. If BDN focused fully on experience-based training (<span className="font-bold">experiential learning</span>), BinaHub goes further as a <span className="font-bold">holistic organizational transformation partner</span> that connects human capacity, cultural depth, technology ecosystem strength, and AI analytics.
       </>,
     ],
   },
 ];
 
-const BDN_LOGOS = [
-  { name: "Acer", src: "/partner/acer.png" },
-  { name: "Astra Honda Motor", src: "/partner/AHM.svg" },
-  { name: "AirNav Indonesia", src: "/partner/airnav.webp" },
+const BDN_LOGOS: { name: string; src: string; className?: string }[] = [
+  { name: "Acer", src: "/partner/acer.png", className: "scale-90" },
+  { name: "Astra Honda Motor", src: "/partner/AHM.svg", className: "scale-[2.25]" },
+  { name: "AirNav Indonesia", src: "/partner/airnav.webp", className: "scale-150" },
   { name: "Aldena", src: "/partner/Aldena.png" },
-  { name: "Alkagra", src: "/partner/alkagra.png" },
+  { name: "Alkagra", src: "/partner/alkagra.png", className: "scale-90" },
+  { name: "Bata", src: "/partner/bata.webp", className: "scale-90" },
   { name: "Castrol", src: "/partner/castrol.png" },
-  { name: "Chandra Asri", src: "/partner/chandraasri.png" },
-  { name: "Ciputra", src: "/partner/ciputra.png" },
+  { name: "Chandra Asri", src: "/partner/chandraasri.png", className: "scale-110" },
+  { name: "Ciputra", src: "/partner/ciputra.png", className: "scale-110" },
   { name: "Dattabot", src: "/partner/dattabot.png" },
   { name: "DDI", src: "/partner/ddi.png" },
-  { name: "Holcim", src: "/partner/holcim.png" },
-  { name: "IBCSD", src: "/partner/ibcsd.png" },
-  { name: "Indosat", src: "/partner/indosat.png" },
+  { name: "Holcim", src: "/partner/holcim.png", className: "scale-110" },
+  { name: "IBCSD", src: "/partner/ibcsd.png", className: "scale-110" },
+  { name: "Indosat", src: "/partner/indosat.png", className: "scale-125" },
+  { name: "Kompas Gramedia", src: "/partner/kompas-gramedia.svg", className: "scale-110" },
   { name: "Kiroyan", src: "/partner/kiroyan.png" },
-  { name: "MS Coal", src: "/partner/mscoal.png" },
+  { name: "MS Coal", src: "/partner/mscoal.png", className: "scale-90" },
+  { name: "PTC", src: "/partner/ptc.webp", className: "scale-110" },
   { name: "Prowell Energy", src: "/partner/prowellenergy.png" },
   { name: "Safran", src: "/partner/safran.svg" },
-  { name: "Sampoerna", src: "/partner/sampurna.png" },
-  { name: "Sarana Jaya", src: "/partner/saranajaya.webp" },
+  { name: "Sampoerna", src: "/partner/sampurna.png", className: "scale-125" },
+  { name: "Sarana Jaya", src: "/partner/saranajaya.webp", className: "scale-110" },
   { name: "Siap Siaga", src: "/partner/siapsiaga.png" },
-  { name: "Sqiva", src: "/partner/Sqiva.png" },
+  { name: "Sqiva", src: "/partner/Sqiva.png", className: "scale-90" },
   { name: "Swisscontact", src: "/partner/swisscontact.png" },
-  { name: "Syngenta", src: "/partner/syngenta.png" },
+  { name: "Syngenta", src: "/partner/syngenta.png", className: "scale-90" },
   { name: "Telin", src: "/partner/Telin.png" },
-  { name: "Telkom Infra", src: "/partner/Telkomimetra.png" },
+  { name: "Telkom Infra", src: "/partner/Telkomimetra.png", className: "scale-110" },
   { name: "Transcorp", src: "/partner/transcorp.svg" },
   { name: "Umira", src: "/partner/umira.png" },
 ];
@@ -184,15 +187,15 @@ const COPY = {
     tag: "TENTANG KAMI",
     title: "Perjalanan",
     titleAccent: "Kami.",
-    desc: "Menghubungkan rekam jejak pelatihan berbasis pengalaman selama 15 tahun menuju gerbang transformasi organisasi masa depan di era AI.",
-    meta: "Sister company of PT Bina Daya Nugraha - Est 2010",
-    quote: "Masa depan tidak hanya membutuhkan organisasi yang lebih cerdas secara teknologi, tetapi juga organisasi yang jauh lebih matang secara manusiawi.",
-    cite: "BinaHub Filosofi Transformasi",
+    desc: "Menghubungkan rekam jejak pelatihan berbasis pengalaman selama 16 tahun menuju gerbang transformasi organisasi masa depan di era AI.",
+    meta: "",
+    quote: "Dukungan manajemen, kapabilitas SDM, dan sistem pendukung yang sesuai akan mendorong transformasi lebih efektif dan memberikan dampak berkelanjutan bagi bisnis.",
+    cite: "Filosofi Transformasi BinaHub",
     proofEyebrow: "Arsip Rekam Jejak BDN",
     proofTitle: "Pengalaman yang menjadi fondasi lahirnya BinaHub.",
-    proofDesc: "Selama lebih dari 15 tahun, Bina Daya Nugraha telah mendampingi berbagai organisasi dalam perjalanan pembelajaran, pengembangan kepemimpinan, dan transformasi organisasi. Sebagian organisasi berikut menjadi bagian dari perjalanan tersebut.",
+    proofDesc: "Selama lebih dari 16 tahun, Bina Daya Nugraha telah mendampingi berbagai organisasi dalam perjalanan pembelajaran, pengembangan kepemimpinan, dan transformasi organisasi. Sebagian organisasi berikut menjadi bagian dari perjalanan tersebut.",
     proofStats: [
-      { value: "15+", label: "Tahun Pengalaman" },
+      { value: "16+", label: "Tahun Pengalaman" },
       { value: "10.000+", label: "Peserta" },
       { value: "80+", label: "Organisasi Nasional" },
     ],
@@ -202,15 +205,15 @@ const COPY = {
     tag: "ABOUT US",
     title: "Our",
     titleAccent: "Journey.",
-    desc: "Connecting 15 years of experience-based learning track record to the gateway of future organizational transformation in the AI era.",
-    meta: "Sister company of PT Bina Daya Nugraha - Est 2010",
-    quote: "The future does not only need organizations that are more technologically intelligent, but also organizations that are far more humanly mature.",
+    desc: "Connecting 16 years of experience-based learning track record to the gateway of future organizational transformation in the AI era.",
+    meta: "",
+    quote: "Management support, HR capabilities, and appropriate supporting systems will drive more effective transformation and deliver sustainable impact for business.",
     cite: "BinaHub Transformation Philosophy",
     proofEyebrow: "BDN Track Record Archive",
     proofTitle: "Experience that became the foundation for BinaHub.",
-    proofDesc: "For more than 15 years, Bina Daya Nugraha has accompanied organizations through learning, leadership development, and organizational transformation journeys. The organizations below became part of that journey.",
+    proofDesc: "For more than 16 years, Bina Daya Nugraha has accompanied organizations through learning, leadership development, and organizational transformation journeys. The organizations below became part of that journey.",
     proofStats: [
-      { value: "15+", label: "Years of Experience" },
+      { value: "16+", label: "Years of Experience" },
       { value: "10,000+", label: "Participants" },
       { value: "80+", label: "National Organizations" },
     ],
@@ -364,7 +367,7 @@ function BdnArchiveWall({
                 width={138}
                 height={52}
                 sizes="(max-width: 640px) 50vw, (max-width: 1280px) 25vw, 180px"
-                className="max-h-9 w-auto max-w-full object-contain grayscale invert opacity-48 transition duration-300 group-hover:invert-0 group-hover:grayscale-0 group-hover:opacity-95"
+                className={`max-h-9 w-auto max-w-full object-contain grayscale invert opacity-48 transition duration-300 group-hover:invert-0 group-hover:grayscale-0 group-hover:opacity-95 ${logo.className ?? ""}`}
               />
             </motion.div>
           ))}

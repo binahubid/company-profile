@@ -3,6 +3,7 @@ import type { ReactNode } from "react"
 export type NavItemKey = "home" | "about" | "services" | "perspective" | "contact"
 export type NavSubItemKey =
   | "whoWeAre"
+  | "journey"
   | "fromBdn"
   | "vision"
   | "gallery"
@@ -56,6 +57,7 @@ export const layoutCopy = {
           href: "/about",
           submenu: [
             { key: "whoWeAre", label: "Siapa Kami", href: "/about#siapa-kami", desc: "Posisi, arah, dan peran BinaHub sebagai partner transformasi." },
+            { key: "journey", label: "Perjalanan Kami", href: "/journey", desc: "Akar pengalaman, momentum, dan evolusi BinaHub dari BDN menuju ekosistem transformasi masa depan." },
             { key: "fromBdn", label: "Dari BDN ke BinaHub", href: "/from-bdn-to-binahub", desc: "Jembatan legacy 16 tahun menuju ekosistem baru." },
             { key: "vision", label: "Visi & Nilai", href: "/about#visi", desc: "Masa depan yang kami bangun dan prinsip H.U.M.A.N yang menjaganya." },
             { key: "gallery", label: "Gallery", href: "/gallery", desc: "Dokumentasi program, interaksi, dan aktivitas nyata." },
@@ -150,8 +152,8 @@ export const layoutCopy = {
             lebih jauh?
           </>
         ),
-        description: "Hubungi kami untuk konsultasi strategis dan mulailah perjalanan transformasi organisasi Anda.",
-        primary: { label: "Diagnosa Performa", href: "/insight" },
+        description: "Hubungi kami untuk konsultasi lebih lanjut",
+        primary: { label: "Hubungi Kami", href: "/contact" },
         secondary: { label: "Pelajari Lebih Lanjut", href: "/about" },
         variant: "home",
       },
@@ -184,7 +186,7 @@ export const layoutCopy = {
         eyebrow: "LANGKAH BERIKUTNYA",
         title: "Ingin tahu apakah BinaHub tepat untuk organisasi Anda?",
         description: "Mulai dengan sesi Organizational Readiness Diagnostic untuk memahami tantangan spesifik organisasi Anda dan mengevaluasi kecocokan pendekatan kami.",
-        primary: { label: "Jadwalkan Readiness Session", href: "/insight" },
+        primary: { label: "Diagnosa Performa", href: "/insight" },
         variant: "navy",
       },
       "/perspektif/transformation-signals-2026": {
@@ -305,7 +307,7 @@ export const layoutCopy = {
             your future.
           </>
         ),
-        description: "Talk to us for a strategic consultation and begin your organization's transformation journey.",
+        description: "Talk to us for further consultation.",
         primary: { label: "Performance Diagnostic", href: "/insight" },
         secondary: { label: "Learn More", href: "/about" },
         variant: "home",

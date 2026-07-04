@@ -20,8 +20,7 @@ export function CTASection() {
           Tertarik untuk mengetahui<br />lebih jauh?
         </h2>
         <p className="text-lg text-[#4A4C54]/62 font-light leading-relaxed mb-12 max-w-2xl mx-auto">
-          Hubungi kami untuk konsultasi strategis dan mulailah perjalanan transformasi organisasi
-          Anda.
+          Hubungi kami untuk konsultasi lebih lanjut
         </p>
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full max-w-3xl mx-auto">

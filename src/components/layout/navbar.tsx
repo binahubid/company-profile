@@ -329,15 +329,22 @@ export default function Navbar() {
                   return (
                     <div key={link.key} className="flex flex-col overflow-hidden rounded-[14px] border border-[#0B2C6B]/7 bg-white/86 shadow-[0_14px_42px_-38px_rgba(11,44,107,0.36)]">
                       {link.submenu ? (
-                        <button
-                          onClick={() => setActiveMobileDropdown(isExpanded ? null : link.key)}
-                          className={`flex w-full items-center justify-between px-5 py-4 text-left text-[11px] font-bold uppercase tracking-[0.18em] transition-all ${
-                            isExpanded ? "bg-[#0B2C6B] text-white" : "text-[#0B2C6B] hover:bg-[#0B2C6B]/5"
-                          }`}
-                        >
-                          {link.label}
-                          <ChevronDown size={16} className={`transition-transform duration-300 ${isExpanded ? "rotate-180 text-[#D9A441]" : "text-[#D9A441]"}`} />
-                        </button>
+                        <div className="flex items-stretch w-full justify-between">
+                          <Link
+                            href={localizePath(link.href, locale)}
+                            onClick={() => setOpen(false)}
+                            className="flex-1 flex items-center px-5 py-4 text-[11px] font-bold uppercase tracking-[0.18em] text-[#0B2C6B] hover:bg-[#0B2C6B]/5 transition-all"
+                          >
+                            {link.label}
+                          </Link>
+                          <button
+                            onClick={() => setActiveMobileDropdown(isExpanded ? null : link.key)}
+                            className="px-5 flex items-center justify-center border-l border-[#0B2C6B]/8 hover:bg-[#0B2C6B]/5 transition-all"
+                            aria-label="Toggle Submenu"
+                          >
+                            <ChevronDown size={16} className={`transition-transform duration-300 ${isExpanded ? "rotate-180 text-[#D9A441]" : "text-[#D9A441]"}`} />
+                          </button>
+                        </div>
                       ) : (
                         <Link
                           href={localizePath(link.href, locale)}
@@ -360,14 +367,6 @@ export default function Navbar() {
                               className="overflow-hidden"
                             >
                               <div className="flex flex-col gap-2 bg-white/55 px-3 py-3">
-                                {/* Option to visit the main page */}
-                                <Link
-                                  href={localizePath(link.href, locale)}
-                                  onClick={() => setOpen(false)}
-                                  className="rounded-[10px] border border-[#D9A441]/25 bg-[#D9A441]/8 px-4 py-3 text-center text-[9px] font-bold uppercase tracking-[0.2em] text-[#B7831E] transition-all hover:bg-[#D9A441] hover:text-white sm:text-left"
-                                >
-                                  {navCopy.visitMainPage}
-                                </Link>
                                 {link.submenu.map((sub) => (
                                   <Link
                                     key={sub.key}

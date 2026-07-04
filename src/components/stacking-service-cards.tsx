@@ -102,6 +102,7 @@ export function StackingServiceCards() {
                       <Tag>{service.label}</Tag>
                     </div>
                     <h3 className="text-xl font-semibold mb-3">{service.title}</h3>
+                    <p className="text-sm text-black/45 mb-3">{service.subtitle}</p>
                     <p className="text-sm text-black/45 leading-relaxed mb-8 max-w-sm">{service.desc}</p>
                   </div>
                 </div>

@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion, useMotionValueEvent, useScroll, useTransform } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
@@ -30,6 +30,7 @@ export function HumanCoreValuesSection() {
       };
   const sectionRef = useRef<HTMLElement>(null);
   const [stage, setStage] = useState(0);
+  const [finalRevealCount, setFinalRevealCount] = useState(0);
 
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -56,6 +57,24 @@ export function HumanCoreValuesSection() {
   });
 
   const isFinal = stage >= 6;
+
+  useEffect(() => {
+    if (!isFinal) {
+      setFinalRevealCount(0);
+      return;
+    }
+
+    let current = 0;
+    const interval = setInterval(() => {
+      current++;
+      setFinalRevealCount(current);
+      if (current >= 5) {
+        clearInterval(interval);
+      }
+    }, 500);
+
+    return () => clearInterval(interval);
+  }, [isFinal]);
 
   return (
     <section
@@ -126,7 +145,9 @@ export function HumanCoreValuesSection() {
                   } ${isFinal ? "md:pr-44 lg:pr-48 xl:pr-52" : ""}`}
                 >
                   {HUMAN_VALUES.map((value, index) => {
-                    const isVisible = stage > index;
+                    const isVisible = isFinal
+                      ? finalRevealCount > index
+                      : stage > index;
 
                     return (
                       <motion.div
@@ -134,8 +155,12 @@ export function HumanCoreValuesSection() {
                         animate={{
                           opacity: isVisible ? 1 : 0,
                           y: isVisible ? 0 : 14,
+                          scale: isFinal ? 1 : isVisible ? 1 : 0.8,
                         }}
-                        transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+                        transition={{
+                          duration: isFinal ? 4.5 : 0.45,
+                          ease: [0.22, 1, 0.36, 1],
+                        }}
                         className={`min-w-0 text-center transition-[min-height] duration-700 ${
                           isFinal ? "min-h-[116px] md:min-h-[132px]" : "min-h-[54px] sm:min-h-[76px]"
                         }`}
@@ -144,13 +169,24 @@ export function HumanCoreValuesSection() {
                           className={`block leading-none transition-all duration-700 ${
                             isFinal
                               ? "scale-105 text-[clamp(2.7rem,14vw,5.1rem)] font-medium tracking-[0.015em] text-[#D9A441] sm:text-[clamp(4rem,9vw,6.4rem)] lg:text-[8rem]"
-                              : "text-[clamp(1.05rem,4.4vw,1.8rem)] font-light text-[#0B2C6B] sm:text-[clamp(0.98rem,1.72vw,1.52rem)] lg:text-[1.74rem] xl:text-[1.92rem]"
+                              : ""
                           }`}
                           style={{
                             textShadow: "none",
                           }}
                         >
-                          {isFinal ? value.letter : value.word}
+                          {isFinal ? (
+                            value.letter
+                          ) : (
+                            <>
+                              <span className="text-[clamp(1.8rem,7vw,3.2rem)] font-light text-[#0B2C6B] sm:text-[clamp(1.6rem,2.8vw,2.6rem)] lg:text-[2.9rem] xl:text-[3.2rem]">
+                                {value.letter}
+                              </span>
+                              <span className="text-[clamp(0.8rem,3.2vw,1.3rem)] font-light text-[#0B2C6B] sm:text-[clamp(0.72rem,1.28vw,1.1rem)] lg:text-[1.3rem] xl:text-[1.44rem]">
+                                {value.rest}
+                              </span>
+                            </>
+                          )}
                         </span>
                       </motion.div>
                     );
@@ -162,7 +198,7 @@ export function HumanCoreValuesSection() {
 
           <motion.div
             animate={{ opacity: isFinal ? 1 : 0, x: isFinal ? 0 : 18 }}
-            transition={{ duration: 0.48, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: isFinal ? 4.8 : 0.48, ease: [0.22, 1, 0.36, 1] }}
             className="pointer-events-none absolute inset-y-0 right-5 z-20 hidden items-center md:flex lg:right-12"
           >
             <Link
@@ -179,7 +215,7 @@ export function HumanCoreValuesSection() {
 
           <motion.div
             animate={{ opacity: isFinal ? 1 : 0, y: isFinal ? 0 : 10 }}
-            transition={{ duration: 0.48, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: isFinal ? 4.8 : 0.48, ease: [0.22, 1, 0.36, 1] }}
             className="absolute inset-x-5 bottom-5 z-20 md:hidden"
           >
             <Link
