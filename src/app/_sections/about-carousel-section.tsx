@@ -76,7 +76,7 @@ const COPY = {
       {
         id: 1,
         title: "Who We Are",
-        lines: ["Transformation", "Partner & Future", "Capability Builder."],
+        lines: ["Transformation", "Partner & Future", "Capability."],
         type: "hero" as const,
         bgImage: "/asset/slide1.png",
       },

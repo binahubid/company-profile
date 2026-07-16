@@ -73,8 +73,8 @@ const COPY = {
   },
   en: {
     heroTag: "THE INTEGRATED HUB",
-    heroDesc: <>Uniting <span className="text-white">Human Potential</span> and <span className="text-white">Technology</span> in one integrated service ecosystem for real transformation.</>,
-    failureTitle: <>Ineffective <br /><span className="font-bold text-[#C85A2A] underline decoration-[#C85A2A]/30 underline-offset-8">or even failing?</span></>,
+    heroDesc: <>Uniting <span className="text-white">Human Potential</span> and <span className="text-white">Technology</span> in one integrated service for real transformation.</>,
+    failureTitle: <>Why do development initiatives <br /><span className="font-bold text-[#C85A2A] underline decoration-[#C85A2A]/30 underline-offset-8">often fall short — or fail entirely?</span></>,
     failureItems: [
       "Initial diagnosis stops at symptoms, not root causes",
       "Program design is disconnected from business priorities",

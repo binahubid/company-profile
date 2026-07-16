@@ -1,4 +1,5 @@
-import type { Metadata } from "next";
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -6,14 +7,9 @@ import {
   ArrowRight,
   CheckCircle2,
 } from "lucide-react";
-import { defaultLocale, localizePath } from "@/i18n/config";
+import { localizePath } from "@/i18n/config";
+import { useLocale } from "@/i18n/use-locale";
 import { VisualBriefingCarousel } from "./visual-briefing-carousel";
-
-export const metadata: Metadata = {
-  title: "Transformation Signals 2026 | BinaHub Perspektif",
-  description:
-    "Sepuluh sinyal perubahan dunia kerja Indonesia 2026 dan implikasinya bagi strategi transformasi manusia, organisasi, dan AI.",
-};
 
 const SIGNALS = [
   {
@@ -404,7 +400,7 @@ const EVIDENCE_CLIPS = [
 ] as const;
 
 export default function TransformationSignalsPage() {
-  const locale = defaultLocale;
+  const locale = useLocale();
   const isEnglish = locale === "en";
   const signals = isEnglish ? SIGNALS_EN : SIGNALS;
   const prioritySignals = [signals[0], signals[2], signals[3]];

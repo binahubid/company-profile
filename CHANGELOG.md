@@ -3,6 +3,25 @@
 Semua perubahan yang signifikan pada proyek ini akan didokumentasikan di file ini.
 Format yang digunakan berdasarkan [Keep a Changelog](https://keepachangelog.com/id/1.0.0/), dan proyek ini mematuhi aturan [Semantic Versioning](https://semver.org/).
 
+## [0.2.16]
+
+### Fixed
+- Memperbaiki halaman From BDN to BinaHub yang selalu menampilkan konten Indonesia meski diakses via `/en/` — mengganti `defaultLocale` dengan `useLocale()`.
+- Memperbaiki halaman Transformation Signals 2026 yang selalu menampilkan konten Indonesia meski diakses via `/en/` — mengganti `defaultLocale` dengan `useLocale()`.
+- Menambahkan dukungan locale pada halaman Gallery agar konten terjemahan muncul saat diakses via `/en/gallery`.
+- Menyamakan CTA homepage versi Inggris dengan versi Indonesia: judul "Want to learn more?", tombol "Contact Us" mengarah ke `/contact` (sebelumnya "Performance Diagnostic" ke `/insight`).
+- Melengkapi judul EN halaman Ecosystem dari "Ineffective or even failing?" menjadi "Why do development initiatives often fall short — or fail entirely?" agar sesuai dengan versi ID.
+- Menyamakan SLA respons halaman Kontak antara versi ID dan EN: "1x24 jam" diubah menjadi "1 hari kerja" agar konsisten dengan "1 business day" di versi EN.
+- Memperbarui tahun pengalaman di halaman Perjalanan Kami chapter 2 dari "15 tahun" menjadi "16 tahun" (ID dan EN).
+
+### Changed
+- Menyederhanakan teks EN halaman About Legacy agar tidak menambahkan kalimat baru ("We combine people development...") yang tidak ada di versi ID.
+- Mengubah judul carousel About dari "Future Capability Builder" menjadi "Future Capability" agar sesuai dengan "Kapabilitas Masa Depan" di versi ID.
+- Menyamakan deskripsi layanan BinaInsights antara versi ID dan EN: "to encourage smarter growth" (sebelumnya "so growth decisions become sharper").
+- Menyederhanakan deskripsi layanan BinaLab agar sesuai versi ID: "build insight and capability" (sebelumnya menambahkan "behavior awareness" dan "practical").
+- Mengembalikan deskripsi layanan BinaWorks ke "real results" (sebelumnya "measurable results" yang menambahkan klaim lebih spesifik dari versi ID).
+- Menyederhanakan subjudul hero Ecosystem agar sesuai versi ID: "one integrated service" (sebelumnya "one integrated service ecosystem").
+
 ## [0.2.15]
 
 ### Changed

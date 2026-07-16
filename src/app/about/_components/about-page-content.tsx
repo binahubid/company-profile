@@ -163,7 +163,7 @@ const ABOUT_COPY = {
     journeyTag: "LEGACY & JOURNEY",
     journeyTitle: <>Rooted in{" "}<span className="font-medium italic text-[#D9A441]">Human Development.</span></>,
     journeyP1: <>BinaHub was born as an <i>evolution</i> of{" "}<strong className="font-medium text-black/80">BDN (Bina Daya Nugraha)</strong>{" "}— an experience-based training specialist active since 2010, reaching more than 10,000 participants across 80+ organizations, and becoming an official representative of BSKSims, a US-based provider of AI and data-driven business simulations used for training, assessment, and human resource development.</>,
-    journeyP2: <>As a strategic continuation, BinaHub goes further in helping organizations face the era of change, especially automation and artificial intelligence disruption. We combine people development, adaptive leadership, and advanced technology into one more comprehensive transformation ecosystem.</>,
+    journeyP2: <>As a strategic continuation, BinaHub goes further in helping organizations face the era of change, especially automation and artificial intelligence disruption, within a more comprehensive transformation ecosystem.</>,
     journeyCta: "Our Journey",
     bdnCta: "From BDN to BinaHub",
     proofEyebrow: "BDN Track Record",

@@ -37,7 +37,7 @@ const chapters = [
     drop: "S",
     body: [
       <>
-        elama lebih dari 15 tahun berkiprah, BDN telah diberikan kehormatan untuk mendampingi lebih dari <span className="font-bold">10.000 peserta</span> dari berbagai sektor industri. Dari jajaran direksi BUMN, manajer perusahaan multinasional swasta, institusi pendidikan terkemuka, hingga lembaga nirlaba.
+        elama lebih dari 16 tahun berkiprah, BDN telah diberikan kehormatan untuk mendampingi lebih dari <span className="font-bold">10.000 peserta</span> dari berbagai sektor industri. Dari jajaran direksi BUMN, manajer perusahaan multinasional swasta, institusi pendidikan terkemuka, hingga lembaga nirlaba.
       </>,
       <>Setiap modul pembelajaran diuji langsung di lapangan, membentuk mentalitas kolaborasi tangguh, dan melahirkan sinergi tim yang kokoh. Pengalaman nyata inilah yang menjadi bahan bakar utama dalam memahami anatomi budaya organisasi di Indonesia secara mendalam.</>,
     ],
@@ -108,7 +108,7 @@ const chaptersEn: typeof chapters = [
     drop: "O",
     body: [
       <>
-        ver more than 15 years, BDN has had the honor of accompanying more than <span className="font-bold">10,000 participants</span> across industries: state-owned enterprise directors, multinational managers, leading education institutions, and nonprofit organizations.
+        ver more than 16 years, BDN has had the honor of accompanying more than <span className="font-bold">10,000 participants</span> across industries: state-owned enterprise directors, multinational managers, leading education institutions, and nonprofit organizations.
       </>,
       <>Every learning module was tested directly in the field, shaping resilient collaboration and strong team synergy. These real experiences became the foundation for understanding the anatomy of organizational culture in Indonesia.</>,
     ],

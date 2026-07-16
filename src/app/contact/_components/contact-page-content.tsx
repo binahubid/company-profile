@@ -51,7 +51,7 @@ const COPY = {
     },
     loading: "Sedang Mengirim Pesan...",
     submit: "Kirim Inquiry Sekarang",
-    badges: [["1x24 jam", "Estimasi respons tim"], ["Gratis", "Diskusi kebutuhan awal"]],
+    badges: [["1 hari kerja", "Estimasi respons tim"], ["Gratis", "Diskusi kebutuhan awal"]],
     faqTitle: "Pertanyaan sebelum memulai.",
     faqDesc: "Beberapa hal yang biasanya ingin dipastikan sebelum berdiskusi dengan tim BinaHub.",
     faq: [
@@ -61,7 +61,7 @@ const COPY = {
       },
       {
         question: "Berapa lama biasanya tim BinaHub merespons?",
-        answer: "Tim kami biasanya merespons dalam 1x24 jam kerja melalui email atau kontak yang Anda cantumkan di formulir.",
+        answer: "Tim kami biasanya merespons dalam satu hari kerja melalui email atau kontak yang Anda cantumkan di formulir.",
       },
       {
         question: "Apakah BinaHub cocok untuk organisasi kecil?",

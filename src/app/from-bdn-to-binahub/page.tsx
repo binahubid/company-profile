@@ -1,7 +1,9 @@
+"use client";
+
 import { CheckCircle2 } from "lucide-react";
 import Image from "next/image";
 import { Tag } from "@/components/ui/tag";
-import { defaultLocale } from "@/i18n/config";
+import { useLocale } from "@/i18n/use-locale";
 
 const stats = [
   { value: "16+", label: "Tahun pengalaman sejak 2010" },
@@ -131,7 +133,7 @@ const COPY = {
 };
 
 export default function FromBdnToBinaHubPage() {
-  const locale = defaultLocale;
+  const locale = useLocale();
   const copy = COPY[locale];
 
   return (

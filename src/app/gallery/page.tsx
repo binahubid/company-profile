@@ -1,43 +1,80 @@
-import type { Metadata } from "next";
+"use client";
+
 import Image from "next/image";
 import { GALLERY_IMAGES } from "@/data/gallery";
+import { useLocale } from "@/i18n/use-locale";
 
-export const metadata: Metadata = {
-  title: "Gallery | BinaHub",
-  description: "Dokumentasi kegiatan, ruang belajar, dan perjalanan transformasi BinaHub.",
-};
-
-const FEATURED_STORIES = [
-  {
-    image: GALLERY_IMAGES[4],
-    label: "Hero Moment",
-    title: "Ruang belajar yang bergerak bersama.",
-    meta: "Facilitation • Team Engagement • Reflection",
+const COPY = {
+  id: {
+    title: "Dokumentasi perjalanan BinaHub.",
+    description: "Kumpulan momen dari aktivitas pembelajaran, kolaborasi, dan pengembangan kapabilitas yang menjadi bagian dari ekosistem transformasi BinaHub.",
+    featured: [
+      {
+        image: GALLERY_IMAGES[4],
+        label: "Hero Moment",
+        title: "Ruang belajar yang bergerak bersama.",
+        meta: "Facilitation • Team Engagement • Reflection",
+      },
+      {
+        image: GALLERY_IMAGES[7],
+        label: "Collaboration",
+        title: "Interaksi yang membentuk cara kerja baru.",
+        meta: "Workshop • Leadership • Culture",
+      },
+      {
+        image: GALLERY_IMAGES[10],
+        label: "Field Energy",
+        title: "Simulasi dan pengalaman sebagai medium transformasi.",
+        meta: "Experiential Learning • Team Dynamics",
+      },
+    ],
+    stories: {
+      0: { title: "Sesi pembelajaran strategis", meta: "Workshop • Jakarta", weight: "primary" as const },
+      2: { title: "Alineasi tim dalam aksi", meta: "Kolaborasi • Refleksi", weight: "secondary" as const },
+      4: { title: "Transformasi terfasilitasi", meta: "Leadership • Kapabilitas", weight: "primary" as const },
+      7: { title: "Pemecahan masalah bersama", meta: "People • Pembelajaran", weight: "primary" as const },
+      10: { title: "Energi tim experiential", meta: "Simulasi • Outdoor", weight: "secondary" as const },
+      11: { title: "Ekosistem pembelajaran", meta: "Program • Budaya", weight: "secondary" as const },
+    },
   },
-  {
-    image: GALLERY_IMAGES[7],
-    label: "Collaboration",
-    title: "Interaksi yang membentuk cara kerja baru.",
-    meta: "Workshop • Leadership • Culture",
+  en: {
+    title: "BinaHub's journey documented.",
+    description: "A collection of moments from learning activities, collaboration, and capability development that are part of the BinaHub transformation ecosystem.",
+    featured: [
+      {
+        image: GALLERY_IMAGES[4],
+        label: "Hero Moment",
+        title: "Learning spaces that move together.",
+        meta: "Facilitation • Team Engagement • Reflection",
+      },
+      {
+        image: GALLERY_IMAGES[7],
+        label: "Collaboration",
+        title: "Interactions that reshape how we work.",
+        meta: "Workshop • Leadership • Culture",
+      },
+      {
+        image: GALLERY_IMAGES[10],
+        label: "Field Energy",
+        title: "Simulation and experience as transformation mediums.",
+        meta: "Experiential Learning • Team Dynamics",
+      },
+    ],
+    stories: {
+      0: { title: "Strategic learning session", meta: "Workshop • Jakarta", weight: "primary" as const },
+      2: { title: "Team alignment in motion", meta: "Collaboration • Reflection", weight: "secondary" as const },
+      4: { title: "Facilitated transformation", meta: "Leadership • Capability", weight: "primary" as const },
+      7: { title: "Shared problem solving", meta: "People • Learning", weight: "primary" as const },
+      10: { title: "Experiential team energy", meta: "Simulation • Outdoor", weight: "secondary" as const },
+      11: { title: "Learning ecosystem", meta: "Program • Culture", weight: "secondary" as const },
+    },
   },
-  {
-    image: GALLERY_IMAGES[10],
-    label: "Field Energy",
-    title: "Simulasi dan pengalaman sebagai medium transformasi.",
-    meta: "Experiential Learning • Team Dynamics",
-  },
-];
-
-const GALLERY_STORY_COPY: Record<number, { title: string; meta: string; weight: "primary" | "secondary" | "support" }> = {
-  0: { title: "Strategic learning session", meta: "Workshop • Jakarta", weight: "primary" },
-  2: { title: "Team alignment in motion", meta: "Collaboration • Reflection", weight: "secondary" },
-  4: { title: "Facilitated transformation", meta: "Leadership • Capability", weight: "primary" },
-  7: { title: "Shared problem solving", meta: "People • Learning", weight: "primary" },
-  10: { title: "Experiential team energy", meta: "Simulation • Outdoor", weight: "secondary" },
-  11: { title: "Learning ecosystem", meta: "Program • Culture", weight: "secondary" },
 };
 
 export default function GalleryPage() {
+  const locale = useLocale();
+  const copy = COPY[locale];
+
   return (
     <div className="bg-[#F5F7FA] text-[#4A4C54]">
       <section className="relative overflow-hidden px-6 pb-16 pt-36 md:px-12 md:pb-24 md:pt-44 lg:px-20">
@@ -55,36 +92,35 @@ export default function GalleryPage() {
                 Gallery
               </span>
               <h1 className="mt-6 text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-light leading-[1.02] tracking-tight text-[#0B2C6B]">
-                Dokumentasi perjalanan BinaHub.
+                {copy.title}
               </h1>
             </div>
             <p className="max-w-2xl text-base leading-[1.9] text-[#4A4C54]/70 md:text-lg">
-              Kumpulan momen dari aktivitas pembelajaran, kolaborasi, dan pengembangan kapabilitas
-              yang menjadi bagian dari ekosistem transformasi BinaHub.
+              {copy.description}
             </p>
           </div>
 
           <div className="mt-14 grid gap-4 lg:grid-cols-[1.35fr_0.65fr]">
             <figure className="group relative min-h-[520px] overflow-hidden rounded-[14px] border border-white/70 bg-white shadow-[0_30px_90px_-52px_rgba(11,44,107,0.72)]">
               <Image
-                src={FEATURED_STORIES[0].image.src}
-                alt={FEATURED_STORIES[0].image.alt}
+                src={copy.featured[0].image.src}
+                alt={copy.featured[0].image.alt}
                 fill
                 sizes="(min-width: 1024px) 66vw, 100vw"
                 className="object-cover saturate-[0.9] contrast-[1.02] brightness-[1.03] transition-transform duration-[1400ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.025]"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#061A3B]/72 via-[#061A3B]/16 to-white/5" />
               <figcaption className="absolute inset-x-0 bottom-0 p-6 md:p-8">
-                <p className="mb-4 text-[10px] font-bold uppercase tracking-[0.24em] text-[#D9A441]">{FEATURED_STORIES[0].label}</p>
+                <p className="mb-4 text-[10px] font-bold uppercase tracking-[0.24em] text-[#D9A441]">{copy.featured[0].label}</p>
                 <h2 className="max-w-2xl text-3xl font-light leading-tight tracking-tight text-white md:text-5xl">
-                  {FEATURED_STORIES[0].title}
+                  {copy.featured[0].title}
                 </h2>
-                <p className="mt-4 text-xs font-bold uppercase tracking-[0.18em] text-white/48">{FEATURED_STORIES[0].meta}</p>
+                <p className="mt-4 text-xs font-bold uppercase tracking-[0.18em] text-white/48">{copy.featured[0].meta}</p>
               </figcaption>
             </figure>
 
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-1">
-              {FEATURED_STORIES.slice(1).map((story) => (
+              {copy.featured.slice(1).map((story) => (
                 <figure key={story.title} className="group relative min-h-[252px] overflow-hidden rounded-[14px] border border-white/70 bg-white shadow-[0_22px_80px_-56px_rgba(11,44,107,0.65)]">
                   <Image
                     src={story.image.src}
@@ -106,7 +142,7 @@ export default function GalleryPage() {
 
           <div className="mt-5 grid auto-rows-[220px] grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {GALLERY_IMAGES.map((image, index) => {
-              const story = GALLERY_STORY_COPY[index];
+              const story = copy.stories[index as keyof typeof copy.stories];
               const isAnchor = story?.weight === "primary";
               const isSecondary = story?.weight === "secondary";
 
@@ -140,7 +176,7 @@ export default function GalleryPage() {
                   {story && (
                     <figcaption className="absolute inset-x-0 bottom-0 translate-y-2 p-5 opacity-0 transition-all duration-500 group-hover:translate-y-0 group-hover:opacity-100">
                       <p className="mb-2 text-[9px] font-bold uppercase tracking-[0.2em] text-[#D9A441]">
-                        {isAnchor ? "Key Story" : isSecondary ? "Supporting Moment" : "Moment"}
+                        {isAnchor ? (locale === "id" ? "Cerita Utama" : "Key Story") : isSecondary ? (locale === "id" ? "Momen Pendukung" : "Supporting Moment") : (locale === "id" ? "Momen" : "Moment")}
                       </p>
                       <h3 className="text-lg font-light leading-tight text-white">{story.title}</h3>
                       <p className="mt-2 text-[9px] font-bold uppercase tracking-[0.16em] text-white/42">{story.meta}</p>

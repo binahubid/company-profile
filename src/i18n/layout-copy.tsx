@@ -302,13 +302,13 @@ export const layoutCopy = {
       "/": {
         title: (
           <>
-            Start humanizing
+            Want to learn
             <br />
-            your future.
+            more?
           </>
         ),
         description: "Talk to us for further consultation.",
-        primary: { label: "Performance Diagnostic", href: "/insight" },
+        primary: { label: "Contact Us", href: "/contact" },
         secondary: { label: "Learn More", href: "/about" },
         variant: "home",
       },
