@@ -3,6 +3,13 @@
 Semua perubahan yang signifikan pada proyek ini akan didokumentasikan di file ini.
 Format yang digunakan berdasarkan [Keep a Changelog](https://keepachangelog.com/id/1.0.0/), dan proyek ini mematuhi aturan [Semantic Versioning](https://semver.org/).
 
+## [0.2.17]
+
+### Fixed
+- Memperbaiki kerentanan keamanan CPU exhaustion (CWE-407) pada paket `js-yaml` dengan melakukan override versi menjadi `^4.3.0` (sebelumnya `< 4.2.0`).
+- Memperbaiki kerentanan keamanan Cross-site Scripting (XSS) (CWE-79) pada paket `postcss` dengan melakukan override versi menjadi `^8.5.19` (sebelumnya `< 8.5.10`).
+- Memperbaiki warning linter React `react-hooks/set-state-in-effect` pada berkas `human-core-values.tsx` dengan memindahkan logika pengaturan status (`setState`) ke fase rendering (state synchronization saat render) alih-alih di dalam `useEffect`.
+
 ## [0.2.16]
 
 ### Fixed

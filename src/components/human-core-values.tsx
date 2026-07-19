@@ -58,11 +58,16 @@ export function HumanCoreValuesSection() {
 
   const isFinal = stage >= 6;
 
-  useEffect(() => {
+  const [prevIsFinal, setPrevIsFinal] = useState(isFinal);
+  if (isFinal !== prevIsFinal) {
+    setPrevIsFinal(isFinal);
     if (!isFinal) {
       setFinalRevealCount(0);
-      return;
     }
+  }
+
+  useEffect(() => {
+    if (!isFinal) return;
 
     let current = 0;
     const interval = setInterval(() => {
