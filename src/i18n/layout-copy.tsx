@@ -213,6 +213,7 @@ export const layoutCopy = {
           href: "/about",
           submenu: [
             { key: "whoWeAre", label: "Who We Are", href: "/about#siapa-kami", desc: "BinaHub's position, direction, and role as a transformation partner." },
+            { key: "journey", label: "Our Journey", href: "/journey", desc: "The roots of experience and BinaHub's evolution from BDN." },
             { key: "fromBdn", label: "From BDN to BinaHub", href: "/from-bdn-to-binahub", desc: "A bridge from 16 years of legacy into a new ecosystem." },
             { key: "vision", label: "Vision & Values", href: "/about#visi", desc: "The future we build and the H.U.M.A.N principles that guide it." },
             { key: "gallery", label: "Gallery", href: "/gallery", desc: "Program documentation, interactions, and real activities." },
@@ -267,6 +268,7 @@ export const layoutCopy = {
           defaultHref: "/about",
           links: [
             { label: "Who We Are", href: "/about#siapa-kami" },
+            { label: "Our Journey", href: "/journey" },
             { label: "From BDN to BinaHub", href: "/from-bdn-to-binahub" },
             { label: "Vision & Values", href: "/about#visi" },
             { label: "Gallery", href: "/gallery" },

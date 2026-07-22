@@ -2,7 +2,7 @@
 // Override the production URL via the NEXT_PUBLIC_SITE_URL env var when the
 // custom domain (e.g. https://binahub.id) goes live.
 export const SITE_URL = (
-  process.env.NEXT_PUBLIC_SITE_URL ?? "https://preview-binahub.vercel.app"
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://binahub.id"
 ).replace(/\/+$/, "");
 
 export const SITE_NAME = "BinaHub";

@@ -6,6 +6,8 @@ import Footer from "../components/Footer";
 import { ChatBotLoader } from "../components/chat-bot-loader";
 import { SITE_URL, SITE_NAME, SITE_TAGLINE, SITE_DESCRIPTION, SITE_KEYWORDS } from "@/lib/site";
 import { defaultLocale } from "@/i18n/config";
+import { LocaleSync } from "@/components/locale-sync";
+import { JsonLd } from "@/components/json-ld";
 
 const jakartaSans = Plus_Jakarta_Sans({
   subsets: ["latin"],
@@ -35,26 +37,6 @@ export const metadata: Metadata = {
   authors: [{ name: SITE_NAME }],
   creator: SITE_NAME,
   publisher: SITE_NAME,
-  alternates: {
-    canonical: "/id",
-    languages: {
-      id: "/id",
-      en: "/en",
-    },
-  },
-  openGraph: {
-    type: "website",
-    locale: "id_ID",
-    url: "/",
-    siteName: SITE_NAME,
-    title,
-    description: SITE_DESCRIPTION,
-  },
-  twitter: {
-    card: "summary_large_image",
-    title,
-    description: SITE_DESCRIPTION,
-  },
   robots: {
     index: true,
     follow: true,
@@ -80,11 +62,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang={defaultLocale} className={`scroll-smooth ${jakartaSans.variable} ${inter.variable}`}>
+      <head>
+        <JsonLd />
+      </head>
       <body className={`min-h-screen flex flex-col selection:bg-[#0B2C6B] selection:text-white ${jakartaSans.className}`}>
         <Navbar />
         <main className="flex-grow flex flex-col">{children}</main>
         <Footer />
         <ChatBotLoader />
+        <LocaleSync />
       </body>
     </html>
   );

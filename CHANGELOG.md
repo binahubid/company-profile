@@ -5,10 +5,23 @@ Format yang digunakan berdasarkan [Keep a Changelog](https://keepachangelog.com/
 
 ## [0.2.17]
 
+### Added
+- Menambahkan komponen `JsonLd` untuk structured data (Organization, WebSite, ProfessionalService) agar mesin pencari dapat menampilkan rich snippets.
+- Menambahkan komponen `LocaleSync` untuk menyinkronkan atribut `<html lang>` dengan locale aktif dari URL.
+- Menambahkan `generateMetadata` locale-aware pada semua halaman publik (About, Contact, Ecosystem, Insight, Journey, Perspektif, From BDN, Gallery, BinaHub) sehingga title, description, OG, dan canonical berbeda untuk `/id/` dan `/en/`.
+- Menambahkan layout metadata untuk halaman Gallery dan BinaHub yang sebelumnya tidak memiliki metadata sama sekali.
+- Menambahkan link "Our Journey" ke navigasi English (desktop dan mobile) agar halaman Journey ter-index dari versi bahasa Inggris.
+
+### Changed
+- Mengubah `SITE_URL` dari `https://preview-binahub.vercel.app` ke `https://binahub.id`.
+- Menghapus metadata statis dari root layout agar tidak konflik dengan metadata locale-aware dari `[locale]` layouts.
+- Mengubah return type `generateMetadata` menjadi `Promise<Metadata>` agar kompatibel dengan Next.js 16 (async params).
+
 ### Fixed
 - Memperbaiki kerentanan keamanan CPU exhaustion (CWE-407) pada paket `js-yaml` dengan melakukan override versi menjadi `^4.3.0` (sebelumnya `< 4.2.0`).
 - Memperbaiki kerentanan keamanan Cross-site Scripting (XSS) (CWE-79) pada paket `postcss` dengan melakukan override versi menjadi `^8.5.19` (sebelumnya `< 8.5.10`).
 - Memperbaiki warning linter React `react-hooks/set-state-in-effect` pada berkas `human-core-values.tsx` dengan memindahkan logika pengaturan status (`setState`) ke fase rendering (state synchronization saat render) alih-alih di dalam `useEffect`.
+- Memperbaiki case sensitivity gambar icon di `app-binahub` yang menyebabkan 404 pada `/asset/Journey.png` (seharusnya `/asset/journey.png`).
 
 ## [0.2.16]
 
