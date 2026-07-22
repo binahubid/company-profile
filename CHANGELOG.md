@@ -20,6 +20,8 @@ Format yang digunakan berdasarkan [Keep a Changelog](https://keepachangelog.com/
 ### Fixed
 - Memperbaiki kerentanan keamanan CPU exhaustion (CWE-407) pada paket `js-yaml` dengan melakukan override versi menjadi `^4.3.0` (sebelumnya `< 4.2.0`).
 - Memperbaiki kerentanan keamanan Cross-site Scripting (XSS) (CWE-79) pada paket `postcss` dengan melakukan override versi menjadi `^8.5.19` (sebelumnya `< 8.5.10`).
+- Memperbaiki kerentanan keamanan DoS (CWE-400) pada paket `brace-expansion` (CVE-2025-54570) dengan melakukan override versi menjadi `^1.1.16`.
+- Memperbaiki kerentanan keamanan pada paket `sharp` (CVE-2026-33327, CVE-2026-33328, CVE-2026-35590, CVE-2026-35591) dengan melakukan override versi menjadi `^0.35.0`.
 - Memperbaiki warning linter React `react-hooks/set-state-in-effect` pada berkas `human-core-values.tsx` dengan memindahkan logika pengaturan status (`setState`) ke fase rendering (state synchronization saat render) alih-alih di dalam `useEffect`.
 - Memperbaiki case sensitivity gambar icon di `app-binahub` yang menyebabkan 404 pada `/asset/Journey.png` (seharusnya `/asset/journey.png`).
 
