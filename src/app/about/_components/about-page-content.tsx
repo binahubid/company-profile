@@ -1,7 +1,7 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { Compass, Target, ArrowRight, Zap, Shield, Heart, Globe, Cpu, UserCheck, Leaf, Users } from "lucide-react"
+import { Compass, Target, ArrowRight, Cpu, UserCheck, Leaf, Users } from "lucide-react"
 import { useEffect, useState } from "react"
 import Link from "next/link"
 import Image from "next/image"
@@ -9,14 +9,6 @@ import { localizePath } from "@/i18n/config"
 import { useLocale } from "@/i18n/use-locale"
 import { Tag } from "@/components/ui/tag"
 import { CoreValuesSection } from "@/components/core-values-section"
-
-const CAPABILITY_TEXTURES = [
-  "/asset/human-grid.png",
-  "/asset/architecture-lines.png",
-  "/asset/wave-pattern.png",
-  "/asset/leadership-corridor.png",
-  "/asset/ai-globe.png",
-];
 
 const MISI_PILLARS = [
   {
@@ -135,6 +127,7 @@ const ABOUT_COPY = {
     visionTitle: <>Masa depan di mana <span className="italic font-normal">kemanusiaan</span> dan kemajuan berjalan beriringan.</>,
     visionSub: "Kemajuan untuk manusia, manusia untuk kemajuan.",
     visionDesc: <>BinaHub percaya bahwa kemajuan dan kemanusiaan bukanlah dua hal yang saling bertentangan. Teknologi, AI, dan transformasi organisasi seharusnya menjadi sarana untuk <span className="text-[#D9A441] font-semibold">meningkatkan kualitas kehidupan manusia.</span></>,
+    missionLabel: "Misi",
     missionPillars: [
       "Membantu individu berkembang menuju versi terbaik dirinya.",
       "Membantu pemimpin dan organisasi lebih siap menghadapi tantangan masa depan dan beradaptasi dengan perubahan.",
@@ -179,6 +172,7 @@ const ABOUT_COPY = {
     visionTitle: <>A future where <span className="italic font-normal">humanity</span> and progress move together.</>,
     visionSub: "Progress for people, people for progress.",
     visionDesc: <>BinaHub believes progress and humanity are not opposing forces. Technology, AI, and organizational transformation should become a way to <span className="text-[#D9A441] font-semibold">improve the quality of human life.</span></>,
+    missionLabel: "Mission",
     missionPillars: [
       "Helping individuals grow into the best version of themselves.",
       "Helping leaders and organizations be more prepared to face future challenges and adapt to change.",
@@ -568,16 +562,26 @@ export default function AboutPage() {
                       : "opacity-0"
                       }`}
                   />
-                  <motion.div
-                    whileHover={{ y: -2, rotate: -3 }}
-                    transition={{ duration: 0.28, ease: "easeOut" }}
-                    className={`relative z-10 mb-4 flex h-10 w-10 items-center justify-center rounded-[10px] border transition-colors duration-700 ${isFeaturedMission
-                      ? "border-white/12 bg-white/[0.06] text-[#D9A441]"
-                      : "border-black/10 text-[#0B2C6B]"
-                      }`}
-                  >
-                    {pillar.icon}
-                  </motion.div>
+                  <div className="relative z-10 mb-4 flex items-center justify-between">
+                    <motion.div
+                      whileHover={{ y: -2, rotate: -3 }}
+                      transition={{ duration: 0.28, ease: "easeOut" }}
+                      className={`flex h-10 w-10 items-center justify-center rounded-[10px] border transition-colors duration-700 ${isFeaturedMission
+                        ? "border-white/12 bg-white/[0.06] text-[#D9A441]"
+                        : "border-black/10 text-[#0B2C6B]"
+                        }`}
+                    >
+                      {pillar.icon}
+                    </motion.div>
+                    <span
+                      className={`rounded-full px-3 py-1 text-[10px] font-bold uppercase tracking-[0.18em] transition-colors duration-700 ${isFeaturedMission
+                        ? "border border-white/15 bg-white/10 text-[#D9A441]"
+                        : "border border-[#0B2C6B]/10 bg-[#0B2C6B]/[0.04] text-[#0B2C6B]/70"
+                        }`}
+                    >
+                      {copy.missionLabel} {missionIndex + 1}
+                    </span>
+                  </div>
                   <h3 className={`relative z-10 text-lg font-light mb-1.5 transition-colors duration-700 ${isFeaturedMission ? "text-white" : "text-[#0B2C6B]"}`}>
                     {pillar.title}
                   </h3>
@@ -618,16 +622,26 @@ export default function AboutPage() {
                       : "opacity-0"
                       }`}
                   />
-                  <motion.div
-                    whileHover={{ y: -2, rotate: -3 }}
-                    transition={{ duration: 0.28, ease: "easeOut" }}
-                    className={`relative z-10 mb-4 flex h-10 w-10 items-center justify-center rounded-[10px] border transition-colors duration-700 ${isFeaturedMission
-                      ? "border-white/12 bg-white/[0.06] text-[#D9A441]"
-                      : "border-black/10 text-[#0B2C6B]"
-                      }`}
-                  >
-                    {pillar.icon}
-                  </motion.div>
+                  <div className="relative z-10 mb-4 flex items-center justify-between">
+                    <motion.div
+                      whileHover={{ y: -2, rotate: -3 }}
+                      transition={{ duration: 0.28, ease: "easeOut" }}
+                      className={`flex h-10 w-10 items-center justify-center rounded-[10px] border transition-colors duration-700 ${isFeaturedMission
+                        ? "border-white/12 bg-white/[0.06] text-[#D9A441]"
+                        : "border-black/10 text-[#0B2C6B]"
+                        }`}
+                    >
+                      {pillar.icon}
+                    </motion.div>
+                    <span
+                      className={`rounded-full px-3 py-1 text-[10px] font-bold uppercase tracking-[0.18em] transition-colors duration-700 ${isFeaturedMission
+                        ? "border border-white/15 bg-white/10 text-[#D9A441]"
+                        : "border border-[#0B2C6B]/10 bg-[#0B2C6B]/[0.04] text-[#0B2C6B]/70"
+                        }`}
+                    >
+                      {copy.missionLabel} {missionIndex + 1}
+                    </span>
+                  </div>
                   <h3 className={`relative z-10 text-lg font-light mb-1.5 transition-colors duration-700 ${isFeaturedMission ? "text-white" : "text-[#0B2C6B]"}`}>
                     {pillar.title}
                   </h3>
