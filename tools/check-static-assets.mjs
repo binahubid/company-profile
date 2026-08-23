@@ -43,6 +43,8 @@ for (const file of walk(outDir)) {
 
   for (const match of text.matchAll(assetRefPattern)) {
     const ref = match[1];
+    if (ref.includes("${")) continue;
+    if (ref === "/_next/static/immutable") continue;
 
     if (!publicAssetExists(ref)) {
       const relativeFile = path.relative(root, file);
