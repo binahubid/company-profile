@@ -4,7 +4,6 @@ import Image from "next/image";
 import Link from "next/link";
 import {
   ArrowLeft,
-  ArrowRight,
   CheckCircle2,
 } from "lucide-react";
 import { localizePath } from "@/i18n/config";

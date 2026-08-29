@@ -1,10 +1,11 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Mail, Phone, MapPin, Send, CheckCircle2, AlertCircle, ChevronDown } from "lucide-react";
 import { useLocale } from "@/i18n/use-locale";
 import { appApiUrl } from "@/lib/public-api";
+import { readPageAttribution } from "@/lib/attribution";
 
 const COPY = {
   id: {
@@ -149,6 +150,22 @@ export default function ContactPage() {
   const [serverMessage, setServerMessage] = useState("");
   const [openFaq, setOpenFaq] = useState(0);
 
+  useEffect(() => {
+    let cancelled = false;
+    const requestedModules = new URLSearchParams(window.location.search).get("modules")
+      ?.split(",")
+      .map((value) => value.trim())
+      .filter(Boolean);
+    if (!requestedModules?.length) return;
+    const prefix = locale === "en"
+      ? `I would like to discuss these BinaHub modules: ${requestedModules.join(", ")}. `
+      : `Saya ingin mendiskusikan modul BinaHub berikut: ${requestedModules.join(", ")}. `;
+    void Promise.resolve().then(() => {
+      if (!cancelled) setFormData((current) => current.message ? current : { ...current, message: prefix });
+    });
+    return () => { cancelled = true; };
+  }, [locale]);
+
   const validateForm = () => {
     const newErrors: Record<string, string> = {};
     if (!formData.name.trim()) newErrors.name = copy.errors.name;
@@ -184,10 +201,19 @@ export default function ContactPage() {
     setStatus("loading");
 
     try {
+      const moduleCodes = new URLSearchParams(window.location.search).get("modules")
+        ?.split(",")
+        .map((value) => value.trim())
+        .filter(Boolean) || [];
       const response = await fetch(appApiUrl("/api/contact"), {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...formData, locale }),
+        body: JSON.stringify({
+          ...formData,
+          moduleCodes,
+          attribution: readPageAttribution(window.location.href, document.referrer),
+          locale,
+        }),
       });
 
       const data = await response.json();

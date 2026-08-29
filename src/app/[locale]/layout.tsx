@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
 import type { Metadata } from "next";
 import { locales, type Locale } from "@/i18n/config";
-import { SITE_URL, SITE_NAME, SITE_TAGLINE, SITE_DESCRIPTION, SITE_DESCRIPTION_EN, SITE_KEYWORDS, SITE_KEYWORDS_EN } from "@/lib/site";
+import { SITE_NAME, SITE_TAGLINE, SITE_DESCRIPTION, SITE_DESCRIPTION_EN, SITE_KEYWORDS, SITE_KEYWORDS_EN } from "@/lib/site";
 
 export const dynamicParams = false;
 

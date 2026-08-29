@@ -3,6 +3,22 @@
 Semua perubahan yang signifikan pada proyek ini akan didokumentasikan di file ini.
 Format yang digunakan berdasarkan [Keep a Changelog](https://keepachangelog.com/id/1.0.0/), dan proyek ini mematuhi aturan [Semantic Versioning](https://semver.org/).
 
+## [0.2.18] - 2026-08-28
+
+### Added — BinaInsight Acquisition & Public Module Catalog
+
+- Menambahkan halaman pricing bilingual (`/id/pricing` dan `/en/pricing`) untuk menampilkan katalog layanan berbasis modul.
+- Menambahkan CTA katalog menuju inquiry/assessment tanpa menampilkan modul mock atau harga yang belum siap dipublikasikan.
+- Menambahkan penerusan attribution kampanye (`utm_*`, `gclid`, `fbclid`, dan `msclkid`) dari landing page BinaInsight menuju aplikasi assessment.
+
+### Changed
+
+- Menyelaraskan halaman Insight, contact form, sitemap, metadata locale, dan copy publik dengan funnel awareness → assessment → konsultasi BinaHub.
+
+### Verification
+
+- `npm run quality:public` dan `npm run build` lulus pada Next.js 16.3.2.
+
 ## [0.2.17]
 
 ### Added

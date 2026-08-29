@@ -2,6 +2,7 @@
 
 import { LandingStep } from "./_steps/landing-step";
 import { useLocale } from "@/i18n/use-locale";
+import { assessmentUrlWithAttribution } from "@/lib/attribution";
 
 const APP_ORIGIN = (process.env.NEXT_PUBLIC_BINAHUB_APP_URL || "https://app.binahub.id").replace(/\/$/, "");
 
@@ -9,7 +10,8 @@ export default function InsightLandingPage() {
   const locale = useLocale();
 
   const startAssessment = () => {
-    window.location.assign(`${APP_ORIGIN}${locale === "en" ? "/en/insight" : "/insight"}`);
+    const destination = `${APP_ORIGIN}${locale === "en" ? "/en/insight" : "/insight"}`;
+    window.location.assign(assessmentUrlWithAttribution(destination, window.location.href, document.referrer));
   };
 
   return (

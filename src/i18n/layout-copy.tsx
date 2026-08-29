@@ -1,6 +1,6 @@
 import type { ReactNode } from "react"
 
-export type NavItemKey = "home" | "about" | "services" | "perspective" | "contact"
+export type NavItemKey = "home" | "about" | "services" | "pricing" | "perspective" | "contact"
 export type NavSubItemKey =
   | "whoWeAre"
   | "journey"
@@ -85,6 +85,11 @@ export const layoutCopy = {
           ],
         },
         {
+          key: "pricing",
+          label: "Katalog",
+          href: "/pricing",
+        },
+        {
           key: "contact",
           label: "Kontak",
           href: "/contact",
@@ -139,6 +144,7 @@ export const layoutCopy = {
       ] satisfies FooterGroup[],
       popularLinks: [
         { label: "Diagnosa Performa", href: "/insight" },
+        { label: "Katalog Modul", href: "/pricing" },
         { label: "Hubungi Kami", href: "/contact" },
         { label: "Transformation Signals", href: "/perspektif/transformation-signals-2026" },
       ],
@@ -241,6 +247,11 @@ export const layoutCopy = {
           ],
         },
         {
+          key: "pricing",
+          label: "Catalog",
+          href: "/pricing",
+        },
+        {
           key: "contact",
           label: "Contact",
           href: "/contact",
@@ -296,6 +307,7 @@ export const layoutCopy = {
       ] satisfies FooterGroup[],
       popularLinks: [
         { label: "Performance Diagnostic", href: "/insight" },
+        { label: "Module Catalog", href: "/pricing" },
         { label: "Contact Us", href: "/contact" },
         { label: "Transformation Signals", href: "/perspektif/transformation-signals-2026" },
       ],
