@@ -3,6 +3,17 @@
 Semua perubahan yang signifikan pada proyek ini akan didokumentasikan di file ini.
 Format yang digunakan berdasarkan [Keep a Changelog](https://keepachangelog.com/id/1.0.0/), dan proyek ini mematuhi aturan [Semantic Versioning](https://semver.org/).
 
+## [0.2.19] - 2026-08-29
+
+### Security — Phase 7 Integrated UAT
+
+- Menambahkan security headers pada artifact statis Hostinger: HSTS, nosniff, frame denial, referrer policy, permissions policy, dan Content Security Policy.
+- Membatasi sumber font, gambar, frame Google Maps, dan koneksi API sesuai kebutuhan halaman publik.
+
+### Verification
+
+- Public quality gate, pemeriksaan static asset, production build, dan audit dependency production lulus.
+
 ## [0.2.18] - 2026-08-28
 
 ### Added — BinaInsight Acquisition & Public Module Catalog
