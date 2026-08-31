@@ -3,6 +3,13 @@
 Semua perubahan yang signifikan pada proyek ini akan didokumentasikan di file ini.
 Format yang digunakan berdasarkan [Keep a Changelog](https://keepachangelog.com/id/1.0.0/), dan proyek ini mematuhi aturan [Semantic Versioning](https://semver.org/).
 
+## [0.2.21] - 2026-08-30
+
+### Changed — Phase 13 Public Assessment UAT
+
+- Mengubah CTA navbar pada halaman Insight menjadi `Mulai Diagnosa` dan mengarah langsung ke assessment publik di `https://app.binahub.id/insight`.
+- Menyamakan perilaku CTA Insight pada tampilan desktop dan mobile, termasuk padanan bahasa Inggris.
+
 ## [0.2.20] - 2026-08-29
 
 ### Fixed — Hostinger Security Headers

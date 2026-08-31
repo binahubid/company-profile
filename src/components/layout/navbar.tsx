@@ -22,6 +22,14 @@ export default function Navbar() {
   const locale = getLocaleFromPathname(pathname)
   const navCopy = layoutCopy[locale].nav
   const normalizedPathname = stripLocaleFromPathname(pathname || "/")
+  const isInsightPage = normalizedPathname === "/insight"
+  const assessmentOrigin = (process.env.NEXT_PUBLIC_BINAHUB_APP_URL || "https://app.binahub.id").replace(/\/$/, "")
+  const ctaHref = isInsightPage
+    ? `${assessmentOrigin}${locale === "en" ? "/en/insight" : "/insight"}`
+    : localizePath("/insight", locale)
+  const ctaLabel = isInsightPage
+    ? locale === "en" ? "Start Diagnostic" : "Mulai Diagnosa"
+    : navCopy.ctaLabel
 
   useEffect(() => {
     const parseRgb = (color: string) => {
@@ -240,10 +248,10 @@ export default function Navbar() {
           <div className={`relative z-10 flex items-center justify-end gap-4 transition-all duration-500 ${scrolled ? "pointer-events-none -translate-y-4 opacity-0 lg:hidden" : "opacity-100"}`}>
             <LanguageSwitcher />
             <Link
-              href={localizePath("/insight", locale)}
+              href={ctaHref}
               className="hidden h-12 items-center gap-2 rounded-full bg-[#0B2C6B] px-5 text-[10px] font-bold uppercase tracking-[0.13em] text-white shadow-[0_16px_38px_-24px_rgba(11,44,107,0.95)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#071A33] hover:shadow-[0_20px_48px_-26px_rgba(11,44,107,0.78)] active:scale-95 lg:flex"
             >
-              {navCopy.ctaLabel}
+              {ctaLabel}
               <ChevronRight size={12} strokeWidth={2} />
             </Link>
 
@@ -393,11 +401,11 @@ export default function Navbar() {
                 <div className="h-px bg-black/[0.05] my-2 mx-4" />
                 <LanguageSwitcher variant="mobile" onNavigate={() => setOpen(false)} />
                 <Link
-                  href={localizePath("/insight", locale)}
+                  href={ctaHref}
                   onClick={() => setOpen(false)}
                   className="flex w-full items-center justify-center gap-3 rounded-[14px] bg-[#0B2C6B] py-4 text-[11px] font-bold uppercase tracking-[0.18em] text-[#D9A441] shadow-[0_18px_46px_-28px_rgba(11,44,107,0.9)]"
                 >
-                  {navCopy.ctaLabel}
+                  {ctaLabel}
                   <ChevronRight size={18} />
                 </Link>
               </div>
