@@ -3,6 +3,14 @@
 Semua perubahan yang signifikan pada proyek ini akan didokumentasikan di file ini.
 Format yang digunakan berdasarkan [Keep a Changelog](https://keepachangelog.com/id/1.0.0/), dan proyek ini mematuhi aturan [Semantic Versioning](https://semver.org/).
 
+## [0.2.22] - 2026-09-01
+
+### Changed — Dynamic Public Catalog
+
+- Menghubungkan halaman Katalog dengan model publik v0.17.0 yang dikelola admin, termasuk deskripsi produk, featured state, deliverables, durasi, dan minimum quantity.
+- Memastikan website hanya menampilkan produk/modul yang sengaja dipublikasikan, siap, aktif, dan non-mock oleh API.
+- Mempertahankan CTA assessment serta pemilihan modul untuk konsultasi tanpa mengubah alur inquiry.
+
 ## [0.2.21] - 2026-08-30
 
 ### Changed — Phase 13 Public Assessment UAT

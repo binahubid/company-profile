@@ -9,19 +9,29 @@ import { appApiUrl } from "@/lib/public-api";
 type CatalogModule = {
   id: string;
   code: string;
+  slug: string;
   name: string;
   description: string | null;
   standardScope: string | null;
+  deliverables: string | null;
+  outOfScope: string | null;
   pricingUnit: string;
   basePrice: number;
+  minimumQuantity: number;
   currency: string;
+  durationLabel: string | null;
+  featured: boolean;
   catalogVersion: string;
 };
 
 type CatalogProduct = {
   key: string;
+  slug: string;
   name: string;
   objective: string | null;
+  shortDescription: string | null;
+  description: string | null;
+  featured: boolean;
   modules: CatalogModule[];
 };
 
@@ -34,8 +44,11 @@ const COPY = {
     unavailable: "Katalog publik sedang disiapkan.",
     unavailableBody: "Modul yang belum memiliki scope dan harga resmi tidak akan ditampilkan. Anda tetap dapat mendiskusikan kebutuhan bersama tim kami.",
     free: "Gratis",
-    priceNote: "Harga belum termasuk pajak dan dapat berubah bila scope menjadi custom.",
+    priceNote: "Harga yang ditampilkan adalah harga dasar; pajak, potongan, dan scope custom mengikuti proposal yang telah direview.",
     scope: "Scope standar",
+    deliverables: "Hasil yang diterima",
+    duration: "Estimasi durasi",
+    minimum: "Minimum",
     select: "Pilih modul",
     selected: "Dipilih",
     ask: "Diskusikan modul terpilih",
@@ -52,8 +65,11 @@ const COPY = {
     unavailable: "The public catalog is being prepared.",
     unavailableBody: "Modules without an approved scope and price are not displayed. You can still discuss your needs with our team.",
     free: "Free",
-    priceNote: "Prices exclude tax and may change when the scope becomes custom.",
+    priceNote: "Displayed prices are base prices; tax, withholding, and custom scope follow the reviewed proposal.",
     scope: "Standard scope",
+    deliverables: "What you receive",
+    duration: "Estimated duration",
+    minimum: "Minimum",
     select: "Select module",
     selected: "Selected",
     ask: "Discuss selected modules",
@@ -145,7 +161,7 @@ export default function CatalogPageContent() {
                 <div className="mb-6 flex flex-wrap items-end justify-between gap-4">
                   <div>
                     <h2 className="text-2xl font-semibold tracking-tight md:text-3xl">{product.name}</h2>
-                    {product.objective && <p className="mt-2 max-w-2xl text-sm leading-6 text-[#0B2C6B]/58">{product.objective}</p>}
+                    {(product.description || product.shortDescription || product.objective) && <p className="mt-2 max-w-2xl text-sm leading-6 text-[#0B2C6B]/58">{product.description || product.shortDescription || product.objective}</p>}
                   </div>
                   <span className="text-xs font-semibold text-[#0B2C6B]/45">{product.modules.length} modul</span>
                 </div>
@@ -157,7 +173,7 @@ export default function CatalogPageContent() {
                       <article key={module.id} className={`flex min-h-[330px] flex-col rounded-[18px] border bg-white p-6 transition-colors ${isSelected ? "border-[#D9A441]" : "border-black/[0.06]"}`}>
                         <div className="flex items-start justify-between gap-4">
                           <span className="rounded-full bg-[#0B2C6B]/6 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.12em]">{module.code}</span>
-                          <span className="text-xs text-[#0B2C6B]/38">{module.catalogVersion}</span>
+                          <span className="text-xs text-[#0B2C6B]/38">{module.featured ? `${locale === "id" ? "Unggulan" : "Featured"} · ` : ""}{module.catalogVersion}</span>
                         </div>
                         <h3 className="mt-6 text-xl font-semibold leading-snug">{module.name}</h3>
                         <p className="mt-3 text-sm font-light leading-6 text-[#0B2C6B]/60">{module.description}</p>
@@ -167,9 +183,16 @@ export default function CatalogPageContent() {
                             <p className="mt-1 text-xs leading-5 text-[#0B2C6B]/68">{module.standardScope}</p>
                           </div>
                         )}
+                        {module.deliverables && (
+                          <div className="mt-5 border-t border-[#0B2C6B]/8 pt-4">
+                            <p className="text-[10px] font-bold uppercase tracking-[0.15em] text-[#0B2C6B]/42">{copy.deliverables}</p>
+                            <p className="mt-1 text-xs leading-5 text-[#0B2C6B]/68">{module.deliverables}</p>
+                          </div>
+                        )}
                         <div className="mt-auto pt-7">
                           <p className="text-2xl font-semibold">{formatPrice(module, copy.free)}</p>
                           <p className="mt-1 text-xs text-[#0B2C6B]/45">{module.basePrice > 0 ? `/ ${module.pricingUnit}` : module.pricingUnit}</p>
+                          {(module.durationLabel || module.minimumQuantity > 1) && <p className="mt-2 text-[11px] text-[#0B2C6B]/52">{module.durationLabel ? `${copy.duration}: ${module.durationLabel}` : ""}{module.durationLabel && module.minimumQuantity > 1 ? " · " : ""}{module.minimumQuantity > 1 ? `${copy.minimum}: ${module.minimumQuantity}` : ""}</p>}
                           {isAssessment ? (
                             <a href={localizePath("/insight", locale)} className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-[#0B2C6B] px-4 py-3 text-sm font-bold text-white">{copy.assessment}<ArrowRight size={15} /></a>
                           ) : (
