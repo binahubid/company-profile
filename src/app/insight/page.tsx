@@ -3,6 +3,7 @@
 import { LandingStep } from "./_steps/landing-step";
 import { useLocale } from "@/i18n/use-locale";
 import { assessmentUrlWithAttribution } from "@/lib/attribution";
+import { withInboundJourney } from "@/lib/inbound-journey";
 
 const APP_ORIGIN = (process.env.NEXT_PUBLIC_BINAHUB_APP_URL || "https://app.binahub.id").replace(/\/$/, "");
 
@@ -11,7 +12,10 @@ export default function InsightLandingPage() {
 
   const startAssessment = () => {
     const destination = `${APP_ORIGIN}${locale === "en" ? "/en/insight" : "/insight"}`;
-    window.location.assign(assessmentUrlWithAttribution(destination, window.location.href, document.referrer));
+    // Preserve the opaque first/last-touch ID while the visitor crosses from
+    // the public site to app.binahub.id. Attribution itself is still passed
+    // separately and no contact data appears in this URL.
+    window.location.assign(withInboundJourney(assessmentUrlWithAttribution(destination, window.location.href, document.referrer)));
   };
 
   return (

@@ -3,6 +3,17 @@
 Semua perubahan yang signifikan pada proyek ini akan didokumentasikan di file ini.
 Format yang digunakan berdasarkan [Keep a Changelog](https://keepachangelog.com/id/1.0.0/), dan proyek ini mematuhi aturan [Semantic Versioning](https://semver.org/).
 
+## [Unreleased]
+
+### Added — Phase 20 Unified Inbound Journey
+
+- Menambahkan pencatatan journey anonim first-party untuk landing, katalog, pemilihan modul, inquiry, dan perpindahan ke BinaInsight.
+- Meneruskan ID journey opaque ketika pengunjung berpindah dari website umum ke aplikasi assessment, tanpa email atau identitas penerima dalam URL.
+
+### Safety
+
+- Website hanya mencatat event funnel anonim; tidak mengirim pesan, tidak membuat lead sendiri, dan tidak memanggil Apollo API.
+
 ## [0.2.22] - 2026-09-01
 
 ### Changed — Dynamic Public Catalog

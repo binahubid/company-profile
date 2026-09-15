@@ -5,6 +5,7 @@ import { ArrowRight, CalendarDays, Check, Layers3, Loader2 } from "lucide-react"
 import { useLocale } from "@/i18n/use-locale";
 import { localizePath } from "@/i18n/config";
 import { appApiUrl } from "@/lib/public-api";
+import { recordInboundJourneyEvent } from "@/lib/inbound-journey";
 
 type CatalogModule = {
   id: string;
@@ -125,9 +126,11 @@ export default function CatalogPageContent() {
   const contactHref = `${localizePath("/contact", locale)}?modules=${encodeURIComponent(selected.join(","))}`;
 
   const toggleModule = (code: string) => {
-    setSelected((current) => current.includes(code)
-      ? current.filter((item) => item !== code)
-      : [...current, code]);
+    setSelected((current) => {
+      const next = current.includes(code) ? current.filter((item) => item !== code) : [...current, code];
+      if (!current.includes(code)) void recordInboundJourneyEvent("catalog_module_selected", next).catch(() => undefined);
+      return next;
+    });
   };
 
   return (

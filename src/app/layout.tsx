@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import { Inter, Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 import Navbar from "../components/Navbar";
@@ -8,6 +9,7 @@ import { SITE_URL, SITE_NAME, SITE_TAGLINE, SITE_DESCRIPTION, SITE_KEYWORDS } fr
 import { defaultLocale } from "@/i18n/config";
 import { LocaleSync } from "@/components/locale-sync";
 import { JsonLd } from "@/components/json-ld";
+import { InboundJourneyTracker } from "@/components/inbound-journey-tracker";
 
 const jakartaSans = Plus_Jakarta_Sans({
   subsets: ["latin"],
@@ -66,6 +68,9 @@ export default function RootLayout({
         <JsonLd />
       </head>
       <body className={`min-h-screen flex flex-col selection:bg-[#0B2C6B] selection:text-white ${jakartaSans.className}`}>
+        <Suspense fallback={null}>
+          <InboundJourneyTracker />
+        </Suspense>
         <Navbar />
         <main className="flex-grow flex flex-col">{children}</main>
         <Footer />

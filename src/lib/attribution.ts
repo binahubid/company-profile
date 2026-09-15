@@ -8,6 +8,7 @@ const TRACKING_KEYS = [
   "fbclid",
   "msclkid",
   "source",
+  "bh_journey",
 ] as const;
 
 function locationWithoutQuery(value: string) {

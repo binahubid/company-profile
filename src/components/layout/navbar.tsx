@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect, useRef } from "react"
+import { useState, useEffect, useRef, type MouseEvent } from "react"
 import Link from "next/link"
 import Image from "next/image"
 import { motion, AnimatePresence } from "framer-motion"
@@ -9,6 +9,7 @@ import { usePathname } from "next/navigation"
 import { getLocaleFromPathname, localizePath, stripLocaleFromPathname } from "@/i18n/config"
 import { layoutCopy, type NavItemKey } from "@/i18n/layout-copy"
 import { LanguageSwitcher } from "./language-switcher"
+import { withInboundJourney } from "@/lib/inbound-journey"
 
 export default function Navbar() {
   const [open, setOpen] = useState(false)
@@ -30,6 +31,14 @@ export default function Navbar() {
   const ctaLabel = isInsightPage
     ? locale === "en" ? "Start Diagnostic" : "Mulai Diagnosa"
     : navCopy.ctaLabel
+  const preserveJourneyOnAssessmentStart = isInsightPage
+    ? (event: MouseEvent<HTMLAnchorElement>) => {
+      const trackedHref = withInboundJourney(ctaHref)
+      if (trackedHref === ctaHref) return
+      event.preventDefault()
+      window.location.assign(trackedHref)
+    }
+    : undefined
 
   useEffect(() => {
     const parseRgb = (color: string) => {
@@ -249,6 +258,7 @@ export default function Navbar() {
             <LanguageSwitcher />
             <Link
               href={ctaHref}
+              onClick={preserveJourneyOnAssessmentStart}
               className="hidden h-12 items-center gap-2 rounded-full bg-[#0B2C6B] px-5 text-[10px] font-bold uppercase tracking-[0.13em] text-white shadow-[0_16px_38px_-24px_rgba(11,44,107,0.95)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#071A33] hover:shadow-[0_20px_48px_-26px_rgba(11,44,107,0.78)] active:scale-95 lg:flex"
             >
               {ctaLabel}

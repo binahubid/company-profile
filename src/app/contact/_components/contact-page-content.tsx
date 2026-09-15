@@ -6,6 +6,7 @@ import { Mail, Phone, MapPin, Send, CheckCircle2, AlertCircle, ChevronDown } fro
 import { useLocale } from "@/i18n/use-locale";
 import { appApiUrl } from "@/lib/public-api";
 import { readPageAttribution } from "@/lib/attribution";
+import { readInboundJourneyId } from "@/lib/inbound-journey";
 
 const COPY = {
   id: {
@@ -211,6 +212,7 @@ export default function ContactPage() {
         body: JSON.stringify({
           ...formData,
           moduleCodes,
+          journeyId: readInboundJourneyId(),
           attribution: readPageAttribution(window.location.href, document.referrer),
           locale,
         }),
