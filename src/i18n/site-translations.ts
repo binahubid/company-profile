@@ -183,6 +183,7 @@ export const publicSiteTranslations: Record<string, string> = {
   "5-7 menit": "5-7 minutes",
   "Dikirim ke Email & WhatsApp": "Sent to Email & WhatsApp",
   "Skor 7 dimensi yang presisi": "Precise 7-dimension score",
+  "Skor 7 dimensi berbasis indikator": "Structured 7-dimension score",
   "Analisis + 5 rekomendasi": "Analysis + 5 recommendations",
   "Mulai Diagnosa": "Start Diagnostic",
   "Mulai Asesmen": "Start Assessment",

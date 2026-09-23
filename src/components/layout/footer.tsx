@@ -7,6 +7,7 @@ import { usePathname } from "next/navigation";
 import { ArrowRight, ChevronDown, ChevronRight, Mail, MapPin, Phone } from "lucide-react";
 import { getLocaleFromPathname, localizePath, stripLocaleFromPathname, type Locale } from "@/i18n/config";
 import { layoutCopy, type CtaConfig, type FooterGroup } from "@/i18n/layout-copy";
+import { useLegalModal } from "@/components/legal";
 
 const SOCIAL_LINKS = [
   {
@@ -33,6 +34,7 @@ const SOCIAL_LINKS = [
 
 function FooterContent({ year, locale }: { year: number; locale: Locale }) {
   const copy = layoutCopy[locale].footer;
+  const { openPrivacyModal, openTermsModal } = useLegalModal();
 
   return (
     <>
@@ -100,6 +102,22 @@ function FooterContent({ year, locale }: { year: number; locale: Locale }) {
               Bina<span className="text-[#D9A441]">Hub</span>
             </span>
             . PT Binahub Solusi Transformasi.
+          </div>
+          <div className="flex items-center gap-6">
+            <button
+              type="button"
+              onClick={openPrivacyModal}
+              className="text-[10px] font-bold uppercase tracking-widest text-black/35 transition-colors hover:text-[#D9A441] cursor-pointer"
+            >
+              {copy.privacy}
+            </button>
+            <button
+              type="button"
+              onClick={openTermsModal}
+              className="text-[10px] font-bold uppercase tracking-widest text-black/35 transition-colors hover:text-[#D9A441] cursor-pointer"
+            >
+              {copy.terms}
+            </button>
           </div>
         </div>
       </div>
@@ -224,18 +242,20 @@ function FooterContent({ year, locale }: { year: number; locale: Locale }) {
             . PT Binahub Solusi Transformasi.
           </div>
           <div className="flex items-center gap-8">
-            <Link
-              href="#"
-              className="text-[10px] font-bold uppercase tracking-widest text-black/35 transition-colors hover:text-[#D9A441]"
+            <button
+              type="button"
+              onClick={openPrivacyModal}
+              className="text-[10px] font-bold uppercase tracking-widest text-black/35 transition-colors hover:text-[#D9A441] cursor-pointer"
             >
               {copy.privacy}
-            </Link>
-            <Link
-              href="#"
-              className="text-[10px] font-bold uppercase tracking-widest text-black/35 transition-colors hover:text-[#D9A441]"
+            </button>
+            <button
+              type="button"
+              onClick={openTermsModal}
+              className="text-[10px] font-bold uppercase tracking-widest text-black/35 transition-colors hover:text-[#D9A441] cursor-pointer"
             >
               {copy.terms}
-            </Link>
+            </button>
           </div>
           <div className="text-[10px] font-black uppercase tracking-[0.4em] text-black/18">
             People. Learning. Elevated.

@@ -8,6 +8,7 @@ import { DIMENSIONS } from "../questions";
 import { PixelIcon } from "@/components/pixel-icon";
 import { DiagnosticPreview, ReportPreview } from "./landing-preview";
 import { useLocale } from "@/i18n/use-locale";
+import { useLegalModal } from "@/components/legal";
 
 interface LandingStepProps {
   onStart: () => void;
@@ -48,7 +49,7 @@ const COPY = {
       "BinaInsight membantu organisasi melihat performa secara lebih jernih: apa yang sudah kuat, apa yang menghambat, dan area mana yang perlu diprioritaskan.",
     benefits: [
       {
-        title: "Skor 7 dimensi yang presisi",
+        title: "Skor 7 dimensi berbasis indikator",
         desc: "Insights, Lab, Coach, Play, Academy, Works, dan Impact dihitung dari 49 indikator.",
       },
       {
@@ -82,7 +83,7 @@ const COPY = {
       "BinaInsight helps organizations see performance more clearly: what is already strong, what slows progress, and which areas deserve priority.",
     benefits: [
       {
-        title: "Precise 7-dimension score",
+        title: "Structured 7-dimension score",
         desc: "Insights, Lab, Coach, Play, Academy, Works, and Impact are calculated from 49 indicators.",
       },
       {
@@ -108,6 +109,7 @@ type DimensionIconType = "insights" | "lab" | "coach" | "play" | "academy" | "wo
 
 export function LandingStep({ onStart }: LandingStepProps) {
   const locale = useLocale();
+  const { openPrivacyModal, openTermsModal } = useLegalModal();
   const copy = COPY[locale];
   const dimensionCopy = locale === "en" ? DIMENSION_COPY_EN : DIMENSION_COPY;
   const [activeDimension, setActiveDimension] = useState(0);
@@ -395,6 +397,52 @@ export function LandingStep({ onStart }: LandingStepProps) {
             {copy.start}
             <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
           </button>
+        </div>
+        {/* Analytical Insight Disclaimer & Legal Protection */}
+        <div className="mt-8 text-center text-xs text-black/45 max-w-2xl mx-auto leading-relaxed">
+          {locale === "en" ? (
+            <>
+              BinaInsight diagnostic results provide analytical insights for organizational reflection and leadership development.
+              Protected under our{" "}
+              <button
+                type="button"
+                onClick={openPrivacyModal}
+                className="underline hover:text-[#0B2C6B] font-medium transition-colors cursor-pointer"
+              >
+                Privacy Policy
+              </button>{" "}
+              and{" "}
+              <button
+                type="button"
+                onClick={openTermsModal}
+                className="underline hover:text-[#0B2C6B] font-medium transition-colors cursor-pointer"
+              >
+                Terms & Conditions
+              </button>
+              .
+            </>
+          ) : (
+            <>
+              Hasil Diagnosa Performa merupakan analytical insight berbasis data sebagai bahan refleksi dan perencanaan pengembangan organisasi.
+              Pemrosesan data dilindungi oleh{" "}
+              <button
+                type="button"
+                onClick={openPrivacyModal}
+                className="underline hover:text-[#0B2C6B] font-medium transition-colors cursor-pointer"
+              >
+                Kebijakan Privasi
+              </button>{" "}
+              dan{" "}
+              <button
+                type="button"
+                onClick={openTermsModal}
+                className="underline hover:text-[#0B2C6B] font-medium transition-colors cursor-pointer"
+              >
+                Syarat & Ketentuan
+              </button>{" "}
+              BinaHub.
+            </>
+          )}
         </div>
       </section>
     </motion.div>

@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Mail, Phone, MapPin, Send, CheckCircle2, AlertCircle, ChevronDown } from "lucide-react";
 import { useLocale } from "@/i18n/use-locale";
+import { useLegalModal } from "@/components/legal";
 import { appApiUrl } from "@/lib/public-api";
 import { readPageAttribution } from "@/lib/attribution";
 import { readInboundJourneyId } from "@/lib/inbound-journey";
@@ -137,6 +138,7 @@ const COPY = {
 
 export default function ContactPage() {
   const locale = useLocale();
+  const { openPrivacyModal, openTermsModal } = useLegalModal();
   const copy = COPY[locale];
   const [formData, setFormData] = useState({
     name: "",
@@ -501,6 +503,52 @@ export default function ContactPage() {
                         }`}
                       />
                       {errors.message && <span className="text-[10px] text-rose-500 font-medium">{errors.message}</span>}
+                    </div>
+
+                    
+                    {/* Legal consent note */}
+                    <div className="text-[11px] leading-relaxed text-black/55 bg-black/[0.02] border border-black/[0.05] p-3.5 rounded-xl">
+                      {locale === "en" ? (
+                        <span>
+                          By submitting this form, you acknowledge and agree to our{" "}
+                          <button
+                            type="button"
+                            onClick={openTermsModal}
+                            className="font-semibold text-[#0B2C6B] underline hover:text-[#D9A441] transition-colors cursor-pointer"
+                          >
+                            Terms & Conditions
+                          </button>{" "}
+                          and understand how your data is protected under our{" "}
+                          <button
+                            type="button"
+                            onClick={openPrivacyModal}
+                            className="font-semibold text-[#0B2C6B] underline hover:text-[#D9A441] transition-colors cursor-pointer"
+                          >
+                            Privacy Policy
+                          </button>
+                          .
+                        </span>
+                      ) : (
+                        <span>
+                          Dengan mengirimkan formulir ini, Anda menyetujui{" "}
+                          <button
+                            type="button"
+                            onClick={openTermsModal}
+                            className="font-semibold text-[#0B2C6B] underline hover:text-[#D9A441] transition-colors cursor-pointer"
+                          >
+                            Syarat & Ketentuan
+                          </button>{" "}
+                          serta memahami pelindungan data pribadi Anda sesuai{" "}
+                          <button
+                            type="button"
+                            onClick={openPrivacyModal}
+                            className="font-semibold text-[#0B2C6B] underline hover:text-[#D9A441] transition-colors cursor-pointer"
+                          >
+                            Kebijakan Privasi
+                          </button>{" "}
+                          BinaHub.
+                        </span>
+                      )}
                     </div>
 
                     {/* Submit Button */}

@@ -57,6 +57,8 @@ export const metadata: Metadata = {
   },
 };
 
+import { LegalModalProvider, LegalModal } from "@/components/legal";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -68,14 +70,17 @@ export default function RootLayout({
         <JsonLd />
       </head>
       <body className={`min-h-screen flex flex-col selection:bg-[#0B2C6B] selection:text-white ${jakartaSans.className}`}>
-        <Suspense fallback={null}>
-          <InboundJourneyTracker />
-        </Suspense>
-        <Navbar />
-        <main className="flex-grow flex flex-col">{children}</main>
-        <Footer />
-        <ChatBotLoader />
-        <LocaleSync />
+        <LegalModalProvider>
+          <Suspense fallback={null}>
+            <InboundJourneyTracker />
+          </Suspense>
+          <Navbar />
+          <main className="flex-grow flex flex-col">{children}</main>
+          <Footer />
+          <ChatBotLoader />
+          <LegalModal />
+          <LocaleSync />
+        </LegalModalProvider>
       </body>
     </html>
   );

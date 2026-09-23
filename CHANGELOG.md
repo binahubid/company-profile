@@ -5,13 +5,26 @@ Format yang digunakan berdasarkan [Keep a Changelog](https://keepachangelog.com/
 
 ## [Unreleased]
 
+## [0.2.23] - 2026-09-23
+
+### Added — Legal Modal & Compliance (Kebijakan Privasi & Syarat Ketentuan v2.0)
+
+- Mengimplementasikan sistem Legal Modal scrollable terpisah berbasis React Context (`LegalModalProvider` dan `LegalModal`) untuk Kebijakan Privasi v2.0 dan Syarat & Ketentuan v2.0 (1 modal 1 konten khusus tanpa tab switcher).
+- Mengubah tampilan modal menjadi format dokumen hukum formal profesional (tampilan kertas bersih, tipografi dokumen resmi, tanpa ornamen dekoratif atau elemen reka-reka).
+- Menghubungkan tautan hukum di footer global (desktop dan mobile) agar langsung membuka dokumen masing-masing.
+- Menerapkan mekanisme persetujuan terpisah (*unbundled consent*) sesuai UU No. 27/2022 (UU PDP) pada tahap akhir pengisian Diagnosa Performa (`contact-step.tsx`) dengan 3 checkbox (S&K + Kebijakan Privasi, Pemrosesan Diagnosa, dan Marketing opsional).
+- Menambahkan catatan persetujuan privasi dan tautan modal pada formulir kontak/inquiry (`/contact`).
+- Menyematkan tautan privasi pada footer chat drawer Executive Concierge ("Bina").
+- Menyesuaikan klaim marketing pada landing page diagnosa (`landing-step.tsx`) dari *"Skor 7 dimensi yang presisi"* menjadi *"Skor 7 dimensi berbasis indikator"* serta menambahkan disclaimer analitik.
+
 ### Added — Phase 20 Unified Inbound Journey
 
 - Menambahkan pencatatan journey anonim first-party untuk landing, katalog, pemilihan modul, inquiry, dan perpindahan ke BinaInsight.
 - Meneruskan ID journey opaque ketika pengunjung berpindah dari website umum ke aplikasi assessment, tanpa email atau identitas penerima dalam URL.
 
-### Safety
+### Safety & Development
 
+- Menyesuaikan konfigurasi Content-Security-Policy (CSP) di `next.config.ts` untuk mengizinkan `'unsafe-eval'` dan koneksi websocket di mode development agar kompatibel dengan Fast Refresh / HMR Next.js.
 - Website hanya mencatat event funnel anonim; tidak mengirim pesan, tidak membuat lead sendiri, dan tidak memanggil Apollo API.
 
 ## [0.2.22] - 2026-09-01

@@ -6,6 +6,7 @@ import { MessageSquare, X, Send, User, Loader2 } from 'lucide-react';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { useLocale } from '@/i18n/use-locale';
+import { useLegalModal } from '@/components/legal';
 import { appApiUrl } from '@/lib/public-api';
 
 interface Message {
@@ -15,6 +16,7 @@ interface Message {
 
 export function ChatBot() {
   const pathname = usePathname();
+  const { openPrivacyModal } = useLegalModal();
   const locale = useLocale();
   const copy = useMemo(() => locale === 'en'
     ? ({
@@ -313,6 +315,14 @@ export function ChatBot() {
               </form>
               <div className="text-center mt-3">
                 <span className="text-[9px] text-gray-400 font-medium uppercase tracking-widest">Powered by BinaHub AI</span>
+                <span className="text-gray-300">•</span>
+                <button
+                  type="button"
+                  onClick={openPrivacyModal}
+                  className="text-[9px] text-gray-400 font-medium underline hover:text-[#0B2C6B] transition-colors cursor-pointer"
+                >
+                  {locale === 'en' ? 'Privacy' : 'Privasi'}
+                </button>
               </div>
             </div>
           </motion.div>
