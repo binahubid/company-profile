@@ -3,7 +3,17 @@
 Semua perubahan yang signifikan pada proyek ini akan didokumentasikan di file ini.
 Format yang digunakan berdasarkan [Keep a Changelog](https://keepachangelog.com/id/1.0.0/), dan proyek ini mematuhi aturan [Semantic Versioning](https://semver.org/).
 
-## [Unreleased]
+## [0.2.24] - 2026-10-02
+
+### Changed
+
+- Halaman katalog publik menampilkan 27 Signature Solutions dari API dengan rincian tujuan pembelajaran, cakupan konten, hasil, sasaran, format, durasi, kapasitas, dan catatan dalam Bahasa Indonesia/Inggris, dilengkapi pencarian serta filter kategori.
+- Harga dan informasi komersial tidak ditampilkan pada halaman publik; pengunjung tetap dapat memilih solusi untuk didiskusikan.
+- Build produksi menggunakan Webpack untuk menghindari crash worker Turbopack ketika memproses `BinaHubClickable.module.css` di Hostinger.
+
+### Verification
+
+- `npm run build` dan `npm run check:static-assets` lulus. Smoke test produksi menemukan 27 kartu solusi, rincian dapat dibuka, dan tidak ada teks harga.
 
 ## [0.2.23] - 2026-09-23
 
