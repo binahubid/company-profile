@@ -3,6 +3,20 @@
 Semua perubahan yang signifikan pada proyek ini akan didokumentasikan di file ini.
 Format yang digunakan berdasarkan [Keep a Changelog](https://keepachangelog.com/id/1.0.0/), dan proyek ini mematuhi aturan [Semantic Versioning](https://semver.org/).
 
+## [0.2.26] - 2026-10-02
+
+### Changed — Public Catalog Experience
+
+- Mendesain ulang katalog sebagai pengalaman belanja solusi yang ringkas dan mobile-first: pencarian di bagian atas, kategori yang mudah dipilih, kartu solusi yang cepat dipindai, serta panel rincian lengkap saat dibutuhkan.
+- Menambahkan daftar pilihan yang menetap saat menelusuri katalog, dapat ditinjau dan diubah sebelum menghubungi tim BinaHub; posisi CTA disesuaikan agar tidak tertutup tombol chat di ponsel.
+- Mempertahankan seluruh rincian solusi dari API dalam Bahasa Indonesia/Inggris tanpa menampilkan harga publik, serta memperbaiki relevansi pencarian untuk istilah pendek seperti “AI”.
+- Memasukkan halaman katalog ke pemeriksaan lint publik rutin.
+
+### Verification
+
+- `npm run quality:public`, `npm run check:static-assets`, dan `npm run build` lulus.
+- Preview lokal memuat 27 solusi; pencarian, filter, rincian, daftar pilihan, serta tampilan ponsel dan desktop diuji.
+
 ## [0.2.25] - 2026-10-02
 
 ### Security

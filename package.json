@@ -1,6 +1,6 @@
 {
   "name": "website-prod",
-  "version": "0.2.25",
+  "version": "0.2.26",
   "private": true,
   "scripts": {
     "dev": "next dev --webpack",
@@ -9,7 +9,7 @@
     "start": "next start",
     "lint": "eslint",
     "check:static-assets": "node tools/check-static-assets.mjs",
-    "lint:public": "eslint src/app/about src/app/ecosystem src/app/contact src/app/perspektif src/app/insight src/app/journey src/app/from-bdn-to-binahub src/app/gallery src/app/_sections src/app/[locale] src/components src/lib",
+    "lint:public": "eslint src/app/about src/app/ecosystem src/app/contact src/app/perspektif src/app/insight src/app/journey src/app/from-bdn-to-binahub src/app/gallery src/app/pricing src/app/_sections src/app/[locale] src/components src/lib",
     "typecheck": "tsc --noEmit",
     "quality:public": "npm run lint:public && npm run typecheck",
     "quality:repo": "npm run quality:public"

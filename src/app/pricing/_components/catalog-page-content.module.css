@@ -1,0 +1,46 @@
+.cardDescription {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}
+
+.detailDialog,
+.shortlistDialog {
+  position: fixed;
+  inset: 0;
+  margin: auto;
+  padding: 0;
+  max-width: none;
+  max-height: none;
+  overflow: hidden;
+  border: 1px solid #dce5ee;
+  border-radius: 18px;
+  box-shadow: 0 28px 90px rgba(20, 43, 70, 0.2);
+}
+
+.detailDialog {
+  width: min(720px, calc(100vw - 32px));
+  height: min(860px, calc(100dvh - 32px));
+}
+
+.shortlistDialog {
+  width: min(500px, calc(100vw - 32px));
+  height: min(640px, calc(100dvh - 32px));
+}
+
+.detailDialog::backdrop,
+.shortlistDialog::backdrop {
+  background: rgba(14, 32, 54, 0.62);
+  backdrop-filter: blur(3px);
+}
+
+@media (max-width: 640px) {
+  .detailDialog,
+  .shortlistDialog {
+    width: 100vw;
+    height: 100dvh;
+    border: 0;
+    border-radius: 0;
+  }
+}
