@@ -3,6 +3,18 @@
 Semua perubahan yang signifikan pada proyek ini akan didokumentasikan di file ini.
 Format yang digunakan berdasarkan [Keep a Changelog](https://keepachangelog.com/id/1.0.0/), dan proyek ini mematuhi aturan [Semantic Versioning](https://semver.org/).
 
+## [0.2.25] - 2026-10-02
+
+### Security
+
+- Memperbarui `next` dan `eslint-config-next` ke 16.3.8 untuk menutup temuan keamanan Next.js, termasuk kerentanan kritis pada pemrosesan gambar Open Graph.
+- Memperbarui dependensi transitif rentan melalui lockfile: `sharp` 0.35.5, `postcss` 8.5.28, `js-yaml` 4.3.2, `baseline-browser-mapping` 2.11.27, `browserslist` 4.29.3, serta `brace-expansion` 1.1.21 dan 5.0.12.
+- Mempertahankan build Webpack yang digunakan untuk menghindari kegagalan Turbopack pada CSS di deployment Hostinger.
+
+### Verification
+
+- `npm audit` dan `npm audit --omit=dev` melaporkan 0 kerentanan; `npm run quality:public`, `npm run check:static-assets`, dan `npm run build` lulus.
+
 ## [0.2.24] - 2026-10-02
 
 ### Changed
