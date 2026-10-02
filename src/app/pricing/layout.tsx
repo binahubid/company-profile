@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Katalog Modul",
-  description: "Pilih modul BinaHub berdasarkan kebutuhan organisasi dan ajukan diskusi awal dengan tim kami.",
+  title: "Signature Solutions | Katalog BinaHub",
+  description: "Jelajahi tujuan pembelajaran, konten, hasil, format, dan sasaran peserta dari Signature Solutions BinaHub.",
 };
 
 export default function PricingLayout({ children }: { children: React.ReactNode }) {
