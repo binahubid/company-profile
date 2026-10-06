@@ -6,10 +6,10 @@ import { publicSiteTranslations } from "@/i18n/site-translations";
 
 const DIMENSION_GUIDANCE: Record<string, string> = {
   Insights: "Kami membaca bagaimana data, indikator, dan akar masalah digunakan dalam keputusan tim.",
-  Lab: "Dimensi ini melihat kecocokan kompetensi, kualitas komunikasi, dan kemampuan problem solving.",
+  Lab: "Area ini melihat kecocokan kompetensi, kualitas komunikasi, dan kemampuan problem solving.",
   Coach: "Bagian ini menilai kualitas arahan, feedback, tanggung jawab, dan growth mindset.",
   Play: "Kami mengukur energi kerja, engagement, rasa dihargai, dan koneksi antaranggota tim.",
-  Academy: "Dimensi ini memetakan struktur pembelajaran, kurikulum, dan budaya belajar berkelanjutan.",
+  Academy: "Area ini memetakan struktur pembelajaran, kurikulum, dan budaya belajar berkelanjutan.",
   Works: "Bagian ini melihat kejelasan KPI, dokumentasi proses, peran, dan ritme monitoring pekerjaan.",
   Impact: "Kami membaca sejauh mana program pengembangan punya indikator, bukti dampak, dan ROI.",
 };
@@ -22,10 +22,10 @@ const REINFORCEMENT = [
 
 const DIMENSION_GUIDANCE_EN: Record<string, string> = {
   Insights: "We look at how data, indicators, and root causes are used in team decisions.",
-  Lab: "This dimension reviews competency fit, communication quality, and problem-solving capability.",
+  Lab: "This area reviews competency fit, communication quality, and problem-solving capability.",
   Coach: "This section assesses guidance quality, feedback, ownership, and growth mindset.",
   Play: "We measure work energy, engagement, appreciation, and connection between team members.",
-  Academy: "This dimension maps learning structure, curriculum, and sustainable learning culture.",
+  Academy: "This area maps learning structure, curriculum, and sustainable learning culture.",
   Works: "This section reviews KPI clarity, process documentation, roles, and work monitoring rhythm.",
   Impact: "We review how far development programs have indicators, impact evidence, and ROI visibility.",
 };
@@ -66,7 +66,7 @@ export function QuestionsStep({ step, answers, onAnswer }: QuestionsStepProps) {
     >
       <div className="mb-8 max-w-3xl text-center">
         <p className="mb-4 text-[10px] font-bold uppercase tracking-[0.24em] text-[#D9A441]">
-          {isEnglish ? `${dimension} Dimension` : `Dimensi ${dimension}`}
+          {isEnglish ? `${dimension} Area` : `Area ${dimension}`}
         </p>
         <h2 className="text-3xl md:text-4xl font-light text-[#0B2C6B] leading-tight">
           {isEnglish ? "How strongly do you agree with the following statements?" : "Sejauh mana Anda setuju dengan pernyataan berikut?"}

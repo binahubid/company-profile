@@ -40,8 +40,8 @@ type CatalogItem = { module: CatalogModule; product: CatalogProduct };
 
 const COPY = {
   id: {
-    eyebrow: "KATALOG SOLUSI BINAHUB",
-    title: "Temukan solusi yang tepat untuk tim Anda.",
+    eyebrow: "BINAHUB SOLUTIONS CATALOG",
+    title: "Find the right solution for your team.",
     intro: "Jelajahi solusi berdasarkan kebutuhan, lihat rinciannya, lalu pilih yang ingin Anda diskusikan. Tanpa paket yang dipaksakan.",
     search: "Cari topik, kebutuhan, atau solusi…",
     searchLabel: "Cari solusi",

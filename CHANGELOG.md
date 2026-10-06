@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.2.27] - 2026-10-06
+
+### Changed
+
+- Copy diagnosis publik menggunakan Area/Areas, konsisten dengan app, email dan laporan PDF.
+- Katalog mengikuti API 0.29.0: judul kategori/solusi tetap berbahasa Inggris, isi mengikuti bahasa halaman, tanpa harga publik.
+- Form diagnosis berjalan di app 0.29.0; API 0.29.0 + SQL 62 menerima submission sebelum analisis backend, sehingga browser tidak menunggu AI/PDF/email.
+
 Semua perubahan yang signifikan pada proyek ini akan didokumentasikan di file ini.
 Format yang digunakan berdasarkan [Keep a Changelog](https://keepachangelog.com/id/1.0.0/), dan proyek ini mematuhi aturan [Semantic Versioning](https://semver.org/).
 
