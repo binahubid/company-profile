@@ -26,7 +26,7 @@ export default function Navbar() {
   const isInsightPage = normalizedPathname === "/insight"
   const assessmentOrigin = (process.env.NEXT_PUBLIC_BINAHUB_APP_URL || "https://app.binahub.id").replace(/\/$/, "")
   const ctaHref = isInsightPage
-    ? `${assessmentOrigin}${locale === "en" ? "/en/insight" : "/insight"}`
+    ? `${assessmentOrigin}/diagnose${locale === "en" ? "?lang=en" : ""}`
     : localizePath("/insight", locale)
   const ctaLabel = isInsightPage
     ? locale === "en" ? "Start Diagnostic" : "Mulai Diagnosa"

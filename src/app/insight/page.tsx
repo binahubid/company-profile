@@ -11,7 +11,7 @@ export default function InsightLandingPage() {
   const locale = useLocale();
 
   const startAssessment = () => {
-    const destination = `${APP_ORIGIN}${locale === "en" ? "/en/insight" : "/insight"}`;
+    const destination = `${APP_ORIGIN}/diagnose${locale === "en" ? "?lang=en" : ""}`;
     // Preserve the opaque first/last-touch ID while the visitor crosses from
     // the public site to app.binahub.id. Attribution itself is still passed
     // separately and no contact data appears in this URL.

@@ -1,5 +1,16 @@
 # Changelog
 
+## [0.2.28] - 2026-10-13
+
+### Changed
+
+- Tombol mulai diagnosis pada landing dan navbar mengarah ke pilihan Tim/Organisasi atau Individu di app `/diagnose`; attribution/journey tetap diteruskan. Jalur Inggris organisasi tetap tersedia, bank soal individu menggunakan bahasa sumber CEO (Indonesia).
+- `.gitignore` menutup sumber bank soal/seed privat CEO, ekspor, backup, output, screenshot dan laporan pengujian lokal. Source, lockfile dan asset runtime tetap dilacak.
+
+### Deployment
+
+- Pasangan app/API 0.33.0; diagnosis individu tersedia setelah SQL 65 dan source privat SQL 64 lengkap. Bila belum tersedia, pilihan organisasi tetap bisa digunakan. Tidak mengubah katalog, harga, formulir organisasi, atau mengaktifkan pembayaran.
+
 ## [0.2.27] - 2026-10-06
 
 ### Changed
