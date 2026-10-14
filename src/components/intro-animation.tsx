@@ -33,7 +33,7 @@ export function IntroAnimation({ onDone }: { onDone: () => void }) {
     } catch {}
 
     // Play the intro only once per browser session so internal navigation feels instant.
-    if (alreadySeen) {
+    if (alreadySeen || window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
       // eslint-disable-next-line react-hooks/set-state-in-effect
       setPhase("done")
       onDone()

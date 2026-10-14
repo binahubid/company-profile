@@ -47,7 +47,7 @@ function AnimatedHeading({ title, accent, ready }: { title: string; accent: stri
   let charOffset = 0;
 
   return (
-    <h1 className="mx-auto max-w-[560px] text-center text-[clamp(1.75rem,7vw,2.5rem)] font-normal leading-[1.1] tracking-[-0.025em] text-[#071A33] lg:mx-0 lg:max-w-[900px] lg:text-left lg:text-[clamp(3rem,4.5vw,4.5rem)] lg:tracking-[-0.035em]">
+    <h1 aria-label={`${title} ${accent}`} className="mx-auto w-full max-w-[560px] text-balance text-center text-[clamp(1.75rem,7vw,2.5rem)] font-normal leading-[1.1] tracking-[-0.025em] text-[#071A33] lg:mx-0 lg:max-w-[900px] lg:text-left lg:text-[clamp(3rem,4.5vw,4.5rem)] lg:tracking-[-0.035em]">
       {lines.map((line, lineIndex) => {
         const currentOffset = charOffset;
         charOffset += line.length;
@@ -55,7 +55,8 @@ function AnimatedHeading({ title, accent, ready }: { title: string; accent: stri
         return (
           <span
             key={lineIndex}
-            className={lineIndex === 1 ? "mt-2 block font-light italic text-[#D9A441] md:mt-1 md:whitespace-nowrap" : "block md:whitespace-nowrap"}
+            aria-hidden="true"
+            className={lineIndex === 1 ? "mt-2 block font-light italic text-[#D9A441] md:mt-1" : "block"}
           >
             {line.split(" ").map((word, wordIndex) => (
               <span
@@ -65,6 +66,7 @@ function AnimatedHeading({ title, accent, ready }: { title: string; accent: stri
                 {word.split("").map((char, charIndex) => (
                   <span
                     key={`${lineIndex}-${wordIndex}-${charIndex}`}
+                    data-hero-letter
                     className="inline-block transition-[opacity,transform] duration-500 ease-out"
                     style={{
                       opacity: ready ? 1 : 0,
@@ -169,6 +171,7 @@ function HeroImageBackground() {
 
 function HeroOrbitVisual() {
   function handleLogoMove(event: React.PointerEvent<HTMLDivElement>) {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     const rect = event.currentTarget.getBoundingClientRect();
     const x = (event.clientX - rect.left) / rect.width - 0.5;
     const y = (event.clientY - rect.top) / rect.height - 0.5;
@@ -218,7 +221,7 @@ function HeroOrbitVisual() {
         {ORBIT_ICONS.map((icon, index) => (
           <div
             key={icon.label}
-            className="hero-orbit-icon-slot absolute left-1/2 top-1/2"
+            className="hero-orbit-icon-slot absolute left-1/2 top-1/2 -ml-5 -mt-5 lg:-ml-9 lg:-mt-9"
             style={{
               ["--orbit-angle" as string]: `${icon.angle}deg`,
               ["--orbit-delay" as string]: `${index * -1.4}s`,
@@ -276,6 +279,7 @@ function FadeIn({
 }) {
   return (
     <div
+      data-hero-reveal
       className={`transition-[opacity,transform,filter] duration-1000 ease-out ${className ?? ""}`}
       style={{
         opacity: ready ? 1 : 0,
@@ -299,8 +303,8 @@ export function HeroSection({ heroReady }: HeroSectionProps) {
         <HeroImageBackground />
 
         <div className="relative z-10 flex min-h-[calc(100svh+6rem)] flex-col items-center justify-start px-6 pb-20 pt-[8.25rem] text-center md:pt-[14.75rem] lg:items-start lg:px-20 lg:text-left xl:px-28">
-          <div className="grid w-full max-w-[1580px] items-center gap-8 lg:grid-cols-[1fr_580px] lg:gap-10 xl:grid-cols-[1fr_670px] xl:gap-12">
-            <div className="order-2 lg:order-1 relative z-10 flex w-full max-w-[780px] flex-col items-center lg:items-start">
+          <div className="grid w-full max-w-[1580px] items-center gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.9fr)] lg:gap-10 xl:gap-12">
+            <div className="order-2 lg:order-1 relative z-10 flex min-w-0 w-full max-w-[780px] flex-col items-center lg:items-start">
               <AnimatedHeading title={copy.title} accent={copy.accent} ready={heroReady} />
 
               <FadeIn ready={heroReady} delay={850}>
@@ -310,17 +314,17 @@ export function HeroSection({ heroReady }: HeroSectionProps) {
               </FadeIn>
 
               <FadeIn ready={heroReady} delay={1150}>
-                <div className="mt-8 flex items-center justify-center gap-3 lg:justify-start lg:gap-4">
+                <div className="mt-8 flex flex-wrap items-center justify-center gap-3 lg:justify-start lg:gap-4">
                   <Link
                     href={localizePath("/insight", locale)}
-                    className="inline-flex h-10 items-center justify-center gap-2 rounded-[9px] bg-[#0B2C6B] px-5 text-[10px] font-extrabold uppercase tracking-[0.11em] text-white shadow-[0_22px_56px_-30px_rgba(11,44,107,0.95)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#071A33] hover:shadow-[0_28px_64px_-34px_rgba(11,44,107,0.9)] md:h-12 md:gap-3 md:px-8 md:text-[12px] md:tracking-[0.14em]"
+                    className="inline-flex h-11 items-center justify-center gap-2 rounded-[9px] bg-[#0B2C6B] px-5 text-[10px] font-extrabold uppercase tracking-[0.11em] text-white shadow-[0_22px_56px_-30px_rgba(11,44,107,0.95)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#071A33] hover:shadow-[0_28px_64px_-34px_rgba(11,44,107,0.9)] md:h-12 md:gap-3 md:px-8 md:text-[12px] md:tracking-[0.14em]"
                   >
                     {copy.cta}
                     <ChevronRight size={14} strokeWidth={2.2} className="md:h-4 md:w-4" />
                   </Link>
                   <Link
                     href={localizePath("/perspektif", locale)}
-                    className="inline-flex h-10 items-center justify-center gap-2 rounded-[9px] border border-[#0B2C6B]/20 bg-white/58 px-5 text-[10px] font-extrabold uppercase tracking-[0.12em] text-[#071A33] shadow-[0_18px_54px_-38px_rgba(11,44,107,0.5)] backdrop-blur-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-[#0B2C6B]/40 hover:bg-white md:h-12 md:gap-3 md:px-8 md:text-[12px] md:tracking-[0.14em]"
+                    className="inline-flex h-11 items-center justify-center gap-2 rounded-[9px] border border-[#0B2C6B]/20 bg-white/58 px-5 text-[10px] font-extrabold uppercase tracking-[0.12em] text-[#071A33] shadow-[0_18px_54px_-38px_rgba(11,44,107,0.5)] backdrop-blur-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-[#0B2C6B]/40 hover:bg-white md:h-12 md:gap-3 md:px-8 md:text-[12px] md:tracking-[0.14em]"
                   >
                     {copy.secondaryCta}
                     <ArrowRight size={14} strokeWidth={2.1} className="md:h-4 md:w-4" />

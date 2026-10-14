@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { motion, useMotionValueEvent, useScroll, useTransform } from "framer-motion";
+import { useReducedMotionPreference } from "@/hooks/use-reduced-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { localizePath } from "@/i18n/config";
@@ -15,19 +16,50 @@ const HUMAN_VALUES = [
   { letter: "N", rest: "oble Excellence", word: "Noble Excellence" },
 ];
 
+const COPY = {
+  en: {
+    eyebrow: "Core Values",
+    intro: "Five principles that keep transformation human, ethical, impactful, growth-oriented, and meaningful.",
+    detail: "Value Details",
+  },
+  id: {
+    eyebrow: "Nilai Utama",
+    intro: "Lima prinsip yang menjaga transformasi tetap manusiawi, berintegritas, berdampak, bertumbuh, dan bermakna.",
+    detail: "Detail Nilai",
+  },
+};
+
 export function HumanCoreValuesSection() {
+  const reducedMotion = useReducedMotionPreference();
   const locale = useLocale();
-  const copy = locale === "en"
-    ? {
-        eyebrow: "Core Values",
-        intro: "Five principles that keep transformation human, ethical, impactful, growth-oriented, and meaningful.",
-        detail: "Value Details",
-      }
-    : {
-        eyebrow: "Nilai Utama",
-        intro: "Lima prinsip yang menjaga transformasi tetap manusiawi, berintegritas, berdampak, bertumbuh, dan bermakna.",
-        detail: "Detail Nilai",
-      };
+  const copy = COPY[locale];
+
+  if (!reducedMotion) return <AnimatedHumanCoreValuesSection />;
+
+  return (
+    <section id="values" className="relative z-10 bg-[#F5F7FA] px-6 py-12 md:px-12">
+      <div className="mx-auto max-w-6xl">
+        <h2 className="text-2xl font-semibold text-[#071A33]">{copy.eyebrow}</h2>
+        <p className="mt-4 max-w-2xl leading-relaxed text-[#0B2C6B]/72">{copy.intro}</p>
+        <ul className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-5">
+          {HUMAN_VALUES.map((value) => (
+            <li key={value.letter} className="min-w-0 text-[#0B2C6B]">
+              <span className="text-4xl font-light text-[#D9A441]" aria-hidden="true">{value.letter}</span>
+              <span className="mt-2 block text-sm leading-relaxed">{value.word}</span>
+            </li>
+          ))}
+        </ul>
+        <Link href={localizePath("/about#nilai", locale)} className="mt-8 inline-flex min-h-11 items-center rounded-full bg-[#0B2C6B] px-5 text-sm font-medium text-white">
+          {copy.detail}
+        </Link>
+      </div>
+    </section>
+  );
+}
+
+function AnimatedHumanCoreValuesSection() {
+  const locale = useLocale();
+  const copy = COPY[locale];
   const sectionRef = useRef<HTMLElement>(null);
   const [stage, setStage] = useState(0);
   const [finalRevealCount, setFinalRevealCount] = useState(0);
@@ -202,12 +234,14 @@ export function HumanCoreValuesSection() {
           </div>
 
           <motion.div
+            aria-hidden={!isFinal}
             animate={{ opacity: isFinal ? 1 : 0, x: isFinal ? 0 : 18 }}
             transition={{ duration: isFinal ? 4.8 : 0.48, ease: [0.22, 1, 0.36, 1] }}
             className="pointer-events-none absolute inset-y-0 right-5 z-20 hidden items-center md:flex lg:right-12"
           >
             <Link
               href={localizePath("/about#nilai", locale)}
+              tabIndex={isFinal ? 0 : -1}
               className={`pointer-events-auto inline-flex h-11 shrink-0 items-center justify-center rounded-full px-5 text-[10px] font-bold uppercase tracking-[0.16em] transition-all duration-500 ${
                 isFinal
                   ? "bg-[#D9A441] text-[#071A33] hover:bg-white"
@@ -219,12 +253,14 @@ export function HumanCoreValuesSection() {
           </motion.div>
 
           <motion.div
+            aria-hidden={!isFinal}
             animate={{ opacity: isFinal ? 1 : 0, y: isFinal ? 0 : 10 }}
             transition={{ duration: isFinal ? 4.8 : 0.48, ease: [0.22, 1, 0.36, 1] }}
             className="absolute inset-x-5 bottom-5 z-20 md:hidden"
           >
             <Link
               href={localizePath("/about#nilai", locale)}
+              tabIndex={isFinal ? 0 : -1}
               className="inline-flex h-11 w-full items-center justify-center rounded-full bg-[#D9A441] px-5 text-[10px] font-bold uppercase tracking-[0.16em] text-[#071A33]"
             >
               {copy.detail}

@@ -4,6 +4,7 @@ import { useState, useEffect, useRef, type MouseEvent } from "react"
 import Link from "next/link"
 import Image from "next/image"
 import { motion, AnimatePresence } from "framer-motion"
+import { useReducedMotionPreference } from "@/hooks/use-reduced-motion"
 import { ChevronRight, ChevronDown, Menu, X } from "lucide-react"
 import { usePathname } from "next/navigation"
 import { getLocaleFromPathname, localizePath, stripLocaleFromPathname } from "@/i18n/config"
@@ -19,6 +20,8 @@ export default function Navbar() {
   const [activeDropdown, setActiveDropdown] = useState<NavItemKey | null>(null)
   const [activeMobileDropdown, setActiveMobileDropdown] = useState<NavItemKey | null>(null)
   const dropdownCloseTimer = useRef<number | null>(null)
+  const mobileToggleRef = useRef<HTMLButtonElement>(null)
+  const reducedMotion = useReducedMotionPreference()
   const pathname = usePathname()
   const locale = getLocaleFromPathname(pathname)
   const navCopy = layoutCopy[locale].nav
@@ -130,7 +133,7 @@ export default function Navbar() {
         const element = document.getElementById(id)
         if (element) {
           setTimeout(() => {
-            element.scrollIntoView({ behavior: "smooth", block: "start" })
+            element.scrollIntoView({ behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "instant" : "smooth", block: "start" })
           }, 350) // Tiny delay to ensure DOM is fully ready
         }
       }
@@ -165,6 +168,7 @@ export default function Navbar() {
   const closeDropdownSoon = () => {
     cancelDropdownClose()
     dropdownCloseTimer.current = window.setTimeout(() => {
+      if (document.activeElement?.closest("#global-navbar")) return
       setActiveDropdown(null)
     }, 180)
   }
@@ -189,23 +193,37 @@ export default function Navbar() {
     <div
       id="global-navbar"
       className={`fixed inset-x-0 top-0 z-[100] flex justify-center px-4 pointer-events-none transition-all duration-500 md:px-8 ${
-        scrolled ? "py-0" : "py-4 md:py-6"
+        scrolled ? "py-4 md:py-6 min-[1440px]:py-0" : "py-4 md:py-6"
       } ${mobileHidden && !open ? "-translate-y-full opacity-0 lg:translate-y-0 lg:opacity-100" : "translate-y-0 opacity-100"}`}
     >
       <motion.div
-        initial={{ y: -20, opacity: 0 }}
+        initial={reducedMotion ? false : { y: -20, opacity: 0 }}
         animate={{ y: 0, opacity: 1, scale: scrolled ? 0.99 : 1 }}
-        transition={{ duration: 0.58, ease: [0.22, 1, 0.36, 1] }}
-        className={`relative w-full pointer-events-auto transition-all duration-500 ${scrolled ? "max-w-4xl" : "max-w-[1720px]"}`}
+        transition={{ duration: reducedMotion ? 0 : 0.58, ease: [0.22, 1, 0.36, 1] }}
+        className={`relative w-full pointer-events-auto transition-all duration-500 ${scrolled ? "max-w-[1720px] min-[1440px]:max-w-4xl" : "max-w-[1720px]"}`}
         onMouseEnter={cancelDropdownClose}
         onMouseLeave={closeDropdownSoon}
+        onFocusCapture={cancelDropdownClose}
+        onBlurCapture={(event) => {
+          if (!event.currentTarget.contains(event.relatedTarget)) setActiveDropdown(null)
+        }}
+        onKeyDown={(event) => {
+          if (event.key !== "Escape") return
+          if (open) {
+            setOpen(false)
+            mobileToggleRef.current?.focus()
+          } else if (activeDropdown) {
+            document.getElementById(`desktop-trigger-${activeDropdown}`)?.focus()
+            setActiveDropdown(null)
+          }
+        }}
       >
         <nav
           className={`relative grid items-center gap-4 transition-all duration-500 ${
-            scrolled ? "grid-cols-1 justify-items-center" : "grid-cols-[auto_1fr_auto]"
+            scrolled ? "grid-cols-[auto_1fr_auto] min-[1440px]:grid-cols-1 min-[1440px]:justify-items-center" : "grid-cols-[auto_1fr_auto]"
           }`}
         >
-          <Link href={localizePath("/", locale)} className={`group relative z-10 flex items-center transition-all duration-500 ${scrolled ? "pointer-events-none -translate-y-4 opacity-0 lg:hidden" : "opacity-100"}`}>
+          <Link href={localizePath("/", locale)} className={`group relative z-10 flex items-center transition-all duration-500 ${scrolled ? "min-[1440px]:hidden" : "opacity-100"}`}>
               <div className="relative h-12 w-40 transition-transform duration-500 group-hover:-translate-y-0.5 md:h-14 md:w-48 lg:h-14 lg:w-48">
               <Image
                 src="/full-logo.png"
@@ -219,10 +237,10 @@ export default function Navbar() {
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="relative z-10 hidden justify-center lg:flex">
+          <div className="relative z-10 hidden justify-center min-[1440px]:flex">
             <motion.div
               layout
-              transition={{ duration: 0.46, ease: [0.22, 1, 0.36, 1] }}
+              transition={{ duration: reducedMotion ? 0 : 0.46, ease: [0.22, 1, 0.36, 1] }}
               className={`relative flex items-center overflow-hidden px-3 py-2 transition-all duration-500 before:pointer-events-none before:absolute before:inset-0 before:rounded-[inherit] before:bg-[linear-gradient(135deg,rgba(255,255,255,0.18),rgba(255,255,255,0.07)_46%,rgba(255,255,255,0.015))] before:opacity-0 before:transition-opacity before:duration-500 after:pointer-events-none after:absolute after:inset-x-5 after:top-0 after:h-px ${desktopNavSurface}`}
             >
             {navCopy.items.map((link) => (
@@ -236,6 +254,7 @@ export default function Navbar() {
               >
                 <Link
                   href={localizePath(link.href, locale)}
+                  aria-current={normalizedPathname === link.href ? "page" : undefined}
                   className={`relative flex min-w-[104px] items-center justify-center gap-2 rounded-full px-5 py-3 text-[10px] font-bold uppercase tracking-[0.12em] transition-all duration-300 ${
                     activeDropdown === link.key || normalizedPathname === link.href
                       ? activeNavLinkClass
@@ -244,22 +263,36 @@ export default function Navbar() {
                 >
                   <span className={`absolute inset-x-6 bottom-1 h-[2px] rounded-full bg-[#D9A441] transition-opacity duration-300 ${activeDropdown === link.key || normalizedPathname === link.href ? "opacity-100" : "opacity-0"}`} />
                   {link.label}
-                  {link.submenu && (
-                    <ChevronDown size={12} strokeWidth={1.8} className={`transition-transform duration-200 ${activeDropdown === link.key ? "rotate-180 text-[#D9A441]" : navOnDark ? "text-white/46" : "text-[#0B2C6B]/42"}`} />
-                  )}
+                  {link.submenu && <span className="w-3" aria-hidden="true" />}
                 </Link>
+                {link.submenu && (
+                  <button
+                    id={`desktop-trigger-${link.key}`}
+                    type="button"
+                    aria-label={`${locale === "en" ? "Toggle submenu for" : "Buka/tutup submenu"} ${link.label}`}
+                    aria-expanded={activeDropdown === link.key}
+                    aria-controls={`desktop-submenu-${link.key}`}
+                    onClick={() => {
+                      cancelDropdownClose()
+                      setActiveDropdown(activeDropdown === link.key ? null : link.key)
+                    }}
+                    className="absolute right-1 top-1/2 flex h-11 w-8 -translate-y-1/2 items-center justify-center rounded-full"
+                  >
+                    <ChevronDown aria-hidden="true" size={12} strokeWidth={1.8} className={`transition-transform duration-200 ${activeDropdown === link.key ? "rotate-180 text-[#D9A441]" : navOnDark ? "text-white/46" : "text-[#0B2C6B]/42"}`} />
+                  </button>
+                )}
               </div>
             ))}
             </motion.div>
           </div>
 
           {/* CTA Button */}
-          <div className={`relative z-10 flex items-center justify-end gap-4 transition-all duration-500 ${scrolled ? "pointer-events-none -translate-y-4 opacity-0 lg:hidden" : "opacity-100"}`}>
+          <div className={`relative z-10 col-start-3 flex items-center justify-end gap-4 transition-all duration-500 ${scrolled ? "min-[1440px]:hidden" : "opacity-100"}`}>
             <LanguageSwitcher />
             <Link
               href={ctaHref}
               onClick={preserveJourneyOnAssessmentStart}
-              className="hidden h-12 items-center gap-2 rounded-full bg-[#0B2C6B] px-5 text-[10px] font-bold uppercase tracking-[0.13em] text-white shadow-[0_16px_38px_-24px_rgba(11,44,107,0.95)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#071A33] hover:shadow-[0_20px_48px_-26px_rgba(11,44,107,0.78)] active:scale-95 lg:flex"
+              className="hidden h-12 items-center gap-2 rounded-full bg-[#0B2C6B] px-5 text-[10px] font-bold uppercase tracking-[0.13em] text-white shadow-[0_16px_38px_-24px_rgba(11,44,107,0.95)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#071A33] hover:shadow-[0_20px_48px_-26px_rgba(11,44,107,0.78)] active:scale-95 min-[1440px]:flex"
             >
               {ctaLabel}
               <ChevronRight size={12} strokeWidth={2} />
@@ -267,14 +300,19 @@ export default function Navbar() {
 
             {/* Mobile Toggle */}
             <button
-              onClick={() => setOpen(!open)}
-              className={`flex h-12 w-12 items-center justify-center rounded-full border shadow-[0_16px_38px_-28px_rgba(11,44,107,0.5)] backdrop-blur-md transition-colors lg:hidden ${
+              ref={mobileToggleRef}
+              type="button"
+              aria-label={open ? navCopy.closeMenu : locale === "en" ? "Open menu" : "Buka menu"}
+              aria-expanded={open}
+              aria-controls="mobile-navigation"
+              onClick={() => setOpen((current) => !current)}
+              className={`flex h-12 w-12 items-center justify-center rounded-full border shadow-[0_16px_38px_-28px_rgba(11,44,107,0.5)] backdrop-blur-md transition-colors min-[1440px]:hidden ${
                 navOnDark
                   ? "border-white/20 bg-[#071A33]/42 text-white hover:bg-[#071A33]/62"
                   : "border-white/52 bg-white/90 text-[#0B2C6B] hover:bg-white"
               }`}
             >
-              {open ? <X size={20} /> : <Menu size={20} />}
+              {open ? <X size={20} aria-hidden="true" /> : <Menu size={20} aria-hidden="true" />}
             </button>
           </div>
         </nav>
@@ -283,13 +321,14 @@ export default function Navbar() {
         <AnimatePresence>
           {activeDropdown && navCopy.items.find((item) => item.key === activeDropdown)?.submenu && (
             <motion.div
+              id={`desktop-submenu-${activeDropdown}`}
               initial={{ opacity: 0, y: 12, scale: 0.985 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: 8, scale: 0.99 }}
-              transition={{ duration: 0.24, ease: [0.22, 1, 0.36, 1] }}
+              transition={{ duration: reducedMotion ? 0 : 0.24, ease: [0.22, 1, 0.36, 1] }}
               onMouseEnter={cancelDropdownClose}
               onMouseLeave={closeDropdownSoon}
-              className="absolute left-0 right-0 top-full hidden pt-3 lg:block"
+              className="absolute left-0 right-0 top-full hidden pt-3 min-[1440px]:block"
             >
               <div className="relative overflow-hidden rounded-[14px] border border-white/10 bg-[#070A10]/96 shadow-[0_28px_76px_-44px_rgba(0,0,0,0.68)]">
                 <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_18%_0%,rgba(217,164,65,0.12),transparent_28%),linear-gradient(90deg,rgba(255,255,255,0.04),transparent_42%)]" />
@@ -321,10 +360,12 @@ export default function Navbar() {
         <AnimatePresence>
           {open && (
             <motion.div
+              id="mobile-navigation"
               initial={{ opacity: 0, y: 10, scale: 0.95 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: 10, scale: 0.95 }}
-              className="absolute left-3 right-3 top-full mt-3 max-h-[76vh] overflow-y-auto rounded-[18px] border border-white/35 bg-[#F8FAFC]/96 p-3 shadow-[0_24px_72px_-48px_rgba(11,44,107,0.42)] backdrop-blur-md sm:left-4 sm:right-4 sm:p-4 lg:hidden"
+              transition={{ duration: reducedMotion ? 0 : 0.2 }}
+              className="absolute left-3 right-3 top-full mt-3 max-h-[76vh] overflow-y-auto rounded-[18px] border border-white/35 bg-[#F8FAFC]/96 p-3 shadow-[0_24px_72px_-48px_rgba(11,44,107,0.42)] backdrop-blur-md sm:left-4 sm:right-4 sm:p-4 min-[1440px]:hidden"
             >
               <div className="pointer-events-none absolute inset-0 rounded-[inherit] bg-[radial-gradient(circle_at_80%_0%,rgba(217,164,65,0.16),transparent_28%),linear-gradient(135deg,rgba(255,255,255,0.86),rgba(255,255,255,0.34))]" />
               <div className="relative z-10 mb-3 flex items-center justify-between border-b border-[#0B2C6B]/8 px-3 pb-3">
@@ -333,8 +374,9 @@ export default function Navbar() {
                   <p className="mt-1 text-xs text-[#0B2C6B]/52">{navCopy.mobileSubtitle}</p>
                 </div>
                 <button
-                  onClick={() => setOpen(false)}
-                  className="flex h-9 w-9 items-center justify-center rounded-full bg-[#0B2C6B]/7 text-[#0B2C6B] transition-colors hover:bg-[#0B2C6B]/12"
+                  type="button"
+                  onClick={() => { setOpen(false); mobileToggleRef.current?.focus() }}
+                  className="flex h-11 w-11 items-center justify-center rounded-full bg-[#0B2C6B]/7 text-[#0B2C6B] transition-colors hover:bg-[#0B2C6B]/12"
                   aria-label={navCopy.closeMenu}
                 >
                   <X size={17} />
@@ -356,9 +398,12 @@ export default function Navbar() {
                             {link.label}
                           </Link>
                           <button
+                            type="button"
                             onClick={() => setActiveMobileDropdown(isExpanded ? null : link.key)}
                             className="px-5 flex items-center justify-center border-l border-[#0B2C6B]/8 hover:bg-[#0B2C6B]/5 transition-all"
-                            aria-label="Toggle Submenu"
+                            aria-label={`${locale === "en" ? "Toggle submenu for" : "Buka/tutup submenu"} ${link.label}`}
+                            aria-expanded={isExpanded}
+                            aria-controls={`mobile-submenu-${link.key}`}
                           >
                             <ChevronDown size={16} className={`transition-transform duration-300 ${isExpanded ? "rotate-180 text-[#D9A441]" : "text-[#D9A441]"}`} />
                           </button>
@@ -378,10 +423,11 @@ export default function Navbar() {
                         <AnimatePresence initial={false}>
                           {isExpanded && (
                             <motion.div
+                              id={`mobile-submenu-${link.key}`}
                               initial={{ height: 0, opacity: 0 }}
                               animate={{ height: "auto", opacity: 1 }}
                               exit={{ height: 0, opacity: 0 }}
-                              transition={{ duration: 0.25, ease: "easeInOut" }}
+                              transition={{ duration: reducedMotion ? 0 : 0.25, ease: "easeInOut" }}
                               className="overflow-hidden"
                             >
                               <div className="flex flex-col gap-2 bg-white/55 px-3 py-3">

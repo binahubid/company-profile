@@ -176,6 +176,7 @@
 
 .hero-orbit-stage {
   --orbit-radius: min(39vw, 302px);
+  container-type: inline-size;
   isolation: isolate;
 }
 
@@ -208,19 +209,7 @@
 
 .hero-orbit-icons {
   animation: heroOrbitSpin 52s linear infinite;
-  --orbit-radius: min(16.5vw, 127px);
-}
-
-@media (min-width: 1024px) {
-  .hero-orbit-icons {
-    --orbit-radius: min(24vw, 228px);
-  }
-}
-
-@media (min-width: 1280px) {
-  .hero-orbit-icons {
-    --orbit-radius: min(23vw, 266px);
-  }
+  --orbit-radius: min(39cqw, 266px);
 }
 
 .hero-orbit-icon-slot {
@@ -309,6 +298,29 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  html.scroll-smooth {
+    scroll-behavior: auto;
+  }
+
+  #home-hero [data-hero-letter],
+  #home-hero [data-hero-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+    transition: none !important;
+  }
+
+  .hero-tilt-logo,
+  .hero-tilt-logo::after {
+    transform: none;
+    transition: none;
+  }
+
+  #global-navbar,
+  #global-navbar * {
+    transition-duration: 0s !important;
+  }
+
   .hero-lite-line-drift,
   .hero-lite-line,
   .hero-contour-line,
@@ -317,6 +329,14 @@
   .hero-orbit-icon-counter {
     animation: none;
   }
+}
+
+#global-navbar :is(a, button):focus-visible,
+#home-hero a:focus-visible,
+#platform button:focus-visible,
+#values a:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: -3px;
 }
 
 .animate-scroll-line {

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { useReducedMotionPreference } from "@/hooks/use-reduced-motion";
 import Image from "next/image";
 import { Tag } from "@/components/ui/tag";
 import { getServices } from "@/data/services";
@@ -14,33 +15,48 @@ const OFFSET_STEP = 8;
 export function StackingServiceCards() {
   const locale = useLocale();
   const services = getServices(locale);
+  const reducedMotion = useReducedMotionPreference();
   const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
   const [depth, setDepth] = useState<number[]>(services.map(() => 0));
 
   useEffect(() => {
-    function onScroll() {
-      const nextDepth = services.map((_, i) => {
-        let count = 0;
-        for (let j = i + 1; j < services.length; j++) {
-          const el = cardRefs.current[j];
-          if (!el) continue;
-          const rect = el.getBoundingClientRect();
-          if (rect.top <= STICKY_TOP + j * STICKY_STEP + 2) count++;
-        }
-        return count;
-      });
-      setDepth(nextDepth);
+    if (reducedMotion) return;
+
+    let frame: number | null = null;
+
+    function measureDepth() {
+      frame = null;
+      // Read each sticky wrapper once, before scheduling a React update.
+      const stuck = cardRefs.current.map((el, i) =>
+        Boolean(el && el.getBoundingClientRect().top <= STICKY_TOP + i * STICKY_STEP + 2)
+      );
+      const nextDepth = new Array<number>(services.length).fill(0);
+      let count = 0;
+      for (let i = services.length - 1; i >= 0; i--) {
+        nextDepth[i] = count;
+        if (stuck[i]) count++;
+      }
+      setDepth((current) => current.every((value, i) => value === nextDepth[i]) ? current : nextDepth);
     }
 
-    window.addEventListener("scroll", onScroll, { passive: true });
-    onScroll();
-    return () => window.removeEventListener("scroll", onScroll);
-  }, [services]);
+    function scheduleMeasurement() {
+      if (frame === null) frame = window.requestAnimationFrame(measureDepth);
+    }
+
+    window.addEventListener("scroll", scheduleMeasurement, { passive: true });
+    window.addEventListener("resize", scheduleMeasurement);
+    scheduleMeasurement();
+    return () => {
+      window.removeEventListener("scroll", scheduleMeasurement);
+      window.removeEventListener("resize", scheduleMeasurement);
+      if (frame !== null) window.cancelAnimationFrame(frame);
+    };
+  }, [services, reducedMotion]);
 
   return (
     <div className="flex flex-col" style={{ perspective: "1400px", perspectiveOrigin: "50% 0%" }}>
       {services.map((service, i) => {
-        const d = depth[i];
+        const d = reducedMotion ? 0 : depth[i];
         const scale = 1 - d * SCALE_STEP;
         const translateY = d * OFFSET_STEP;
 
@@ -48,18 +64,17 @@ export function StackingServiceCards() {
           <div
             key={service.label}
             ref={(el) => { cardRefs.current[i] = el; }}
-            className="sticky mb-4"
-            style={{ top: `${STICKY_TOP + i * STICKY_STEP}px`, zIndex: 10 + i }}
+            className={reducedMotion ? "relative mb-4" : "sticky mb-4"}
+            style={{ top: reducedMotion ? undefined : `${STICKY_TOP + i * STICKY_STEP}px`, zIndex: 10 + i }}
           >
             <div
               style={{
                 transform: `scale(${scale}) translateY(${translateY}px)`,
                 transformOrigin: "top center",
-                transition: "transform 0.3s cubic-bezier(0.16,1,0.3,1)",
-                willChange: "transform",
+                transition: reducedMotion ? "none" : "transform 0.3s cubic-bezier(0.16,1,0.3,1)",
               }}
             >
-              <div className="group relative overflow-hidden rounded-[14px] border border-black/[0.07] bg-[#F5F7FA] cursor-pointer">
+              <div className="group relative overflow-hidden rounded-[14px] border border-black/[0.07] bg-[#F5F7FA]">
 
                 {/* Mobile: image top */}
                 {service.img && (

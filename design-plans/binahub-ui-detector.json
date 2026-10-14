@@ -1,0 +1,12 @@
+[
+  {
+    "antipattern": "side-tab",
+    "name": "Side-tab accent border",
+    "description": "Thick colored border on one side of a card — the most recognizable tell of AI-generated UIs. Use a subtler accent or remove it entirely.",
+    "severity": "warning",
+    "category": "slop",
+    "file": "C:\\Users\\USER\\OneDrive\\Documents\\Dokumen Binahub\\website-prod\\src\\app\\globals.css",
+    "line": 390,
+    "snippet": ".pixel-start-btn — inset box-shadow 4px stripe (top)"
+  }
+]
