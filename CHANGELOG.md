@@ -1,5 +1,21 @@
 # Changelog
 
+## [0.2.29] - 2026-10-16
+
+### Changed
+
+- Katalog lebih compact: pembuka ringkas, pencarian dan dropdown kategori,
+  filter pilihan sendiri, kartu solusi yang mudah dipindai, detail lengkap dan
+  panel pilihan. Judul halaman/kategori Indonesia; nama item CEO tetap Inggris.
+- Pilihan kode modul disimpan selama sesi browser dan hanya pilihan yang masih
+  tersedia diteruskan ke kontak. Pencarian singkat mendukung awalan/substring,
+  reset filter dan retry saat katalog gagal dimuat tanpa produk/harga dummy.
+- Dialog native tetap dapat ditutup dengan Escape dan mengembalikan fokus;
+  body scroll ditahan selama dialog terbuka. Tidak ada nested main landmark,
+  perubahan isi katalog CEO, harga publik, atau API bisnis baru.
+- Metadata judul/deskripsi mengikuti bahasa rute. Pengujian UI memakai fixture
+  sintetis tanpa event akuisisi, email, atau permintaan kontak produksi.
+
 ## [0.2.28] - 2026-10-13
 
 ### Changed
