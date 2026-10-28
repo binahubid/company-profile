@@ -100,10 +100,9 @@ components:
     rounded: "{rounded.tab}"
     padding: "10px 12px"
   demo-tab-selected:
-    backgroundColor: "{colors.program-white}"
     textColor: "{colors.program-navy}"
   report-document:
-    backgroundColor: "{colors.program-white}"
+    backgroundColor: "rgb(255 255 255 / 74%)"
     rounded: "{rounded.document}"
     padding: "30px"
 ---
@@ -116,7 +115,7 @@ components:
 
 This document records the existing navy/gold and Plus Jakarta Sans brand anchors, then the implemented extension for `/rekomendasi-program` and its Indonesian/English equivalents. Its route tokens and component rules are authoritative for that landing only. It is not a record of a whole-site migration, and it does not replace the main homepage hero, catalog, discovery form or shared navigation design.
 
-The confirmed reference direction is ElevenLabs' editorial hierarchy and product demonstration, with Hark/Apple-style light gradients. The built surface uses a white canvas, a navy headline, compact pill actions, fine dividers and an illustrated demonstration. Descriptive names below come from the existing palette guide; no new qualitative preference or visual world is proposed here.
+The confirmed reference direction is ElevenLabs' editorial hierarchy and product demonstration, with Hark/Apple-style light gradients. The built surface uses a white canvas, a navy headline, compact pill actions, fine dividers and an illustrated demonstration. The demo rail and illustrative report add the user's requested frosted glass, with blue/champagne selected and hover tab overlays. Descriptive names below come from the existing palette guide; no new qualitative preference or visual world is proposed here.
 
 **Key Characteristics:**
 
@@ -149,7 +148,7 @@ The brand anchors are navy and gold. The route adds light blue and warm supporti
 ### Neutral
 
 - **Deep Ink** (`program-ink`): default route text, secondary-action text and primary-action hover.
-- **Pure White** (`program-white`): main canvas, demonstration content, report document and inverse actions.
+- **Pure White** (`program-white`): main canvas, demonstration content, opaque report fallback and inverse actions. The supported report glass uses the component's translucent white value above; report notes and definition descriptions use the darker local slate (`#405675`) for legibility over the artwork.
 - **Cool Canvas** (`program-canvas`): secondary section and demo surfaces, secondary-action hover and the report gradient's middle stop. This is a route extension; it does not replace global `--secondary`.
 - **Slate Blue** (`program-text`): supporting paragraphs, inactive tabs and detail text.
 - **Quiet Line** (`program-line`): content dividers and secondary-action border.
@@ -189,9 +188,11 @@ Local verification for this implementation passed `npm run quality:public`, the 
 
 ## Elevation & Depth
 
-Most depth comes from white/canvas layering, light gradients, fine rules and the rendered ribbon artwork. Two small CSS shadows are present: a selected-tab shadow (`0 2px 5px rgb(16 35 75 / 8%)`) and a report-document shadow (`0 16px 36px rgb(16 35 75 / 9%)`). Their exact tokens and applied gradients are carried in `.impeccable/design.json`; no additional shadow scale is inferred.
+Most depth comes from white/canvas layering, light gradients, fine rules and the rendered ribbon artwork. Frosted material is limited to the demo tab rail and illustrative report document: supported browsers apply static `blur(16px) saturate(130%)` to the rail and `blur(20px) saturate(130%)` to the document. The rail has a translucent ice/white/champagne gradient; the report reuses the existing ribbon at 50% opacity behind its translucent sheet. Two small CSS shadows are present: a selected-tab shadow (`0 3px 9px rgb(16 35 75 / 9%)`) and a report-document shadow (`0 16px 36px rgb(16 35 75 / 12%)`). Their exact values, material gradients and component snippets are carried in `.impeccable/design.json`; no additional shadow scale is inferred.
 
-The sole new raster is `public/program-recommendation/direction-ribbon.webp` (1536×1024 source, 54,996 bytes). It is a navy/blue glass ribbon with a champagne-gold rim on pale blue, displayed with `object-fit: cover`; mobile art height is 192px. It is decorative (`alt=""` inside `aria-hidden="true"`), while text is HTML. The exact generation prompt and creation timestamp are retained in `public/program-recommendation/direction-ribbon.webp.json`. The scoped provenance check counted one raster and zero missing sidecars. This is an illustration, not a generated page comp or a customer-results image.
+Unsupported browsers retain the opaque rail (`#edf2fa`) and white report document. `prefers-reduced-transparency: reduce` removes both filters, makes the rail/document white and uses an opaque tab gradient. Forced colors removes the decorative ribbon and tab overlays, removes both filters, and uses `Highlight`/`HighlightText` for selection. Blur, filter and gradient position remain static in every state.
+
+The sole authored raster remains `public/program-recommendation/direction-ribbon.webp` (1536×1024 source, 54,996 bytes). It is a navy/blue glass ribbon with a champagne-gold rim on pale blue, displayed with `object-fit: cover`; mobile art height is 192px. It is decorative (`alt=""` inside `aria-hidden="true"`), while text is HTML. The report reuses the same file as a decorative CSS backing layer; the glass change generated no new raster. The exact generation prompt and creation timestamp are retained in `public/program-recommendation/direction-ribbon.webp.json`. The scoped provenance check counted one raster and zero missing sidecars. This is an illustration, not a generated page comp or a customer-results image.
 
 ## Shapes
 
@@ -203,15 +204,19 @@ Actions use pill corners. Demo and report outer frames and the closing block sha
 
 Primary and secondary actions share a 46px minimum height, 10px icon gap and the frontmatter's padding and label type. Primary hover moves from navy to ink; the bordered secondary hover moves from white to canvas. Mobile uses 16px inline padding. The closing action reverses to white/navy and hovers to champagne. Inline text links have a 44px minimum height and reveal an underline on hover; their arrow icons remain separate SVGs.
 
-Route links, buttons, summaries and focusable panels receive a 3px Signature Blue `:focus-visible` outline with 5px offset. Demo tabs inset that outline with -4px offset; demo panels use 4px offset. The closing button uses a white focus outline for its blue field. Actions and tabs transition background/text color for 160ms with `ease-out`; the route removes these transitions under `prefers-reduced-motion: reduce`.
+Route links, buttons, summaries and focusable panels receive a 3px Signature Blue `:focus-visible` outline with 5px offset. Demo tabs inset that outline with -4px offset; demo panels use 4px offset. The closing button uses a white focus outline for its blue field. Actions transition background/text color for 160ms with `ease-out`; tabs transition text color and their gradient overlay's opacity for the same duration. The material overlay animates opacity only; blur, filters and gradient position do not animate. The route removes these transitions under `prefers-reduced-motion: reduce`.
 
 ### Demonstration
 
 A three-tab `tablist` presents needs, competencies and a catalog program. Arrow keys wrap; Home/End select the first/last tab; selection moves focus and uses roving tab stops. Selection is manual, without autoplay. The disclosure after every panel heading identifies the synthetic example. The Team Synergy example retains the catalog deep link `?solution=SS-13`; the demonstration does not invoke a recommendation API or collect input.
 
+The rail uses the static glass material documented above. Each tab owns a blue/white/champagne gradient pseudo-element: hidden at rest, 60% opacity on hover and full opacity when selected. The selected state also carries a translucent white border and the selected-tab shadow. Its background is a gradient overlay, not an opaque white selected fill. These states retain the existing keyboard and touch behavior.
+
 ### Report document
 
-A white, padded document sits inside the Daylight frame. Definition-list groups use horizontal dividers. The title is followed by an illustrative-report note, then three groups and a discussion footer. This is a visual outline of deliverables, not a final proposal.
+A frosted, padded document sits inside the Daylight frame over the reused ribbon. It has a translucent white border, the supported material or opaque fallback described above, and the report-document shadow. Definition-list groups retain horizontal dividers; notes and definition descriptions use the local darker slate. The title is followed by an illustrative-report note, then three groups and a discussion footer. This is a visual outline of deliverables, not a final proposal.
+
+Glass finish evidence is in the sibling app's `.impeccable/review/program-glass-report-desktop.png`, `program-glass-report-mobile.png` and `program-glass-tabs-hover.png`. The glass implementation retained the passing public-quality checks, 45-route production build and full landing/homepage-hero browser regression. These remain local checks; no deployment, form or backend change is implied.
 
 ### FAQ and alternate paths
 
@@ -226,6 +231,7 @@ FAQ uses native `details`/`summary` with a 44px minimum summary height, bottom r
 - **Do** preserve illustrative disclosures, visible keyboard focus and stable demo-panel height.
 - **Do** keep foreground copy on readable light or blue fields; use the existing bronze role for small warm accents on light surfaces.
 - **Do** preserve the native FAQ controls and manual demo interaction under reduced motion.
+- **Do** keep glass scoped to the demo rail and illustrative report, preserve opaque/reduced-transparency/forced-color variants, and animate only overlay opacity within the material treatment.
 
 ### Don't:
 
@@ -234,5 +240,6 @@ FAQ uses native `details`/`summary` with a 44px minimum summary height, bottom r
 - **Don't** style BinaHub Gold as small text on white in this route.
 - **Don't** make the illustrative example appear to be the visitor's actual recommendation or a customer result.
 - **Don't** turn a pre-heading disclosure eyebrow into a reusable component rule; the finish fix places the disclosure after the heading.
+- **Don't** animate blur, filters or gradient position in the two glass surfaces.
 
-Not canonized or repaired: no whole-site token audit or migration is claimed; globally loaded secondary/pixel fonts, global canvas differences and shared-shell behavior are outside the inspected route. The pre-heading disclosure was corrected before this record. No backend, form, scoring, AI, price or question behavior is changed by these documents.
+Not canonized or repaired: no whole-site token audit or migration is claimed; globally loaded secondary/pixel fonts, global canvas differences, shared-shell behavior and the pre-existing typography-detector advisory are outside this narrow glass merge. The pre-heading disclosure was corrected before the original record. No backend, form, scoring, AI, price or question behavior is changed by these documents.

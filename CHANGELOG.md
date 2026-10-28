@@ -1,5 +1,24 @@
 # Changelog
 
+## [0.2.34] - 2026-10-28
+
+### Changed
+
+- Glassmorphism pada kartu laporan ilustratif dan rail tab landing rekomendasi
+  program, dengan gradasi biru–champagne pada tab aktif dan hover.
+- Blur statis memakai aset ribbon yang sudah ada; animasi hanya opacity kecil.
+  Tersedia fallback opak, reduced transparency dan forced colors. Fokus keyboard
+  tetap jelas. Tidak ada aset baru atau perubahan homepage, form maupun backend.
+- Resep visual dan batas penerapan diperbarui mengikuti tampilan yang dibangun.
+
+### Verification
+
+- quality:public dan production build 45 route lulus. Uji browser desktop/ponsel
+  memeriksa blur, hover, keyboard, forced colors, atribusi CTA, responsivitas
+  320–1600 px serta regresi carousel homepage yang tidak diubah.
+- Verifikasi lokal menggunakan data sintetis; bukan bukti deployment,
+  analisis AI atau pengiriman email produksi.
+
 ## [0.2.33] - 2026-10-28
 
 ### Changed

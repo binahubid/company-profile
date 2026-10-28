@@ -48,3 +48,13 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
 User confirmation: build the page directly; this request is only for the program
 recommendation landing, not the main website's homepage hero. The homepage remains
 unchanged. Review the directly implemented reference translation, not comp fidelity.
+
+## Glass treatment requested 28 October 2026
+
+The user specifically requests frosted-glass blur on the illustrative report
+document and the demo tab rail, plus a blue/champagne gradient on selected and
+hovered tabs. Keep the same composition, type, content, semantics and routes.
+Reuse the existing ribbon behind the report glass; no new image is generated.
+Blur is static and limited to the rail/document. Animate only small tab-overlay
+opacity, never blur/filter/gradient position. Keep opaque browser fallbacks,
+reduced-transparency and forced-color variants, and existing keyboard selection.
