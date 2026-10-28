@@ -1,5 +1,21 @@
 # Changelog
 
+## [0.2.38] - 2026-10-28
+
+- Hero rekomendasi home menampilkan contoh konkret: tantangan koordinasi,
+  Communication/Collaboration dan kartu utama Team Synergy. Garis pendek
+  dekoratif dihapus; label ilustrasi membedakannya dari hasil pengguna nyata.
+- Hierarki, kedalaman dan cahaya diperkuat. Tinggi minimum desktop dirapatkan;
+  jarak navigasi ponsel dan tepian atmosfer diperbaiki. Slide brand, CTA,
+  kontrol carousel, landing rekomendasi dan proses backend dipertahankan.
+- Tidak menambah raster, library atau klaim produk baru. Dokumentasi hero
+  diperbarui sesuai implementasi; verifikasi hanya membuktikan build lokal,
+  bukan status deployment produksi.
+- Lint publik, TypeScript, build 45 route dan uji browser desktop/ponsel
+  ID/EN lulus: konten kartu, jarak navigasi, overflow 320–1600 px,
+  sinkronisasi dan jeda carousel, forced colors, tautan serta regresi landing.
+  Tidak ada perubahan data atau panggilan pengiriman email saat pengujian.
+
 ## [0.2.37] - 2026-10-28
 
 - Slide rekomendasi pada hero home memakai tiga lapisan kaca kebutuhan →
