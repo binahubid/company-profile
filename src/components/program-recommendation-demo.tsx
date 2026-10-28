@@ -14,6 +14,12 @@ export function ProgramRecommendationDemo({locale}: {locale: Locale}) {
   const id = useId();
   const tabs = useRef<Array<HTMLButtonElement | null>>([]);
   const labels = en ? ['Needs', 'Competencies', 'Program'] : ['Kebutuhan', 'Kompetensi', 'Program'];
+  const scenes = [
+    {tone: 'needs', image: 'direction-ribbon.webp', lines: en ? ['From challenges,', 'to a direction.'] : ['Dari tantangan,', 'menuju arah.']},
+    {tone: 'competencies', image: 'competency-lenses.webp', lines: en ? ['Find your focus.', 'Build capability.'] : ['Temukan fokus.', 'Bangun kemampuan.']},
+    {tone: 'program', image: 'program-layers.webp', lines: en ? ['The right program.', 'A clear next step.'] : ['Program yang tepat.', 'Langkah yang jelas.']},
+  ];
+  const scene = scenes[active];
   const disclosure = <p className={styles.exampleLabel}>{en ? 'Illustrative example · not your result' : 'Contoh ilustratif · bukan hasil Anda'}</p>;
   const selectWithKeyboard = (event: KeyboardEvent<HTMLButtonElement>, index: number) => {
     let next = index;
@@ -39,11 +45,14 @@ export function ProgramRecommendationDemo({locale}: {locale: Locale}) {
       })}
     </div>
     <div className={styles.demoBody}>
-      <div className={styles.demoArt} aria-hidden="true">
-        <Image src="/program-recommendation/direction-ribbon.webp" alt="" width={1536} height={1024}
-          sizes="(max-width: 767px) 100vw, 50vw" loading="eager" fetchPriority="high"/>
-        <p>{en ? <>From challenges,<br/>to a direction.</> : <>Dari tantangan,<br/>menuju arah.</>}</p>
-        <span className={styles.artCaption}>BinaHub · People. Learning. Elevated.</span>
+      <div className={styles.demoArt} data-tone={scene.tone} aria-hidden="true">
+        {scenes.map((item, index) => <Image key={item.image} src={'/program-recommendation/' + item.image}
+          alt="" width={1536} height={1024} data-active={active === index}
+          sizes="(max-width: 767px) 100vw, 50vw" loading="eager" fetchPriority={index === 0 ? 'high' : 'low'}/>)}
+        <div className={styles.artGlass}>
+          <p>{scene.lines[0]}<br/>{scene.lines[1]}</p>
+          <span className={styles.artCaption}>BinaHub · People. Learning. Elevated.</span>
+        </div>
       </div>
       <div className={styles.demoContent}>
         <div className={styles.demoPanels}>

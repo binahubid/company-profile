@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.2.36] - 2026-10-28
+
+- Setiap tab contoh rekomendasi mempunyai gambar, suasana warna dan headline
+  ID/EN berbeda: ribbon ice blue, lensa seafoam dan bidang kaca champagne.
+  Dua ilustrasi imagegen baru disimpan sebagai WebP beserta prompt/provenance.
+- Lapisan frosted glass pada panel gambar mengikuti material kartu laporan;
+  teks HTML tetap tajam. Blur statis, tanpa autoplay atau animasi filter.
+- Tab polos tanpa ikon, keyboard, tinggi panel, isi rekomendasi, tautan dan
+  fallback aksesibilitas dipertahankan. Homepage hero tidak diubah.
+- quality:public, build 45 route dan uji browser desktop/ponsel lulus untuk
+  tiga scene, aset, warna, copy, glass, overflow, ID/EN dan regresi carousel.
+  Review visual enam capture: ship pada scope lokal, bukan bukti deployment.
+
 ## [0.2.35] - 2026-10-28
 
 - Koreksi glass sesuai arahan: bingkai laporan kembali ke gradasi Daylight awal

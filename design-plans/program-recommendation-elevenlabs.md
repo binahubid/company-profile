@@ -59,3 +59,16 @@ glass/gradient to the tab overlays: .75 opacity selected and .4 on hover. Remove
 only the three tab icons, preserving other content and icons. Keep the composition,
 type, semantics, keyboard selection, routes and opaque/accessibility fallbacks.
 Blur is static; only small overlay opacity transitions. No new imagery.
+
+## Distinct tab artwork · latest request
+
+Each manual tab now has distinct artwork, tone and HTML headline: Needs uses the
+existing ice-blue ribbon (Dari tantangan, menuju arah.); Competencies uses new
+seafoam/navy optical lenses (Temukan fokus. Bangun kemampuan.); Program uses new
+champagne/navy glass planes (Program yang tepat. Langkah yang jelas.). These are
+decorative illustrations, not inferred results. Inside the image panel, a static
+20px frosted sheet with white20% matches the report material while copy stays
+sharp. All three lightweight local WebP images load eagerly to avoid tab waiting.
+Native selection, fixed shared panel height, plain rail and tab opacity stay as
+approved. Opaque/reduced-transparency and forced-color fallbacks remain. Homepage
+hero has a design suggestion only; no homepage implementation is authorized yet.
