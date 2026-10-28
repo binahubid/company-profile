@@ -1,5 +1,29 @@
 # Changelog
 
+## [0.2.33] - 2026-10-28
+
+### Changed
+
+- Redesain landing rekomendasi program ID/EN dengan komposisi editorial dan
+  pratinjau produk yang terinspirasi ElevenLabs serta atmosfer ringan Hark.
+  Navy/gold dan Plus Jakarta Sans BinaHub dipertahankan.
+- Pratinjau ilustratif kebutuhan → kompetensi → program dapat diganti lewat
+  keyboard atau sentuhan, tanpa autoplay, loading buatan, atau panggilan AI.
+  Contoh Team Synergy terhubung langsung ke rincian program di katalog.
+- Palet turunan dan tiga gradasi terdokumentasi dalam panduan visual; token
+  dibatasi pada landing ini. Aset imagegen navy–gold dikompresi menjadi 55 KB
+  dan menyertakan provenance. Tidak mengubah homepage hero/carousel, formulir,
+  pertanyaan, analisis AI, penetapan harga, SQL, atau pengiriman laporan.
+
+### Verification
+
+- quality:public, production build dan uji pelestarian atribusi lulus.
+- Uji browser desktop/mobile lulus untuk tab, keyboard, tinggi pratinjau stabil,
+  tautan katalog, FAQ, aset gambar, responsivitas 320–1600 px, metadata ID/EN,
+  CTA dengan konteks kampanye dan regresi carousel homepage yang tidak diubah.
+- Semua panggilan API pengujian memakai fixture sintetis; ini bukan bukti
+  deployment, kualitas analisis AI atau pengiriman email produksi.
+
 ## [0.2.32] - 2026-10-28
 
 ### Added

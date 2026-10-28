@@ -1,0 +1,17 @@
+.theme {
+  --program-navy: #0B2C6B;
+  --program-gold: #D9A441;
+  --program-ink: #10234B;
+  --program-blue: #2F5EAB;
+  --program-sky: #B7D1F2;
+  --program-ice: #E8F0FC;
+  --program-champagne: #F6E7C5;
+  --program-bronze: #805A19;
+  --program-white: #FFFFFF;
+  --program-canvas: #F7F8FA;
+  --program-text: #52617A;
+  --program-line: #DFE4ED;
+  --program-gradient-daylight: linear-gradient(115deg, #E8F0FC 0%, #F7F8FA 58%, #F6E7C5 100%);
+  --program-gradient-blue-hour: linear-gradient(115deg, #0B2C6B 0%, #1B4B8E 62%, #2F5EAB 100%);
+  --program-gradient-golden-light: linear-gradient(115deg, #F6E7C5 0%, #D9A441 68%, #805A19 100%);
+}

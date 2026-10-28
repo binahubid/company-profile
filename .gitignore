@@ -58,6 +58,10 @@ CLAUDE.md
 /output/
 /artifacts/
 /screenshots/
+/.impeccable/review/
+/.impeccable/mocks/
+/.impeccable/build/
+/.impeccable/config.local.json
 /.codex_tmp/
 /playwright-report/
 /test-results/
