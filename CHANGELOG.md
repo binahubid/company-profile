@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.2.37] - 2026-10-28
+
+- Slide rekomendasi pada hero home memakai tiga lapisan kaca kebutuhan →
+  kompetensi → program, tone ice/navy/champagne dan CTA pill. Teks, visual kanan
+  serta background mengikuti satu state slide; slide brand/logo-orbit tetap.
+- Panel gambar landing memakai blur langsung, tanpa inset, bingkai atau kartu
+  glass tambahan. Gambar, warna dan kalimat tetap berbeda pada setiap tab;
+  teks HTML tidak ikut blur. Blur statis dan tidak menambah aset raster baru.
+- Lint publik, TypeScript dan build 45 route lulus. Uji desktop/ponsel ID/EN
+  mencakup kedua slide, sinkronisasi otomatis/manual, jeda hover/fokus/offscreen,
+  reduced motion, gambar/tab/tautan dan overflow. Data uji sintetis, tanpa
+  pengiriman email atau perubahan backend; deployment produksi belum diverifikasi.
+
 ## [0.2.36] - 2026-10-28
 
 - Setiap tab contoh rekomendasi mempunyai gambar, suasana warna dan headline

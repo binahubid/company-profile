@@ -20,6 +20,10 @@
 .controls .rotation{display:grid;place-items:center;min-width:44px;padding:10px;border:1px solid var(--hero-line);border-radius:50%}
 .rotation:disabled{cursor:default;opacity:.55}
 .carousel a:focus-visible,.carousel button:focus-visible{outline:3px solid var(--primary);outline-offset:4px}
+.slide[data-variant=recommendation] .title{color:#0b2c6b;font-weight:500}
+.slide[data-variant=recommendation] .accent{color:inherit;font-style:normal;font-weight:500}
+.slide[data-variant=recommendation] .primary,.slide[data-variant=recommendation] .secondary{border-radius:999px;letter-spacing:0;text-transform:none;font-weight:600;font-size:12px}
+@media(min-width:1024px){.slide[data-variant=recommendation] .title{font-size:clamp(2.75rem,4vw,4rem);line-height:1.12}.slide[data-variant=recommendation] .description{font-size:17px;line-height:1.75}}
 .srOnly{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 @media(min-width:768px){.primary,.secondary{min-height:48px;padding-inline:24px;font-size:12px;gap:12px}.accent{margin-top:4px}}
 @media(min-width:1024px){.carousel{text-align:left}.slide{align-items:flex-start}.title{max-width:900px;font-size:clamp(3rem,4.5vw,4.5rem);letter-spacing:-.035em}.description{font-size:19px}.actions,.controls{justify-content:flex-start}.actions{gap:16px}}

@@ -49,10 +49,8 @@ export function ProgramRecommendationDemo({locale}: {locale: Locale}) {
         {scenes.map((item, index) => <Image key={item.image} src={'/program-recommendation/' + item.image}
           alt="" width={1536} height={1024} data-active={active === index}
           sizes="(max-width: 767px) 100vw, 50vw" loading="eager" fetchPriority={index === 0 ? 'high' : 'low'}/>)}
-        <div className={styles.artGlass}>
-          <p>{scene.lines[0]}<br/>{scene.lines[1]}</p>
-          <span className={styles.artCaption}>BinaHub · People. Learning. Elevated.</span>
-        </div>
+        <p>{scene.lines[0]}<br/>{scene.lines[1]}</p>
+        <span className={styles.artCaption}>BinaHub · People. Learning. Elevated.</span>
       </div>
       <div className={styles.demoContent}>
         <div className={styles.demoPanels}>

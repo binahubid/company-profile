@@ -1,7 +1,10 @@
 "use client";
 
 import Image from "next/image";
+import { useState } from 'react';
 import { HeroMessageCarousel } from '@/components/hero-message-carousel';
+import { ProgramHeroVisual } from '@/components/program-hero-visual';
+import heroStyles from '@/components/program-hero-visual.module.css';
 
 interface HeroSectionProps {
   heroReady: boolean;
@@ -226,20 +229,25 @@ function FadeIn({
 }
 
 export function HeroSection({ heroReady }: HeroSectionProps) {
+  const [activeSlide, setActiveSlide] = useState(0);
   return (
-    <section id="home-hero" className="relative z-0 -mt-24 w-full overflow-x-hidden bg-white">
+    <section id="home-hero" data-hero-slide={activeSlide===0?'recommendation':'brand'} className="relative z-0 -mt-24 w-full overflow-x-hidden bg-white">
       <div className="relative min-h-[calc(100svh+6rem)] overflow-hidden bg-white text-[#071A33]">
         <HeroImageBackground />
+        <div className={heroStyles.recommendationBackdrop} data-active={activeSlide===0} aria-hidden="true"/>
 
         <div className="relative z-10 flex min-h-[calc(100svh+6rem)] flex-col items-center justify-start px-6 pb-20 pt-[8.25rem] text-center md:pt-[14.75rem] lg:items-start lg:px-20 lg:text-left xl:px-28">
           <div className="grid w-full max-w-[1580px] items-center gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.9fr)] lg:gap-10 xl:gap-12">
             <div className="order-2 lg:order-1 relative z-10 flex min-w-0 w-full max-w-[780px] flex-col items-center lg:items-start">
-              <HeroMessageCarousel ready={heroReady}/>
+              <HeroMessageCarousel ready={heroReady} active={activeSlide} onActiveChange={setActiveSlide}/>
             </div>
 
             <div className="order-1 lg:order-2 pointer-events-auto mx-auto w-full max-w-[280px] px-1 sm:max-w-[410px] md:max-w-[320px] md:px-0 lg:max-w-none orbit-shift-right">
               <FadeIn ready={heroReady} delay={650} className="w-full">
-                <HeroOrbitVisual />
+                <div className={heroStyles.visuals}>
+                  <div className={heroStyles.visual} data-active={activeSlide===0} aria-hidden="true"><ProgramHeroVisual/></div>
+                  <div className={heroStyles.visual} data-active={activeSlide===1} aria-hidden={activeSlide!==1} inert={activeSlide!==1}><HeroOrbitVisual/></div>
+                </div>
               </FadeIn>
             </div>
           </div>

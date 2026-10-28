@@ -16,10 +16,10 @@ const copy={
   {label:'About BinaHub',title:'Helping Organizations',accent:'Grow and Develop',description:'BinaHub helps companies build effective leadership, solid teams, and adaptive work cultures through an integrated approach supported by AI technology.',cta:'Start diagnostic',href:'/insight',secondary:'View Perspective',secondaryHref:'/perspektif'},
  ]},
 };
-export function HeroMessageCarousel({ready}:{ready:boolean}){
+export function HeroMessageCarousel({ready,active,onActiveChange}:{ready:boolean;active:number;onActiveChange:(index:number)=>void}){
  const locale=useLocale(),text=copy[locale],reduced=useReducedMotionPreference();
  const id=useId(),root=useRef<HTMLElement>(null);
- const [active,setActive]=useState(0),[playing,setPlaying]=useState(true),[hovered,setHovered]=useState(false);
+ const [playing,setPlaying]=useState(true),[hovered,setHovered]=useState(false);
  const [visible,setVisible]=useState(true),[announcement,setAnnouncement]=useState('');
  const canRotate=playing&&!reduced&&ready&&!hovered&&visible;
  useEffect(()=>{
@@ -40,16 +40,16 @@ export function HeroMessageCarousel({ready}:{ready:boolean}){
  },[hovered]);
  useEffect(()=>{
   if(!canRotate)return;
-  const timer=setTimeout(()=>setActive(value=>(value+1)%text.slides.length),8000);
+  const timer=setTimeout(()=>onActiveChange((active+1)%text.slides.length),8000);
   return()=>clearTimeout(timer);
- },[active,canRotate,text.slides.length]);
- function select(index:number){setPlaying(false);setActive(index);setAnnouncement(`${index+1} / ${text.slides.length}: ${text.slides[index].label}`);}
+ },[active,canRotate,text.slides.length,onActiveChange]);
+ function select(index:number){setPlaying(false);onActiveChange(index);setAnnouncement(`${index+1} / ${text.slides.length}: ${text.slides[index].label}`);}
  return <section ref={root} className={styles.carousel} data-auto-rotating={canRotate} data-rotation-status={reduced?'manual':!ready?'starting':!visible?'offscreen':hovered?'hover':!playing?'stopped':'running'} aria-label={text.label} aria-roledescription="carousel"
   onPointerEnter={event=>{if(event.pointerType==='mouse')setHovered(true);}}
   onPointerLeave={()=>setHovered(false)} onPointerDown={event=>{if(event.pointerType!=='mouse')setPlaying(false);}}
   onFocusCapture={event=>{const target=event.target as HTMLElement;if(!target.closest('[data-rotation-control]')||target.matches(':focus-visible'))setPlaying(false);}}>
   <div className={styles.panels} aria-live="off">{text.slides.map((slide,index)=><div key={slide.href} id={`${id}-slide-${index}`} className={styles.slide}
-   data-active={active===index} aria-hidden={active!==index} inert={active!==index} role="group" aria-roledescription="slide" aria-label={`${index+1} / ${text.slides.length}: ${slide.label}`}>
+   data-active={active===index} data-variant={index===0?'recommendation':'brand'} aria-hidden={active!==index} inert={active!==index} role="group" aria-roledescription="slide" aria-label={`${index+1} / ${text.slides.length}: ${slide.label}`}>
    <h1 className={styles.title}><span>{slide.title}</span><span className={styles.accent}>{slide.accent}</span></h1>
    <p className={styles.description}>{slide.description}</p>
    <div className={styles.actions}>

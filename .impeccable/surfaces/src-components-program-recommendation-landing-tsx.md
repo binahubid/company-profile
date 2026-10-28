@@ -74,8 +74,10 @@ existing ice-blue ribbon (Dari tantangan, menuju arah.); Competencies uses new
 seafoam/navy optical lenses (Temukan fokus. Bangun kemampuan.); Program uses new
 champagne/navy glass planes (Program yang tepat. Langkah yang jelas.). These are
 decorative illustrations, not inferred results. Inside the image panel, a static
-20px frosted sheet with white20% matches the report material while copy stays
+20px static blur applies directly to the image, with no inset sheet, border or
+extra card. The image is scaled to fill blurred edges while HTML copy stays
 sharp. All three lightweight local WebP images load eagerly to avoid tab waiting.
 Native selection, fixed shared panel height, plain rail and tab opacity stay as
-approved. Opaque/reduced-transparency and forced-color fallbacks remain. Homepage
-hero has a design suggestion only; no homepage implementation is authorized yet.
+approved. Forced-color fallback hides only decorative imagery. The existing
+report is unchanged. The user now authorizes the homepage recommendation-slide
+implementation described in home-recommendation-hero.md.

@@ -35,11 +35,10 @@
 .demoArt { position: relative; min-height: 456px; overflow: hidden; background: var(--program-ice); }
 .demoArt[data-tone="competencies"] { background: #e6f2ef; }
 .demoArt[data-tone="program"] { background: var(--program-champagne); }
-.demoArt img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 65% center; opacity: 0; }
+.demoArt img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 65% center; opacity: 0; filter: blur(20px); transform: scale(1.12); }
 .demoArt img[data-active="true"] { opacity: 1; }
-.artGlass { position: absolute; inset: 18px; border: 1px solid #ffffffc7; border-radius: 12px; background: rgb(255 255 255 / 85%); }
-.artGlass > p { max-width: 19ch; padding: 24px; color: var(--program-navy); font-size: clamp(1.7rem, 2.5vw, 2.3rem); line-height: 1.18; letter-spacing: -.03em; font-weight: 500; }
-.artCaption { position: absolute; bottom: 18px; left: 24px; right: 24px; color: var(--program-navy); font-size: .7rem; font-weight: 500; }
+.demoArt > p { position: relative; max-width: 19ch; padding: 34px; color: var(--program-navy); font-size: clamp(1.7rem, 2.5vw, 2.3rem); line-height: 1.18; letter-spacing: -.03em; font-weight: 500; }
+.artCaption { position: absolute; bottom: 24px; left: 34px; right: 24px; color: var(--program-navy); font-size: .7rem; font-weight: 500; }
 .demoContent { padding: 30px 36px 26px; background: var(--program-white); border: 1px solid var(--program-canvas); border-top: 0; border-bottom-right-radius: 16px; min-width: 0; }
 .demoPanels .exampleLabel { font-size: .7rem; margin-top: 10px; margin-bottom: 14px; }
 .demoPanels .exampleLabel + p { margin-top: 0; font-size: .85rem; }
@@ -121,7 +120,7 @@
   .container { width: calc(100% - 64px); }
   .heroGrid { grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 36px; }
   .demoContent { padding: 26px; }
-  .artGlass > p { padding: 20px; }
+  .demoArt > p { padding: 26px; }
   .demoPanels { min-height: 360px; }
   .reportGrid, .questions { gap: 40px; }
   .reportVisual { padding: 24px; }
@@ -142,9 +141,8 @@
   .demoBody { grid-template-columns: minmax(0, 1fr); }
   .demoArt { min-height: 224px; }
   .demoArt img { object-position: 65% 52%; }
-  .artGlass { inset: 12px; }
-  .artGlass > p { padding: 18px; font-size: 1.55rem; }
-  .artCaption { left: 18px; bottom: 16px; font-size: .6rem; }
+  .demoArt > p { padding: 22px; font-size: 1.55rem; }
+  .artCaption { left: 22px; bottom: 16px; font-size: .6rem; }
   .demoContent { padding: 24px 22px; border-bottom-left-radius: 16px; }
   .demoPanels { min-height: 330px; }
   .demoPanels h2 { font-size: 1.5rem; }
@@ -175,17 +173,16 @@
   .demoTabs button::before { transition: none; }
 }
 @supports ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
-  .artGlass { background: rgb(255 255 255 / 20%); -webkit-backdrop-filter: blur(20px) saturate(130%); backdrop-filter: blur(20px) saturate(130%); }
   .demoTabs button::before { background: linear-gradient(115deg, rgb(208 225 250 / 86%), rgb(246 250 255 / 90%) 58%, rgb(246 231 197 / 85%)); -webkit-backdrop-filter: blur(16px) saturate(130%); backdrop-filter: blur(16px) saturate(130%); }
   .reportDocument { background: rgb(255 255 255 / 20%); -webkit-backdrop-filter: blur(20px) saturate(130%); backdrop-filter: blur(20px) saturate(130%); }
 }
 @media (prefers-reduced-transparency: reduce) {
-  .artGlass, .reportDocument { -webkit-backdrop-filter: none; backdrop-filter: none; background: var(--program-white); }
+  .reportDocument { -webkit-backdrop-filter: none; backdrop-filter: none; background: var(--program-white); }
   .demoTabs button::before { -webkit-backdrop-filter: none; backdrop-filter: none; background: linear-gradient(115deg, #dce9fc, #f4f8ff 58%, #f6e7c5); }
 }
 @media (forced-colors: active) {
   .demoTabs button::before { display: none; }
-  .artGlass, .reportDocument { -webkit-backdrop-filter: none; backdrop-filter: none; }
+  .reportDocument { -webkit-backdrop-filter: none; backdrop-filter: none; }
   .demoArt img { display: none; }
   .demoTabs button[aria-selected="true"] { border-color: Highlight; background: Highlight; color: HighlightText; }
 }
