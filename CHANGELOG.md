@@ -1,5 +1,20 @@
 # Changelog
 
+## [0.2.31] - 2026-10-28
+
+### Security
+
+- Pin Next.js and eslint-config-next to 16.4.3 to address the three reported
+  Next.js advisories affecting 16.3.8.
+- Pin transitive Zod to 4.6.6, compatible with the React Hooks tooling's declared
+  peer/dependency ranges. Retain the source-map-js 1.2.2 security override.
+- Refresh the lockfile without install scripts. Repository clone failures happen
+  before compilation and must be resolved separately in the hosting integration.
+- Verification: full and production-only lockfile audits return zero findings;
+  manifest and lockfile versions align. No runtime build or exploit verification
+  is claimed: an isolated execution environment is unavailable, Docker is stopped,
+  and Strix has no configured model. Existing node_modules was not changed.
+
 ## [0.2.29] - 2026-10-16
 
 ### Changed
