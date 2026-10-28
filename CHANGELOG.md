@@ -1,5 +1,27 @@
 # Changelog
 
+## [0.2.32] - 2026-10-28
+
+### Added
+
+- Pilihan tampilan **Kartu / Daftar** pada katalog publik. Daftar menampilkan
+  nama solusi berkelompok per kategori dalam baris ringkas, dengan rincian dan
+  pilihan solusi yang tetap berfungsi. Preferensi tampilan disimpan selama sesi.
+- Tautan katalog `?solution=KODE` membuka rincian program yang direkomendasikan.
+- Menerbitkan perubahan katalog yang sebelumnya masih lokal, tanpa mengubah
+  isi program, kompetensi, harga, atau pertanyaan CEO.
+
+### Verification
+
+- Lint publik, TypeScript dan production build lulus dengan Next.js 16.4.3.
+  Audit dependensi penuh dan produksi nol temuan. Hasil ini memperbarui batas
+  verifikasi build yang dicatat pada rilis keamanan 0.2.31.
+- Pengujian UI katalog sebelumnya mencakup 14 skenario Chromium desktop/mobile;
+  semuanya menggunakan data sintetis, bukan bukti koneksi atau pengiriman produksi.
+- Uji rilis terbaru: dua alur desktop/mobile lulus untuk pergantian Kartu/Daftar,
+  rincian dan Escape, pilihan tersimpan, pencarian, lebar 320–1440 px, serta
+  tautan langsung program. Seluruh panggilan API memakai fixture sintetis.
+
 ## [0.2.31] - 2026-10-28
 
 ### Security
@@ -14,6 +36,21 @@
   manifest and lockfile versions align. No runtime build or exploit verification
   is claimed: an isolated execution environment is unavailable, Docker is stopped,
   and Strix has no configured model. Existing node_modules was not changed.
+
+## [0.2.30] - 2026-10-18
+
+### Fixed
+
+- Tautan katalog `?solution=KODE` membuka rincian program yang tersedia,
+  sehingga rekomendasi laporan baru tidak berhenti di halaman katalog umum.
+- Override dan lockfile `source-map-js` ke **1.2.2**. Audit dependensi produksi
+  nol temuan. Lima temuan tooling pengembangan dari rantai braces masih belum
+  memiliki perbaikan upstream aman; tidak melakukan force downgrade Next/ESLint.
+
+### Deployment
+
+- Bersama app **0.39.0**/API **0.38.0** dan SQL **70**. Tidak menampilkan harga
+  publik atau mengubah katalog/soal CEO. Tidak melakukan pembayaran/email nyata.
 
 ## [0.2.29] - 2026-10-16
 

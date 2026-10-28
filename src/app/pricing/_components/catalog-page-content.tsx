@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useRef, useState, type KeyboardEvent } from "react";
-import { ArrowRight, Check, ChevronRight, Clock3, Layers3, Loader2, Plus, RefreshCw, Search, SlidersHorizontal, X } from "lucide-react";
+import { ArrowRight, Check, ChevronRight, Clock3, Layers3, LayoutGrid, List, Loader2, Plus, RefreshCw, Search, SlidersHorizontal, X } from "lucide-react";
 import { useLocale } from "@/i18n/use-locale";
 import { localizePath } from "@/i18n/config";
 import { appApiUrl } from "@/lib/public-api";
@@ -37,6 +37,7 @@ type CatalogProduct = {
 };
 
 type CatalogItem = { module: CatalogModule; product: CatalogProduct };
+type CatalogView = "cards" | "list";
 
 const COPY = {
   id: {
@@ -54,6 +55,9 @@ const COPY = {
     categories: "Jelajahi kategori",
     showing: "solusi tersedia",
     result: "hasil ditemukan",
+    display: "Tampilan katalog",
+    cards: "Kartu",
+    list: "Daftar",
     loading: "Menyiapkan katalog…",
     unavailable: "Katalog belum tersedia",
     unavailableBody: "Silakan hubungi tim BinaHub untuk mendiskusikan kebutuhan organisasi Anda.",
@@ -102,6 +106,9 @@ const COPY = {
     categories: "Explore categories",
     showing: "solutions available",
     result: "results found",
+    display: "Catalog view",
+    cards: "Cards",
+    list: "List",
     loading: "Preparing the catalog…",
     unavailable: "Catalog unavailable",
     unavailableBody: "Contact BinaHub to discuss your organization's needs.",
@@ -167,6 +174,7 @@ export default function CatalogPageContent() {
   const [products, setProducts] = useState<CatalogProduct[]>([]);
   const [selected, setSelected] = useState<string[]>([]);
   const [category, setCategory] = useState("all");
+  const [catalogView, setCatalogView] = useState<CatalogView>("cards");
   const [search, setSearch] = useState("");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
@@ -184,6 +192,10 @@ export default function CatalogPageContent() {
         const codes: unknown = JSON.parse(sessionStorage.getItem("binahub.catalog.selection.v1") || "[]");
         if (Array.isArray(codes)) setSelected([...new Set(codes.filter((code): code is string => typeof code === "string" && /^[A-Za-z0-9_-]{1,64}$/.test(code)))].slice(0, 200));
       } catch { /* Storage may be unavailable; selection still works in memory. */ }
+      try {
+        const view = sessionStorage.getItem("binahub.catalog.view.v1");
+        if (view === "cards" || view === "list") setCatalogView(view);
+      } catch { /* View switching also works without browser storage. */ }
       setSelectionReady(true);
     });
   }, []);
@@ -208,7 +220,7 @@ export default function CatalogPageContent() {
         const response = await fetch(appApiUrl(`/api/catalog/modules?locale=${locale}`), { signal: controller.signal });
         const payload = await response.json();
         if (!response.ok || payload.success !== true || !Array.isArray(payload.products)) throw new Error("Catalog response unavailable");
-        setProducts((payload.products as CatalogProduct[]).map((product) => ({
+        const loadedProducts=(payload.products as CatalogProduct[]).map((product) => ({
           ...product,
           modules: (Array.isArray(product.modules) ? product.modules : []).map((module) => ({
             ...module,
@@ -216,7 +228,12 @@ export default function CatalogPageContent() {
             contentOutline: Array.isArray(module.contentOutline) ? module.contentOutline : [],
             outputs: Array.isArray(module.outputs) ? module.outputs : [],
           })),
-        })));
+        }));
+        setProducts(loadedProducts);
+        const requested=new URLSearchParams(window.location.search).get('solution');
+        if(requested){const product=loadedProducts.find(product=>product.modules.some(module=>module.code===requested));
+          const requestedModule=product?.modules.find(module=>module.code===requested);
+          if(product&&requestedModule)setDetailItem({product,module:requestedModule});}
       } catch (loadError) {
         if (controller.signal.aborted) return;
         console.warn("[Public Catalog] Catalog could not be loaded:", loadError);
@@ -257,7 +274,15 @@ export default function CatalogPageContent() {
     });
   }, [allItems, category, categoryName, locale, search, savedOnly, selected]);
   const selectedItems = useMemo(() => allItems.filter(({ module }) => module.code !== "BI-PUBLIC" && selected.includes(module.code)), [allItems, selected]);
+  const visibleGroups = useMemo(() => products.map(product => ({
+    product, items: visibleItems.filter(item => item.product.key === product.key),
+  })).filter(group => group.items.length > 0), [products, visibleItems]);
   const contactHref = `${localizePath("/contact", locale)}?modules=${encodeURIComponent(selectedItems.map(item => item.module.code).join(","))}`;
+
+  function changeView(view: CatalogView) {
+    setCatalogView(view);
+    try { sessionStorage.setItem("binahub.catalog.view.v1", view); } catch { /* Keep the current view in memory. */ }
+  }
 
   function toggleModule(code: string) {
     const wasSelected = selected.includes(code);
@@ -270,7 +295,7 @@ export default function CatalogPageContent() {
   const isActiveSelected = activeModule ? selected.includes(activeModule.code) : false;
   const isAssessment = activeModule?.code === "BI-PUBLIC";
 
-  return <div className={styles.catalog} data-has-selection={selectedItems.length > 0}>
+  return <div className={styles.catalog} data-has-selection={selectedItems.length > 0} data-view={catalogView}>
     <div className={styles.container}>
       <header className={styles.heading}>
         <div><h1>{copy.title}</h1><p>{copy.intro}</p></div>
@@ -305,14 +330,41 @@ export default function CatalogPageContent() {
 
           <div className={styles.resultsHeader}>
             <p className="text-sm font-medium text-[#52657A]" aria-live="polite"><span className="font-semibold text-[#142B46]">{visibleItems.length}</span> {search || category !== "all" || savedOnly ? copy.result : copy.showing}</p>
-            {(search || category !== "all" || savedOnly) && <button type="button" className={styles.clearFilters} onClick={() => { setCategory("all"); setSearch(""); setSavedOnly(false); }}><X size={14} aria-hidden="true" />{copy.clear}</button>}
+            <div className={styles.resultActions}>
+              {(search || category !== "all" || savedOnly) && <button type="button" className={styles.clearFilters} onClick={() => { setCategory("all"); setSearch(""); setSavedOnly(false); }}><X size={14} aria-hidden="true" />{copy.clear}</button>}
+              <div className={styles.viewSwitch} role="group" aria-label={copy.display}>
+                <button type="button" onClick={() => changeView("cards")} aria-pressed={catalogView === "cards"}><LayoutGrid size={16} aria-hidden="true" />{copy.cards}</button>
+                <button type="button" onClick={() => changeView("list")} aria-pressed={catalogView === "list"}><List size={16} aria-hidden="true" />{copy.list}</button>
+              </div>
+            </div>
           </div>
 
           {visibleItems.length === 0 ? <section className="rounded-2xl border border-[#E2E9F0] bg-white px-5 py-14 text-center">
             <h2 className="text-lg font-semibold">{copy.noResults}</h2>
             <p className="mt-2 text-sm text-[#62758A]">{copy.noResultsBody}</p>
             <button type="button" onClick={() => { setCategory("all"); setSearch(""); setSavedOnly(false); }} className="mt-6 min-h-11 rounded-lg border border-[#DCE5EE] px-5 text-sm font-semibold text-[#12356C]">{copy.reset}</button>
-          </section> : <div className={styles.grid}>
+          </section> : catalogView === "list" ? <div className={styles.listGroups}>
+            {visibleGroups.map(({ product, items }) => <section key={product.key} aria-labelledby={`catalog-category-${product.key}`} className={styles.listGroup}>
+              <div className={styles.listHeading}>
+                <h2 id={`catalog-category-${product.key}`}>{categoryName(product)}</h2>
+                <span>{items.length} {copy.showing}</span>
+              </div>
+              <ul>
+                {items.map(item => {
+                  const { module } = item;
+                  const isSelected = selected.includes(module.code);
+                  return <li key={module.id} className={styles.listRow} data-selected={isSelected}>
+                    <h3><button type="button" onClick={() => setDetailItem(item)} aria-label={`${copy.view}: ${module.name}`}>
+                      <span>{module.name}</span><ChevronRight size={17} aria-hidden="true" />
+                    </button></h3>
+                    {module.code !== "BI-PUBLIC" && <button type="button" onClick={() => toggleModule(module.code)} className={styles.listSelection} aria-label={`${isSelected ? copy.remove : copy.add}: ${module.name}`} aria-pressed={isSelected} title={isSelected ? copy.remove : copy.add}>
+                      {isSelected ? <Check size={18} aria-hidden="true" /> : <Plus size={18} aria-hidden="true" />}
+                    </button>}
+                  </li>;
+                })}
+              </ul>
+            </section>)}
+          </div> : <div className={styles.grid}>
             {visibleItems.map((item) => {
               const { module, product } = item;
               const isSelected = selected.includes(module.code);
