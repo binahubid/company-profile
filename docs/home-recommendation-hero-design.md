@@ -1,12 +1,12 @@
 ---
 name: BinaHub homepage — recommendation slide
-description: Implemented and locally verified scoped homepage recommendation example.
+description: Implemented scoped homepage recommendation journey with illustrated glass cards.
 colors:
   hero-navy: "#0b2c6b"
   hero-detail: "#405675"
-  hero-ice: "#e2edfc"
-  hero-seafoam: "#edf5f1"
-  hero-champagne: "#f6e7c5"
+  hero-ice: "#e6efff"
+  hero-seafoam: "#e0f2e9"
+  hero-champagne: "#fff1cb"
   hero-gold: "#d9a441"
   hero-white: "#fff"
 typography:
@@ -16,25 +16,20 @@ typography:
     fontWeight: 500
     lineHeight: 1.12
     letterSpacing: "-0.035em"
-  need-quote:
+  card-title:
     fontFamily: "Plus Jakarta Sans, Segoe UI, sans-serif"
-    fontSize: "clamp(16px, 1.8vw, 24px)"
-    fontWeight: 500
-    lineHeight: 1.4
-    letterSpacing: "-0.02em"
-  program-title:
-    fontFamily: "Plus Jakarta Sans, Segoe UI, sans-serif"
-    fontSize: "clamp(26px, 3vw, 40px)"
+    fontSize: "clamp(18px, 2vw, 27px)"
     fontWeight: 600
-    lineHeight: 1.2
-    letterSpacing: "-0.03em"
-  card-label:
+    lineHeight: 1.3
+    letterSpacing: "-0.025em"
+  card-body:
     fontFamily: "Plus Jakarta Sans, Segoe UI, sans-serif"
-    fontSize: "12px"
-    fontWeight: 600
-    lineHeight: 1.5
+    fontSize: "clamp(11px, 1.05vw, 14px)"
+    fontWeight: 400
+    lineHeight: 1.6
 rounded:
   layer: "16px"
+  badge: "10px"
   action: "999px"
 ---
 
@@ -44,90 +39,135 @@ rounded:
 
 **Creative North Star: "Needs become a development direction"**
 
-This record applies only to the homepage recommendation slide and its synchronized right-hand visual on the Indonesian and English home routes. It follows the explicit approval in [the homepage contract](../design-plans/home-recommendation-hero.md). [Root DESIGN.md](../DESIGN.md) continues to record the separate recommendation landing extension; neither record defines a whole-site migration.
+This record applies only to the homepage recommendation slide, its synchronized right-hand visual and backdrop, and the shared hero controls on the Indonesian and English home routes. It follows [the user-pinned homepage contract](../design-plans/home-recommendation-hero.md) and [its persisted surface brief](../.impeccable/surfaces/src-app-sections-hero-section-tsx.md). [Root DESIGN.md](../DESIGN.md) continues to record the separate recommendation landing extension; this ordinary homepage extension does not update that record or its sidecar.
 
-The implemented visual is native HTML/CSS: two light glass cards introduce a coordination need and Communication/Collaboration, then a larger navy Team Synergy card becomes the visual destination. A localized illustrative disclosure qualifies the example. BinaHub's Jakarta type and navy/gold anchors continue. The brand slide retains its existing copy, logo and orbit visual. The homepage adds no raster; the landing continues to use its existing three WebP illustrations and prompt sidecars.
+The current composition restores the generic Kebutuhan / Kompetensi / Program journey: three equally sized light glass cards, each pairing native text with a transparent abstract sculpture. Ice blue, seafoam and champagne distinguish both the card grounds and illustrations. The latest supplied BinaHub Program Development Hero reference informs the illustrated glass, thin rims and soft atmosphere. BinaHub's Jakarta type and navy/gold anchors continue; the brand slide retains its existing copy, logo and orbit visual. The concrete coordination/Team Synergy example from version 0.2.38 is superseded.
 
-Evidence: src/components/program-hero-visual.tsx and its CSS module, src/components/hero-message-carousel.tsx and its CSS module, and src/app/_sections/hero-section.tsx. PRODUCT.md's mobile and keyboard principles remain applicable.
+Evidence: src/components/program-hero-visual.tsx and its CSS module, src/components/hero-message-carousel.tsx and its CSS module, and src/app/_sections/hero-section.tsx. PRODUCT.md's mobile browsing and keyboard access principles constrain this surface.
+
+**Key Characteristics:**
+
+- Three distinct light glass tones with semantic, still illustrations.
+- Native localized labels and descriptions; an accessible offer and tracked actions.
+- Shared slide state, stable visual footprint and bottom-centered controls.
 
 ## Colors
 
-Navy identifies the recommendation headline, need copy and competency tags, then becomes the dominant program card's ground. Slate supports light-card labels and the illustrative disclosure. The program reverses its title to white, uses champagne for its label and pale blue (#e8f0fc) for its supporting copy. Ice and seafoam remain supporting light surfaces; champagne is an accent rather than the program card's ground.
+### Primary
 
-The recommendation backdrop combines radial-gradient(ellipse at 78% 36%,#c9dff570,transparent 50%) with linear-gradient(115deg,#fff 15%,#eef4fc 62%,#f9f0df). The visual's separate static light field combines blue at the upper left (#a8cbed70) and gold at the lower right (#d9a44133). It extends 12% beyond the visual and fades with radial-gradient(ellipse at center,#000 25%,transparent 70%) as its mask, avoiding a visible rectangular edge. No decorative short rules remain on these cards.
+Navy identifies the recommendation headline, card titles and primary action. Slate carries card descriptions and the Scroll cue. White forms the glass rims, highlights and primary-action text.
 
-**The Surface Scope Rule.** These values belong to the homepage recommendation slide. Do not replace global palette roles or the brand slide's design with them.
+### Secondary
+
+The three frontmatter surface colors are the solid reduced-transparency fallbacks. At default transparency, each card uses its own light gradient: needs runs from near-white ice (#f8fbfff0) to blue (#dceaffc9); competencies from mint white (#f5fffbf0) to seafoam (#ccebdedb); program from warm ivory (#fffdf2f0) to champagne (#fae2a3c9). Badge grounds follow the same sequence, with blue, green and bronze icon ink. No card uses a dark program ground.
+
+### Neutral
+
+The recommendation backdrop is white with overlapping static radial fields: pale blue at 12%/72% and 78%/24%, champagne at 87%/82%, and seafoam at 54%/58%. A low-opacity diagonal white sheen overlays those fields. There are no grid lines or extra backdrop cards.
+
+The visual's separate static atmosphere combines blue at the upper left (#a8cbed70) and gold at the lower right (#d9a44133). It extends 12% beyond the scene and fades through a radial mask, avoiding a rectangular edge. Fine pale-blue ellipses and two small nodes form its orbit.
+
+**The Surface Scope Rule.** Keep these values scoped to the homepage recommendation slide; root palette roles and the brand slide remain governed by their existing implementation.
 
 ## Typography
 
-Plus Jakarta Sans remains the existing family. The desktop recommendation display token above applies from 1024px; below that, the existing hero display uses clamp(1.75rem,7vw,2.5rem), line-height 1.1 and -0.025em tracking. Both recommendation title lines use weight 500 and upright navy type.
+Plus Jakarta Sans remains the existing family. The desktop recommendation-display token applies from 1024px; below that, the existing hero display uses clamp(1.75rem,7vw,2.5rem), line-height 1.1 and -0.025em tracking. Both recommendation title lines use weight 500 and upright navy type. The recommendation description uses 14px/1.65 initially and 17px/1.75 from 1024px.
 
-The recommendation description uses 14px/1.65 initially and 17px/1.75 from 1024px. The need quote uses the need-quote token with a 24ch maximum; the program name uses program-title. Card labels use card-label, with the program label reduced to weight 500. Competency tags use clamp(11px,1.1vw,14px)/1.5 at weight 500. Program supporting copy uses clamp(11px,1.1vw,14px)/1.65 with a 30ch maximum. The illustrative disclosure uses 11px/1.5.
+All three card titles share card-title, and all descriptions share card-body. Through 1399px, card descriptions become 10px/1.5; through 1023px titles become 20px, then 18px through 767px. These small sizes belong to the decorative scene; the accessible offer and actions remain in the carousel content.
 
-At 767px and below, card labels and tags become 10px, the need quote 14px/1.4, the program name 25px/1.2, supporting copy 10px/1.5 and the disclosure 9px/1.5. These belong to the decorative example; the accessible offer and actions remain in the carousel content.
+Desktop slide controls use 12px/1.5, with weight 600 for the selected slide. On phones the visual indicator is compact, while its localized native button name remains accessible. The Scroll cue uses 11px with a localized accessible destination label.
 
 ## Layout
 
-The outer hero frame and inner content share min-height calc(100svh + 6rem) below 1024px. From 1024px, both use min-height clamp(810px,calc(100svh + 6rem),920px), so both slides share a bounded desktop minimum. This is a minimum-height rule, not a promise that longer content cannot grow. Below 1024px the visual appears above the copy; desktop places copy to the left and the visual to the right in a 1:0.9 grid. The grid caps at 1580px; the visual wrapper retains its existing responsive widths of 280px, 410px and 320px before desktop expands.
+The outer hero frame and inner content share min-height calc(100svh + 6rem) below 1024px. From 1024px, both use min-height clamp(880px,calc(100svh + 6rem),1010px). This is a shared minimum, allowing longer content to grow. Content reserves 180px below the composition for the controls and Scroll cue.
 
-Both right-hand visuals share a CSS grid area and continue to reserve layout while inactive. The recommendation visual has aspect-ratio 1 and a 670px maximum width. On mobile its ratio becomes 1/1.15; that larger shared footprint remains reserved when the brand visual is selected. Mobile content uses 10.5rem top padding through 767px to clear the existing fixed header; widths from 768px retain 14.75rem top padding. The clearance applies to both slides.
+Copy and CTA appear before the decorative scene below 1024px. Desktop places copy left and the scene right in a 1:0.9 grid, capped at 1580px; the copy wrapper caps at 780px. The scene wrapper caps at 340px initially, 410px from 640px and 380px from 768px, before expanding in the desktop grid. Mobile top padding is 10.5rem through 767px to clear the fixed header; from 768px the existing 14.75rem padding remains. These rules apply to both slides.
 
-Desktop card positions are relative to the visual:
+Both right-hand visuals share a grid area and reserve layout while inactive. The recommendation scene has a 670px maximum width and aspect-ratio 1/1.08, becoming 1/1.16 through 1023px. Its three cards have equal width and height; positions are relative to that scene:
 
 | Card | Left / top | Width / height | Static rotation |
 | --- | --- | --- | --- |
-| Need | 4% / 9% | 78% / 25% | -6deg |
-| Competencies | 0 / 33% | 79% / 26% | -2deg |
-| Team Synergy | 20% / 55% | 78% / 35% | 3deg |
+| Needs | 18% / 4% | 80% / 32% | 8deg |
+| Competencies | 0 / 35% | 80% / 32% | -5deg |
+| Program | 20% / 66% | 80% / 32% | -7deg |
 
-Card padding is 26px 30px. Through 767px it becomes 14px 17px; needs moves to top 8%, competencies to top 32%, and the program uses left 17%/top 55%, width 82%/height 36%. The disclosure sits at left 22%/bottom 2%, becoming 19%/1% on mobile. Competency tags wrap with an 8px gap and 7px 12px padding; mobile uses a 5px gap and 5px 8px padding.
+Card padding is 22px 24px, becoming 14px 16px through 1399px and 13px 14px through 767px. Through 359px, card padding reduces to 10px 12px and text gap to 4px so copy stays within the card. The text column caps at 57% of the card, becoming 58% on phones. Artwork occupies the right side at 59% width and 114% height, offset right -8% and bottom -9%; a left-edge mask lets it merge into the glass without covering the native text.
+
+Controls are centered horizontally at the hero bottom, 84px above the content edge. The centered Scroll link sits below them at bottom 22px. Their placement belongs to the shared hero, rather than the left copy column. Phone controls use compact indicators with at least 44px targets, keeping the group narrow beside the existing chat widget.
 
 ## Elevation & Depth
 
-Cards use the layer radius without an enclosing border. Needs has shadow 0 16px 35px -22px #0b2c6b52; competencies uses 0 18px 38px -22px #0b2c6b5c. Their opaque fallback gradients run ice to near-white and white to seafoam. Supported browsers apply static backdrop-filter blur(16px) saturate(125%) only to these two light cards, using translucent versions of those gradients.
+All three cards use the same thin white rim (1px solid #ffffffe6), rounded corners, inset white top highlight and diffuse shadow (0 22px 48px -22px #0b2c6b38, inset 0 1px 0 #fff). Supported browsers add static backdrop-filter blur(18px) saturate(120%). Their surfaces, blur, shadows, masks and static rotations do not animate.
 
-The dominant program card uses radial-gradient(ellipse at 100% 0,#d9a44124,transparent 64%) over linear-gradient(125deg,#163e7c,#0b2c6b 65%,#10234b). Its shadow is 0 28px 48px -20px #0b2c6b70 with an inset 0 1px 0 #ffffff52 highlight. It has no backdrop filter. Blur, card rotations, light-field mask and radial backgrounds remain static.
+The shared controls use a faint white pill, white rim and static 10px backdrop blur. The selected slide receives a brighter translucent white pill; hover adds a restrained white fill. The atmosphere, material layers and illustration highlights provide depth without introducing a surrounding panel.
 
-Slide content, right-hand visuals and recommendation backdrop transition opacity over 220ms ease-out. Existing hero entrance motion is separate from that slide transition. Reduced motion removes the slide/visual/backdrop transitions and prevents automatic rotation. Reduced transparency removes light-card filters and uses solid ice and seafoam; the navy program remains opaque. Forced colors hides the light field and backdrop; cards use Canvas/CanvasText borders and copy with no shadow or filter, and tags receive Canvas/CanvasText borders and text.
+Slide content, right-hand visuals and recommendation backdrop transition opacity over 220ms ease-out. Existing hero entrance motion is separate and remains outside the rules established by this extension. The new recommendation orbit rotates with transform only; cards and raster artwork remain still.
+
+Reduced motion removes slide/visual/backdrop transitions, automatic slide changes and the recommendation orbit animation. Reduced transparency removes card and control backdrop filters and uses the solid fallback colors; the control ground becomes #f4f7fc. Forced colors hides the atmosphere, recommendation backdrop, illustrations, orbit and badges; cards use Canvas/CanvasText with no filter or shadow, and the controls retain a CanvasText border and selected Highlight outline.
 
 ## Shapes
 
-The three cards use softly rounded rectangles. Competency tags and recommendation actions use the pill radius; the brand actions retain their existing shape. Offsets, static rotations and the larger navy program card establish an asymmetric hierarchy for this example rather than a reusable global card style.
+Equal softly rounded rectangles establish three steps of one journey. The cards share the layer radius; their offset positions and static rotations establish the composition. Desktop badges are 34px squares with softly rounded 10px corners, reducing to 25px and 8px corners through 1399px; phones hide badges to preserve copy and illustration space.
+
+Recommendation actions and the controls use the pill radius. Mobile slide indicators are rounded short bars (16px wide, 24px selected) within named buttons. These interactive indicators are distinct from the removed decorative short rules on the cards.
 
 ## Components
 
 ### Synchronized carousel and visual
 
-HeroSection owns activeSlide, passes it to HeroMessageCarousel and selects the matching right-hand visual and backdrop. Recommendation starts selected. The recommendation visual is decorative and aria-hidden. Its localized labels are Kebutuhan / Fokus kompetensi / Program yang relevan or Your needs / Development focus / Relevant program. The brand logo/orbit remains the second visual.
+HeroSection owns activeSlide, passes it to HeroMessageCarousel, and selects the matching right-hand visual and backdrop. Recommendation starts selected. The entire recommendation scene is decorative and aria-hidden; its images use empty alternative text. The brand logo/orbit remains the second visual.
 
-The concrete example reads "Koordinasi lintas tim belum konsisten." / "Cross-team coordination is inconsistent.", then the English catalog competency names Communication and Collaboration, then Team Synergy. Its supporting scope is "Tujuan bersama, kontribusi lintas fungsi, dan komitmen tim." / "Shared goals, cross-functional contributions and clear team commitments." The program reuses the existing illustrative SS-13 catalog example; it adds no program promise or recommendation inference. "Ilustrasi rekomendasi" / "Illustrative recommendation" remains visible below the cards.
+The native card copy remains generic and localized:
 
-Automatic rotation retains the existing eight-second interval once the hero is ready. It pauses while hovered, outside the viewport or on a hidden page; keyboard focus, touch interaction and manual selection stop playback until resumed. Reduced motion makes the carousel manual and disables the rotation button. Inactive text panels use aria-hidden and inert; manual selection announces the selected slide politely. Copy, visual and atmosphere derive from the same parent state.
+| Card | Indonesian | English |
+| --- | --- | --- |
+| Needs | Kebutuhan — Tantangan dan tujuan tim Anda. | Your needs — Team challenges and intended outcomes. |
+| Competencies | Kompetensi — Fokus pengembangan yang relevan. | Competencies — A relevant development focus. |
+| Program | Program — Pilihan untuk dibahas bersama. | Your program — Options to explore with BinaHub. |
 
-**The Synchronized Slide Rule.** A slide change changes offer copy, right-hand object and atmosphere together. Preserve the shared state and stable footprint.
+The cards describe a relationship, rather than a specific catalog example or a visitor result. Target, Layers3 and Route outline icons appear within the desktop badges.
+
+Automatic slide changes retain the eight-second interval once the hero is ready. Carousel hover pauses playback; keyboard focus, touch interaction and manual selection stop it until resumed. Visibility observes the full #home-hero element, so scrolling the copy out of view while the hero remains visible does not alone mark the hero offscreen. Leaving the viewport or hiding the page pauses playback. Reduced motion makes the carousel manual and disables the rotation button. Inactive text panels use aria-hidden and inert; manual selection announces the selected slide politely.
+
+The recommendation orbit is two fine ellipses and two nodes inside a dedicated wrapper. Its 64-second linear animation rotates the wrapper through 360 degrees using transform only. It runs only when the carousel reports playback enabled and the recommendation slide is active; ready, hover, focus/manual stop, viewport visibility, page visibility and reduced motion therefore govern it. This new motion does not redefine the existing brand orbit.
+
+**The Synchronized Slide Rule.** Copy, right-hand object and atmosphere derive from one parent slide state; orbit playback additionally follows the carousel's motion state.
+
+### Illustrated glass cards
+
+Three alpha WebP assets ship in public/program-recommendation: hero-needs.webp shows converging paths in ice blue, hero-competencies.webp shows flowing capability layers in seafoam, and hero-program.webp shows linked stages in champagne. Each is 768×768 with genuine transparency and has its adjacent .webp.json exact-prompt and provenance record. The competency sidecar records both its original generation and color-only edit. Proportional resize and WebP conversion preserve alpha.
+
+These are separate sculptures, with no text, card face or background baked into them. Native HTML supplies every label and description. The earlier basic-glass material draft is superseded and does not ship in this scene; the recommendation landing's separate artwork remains governed by its existing record.
+
+**The Native Copy Rule.** Keep the card text native, localized and independent of its transparent illustration; retain all three distinct surface and artwork tones.
 
 ### Actions and controls
 
-Recommendation actions have a 44px minimum height, becoming 48px from 768px, with 12px type, weight 600, normal case and no added tracking. Primary stays navy/white; secondary stays light with a fine border. Existing localized ProgramJourneyLink destinations and tracking remain: recommendation landing and catalog for the first slide; diagnostic and perspective for the brand slide.
+Recommendation actions have a 44px minimum height, becoming 48px from 768px, with 12px type, weight 600, normal case and no added tracking. Primary remains navy/white; secondary remains light with a fine border. Existing localized ProgramJourneyLink destinations and tracking remain: recommendation landing and catalog for the first slide; diagnostic and perspective for the brand slide.
 
-Controls retain 44px targets, selected underline and navy focus outlines. Do not turn the decorative cards or competency tags into controls or inferred recommendation results.
+Shared slide controls use localized accessible names, aria-controls and aria-pressed. Desktop displays slide names; mobile visually hides those labels while retaining the accessible names and compact indicators. The rotation button retains its 44px minimum width and localized play/pause name. Links and buttons retain navy focus outlines.
 
-Prior revision history: the earlier generic three-plane extension passed public quality, the 45-route production build and the full browser suite, including synchronization, playback behavior, ID/EN, responsive overflow and existing links without API writes. Its finish review found no issues across ten captures, including ../app-binahub/.impeccable/review/program-hero-{desktop,mobile}.png and program-hero-brand-{desktop,mobile}.png. Those results predate this concrete-card revision and do not establish its finish.
+The centered Scroll link goes to the existing #platform section. Its visible label stays Scroll; its accessible label is localized. It has a 44px minimum height and a visible navy focus outline. Cards, badge icons and illustrations remain decorative rather than clickable recommendation results.
 
-Current revision evidence (website version 0.2.38): the scoped record above was reconciled with the current component and stylesheet sources. Finish review requested removal of the light field's rectangular boundary and clearance for the fixed mobile header. The radial mask and shared mobile top padding described above are implemented; the reviewer confirmed both defects resolved without a regression after final corrections.
+### Verification record
 
-The corrected revision passed npm run quality:public, npm run build (45 routes) and node scripts/test-program-website-ui.mjs. The full existing homepage-carousel and recommendation-landing regression covered both hero visuals, manual/automatic changes, pause/hover/focus/offscreen behavior, reduced motion, ID/EN, widths from 320–1600px, program-card fit, the shared bounded desktop minimum, mobile need-card clearance of at least 8px below the navigation, forced-color fallback and tracked CTAs without API writes. The parent reopened all six final local hero captures: ../app-binahub/.impeccable/review/program-hero-{desktop,mobile}.png, program-hero-example-{desktop,mobile}.png and program-hero-brand-{desktop,mobile}.png. These results establish local implementation and behavior; they do not validate deployment, backend inference, forms or delivery.
+Prior revision history: the generic three-plane extension and the later version 0.2.38 concrete example passed their then-current public quality, 45-route build and browser regressions. The concrete revision's rectangular light-field edge and mobile header clearance were corrected and reviewed at that time. Those results are historical and do not establish verification of this illustrated revision.
+
+Current revision evidence (website version 0.2.39): this record is reconciled with the implemented component and stylesheet sources. The final public-quality check, TypeScript, 45-route production build and scripts/test-program-website-ui.mjs all passed. Browser checks cover ID/EN, three different loaded sculptures and tones, native copy fit at 320–1600px, centered controls and Scroll, its #platform destination, reduced motion and forced colors, slide synchronization, tracking and existing recommendation-landing regressions. Motion checks verify that the orbit transform advances, pauses on the inactive slide/offscreen and runs while the mobile scene remains visible. Tests use synthetic data with no API writes. The finish reviewer reports no material visual defects in the illustrated composition.
+
+The parent reopened nine local captures: ../app-binahub/.impeccable/review/program-hero-{desktop,mobile}.png, program-hero-full-mobile.png, program-hero-example-{desktop,mobile}.png, program-hero-controls-{desktop,mobile}.png and program-hero-brand-{desktop,mobile}.png. Final responsive corrections were additionally inspected in program-hero-fit-{320,1280}.png. These checks establish local behavior and scoped finish, not deployment, backend recommendation accuracy, forms or delivery.
 
 ## Do's and Don'ts
 
-- **Do** keep this extension scoped to the homepage recommendation slide and synchronize it through the parent slide state.
-- **Do** retain existing destinations, tracking, locale behavior, playback controls and accessibility fallbacks.
+- **Do** keep this extension scoped to the homepage and synchronize it through parent slide and playback state.
+- **Do** retain the three equally sized, distinct ice/seafoam/champagne glass cards, native generic copy and semantic transparent sculptures.
+- **Do** retain copy and CTA before the scene on phones, the shared footprint, header clearance and bottom-centered controls with Scroll.
+- **Do** retain existing destinations, tracking, locale behavior, keyboard controls and accessibility fallbacks.
 - **Do** preserve the brand slide's existing copy, logo and orbit.
-- **Do** keep the coordination need and competency tags subordinate to the larger navy Team Synergy card, with its illustrative disclosure visible.
-- **Do** retain the shared desktop minimum and mobile header clearance on both slides.
-- **Don't** add decorative short rules to these cards or animate their blur, light field or static rotations.
-- **Don't** generate a new raster for these native cards or reuse the landing's direct-image blur as a card treatment.
-- **Don't** promote this card composition, tiny decorative labels or entrance motion into global design rules.
+- **Don't** restore the superseded dark Team Synergy card or concrete catalog example.
+- **Don't** bake labels into artwork, add decorative card rules, grid lines, extra backdrop cards or a rectangular atmosphere boundary.
+- **Don't** animate card blur, shadows, mesh, masks, static card rotations or raster illustrations.
+- **Don't** promote this card composition, tiny decorative descriptions or existing entrance motion into global design rules.
 - **Don't** claim the scene represents an actual visitor result.
 
-Not canonized or repaired: existing shared-shell, brand-slide and entrance-motion choices are outside this bounded extension; mobile clearance is a scoped hero correction. The root landing record and its sidecar remain unchanged because this is an ordinary homepage extension, not a global system update. No form, question, scoring, AI, price or delivery behavior is changed.
+Not canonized or repaired: existing shared-shell, brand-slide and entrance-motion choices remain outside this bounded extension. The root landing record and its sidecar remain unchanged because this is an ordinary homepage extension. No form, question, scoring, AI, price, delivery or backend recommendation behavior changes.

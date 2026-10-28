@@ -1,26 +1,38 @@
-.recommendationBackdrop{position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse at 78% 36%,#c9dff570,transparent 50%),linear-gradient(115deg,#fff 15%,#eef4fc 62%,#f9f0df);opacity:0;transition:opacity 220ms ease-out}
+.recommendationBackdrop{position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse at 12% 72%,#d9e8fb66,transparent 53%),radial-gradient(ellipse at 78% 24%,#cfdefb5c,transparent 47%),radial-gradient(ellipse at 87% 82%,#f6e7c566,transparent 49%),radial-gradient(ellipse at 54% 58%,#e6f2ef40,transparent 45%),#fff;opacity:0;transition:opacity 220ms ease-out}
+.recommendationBackdrop::after{content:"";position:absolute;inset:0;background:linear-gradient(142deg,transparent 24%,#ffffff80 44%,#ffffff00 60%,#ffffff59 78%,transparent);opacity:.4}
 .recommendationBackdrop[data-active=true]{opacity:1}
 .visuals{display:grid;min-width:0}
 .visual{grid-area:1/1;visibility:hidden;opacity:0;pointer-events:none;transition:opacity 220ms ease-out}
 .visual[data-active=true]{visibility:visible;opacity:1;pointer-events:auto}
-.journey{position:relative;isolation:isolate;aspect-ratio:1;width:100%;max-width:670px;margin-inline:auto;color:#0b2c6b}
-.atmosphere{position:absolute;inset:-12%;background:radial-gradient(ellipse at 30% 28%,#a8cbed70,transparent 60%),radial-gradient(ellipse at 75% 72%,#d9a44133,transparent 62%);mask-image:radial-gradient(ellipse at center,#000 25%,transparent 70%)}
-.layer{position:absolute;display:flex;flex-direction:column;justify-content:center;min-width:0;padding:26px 30px;border-radius:16px}
-.needs{z-index:1;left:4%;top:9%;width:78%;height:25%;transform:rotate(-6deg);background:linear-gradient(120deg,#e2edfc,#f8fbff);box-shadow:0 16px 35px -22px #0b2c6b52}
-.competencies{z-index:2;left:0;top:33%;width:79%;height:26%;transform:rotate(-2deg);background:linear-gradient(120deg,#fff,#edf5f1);box-shadow:0 18px 38px -22px #0b2c6b5c}
-.program{z-index:3;left:20%;top:55%;width:78%;height:35%;transform:rotate(3deg);background:radial-gradient(ellipse at 100% 0,#d9a44124,transparent 64%),linear-gradient(125deg,#163e7c,#0b2c6b 65%,#10234b);color:#fff;box-shadow:0 28px 48px -20px #0b2c6b70,inset 0 1px 0 #ffffff52}
-.cardLabel{font-size:12px;font-weight:600;line-height:1.5;color:#405675}
-.needQuote{max-width:24ch;margin-top:10px;font-size:clamp(16px,1.8vw,24px);font-weight:500;line-height:1.4;letter-spacing:-.02em;text-wrap:balance}
-.competencyTags{display:flex;flex-wrap:wrap;gap:8px;margin-top:15px}
-.competencyTags span{padding:7px 12px;border-radius:999px;background:#e1ebf8;color:#0b2c6b;font-size:clamp(11px,1.1vw,14px);font-weight:500;line-height:1.5}
-.competencyTags span+span{background:#e1eee8}
-.program .cardLabel{color:#f6e7c5;font-weight:500}
-.programName{display:block;margin-top:12px;font-size:clamp(26px,3vw,40px);font-weight:600;line-height:1.2;letter-spacing:-.03em}
-.programReason{max-width:30ch;margin-top:12px;font-size:clamp(11px,1.1vw,14px);line-height:1.65;color:#e8f0fc}
-.disclosure{position:absolute;left:22%;bottom:2%;font-size:11px;line-height:1.5;color:#405675}
-@supports((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){.needs,.competencies{-webkit-backdrop-filter:blur(16px) saturate(125%);backdrop-filter:blur(16px) saturate(125%)}.needs{background:linear-gradient(120deg,#e2edfce6,#f8fbffb3)}.competencies{background:linear-gradient(120deg,#fffffff0,#edf5f1d9)}}
-@media(max-width:767px){.heroContent{padding-top:10.5rem}.journey{aspect-ratio:1/1.15}.layer{padding:14px 17px}.needs{top:8%;height:25%}.competencies{top:32%;height:26%}.program{left:17%;top:55%;width:82%;height:36%}.cardLabel{font-size:10px}.needQuote{margin-top:6px;font-size:14px;line-height:1.4}.competencyTags{gap:5px;margin-top:10px}.competencyTags span{padding:5px 8px;font-size:10px}.programName{margin-top:8px;font-size:25px}.programReason{margin-top:8px;font-size:10px;line-height:1.5}.disclosure{left:19%;bottom:1%;font-size:9px}}
-@media(min-width:1024px){.heroFrame,.heroContent{min-height:clamp(810px,calc(100svh + 6rem),920px)}}
-@media(prefers-reduced-motion:reduce){.recommendationBackdrop,.visual{transition:none}}
-@media(prefers-reduced-transparency:reduce){.needs,.competencies{-webkit-backdrop-filter:none;backdrop-filter:none}.needs{background:#e2edfc}.competencies{background:#edf5f1}}
-@media(forced-colors:active){.atmosphere,.recommendationBackdrop{display:none}.layer{-webkit-backdrop-filter:none;backdrop-filter:none;box-shadow:none;border:1px solid CanvasText;background:Canvas;color:CanvasText}.cardLabel,.program .cardLabel,.programReason,.disclosure,.competencyTags span{color:CanvasText}.competencyTags span{background:Canvas;border:1px solid CanvasText}}
+.heroContent{padding-bottom:180px}
+.journey{position:relative;isolation:isolate;aspect-ratio:1/1.08;width:100%;max-width:670px;margin-inline:auto;color:#0b2c6b}
+.atmosphere{position:absolute;inset:-12%;background:radial-gradient(ellipse at 25% 28%,#a8cbed70,transparent 60%),radial-gradient(ellipse at 72% 78%,#d9a44133,transparent 62%);mask-image:radial-gradient(ellipse at center,#000 25%,transparent 70%)}
+.orbit{position:absolute;inset:-2% -7%;width:114%;height:104%;color:#9dbff1;opacity:.65;pointer-events:none}
+.orbitSpin{width:100%;height:100%;transform-origin:center;animation:program-orbit 64s linear infinite;animation-play-state:paused}
+.orbitSpin svg{width:100%;height:100%}
+.journey[data-orbit-running=true] .orbitSpin{animation-play-state:running;will-change:transform}
+@keyframes program-orbit{to{transform:rotate(360deg)}}
+.layer{position:absolute;isolation:isolate;width:80%;height:32%;min-width:0;padding:22px 24px;border:1px solid #ffffffe6;border-radius:16px;overflow:hidden;box-shadow:0 22px 48px -22px #0b2c6b38,inset 0 1px 0 #fff}
+.layer0{left:18%;top:4%;transform:rotate(8deg);background:linear-gradient(115deg,#f8fbfff0,#dceaffc9)}
+.layer1{left:0;top:35%;transform:rotate(-5deg);background:linear-gradient(115deg,#f5fffbf0,#ccebdedb)}
+.layer2{left:20%;top:66%;transform:rotate(-7deg);background:linear-gradient(115deg,#fffdf2f0,#fae2a3c9)}
+.cardCopy{position:relative;z-index:1;display:flex;flex-direction:column;gap:7px;max-width:57%;min-width:0}
+.badge{display:grid;place-items:center;width:34px;height:34px;margin-bottom:3px;border-radius:10px;background:linear-gradient(135deg,#d4e4ff,#91b6f5);color:#245099}
+.layer1 .badge{background:linear-gradient(135deg,#d8eee4,#96cdb8);color:#245e50}
+.layer2 .badge{background:linear-gradient(135deg,#fff3c7,#efbd62);color:#6b460d}
+.layerTitle{font-size:clamp(18px,2vw,27px);font-weight:600;line-height:1.3;letter-spacing:-.025em}
+.layerText{font-size:clamp(11px,1.05vw,14px);line-height:1.6;color:#405675}
+.artwork{position:absolute;right:-8%;bottom:-9%;width:59%;height:114%;pointer-events:none;mask-image:linear-gradient(to right,transparent,#000 25%)}
+.artwork .illustration{object-fit:contain;object-position:center right}
+.scrollCue{position:absolute;z-index:20;bottom:22px;left:50%;transform:translateX(-50%);display:inline-flex;align-items:center;justify-content:center;gap:9px;min-height:44px;padding:8px 14px;color:#405675;font-size:11px;text-decoration:none}
+.scrollCue:hover{color:#0b2c6b}
+.scrollCue:focus-visible{outline:3px solid #0b2c6b;outline-offset:3px;border-radius:999px}
+@supports((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){.layer{-webkit-backdrop-filter:blur(18px) saturate(120%);backdrop-filter:blur(18px) saturate(120%)}}
+@media(max-width:1399px){.layer{padding:14px 16px}.cardCopy{gap:5px}.badge{width:25px;height:25px;margin-bottom:1px;border-radius:8px}.badge svg{width:15px;height:15px}.layerText{font-size:10px;line-height:1.5}}
+@media(max-width:1023px){.journey{aspect-ratio:1/1.16}.layerTitle{font-size:20px}}
+@media(max-width:767px){.heroContent{padding-top:10.5rem}.layer{padding:13px 14px}.badge{display:none}.layerTitle{font-size:18px}.cardCopy{gap:6px;max-width:58%}}
+@media(max-width:359px){.layer{padding:10px 12px}.cardCopy{gap:4px}}
+@media(min-width:1024px){.heroFrame,.heroContent{min-height:clamp(880px,calc(100svh + 6rem),1010px)}}
+@media(prefers-reduced-motion:reduce){.recommendationBackdrop,.visual{transition:none}.orbitSpin{animation:none;will-change:auto}}
+@media(prefers-reduced-transparency:reduce){.layer{-webkit-backdrop-filter:none;backdrop-filter:none}.layer0{background:#e6efff}.layer1{background:#e0f2e9}.layer2{background:#fff1cb}}
+@media(forced-colors:active){.atmosphere,.recommendationBackdrop,.artwork,.orbit,.badge{display:none}.layer{-webkit-backdrop-filter:none;backdrop-filter:none;box-shadow:none;border:1px solid CanvasText;background:Canvas;color:CanvasText}.layerText,.scrollCue{color:CanvasText}}

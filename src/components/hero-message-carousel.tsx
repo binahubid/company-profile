@@ -16,14 +16,15 @@ const copy={
   {label:'About BinaHub',title:'Helping Organizations',accent:'Grow and Develop',description:'BinaHub helps companies build effective leadership, solid teams, and adaptive work cultures through an integrated approach supported by AI technology.',cta:'Start diagnostic',href:'/insight',secondary:'View Perspective',secondaryHref:'/perspektif'},
  ]},
 };
-export function HeroMessageCarousel({ready,active,onActiveChange}:{ready:boolean;active:number;onActiveChange:(index:number)=>void}){
+export function HeroMessageCarousel({ready,active,onActiveChange,onMotionStateChange}:{ready:boolean;active:number;onActiveChange:(index:number)=>void;onMotionStateChange:(playing:boolean)=>void}){
  const locale=useLocale(),text=copy[locale],reduced=useReducedMotionPreference();
  const id=useId(),root=useRef<HTMLElement>(null);
  const [playing,setPlaying]=useState(true),[hovered,setHovered]=useState(false);
  const [visible,setVisible]=useState(true),[announcement,setAnnouncement]=useState('');
  const canRotate=playing&&!reduced&&ready&&!hovered&&visible;
+ useEffect(()=>{onMotionStateChange(canRotate);},[canRotate,onMotionStateChange]);
  useEffect(()=>{
-  const element=root.current;if(!element)return;
+  const element=root.current?.closest('#home-hero')??root.current;if(!element)return;
   const checkPage=()=>setVisible(document.visibilityState==='visible'&&element.getBoundingClientRect().bottom>0&&element.getBoundingClientRect().top<window.innerHeight);
   const observer=new IntersectionObserver(entries=>setVisible(entries[0].isIntersecting&&document.visibilityState==='visible'));
   observer.observe(element);document.addEventListener('visibilitychange',checkPage);
@@ -58,7 +59,7 @@ export function HeroMessageCarousel({ready,active,onActiveChange}:{ready:boolean
    </div>
   </div>)}</div>
   <div className={styles.controls} role="group" aria-label={locale==='en'?'Hero slide controls':'Kontrol slide utama'}>
-   {text.slides.map((slide,index)=><button key={slide.href} type="button" aria-controls={`${id}-slide-${index}`} aria-pressed={active===index} onClick={()=>select(index)}>{slide.label}</button>)}
+   {text.slides.map((slide,index)=><button key={slide.href} type="button" aria-label={slide.label} aria-controls={`${id}-slide-${index}`} aria-pressed={active===index} onClick={()=>select(index)}><span className={styles.controlLabel}>{slide.label}</span></button>)}
    <button type="button" data-rotation-control className={styles.rotation} disabled={reduced} aria-label={playing&&!reduced?text.pause:text.play}
     onClick={()=>setPlaying(value=>!value)}>{playing&&!reduced?<Pause size={16} aria-hidden="true"/>:<Play size={16} aria-hidden="true"/>}</button>
   </div>

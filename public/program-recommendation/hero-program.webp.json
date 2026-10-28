@@ -1,0 +1,21 @@
+{
+  "asset": "hero-program.webp",
+  "generator": "OpenAI built-in image_gen",
+  "mode": "generate",
+  "created": "2026-10-28",
+  "use": "Decorative 3D sculpture for program glass card; all labels remain HTML.",
+  "sourceFile": "exec-ce551ee9-0f85-47d2-bc73-285c9dc4b927.png",
+  "sourceSize": {
+    "width": 1280,
+    "height": 1280
+  },
+  "output": {
+    "width": 768,
+    "height": 768,
+    "format": "webp",
+    "hasAlpha": true,
+    "bytes": 33248
+  },
+  "processing": "Proportional resize and WebP conversion only; original alpha preserved.",
+  "prompt": "Use case: stylized-concept. Production 3D illustration cutout for the RIGHT HALF of a BinaHub glass hero card. Square composition. Truly transparent background, no card or frame, no UI, NO text, letters, symbols, icons, logos or watermark. Premium abstract sculptural visual, smooth satin optical-glass surfaces with luminous ivory edges, softly frosted pale ice blue #D6E5FC, restrained navy #0B2C6B reflections, hints of champagne #F6E7C5. Soft daylight, architectural calm, gentle realistic shadows restricted to the object; no floor or colored background, no noisy texture. Gentle three-quarter view, strong simple recognizable silhouette, three-dimensional softly curved folded glass layers, not a photograph. All subject inside canvas with 8 percent breathing room. The intended style is the abstract layered blue flowing forms of a consulting company's competency card, not mountains, flags or people. Represent a structured development program: THREE broad modular champagne/ivory glass platforms arranged at gradually increasing heights, connected by ONE gently curving pale-blue ribbon path. An abstract sculptural progression with rounded soft architecture, suggesting intentional steps toward development, not literal wooden staircase or physical training equipment. Warm champagne dominant with a restrained pale-blue link."
+}

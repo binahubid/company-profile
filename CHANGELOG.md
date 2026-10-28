@@ -1,5 +1,23 @@
 # Changelog
 
+## [0.2.39] - 2026-10-28
+
+- Mengembalikan alur kartu Kebutuhan → Kompetensi → Program, kini dengan
+  ilustrasi 3D berbeda sesuai makna tiap kartu. Palet dibedakan menjadi ice
+  blue, seafoam dan champagne; teks tetap HTML ID/EN di atas kaca buram.
+- Background mesh lembut, tepi kaca, kontrol slide seamless di tengah bawah,
+  serta tautan Scroll ke bagian berikutnya. Pada ponsel, penawaran dan CTA
+  tampil sebelum ilustrasi; kontrol ringkas tetap mempunyai nama aksesibel.
+- Orbit ilustrasi berputar 64 detik dan mengikuti jeda carousel, visibilitas
+  hero/halaman serta reduced motion. Hanya transform yang bergerak; mesh,
+  kaca, kartu dan gambar tetap statis. Tidak menambah library animasi.
+- Tiga aset imagegen WebP transparan beserta prompt/provenance disimpan di
+  repository. Tidak mengubah pertanyaan, hasil, katalog, backend atau email.
+- Lint, TypeScript, build 45 route dan regresi browser desktop/ponsel ID/EN
+  lulus, termasuk tiga palet/aset, copy 320–1600 px, Scroll, sinkronisasi,
+  orbit bergerak/jeda, reduced motion dan forced colors. Review visual lokal
+  tidak menemukan perbaikan material; deployment produksi belum diverifikasi.
+
 ## [0.2.38] - 2026-10-28
 
 - Hero rekomendasi home menampilkan contoh konkret: tantangan koordinasi,
