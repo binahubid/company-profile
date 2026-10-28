@@ -1,29 +1,7 @@
 "use client";
 
-import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight, ChevronRight } from "lucide-react";
-import { localizePath } from "@/i18n/config";
-import { useLocale } from "@/i18n/use-locale";
-
-const COPY = {
-  id: {
-    title: "Membantu Organisasi",
-    accent: "Bertumbuh dan Berkembang",
-    desc: "BinaHub membantu perusahaan membangun kepemimpinan yang efektif, tim yang solid, dan budaya kerja yang adaptif melalui pendekatan terintegrasi yang didukung teknologi AI.",
-    journey: "Perjalanan Anda Dimulai dari sini",
-    cta: "Mulai Diagnosa",
-    secondaryCta: "Lihat Perspektif",
-  },
-  en: {
-    title: "Helping Organizations",
-    accent: "Grow and Develop",
-    desc: "BinaHub helps companies build effective leadership, solid teams, and adaptive work cultures through an integrated approach supported by AI technology.",
-    journey: "Your journey starts here",
-    cta: "Start Diagnostic",
-    secondaryCta: "View Perspective",
-  },
-};
+import { HeroMessageCarousel } from '@/components/hero-message-carousel';
 
 interface HeroSectionProps {
   heroReady: boolean;
@@ -39,52 +17,6 @@ const ORBIT_ICONS = [
   { src: "/icon/iconjourney.png", label: "BinaJourney", angle: 270 },
   { src: "/icon/iconworks.png", label: "BinaWorks", angle: 315 },
 ] as const;
-
-function AnimatedHeading({ title, accent, ready }: { title: string; accent: string; ready: boolean }) {
-  const lines = [title, accent];
-
-  const charDelay = 30;
-  let charOffset = 0;
-
-  return (
-    <h1 aria-label={`${title} ${accent}`} className="mx-auto w-full max-w-[560px] text-balance text-center text-[clamp(1.75rem,7vw,2.5rem)] font-normal leading-[1.1] tracking-[-0.025em] text-[#071A33] lg:mx-0 lg:max-w-[900px] lg:text-left lg:text-[clamp(3rem,4.5vw,4.5rem)] lg:tracking-[-0.035em]">
-      {lines.map((line, lineIndex) => {
-        const currentOffset = charOffset;
-        charOffset += line.length;
-
-        return (
-          <span
-            key={lineIndex}
-            aria-hidden="true"
-            className={lineIndex === 1 ? "mt-2 block font-light italic text-[#D9A441] md:mt-1" : "block"}
-          >
-            {line.split(" ").map((word, wordIndex) => (
-              <span
-                key={`${lineIndex}-${wordIndex}`}
-                className="mr-[0.22em] inline-block last:mr-0 md:whitespace-nowrap"
-              >
-                {word.split("").map((char, charIndex) => (
-                  <span
-                    key={`${lineIndex}-${wordIndex}-${charIndex}`}
-                    data-hero-letter
-                    className="inline-block transition-[opacity,transform] duration-500 ease-out"
-                    style={{
-                      opacity: ready ? 1 : 0,
-                      transform: ready ? "translateX(0)" : "translateX(-18px)",
-                      transitionDelay: `${200 + (currentOffset + wordIndex + charIndex) * charDelay}ms`,
-                    }}
-                  >
-                    {char}
-                  </span>
-                ))}
-              </span>
-            ))}
-          </span>
-        );
-      })}
-    </h1>
-  );
-}
 
 function HeroContourLines() {
   const paths = Array.from({ length: 18 }, (_, index) => {
@@ -294,9 +226,6 @@ function FadeIn({
 }
 
 export function HeroSection({ heroReady }: HeroSectionProps) {
-  const locale = useLocale();
-  const copy = COPY[locale];
-
   return (
     <section id="home-hero" className="relative z-0 -mt-24 w-full overflow-x-hidden bg-white">
       <div className="relative min-h-[calc(100svh+6rem)] overflow-hidden bg-white text-[#071A33]">
@@ -305,32 +234,7 @@ export function HeroSection({ heroReady }: HeroSectionProps) {
         <div className="relative z-10 flex min-h-[calc(100svh+6rem)] flex-col items-center justify-start px-6 pb-20 pt-[8.25rem] text-center md:pt-[14.75rem] lg:items-start lg:px-20 lg:text-left xl:px-28">
           <div className="grid w-full max-w-[1580px] items-center gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.9fr)] lg:gap-10 xl:gap-12">
             <div className="order-2 lg:order-1 relative z-10 flex min-w-0 w-full max-w-[780px] flex-col items-center lg:items-start">
-              <AnimatedHeading title={copy.title} accent={copy.accent} ready={heroReady} />
-
-              <FadeIn ready={heroReady} delay={850}>
-                <p className="mx-auto mt-8 max-w-[690px] text-balance text-center text-[14px] font-normal leading-[1.65] tracking-[-0.005em] text-[#30405C] lg:mx-0 lg:text-left lg:text-[19px]">
-                  {copy.desc}
-                </p>
-              </FadeIn>
-
-              <FadeIn ready={heroReady} delay={1150}>
-                <div className="mt-8 flex flex-wrap items-center justify-center gap-3 lg:justify-start lg:gap-4">
-                  <Link
-                    href={localizePath("/insight", locale)}
-                    className="inline-flex h-11 items-center justify-center gap-2 rounded-[9px] bg-[#0B2C6B] px-5 text-[10px] font-extrabold uppercase tracking-[0.11em] text-white shadow-[0_22px_56px_-30px_rgba(11,44,107,0.95)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#071A33] hover:shadow-[0_28px_64px_-34px_rgba(11,44,107,0.9)] md:h-12 md:gap-3 md:px-8 md:text-[12px] md:tracking-[0.14em]"
-                  >
-                    {copy.cta}
-                    <ChevronRight size={14} strokeWidth={2.2} className="md:h-4 md:w-4" />
-                  </Link>
-                  <Link
-                    href={localizePath("/perspektif", locale)}
-                    className="inline-flex h-11 items-center justify-center gap-2 rounded-[9px] border border-[#0B2C6B]/20 bg-white/58 px-5 text-[10px] font-extrabold uppercase tracking-[0.12em] text-[#071A33] shadow-[0_18px_54px_-38px_rgba(11,44,107,0.5)] backdrop-blur-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-[#0B2C6B]/40 hover:bg-white md:h-12 md:gap-3 md:px-8 md:text-[12px] md:tracking-[0.14em]"
-                  >
-                    {copy.secondaryCta}
-                    <ArrowRight size={14} strokeWidth={2.1} className="md:h-4 md:w-4" />
-                  </Link>
-                </div>
-              </FadeIn>
+              <HeroMessageCarousel ready={heroReady}/>
             </div>
 
             <div className="order-1 lg:order-2 pointer-events-auto mx-auto w-full max-w-[280px] px-1 sm:max-w-[410px] md:max-w-[320px] md:px-0 lg:max-w-none orbit-shift-right">

@@ -30,10 +30,10 @@ export default function Navbar() {
   const assessmentOrigin = (process.env.NEXT_PUBLIC_BINAHUB_APP_URL || "https://app.binahub.id").replace(/\/$/, "")
   const ctaHref = isInsightPage
     ? `${assessmentOrigin}/diagnose${locale === "en" ? "?lang=en" : ""}`
-    : localizePath("/insight", locale)
+    : localizePath("/rekomendasi-program", locale)
   const ctaLabel = isInsightPage
-    ? locale === "en" ? "Start Diagnostic" : "Mulai Diagnosa"
-    : navCopy.ctaLabel
+    ? locale === "en" ? "Start Diagnostic" : "Mulai Diagnosis"
+    : locale === "en" ? "Program recommendations" : "Rekomendasi program"
   const preserveJourneyOnAssessmentStart = isInsightPage
     ? (event: MouseEvent<HTMLAnchorElement>) => {
       const trackedHref = withInboundJourney(ctaHref)
