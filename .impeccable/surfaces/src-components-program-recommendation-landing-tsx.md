@@ -58,10 +58,11 @@ unchanged. Review the directly implemented reference translation, not comp fidel
 
 ## Glass treatment requested 28 October 2026
 
-The user specifically requests frosted-glass blur on the illustrative report
-document and the demo tab rail, plus a blue/champagne gradient on selected and
-hovered tabs. Keep the same composition, type, content, semantics and routes.
-Reuse the existing ribbon behind the report glass; no new image is generated.
-Blur is static and limited to the rail/document. Animate only small tab-overlay
-opacity, never blur/filter/gradient position. Keep opaque browser fallbacks,
-reduced-transparency and forced-color variants, and existing keyboard selection.
+The user's correction is the final authority: keep the report's original Daylight
+outer frame, without ribbon artwork behind it. Only the inner document is glass,
+using 20% white rather than an opaque white card. Restore the demo's original flat
+Cool Canvas ground; the tab rail itself has no gradient, tint or blur. Restrict
+glass/gradient to the tab overlays: .75 opacity selected and .4 on hover. Remove
+only the three tab icons, preserving other content and icons. Keep the composition,
+type, semantics, keyboard selection, routes and opaque/accessibility fallbacks.
+Blur is static; only small overlay opacity transitions. No new imagery.

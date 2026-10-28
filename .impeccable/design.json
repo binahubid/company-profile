@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-10-28T09:46:38Z",
+  "generatedAt": "2026-10-28T10:03:11Z",
   "title": "Design System: BinaHub public website",
   "extensions": {
     "colorMeta": {
@@ -33,7 +33,7 @@
     "motion": [
       {"name": "action-state", "value": "background-color 160ms ease-out, color 160ms ease-out", "purpose": "Color state changes for landing actions; disabled under prefers-reduced-motion: reduce."},
       {"name": "tab-text-state", "value": "color 160ms ease-out", "purpose": "Demo-tab foreground state; disabled under prefers-reduced-motion: reduce."},
-      {"name": "tab-overlay-state", "value": "opacity 160ms ease-out", "purpose": "Only opacity animates within the tab material: 0 at rest, .6 on hover, 1 when selected. Blur, filters and gradient position remain static; disabled under prefers-reduced-motion: reduce."}
+      {"name": "tab-overlay-state", "value": "opacity 160ms ease-out", "purpose": "Only opacity animates within the tab material: 0 at rest, .4 on hover, .75 when selected. Blur, filters and gradient position remain static; disabled under prefers-reduced-motion: reduce."}
     ],
     "breakpoints": [
       {"name": "narrow-mobile-max", "value": "359px"},
@@ -42,8 +42,7 @@
       {"name": "tablet-max", "value": "1099px"}
     ],
     "gradients": [
-      {"name": "demo-rail-glass", "value": "linear-gradient(115deg, rgb(232 240 252 / 62%), rgb(255 255 255 / 56%) 60%, rgb(246 231 197 / 52%))", "purpose": "Demo tab rail in backdrop-filter-capable browsers; static blur(16px) saturate(130%)."},
-      {"name": "demo-tab-glass", "value": "linear-gradient(115deg, rgb(208 225 250 / 86%), rgb(246 250 255 / 90%) 58%, rgb(246 231 197 / 85%))", "purpose": "Supported tab overlay; hover opacity .6, selected opacity 1."},
+      {"name": "demo-tab-glass", "value": "linear-gradient(115deg, rgb(208 225 250 / 86%), rgb(246 250 255 / 90%) 58%, rgb(246 231 197 / 85%))", "purpose": "Supported tab overlay with static blur(16px) saturate(130%); hover opacity .4, selected opacity .75."},
       {"name": "demo-tab-opaque", "value": "linear-gradient(115deg, #dce9fc, #f4f8ff 58%, #f6e7c5)", "purpose": "Opaque tab overlay for browser fallback and reduced transparency."},
       {"name": "program-gradient-daylight", "value": "linear-gradient(115deg, #E8F0FC 0%, #F7F8FA 58%, #F6E7C5 100%)", "purpose": "Applied report-document frame."},
       {"name": "program-gradient-blue-hour", "value": "linear-gradient(115deg, #0B2C6B 0%, #1B4B8E 62%, #2F5EAB 100%)", "purpose": "Applied closing CTA field."},
@@ -57,10 +56,11 @@
       "tonalRamps": "Omitted: the implementation defines individual palette colors, not tonal scales; no unimplemented ramp values are introduced."
     },
     "glass": {
-      "demoRail": {"backdropFilter": "blur(16px) saturate(130%)", "fallbackBackground": "#edf2fa"},
-      "reportDocument": {"backdropFilter": "blur(20px) saturate(130%)", "background": "rgb(255 255 255 / 74%)", "fallbackBackground": "#FFFFFF", "detailText": "#405675", "backing": "Existing direction-ribbon.webp at .5 opacity; no new raster."},
-      "reducedTransparency": "Remove rail/document filters, use white surfaces and the opaque tab overlay.",
-      "forcedColors": "Remove ribbon/overlays and filters; selected tabs use Highlight and HighlightText.",
+      "demoRail": {"background": "transparent", "backdropFilter": "none", "stageBackground": "#F7F8FA"},
+      "tabOverlay": {"backdropFilter": "blur(16px) saturate(130%)", "hoverOpacity": 0.4, "selectedOpacity": 0.75, "labels": "Text only; the three tab icons are removed, other icons remain."},
+      "reportDocument": {"backdropFilter": "blur(20px) saturate(130%)", "background": "rgb(255 255 255 / 20%)", "fallbackBackground": "#FFFFFF", "detailText": "#405675", "backing": "Original Daylight outer frame; no ribbon or raster backing."},
+      "reducedTransparency": "Remove overlay/document filters, use a white inner report and the opaque tab gradient; rail stays plain.",
+      "forcedColors": "Hide tab overlays and remove the report filter; selected tabs use Highlight and HighlightText.",
       "motion": "Static blur, filters and gradient position; only the tab overlay opacity animates within the material treatment."
     }
   },
@@ -100,17 +100,17 @@
       "name": "Demonstration tabs",
       "kind": "custom",
       "refersTo": "demo-tab",
-      "description": "Frosted rail with blue/champagne hover and selected overlays; application keyboard selection lives in the React component.",
+      "description": "Text-only tabs on a plain transparent rail over Cool Canvas; only blue/champagne hover/selected overlays carry glass. Application keyboard selection lives in the React component.",
       "html": "<div class=\"ds-demo-frame\"><div class=\"ds-tabs\" role=\"tablist\" aria-label=\"Ilustrasi alur rekomendasi\"><button class=\"ds-tab\" type=\"button\" role=\"tab\" aria-selected=\"true\">Kebutuhan</button><button class=\"ds-tab\" type=\"button\" role=\"tab\" aria-selected=\"false\" tabindex=\"-1\">Kompetensi</button><button class=\"ds-tab\" type=\"button\" role=\"tab\" aria-selected=\"false\" tabindex=\"-1\">Program</button></div></div>",
-      "css": ".ds-demo-frame{border-radius:16px;overflow:clip;background:linear-gradient(115deg,#E8F0FC 0%,#F7F8FA 58%,#F6E7C5 100%)}.ds-tabs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:4px;padding:6px;background:#edf2fa;border-bottom:1px solid #ffffffa6}.ds-tab{position:relative;isolation:isolate;display:inline-flex;align-items:center;justify-content:center;gap:9px;min-height:48px;padding:10px 12px;border:1px solid transparent;border-radius:11px;background:transparent;color:#52617A;font-family:'Plus Jakarta Sans','Segoe UI',sans-serif;font-size:.85rem;font-weight:500;cursor:pointer;transition:color 160ms ease-out}.ds-tab::before{content:'';position:absolute;inset:0;z-index:-1;border-radius:inherit;background:linear-gradient(115deg,#dce9fc,#f4f8ff 58%,#f6e7c5);opacity:0;transition:opacity 160ms ease-out}.ds-tab:hover{color:#10234B}.ds-tab:hover::before{opacity:.6}.ds-tab[aria-selected=true]{color:#0B2C6B;border-color:#ffffffd9;box-shadow:0 3px 9px rgb(16 35 75 / 9%)}.ds-tab[aria-selected=true]::before{opacity:1}.ds-tab:focus-visible{outline:3px solid #2F5EAB;outline-offset:-4px}@supports((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){.ds-tabs{background:linear-gradient(115deg,rgb(232 240 252 / 62%),rgb(255 255 255 / 56%) 60%,rgb(246 231 197 / 52%));-webkit-backdrop-filter:blur(16px) saturate(130%);backdrop-filter:blur(16px) saturate(130%)}.ds-tab::before{background:linear-gradient(115deg,rgb(208 225 250 / 86%),rgb(246 250 255 / 90%) 58%,rgb(246 231 197 / 85%))}}@media(prefers-reduced-motion:reduce){.ds-tab,.ds-tab::before{transition:none}}@media(prefers-reduced-transparency:reduce){.ds-tabs{-webkit-backdrop-filter:none;backdrop-filter:none;background:#FFFFFF}.ds-tab::before{background:linear-gradient(115deg,#dce9fc,#f4f8ff 58%,#f6e7c5)}}@media(forced-colors:active){.ds-tab::before{display:none}.ds-tabs{-webkit-backdrop-filter:none;backdrop-filter:none}.ds-tab[aria-selected=true]{border-color:Highlight;background:Highlight;color:HighlightText}}"
+      "css": ".ds-demo-frame{border-radius:16px;overflow:clip;background:#F7F8FA}.ds-tabs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:4px;padding:6px}.ds-tab{position:relative;isolation:isolate;display:inline-flex;align-items:center;justify-content:center;gap:9px;min-height:48px;padding:10px 12px;border:1px solid transparent;border-radius:11px;background:transparent;color:#52617A;font-family:'Plus Jakarta Sans','Segoe UI',sans-serif;font-size:.85rem;font-weight:500;cursor:pointer;transition:color 160ms ease-out}.ds-tab::before{content:'';position:absolute;inset:0;z-index:-1;border-radius:inherit;background:linear-gradient(115deg,#dce9fc,#f4f8ff 58%,#f6e7c5);opacity:0;transition:opacity 160ms ease-out}.ds-tab:hover{color:#10234B}.ds-tab:hover::before{opacity:.4}.ds-tab[aria-selected=true]{color:#0B2C6B;border-color:#ffffffd9;box-shadow:0 3px 9px rgb(16 35 75 / 9%)}.ds-tab[aria-selected=true]::before{opacity:.75}.ds-tab:focus-visible{outline:3px solid #2F5EAB;outline-offset:-4px}@supports((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){.ds-tab::before{background:linear-gradient(115deg,rgb(208 225 250 / 86%),rgb(246 250 255 / 90%) 58%,rgb(246 231 197 / 85%));-webkit-backdrop-filter:blur(16px) saturate(130%);backdrop-filter:blur(16px) saturate(130%)}}@media(prefers-reduced-motion:reduce){.ds-tab,.ds-tab::before{transition:none}}@media(prefers-reduced-transparency:reduce){.ds-tab::before{-webkit-backdrop-filter:none;backdrop-filter:none;background:linear-gradient(115deg,#dce9fc,#f4f8ff 58%,#f6e7c5)}}@media(forced-colors:active){.ds-tab::before{display:none}.ds-tab[aria-selected=true]{border-color:Highlight;background:Highlight;color:HighlightText}}"
     },
     {
       "name": "Report document",
       "kind": "card",
       "refersTo": "report-document",
-      "description": "Frosted illustrative report sheet with darker detail copy. This self-contained preview keeps the Daylight frame; the live route also reuses the existing ribbon behind it.",
+      "description": "Inner illustrative report sheet uses 20% white glass and darker detail copy over the unchanged Daylight outer frame; no ribbon backing.",
       "html": "<div class=\"ds-report-frame\"><article class=\"ds-report\"><h3>Arah pengembangan organisasi</h3><p class=\"ds-report-note\">Ilustrasi susunan laporan</p><dl class=\"ds-report-list\"><div><dt>Fokus pengembangan</dt><dd>Kompetensi yang terkait dengan tantangan tim.</dd></div></dl></article></div>",
-      "css": ".ds-report-frame{position:relative;isolation:isolate;display:grid;padding:40px;overflow:hidden;border-radius:16px;background:linear-gradient(115deg,#E8F0FC 0%,#F7F8FA 58%,#F6E7C5 100%);font-family:'Plus Jakarta Sans','Segoe UI',sans-serif}.ds-report{position:relative;padding:30px;border:1px solid #ffffffc7;border-radius:12px;background:#FFFFFF;box-shadow:0 16px 36px rgb(16 35 75 / 12%)}.ds-report h3{margin:0;color:#0B2C6B;font-size:1.2rem;font-weight:600;line-height:1.4;letter-spacing:-.015em}.ds-report-note{margin:8px 0 0;color:#405675;font-size:.7rem;line-height:1.75}.ds-report-list{margin:24px 0 0;color:#10234B}.ds-report-list>div{border-top:1px solid #DFE4ED;padding:16px 0}.ds-report-list dt{font-size:.8rem;font-weight:600}.ds-report-list dd{margin:5px 0 0;color:#405675;font-size:.75rem;line-height:1.65}@supports((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){.ds-report{background:rgb(255 255 255 / 74%);-webkit-backdrop-filter:blur(20px) saturate(130%);backdrop-filter:blur(20px) saturate(130%)}}@media(prefers-reduced-transparency:reduce){.ds-report{-webkit-backdrop-filter:none;backdrop-filter:none;background:#FFFFFF}}@media(forced-colors:active){.ds-report{-webkit-backdrop-filter:none;backdrop-filter:none}}"
+      "css": ".ds-report-frame{display:grid;padding:40px;border-radius:16px;background:linear-gradient(115deg,#E8F0FC 0%,#F7F8FA 58%,#F6E7C5 100%);font-family:'Plus Jakarta Sans','Segoe UI',sans-serif}.ds-report{position:relative;padding:30px;border:1px solid #ffffffc7;border-radius:12px;background:#FFFFFF;box-shadow:0 16px 36px rgb(16 35 75 / 12%)}.ds-report h3{margin:0;color:#0B2C6B;font-size:1.2rem;font-weight:600;line-height:1.4;letter-spacing:-.015em}.ds-report-note{margin:8px 0 0;color:#405675;font-size:.7rem;line-height:1.75}.ds-report-list{margin:24px 0 0;color:#10234B}.ds-report-list>div{border-top:1px solid #DFE4ED;padding:16px 0}.ds-report-list dt{font-size:.8rem;font-weight:600}.ds-report-list dd{margin:5px 0 0;color:#405675;font-size:.75rem;line-height:1.65}@supports((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){.ds-report{background:rgb(255 255 255 / 20%);-webkit-backdrop-filter:blur(20px) saturate(130%);backdrop-filter:blur(20px) saturate(130%)}}@media(prefers-reduced-transparency:reduce){.ds-report{-webkit-backdrop-filter:none;backdrop-filter:none;background:#FFFFFF}}@media(forced-colors:active){.ds-report{-webkit-backdrop-filter:none;backdrop-filter:none}}"
     },
     {
       "name": "FAQ disclosure",
@@ -122,7 +122,7 @@
   ],
   "narrative": {
     "northStar": "BinaHub navy/gold editorial extension",
-    "overview": "This document records the existing navy/gold and Plus Jakarta Sans brand anchors, then the implemented extension for `/rekomendasi-program` and its Indonesian/English equivalents. Its route tokens and component rules are authoritative for that landing only. It is not a record of a whole-site migration, and it does not replace the main homepage hero, catalog, discovery form or shared navigation design.\n\nThe confirmed reference direction is ElevenLabs' editorial hierarchy and product demonstration, with Hark/Apple-style light gradients. The built surface uses a white canvas, a navy headline, compact pill actions, fine dividers and an illustrated demonstration. The demo rail and illustrative report add the user's requested frosted glass, with blue/champagne selected and hover tab overlays. Descriptive names below come from the existing palette guide; no new qualitative preference or visual world is proposed here.",
+    "overview": "This document records the existing navy/gold and Plus Jakarta Sans brand anchors, then the implemented extension for `/rekomendasi-program` and its Indonesian/English equivalents. Its route tokens and component rules are authoritative for that landing only. It is not a record of a whole-site migration, and it does not replace the main homepage hero, catalog, discovery form or shared navigation design.\n\nThe confirmed reference direction is ElevenLabs' editorial hierarchy and product demonstration, with Hark/Apple-style light gradients. The built surface uses a white canvas, a navy headline, compact pill actions, fine dividers and an illustrated demonstration. Frosted glass is limited to the inner illustrative report and the blue/champagne selected and hover tab overlays; the rail remains plain on the original Cool Canvas stage. Descriptive names below come from the existing palette guide; no new qualitative preference or visual world is proposed here.",
     "keyCharacteristics": [
       "Existing navy, gold and Jakarta anchors; additional colors scoped to the recommendation route.",
       "Readable editorial hierarchy, light surfaces and a restrained pair of applied gradients.",
@@ -138,7 +138,7 @@
       "Do preserve illustrative disclosures, visible keyboard focus and stable demo-panel height.",
       "Do keep foreground copy on readable light or blue fields; use the existing bronze role for small warm accents on light surfaces.",
       "Do preserve the native FAQ controls and manual demo interaction under reduced motion.",
-      "Do keep glass scoped to the demo rail and illustrative report, preserve opaque/reduced-transparency/forced-color variants, and animate only overlay opacity within the material treatment."
+      "Do keep glass scoped to the tab overlays and inner illustrative report, preserve the plain rail/original outer frames and opaque/reduced-transparency/forced-color variants, and animate only overlay opacity within the material treatment."
     ],
     "donts": [
       "Don't infer a whole-site rebrand or change the main homepage hero from this extension.",

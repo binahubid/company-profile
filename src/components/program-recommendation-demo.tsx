@@ -3,7 +3,7 @@
 import {useId, useRef, useState, type KeyboardEvent} from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import {ArrowRight, Check, FileText, Focus, Layers3} from 'lucide-react';
+import {ArrowRight, Check} from 'lucide-react';
 import {localizePath, type Locale} from '@/i18n/config';
 import styles from './program-recommendation.module.css';
 
@@ -15,7 +15,6 @@ export function ProgramRecommendationDemo({locale}: {locale: Locale}) {
   const tabs = useRef<Array<HTMLButtonElement | null>>([]);
   const labels = en ? ['Needs', 'Competencies', 'Program'] : ['Kebutuhan', 'Kompetensi', 'Program'];
   const disclosure = <p className={styles.exampleLabel}>{en ? 'Illustrative example · not your result' : 'Contoh ilustratif · bukan hasil Anda'}</p>;
-  const icons = [FileText, Focus, Layers3];
   const selectWithKeyboard = (event: KeyboardEvent<HTMLButtonElement>, index: number) => {
     let next = index;
     if (event.key === 'ArrowRight') next = (index + 1) % labels.length;
@@ -31,12 +30,11 @@ export function ProgramRecommendationDemo({locale}: {locale: Locale}) {
   return <div id="recommendation-preview" className={styles.showcase}>
     <div role="tablist" aria-label={en ? 'Illustrative recommendation journey' : 'Ilustrasi alur rekomendasi'} className={styles.demoTabs}>
       {labels.map((label, index) => {
-        const Icon = icons[index];
         return <button type="button" key={label} ref={node => {tabs.current[index] = node;}}
           role="tab" id={id + '-tab-' + index} aria-selected={active === index}
           aria-controls={id + '-panel-' + index} tabIndex={active === index ? 0 : -1}
           onClick={() => setActive(index)} onKeyDown={event => selectWithKeyboard(event, index)}>
-          <Icon size={16} strokeWidth={1.7} aria-hidden="true"/>{label}
+          {label}
         </button>;
       })}
     </div>

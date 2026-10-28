@@ -1,5 +1,15 @@
 # Changelog
 
+## [0.2.35] - 2026-10-28
+
+- Koreksi glass sesuai arahan: bingkai laporan kembali ke gradasi Daylight awal
+  tanpa gambar tambahan; hanya dokumen di dalamnya memakai white 20% dan blur.
+- Background tab kembali polos. Glass/gradasi hanya pada tab aktif (opacity .75)
+  dan hover (.4); tiga ikon tab dihapus. Isi, rute dan perilaku tetap sama.
+- Lint publik, TypeScript, build 45 route dan uji browser desktop/ponsel lulus;
+  termasuk background, transparansi, ikon, keyboard dan regresi carousel homepage.
+  Verifikasi lokal sintetis, bukan bukti deployment atau pengiriman produksi.
+
 ## [0.2.34] - 2026-10-28
 
 ### Changed
