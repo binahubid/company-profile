@@ -2,7 +2,7 @@
 version: 1
 slug: "src-components-program-recommendation-landing-tsx"
 primary_target: "src/components/program-recommendation-landing.tsx"
-related_targets: ["src/components/program-recommendation-demo.tsx","src/components/program-recommendation.module.css"]
+related_targets: ["src/components/program-recommendation-demo.tsx","src/components/program-recommendation.module.css","src/styles/program-palette.module.css"]
 ---
 
 # Program recommendation landing · 28 October 2026
@@ -81,3 +81,29 @@ Native selection, fixed shared panel height, plain rail and tab opacity stay as
 approved. Forced-color fallback hides only decorative imagery. The existing
 report is unchanged. The user now authorizes the homepage recommendation-slide
 implementation described in home-recommendation-hero.md.
+
+## Landing refinement · latest approved request
+
+Scope remains this landing, not the homepage. Preserve the editorial opening,
+manual demo tabs, original plain showcase/rail and direct static image blur.
+Refresh the opening with a restrained ice/champagne mesh ground and light glass
+around the existing explanatory copy. Keep the headline, tracked CTA and form.
+
+Use the supplied needs headline verbatim: Dari tantangan menuju hasil yang nyata.
+Replace the abstract competency slogan with Kenali kemampuan yang perlu
+dikembangkan. Localize both in English; all copy remains sharp native HTML.
+This is aspirational editorial wording, not a guaranteed outcome or client result;
+the synthetic example disclosure and final-scope caveat remain unchanged.
+
+The three existing ordered process steps become light glass cards on a calm
+lavender-blue full-width ground. Keep all existing step text, meaningful sequence
+numbers and dark navy/slate headings/body outside the cards for readable contrast.
+
+Generate a dedicated navy/champagne optical-glass CTA background with quiet space
+behind the existing white headline/body and inverse button. Store the asset as
+public/program-recommendation/cta-glass-path.webp with its full prompt sidecar.
+Use a dark contrast overlay, static imagery and native text, with opaque and
+forced-color fallbacks. No new loops, libraries, claims or changes to form, AI,
+pricing, email, catalog content or homepage hero. Finish with build, ID/EN browser
+tests, keyboard/touch, image loading, contrast, overflow and fresh desktop/mobile
+opening/process/CTA captures; update the route design record and sidecar.

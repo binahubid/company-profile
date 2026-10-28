@@ -15,8 +15,8 @@ export function ProgramRecommendationDemo({locale}: {locale: Locale}) {
   const tabs = useRef<Array<HTMLButtonElement | null>>([]);
   const labels = en ? ['Needs', 'Competencies', 'Program'] : ['Kebutuhan', 'Kompetensi', 'Program'];
   const scenes = [
-    {tone: 'needs', image: 'direction-ribbon.webp', lines: en ? ['From challenges,', 'to a direction.'] : ['Dari tantangan,', 'menuju arah.']},
-    {tone: 'competencies', image: 'competency-lenses.webp', lines: en ? ['Find your focus.', 'Build capability.'] : ['Temukan fokus.', 'Bangun kemampuan.']},
+    {tone: 'needs', image: 'direction-ribbon.webp', lines: en ? ['From challenges', 'to tangible results.'] : ['Dari tantangan', 'menuju hasil yang nyata.']},
+    {tone: 'competencies', image: 'competency-lenses.webp', lines: en ? ['Identify the capabilities', 'your team needs to develop.'] : ['Kenali kemampuan', 'yang perlu dikembangkan.']},
     {tone: 'program', image: 'program-layers.webp', lines: en ? ['The right program.', 'A clear next step.'] : ['Program yang tepat.', 'Langkah yang jelas.']},
   ];
   const scene = scenes[active];

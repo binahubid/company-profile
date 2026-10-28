@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-10-28T10:57:46Z",
+  "generatedAt": "2026-10-28T15:43:17Z",
   "title": "Design System: BinaHub public website",
   "extensions": {
     "colorMeta": {
@@ -28,6 +28,7 @@
     },
     "shadows": [
       {"name": "demo-tab-selected", "value": "0 3px 9px rgb(16 35 75 / 9%)", "purpose": "Selected demo tab only."},
+      {"name": "process-card", "value": "0 16px 32px -24px #10234b38", "purpose": "Three ordered process cards on the lavender-blue field."},
       {"name": "report-document", "value": "0 16px 36px rgb(16 35 75 / 12%)", "purpose": "Frosted illustrative report document inside the Daylight frame."}
     ],
     "motion": [
@@ -45,8 +46,12 @@
       {"name": "demo-tab-glass", "value": "linear-gradient(115deg, rgb(208 225 250 / 86%), rgb(246 250 255 / 90%) 58%, rgb(246 231 197 / 85%))", "purpose": "Supported tab overlay with static blur(16px) saturate(130%); hover opacity .4, selected opacity .75."},
       {"name": "demo-tab-opaque", "value": "linear-gradient(115deg, #dce9fc, #f4f8ff 58%, #f6e7c5)", "purpose": "Opaque tab overlay for browser fallback and reduced transparency."},
       {"name": "program-gradient-daylight", "value": "linear-gradient(115deg, #E8F0FC 0%, #F7F8FA 58%, #F6E7C5 100%)", "purpose": "Applied report-document frame."},
-      {"name": "program-gradient-blue-hour", "value": "linear-gradient(115deg, #0B2C6B 0%, #1B4B8E 62%, #2F5EAB 100%)", "purpose": "Applied closing CTA field."},
-      {"name": "program-gradient-golden-light", "value": "linear-gradient(115deg, #F6E7C5 0%, #D9A441 68%, #805A19 100%)", "purpose": "Declared palette-guide reserve; not applied to the landing."}
+      {"name": "program-gradient-blue-hour", "value": "linear-gradient(115deg, #0B2C6B 0%, #1B4B8E 62%, #2F5EAB 100%)", "purpose": "Retained palette-guide definition; not applied to the current landing or closing CTA."},
+      {"name": "program-gradient-golden-light", "value": "linear-gradient(115deg, #F6E7C5 0%, #D9A441 68%, #805A19 100%)", "purpose": "Declared palette-guide reserve; not applied to the landing."},
+      {"name": "opening-mesh", "value": "radial-gradient(ellipse at 8% 0, #dce9fc99, transparent 47%), radial-gradient(ellipse at 92% 27%, #f6e7c54d, transparent 44%), linear-gradient(180deg, #f6f9ff, #fff 78%)", "purpose": "Static ice/champagne opening ground."},
+      {"name": "process-mesh", "value": "radial-gradient(ellipse at 12% 0, #dfe8f599, transparent 55%), radial-gradient(ellipse at 95% 100%, #e2e8f4b3, transparent 50%), #f0f1f8", "purpose": "Full-width lavender-blue process ground; navy headings and #405675 paragraphs remain readable outside and inside the cards."},
+      {"name": "closing-contrast", "value": "linear-gradient(90deg, #071a33e6 0%, #10234b99 55%, #0b2c6b26)", "purpose": "Static contrast overlay between CTA artwork and white native HTML copy."},
+      {"name": "closing-contrast-mobile", "value": "linear-gradient(90deg, #071a33e6, #10234bc4)", "purpose": "Stronger contrast overlay at widths through 767px."}
     ],
     "scope": {
       "brandAnchors": ["Global primary navy", "Global accent gold", "Plus Jakarta Sans"],
@@ -56,12 +61,14 @@
       "tonalRamps": "Omitted: the implementation defines individual palette colors, not tonal scales; no unimplemented ramp values are introduced."
     },
     "glass": {
+      "openingCopy": {"backdropFilter": "blur(14px)", "background": "#ffffff59", "fallbackBackground": "#ffffffb3", "reducedTransparencyBackground": "#f9faff", "border": "1px solid #ffffffcc", "radius": "16px", "padding": {"desktop": "28px", "mobile": "22px"}},
+      "processCards": {"backdropFilter": "blur(16px) saturate(120%)", "background": "#ffffff75", "fallbackBackground": "#f9faff", "fieldBase": "#f0f1f8", "headingColor": "#0B2C6B", "paragraphColor": "#405675", "paragraphScope": "Introduction outside cards and all paragraphs inside cards.", "border": "1px solid #ffffffd9", "radius": "16px", "padding": {"desktop": "28px", "mobile": "24px"}, "layout": "Three columns, 24px gaps and 40px top gap; one column with 32px top gap through 767px.", "semantics": "Existing ordered list and meaningful sequence 1–3; visible numeral spans aria-hidden; explanatory cards have no interaction or animation."},
       "demoRail": {"background": "transparent", "backdropFilter": "none", "stageBackground": "#F7F8FA"},
       "tabOverlay": {"backdropFilter": "blur(16px) saturate(130%)", "hoverOpacity": 0.4, "selectedOpacity": 0.75, "labels": "Text only; the three tab icons are removed, other icons remain."},
       "reportDocument": {"backdropFilter": "blur(20px) saturate(130%)", "background": "rgb(255 255 255 / 20%)", "fallbackBackground": "#FFFFFF", "detailText": "#405675", "backing": "Original Daylight outer frame; no ribbon or raster backing."},
       "artImage": {"filter": "blur(20px)", "transform": "scale(1.12)", "overlay": "None: no inset sheet, border or white backing.", "copy": "Direct sharp HTML paragraph and caption; only decorative images receive the filter."},
-      "reducedTransparency": "Remove report/tab backdrop filters, use a white report document and opaque tab gradient; the rail stays plain and direct decorative-image blur stays static.",
-      "forcedColors": "Hide tab overlays and decorative images; remove report filters; selected tabs use Highlight and HighlightText.",
+      "reducedTransparency": "Remove opening/process/report/tab backdrop filters, use #f9faff opening/process surfaces, a white report document and opaque tab gradient; the rail stays plain and direct decorative-image blur stays static.",
+      "forcedColors": "Opening/process grounds and copy surfaces use Canvas/CanvasText with no material filters or shadows; hide tab overlays and decorative demo/CTA images; remove report filters; selected tabs use Highlight and HighlightText. Closing CTA uses a Canvas/CanvasText bordered field without its overlay.",
       "motion": "Static blur, filters and gradient position; only the tab overlay opacity animates within the material treatment. Artwork opacity toggles immediately without transition."
     },
     "demoArtwork": {
@@ -71,11 +78,25 @@
       "position": {"desktop": "65% center", "mobile": "65% 52%"},
       "loading": "All three images eager; initial needs image fetchPriority high, other images low.",
       "scenes": [
-        {"state": "needs", "file": "public/program-recommendation/direction-ribbon.webp", "bytes": 54996, "fallbackColor": "program-ice", "material": "Navy/gold glass ribbon on ice blue", "headline": "Dari tantangan, menuju arah."},
-        {"state": "competencies", "file": "public/program-recommendation/competency-lenses.webp", "bytes": 62694, "fallbackColor": "#e6f2ef", "material": "Seafoam/navy optical lenses", "headline": "Temukan fokus. Bangun kemampuan."},
-        {"state": "program", "file": "public/program-recommendation/program-layers.webp", "bytes": 79702, "fallbackColor": "program-champagne", "material": "Champagne/navy glass planes", "headline": "Program yang tepat. Langkah yang jelas."}
+        {"state": "needs", "file": "public/program-recommendation/direction-ribbon.webp", "bytes": 54996, "fallbackColor": "program-ice", "material": "Navy/gold glass ribbon on ice blue", "headline": "Dari tantangan menuju hasil yang nyata.", "englishHeadline": "From challenges to tangible results."},
+        {"state": "competencies", "file": "public/program-recommendation/competency-lenses.webp", "bytes": 62694, "fallbackColor": "#e6f2ef", "material": "Seafoam/navy optical lenses", "headline": "Kenali kemampuan yang perlu dikembangkan.", "englishHeadline": "Identify the capabilities your team needs to develop."},
+        {"state": "program", "file": "public/program-recommendation/program-layers.webp", "bytes": 79702, "fallbackColor": "program-champagne", "material": "Champagne/navy glass planes", "headline": "Program yang tepat. Langkah yang jelas.", "englishHeadline": "The right program. A clear next step."}
       ],
-      "provenance": "Each image has a same-name .webp.json prompt sidecar; the two new illustrations were generated with built-in image_gen. All scene copy remains HTML, with English equivalents in the localized React component."
+      "provenance": "Each image has a same-name .webp.json prompt sidecar; lenses and glass planes were generated in the earlier distinct-artwork extension with built-in image_gen. All scene copy remains HTML, with English equivalents in the localized React component."
+    },
+    "closingArtwork": {
+      "file": "public/program-recommendation/cta-glass-path.webp",
+      "size": "1800x600",
+      "bytes": 38406,
+      "provenance": "Same-name .webp.json sidecar preserves the exact built-in image_gen prompt, creation date and proportional resize/WebP conversion record.",
+      "material": "Opaque navy optical-glass path with quiet dark space behind copy and champagne/ice reflections on the right.",
+      "image": {"fit": "cover", "position": "center right", "sizing": "Next Image fill; sizes (max-width: 767px) 100vw, 1200px", "accessibility": "Empty alt and aria-hidden; existing heading, paragraph and action remain native HTML.", "filter": "none", "motion": "Static image and overlay."},
+      "fallbackBackground": "#0B2C6B",
+      "overlay": "linear-gradient(90deg, #071a33e6 0%, #10234b99 55%, #0b2c6b26)",
+      "mobileOverlay": "linear-gradient(90deg, #071a33e6, #10234bc4)",
+      "copy": {"heading": "#FFFFFF", "paragraph": "#E8F0FC", "action": "Existing white/navy inverse tracked action with champagne hover and white focus outline."},
+      "layout": {"minimumHeight": "320px", "radius": "16px", "desktop": "Text/action grid; 56px padding, 48px gap.", "tablet": "40px padding, 24px gap.", "mobile": "Single column; 32px 24px padding, 28px gap; action aligned to start."},
+      "forcedColors": "Hide artwork/overlay; use Canvas/CanvasText and 1px CanvasText border."
     }
   },
   "components": [
@@ -99,9 +120,9 @@
       "name": "Closing action",
       "kind": "button",
       "refersTo": "button-closing",
-      "description": "Inverse recommendation action on the Blue Hour closing field.",
-      "html": "<div class=\"ds-closing-field\"><a class=\"ds-closing\" href=\"#start\">Dapatkan rekomendasi program<svg width=\"17\" height=\"17\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" aria-hidden=\"true\"><path d=\"M5 12h14m-7-7 7 7-7 7\"/></svg></a></div>",
-      "css": ".ds-closing-field{padding:32px 24px;border-radius:16px;background:linear-gradient(115deg,#0B2C6B 0%,#1B4B8E 62%,#2F5EAB 100%)}.ds-closing{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:46px;padding:12px 20px;border-radius:999px;background:#FFFFFF;color:#0B2C6B;font-family:'Plus Jakarta Sans','Segoe UI',sans-serif;font-size:.8rem;font-weight:600;line-height:1.5;text-align:center;text-decoration:none;transition:background-color 160ms ease-out,color 160ms ease-out}.ds-closing:hover{background:#F6E7C5}.ds-closing:focus-visible{outline:3px solid #FFFFFF;outline-offset:5px}@media(prefers-reduced-motion:reduce){.ds-closing{transition:none}}"
+      "description": "Existing inverse tracked recommendation action and native copy over the static closing optical-glass image, dark contrast overlay and solid navy fallback.",
+      "html": "<div class=\"ds-closing-field\"><img class=\"ds-closing-art\" src=\"/program-recommendation/cta-glass-path.webp\" alt=\"\" aria-hidden=\"true\"/><div><h2>Apa yang tim Anda butuhkan selanjutnya?</h2><p>Ceritakan kebutuhan Anda. Temukan arah pengembangan yang bisa dimulai bersama.</p></div><a class=\"ds-closing\" href=\"#start\">Dapatkan rekomendasi program<svg width=\"17\" height=\"17\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" aria-hidden=\"true\"><path d=\"M5 12h14m-7-7 7 7-7 7\"/></svg></a></div>",
+      "css": ".ds-closing-field{position:relative;isolation:isolate;overflow:hidden;min-height:320px;display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:48px;border-radius:16px;padding:56px;background:#0B2C6B;color:#FFFFFF;font-family:'Plus Jakarta Sans','Segoe UI',sans-serif}.ds-closing-art{position:absolute;inset:0;z-index:-2;width:100%;height:100%;object-fit:cover;object-position:center right}.ds-closing-field::after{content:'';position:absolute;inset:0;z-index:-1;pointer-events:none;background:linear-gradient(90deg,#071a33e6 0%,#10234b99 55%,#0b2c6b26)}.ds-closing-field h2{margin:0;max-width:23ch;font-size:clamp(1.65rem,2.7vw,2.5rem);font-weight:600;line-height:1.22;letter-spacing:-.03em;text-wrap:balance}.ds-closing-field p{margin:18px 0 0;max-width:45ch;color:#E8F0FC;font-size:.85rem;line-height:1.75}.ds-closing{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:46px;padding:12px 20px;border-radius:999px;background:#FFFFFF;color:#0B2C6B;font-size:.8rem;font-weight:600;line-height:1.5;text-align:center;text-decoration:none;transition:background-color 160ms ease-out,color 160ms ease-out}.ds-closing:hover{background:#F6E7C5}.ds-closing:focus-visible{outline:3px solid #FFFFFF;outline-offset:5px}@media(min-width:768px) and (max-width:1099px){.ds-closing-field{padding:40px;gap:24px}}@media(max-width:767px){.ds-closing-field{grid-template-columns:minmax(0,1fr);padding:32px 24px;gap:28px}.ds-closing-field::after{background:linear-gradient(90deg,#071a33e6,#10234bc4)}.ds-closing{justify-self:start;padding-inline:16px;font-size:.75rem}}@media(prefers-reduced-motion:reduce){.ds-closing{transition:none}}@media(forced-colors:active){.ds-closing-field{background:Canvas;color:CanvasText;border:1px solid CanvasText}.ds-closing-art,.ds-closing-field::after{display:none}.ds-closing-field p{color:CanvasText}}"
     },
     {
       "name": "Text link",
@@ -117,6 +138,22 @@
       "description": "Text-only tabs on a plain transparent rail over Cool Canvas; only blue/champagne hover/selected overlays carry glass. Application keyboard selection lives in the React component.",
       "html": "<div class=\"ds-demo-frame\"><div class=\"ds-tabs\" role=\"tablist\" aria-label=\"Ilustrasi alur rekomendasi\"><button class=\"ds-tab\" type=\"button\" role=\"tab\" aria-selected=\"true\">Kebutuhan</button><button class=\"ds-tab\" type=\"button\" role=\"tab\" aria-selected=\"false\" tabindex=\"-1\">Kompetensi</button><button class=\"ds-tab\" type=\"button\" role=\"tab\" aria-selected=\"false\" tabindex=\"-1\">Program</button></div></div>",
       "css": ".ds-demo-frame{border-radius:16px;overflow:clip;background:#F7F8FA}.ds-tabs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:4px;padding:6px}.ds-tab{position:relative;isolation:isolate;display:inline-flex;align-items:center;justify-content:center;gap:9px;min-height:48px;padding:10px 12px;border:1px solid transparent;border-radius:11px;background:transparent;color:#52617A;font-family:'Plus Jakarta Sans','Segoe UI',sans-serif;font-size:.85rem;font-weight:500;cursor:pointer;transition:color 160ms ease-out}.ds-tab::before{content:'';position:absolute;inset:0;z-index:-1;border-radius:inherit;background:linear-gradient(115deg,#dce9fc,#f4f8ff 58%,#f6e7c5);opacity:0;transition:opacity 160ms ease-out}.ds-tab:hover{color:#10234B}.ds-tab:hover::before{opacity:.4}.ds-tab[aria-selected=true]{color:#0B2C6B;border-color:#ffffffd9;box-shadow:0 3px 9px rgb(16 35 75 / 9%)}.ds-tab[aria-selected=true]::before{opacity:.75}.ds-tab:focus-visible{outline:3px solid #2F5EAB;outline-offset:-4px}@supports((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){.ds-tab::before{background:linear-gradient(115deg,rgb(208 225 250 / 86%),rgb(246 250 255 / 90%) 58%,rgb(246 231 197 / 85%));-webkit-backdrop-filter:blur(16px) saturate(130%);backdrop-filter:blur(16px) saturate(130%)}}@media(prefers-reduced-motion:reduce){.ds-tab,.ds-tab::before{transition:none}}@media(prefers-reduced-transparency:reduce){.ds-tab::before{-webkit-backdrop-filter:none;backdrop-filter:none;background:linear-gradient(115deg,#dce9fc,#f4f8ff 58%,#f6e7c5)}}@media(forced-colors:active){.ds-tab::before{display:none}.ds-tab[aria-selected=true]{border-color:Highlight;background:Highlight;color:HighlightText}}"
+    },
+    {
+      "name": "Opening explanatory glass",
+      "kind": "card",
+      "refersTo": "opening-copy",
+      "description": "Existing explanatory copy on the opening ice/champagne mesh; static 14px glass with opaque and system-color fallbacks.",
+      "html": "<div class=\"ds-opening-field\"><div class=\"ds-opening-copy\"><p class=\"ds-opening-lead\">Hubungkan tantangan organisasi Anda dengan fokus pengembangan dan program BinaHub yang relevan.</p><p class=\"ds-opening-note\">Untuk tim dan organisasi. Tanpa membuat akun.</p></div></div>",
+      "css": ".ds-opening-field{padding:28px;background:radial-gradient(ellipse at 8% 0,#dce9fc99,transparent 47%),radial-gradient(ellipse at 92% 27%,#f6e7c54d,transparent 44%),linear-gradient(180deg,#f6f9ff,#fff 78%);font-family:'Plus Jakarta Sans','Segoe UI',sans-serif}.ds-opening-copy{padding:28px;border:1px solid #ffffffcc;border-radius:16px;background:#ffffffb3}.ds-opening-copy p{color:#52617A;line-height:1.75}.ds-opening-lead{margin:0;max-width:40ch;font-size:1.05rem}.ds-opening-note{margin:20px 0 0;font-size:.8rem}@supports((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){.ds-opening-copy{background:#ffffff59;-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px)}}@media(max-width:767px){.ds-opening-copy{padding:22px}.ds-opening-lead{max-width:45ch;font-size:.95rem}.ds-opening-note{margin-top:12px;font-size:.75rem}}@media(prefers-reduced-transparency:reduce){.ds-opening-copy{-webkit-backdrop-filter:none;backdrop-filter:none;background:#f9faff}}@media(forced-colors:active){.ds-opening-field{background:Canvas;color:CanvasText}.ds-opening-copy{-webkit-backdrop-filter:none;backdrop-filter:none;background:Canvas;border-color:CanvasText;box-shadow:none}.ds-opening-copy p{color:CanvasText}}"
+    },
+    {
+      "name": "Ordered process glass cards",
+      "kind": "card",
+      "refersTo": "process-card",
+      "description": "Three existing meaningful steps on a full-width lavender-blue mesh, with navy headings and dark slate paragraphs both outside and inside the cards; static 16px glass.",
+      "html": "<section class=\"ds-process\"><div class=\"ds-process-intro\"><h2>Langkah sederhana. Arah yang lebih jelas.</h2><p>Mulai dari kondisi yang dihadapi tim. Jadikan rekomendasi sebagai bahan awal untuk diskusi yang lebih terarah.</p></div><ol class=\"ds-process-steps\"><li><span class=\"ds-step-number\" aria-hidden=\"true\">1</span><h3>Ceritakan kebutuhan tim</h3><p>Sampaikan konteks, tantangan, dampak, dan hasil yang ingin dicapai organisasi Anda.</p></li><li><span class=\"ds-step-number\" aria-hidden=\"true\">2</span><h3>Pelajari rekomendasinya</h3><p>Tinjau ringkasan kebutuhan, fokus pengembangan, dan pilihan program yang relevan.</p></li><li><span class=\"ds-step-number\" aria-hidden=\"true\">3</span><h3>Bahas langkah berikutnya</h3><p>Selaraskan ruang lingkup, kebutuhan pelaksanaan, dan investasi bersama tim BinaHub.</p></li></ol></section>",
+      "css": ".ds-process{padding:clamp(64px,7vw,104px) 48px;background:radial-gradient(ellipse at 12% 0,#dfe8f599,transparent 55%),radial-gradient(ellipse at 95% 100%,#e2e8f4b3,transparent 50%),#f0f1f8;color:#0B2C6B;font-family:'Plus Jakarta Sans','Segoe UI',sans-serif}.ds-process p{color:#405675;line-height:1.75}.ds-process-intro{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:64px;align-items:start}.ds-process-intro h2{margin:0;max-width:19ch;font-size:clamp(1.65rem,2.7vw,2.5rem);font-weight:600;line-height:1.22;letter-spacing:-.03em;text-wrap:balance}.ds-process-intro>p{margin:0;max-width:48ch;padding-top:5px;font-size:.95rem}.ds-process-steps{list-style:none;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;margin:40px 0 0;padding:0}.ds-process-steps li{min-width:0;padding:28px;border:1px solid #ffffffd9;border-radius:16px;background:#f9faff;box-shadow:0 16px 32px -24px #10234b38}.ds-step-number{display:block;margin-bottom:18px;color:#805A19;font-size:.8rem;font-variant-numeric:tabular-nums}.ds-process-steps h3{margin:0;font-size:1rem;font-weight:600;line-height:1.5;letter-spacing:-.015em}.ds-process-steps p{margin:9px 0 0;font-size:.85rem}@supports((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){.ds-process-steps li{background:#ffffff75;-webkit-backdrop-filter:blur(16px) saturate(120%);backdrop-filter:blur(16px) saturate(120%)}}@media(min-width:768px) and (max-width:1099px){.ds-process{padding-inline:32px}}@media(max-width:767px){.ds-process{padding-inline:20px}.ds-process-intro{grid-template-columns:minmax(0,1fr);gap:24px}.ds-process-steps{grid-template-columns:minmax(0,1fr);margin-top:32px}.ds-process-steps li{padding:24px}.ds-step-number{margin-bottom:10px}}@media(max-width:359px){.ds-process{padding-inline:16px}}@media(prefers-reduced-transparency:reduce){.ds-process-steps li{-webkit-backdrop-filter:none;backdrop-filter:none;background:#f9faff}}@media(forced-colors:active){.ds-process{background:Canvas;color:CanvasText}.ds-process p{color:CanvasText}.ds-process-steps li{-webkit-backdrop-filter:none;backdrop-filter:none;background:Canvas;border-color:CanvasText;box-shadow:none}}"
     },
     {
       "name": "Report document",
@@ -136,10 +173,10 @@
   ],
   "narrative": {
     "northStar": "BinaHub navy/gold editorial extension",
-    "overview": "This document records the existing navy/gold and Plus Jakarta Sans brand anchors, then the implemented extension for `/rekomendasi-program` and its Indonesian/English equivalents. Its route tokens and component rules are authoritative for that landing only. It is not a record of a whole-site migration. The separately authorized homepage recommendation slide is recorded in [the homepage hero design](docs/home-recommendation-hero-design.md); catalog, discovery form and shared navigation retain their own design.\n\nThe confirmed reference direction is ElevenLabs' editorial hierarchy and product demonstration, with Hark/Apple-style light gradients. The built surface uses a white canvas, a navy headline, compact pill actions, fine dividers and an illustrated demonstration. Frosted glass is limited to the inner illustrative report and the blue/champagne selected and hover tab overlays; the rail remains plain on the original Cool Canvas stage. Each demonstration image receives a direct static blur while its HTML headline and caption remain sharp, without an inset sheet. Descriptive names below come from the existing palette guide; no new qualitative preference or visual world is proposed here.",
+    "overview": "This document records the existing navy/gold and Plus Jakarta Sans brand anchors, then the implemented extension for `/rekomendasi-program` and its Indonesian/English equivalents. Its route tokens and component rules are authoritative for that landing only. It is not a record of a whole-site migration. The separately authorized homepage recommendation slide is recorded in [the homepage hero design](docs/home-recommendation-hero-design.md); catalog, discovery form and shared navigation retain their own design.\n\nThe confirmed reference direction is ElevenLabs' editorial hierarchy and product demonstration, with Hark/Apple-style light gradients. The built surface uses a pale ice/champagne mesh opening, a navy headline, compact pill actions, fine dividers and an illustrated demonstration. Static glass appears around the opening explanatory copy, on three process cards, in the inner illustrative report and in the blue/champagne selected and hover tab overlays. The rail remains plain on the original Cool Canvas stage. Each demonstration image receives a direct static blur while its HTML headline and caption remain sharp, without an inset sheet. A dedicated dark optical-glass illustration backs the closing CTA beneath a contrast overlay and native HTML copy. Descriptive names below come from the existing palette guide; no new qualitative preference or visual world is proposed here.",
     "keyCharacteristics": [
       "Existing navy, gold and Jakarta anchors; additional colors scoped to the recommendation route.",
-      "Readable editorial hierarchy, light surfaces and a restrained pair of applied gradients.",
+      "Readable editorial hierarchy, pale mesh surfaces, scoped glass and sharp native HTML copy.",
       "A manual, clearly illustrative three-state demonstration with keyboard access and stable height."
     ],
     "rules": [
@@ -153,12 +190,13 @@
       "Do preserve illustrative disclosures, visible keyboard focus and stable demo-panel height.",
       "Do keep foreground copy on readable light or blue fields; use the existing bronze role for small warm accents on light surfaces.",
       "Do preserve the native FAQ controls and manual demo interaction under reduced motion.",
-      "Do keep backdrop glass scoped to the tab overlays and inner illustrative report; blur only the decorative demonstration images directly, preserve the plain rail/original report frame and accessibility variants, and animate only tab-overlay opacity within the material treatment.",
-      "Do change each demo state's illustration, tone and HTML headline together without image animation; keep decorative images outside the accessible content and retain their prompt sidecars."
+      "Do keep backdrop glass scoped to the opening copy, process cards, tab overlays and inner illustrative report; blur only the decorative demonstration images directly, preserve the plain rail/original report frame and accessibility variants, and animate only tab-overlay opacity within the material treatment.",
+      "Do change each demo state's illustration, tone and HTML headline together without image animation; keep decorative images outside the accessible content and retain their prompt sidecars.",
+      "Do retain navy/slate process copy both outside and inside the glass cards and the dark CTA overlay behind native white copy."
     ],
     "donts": [
       "Don't infer a whole-site rebrand from this extension; use the separately authorized homepage hero design for that surface.",
-      "Don't treat the reserved Golden Light gradient or unused Sky Blue variable as a required new landing component.",
+      "Don't treat the retained Blue Hour/Golden Light gradients or unused Sky Blue variable as required current landing surfaces.",
       "Don't style BinaHub Gold as small text on white in this route.",
       "Don't make the illustrative example appear to be the visitor's actual recommendation or a customer result.",
       "Don't turn a pre-heading disclosure eyebrow into a reusable component rule; the finish fix places the disclosure after the heading.",

@@ -1,0 +1,20 @@
+{
+  "asset": "cta-glass-path.webp",
+  "generator": "OpenAI built-in image_gen",
+  "created": "2026-10-28",
+  "mode": "generate",
+  "use": "Decorative background for program-recommendation closing CTA; all text remains HTML.",
+  "sourceFile": "exec-04eabfa3-7aa9-425a-a4ca-912847e4370a.png",
+  "sourceSize": {
+    "width": 2172,
+    "height": 724
+  },
+  "output": {
+    "width": 1800,
+    "height": 600,
+    "format": "webp",
+    "bytes": 38406
+  },
+  "processing": "Proportional resize and WebP conversion only.",
+  "prompt": "Use case: ads-marketing. Asset type: final wide decorative CTA background for BinaHub program-recommendation landing page. Create a refined premium consulting-brand abstract 3D optical-glass scene on deep BinaHub navy (#0B2C6B blending into #10234B), panorama about 3:1. The LEFT TWO THIRDS must be calm dark navy negative space with extremely subtle atmospheric gradients for real white HTML heading and paragraph overlay; no bright object behind that text area. On the RIGHT THIRD, one elegant broad translucent flowing glass ribbon rises and curves forward, suggesting a clear path for team development. Softly frosted material, quiet champagne-gold #F6E7C5 edges, pale ice-blue #E8F0FC reflections, tiny seafoam undertone, realistic soft studio light. The sculpture should feel related to satin-glass flowing capability layers and transparent glass plates, not a torus, knot, stairs, mountain, flag, literal road or generic tech wave. Restrained composition, tactile glass depth, soft directional illumination, dark readable ground throughout. No stars, glitter, neon, grid, circuit board, particles, decorative lines, symbols, letters, text, buttons, logos, watermark or additional objects. No interface screenshot; image asset only. Fully opaque navy background, no transparency."
+}

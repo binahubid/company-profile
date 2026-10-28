@@ -1,5 +1,20 @@
 # Changelog
 
+## [0.2.40] - 2026-10-28
+
+- Pembuka landing rekomendasi memakai mesh ice/champagne lembut dan panel
+  penjelasan glass. Copy contoh diperbarui menjadi “Dari tantangan menuju
+  hasil yang nyata” dan “Kenali kemampuan yang perlu dikembangkan”, beserta EN.
+- Tiga langkah menjadi kartu kaca di atas latar lavender-biru yang kalem.
+  Teks navy/slate di dalam maupun di luar kartu tetap jelas; tersedia fallback
+  opak dan forced colors. Efek kaca statis, tanpa animasi atau library baru.
+- CTA memakai background kaca navy/champagne hasil imagegen, WebP 38 KB
+  beserta prompt/provenance. Teks tetap HTML di atas overlay kontras.
+- Lint publik, TypeScript, build 45 route dan regresi browser ID/EN desktop/
+  ponsel lulus: copy, kaca, aset CTA, keyboard/tab, tracking dan hero home.
+  Homepage, formulir, AI, backend dan pengiriman email tidak diubah;
+  pengujian lokal tidak membuktikan deployment produksi.
+
 ## [0.2.39] - 2026-10-28
 
 - Mengembalikan alur kartu Kebutuhan → Kompetensi → Program, kini dengan

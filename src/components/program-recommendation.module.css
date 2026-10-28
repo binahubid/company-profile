@@ -8,9 +8,9 @@
 .page p { color: var(--program-text); line-height: 1.75; }
 .page a, .page button, .page summary { -webkit-tap-highlight-color: transparent; }
 .page :is(a, button, summary, [tabindex]):focus-visible { outline: 3px solid var(--program-blue); outline-offset: 5px; }
-.hero { padding-block: 176px 0; }
+.hero { padding-block: 176px 28px; background: radial-gradient(ellipse at 8% 0, #dce9fc99, transparent 47%), radial-gradient(ellipse at 92% 27%, #f6e7c54d, transparent 44%), linear-gradient(180deg, #f6f9ff, #fff 78%); }
 .heroGrid { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); align-items: center; gap: clamp(32px, 6vw, 96px); }
-.heroCopy { padding-top: 8px; }
+.heroCopy { padding: 28px; border: 1px solid #ffffffcc; border-radius: 16px; background: #ffffffb3; }
 .lead { font-size: 1.05rem; max-width: 40ch; }
 .note { margin-top: 20px; font-size: .8rem; }
 .actions { display: flex; align-items: center; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
@@ -64,12 +64,13 @@
 .stageCaption { display: flex; justify-content: space-between; align-items: center; gap: 24px; padding-block: 16px; }
 .stageCaption p { font-size: .75rem; }
 .stageCaption .textLink { font-size: .75rem; }
-.process { padding-block: var(--space-section); }
+.process { padding-block: var(--space-section); background: radial-gradient(ellipse at 12% 0, #dfe8f599, transparent 55%), radial-gradient(ellipse at 95% 100%, #e2e8f4b3, transparent 50%), #f0f1f8; color: var(--program-navy); }
+.process p { color: #405675; }
 .sectionIntro { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 64px; align-items: start; }
 .sectionIntro h2 { max-width: 19ch; }
 .sectionIntro > p { font-size: .95rem; max-width: 48ch; padding-top: 5px; }
-.steps { list-style: none; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 40px; margin-top: 48px; }
-.steps li { border-top: 1px solid var(--program-line); padding-top: 20px; }
+.steps { list-style: none; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; margin-top: 40px; }
+.steps li { min-width: 0; padding: 28px; border: 1px solid #ffffffd9; border-radius: 16px; background: #f9faff; box-shadow: 0 16px 32px -24px #10234b38; }
 .stepNumber { display: block; color: var(--program-bronze); font-size: .8rem; font-variant-numeric: tabular-nums; margin-bottom: 18px; }
 .steps h3 { font-size: 1rem; }
 .steps p { margin-top: 9px; font-size: .85rem; }
@@ -102,7 +103,9 @@
 .faqList summary svg { flex-shrink: 0; }
 .faqList details[open] summary svg { transform: rotate(180deg); }
 .faqList details p { margin-top: 14px; padding-bottom: 12px; font-size: .85rem; }
-.closing { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 48px; border-radius: 16px; padding: 56px; color: var(--program-white); background: var(--program-gradient-blue-hour); }
+.closing { position: relative; isolation: isolate; overflow: hidden; min-height: 320px; display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 48px; border-radius: 16px; padding: 56px; color: var(--program-white); background: var(--program-navy); }
+.closing .closingArt { z-index: -2; object-fit: cover; object-position: center right; }
+.closing::after { content: ''; position: absolute; inset: 0; z-index: -1; pointer-events: none; background: linear-gradient(90deg, #071a33e6 0%, #10234b99 55%, #0b2c6b26); }
 .closing h2 { max-width: 23ch; }
 .closing p { margin-top: 18px; max-width: 45ch; font-size: .85rem; color: var(--program-ice); }
 .closing .primary { background: var(--program-white); color: var(--program-navy); }
@@ -131,7 +134,7 @@
   .hero { padding-top: 112px; }
   .heroGrid, .sectionIntro, .reportGrid, .questions, .closing, .paths { grid-template-columns: minmax(0, 1fr); gap: 24px; }
   .page h1 { max-width: 20ch; font-size: clamp(2.1rem, 7.8vw, 3rem); }
-  .heroCopy { padding-top: 0; }
+  .heroCopy { padding: 22px; }
   .lead { font-size: .95rem; max-width: 45ch; }
   .note { margin-top: 12px; font-size: .75rem; }
   .actions { gap: 8px; margin-top: 24px; }
@@ -151,13 +154,14 @@
   .stageCaption p { max-width: 33ch; }
   .steps { grid-template-columns: minmax(0, 1fr); gap: 24px; margin-top: 32px; }
   .stepNumber { margin-bottom: 10px; }
-  .steps li { padding-top: 18px; }
+  .steps li { padding: 24px; }
   .reportGrid { gap: 36px; }
   .reportVisual { padding: 24px; }
   .reportDocument { padding: 24px; }
   .questions { gap: 28px; }
   .questions > h2 { max-width: none; }
   .closing { padding: 32px 24px; gap: 28px; }
+  .closing::after { background: linear-gradient(90deg, #071a33e6, #10234bc4); }
   .closing .primary { justify-self: start; }
   .paths { gap: 0; }
 }
@@ -173,14 +177,23 @@
   .demoTabs button::before { transition: none; }
 }
 @supports ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .heroCopy { background: #ffffff59; -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); }
+  .steps li { background: #ffffff75; -webkit-backdrop-filter: blur(16px) saturate(120%); backdrop-filter: blur(16px) saturate(120%); }
   .demoTabs button::before { background: linear-gradient(115deg, rgb(208 225 250 / 86%), rgb(246 250 255 / 90%) 58%, rgb(246 231 197 / 85%)); -webkit-backdrop-filter: blur(16px) saturate(130%); backdrop-filter: blur(16px) saturate(130%); }
   .reportDocument { background: rgb(255 255 255 / 20%); -webkit-backdrop-filter: blur(20px) saturate(130%); backdrop-filter: blur(20px) saturate(130%); }
 }
 @media (prefers-reduced-transparency: reduce) {
+  .heroCopy, .steps li { -webkit-backdrop-filter: none; backdrop-filter: none; background: #f9faff; }
   .reportDocument { -webkit-backdrop-filter: none; backdrop-filter: none; background: var(--program-white); }
   .demoTabs button::before { -webkit-backdrop-filter: none; backdrop-filter: none; background: linear-gradient(115deg, #dce9fc, #f4f8ff 58%, #f6e7c5); }
 }
 @media (forced-colors: active) {
+  .hero, .process { background: Canvas; color: CanvasText; }
+  .heroCopy, .steps li { -webkit-backdrop-filter: none; backdrop-filter: none; background: Canvas; border-color: CanvasText; box-shadow: none; }
+  .process p { color: CanvasText; }
+  .closing { background: Canvas; color: CanvasText; border: 1px solid CanvasText; }
+  .closingArt, .closing::after { display: none; }
+  .closing p { color: CanvasText; }
   .demoTabs button::before { display: none; }
   .reportDocument { -webkit-backdrop-filter: none; backdrop-filter: none; }
   .demoArt img { display: none; }

@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import {ArrowDown, ArrowRight, Check, ChevronDown, FileText, MessagesSquare} from 'lucide-react';
 import {localizePath, type Locale} from '@/i18n/config';
 import {ProgramJourneyLink} from './program-journey-link';
@@ -45,7 +46,7 @@ export function ProgramRecommendationLanding({locale}: {locale: Locale}) {
   ];
 
   return <div className={palette.theme + ' ' + styles.page}>
-    <section className={styles.hero} aria-labelledby="recommendation-heading">
+    <section className={styles.hero} data-program-opening aria-labelledby="recommendation-heading">
       <div className={styles.container}>
         <div className={styles.heroGrid}>
           <div>
@@ -72,17 +73,19 @@ export function ProgramRecommendationLanding({locale}: {locale: Locale}) {
       </div>
     </section>
 
-    <section className={styles.container + ' ' + styles.process} aria-labelledby="process-heading">
+    <section className={styles.process} id="program-process" aria-labelledby="process-heading">
+     <div className={styles.container}>
       <div className={styles.sectionIntro}>
         <h2 id="process-heading">{en ? 'A few steps. A clearer direction.' : 'Langkah sederhana. Arah yang lebih jelas.'}</h2>
         <p>{en ? 'Start with the situation your team faces. Use the recommendation to begin a focused conversation.' : 'Mulai dari kondisi yang dihadapi tim. Jadikan rekomendasi sebagai bahan awal untuk diskusi yang lebih terarah.'}</p>
       </div>
       <ol className={styles.steps}>
-        {steps.map(([title, text], index) => <li key={title}>
+        {steps.map(([title, text], index) => <li key={title} data-process-card>
           <span className={styles.stepNumber} aria-hidden="true">{index + 1}</span>
           <h3>{title}</h3><p>{text}</p>
         </li>)}
       </ol>
+     </div>
     </section>
 
     <section className={styles.reportSection} aria-labelledby="receive-heading">
@@ -120,7 +123,8 @@ export function ProgramRecommendationLanding({locale}: {locale: Locale}) {
     </section>
 
     <section className={styles.container} aria-labelledby="start-heading">
-      <div className={styles.closing}>
+      <div className={styles.closing} id="program-closing">
+        <Image src="/program-recommendation/cta-glass-path.webp" alt="" fill sizes="(max-width: 767px) 100vw, 1200px" className={styles.closingArt} aria-hidden="true"/>
         <div><h2 id="start-heading">{en ? 'What does your team need next?' : 'Apa yang tim Anda butuhkan selanjutnya?'}</h2><p>{en ? 'Tell us where you are. Let’s find a direction to move forward.' : 'Ceritakan kebutuhan Anda. Temukan arah pengembangan yang bisa dimulai bersama.'}</p></div>
         {startLink}
       </div>

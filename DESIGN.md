@@ -101,6 +101,15 @@ components:
     padding: "10px 12px"
   demo-tab-selected:
     textColor: "{colors.program-navy}"
+  opening-copy:
+    backgroundColor: "#ffffff59"
+    rounded: "{rounded.surface}"
+    padding: "28px"
+  process-card:
+    backgroundColor: "#ffffff75"
+    textColor: "{colors.program-navy}"
+    rounded: "{rounded.surface}"
+    padding: "28px"
   report-document:
     backgroundColor: "rgb(255 255 255 / 20%)"
     rounded: "{rounded.document}"
@@ -115,12 +124,12 @@ components:
 
 This document records the existing navy/gold and Plus Jakarta Sans brand anchors, then the implemented extension for `/rekomendasi-program` and its Indonesian/English equivalents. Its route tokens and component rules are authoritative for that landing only. It is not a record of a whole-site migration. The separately authorized homepage recommendation slide is recorded in [the homepage hero design](docs/home-recommendation-hero-design.md); catalog, discovery form and shared navigation retain their own design.
 
-The confirmed reference direction is ElevenLabs' editorial hierarchy and product demonstration, with Hark/Apple-style light gradients. The built surface uses a white canvas, a navy headline, compact pill actions, fine dividers and an illustrated demonstration. Frosted glass is limited to the inner illustrative report and the blue/champagne selected and hover tab overlays; the rail remains plain on the original Cool Canvas stage. Each demonstration image receives a direct static blur while its HTML headline and caption remain sharp, without an inset sheet. Descriptive names below come from the existing palette guide; no new qualitative preference or visual world is proposed here.
+The confirmed reference direction is ElevenLabs' editorial hierarchy and product demonstration, with Hark/Apple-style light gradients. The built surface uses a pale ice/champagne mesh opening, a navy headline, compact pill actions, fine dividers and an illustrated demonstration. Static glass appears around the opening explanatory copy, on three process cards, in the inner illustrative report and in the blue/champagne selected and hover tab overlays. The rail remains plain on the original Cool Canvas stage. Each demonstration image receives a direct static blur while its HTML headline and caption remain sharp, without an inset sheet. A dedicated dark optical-glass illustration backs the closing CTA beneath a contrast overlay and native HTML copy. Descriptive names below come from the existing palette guide; no new qualitative preference or visual world is proposed here.
 
 **Key Characteristics:**
 
 - Existing navy, gold and Jakarta anchors; additional colors scoped to the recommendation route.
-- Readable editorial hierarchy, light surfaces and a restrained pair of applied gradients.
+- Readable editorial hierarchy, pale mesh surfaces, scoped glass and sharp native HTML copy.
 - A manual, clearly illustrative three-state demonstration with keyboard access and stable height.
 
 Evidence captured on 28 October 2026: `src/app/globals.css`, `src/app/layout.tsx`, `src/styles/program-palette.module.css`, `src/components/program-recommendation.module.css`, `src/components/program-recommendation-landing.tsx` and `src/components/program-recommendation-demo.tsx`. `PRODUCT.md` supplies the durable mobile and keyboard-access constraints. The surface composition contract is `design-plans/program-recommendation-elevenlabs.md`; the visual palette guide is `design-plans/binahub-program-palette.html`.
@@ -131,8 +140,8 @@ The brand anchors are navy and gold. The route adds light blue and warm supporti
 
 ### Primary
 
-- **BinaHub Navy** (`program-navy`): matches global `--primary`; used for the main headline, primary actions, selected tabs, links and the closing gradient.
-- **Signature Blue** (`program-blue`): the route's keyboard-focus outline and the light endpoint of the closing gradient. Ordinary text links remain navy.
+- **BinaHub Navy** (`program-navy`): matches global `--primary`; used for the main headline, primary actions, selected tabs, links, process headings and the closing image's solid fallback.
+- **Signature Blue** (`program-blue`): the route's keyboard-focus outline and an endpoint of the retained Blue Hour palette definition. Ordinary text links remain navy.
 
 ### Secondary
 
@@ -148,14 +157,14 @@ The brand anchors are navy and gold. The route adds light blue and warm supporti
 ### Neutral
 
 - **Deep Ink** (`program-ink`): default route text, secondary-action text and primary-action hover.
-- **Pure White** (`program-white`): main canvas, demonstration content, opaque report fallback and inverse actions. The supported inner report glass uses the component's translucent white value above; report notes and definition descriptions use the darker local slate (`#405675`) over the original Daylight frame.
+- **Pure White** (`program-white`): main canvas, demonstration content, opaque report fallback and inverse actions. The supported opening copy, process cards and inner report use their scoped translucent white component values. Opening/process opaque fallbacks use the local cool white (`#f9faff`); report notes, definition descriptions and process paragraphs use darker local slate (`#405675`).
 - **Cool Canvas** (`program-canvas`): secondary section and demo surfaces, secondary-action hover and the report gradient's middle stop. This is a route extension; it does not replace global `--secondary`.
-- **Slate Blue** (`program-text`): supporting paragraphs, inactive tabs and detail text.
+- **Slate Blue** (`program-text`): supporting paragraphs, inactive tabs and detail text. The process section overrides paragraphs both outside and inside cards to the darker local slate; its full-width field uses a local lavender-blue base (`#f0f1f8`) under two quiet radial washes. These are scoped material values, not replacements for the base palette.
 - **Quiet Line** (`program-line`): content dividers and secondary-action border.
 
 **The Route Scope Rule.** Apply the `program-*` palette through the existing CSS-module theme boundary. Global brand values remain the anchors; this extension does not authorize changing other surfaces.
 
-Daylight is applied behind the report document; Blue Hour is applied to the closing CTA. Their exact CSS is in the sidecar and palette module. Golden Light is defined and shown as a reserved visual accent in the guide, but is not applied to the landing. The blue-hour middle stop is part of that gradient, not a separately promoted primitive.
+Daylight is applied behind the report document. Blue Hour and Golden Light remain defined in the palette and guide, but neither is applied to the current landing; the closing CTA now uses its dedicated illustration over the navy fallback. Their exact CSS remains in the sidecar and palette module. The Blue Hour middle stop is part of the retained gradient, not a separately promoted primitive. Opening/process mesh and CTA contrast overlays are component materials recorded in the sidecar.
 
 ## Typography
 
@@ -178,7 +187,7 @@ Daylight is applied behind the report document; Blue Hour is applied to the clos
 
 The landing uses a centered container capped at 1200px. Desktop reserves 48px per side through `min(100% - 96px, 1200px)`. Widths 768–1099px use 32px per side; widths through 767px use 20px; below 360px use 16px. Section separation uses the `section` spacing token. The opening clears the fixed shared navigation with 176px top padding, reduced to 112px on mobile.
 
-The desktop opening has a 1.35:1 headline/copy grid; the demonstration below has a 1:1.08 art/content grid. Process steps occupy three columns. Report and FAQ use two columns; alternate paths use two columns. At 767px and below these become single-column sequences in source reading order. The three demo tabs remain a three-column control. Tablet gutters, demonstration padding and report/FAQ gaps reduce before the mobile stack.
+The desktop opening has a 1.35:1 headline/copy grid; the demonstration below has a 1:1.08 art/content grid. The existing explanatory copy is enclosed in a light glass surface opposite the headline. The process field spans the page width while its introduction and three ordered cards stay inside the centered container. Cards occupy three columns with 24px gaps and a 40px top gap; mobile uses one column and a 32px top gap. Report and FAQ use two columns; alternate paths use two columns. At 767px and below these become single-column sequences in source reading order. The three demo tabs remain a three-column control. Tablet gutters, demonstration padding and report/FAQ gaps reduce before the mobile stack.
 
 The demonstration's three panels occupy one shared grid area, so the largest panel continues to reserve height. Inactive panels use `visibility: hidden`, `aria-hidden` and `inert`; only the selected tab and panel participate in keyboard access. Do not replace this with HTML `hidden` without checking height stability: this project's Tailwind layer gives `hidden` a display-none rule. The panel grid has minimum heights of 308px by default, 360px on tablet and 330px on mobile.
 
@@ -186,19 +195,21 @@ Local visual evidence lives in the sibling app repository: `../app-binahub/.impe
 
 Prior local verification passed `npm run quality:public`, the 45-route production build and `../app-binahub/scripts/test-program-website-ui.mjs`. That browser suite covered the existing carousel regression, landing demo keyboard/click selection and stable height, catalog deep link, FAQ, loaded image, reduced motion, desktop/mobile, responsive overflow at 320/390/768/1280/1600px, ID/EN metadata and synthetic tracked handoff without API writes. The earlier mechanical detector returned an empty findings array before finish review. The review's disclosure finding was corrected; final reviewer confirmation was limited to that fix. For the subsequent distinct-artwork extension, public quality, the 45-route build and the updated full browser regression passed. The updated suite checked all three images/headlines/tones, static glass, sharp HTML copy, accessibility fallbacks, responsive sizes, keyboard selection and stable height, localization, tracked handoff and the existing homepage carousel without API writes. Finish review found no issues across all six fresh local scene captures: `../app-binahub/.impeccable/review/program-scene-{needs,competencies,program}-{desktop,mobile}.png`. These checks do not validate production deployment, backend inference, email delivery or paid-diagnostic readiness.
 
-Latest local verification for the direct-blur correction and authorized homepage extension: `npm run quality:public`, the 45-route production build and the full browser suite passed. Coverage includes synchronized automatic/manual hero changes, pause/hover/focus/offscreen behavior, reduced motion, ID/EN, direct-image blur and absence of an inset art card, three images/headlines/tones, responsive widths from 320–1600px and existing links without API writes. Finish review found no issues in all ten fresh scene/hero desktop/mobile captures: `../app-binahub/.impeccable/review/program-scene-{needs,competencies,program}-{desktop,mobile}.png`, `program-hero-{desktop,mobile}.png` and `program-hero-brand-{desktop,mobile}.png`. These remain local evidence, not deployment evidence.
+Earlier local verification for the direct-blur correction and authorized homepage extension: `npm run quality:public`, the 45-route production build and the full browser suite passed. Coverage includes synchronized automatic/manual hero changes, pause/hover/focus/offscreen behavior, reduced motion, ID/EN, direct-image blur and absence of an inset art card, three images/headlines/tones, responsive widths from 320–1600px and existing links without API writes. Finish review found no issues in all ten fresh scene/hero desktop/mobile captures: `../app-binahub/.impeccable/review/program-scene-{needs,competencies,program}-{desktop,mobile}.png`, `program-hero-{desktop,mobile}.png` and `program-hero-brand-{desktop,mobile}.png`. These remain local evidence, not deployment evidence.
+
+Latest landing-refinement verification passed public quality, TypeScript, the 45-route production build and the full browser regression. Coverage includes ID/EN revised headlines, the lavender-blue process field and readable paragraphs, loaded CTA artwork, forced colors, keyboard selection and stable demo height, route/attribution behavior and the existing homepage carousel without API writes. Fresh local evidence is `../app-binahub/.impeccable/review/program-landing-{desktop,mobile}-viewport.png`, `program-process-{desktop,mobile}.png` and `program-closing-{desktop,mobile}.png`. The mobile process evidence is an element crop; fixed navigation over the heading is a capture artifact, not a source defect. Finish review accepted all six captures with disposition `ship`, no material fixes and no visual floor issue. This pass changes no homepage or backend behavior and establishes no production-deployment result.
 
 ## Elevation & Depth
 
-Most depth comes from white/canvas layering, light gradients, fine rules and the demonstration's three glass illustrations. Frosted material is limited to the tab overlays and inner illustrative report document: supported browsers apply static `blur(16px) saturate(130%)` to the tab overlays and `blur(20px) saturate(130%)` with 20% white to the report sheet. Artwork instead uses direct image `filter: blur(20px)` and `transform: scale(1.12)`, with no inset sheet, border or white overlay. The showcase retains its original flat Cool Canvas ground (`#F7F8FA`); its transparent rail has no tint, gradient or blur. The report's original outer Daylight frame remains unchanged, without ribbon backing. Two small CSS shadows are present: a selected-tab shadow (`0 3px 9px rgb(16 35 75 / 9%)`) and a report-document shadow (`0 16px 36px rgb(16 35 75 / 12%)`). Their exact values, material gradients and component snippets are carried in `.impeccable/design.json`; no additional shadow scale is inferred.
+Most depth comes from tonal layering, pale mesh grounds, fine rules and the glass illustrations. Supported browsers give the opening copy static `blur(14px)` with `#ffffff59`, process cards `blur(16px) saturate(120%)` with `#ffffff75`, tab overlays `blur(16px) saturate(130%)` and the report sheet `blur(20px) saturate(130%)` with 20% white. Artwork instead uses direct image `filter: blur(20px)` and `transform: scale(1.12)`, with no inset sheet, border or white overlay. The showcase retains its original flat Cool Canvas ground (`#F7F8FA`); its transparent rail has no tint, gradient or blur. The report's original outer Daylight frame remains unchanged, without ribbon backing. Three scoped CSS shadows are present: selected tab (`0 3px 9px rgb(16 35 75 / 9%)`), process card (`0 16px 32px -24px #10234b38`) and report document (`0 16px 36px rgb(16 35 75 / 12%)`). Their exact values, material gradients and component snippets are carried in `.impeccable/design.json`; no additional shadow scale is inferred.
 
-Unsupported backdrop-filter browsers retain the plain rail, opaque-gradient tab overlays and white report document. `prefers-reduced-transparency: reduce` removes report/tab material filters, makes the report white and uses the opaque tab gradient; direct decorative-image blur stays static. Forced colors hides tab overlays and decorative images, removes report filters, and uses `Highlight`/`HighlightText` for selection. Blur, filter and gradient position remain static in every state.
+Unsupported backdrop-filter browsers retain a 70% white opening surface (`#ffffffb3`), opaque cool-white process cards, opaque-gradient tab overlays and a white report document. `prefers-reduced-transparency: reduce` removes the opening/process/report/tab backdrop filters, makes opening/process surfaces cool white and the report white, and uses the opaque tab gradient; direct decorative-image blur stays static. Forced colors uses `Canvas`/`CanvasText` on opening and process grounds, copy surfaces and the closing CTA, removes their decorative treatment, hides tab overlays and decorative images, removes report filters, and uses `Highlight`/`HighlightText` for tab selection. Blur, filter and gradient position remain static in every state.
 
 The demonstration uses three decorative 1536×1024 WebP illustrations in `public/program-recommendation/`: the retained ice-blue navy/gold ribbon `direction-ribbon.webp` (54,996 bytes), seafoam/navy optical lenses `competency-lenses.webp` (62,694 bytes), and champagne/navy glass planes `program-layers.webp` (79,702 bytes). Each has its exact generation prompt, built-in image-generation tool and creation timestamp in a same-name `.webp.json` sidecar. Images use `object-fit: cover` and `object-position: 65% center` (65% 52% on mobile); the art panel has a 456px desktop minimum and 224px mobile minimum. All three load eagerly; the initial needs image has high fetch priority and the other two low priority. Selection toggles their opacity immediately without an image transition. Empty alt text and an `aria-hidden="true"` artwork container keep this decoration outside the accessible recommendation content; foreground headlines remain HTML. The report has no raster backing. These are illustrations, not generated page comps or customer-results images.
 
 ## Shapes
 
-Actions use pill corners. Demo and report outer frames and the closing block share the `surface` radius; the inset document uses `document`, selected tabs use `tab`. Content rows use thin horizontal rules rather than a repeated enclosed card treatment. The root global radius remains separate from these route-specific values.
+Actions use pill corners. Opening copy, process cards, demo/report outer frames and the closing block share the `surface` radius; the inset document uses `document`, selected tabs use `tab`. The three meaningful process steps use enclosed cards; demo details, report groups, FAQ and alternate-path rows retain thin horizontal rules. The root global radius remains separate from these route-specific values.
 
 ## Components
 
@@ -206,7 +217,13 @@ Actions use pill corners. Demo and report outer frames and the closing block sha
 
 Primary and secondary actions share a 46px minimum height, 10px icon gap and the frontmatter's padding and label type. Primary hover moves from navy to ink; the bordered secondary hover moves from white to canvas. Mobile uses 16px inline padding. The closing action reverses to white/navy and hovers to champagne. Inline text links have a 44px minimum height and reveal an underline on hover; their arrow icons remain separate SVGs.
 
-Route links, buttons, summaries and focusable panels receive a 3px Signature Blue `:focus-visible` outline with 5px offset. Demo tabs inset that outline with -4px offset; demo panels use 4px offset. The closing button uses a white focus outline for its blue field. Actions transition background/text color for 160ms with `ease-out`; tabs transition text color and their gradient overlay's opacity for the same duration. The material overlay animates opacity only; blur, filters and gradient position do not animate. The route removes these transitions under `prefers-reduced-motion: reduce`.
+Route links, buttons, summaries and focusable panels receive a 3px Signature Blue `:focus-visible` outline with 5px offset. Demo tabs inset that outline with -4px offset; demo panels use 4px offset. The closing button uses a white focus outline for its dark illustrated field. Actions transition background/text color for 160ms with `ease-out`; tabs transition text color and their gradient overlay's opacity for the same duration. The material overlay animates opacity only; blur, filters and gradient position do not animate. The route removes these transitions under `prefers-reduced-motion: reduce`.
+
+### Opening copy and process cards
+
+The opening mesh combines ice-blue and champagne radial washes over a near-white vertical ground. Its existing explanatory copy has a 1px translucent white border, 28px padding (22px on mobile) and the static opening glass material; the h1 and tracked actions remain outside this surface.
+
+The process section places its existing introduction above three ordered glass cards on the full-width lavender-blue mesh. Its heading and card titles stay navy; all paragraphs, including the introduction outside the cards, use the darker local slate. The meaningful 1–3 sequence is retained by the ordered list, with visible bronze numerals hidden from assistive technology to avoid duplicating native list semantics. Cards have 28px padding (24px on mobile), a translucent white border and the process-card shadow. These are explanatory steps, not clickable controls, and have no hover or animation treatment.
 
 ### Demonstration
 
@@ -214,7 +231,7 @@ A three-tab `tablist` presents needs, competencies and a catalog program. Arrow 
 
 The rail remains transparent and plain over the original flat Cool Canvas showcase. Each text-only tab owns a blue/white/champagne glass-gradient pseudo-element: hidden at rest, 40% opacity on hover and 75% opacity when selected, with static 16px blur in supported browsers. The selected state also carries a translucent white border and the selected-tab shadow. Only the three tab icons were removed; content/action icons remain. These states retain the existing keyboard and touch behavior.
 
-Each tab pairs its content with a distinct illustration, tone and sharp HTML headline: needs uses the existing ice-blue ribbon with “Dari tantangan, menuju arah.”; competencies uses seafoam/navy lenses with “Temukan fokus. Bangun kemampuan.”; program uses champagne/navy glass planes with “Program yang tepat. Langkah yang jelas.” English equivalents follow the locale. The local art fallback is Glacier for needs, seafoam (`#e6f2ef`) for competencies and Champagne for program; seafoam is a scoped scene value, not a new global palette role. The headline is a direct HTML paragraph in the artwork panel, using `clamp(1.7rem, 2.5vw, 2.3rem)`, weight 500, line-height 1.18 and -0.03em tracking; mobile uses 1.55rem. Padding is 34px on desktop, 26px on tablet and 22px on mobile. The small BinaHub signature is a direct HTML caption; its desktop inset is 34px left/24px bottom and mobile uses 22px left/16px bottom. Only the images are blurred and scaled; copy has no filtered ancestor or additional card. The shared art container and content-panel grid preserve layout during manual selection.
+Each tab pairs its content with a distinct illustration, tone and sharp HTML headline: needs uses the existing ice-blue ribbon with “Dari tantangan menuju hasil yang nyata.” / “From challenges to tangible results.”; competencies uses seafoam/navy lenses with “Kenali kemampuan yang perlu dikembangkan.” / “Identify the capabilities your team needs to develop.”; program uses champagne/navy glass planes with “Program yang tepat. Langkah yang jelas.” / “The right program. A clear next step.” These are aspirational editorial headlines; the synthetic-example disclosure and final-scope caveat remain visible in the content panel. The local art fallback is Glacier for needs, seafoam (`#e6f2ef`) for competencies and Champagne for program; seafoam is a scoped scene value, not a new global palette role. The headline is a direct HTML paragraph in the artwork panel, using `clamp(1.7rem, 2.5vw, 2.3rem)`, weight 500, line-height 1.18 and -0.03em tracking; mobile uses 1.55rem. Padding is 34px on desktop, 26px on tablet and 22px on mobile. The small BinaHub signature is a direct HTML caption; its desktop inset is 34px left/24px bottom and mobile uses 22px left/16px bottom. Only the images are blurred and scaled; copy has no filtered ancestor or additional card. The shared art container and content-panel grid preserve layout during manual selection.
 
 **The Distinct Scene Rule.** Each demonstration state changes its illustration, tone and HTML headline together; keep image selection immediate, blur static and foreground HTML sharp. Preserve the plain rail, manual controls and illustrative disclosure.
 
@@ -223,6 +240,12 @@ Each tab pairs its content with a distinct illustration, tone and sharp HTML hea
 A frosted, padded inner document sits inside the original Daylight outer frame, without a ribbon backing. In supported browsers only the inner sheet uses 20% white with static 20px blur. It retains its translucent white border, opaque fallback and report-document shadow. Definition-list groups retain horizontal dividers; notes and definition descriptions use the local darker slate. The title is followed by an illustrative-report note, then three groups and a discussion footer. This is a visual outline of deliverables, not a final proposal.
 
 The earlier report-glass correction passed public-quality checks, the 45-route production build, the full landing/homepage-hero browser regression and review of five fresh desktop/mobile captures. The reviewer found no material issue in that correction. Those checks predate the distinct tab-artwork extension. These remain local checks; no deployment, form or backend change is implied.
+
+### Closing CTA
+
+The closing surface uses `public/program-recommendation/cta-glass-path.webp`, an opaque 1800×600 WebP (38,406 bytes) generated with the built-in image-generation tool; its exact prompt and processing record live in `cta-glass-path.webp.json`. A decorative, empty-alt image fills the clipped 16px-radius block with `object-fit: cover` and `object-position: center right`. Native HTML retains the existing white heading, Glacier paragraph and inverse tracked action. The navy background remains a solid loading/failure fallback. A static dark overlay (`linear-gradient(90deg, #071a33e6 0%, #10234b99 55%, #0b2c6b26)`) protects copy; mobile strengthens it to `linear-gradient(90deg, #071a33e6, #10234bc4)`. No blur is added to this image.
+
+The block has a 320px minimum height and a text/action grid with 56px padding and 48px gap; tablet uses 40px/24px. Mobile stacks it with 32px 24px padding and a 28px gap, keeping the action aligned to the start. Forced colors hides the image/overlay and uses a bordered system-color field. The illustration is static, decorative and outside accessible content; it contains no rasterized page text or generated claim.
 
 ### FAQ and alternate paths
 
@@ -237,16 +260,17 @@ FAQ uses native `details`/`summary` with a 44px minimum summary height, bottom r
 - **Do** preserve illustrative disclosures, visible keyboard focus and stable demo-panel height.
 - **Do** keep foreground copy on readable light or blue fields; use the existing bronze role for small warm accents on light surfaces.
 - **Do** preserve the native FAQ controls and manual demo interaction under reduced motion.
-- **Do** keep backdrop glass scoped to the tab overlays and inner illustrative report; blur only the decorative demonstration images directly, preserve the plain rail/original report frame and accessibility variants, and animate only tab-overlay opacity within the material treatment.
+- **Do** keep backdrop glass scoped to the opening copy, process cards, tab overlays and inner illustrative report; blur only the decorative demonstration images directly, preserve the plain rail/original report frame and accessibility variants, and animate only tab-overlay opacity within the material treatment.
 - **Do** change each demo state's illustration, tone and HTML headline together without image animation; keep decorative images outside the accessible content and retain their prompt sidecars.
+- **Do** retain navy/slate process copy both outside and inside the glass cards and the dark CTA overlay behind native white copy.
 
 ### Don't:
 
 - **Don't** infer a whole-site rebrand from this extension; use the separately authorized homepage hero design for that surface.
-- **Don't** treat the reserved Golden Light gradient or unused Sky Blue variable as a required new landing component.
+- **Don't** treat the retained Blue Hour/Golden Light gradients or unused Sky Blue variable as required current landing surfaces.
 - **Don't** style BinaHub Gold as small text on white in this route.
 - **Don't** make the illustrative example appear to be the visitor's actual recommendation or a customer result.
 - **Don't** turn a pre-heading disclosure eyebrow into a reusable component rule; the finish fix places the disclosure after the heading.
 - **Don't** animate blur, filters or gradient position in the glass surfaces, or rasterize the demonstration headlines into the artwork.
 
-Not canonized or repaired: no whole-site token audit or migration is claimed; globally loaded secondary/pixel fonts, global canvas differences, shared-shell behavior and the pre-existing typography-detector advisory are outside this narrow tab-artwork merge. The pre-heading disclosure was corrected before the original record. The authorized homepage recommendation slide has its own scoped design record; its glass-plane composition is not a global component rule. No backend, form, scoring, AI, price or question behavior is changed by these documents.
+Not canonized or repaired: no whole-site token audit or migration is claimed; globally loaded secondary/pixel fonts, global canvas differences, shared-shell behavior and the pre-existing typography-detector advisory are outside this narrow landing refinement. The pre-heading disclosure was corrected before the original record. The authorized homepage recommendation slide has its own scoped design record; its glass-plane composition is not a global component rule. No backend, form, scoring, AI, price or question behavior is changed by these documents.
