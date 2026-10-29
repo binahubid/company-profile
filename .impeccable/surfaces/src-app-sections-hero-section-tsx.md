@@ -148,3 +148,11 @@ opened the supplied reference, fresh desktop and unchanged mobile captures.
 Final build/public quality and full browser regression passed, including pool
 transform progress, static blur, inactive/offscreen pause, reduced motion and
 forced colors. Perceived smoothness on physical devices and Safari is untested.
+
+## Larger mobile deck and unboxed brand · 29 October 2026
+
+User requests larger squares: min(76vw,310px), retaining offset glass faces.
+Fourth state shows only the existing 3D logo, without card face, native card
+label or rear stack. Preserve the shared footprint, original brand offer/CTA,
+four-state timer, swipe/select/pause, Scroll and desktop liquid field.
+Code-led precise local refinement; no new artwork or product behavior.

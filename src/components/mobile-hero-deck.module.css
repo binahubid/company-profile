@@ -1,6 +1,6 @@
 .deck{display:none}
 @media(max-width:767px){
- .deck{--deck-size:min(66vw,260px);position:relative;isolation:isolate;display:block;width:var(--deck-size);height:calc(var(--deck-size) + 46px);margin:0 auto 24px;touch-action:pan-y pinch-zoom;user-select:none}
+ .deck{--deck-size:min(76vw,310px);position:relative;isolation:isolate;display:block;width:var(--deck-size);height:calc(var(--deck-size) + 46px);margin:0 auto 24px;touch-action:pan-y pinch-zoom;user-select:none}
  .card{position:absolute;inset:0 auto auto 0;width:100%;aspect-ratio:1;overflow:hidden;border:1px solid #ffffffe6;border-radius:16px;box-shadow:0 18px 34px -24px #0b2c6b66,inset 0 1px 0 #fff;transform-origin:50% 75%;transition:transform 520ms cubic-bezier(.16,1,.3,1);color:#0b2c6b}
  .card[data-tone=needs]{background:linear-gradient(135deg,#f8fbfff0,#d4e5fbd9)}
  .card[data-tone=competencies]{background:linear-gradient(135deg,#f3fff9f0,#bfe4d5e6)}
@@ -19,6 +19,12 @@
  .card[data-position="0"] .artwork{opacity:1}
  .card[data-tone=brand] .artwork{inset:32% 9% 6%}
  .card[data-tone=brand] .artwork img{object-position:center}
+ .card[data-tone=brand]{background:none!important;border:0;box-shadow:none;-webkit-backdrop-filter:none;backdrop-filter:none;transition:transform 520ms cubic-bezier(.16,1,.3,1),opacity 180ms ease-out;opacity:0}
+ .card[data-tone=brand][data-position="0"]{opacity:1;transform:none}
+ .card[data-tone=brand] .copy{display:none}
+ .card[data-tone=brand] .artwork{inset:4%}
+ .deck[data-brand-active=true] .card:not([data-tone=brand]){opacity:0;pointer-events:none}
+ .card:not([data-tone=brand]){transition:transform 520ms cubic-bezier(.16,1,.3,1),opacity 180ms ease-out}
 }
 @supports((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){.card{-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px)}}
 @media(prefers-reduced-motion:reduce){.card,.copy,.artwork{transition:none}}

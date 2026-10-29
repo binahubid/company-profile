@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.2.43] - 2026-10-29
+
+- Kartu hero mobile dibesarkan menjadi min(76vw,310px).
+- State keempat menampilkan logo3DBinaHub tanpa card, label card, atau lapisan
+  belakang. Tiga state pertama tetap glass stack dan berwarna berbeda.
+- Judul/CTA, footprint, empat-state playback, swipe, jeda/putar dan Scroll
+  dipertahankan. Desktop liquid gradient tidak berubah.
+
 ## [0.2.42] - 2026-10-29
 
 - Hero home khusus mobile menjadi empat kartu persegi bertumpuk di atas copy:

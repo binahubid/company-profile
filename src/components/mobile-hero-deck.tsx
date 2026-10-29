@@ -14,7 +14,7 @@ export function MobileHeroDeck({active,onSelect}:{active:number;onSelect:(index:
   {tone:'program',title:en?'Your program':'Program',description:en?'Options to explore with BinaHub.':'Pilihan untuk dibahas bersama.',image:'/program-recommendation/hero-program.webp'},
   {tone:'brand',title:en?'About BinaHub':'Tentang BinaHub',description:'People. Learning. Elevated.',image:'/3D-logo-2.webp'},
  ];
- return <div className={styles.deck} data-mobile-hero-deck data-active-card={active} aria-hidden="true"
+ return <div className={styles.deck} data-mobile-hero-deck data-active-card={active} data-brand-active={active===3} aria-hidden="true"
   onPointerDown={event=>{if(event.isPrimary)pointer.current={id:event.pointerId,x:event.clientX,y:event.clientY};}}
   onPointerCancel={()=>{pointer.current=null;}}
   onPointerUp={event=>{

@@ -35,6 +35,12 @@ rounded:
 
 # Design System: Homepage recommendation journey and mobile deck
 
+Latest local refinement,0.2.43: mobile square size is min(76vw,310px), replacing
+the earlier66vw/260pxvalue below. Statefour is now only the existing3Dlogo:
+transparent face, no rim/shadow/blur, no card label and no rear stack. It retains
+the shared deck footprint, brand offer and destinations. Firstthree retain their
+colored offset glass stack; desktop/tablet and liquid field remain unchanged.
+
 ## Overview
 
 **Creative North Star: "Needs become a development direction"**
