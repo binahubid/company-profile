@@ -11,6 +11,7 @@ export function ProgramHeroVisual({motionPlaying=false}:{motionPlaying?:boolean}
   {name:'program',title:en?'Your program':'Program',description:en?'Options to explore with BinaHub.':'Pilihan untuk dibahas bersama.',Icon:Route},
  ];
  return <div className={styles.journey} data-program-hero-visual data-orbit-running={motionPlaying} aria-hidden="true">
+  <div className={styles.liquidBackdrop} data-hero-liquid><span data-liquid-flow="ice"/><span data-liquid-flow="mint"/><span data-liquid-flow="warm"/></div>
   <div className={styles.atmosphere}/>
   <div className={styles.orbit}><div className={styles.orbitSpin} data-program-orbit><svg viewBox="0 0 640 640" fill="none">
     <ellipse cx="320" cy="320" rx="302" ry="232" transform="rotate(-29 320 320)" stroke="currentColor"/>

@@ -1,5 +1,22 @@
 # Changelog
 
+## [0.2.42] - 2026-10-29
+
+- Hero home khusus mobile menjadi empat kartu persegi bertumpuk di atas copy:
+  Kebutuhan, Kompetensi, Program, dan Tentang BinaHub. Warna tiap kartu berbeda;
+  lapisan belakang tetap terlihat. Ilustrasi dan logo memakai aset yang sudah ada.
+- Satu rotasi delapan detik menggerakkan deck. Kartu keempat menyinkronkan judul
+  dan CTA Tentang BinaHub; tiga kartu awal tetap mengarah ke rekomendasi program.
+- Swipe horizontal, empat pemilih manual, jeda/putar dan Scroll tersedia.
+  Scroll vertikal, focus-stop, reduced motion, hidden/offscreen pause tetap ada.
+- Layout desktop/tablet dua slide, tujuan CTA, tracking dan backend tidak berubah.
+- Slide rekomendasi desktop menambahkan bidang liquid gradient ice/mint/champagne
+  di belakang kartu. Tiga lapisan bergerak dengan transform; blur tetap statis.
+  Jeda mengikuti slide/playback/visibility dan reduced motion; mobile tetap deck.
+- Public quality, TypeScript, build 45 route dan regresi browser lulus. Pengujian
+  mencakup siklus empat kartu, gestur sentuh sintetis, ID/EN dan overflow 320px.
+  Perangkat fisik dan Safari belum diuji.
+
 ## [0.2.41] - 2026-10-29
 
 - Pembuka rekomendasi menggabungkan judul, penjelasan dan CTA, didampingi

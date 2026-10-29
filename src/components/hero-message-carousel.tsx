@@ -5,6 +5,7 @@ import {useLocale} from '@/i18n/use-locale';
 import {localizePath} from '@/i18n/config';
 import {useReducedMotionPreference} from '@/hooks/use-reduced-motion';
 import {ProgramJourneyLink} from './program-journey-link';
+import {MobileHeroDeck} from './mobile-hero-deck';
 import styles from './hero-message-carousel.module.css';
 const copy={
  id:{label:'Pilihan utama BinaHub',pause:'Jeda pergantian otomatis',play:'Putar slide otomatis',slides:[
@@ -16,8 +17,10 @@ const copy={
   {label:'About BinaHub',title:'Helping Organizations',accent:'Grow and Develop',description:'BinaHub helps companies build effective leadership, solid teams, and adaptive work cultures through an integrated approach supported by AI technology.',cta:'Start diagnostic',href:'/insight',secondary:'View Perspective',secondaryHref:'/perspektif'},
  ]},
 };
-export function HeroMessageCarousel({ready,active,onActiveChange,onMotionStateChange}:{ready:boolean;active:number;onActiveChange:(index:number)=>void;onMotionStateChange:(playing:boolean)=>void}){
+export function HeroMessageCarousel({ready,active,mobile,onActiveChange,onMotionStateChange}:{ready:boolean;active:number;mobile:boolean;onActiveChange:(index:number)=>void;onMotionStateChange:(playing:boolean)=>void}){
  const locale=useLocale(),text=copy[locale],reduced=useReducedMotionPreference();
+ const count=mobile?4:2,index=active%count,messageIndex=mobile?Number(index===3):index;
+ const selectors=mobile?(locale==='en'?['Your needs','Competencies','Your program','About BinaHub']:['Kebutuhan','Kompetensi','Program','Tentang BinaHub']):text.slides.map(slide=>slide.label);
  const id=useId(),root=useRef<HTMLElement>(null);
  const [playing,setPlaying]=useState(true),[hovered,setHovered]=useState(false);
  const [visible,setVisible]=useState(true),[announcement,setAnnouncement]=useState('');
@@ -41,16 +44,17 @@ export function HeroMessageCarousel({ready,active,onActiveChange,onMotionStateCh
  },[hovered]);
  useEffect(()=>{
   if(!canRotate)return;
-  const timer=setTimeout(()=>onActiveChange((active+1)%text.slides.length),8000);
+  const timer=setTimeout(()=>onActiveChange((index+1)%count),8000);
   return()=>clearTimeout(timer);
- },[active,canRotate,text.slides.length,onActiveChange]);
- function select(index:number){setPlaying(false);onActiveChange(index);setAnnouncement(`${index+1} / ${text.slides.length}: ${text.slides[index].label}`);}
+ },[index,canRotate,count,onActiveChange]);
+ function select(index:number){setPlaying(false);onActiveChange(index);setAnnouncement(`${index+1} / ${count}: ${selectors[index]}`);}
  return <section ref={root} className={styles.carousel} data-auto-rotating={canRotate} data-rotation-status={reduced?'manual':!ready?'starting':!visible?'offscreen':hovered?'hover':!playing?'stopped':'running'} aria-label={text.label} aria-roledescription="carousel"
   onPointerEnter={event=>{if(event.pointerType==='mouse')setHovered(true);}}
-  onPointerLeave={()=>setHovered(false)} onPointerDown={event=>{if(event.pointerType!=='mouse')setPlaying(false);}}
+  onPointerLeave={()=>setHovered(false)} onPointerDown={event=>{if(event.pointerType!=='mouse'&&!(event.target as HTMLElement).closest('[data-rotation-control]'))setPlaying(false);}}
   onFocusCapture={event=>{const target=event.target as HTMLElement;if(!target.closest('[data-rotation-control]')||target.matches(':focus-visible'))setPlaying(false);}}>
+  <MobileHeroDeck active={mobile?index:0} onSelect={select}/>
   <div className={styles.panels} aria-live="off">{text.slides.map((slide,index)=><div key={slide.href} id={`${id}-slide-${index}`} className={styles.slide}
-   data-active={active===index} data-variant={index===0?'recommendation':'brand'} aria-hidden={active!==index} inert={active!==index} role="group" aria-roledescription="slide" aria-label={`${index+1} / ${text.slides.length}: ${slide.label}`}>
+   data-active={messageIndex===index} data-variant={index===0?'recommendation':'brand'} aria-hidden={messageIndex!==index} inert={messageIndex!==index} role="group" aria-roledescription="slide" aria-label={slide.label}>
    <h1 className={styles.title}><span>{slide.title}</span><span className={styles.accent}>{slide.accent}</span></h1>
    <p className={styles.description}>{slide.description}</p>
    <div className={styles.actions}>
@@ -59,7 +63,7 @@ export function HeroMessageCarousel({ready,active,onActiveChange,onMotionStateCh
    </div>
   </div>)}</div>
   <div className={styles.controls} role="group" aria-label={locale==='en'?'Hero slide controls':'Kontrol slide utama'}>
-   {text.slides.map((slide,index)=><button key={slide.href} type="button" aria-label={slide.label} aria-controls={`${id}-slide-${index}`} aria-pressed={active===index} onClick={()=>select(index)}><span className={styles.controlLabel}>{slide.label}</span></button>)}
+   {selectors.map((label,selectorIndex)=><button key={label} type="button" aria-label={label} aria-controls={`${id}-slide-${mobile?Number(selectorIndex===3):selectorIndex}`} aria-pressed={index===selectorIndex} onClick={()=>select(selectorIndex)}><span className={styles.controlLabel}>{label}</span></button>)}
    <button type="button" data-rotation-control className={styles.rotation} disabled={reduced} aria-label={playing&&!reduced?text.pause:text.play}
     onClick={()=>setPlaying(value=>!value)}>{playing&&!reduced?<Pause size={16} aria-hidden="true"/>:<Play size={16} aria-hidden="true"/>}</button>
   </div>

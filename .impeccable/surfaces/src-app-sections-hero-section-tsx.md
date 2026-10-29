@@ -2,7 +2,7 @@
 version: 1
 slug: "src-app-sections-hero-section-tsx"
 primary_target: "src/app/_sections/hero-section.tsx"
-related_targets: ["src/components/hero-message-carousel.tsx","src/components/hero-message-carousel.module.css","src/components/program-hero-visual.tsx","src/components/program-hero-visual.module.css"]
+related_targets: ["src/components/hero-message-carousel.tsx","src/components/hero-message-carousel.module.css","src/components/program-hero-visual.tsx","src/components/program-hero-visual.module.css","src/components/mobile-hero-deck.tsx","src/components/mobile-hero-deck.module.css"]
 ---
 
 # Homepage recommendation slide · 28 October 2026
@@ -13,6 +13,10 @@ User asks to restore the original three light cards, add more convincing glass
 and borders using imagegen, and center seamless controls at the hero bottom.
 Existing brand copy, logo and orbit remain intact.
 Mode: Persuade, scoped to this recommendation hero.
+
+The original contract below governs the retained tablet/desktop composition.
+Mobile stacked story is the current contract through 767px and supersedes the
+earlier phone layout/control directions. Prior verification remains historical.
 
 ## Direction contract
 
@@ -33,24 +37,26 @@ Thin glass rims, frosted faces and subtle overlapping radial mesh color fields
 provide depth. Avoid visible background rectangles, grid lines or extra cards.
 Controls belong to the hero bottom center, with a discreet frosted active pill
 instead of the left-aligned underline. Add a centered Scroll link below controls
-that goes to the next existing section. On phones, offer copy and CTA appear
-before the decorative scene; compact named slide controls avoid the chat widget.
-Both slides retain a stable footprint and
-mobile header clearance; brand copy/logo/orbit and destinations stay unchanged.
+that goes to the next existing section. Tablet/desktop retain the two named slide
+buttons. Current phone layout and controls follow Mobile stacked story below.
+Both compositions retain a stable footprint and header clearance; existing
+product copy, imagery and destinations stay unchanged.
 FORM: User-pinned, code-led extension of the existing hero; seed: none
 (brief-pinned). One parent slide state drives both copy and the visual. Keep
 8-second rotation, stop/pause/reduced-motion/offscreen and focus behavior.
-MOTION: Right-hand orbit rotates over 64 seconds using transform only; pause
+MOTION: From 768px, the right-hand orbit rotates over 64 seconds using transform only; pause
 with the existing carousel playback state, outside viewport, on hidden page,
 on focus/hover/manual interaction, and when its slide is inactive. Reduced
-motion uses a static orbit. Cards and all raster illustrations remain still.
+motion uses a static orbit. This separate visual/orbit is disabled on phones;
+the mobile deck's transform/opacity motion is specified below.
 FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, DESIGN.md, and every shipping raster carrying its provenance
 
 ## Boundaries and verification
 
 No changes to destinations, tracking, catalog content, forms, AI, prices, questions
-or delivery. New visual is decorative and localized ID/EN. Blur is static; opacity
-alone transitions at slide change. Test both slides, synchronized auto/manual
+or delivery. The visual is decorative and localized ID/EN. Blur is static;
+tablet/desktop slide changes use opacity and mobile deck positions use transform.
+Test both messages, all four mobile cards, synchronized auto/manual
 changes, ID/EN, responsive overflow, focus, reduced motion and homepage links.
 Check three sculpture assets, distinct tones, readable labels, centered controls,
 working Scroll destination, orbit run/pause, minimum touch
@@ -69,7 +75,10 @@ flat material-only experiment is superseded by the latest illustrated reference.
 No questions, reports, catalog,
 backend behavior, client data, prices or AI recommendation logic change.
 
-## 29 October mobile-home extension
+## Earlier mobile-home extension · historical
+
+The following density refinement and its `ship` verdict predate the four-card
+deck. They do not establish the current phone composition or final deck review.
 
 Explicit user addition: improve responsiveness of both home hero slides. Keep
 desktop and product copy unchanged. Through767px, use a compact240px shared
@@ -80,3 +89,62 @@ reserve the same footprint. Full website regression passed; parent and reviewer
 opened recommendation/brand mobile viewport captures plus fullhero/320px scene
 captures, disposition`ship`. No new palette/assets or physical-device claim.
 Current material/layout values live in `docs/home-recommendation-hero-design.md`.
+
+## Mobile stacked story · 29 October 2026
+
+THESIS: A phone-first four-card deck replaces the scaled desktop composition.
+OWN-WORLD: Existing Jakarta/navy and ice, seafoam, champagne glass; the fourth
+BinaHub card uses a pale lavender ground and the existing blue/gold 3D logo.
+STORY: Needs → competencies → program share the recommendation message; the
+fourth card introduces BinaHub and synchronizes the original brand title/actions.
+FIRST VIEWPORT: Square artwork cards above centered offer copy and actions. Rear
+cards remain offset and visible. Four compact selectors, pause and Scroll remain
+available; tablet and desktop keep the original two-slide composition.
+FORM: Precisely user-pinned local adaptation, code-led; seed: none (brief-pinned).
+MOTION: One eight-second clock, transform/opacity deck transitions, manual
+selection and swipe pause autoplay; keyboard focus, hidden/offscreen and reduced
+motion retain the existing safeguards. No continuous layout/filter animation.
+FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, DESIGN.md, and every shipping raster carrying its provenance
+
+Implementation: through 767px, square faces use min(66vw, 260px); the deck reserves
+card size + 46px height and 24px bottom margin. Three rear faces stay offset and
+visible. Static 12px backdrop blur supports the four tonal grounds; positions
+transition with transform over 520ms and front-card content with opacity over
+180ms. Hide the former separate mobile visual column and disable its orbit.
+
+Controls: four compact 44px selectors with localized accessible names and a
+44px play/pause button. First three indices select the shared recommendation
+panel; fourth selects the original brand panel. The touch-stop ancestor excludes
+the rotation button. Horizontal swipe selects/pauses while pan-y and pinch zoom
+remain available. Scroll stays bottom-center and targets the existing #platform.
+
+Evidence: version 0.2.42 passed public quality, TypeScript, the 45-route build
+and both full browser passes. The corrected final touch-enabled run verified
+Pause for 8.5 seconds and Play resuming to the next card. The reviewer reopened
+all six refreshed captures, confirmed the single fix and returned `ship` with
+no additional material visual issue in scope. Capture paths and prior evidence
+are recorded in `docs/home-recommendation-hero-design.md`. Physical devices and
+Safari remain untested. No new image/font/backend/data logic or global system
+migration; root DESIGN.md and .impeccable/design.json remain unchanged.
+
+## Desktop liquid field · 29 October 2026
+
+THESIS: A soft liquid field anchors the recommendation artwork instead of
+leaving it floating on an empty ground.
+OWN-WORLD: Ice blue at the upper left, seafoam across the center and champagne
+at the lower right; preserve the three existing illustrated glass cards.
+STORY: Keep the offer and CTA dominant; the field supports the needs-to-program
+journey without introducing another UI container or changing the card content.
+FIRST VIEWPORT: One broad, irregular gradient disc behind the right-hand cards
+only from 1024px. Mobile deck and tablet composition remain unchanged.
+FORM: User-supplied reference, scoped code-led extension; seed: none (brief-pinned).
+MOTION: Three overlapping color pools drift with transform over 22–34 seconds.
+Blur/mask/gradient are static; pause follows existing ready/playback/visibility
+state and inactive slide. Reduced motion keeps the field still.
+FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, DESIGN.md, and every shipping raster carrying its provenance
+
+Finish: scoped liquid-field review `ship`, no material fixes. Parent/reviewer
+opened the supplied reference, fresh desktop and unchanged mobile captures.
+Final build/public quality and full browser regression passed, including pool
+transform progress, static blur, inactive/offscreen pause, reduced motion and
+forced colors. Perceived smoothness on physical devices and Safari is untested.

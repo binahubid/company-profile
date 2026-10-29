@@ -3,7 +3,7 @@
 import Image from "next/image";
 import {ArrowDown} from 'lucide-react';
 import {useLocale} from '@/i18n/use-locale';
-import { useState } from 'react';
+import { useState, useSyncExternalStore } from 'react';
 import { HeroMessageCarousel } from '@/components/hero-message-carousel';
 import { ProgramHeroVisual } from '@/components/program-hero-visual';
 import heroStyles from '@/components/program-hero-visual.module.css';
@@ -11,6 +11,15 @@ import heroStyles from '@/components/program-hero-visual.module.css';
 interface HeroSectionProps {
   heroReady: boolean;
 }
+
+const MOBILE_HERO_QUERY = '(max-width: 767px)';
+function subscribeMobileHero(onChange: () => void) {
+  const media = window.matchMedia(MOBILE_HERO_QUERY);
+  media.addEventListener('change', onChange);
+  return () => media.removeEventListener('change', onChange);
+}
+const mobileHeroSnapshot = () => window.matchMedia(MOBILE_HERO_QUERY).matches;
+const serverHeroSnapshot = () => false;
 
 const ORBIT_ICONS = [
   { src: "/icon/iconinsight.png", label: "BinaInsight", angle: 0 },
@@ -233,24 +242,26 @@ function FadeIn({
 export function HeroSection({ heroReady }: HeroSectionProps) {
   const [activeSlide, setActiveSlide] = useState(0);
   const [motionPlaying,setMotionPlaying]=useState(false);
+  const mobile = useSyncExternalStore(subscribeMobileHero, mobileHeroSnapshot, serverHeroSnapshot);
+  const messageIndex = mobile ? Number(activeSlide === 3) : activeSlide % 2;
   const en=useLocale()==='en';
   return (
-    <section id="home-hero" data-hero-slide={activeSlide===0?'recommendation':'brand'} className="relative z-0 -mt-24 w-full overflow-x-hidden bg-white">
+    <section id="home-hero" data-hero-slide={messageIndex===0?'recommendation':'brand'} className="relative z-0 -mt-24 w-full overflow-x-hidden bg-white">
       <div className={`${heroStyles.heroFrame} relative min-h-[calc(100svh+6rem)] overflow-hidden bg-white text-[#071A33]`}>
         <HeroImageBackground />
-        <div className={heroStyles.recommendationBackdrop} data-active={activeSlide===0} aria-hidden="true"/>
+        <div className={heroStyles.recommendationBackdrop} data-active={messageIndex===0} aria-hidden="true"/>
 
         <div className={`${heroStyles.heroContent} relative z-10 flex min-h-[calc(100svh+6rem)] flex-col items-center justify-start px-6 pb-20 pt-[8.25rem] text-center md:pt-[14.75rem] lg:items-start lg:px-20 lg:text-left xl:px-28`}>
           <div className={`${heroStyles.heroComposition} grid w-full max-w-[1580px] items-center gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.9fr)] lg:gap-10 xl:gap-12`}>
             <div className={`${heroStyles.heroCopyColumn} order-1 z-10 flex min-w-0 w-full max-w-[780px] flex-col items-center lg:items-start`}>
-              <HeroMessageCarousel ready={heroReady} active={activeSlide} onActiveChange={setActiveSlide} onMotionStateChange={setMotionPlaying}/>
+              <HeroMessageCarousel ready={heroReady} active={activeSlide} mobile={mobile} onActiveChange={setActiveSlide} onMotionStateChange={setMotionPlaying}/>
             </div>
 
             <div className={`${heroStyles.heroVisualColumn} order-2 pointer-events-auto mx-auto w-full max-w-[340px] px-1 sm:max-w-[410px] md:max-w-[380px] md:px-0 lg:max-w-none orbit-shift-right`}>
               <FadeIn ready={heroReady} delay={650} className="w-full">
                 <div className={heroStyles.visuals}>
-                  <div className={heroStyles.visual} data-active={activeSlide===0} aria-hidden="true"><ProgramHeroVisual motionPlaying={motionPlaying&&activeSlide===0}/></div>
-                  <div className={heroStyles.visual} data-active={activeSlide===1} aria-hidden={activeSlide!==1} inert={activeSlide!==1}><HeroOrbitVisual/></div>
+                  <div className={heroStyles.visual} data-active={messageIndex===0} aria-hidden="true"><ProgramHeroVisual motionPlaying={motionPlaying&&messageIndex===0&&!mobile}/></div>
+                  <div className={heroStyles.visual} data-active={messageIndex===1} aria-hidden={messageIndex!==1} inert={messageIndex!==1}><HeroOrbitVisual/></div>
                 </div>
               </FadeIn>
             </div>

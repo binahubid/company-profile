@@ -38,3 +38,18 @@
 @media(prefers-reduced-motion:reduce){.recommendationBackdrop,.visual{transition:none}.orbitSpin{animation:none;will-change:auto}}
 @media(prefers-reduced-transparency:reduce){.layer{-webkit-backdrop-filter:none;backdrop-filter:none}.layer0{background:#e6efff}.layer1{background:#e0f2e9}.layer2{background:#fff1cb}}
 @media(forced-colors:active){.atmosphere,.recommendationBackdrop,.artwork,.orbit,.badge{display:none}.layer{-webkit-backdrop-filter:none;backdrop-filter:none;box-shadow:none;border:1px solid CanvasText;background:Canvas;color:CanvasText}.layerText,.scrollCue{color:CanvasText}}
+@media(max-width:767px){.heroContent{padding-top:180px}.heroComposition{gap:0}.heroVisualColumn{display:none}}
+.liquidBackdrop{display:none}
+@media(min-width:1024px){
+ .liquidBackdrop{display:block;position:absolute;inset:3% -2% 0 2%;overflow:hidden;isolation:isolate;pointer-events:none;border-radius:48% 52% 46% 54%/52% 44% 56% 48%;background:linear-gradient(145deg,#d9e9fb94 8%,#e5f1ec80 52%,#f7e7c79c 90%);mask-image:radial-gradient(ellipse at 50% 50%,#000 51%,#000d 72%,transparent 100%)}
+ .liquidBackdrop span{position:absolute;width:95%;height:95%;border-radius:43% 57% 62% 38%/53% 41% 59% 47%;filter:blur(26px);animation:liquid-flow-cool 22s ease-in-out infinite alternate;animation-play-state:paused;transform:translate3d(-10%,-13%,0) rotate(-12deg) scale(1.03)}
+ .liquidBackdrop [data-liquid-flow=ice]{top:-14%;left:-20%;background:radial-gradient(ellipse at 48% 46%,#a9cdf4b3,#c3ddf780 47%,#c3ddf700 76%);animation-delay:-6s}
+ .liquidBackdrop [data-liquid-flow=mint]{top:4%;left:16%;background:radial-gradient(ellipse at 48% 52%,#a9d9ca91,#cce8dd66 46%,#cce8dd00 75%);animation-name:liquid-flow-mint;animation-duration:29s;animation-delay:-13s}
+ .liquidBackdrop [data-liquid-flow=warm]{top:30%;left:18%;background:radial-gradient(ellipse at 57% 57%,#f2cf7aa8,#f8e2ad80 47%,#f8e2ad00 75%);animation-name:liquid-flow-warm;animation-duration:34s;animation-delay:-9s}
+ .journey[data-orbit-running=true] .liquidBackdrop span{animation-play-state:running;will-change:transform}
+}
+@keyframes liquid-flow-cool{from{transform:translate3d(-10%,-13%,0) rotate(-12deg) scale(1.03)}to{transform:translate3d(13%,8%,0) rotate(21deg) scale(.94,1.12)}}
+@keyframes liquid-flow-mint{from{transform:translate3d(6%,-8%,0) rotate(14deg) scale(.98,1.08)}to{transform:translate3d(-13%,14%,0) rotate(-18deg) scale(1.12,.94)}}
+@keyframes liquid-flow-warm{from{transform:translate3d(8%,13%,0) rotate(-16deg) scale(1.06,.96)}to{transform:translate3d(-9%,-12%,0) rotate(17deg) scale(.95,1.13)}}
+@media(prefers-reduced-motion:reduce){.liquidBackdrop [data-liquid-flow]{animation:none;will-change:auto!important}}
+@media(forced-colors:active){.liquidBackdrop{display:none}}
