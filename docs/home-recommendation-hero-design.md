@@ -232,6 +232,65 @@ Still captures establish composition, not perceived smoothness; physical-device
 and Safari performance remain untested. The final documentation reconciliation
 was completed directly after the documenter produced its scoped mobile patch.
 
+### Desktop click-to-shuffle supplement · 29 October 2026
+
+Website version 0.2.44 adds a desktop interaction to the first slide's existing
+right-hand object from 1024px. The initial composition, three illustrations,
+native copy and ice/seafoam/champagne identities stay as recorded above. A
+shuffle selects one of the five permutations other than the current order and
+exchanges the cards among the same three slots. The slot table above describes
+the initial order; after interaction, each card keeps its own content, tone and
+artwork while taking its selected slot's position and resting rotation. The
+mobile deck and tablet presentation retain their existing behavior.
+
+The native button covers the journey scene only on desktop. Its localized name
+is Acak urutan kartu program / Shuffle program cards; a discreet Klik untuk
+mengacak / Click to shuffle hint appears on hover or visible keyboard focus.
+Click, Enter and Space activate the same action. A navy visible-focus outline
+surrounds the scene, and a polite status announces the resulting card order in
+the current locale. The illustrated cards themselves remain aria-hidden. The
+button is disabled and marked busy during a shuffle, and duplicate requests
+cannot queue another sequence. Inactive-slide controls are disabled and inert.
+
+Movement uses batched before/after FLIP measurements and three finite Web
+Animations, each lasting 760ms with 30ms per-card offsets and
+cubic-bezier(0.16, 1, 0.3, 1) deceleration. Only transform changes: translation,
+rotation and a small fan-and-settle scale lead back to the existing resting
+poses. The animations use fill: backwards so delayed cards hold their prior
+pose before starting, avoiding a destination flash. There is no frame loop or
+layout-property animation; blur, shadows, masks and gradients remain static.
+Temporary transform promotion is limited to the busy state. Reduced motion
+changes order instantly. Preference or active-slide changes cancel outstanding
+animations and release busy state. This supersedes the earlier static-only
+description of the cards' positions and rotations during this interaction.
+
+HeroSection owns the existing playback state and passes the same state through
+the carousel. Focusing or activating the shuffle stops autoplay; the existing
+Play control resumes it. The recommendation orbit and liquid pools continue to
+follow the established carousel motion, visibility and reduced-motion rules.
+No new image, font, dependency, global token or product destination is added.
+PRODUCT.md, root DESIGN.md and .impeccable/design.json remain unchanged.
+
+The focused production-build Chromium check in the sibling app's
+scripts/test-hero-shuffle.mjs passed, alongside public quality, TypeScript, the
+45-route production build and the full browser regression. The focused check
+verifies the finite transform animations, backward fill and starting bounds
+within 2px, changed endpoint order with original art/colors, duplicate protection,
+Enter/Space, instant reduced motion and cancellation, stopped autoplay,
+inactive-slide scope, desktop overflow, English naming and the current mobile
+deck. These checks establish local behavior, not a deployment or backend result.
+
+Parent, finish reviewer and documenter opened all six local captures in
+../app-binahub/.impeccable/review/: hero-shuffle-before-desktop.png,
+hero-shuffle-start-desktop.png, hero-shuffle-motion-desktop.png,
+hero-shuffle-after-desktop.png, hero-shuffle-reduced-desktop.png and
+hero-shuffle-mobile.png. Start is paused at 0ms and motion at 330ms; they document
+poses rather than perceived live smoothness. The finish follow-up confirmed the
+single scored stagger-flash fix and returned disposition `ship`; it did not
+re-review the entire existing hero. Physical-device and Safari behavior and live
+performance remain unverified. Existing homepage palette/type advisories are
+reported without repair or promotion into the root design system.
+
 ## Do's and Don'ts
 
 - **Do** keep this extension scoped to the homepage and synchronize it through parent slide and playback state.

@@ -242,6 +242,7 @@ function FadeIn({
 export function HeroSection({ heroReady }: HeroSectionProps) {
   const [activeSlide, setActiveSlide] = useState(0);
   const [motionPlaying,setMotionPlaying]=useState(false);
+  const [heroPlaying,setHeroPlaying]=useState(true);
   const mobile = useSyncExternalStore(subscribeMobileHero, mobileHeroSnapshot, serverHeroSnapshot);
   const messageIndex = mobile ? Number(activeSlide === 3) : activeSlide % 2;
   const en=useLocale()==='en';
@@ -254,13 +255,13 @@ export function HeroSection({ heroReady }: HeroSectionProps) {
         <div className={`${heroStyles.heroContent} relative z-10 flex min-h-[calc(100svh+6rem)] flex-col items-center justify-start px-6 pb-20 pt-[8.25rem] text-center md:pt-[14.75rem] lg:items-start lg:px-20 lg:text-left xl:px-28`}>
           <div className={`${heroStyles.heroComposition} grid w-full max-w-[1580px] items-center gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.9fr)] lg:gap-10 xl:gap-12`}>
             <div className={`${heroStyles.heroCopyColumn} order-1 z-10 flex min-w-0 w-full max-w-[780px] flex-col items-center lg:items-start`}>
-              <HeroMessageCarousel ready={heroReady} active={activeSlide} mobile={mobile} onActiveChange={setActiveSlide} onMotionStateChange={setMotionPlaying}/>
+              <HeroMessageCarousel ready={heroReady} active={activeSlide} mobile={mobile} playing={heroPlaying} onPlayingChange={setHeroPlaying} onActiveChange={setActiveSlide} onMotionStateChange={setMotionPlaying}/>
             </div>
 
             <div className={`${heroStyles.heroVisualColumn} order-2 pointer-events-auto mx-auto w-full max-w-[340px] px-1 sm:max-w-[410px] md:max-w-[380px] md:px-0 lg:max-w-none orbit-shift-right`}>
               <FadeIn ready={heroReady} delay={650} className="w-full">
                 <div className={heroStyles.visuals}>
-                  <div className={heroStyles.visual} data-active={messageIndex===0} aria-hidden="true"><ProgramHeroVisual motionPlaying={motionPlaying&&messageIndex===0&&!mobile}/></div>
+                  <div className={heroStyles.visual} data-active={messageIndex===0} aria-hidden={messageIndex!==0} inert={messageIndex!==0}><ProgramHeroVisual active={messageIndex===0} onInteract={()=>setHeroPlaying(false)} motionPlaying={motionPlaying&&messageIndex===0&&!mobile}/></div>
                   <div className={heroStyles.visual} data-active={messageIndex===1} aria-hidden={messageIndex!==1} inert={messageIndex!==1}><HeroOrbitVisual/></div>
                 </div>
               </FadeIn>

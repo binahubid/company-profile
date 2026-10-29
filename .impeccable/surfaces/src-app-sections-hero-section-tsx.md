@@ -156,3 +156,66 @@ Fourth state shows only the existing 3D logo, without card face, native card
 label or rear stack. Preserve the shared footprint, original brand offer/CTA,
 four-state timer, swipe/select/pause, Scroll and desktop liquid field.
 Code-led precise local refinement; no new artwork or product behavior.
+
+## Desktop click-to-shuffle · 29 October 2026
+
+User requests this only after the PETA implementation. Precisely pinned local
+interaction, code-led; no concept seed or approved comp. Keep the existing hero
+composition, copy, destinations, three illustrations, distinct card tones and
+mobile four-state deck. Only the desktop right-hand object gains an action.
+
+MOTION THESIS: A finite fan-and-settle shuffle exchanges the three cards among
+their existing slots. Batched FLIP measurements feed transform-only Web Animations
+for760ms with30ms per-card offsets and exponential deceleration. No frame loop,
+layout-property animation, animated filter or new dependency. Each card keeps
+its original color and illustration regardless of slot. Repeated clicks are
+ignored during the sequence; cancelled animations release the busy state.
+
+QUALITY BAR: The initial viewport must still match the existing hero. A native
+desktop-only button over the artwork supports click/Enter/Space, visible focus,
+a discreet localized hint and a polite order announcement. Interaction pauses
+the existing autoplay, which can be resumed through its original control.
+Reduced motion changes order instantly; inactive slide is inert. Mobile retains
+the existing deck with no desktop overlay. Review scope is these changes, not
+the earlier copy/layout/world. No raster work or token migration.
+
+Evidence: app repo `scripts/test-hero-shuffle.mjs` captures before/motion/after/
+reduced desktop and unchanged mobile under app `.impeccable/review/` with prefix
+`hero-shuffle-`. These are production-build loopback browser checks, not physical
+device/Safari evidence or a live deployment claim.
+
+### Shipped interaction record · version 0.2.44
+
+From 1024px, the desktop journey has one native button with localized name and
+hover/focus hint. Click, Enter and Space select a different permutation of the
+existing three slots; native card copy, colors and illustrations stay attached
+to their cards. The initial composition is unchanged. Tablet and the mobile
+four-state deck retain their existing presentation and controls.
+
+Batched before/after measurements feed three transform-only Web Animations:
+760ms each, 30ms per-card offsets, cubic-bezier(0.16, 1, 0.3, 1), and backward
+fill. Backward fill holds the prior pose through each delay and resolves the
+stagger-flash finding. The busy button prevents queued activations; cancellation
+releases that state. Reduced motion swaps order immediately, and preference or
+active-slide changes cancel outstanding animations. Native cards remain
+aria-hidden; the control has visible focus and a polite localized order status.
+Focus/activation stops parent-owned carousel playback; its existing Play control
+resumes it. Inactive visual content is inert. No frame loop, filter/layout
+animation, raster, token migration or product behavior change is introduced.
+
+Focused production-build Chromium checks, public quality, TypeScript, the
+45-route production build and the full browser regression passed. The focused
+test asserts backward fill and all three starting bounds within 2px, finite
+transform motion, endpoint identity/colors/art, duplicate protection, keyboard,
+reduced-motion cancellation and instant order, autoplay pause, inactive scope,
+English naming, desktop overflow and the retained mobile deck.
+
+Parent, finish reviewer and documenter opened hero-shuffle-{before,start,motion,
+after,reduced}-desktop.png and hero-shuffle-mobile.png in the sibling app's
+.impeccable/review/. Start is paused at 0ms and motion at 330ms. The follow-up
+finish verdict is `ship` for the single scored stagger-flash fix, without a new
+whole-hero review. Physical devices, Safari and perceived live performance remain
+unverified. Existing palette/type advisory drift is reported without repair;
+PRODUCT.md, root DESIGN.md and .impeccable/design.json stay unchanged. Detailed
+material, motion and evidence notes are appended to
+docs/home-recommendation-hero-design.md.

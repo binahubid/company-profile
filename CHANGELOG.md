@@ -1,5 +1,16 @@
 # Changelog
 
+## [0.2.44] - 2026-10-29
+
+- Desktop homepage recommendation artwork can be clicked to shuffle its three
+  cards through a finite transform-only fan-and-settle sequence. Each card keeps
+  its original color, text and generated illustration.
+- Native keyboard action, localized hint/order announcement, repeat protection,
+  cancellation and instant reduced-motion alternative. Interaction pauses the
+  existing autoplay; the original play control can resume it.
+- No change to copy/CTA destinations, mobile deck, landing forms or AI. Public
+  quality, TypeScript, build and local browser checks cover the scoped change.
+
 ## [0.2.43] - 2026-10-29
 
 - Kartu hero mobile dibesarkan menjadi min(76vw,310px).

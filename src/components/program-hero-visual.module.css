@@ -13,13 +13,14 @@
 .journey[data-orbit-running=true] .orbitSpin{animation-play-state:running;will-change:transform}
 @keyframes program-orbit{to{transform:rotate(360deg)}}
 .layer{position:absolute;isolation:isolate;width:80%;height:32%;min-width:0;padding:22px 24px;border:1px solid #ffffffe6;border-radius:16px;overflow:hidden;box-shadow:0 22px 48px -22px #0b2c6b38,inset 0 1px 0 #fff}
-.layer0{left:18%;top:4%;transform:rotate(8deg);background:linear-gradient(115deg,#f8fbfff0,#dceaffc9)}
-.layer1{left:0;top:35%;transform:rotate(-5deg);background:linear-gradient(115deg,#f5fffbf0,#ccebdedb)}
-.layer2{left:20%;top:66%;transform:rotate(-7deg);background:linear-gradient(115deg,#fffdf2f0,#fae2a3c9)}
+.layer0{left:18%;top:4%;transform:rotate(8deg);z-index:1}.layer1{left:0;top:35%;transform:rotate(-5deg);z-index:2}.layer2{left:20%;top:66%;transform:rotate(-7deg);z-index:3}
+[data-hero-tone=needs].layer{background:linear-gradient(115deg,#f8fbfff0,#dceaffc9)}
+[data-hero-tone=competencies].layer{background:linear-gradient(115deg,#f5fffbf0,#ccebdedb)}
+[data-hero-tone=program].layer{background:linear-gradient(115deg,#fffdf2f0,#fae2a3c9)}
 .cardCopy{position:relative;z-index:1;display:flex;flex-direction:column;gap:7px;max-width:57%;min-width:0}
 .badge{display:grid;place-items:center;width:34px;height:34px;margin-bottom:3px;border-radius:10px;background:linear-gradient(135deg,#d4e4ff,#91b6f5);color:#245099}
-.layer1 .badge{background:linear-gradient(135deg,#d8eee4,#96cdb8);color:#245e50}
-.layer2 .badge{background:linear-gradient(135deg,#fff3c7,#efbd62);color:#6b460d}
+[data-hero-tone=competencies] .badge{background:linear-gradient(135deg,#d8eee4,#96cdb8);color:#245e50}
+[data-hero-tone=program] .badge{background:linear-gradient(135deg,#fff3c7,#efbd62);color:#6b460d}
 .layerTitle{font-size:clamp(18px,2vw,27px);font-weight:600;line-height:1.3;letter-spacing:-.025em}
 .layerText{font-size:clamp(11px,1.05vw,14px);line-height:1.6;color:#405675}
 .artwork{position:absolute;right:-8%;bottom:-9%;width:59%;height:114%;pointer-events:none;mask-image:linear-gradient(to right,transparent,#000 25%)}
@@ -36,10 +37,13 @@
 @media(max-width:359px){.heroContent{padding-inline:16px}.journey{height:250px}.visuals{height:250px}.layer{width:85%;padding:10px 12px}.layer0{left:12%}.layer2{left:13%}.cardCopy{max-width:63%}.layerTitle{font-size:14px}.layerText{font-size:10px}.artwork{width:43%}}
 @media(min-width:1024px){.heroFrame,.heroContent{min-height:clamp(880px,calc(100svh + 6rem),1010px)}}
 @media(prefers-reduced-motion:reduce){.recommendationBackdrop,.visual{transition:none}.orbitSpin{animation:none;will-change:auto}}
-@media(prefers-reduced-transparency:reduce){.layer{-webkit-backdrop-filter:none;backdrop-filter:none}.layer0{background:#e6efff}.layer1{background:#e0f2e9}.layer2{background:#fff1cb}}
+@media(prefers-reduced-transparency:reduce){.layer{-webkit-backdrop-filter:none;backdrop-filter:none}[data-hero-tone=needs].layer{background:#e6efff}[data-hero-tone=competencies].layer{background:#e0f2e9}[data-hero-tone=program].layer{background:#fff1cb}}
 @media(forced-colors:active){.atmosphere,.recommendationBackdrop,.artwork,.orbit,.badge{display:none}.layer{-webkit-backdrop-filter:none;backdrop-filter:none;box-shadow:none;border:1px solid CanvasText;background:Canvas;color:CanvasText}.layerText,.scrollCue{color:CanvasText}}
 @media(max-width:767px){.heroContent{padding-top:180px}.heroComposition{gap:0}.heroVisualColumn{display:none}}
 .liquidBackdrop{display:none}
+.shuffleControl{display:none}.srOnly{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap;border:0}
+@media(min-width:1024px){.shuffleControl{display:block;position:absolute;inset:0;z-index:4;width:100%;height:100%;padding:0;border:0;background:transparent;border-radius:16px;cursor:pointer}.shuffleControl>span{position:absolute;bottom:-26px;left:50%;transform:translateX(-50%);padding:5px 12px;border-radius:999px;background:#ffffffdc;color:#405675;font-size:11px;opacity:0;transition:opacity 160ms ease-out}.shuffleControl:hover>span,.shuffleControl:focus-visible>span{opacity:1}.shuffleControl:focus-visible{outline:2px solid #0b2c6b;outline-offset:8px}.shuffleControl:disabled{cursor:wait}.journey[data-shuffling=true] .layer{will-change:transform}}
+@media(forced-colors:active){[data-hero-tone].layer{background:Canvas;color:CanvasText}.shuffleControl:focus-visible{outline-color:Highlight}.shuffleControl>span{background:Canvas;color:CanvasText}}
 @media(min-width:1024px){
  .liquidBackdrop{display:block;position:absolute;inset:3% -2% 0 2%;overflow:hidden;isolation:isolate;pointer-events:none;border-radius:48% 52% 46% 54%/52% 44% 56% 48%;background:linear-gradient(145deg,#d9e9fb94 8%,#e5f1ec80 52%,#f7e7c79c 90%);mask-image:radial-gradient(ellipse at 50% 50%,#000 51%,#000d 72%,transparent 100%)}
  .liquidBackdrop span{position:absolute;width:95%;height:95%;border-radius:43% 57% 62% 38%/53% 41% 59% 47%;filter:blur(26px);animation:liquid-flow-cool 22s ease-in-out infinite alternate;animation-play-state:paused;transform:translate3d(-10%,-13%,0) rotate(-12deg) scale(1.03)}
