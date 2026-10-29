@@ -61,3 +61,10 @@ program}.webp, each with its exact prompt and provenance sidecar. The previous
 flat material-only experiment is superseded by the latest illustrated reference.
 No questions, reports, catalog,
 backend behavior, client data, prices or AI recommendation logic change.
+
+29 October: authorized mobile-home extension applies only through767px. Both
+slides now use the compact shared scene, tighter offer/action rhythm and visible
+slide-name controls. Existing tracking, autoplay/pause, reduced motion, colors
+and illustrations remain. Current implementation and successful bounded browser
+verification are recorded in `docs/home-recommendation-hero-design.md`; disposition
+`ship`. Desktop is unchanged. Physical devices/Safari were not tested.

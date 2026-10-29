@@ -241,12 +241,12 @@ export function HeroSection({ heroReady }: HeroSectionProps) {
         <div className={heroStyles.recommendationBackdrop} data-active={activeSlide===0} aria-hidden="true"/>
 
         <div className={`${heroStyles.heroContent} relative z-10 flex min-h-[calc(100svh+6rem)] flex-col items-center justify-start px-6 pb-20 pt-[8.25rem] text-center md:pt-[14.75rem] lg:items-start lg:px-20 lg:text-left xl:px-28`}>
-          <div className="grid w-full max-w-[1580px] items-center gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.9fr)] lg:gap-10 xl:gap-12">
-            <div className="order-1 z-10 flex min-w-0 w-full max-w-[780px] flex-col items-center lg:items-start">
+          <div className={`${heroStyles.heroComposition} grid w-full max-w-[1580px] items-center gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.9fr)] lg:gap-10 xl:gap-12`}>
+            <div className={`${heroStyles.heroCopyColumn} order-1 z-10 flex min-w-0 w-full max-w-[780px] flex-col items-center lg:items-start`}>
               <HeroMessageCarousel ready={heroReady} active={activeSlide} onActiveChange={setActiveSlide} onMotionStateChange={setMotionPlaying}/>
             </div>
 
-            <div className="order-2 pointer-events-auto mx-auto w-full max-w-[340px] px-1 sm:max-w-[410px] md:max-w-[380px] md:px-0 lg:max-w-none orbit-shift-right">
+            <div className={`${heroStyles.heroVisualColumn} order-2 pointer-events-auto mx-auto w-full max-w-[340px] px-1 sm:max-w-[410px] md:max-w-[380px] md:px-0 lg:max-w-none orbit-shift-right`}>
               <FadeIn ready={heroReady} delay={650} className="w-full">
                 <div className={heroStyles.visuals}>
                   <div className={heroStyles.visual} data-active={activeSlide===0} aria-hidden="true"><ProgramHeroVisual motionPlaying={motionPlaying&&activeSlide===0}/></div>

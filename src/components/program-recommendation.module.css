@@ -8,7 +8,9 @@
 .page p { color: var(--program-text); line-height: 1.75; }
 .page a, .page button, .page summary { -webkit-tap-highlight-color: transparent; }
 .page :is(a, button, summary, [tabindex]):focus-visible { outline: 3px solid var(--program-blue); outline-offset: 5px; }
-.hero { padding-block: 176px 28px; background: radial-gradient(ellipse at 8% 0, #dce9fc99, transparent 47%), radial-gradient(ellipse at 92% 27%, #f6e7c54d, transparent 44%), linear-gradient(180deg, #f6f9ff, #fff 78%); }
+.hero { padding-block: 136px 28px; background: radial-gradient(ellipse at 8% 0, #dce9fc99, transparent 47%), radial-gradient(ellipse at 92% 27%, #f6e7c54d, transparent 44%), linear-gradient(180deg, #f6f9ff, #fff 78%); }
+.heroIntro{min-width:0}.heroIntro .lead{margin-top:24px;max-width:49ch}.heroIntro .note{margin-top:18px}
+.heroVisual{position:relative;isolation:isolate;min-width:0;min-height:360px;display:grid;align-items:center;margin:0}.heroVisual::before{content:'';position:absolute;inset:14% 1% 8%;z-index:-1;border-radius:50%;background:radial-gradient(ellipse,#dce9fcb3,transparent 70%)}.heroVisual img{width:100%;height:auto;max-height:400px;object-fit:contain;filter:drop-shadow(0 20px 18px #10234b14)}.heroVisual figcaption{display:flex;align-items:center;justify-content:center;gap:10px;padding:16px;border:1px solid #ffffffcc;border-radius:14px;background:#ffffff80;color:var(--program-navy);font-size:.75rem;font-weight:600}.heroVisual figcaption svg{flex-shrink:0}
 .heroGrid { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); align-items: center; gap: clamp(32px, 6vw, 96px); }
 .heroCopy { padding: 28px; border: 1px solid #ffffffcc; border-radius: 16px; background: #ffffffb3; }
 .lead { font-size: 1.05rem; max-width: 40ch; }
@@ -172,6 +174,10 @@
   .reportVisual { padding: 18px; }
   .reportDocument { padding: 20px; }
 }
+@media(min-width:768px) and (max-width:1099px){.hero{padding-top:120px}.heroGrid{grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:24px}.heroVisual{min-height:280px}.heroVisual figcaption{font-size:.65rem;gap:7px;padding:12px}.page h1{font-size:clamp(2.35rem,4.2vw,3rem)}.demoBody{grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr)}}
+@media(max-width:767px){.heroGrid{grid-template-columns:minmax(0,1fr) 88px;gap:18px 12px;align-items:start}.heroIntro{display:contents}.heroGrid h1{grid-column:1;grid-row:1;font-size:clamp(1.85rem,6.8vw,2.8rem);line-height:1.15}.heroIntro .lead{grid-column:1/-1;grid-row:2;margin-top:0;font-size:.9rem}.heroIntro .actions{grid-column:1/-1;grid-row:3;margin:0}.heroIntro .note{grid-column:1/-1;grid-row:4;margin:0;font-size:.7rem}.heroVisual{grid-column:2;grid-row:1;min-height:0;height:100%;align-content:center;overflow:hidden}.heroVisual img{width:150px;max-width:none;margin-left:-30px;max-height:210px}.heroVisual figcaption{display:none}.demoBody{grid-template-columns:64px minmax(0,1fr)}.demoArt{min-height:100%;border-radius:0}.demoArt>p,.artCaption{display:none}.demoArt img{object-position:66% center}.demoContent{padding:22px 18px;border-bottom-left-radius:0}.demoPanels h2{font-size:1.3rem}.demoPanels{min-height:370px}.demoPanels .exampleLabel{font-size:.65rem}.steps{display:grid;grid-auto-flow:column;grid-auto-columns:min(82vw,320px);grid-template-columns:none;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding-inline:2px;scrollbar-color:#93a8ca transparent;padding:2px 2px 18px}.steps li{scroll-snap-align:start}.stageCaption{gap:8px}.reportVisual{padding:18px}.reportDocument{padding:20px}}
+@media(max-width:767px){.heroVisual{overflow:visible}.heroVisual img{width:100%;max-width:100%;margin-left:0}.steps{scrollbar-width:thin;touch-action:pan-x pan-y}.steps::-webkit-scrollbar{display:block;height:5px}.steps::-webkit-scrollbar-thumb{background:#93a8ca;border-radius:8px}}
+@media(forced-colors:active){.heroVisual{display:none}.heroGrid{grid-template-columns:minmax(0,1fr)}}
 @media (prefers-reduced-motion: reduce) {
   .page :is(a, button, summary) { transition: none; }
   .demoTabs button::before { transition: none; }

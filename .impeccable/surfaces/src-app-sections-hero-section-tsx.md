@@ -68,3 +68,15 @@ program}.webp, each with its exact prompt and provenance sidecar. The previous
 flat material-only experiment is superseded by the latest illustrated reference.
 No questions, reports, catalog,
 backend behavior, client data, prices or AI recommendation logic change.
+
+## 29 October mobile-home extension
+
+Explicit user addition: improve responsiveness of both home hero slides. Keep
+desktop and product copy unchanged. Through767px, use a compact240px shared
+visual footprint (250px through359px), complete three-color card imagery and
+visible slide-name controls. Display type/description/action spacing is reduced
+to keep offer, visual, controls and Scroll together at390×844. Both slide states
+reserve the same footprint. Full website regression passed; parent and reviewer
+opened recommendation/brand mobile viewport captures plus fullhero/320px scene
+captures, disposition`ship`. No new palette/assets or physical-device claim.
+Current material/layout values live in `docs/home-recommendation-hero-design.md`.

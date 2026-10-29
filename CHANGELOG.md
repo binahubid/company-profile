@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.2.41] - 2026-10-29
+
+- Pembuka rekomendasi menggabungkan judul, penjelasan dan CTA, didampingi
+  ilustrasi kaca transparan yang sudah ada. Tidak ada aset/font/palet baru.
+- Mobile memakai aksen ilustrasi88px, panel contoh dengan strip visual64px,
+  dan tiga langkah pada rail geser native; tablet mempertahankan dua kolom.
+- Hero home mobile lebih ringkas: ilustrasi tiga kartu dipadatkan, jarak copy
+  dan CTA disesuaikan, kontrol slide menampilkan nama, Scroll tetap mudah diakses.
+  Desktop, tracking, autoplay/pause/reducedmotion dan tujuan CTA dipertahankan.
+- Build45route, publicquality dan regresi browser ID/EN desktop/mobile lulus,
+  termasuk gesture sentuh sintetis pada rail. Perangkat fisik/Safari belum diuji.
+
+
 ## [0.2.40] - 2026-10-28
 
 - Pembuka landing rekomendasi memakai mesh ice/champagne lembut dan panel

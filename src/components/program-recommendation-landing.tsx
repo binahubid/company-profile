@@ -49,21 +49,23 @@ export function ProgramRecommendationLanding({locale}: {locale: Locale}) {
     <section className={styles.hero} data-program-opening aria-labelledby="recommendation-heading">
       <div className={styles.container}>
         <div className={styles.heroGrid}>
-          <div>
+          <div className={styles.heroIntro}>
             <h1 id="recommendation-heading">{en ? 'Find the right program for your team.' : 'Temukan program yang tepat untuk tim Anda.'}</h1>
+            <p className={styles.lead}>{en
+              ? 'Connect your organization’s challenges with a clear development focus and relevant BinaHub programs.'
+              : 'Hubungkan tantangan organisasi Anda dengan fokus pengembangan dan program BinaHub yang relevan.'}</p>
             <div className={styles.actions}>
               {startLink}
               <a href="#recommendation-preview" className={styles.secondary}>
                 {en ? 'See how it works' : 'Lihat contoh alurnya'}<ArrowDown size={16} aria-hidden="true"/>
               </a>
             </div>
-          </div>
-          <div className={styles.heroCopy}>
-            <p className={styles.lead}>{en
-              ? 'Connect your organization’s challenges with a clear development focus and relevant BinaHub programs.'
-              : 'Hubungkan tantangan organisasi Anda dengan fokus pengembangan dan program BinaHub yang relevan.'}</p>
             <p className={styles.note}>{en ? 'For teams and organizations. No account required.' : 'Untuk tim dan organisasi. Tanpa membuat akun.'}</p>
           </div>
+          <figure className={styles.heroVisual} aria-label={en ? 'Needs connected to competencies and programs' : 'Kebutuhan dihubungkan dengan kompetensi dan program'}>
+            <Image src="/program-recommendation/hero-needs.webp" alt="" width={768} height={768} sizes="(max-width: 767px) 96px, (max-width: 1099px) 35vw, 440px" loading="eager"/>
+            <figcaption><span>{en ? 'Needs' : 'Kebutuhan'}</span><ArrowRight size={15} aria-hidden="true"/><span>{en ? 'Competencies' : 'Kompetensi'}</span><ArrowRight size={15} aria-hidden="true"/><span>Program</span></figcaption>
+          </figure>
         </div>
         <ProgramRecommendationDemo locale={locale}/>
         <div className={styles.stageCaption}>
@@ -79,7 +81,7 @@ export function ProgramRecommendationLanding({locale}: {locale: Locale}) {
         <h2 id="process-heading">{en ? 'A few steps. A clearer direction.' : 'Langkah sederhana. Arah yang lebih jelas.'}</h2>
         <p>{en ? 'Start with the situation your team faces. Use the recommendation to begin a focused conversation.' : 'Mulai dari kondisi yang dihadapi tim. Jadikan rekomendasi sebagai bahan awal untuk diskusi yang lebih terarah.'}</p>
       </div>
-      <ol className={styles.steps}>
+      <ol className={styles.steps} tabIndex={0} aria-label={en ? 'Three steps to a program recommendation' : 'Tiga langkah rekomendasi program'}>
         {steps.map(([title, text], index) => <li key={title} data-process-card>
           <span className={styles.stepNumber} aria-hidden="true">{index + 1}</span>
           <h3>{title}</h3><p>{text}</p>

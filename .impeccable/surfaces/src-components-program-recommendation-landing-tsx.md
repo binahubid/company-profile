@@ -28,9 +28,11 @@ STORY: The visitor understands the organization offer, explores a clearly labele
 illustrative recommendation, then starts the existing discovery form. Catalog,
 team diagnosis, individual Self Diagnostic and inquiry remain separate routes.
 
-FIRST VIEWPORT: A left-aligned, short navy headline and CTAs sit opposite concise
-explanatory copy. Below is a wide light product stage with a three-state demo:
-needs, competencies and program. On mobile these stack in the same reading order.
+FIRST VIEWPORT: A short navy headline, explanatory lead, CTAs and note share one
+left-hand reading sequence opposite the reused transparent needs sculpture.
+Mobile keeps a small sculpture accent beside the headline, then full-width lead
+and actions. Below, a light three-state demo keeps readable content beside a
+compact art strip on mobile; its tabs remain manual and keyboard-accessible.
 
 FORM: User-pinned ElevenLabs/Hark reference translation, built directly in code;
 the attached screenshot and inspected sites are critique references, not a
@@ -84,6 +86,9 @@ implementation described in home-recommendation-hero.md.
 
 ## Landing refinement · latest approved request
 
+Historical 28 October refinement; its opening-copy glass is superseded by the
+29 October composition below. Process/report/tab glass and the CTA remain applied.
+
 Scope remains this landing, not the homepage. Preserve the editorial opening,
 manual demo tabs, original plain showcase/rail and direct static image blur.
 Refresh the opening with a restrained ice/champagne mesh ground and light glass
@@ -107,3 +112,31 @@ forced-color fallbacks. No new loops, libraries, claims or changes to form, AI,
 pricing, email, catalog content or homepage hero. Finish with build, ID/EN browser
 tests, keyboard/touch, image loading, contrast, overflow and fresh desktop/mobile
 opening/process/CTA captures; update the route design record and sidecar.
+
+## Opening and mobile reading refinement · 29 October 2026
+
+The current landing keeps headline, lead, tracked actions and note together in
+`heroIntro`, with the existing alpha `hero-needs.webp` sculpture on the right.
+The former opening-copy glass box is no longer rendered. The asset and prompt
+sidecar are reused; no new artwork, palette or identity is introduced.
+
+Desktop retains a 1.35:1 opening grid; tablet uses 1.5:1 and mobile an 88px side
+accent beside the headline. Mobile lead/actions span the full width; the figure
+caption hides. The mobile demo uses a 64px decorative art strip, hides its
+repeated art headline/caption, and preserves the readable semantic panel,
+illustrative disclosure, manual controls and stable shared height.
+
+The three process cards retain their existing material and complete ordered
+content. On mobile they form a named, keyboard-focusable native horizontal rail
+with start snap and a visible thin scrollbar. No autoplay is added. Existing
+direct image blur, plain demo rail, report glass, closing artwork/overlay,
+homepage, routes and tracked handoff remain preserved.
+
+Source and document checks describe the local implementation. Final browser
+and fresh finish-review evidence for this refinement will be recorded separately;
+earlier 28 October verification does not establish this new composition's result.
+
+Final29October evidence: public quality, TypeScript,45-route production build
+and ID/EN browser regression passed, including synthesized touch movement on the
+process rail. Parent/reviewer opened fresh desktop/mobile captures; disposition
+`ship`, no material fixes. No physical-device/Safari or production claim.

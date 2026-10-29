@@ -79,9 +79,9 @@ Desktop slide controls use 12px/1.5, with weight 600 for the selected slide. On 
 
 ## Layout
 
-The outer hero frame and inner content share min-height calc(100svh + 6rem) below 1024px. From 1024px, both use min-height clamp(880px,calc(100svh + 6rem),1010px). This is a shared minimum, allowing longer content to grow. Content reserves 180px below the composition for the controls and Scroll cue.
+Through767px, the outer frame and inner content use min-height100svh with intrinsic content growth. Mobile content has164px top,20px horizontal and132px bottom padding (16px horizontal through359px); composition gap24px. From768–1023px the earlier min-height calc(100svh +6rem) remains. From1024px both use min-height clamp(880px,calc(100svh +6rem),1010px). Desktop content reserves180px below the composition for controls and Scroll.
 
-Copy and CTA appear before the decorative scene below 1024px. Desktop places copy left and the scene right in a 1:0.9 grid, capped at 1580px; the copy wrapper caps at 780px. The scene wrapper caps at 340px initially, 410px from 640px and 380px from 768px, before expanding in the desktop grid. Mobile top padding is 10.5rem through 767px to clear the fixed header; from 768px the existing 14.75rem padding remains. These rules apply to both slides.
+Copy and CTA appear before the decorative scene below1024px. Desktop places copy left and scene right in a1:0.9grid, capped at1580px; copy caps at780px. Mobile scene width caps at320px with a shared240px height (250px through359px), including the inactive visual footprint. The brand orbit uses230×230px centered inside that footprint. From768px the existing380px scene width and14.75rem top padding remain. Mobile refinements apply to both slides, not the desktop world.
 
 Both right-hand visuals share a grid area and reserve layout while inactive. The recommendation scene has a 670px maximum width and aspect-ratio 1/1.08, becoming 1/1.16 through 1023px. Its three cards have equal width and height; positions are relative to that scene:
 
@@ -93,7 +93,7 @@ Both right-hand visuals share a grid area and reserve layout while inactive. The
 
 Card padding is 22px 24px, becoming 14px 16px through 1399px and 13px 14px through 767px. Through 359px, card padding reduces to 10px 12px and text gap to 4px so copy stays within the card. The text column caps at 57% of the card, becoming 58% on phones. Artwork occupies the right side at 59% width and 114% height, offset right -8% and bottom -9%; a left-edge mask lets it merge into the glass without covering the native text.
 
-Controls are centered horizontally at the hero bottom, 84px above the content edge. The centered Scroll link sits below them at bottom 22px. Their placement belongs to the shared hero, rather than the left copy column. Phone controls use compact indicators with at least 44px targets, keeping the group narrow beside the existing chat widget.
+Controls are centered horizontally at bottom84px, with Scroll at bottom22px. Mobile now shows native localized slide names in10px type instead of indicator-only bars, with44px targets and a separate rotation control. The recommendation viewport keeps the complete offer, three cards, controls and Scroll together. This preserves the existing carousel state, attribution, automatic/manual changes and reduced-motion behavior.
 
 ## Elevation & Depth
 
@@ -109,7 +109,7 @@ Reduced motion removes slide/visual/backdrop transitions, automatic slide change
 
 Equal softly rounded rectangles establish three steps of one journey. The cards share the layer radius; their offset positions and static rotations establish the composition. Desktop badges are 34px squares with softly rounded 10px corners, reducing to 25px and 8px corners through 1399px; phones hide badges to preserve copy and illustration space.
 
-Recommendation actions and the controls use the pill radius. Mobile slide indicators are rounded short bars (16px wide, 24px selected) within named buttons. These interactive indicators are distinct from the removed decorative short rules on the cards.
+Recommendation actions and controls use pill corners. Mobile slide names are visible in the named buttons; the old compact indicator bars are hidden on phones. Desktop controls are unchanged.
 
 ## Components
 
@@ -145,7 +145,25 @@ These are separate sculptures, with no text, card face or background baked into 
 
 Recommendation actions have a 44px minimum height, becoming 48px from 768px, with 12px type, weight 600, normal case and no added tracking. Primary remains navy/white; secondary remains light with a fine border. Existing localized ProgramJourneyLink destinations and tracking remain: recommendation landing and catalog for the first slide; diagnostic and perspective for the brand slide.
 
-Shared slide controls use localized accessible names, aria-controls and aria-pressed. Desktop displays slide names; mobile visually hides those labels while retaining the accessible names and compact indicators. The rotation button retains its 44px minimum width and localized play/pause name. Links and buttons retain navy focus outlines.
+Shared controls use localized accessible names,aria-controls and aria-pressed. Desktop and mobile both display slide names; mobile uses10px labels and compact spacing. Rotation keeps44px minimum width and localized play/pause name. Links and buttons retain navy focus outlines.
+
+## 29 October mobile refinement and evidence
+
+Only≤767px density changed: display clamp(1.6rem,6.3vw,2.25rem)/1.16,
+description13px/1.7 with18px top gap, CTA20px top gap and46px touch height.
+Recommendation CTA type11px; brand10px. Card titles15px/1.2 (14px through359px),
+body10px/1.45. Cards retain their distinct glass colors and three original images.
+At normal phone width, cards are80%wide/34%high at17%/0%,0/32%,18%/64%,
+with5deg,-4deg,-4degrotations. Through359px cards are85%wide and shifted12/13%.
+All copy remains native; no new image, palette, claim or destination was added.
+
+Quality/public TypeScript,45-route build and full browser regression passed.
+Parent and finish reviewer opened `program-hero-mobile.png` and
+`program-hero-brand-mobile.png` as primary390×844viewport evidence, plus
+`program-hero-full-mobile.png` and `program-hero-fit-320.png` as supplementary
+captures under sibling app `.impeccable/review/`. Disposition`ship`, no material
+fixes. Tests cover320–1600overflow, bothslides, synchronized controls, orbit,
+tracking and reducedmotion. Physicaldevices and Safari remain untested.
 
 The centered Scroll link goes to the existing #platform section. Its visible label stays Scroll; its accessible label is localized. It has a 44px minimum height and a visible navy focus outline. Cards, badge icons and illustrations remain decorative rather than clickable recommendation results.
 
