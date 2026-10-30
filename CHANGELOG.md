@@ -1,5 +1,16 @@
 # Changelog
 
+## [0.2.45] - 2026-10-30
+
+- Services adds Program Recommendations, Team/Organization Diagnosis,
+  Individual Self Diagnostic and invitation-only PETA before the four original
+  links. Desktop/mobile navigation and footer retain those original destinations.
+- Recommendation landing opens with centered copy/actions and a wide working
+  preview below, preserving the existing palette, manual tabs and tracked handoff.
+- Mobile home has a slightly smaller logo, lighter 44px menu control and subtle
+  centered Scroll cue. Chat, mobile deck and desktop card shuffle are preserved.
+- No form, question, scoring, AI, payment, email or PETA-access policy changes.
+
 ## [0.2.44] - 2026-10-29
 
 - Desktop homepage recommendation artwork can be clicked to shuffle its three

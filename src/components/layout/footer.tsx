@@ -164,7 +164,7 @@ function FooterContent({ year, locale }: { year: number; locale: Locale }) {
                       <li key={link.label}>
                         <Link
                           href={localizePath(link.href, locale)}
-                          className="text-sm font-light leading-relaxed text-[#0B2C6B]/58 transition-colors hover:text-[#0B2C6B]"
+                          className={`text-sm font-light leading-relaxed transition-colors hover:text-[#0B2C6B] ${group.defaultHref === "/ecosystem" ? "text-[#405675]" : "text-[#0B2C6B]/58"}`}
                         >
                           {link.label}
                         </Link>
@@ -294,7 +294,7 @@ function FooterAccordion({
           <li key={link.label}>
             <Link
               href={localizePath(link.href, locale)}
-              className="text-sm font-light leading-relaxed text-[#0B2C6B]/62 transition-colors hover:text-[#0B2C6B]"
+              className={`text-sm font-light leading-relaxed transition-colors hover:text-[#0B2C6B] ${defaultHref === "/ecosystem" ? "text-[#405675]" : "text-[#0B2C6B]/62"}`}
             >
               {link.label}
             </Link>

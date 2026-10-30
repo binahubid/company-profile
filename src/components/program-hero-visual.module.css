@@ -27,6 +27,7 @@
 .artwork .illustration{object-fit:contain;object-position:center right}
 .scrollCue{position:absolute;z-index:20;bottom:22px;left:50%;transform:translateX(-50%);display:inline-flex;align-items:center;justify-content:center;gap:9px;min-height:44px;padding:8px 14px;color:#405675;font-size:11px;text-decoration:none}
 .scrollCue:hover{color:#0b2c6b}
+@media(max-width:767px){.scrollCue{gap:6px;min-width:64px;padding:8px;color:#63728b;font-size:10px}.scrollCue svg{width:12px;height:12px}}
 .scrollCue:focus-visible{outline:3px solid #0b2c6b;outline-offset:3px;border-radius:999px}
 @supports((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){.layer{-webkit-backdrop-filter:blur(18px) saturate(120%);backdrop-filter:blur(18px) saturate(120%)}}
 @media(max-width:1399px){.layer{padding:14px 16px}.cardCopy{gap:5px}.badge{width:25px;height:25px;margin-bottom:1px;border-radius:8px}.badge svg{width:15px;height:15px}.layerText{font-size:10px;line-height:1.5}}

@@ -48,7 +48,6 @@ export function ProgramRecommendationLanding({locale}: {locale: Locale}) {
   return <div className={palette.theme + ' ' + styles.page}>
     <section className={styles.hero} data-program-opening aria-labelledby="recommendation-heading">
       <div className={styles.container}>
-        <div className={styles.heroGrid}>
           <div className={styles.heroIntro}>
             <h1 id="recommendation-heading">{en ? 'Find the right program for your team.' : 'Temukan program yang tepat untuk tim Anda.'}</h1>
             <p className={styles.lead}>{en
@@ -62,11 +61,6 @@ export function ProgramRecommendationLanding({locale}: {locale: Locale}) {
             </div>
             <p className={styles.note}>{en ? 'For teams and organizations. No account required.' : 'Untuk tim dan organisasi. Tanpa membuat akun.'}</p>
           </div>
-          <figure className={styles.heroVisual} aria-label={en ? 'Needs connected to competencies and programs' : 'Kebutuhan dihubungkan dengan kompetensi dan program'}>
-            <Image src="/program-recommendation/hero-needs.webp" alt="" width={768} height={768} sizes="(max-width: 767px) 96px, (max-width: 1099px) 35vw, 440px" loading="eager"/>
-            <figcaption><span>{en ? 'Needs' : 'Kebutuhan'}</span><ArrowRight size={15} aria-hidden="true"/><span>{en ? 'Competencies' : 'Kompetensi'}</span><ArrowRight size={15} aria-hidden="true"/><span>Program</span></figcaption>
-          </figure>
-        </div>
         <ProgramRecommendationDemo locale={locale}/>
         <div className={styles.stageCaption}>
           <p>{en ? 'Your needs. A development focus. A direction to discuss.' : 'Kebutuhan Anda. Fokus pengembangan. Arah yang bisa dibahas bersama.'}</p>

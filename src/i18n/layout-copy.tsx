@@ -1,5 +1,7 @@
 import type { ReactNode } from "react"
 
+const appOrigin = (process.env.NEXT_PUBLIC_BINAHUB_APP_URL || "https://app.binahub.id").replace(/\/$/, "")
+
 export type NavItemKey = "home" | "about" | "services" | "pricing" | "perspective" | "contact"
 export type NavSubItemKey =
   | "whoWeAre"
@@ -11,6 +13,10 @@ export type NavSubItemKey =
   | "workflow"
   | "serviceMap"
   | "chooseNeed"
+  | "programRecommendation"
+  | "teamDiagnosis"
+  | "individualDiagnostic"
+  | "peta"
   | "viewpoint"
   | "signals"
   | "approach"
@@ -68,6 +74,10 @@ export const layoutCopy = {
           label: "Layanan",
           href: "/ecosystem",
           submenu: [
+            { key: "programRecommendation", label: "Rekomendasi Program", href: "/rekomendasi-program", desc: "Temukan program yang relevan dengan kebutuhan tim Anda." },
+            { key: "teamDiagnosis", label: "Diagnosis Tim/Organisasi", href: `${appOrigin}/insight`, desc: "Petakan kondisi dan kebutuhan pengembangan tim." },
+            { key: "individualDiagnostic", label: "Self Diagnostic Individu", href: `${appOrigin}/insight/individual/packages`, desc: "Kenali kebutuhan pengembangan diri dan pilihan paketnya." },
+            { key: "peta", label: "PETA — Pemetaan Tabiat", href: `${appOrigin}/peta`, desc: "Refleksi preferensi perilaku. Melalui undangan." },
             { key: "whyProgramsFail", label: "Mengapa Program Gagal", href: "/ecosystem#latar-belakang", desc: "Masalah umum di balik intervensi yang tidak berdampak." },
             { key: "workflow", label: "Alur Kerja", href: "/ecosystem#alur-kerja", desc: "Proses strategis dari pemetaan hingga implementasi." },
             { key: "serviceMap", label: "Peta Layanan", href: "/ecosystem#solusi", desc: "Rangkaian layanan yang saling terhubung." },
@@ -126,6 +136,10 @@ export const layoutCopy = {
           title: "Layanan",
           defaultHref: "/ecosystem",
           links: [
+            { label: "Rekomendasi Program", href: "/rekomendasi-program" },
+            { label: "Diagnosis Tim/Organisasi", href: `${appOrigin}/insight` },
+            { label: "Self Diagnostic Individu", href: `${appOrigin}/insight/individual/packages` },
+            { label: "PETA — melalui undangan", href: `${appOrigin}/peta` },
             { label: "Mengapa Program Gagal", href: "/ecosystem#latar-belakang" },
             { label: "Alur Kerja", href: "/ecosystem#alur-kerja" },
             { label: "Peta Layanan", href: "/ecosystem#solusi" },
@@ -143,7 +157,7 @@ export const layoutCopy = {
         },
       ] satisfies FooterGroup[],
       popularLinks: [
-        { label: "Diagnosa Performa", href: "/insight" },
+        { label: "Diagnosis Tim/Organisasi", href: `${appOrigin}/insight` },
         { label: "Katalog Modul", href: "/pricing" },
         { label: "Hubungi Kami", href: "/contact" },
         { label: "Transformation Signals", href: "/perspektif/transformation-signals-2026" },
@@ -230,6 +244,10 @@ export const layoutCopy = {
           label: "Services",
           href: "/ecosystem",
           submenu: [
+            { key: "programRecommendation", label: "Program Recommendations", href: "/rekomendasi-program", desc: "Find programs relevant to your team’s development needs." },
+            { key: "teamDiagnosis", label: "Team/Organization Diagnosis", href: `${appOrigin}/en/insight`, desc: "Explore your team’s current conditions and development needs." },
+            { key: "individualDiagnostic", label: "Individual Self Diagnostic", href: `${appOrigin}/insight/individual/packages`, desc: "Explore your development needs and available packages." },
+            { key: "peta", label: "PETA — Behavioral Mapping", href: `${appOrigin}/peta`, desc: "Reflect on behavioral preferences. By invitation." },
             { key: "whyProgramsFail", label: "Why Programs Fail", href: "/ecosystem#latar-belakang", desc: "Common problems behind interventions that do not create impact." },
             { key: "workflow", label: "Workflow", href: "/ecosystem#alur-kerja", desc: "A strategic process from mapping to implementation." },
             { key: "serviceMap", label: "Service Map", href: "/ecosystem#solusi", desc: "A connected portfolio of transformation services." },
@@ -289,6 +307,10 @@ export const layoutCopy = {
           title: "Services",
           defaultHref: "/ecosystem",
           links: [
+            { label: "Program Recommendations", href: "/rekomendasi-program" },
+            { label: "Team/Organization Diagnosis", href: `${appOrigin}/en/insight` },
+            { label: "Individual Self Diagnostic", href: `${appOrigin}/insight/individual/packages` },
+            { label: "PETA — by invitation", href: `${appOrigin}/peta` },
             { label: "Why Programs Fail", href: "/ecosystem#latar-belakang" },
             { label: "Workflow", href: "/ecosystem#alur-kerja" },
             { label: "Service Map", href: "/ecosystem#solusi" },
@@ -306,7 +328,7 @@ export const layoutCopy = {
         },
       ] satisfies FooterGroup[],
       popularLinks: [
-        { label: "Performance Diagnostic", href: "/insight" },
+        { label: "Team/Organization Diagnosis", href: `${appOrigin}/en/insight` },
         { label: "Module Catalog", href: "/pricing" },
         { label: "Contact Us", href: "/contact" },
         { label: "Transformation Signals", href: "/perspektif/transformation-signals-2026" },

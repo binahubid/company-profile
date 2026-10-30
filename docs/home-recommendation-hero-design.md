@@ -85,7 +85,7 @@ Plus Jakarta Sans remains the existing family. The recommendation-display token 
 
 Tablet/desktop card titles share card-title and descriptions share card-body. Through 1399px, descriptions become 10px/1.5; through 1023px titles become 20px. The mobile deck instead uses 21px/1.25 titles at weight 600 and 12px/1.55 descriptions. These labels belong to the decorative scene; the accessible offer and actions remain in the carousel content.
 
-Desktop slide controls use 12px/1.5, with weight 600 for the selected slide. Phones use four compact indicators with visually hidden localized names. The mobile offer uses clamp(1.6rem, 6.3vw, 2.25rem)/1.16; its description uses 13px/1.7 with an 18px top gap. Actions have a 20px top gap and 11px labels. The Scroll cue uses 11px with a localized accessible destination label.
+Desktop slide controls use 12px/1.5, with weight 600 for the selected slide. Phones use four compact indicators with visually hidden localized names. The mobile offer uses clamp(1.6rem, 6.3vw, 2.25rem)/1.16; its description uses 13px/1.7 with an 18px top gap. Actions have a 20px top gap and 11px labels. The Scroll cue uses 11px text and a 16px arrow from 768px, with 10px text and a 12px arrow on mobile; its localized accessible destination label remains.
 
 ## Layout
 
@@ -290,6 +290,16 @@ single scored stagger-flash fix and returned disposition `ship`; it did not
 re-review the entire existing hero. Physical-device and Safari behavior and live
 performance remain unverified. Existing homepage palette/type advisories are
 reported without repair or promotion into the root design system.
+
+### Mobile header and Scroll refinement · 30 October 2026
+
+Home routes alone use a 144px × 40px logo and lighter 44px square menu toggle
+through 767px, with 20px header side spacing (16px below 360px). The centered
+Scroll link retains its 44px minimum height, destination and focus treatment;
+mobile reduces its text/arrow and padding while desktop keeps its 16px arrow.
+The fixed chat trigger and existing deck, offer, actions and motion are untouched.
+No raster, provenance, root token or sidecar change accompanies this refinement.
+See `service-navigation-and-hero-2026-10-30.md` for local checks and scoped review.
 
 ## Do's and Don'ts
 

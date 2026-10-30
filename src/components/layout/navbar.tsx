@@ -11,6 +11,7 @@ import { getLocaleFromPathname, localizePath, stripLocaleFromPathname } from "@/
 import { layoutCopy, type NavItemKey } from "@/i18n/layout-copy"
 import { LanguageSwitcher } from "./language-switcher"
 import { withInboundJourney } from "@/lib/inbound-journey"
+import styles from "./navbar.module.css"
 
 export default function Navbar() {
   const [open, setOpen] = useState(false)
@@ -27,6 +28,7 @@ export default function Navbar() {
   const navCopy = layoutCopy[locale].nav
   const normalizedPathname = stripLocaleFromPathname(pathname || "/")
   const isInsightPage = normalizedPathname === "/insight"
+  const isHomePage = normalizedPathname === "/"
   const assessmentOrigin = (process.env.NEXT_PUBLIC_BINAHUB_APP_URL || "https://app.binahub.id").replace(/\/$/, "")
   const ctaHref = isInsightPage
     ? `${assessmentOrigin}/diagnose${locale === "en" ? "?lang=en" : ""}`
@@ -192,7 +194,7 @@ export default function Navbar() {
   return (
     <div
       id="global-navbar"
-      className={`fixed inset-x-0 top-0 z-[100] flex justify-center px-4 pointer-events-none transition-all duration-500 md:px-8 ${
+      className={`${isHomePage ? styles.homeHeader : ""} fixed inset-x-0 top-0 z-[100] flex justify-center px-4 pointer-events-none transition-all duration-500 md:px-8 ${
         scrolled ? "py-4 md:py-6 min-[1440px]:py-0" : "py-4 md:py-6"
       } ${mobileHidden && !open ? "-translate-y-full opacity-0 lg:translate-y-0 lg:opacity-100" : "translate-y-0 opacity-100"}`}
     >
@@ -223,8 +225,8 @@ export default function Navbar() {
             scrolled ? "grid-cols-[auto_1fr_auto] min-[1440px]:grid-cols-1 min-[1440px]:justify-items-center" : "grid-cols-[auto_1fr_auto]"
           }`}
         >
-          <Link href={localizePath("/", locale)} className={`group relative z-10 flex items-center transition-all duration-500 ${scrolled ? "min-[1440px]:hidden" : "opacity-100"}`}>
-              <div className="relative h-12 w-40 transition-transform duration-500 group-hover:-translate-y-0.5 md:h-14 md:w-48 lg:h-14 lg:w-48">
+          <Link href={localizePath("/", locale)} className={`group relative z-10 flex min-h-11 items-center transition-all duration-500 ${scrolled ? "min-[1440px]:hidden" : "opacity-100"}`}>
+              <div className={`${styles.logo} relative h-12 w-40 transition-transform duration-500 group-hover:-translate-y-0.5 md:h-14 md:w-48 lg:h-14 lg:w-48`}>
               <Image
                 src="/full-logo.png"
                 alt="BinaHub Logo"
@@ -306,7 +308,7 @@ export default function Navbar() {
               aria-expanded={open}
               aria-controls="mobile-navigation"
               onClick={() => setOpen((current) => !current)}
-              className={`flex h-12 w-12 items-center justify-center rounded-full border shadow-[0_16px_38px_-28px_rgba(11,44,107,0.5)] backdrop-blur-md transition-colors min-[1440px]:hidden ${
+              className={`${styles.toggle} flex h-12 w-12 items-center justify-center rounded-full border shadow-[0_16px_38px_-28px_rgba(11,44,107,0.5)] backdrop-blur-md transition-colors min-[1440px]:hidden ${
                 navOnDark
                   ? "border-white/20 bg-[#071A33]/42 text-white hover:bg-[#071A33]/62"
                   : "border-white/52 bg-white/90 text-[#0B2C6B] hover:bg-white"
@@ -332,7 +334,7 @@ export default function Navbar() {
             >
               <div className="relative overflow-hidden rounded-[14px] border border-white/10 bg-[#070A10]/96 shadow-[0_28px_76px_-44px_rgba(0,0,0,0.68)]">
                 <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_18%_0%,rgba(217,164,65,0.12),transparent_28%),linear-gradient(90deg,rgba(255,255,255,0.04),transparent_42%)]" />
-                <div className="relative grid grid-cols-2 gap-px lg:grid-cols-4">
+                <div className={`${activeDropdown === "services" ? styles.services : ""} relative grid grid-cols-2 gap-px lg:grid-cols-4`}>
                   {navCopy.items.find((item) => item.key === activeDropdown)?.submenu?.map((sub, index) => (
                     <Link
                       key={sub.key}
@@ -342,10 +344,10 @@ export default function Navbar() {
                     >
                       <div className={`absolute inset-x-0 top-0 h-[3px] bg-[#D9A441] transition-opacity duration-300 ${index === 0 ? "opacity-100" : "opacity-0 group-hover:opacity-100"}`} />
                       <div className="absolute bottom-0 right-0 h-[72px] w-32 translate-x-8 translate-y-8 bg-[#0B2C6B]/0 blur-2xl transition-colors duration-500 group-hover:bg-[#0B2C6B]/34" />
-                      <p className="relative mb-3 text-[13px] font-medium uppercase tracking-[0.28em] text-white">
+                      <p data-submenu-title className="relative mb-3 text-[13px] font-medium uppercase tracking-[0.28em] text-white">
                         {sub.label}
                       </p>
-                      <p className="relative max-w-[260px] text-sm leading-relaxed text-white/48 transition-colors group-hover:text-white/68">
+                      <p data-submenu-description className="relative max-w-[260px] text-sm leading-relaxed text-white/48 transition-colors group-hover:text-white/68">
                         {sub.desc}
                       </p>
                     </Link>
@@ -430,7 +432,7 @@ export default function Navbar() {
                               transition={{ duration: reducedMotion ? 0 : 0.25, ease: "easeInOut" }}
                               className="overflow-hidden"
                             >
-                              <div className="flex flex-col gap-2 bg-white/55 px-3 py-3">
+                              <div className={`${link.key === "services" ? styles.services : ""} flex flex-col gap-2 bg-white/55 px-3 py-3`}>
                                 {link.submenu.map((sub) => (
                                   <Link
                                     key={sub.key}
@@ -438,10 +440,10 @@ export default function Navbar() {
                                     onClick={() => setOpen(false)}
                                     className="group rounded-[10px] border border-transparent bg-white/66 px-4 py-3 transition-all hover:border-[#D9A441]/20 hover:bg-[#F5F7FA] hover:shadow-[0_12px_34px_-28px_rgba(11,44,107,0.42)]"
                                   >
-                                    <span className="block text-[10px] font-semibold uppercase tracking-[0.18em] text-[#0B2C6B]/76 group-hover:text-[#0B2C6B]">
+                                    <span data-submenu-title className="block text-[10px] font-semibold uppercase tracking-[0.18em] text-[#0B2C6B]/76 group-hover:text-[#0B2C6B]">
                                       {sub.label}
                                     </span>
-                                    <span className="mt-1.5 block text-[11px] leading-relaxed text-[#0B2C6B]/46">
+                                    <span data-submenu-description className="mt-1.5 block text-[11px] leading-relaxed text-[#0B2C6B]/46">
                                       {sub.desc}
                                     </span>
                                   </Link>

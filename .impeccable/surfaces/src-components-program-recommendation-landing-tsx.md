@@ -113,9 +113,27 @@ pricing, email, catalog content or homepage hero. Finish with build, ID/EN brows
 tests, keyboard/touch, image loading, contrast, overflow and fresh desktop/mobile
 opening/process/CTA captures; update the route design record and sidecar.
 
-## Opening and mobile reading refinement · 29 October 2026
+## Direction contract · 30 October 2026 (current opening)
 
-The current landing keeps headline, lead, tracked actions and note together in
+THESIS: A centered invitation followed by one working, wide recommendation
+preview. Replace only the split opening, not the rest of this established page.
+OWN-WORLD: Retain navy, ice, champagne, Jakarta type, light glass tabs and the
+existing directly blurred optical artwork. No new palette or global tokens.
+STORY: An organization sees the offer, starts discovery, or explores the labeled
+needs → competencies → program example without mistaking it for a real result.
+FIRST VIEWPORT: Center the existing heading, readable lead, tracked primary CTA,
+secondary preview link and account note. Place the full-width manual preview
+immediately below. Mobile keeps the readable panel and narrow decorative strip;
+no homepage stack, repeated art headline, or new content gate.
+FORM: User-confirmed narrow replacement composition, code-led; no concept seed
+or approved comp is required. The manual tab interaction is the signature.
+FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, DESIGN.md, and every shipping raster carrying its provenance
+
+This contract supersedes the following historical split-opening description.
+
+## Historical opening and mobile reading refinement · 29 October 2026
+
+That revision kept headline, lead, tracked actions and note together in
 `heroIntro`, with the existing alpha `hero-needs.webp` sculpture on the right.
 The former opening-copy glass box is no longer rendered. The asset and prompt
 sidecar are reused; no new artwork, palette or identity is introduced.
@@ -140,3 +158,13 @@ Final29October evidence: public quality, TypeScript,45-route production build
 and ID/EN browser regression passed, including synthesized touch movement on the
 process rail. Parent/reviewer opened fresh desktop/mobile captures; disposition
 `ship`, no material fixes. No physical-device/Safari or production claim.
+
+## Implemented opening · 30 October 2026
+
+The centered introduction caps at 900px; its existing heading, lead, tracked
+actions and account note precede the full-width manual preview. The opening
+sculpture and caption are removed. The mobile preview retains its 64px art strip,
+readable panel, illustrative disclosure and stable shared height. No raster or
+provenance record changes. Current local checks and scoped finish disposition
+are recorded in `docs/service-navigation-and-hero-2026-10-30.md`; earlier `ship`
+results remain historical.
