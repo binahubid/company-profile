@@ -1,5 +1,15 @@
 # Changelog
 
+## [0.2.46] - 2026-10-31
+
+- Replace the obsolete static FTP deployment and missing admin quality command
+  with one read-only quality workflow for the actual Next.js Node application.
+- Run the supported public quality gate, program handoff/CI contract tests and
+  Node22 production build on PRs and main. Hostinger Git remains the deployment
+  owner; no FTP credentials, out upload or public_html cleanup is performed.
+- Document the operator checks and the distinction between a clone failure,
+  a green local build and a verified live deployment. No public UI change.
+
 ## [0.2.45] - 2026-10-30
 
 - Services adds Program Recommendations, Team/Organization Diagnosis,

@@ -1,0 +1,48 @@
+name: Website quality
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: website-quality-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      NEXT_TELEMETRY_DISABLED: "1"
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Setup Node
+        uses: actions/setup-node@v6
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install locked dependencies
+        run: npm ci
+
+      - name: Check runtime dependency advisories
+        run: npm audit --omit=dev --audit-level=high
+
+      - name: Check public source and types
+        run: npm exec -- next typegen && npm run quality:repo
+
+      - name: Check program handoff and CI contract
+        run: npm run test:contracts
+
+      - name: Build Next.js for the Node deployment
+        run: npm run build
+
+      # Hostinger's Git integration deploys this Node/Next.js application.
+      # This workflow must never upload out/ or delete public_html over FTP.
