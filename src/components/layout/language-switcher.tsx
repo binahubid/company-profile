@@ -37,7 +37,7 @@ export function LanguageSwitcher({ variant = "desktop", onNavigate }: LanguageSw
       aria-label={activeLocale === "en" ? "Language selector" : "Pilihan bahasa"}
     >
       {isMobile && (
-        <div className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.16em] text-white/72">
+        <div className="flex items-center gap-2 text-sm font-medium text-white/85">
           <Languages size={15} className="text-[#D9A441]" aria-hidden="true" />
           {activeLocale === "en" ? "Language" : "Bahasa"}
         </div>
@@ -53,7 +53,7 @@ export function LanguageSwitcher({ variant = "desktop", onNavigate }: LanguageSw
               onClick={() => changeLocale(locale)}
               aria-current={isActive ? "page" : undefined}
               title={locale === "id" ? "Tampilkan dalam Bahasa Indonesia" : "Show in English"}
-              className={`inline-flex h-11 min-w-11 items-center justify-center rounded-full px-3 text-[10px] font-black uppercase tracking-[0.12em] transition-all ${
+              className={`inline-flex h-11 min-w-11 items-center justify-center rounded-full px-3 text-xs font-semibold transition-colors ${
                 isActive
                   ? "bg-white/16 text-white shadow-[0_12px_26px_-20px_rgba(11,44,107,0.9)]"
                   : "text-white/68 hover:bg-white/10 hover:text-white"

@@ -1,5 +1,22 @@
 # Changelog
 
+## [0.2.48] - 2026-11-04
+
+- Apply a restrained Unslop refinement to shared public navigation, footer,
+  controls and labels, preserving BinaHub colors, Plus Jakarta Sans, approved
+  hero illustrations, glass surfaces, section order, content and destinations.
+- Fix mobile Contact overflow caused by uncontained ambient artwork. Increase
+  contact labels/input readability, connect inline validation descriptions and
+  retain the existing form submission/consent behavior.
+- Make gallery captions visible without hover, with readable image overlays.
+  Enlarge navigation/footer actions and give chat controls accessible names,
+  keyboard dismissal and focus restoration; no chat requests are sent by QA.
+- Add localized skip links, shared keyboard focus, native thin scrollbars and
+  one main landmark per route. Restore reduced-motion anchor scrolling.
+- Keep catalog titles/scope unchanged; rename its diagnostic entry to the
+  owner-required Self Diagnostic terminology. No API, SQL, env, scoring or AI
+  behavior changes. Add loopback-only public-route visual QA tooling.
+
 ## [0.2.47] - 2026-10-31
 
 - Patch CVE-2026-118764 / GHSA-g3hv-75wg-m249: replace both legacy/transitive

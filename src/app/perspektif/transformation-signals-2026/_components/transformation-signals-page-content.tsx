@@ -406,7 +406,7 @@ export default function TransformationSignalsPage() {
   const copy = COPY[locale];
 
   return (
-    <main className="min-h-screen bg-[#F4F6F8] pt-24 font-sans text-[#1F2328] antialiased">
+    <div className="min-h-screen bg-[#F4F6F8] pt-24 font-sans text-[#1F2328] antialiased">
       <section className="px-6 py-10 md:px-12 lg:px-20">
         <div className="mx-auto max-w-7xl">
           <Link
@@ -516,6 +516,6 @@ export default function TransformationSignalsPage() {
           </div>
         </div>
       </section>
-    </main>
+    </div>
   );
 }

@@ -137,7 +137,7 @@ export default function FromBdnToBinaHubPage() {
   const copy = COPY[locale];
 
   return (
-    <main className="min-h-screen overflow-hidden bg-[#F4F6F8] text-[#4A4C54]">
+    <div className="min-h-screen overflow-hidden bg-[#F4F6F8] text-[#4A4C54]">
       <section className="px-4 pt-20 md:px-8 md:pt-24">
         <div className="relative overflow-hidden rounded-[18px] bg-[#071A33] text-white shadow-[0_34px_100px_-70px_rgba(7,26,51,0.85)]">
           <Image
@@ -253,6 +253,6 @@ export default function FromBdnToBinaHubPage() {
           </div>
         </div>
       </section>
-    </main>
+    </div>
   );
 }

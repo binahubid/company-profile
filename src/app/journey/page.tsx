@@ -226,7 +226,7 @@ export default function JourneyPage() {
   const copy = COPY[locale];
 
   return (
-    <main className="min-h-screen overflow-x-hidden bg-[#F4F6F8] pt-28 font-sans text-[#4A4C54] antialiased">
+    <div className="min-h-screen overflow-x-hidden bg-[#F4F6F8] pt-28 font-sans text-[#4A4C54] antialiased">
       <section className="px-4 md:px-8">
         <div className="relative overflow-hidden rounded-[18px] bg-[#071A33] px-6 py-14 text-white shadow-[0_28px_86px_-68px_rgba(11,44,107,0.58)] md:px-12 md:py-18 lg:px-16">
           <Image
@@ -298,7 +298,7 @@ export default function JourneyPage() {
           </cite>
         </div>
       </section>
-    </main>
+    </div>
   );
 }
 

@@ -192,6 +192,8 @@ export default function Navbar() {
     : "text-[#0B2C6B]"
 
   return (
+    <>
+    <a href="#main-content" className="public-skip-link">{locale === 'en' ? 'Skip to main content' : 'Lewati ke konten utama'}</a>
     <div
       id="global-navbar"
       className={`${isHomePage ? styles.homeHeader : ""} fixed inset-x-0 top-0 z-[100] flex justify-center px-4 pointer-events-none transition-all duration-500 md:px-8 ${
@@ -257,7 +259,7 @@ export default function Navbar() {
                 <Link
                   href={localizePath(link.href, locale)}
                   aria-current={normalizedPathname === link.href ? "page" : undefined}
-                  className={`relative flex min-w-[104px] items-center justify-center gap-2 rounded-full px-5 py-3 text-[10px] font-bold uppercase tracking-[0.12em] transition-all duration-300 ${
+                  className={`relative flex min-w-[104px] items-center justify-center gap-2 rounded-full px-4 py-3 text-sm font-semibold transition-colors duration-200 ${
                     activeDropdown === link.key || normalizedPathname === link.href
                       ? activeNavLinkClass
                       : inactiveNavLinkClass
@@ -294,7 +296,7 @@ export default function Navbar() {
             <Link
               href={ctaHref}
               onClick={preserveJourneyOnAssessmentStart}
-              className="hidden h-12 items-center gap-2 rounded-full bg-[#0B2C6B] px-5 text-[10px] font-bold uppercase tracking-[0.13em] text-white shadow-[0_16px_38px_-24px_rgba(11,44,107,0.95)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#071A33] hover:shadow-[0_20px_48px_-26px_rgba(11,44,107,0.78)] active:scale-95 min-[1440px]:flex"
+              className="hidden h-12 items-center gap-2 rounded-full bg-[#0B2C6B] px-5 text-sm font-semibold text-white shadow-[0_16px_38px_-24px_rgba(11,44,107,0.95)] transition-colors duration-200 hover:bg-[#071A33] min-[1440px]:flex"
             >
               {ctaLabel}
               <ChevronRight size={12} strokeWidth={2} />
@@ -372,7 +374,7 @@ export default function Navbar() {
               <div className="pointer-events-none absolute inset-0 rounded-[inherit] bg-[radial-gradient(circle_at_80%_0%,rgba(217,164,65,0.16),transparent_28%),linear-gradient(135deg,rgba(255,255,255,0.86),rgba(255,255,255,0.34))]" />
               <div className="relative z-10 mb-3 flex items-center justify-between border-b border-[#0B2C6B]/8 px-3 pb-3">
                 <div>
-                  <p className="text-[9px] font-bold uppercase tracking-[0.28em] text-[#D9A441]">{navCopy.mobileTitle}</p>
+                  <p className="text-xs font-medium text-[#52617A]">{navCopy.mobileTitle}</p>
                   <p className="mt-1 text-xs text-[#0B2C6B]/52">{navCopy.mobileSubtitle}</p>
                 </div>
                 <button
@@ -395,7 +397,7 @@ export default function Navbar() {
                           <Link
                             href={localizePath(link.href, locale)}
                             onClick={() => setOpen(false)}
-                            className="flex-1 flex items-center px-5 py-4 text-[11px] font-bold uppercase tracking-[0.18em] text-[#0B2C6B] hover:bg-[#0B2C6B]/5 transition-all"
+                            className="flex-1 flex items-center px-5 py-4 text-sm font-semibold text-[#0B2C6B] hover:bg-[#0B2C6B]/5 transition-all"
                           >
                             {link.label}
                           </Link>
@@ -414,7 +416,7 @@ export default function Navbar() {
                         <Link
                           href={localizePath(link.href, locale)}
                           onClick={() => setOpen(false)}
-                          className="flex items-center justify-between px-5 py-4 text-[11px] font-bold uppercase tracking-[0.18em] text-[#0B2C6B] transition-all hover:bg-[#0B2C6B]/5"
+                          className="flex items-center justify-between px-5 py-4 text-sm font-semibold text-[#0B2C6B] transition-all hover:bg-[#0B2C6B]/5"
                         >
                           {link.label}
                           <ChevronRight size={16} className="text-[#D9A441]" />
@@ -461,7 +463,7 @@ export default function Navbar() {
                 <Link
                   href={ctaHref}
                   onClick={() => setOpen(false)}
-                  className="flex w-full items-center justify-center gap-3 rounded-[14px] bg-[#0B2C6B] py-4 text-[11px] font-bold uppercase tracking-[0.18em] text-[#D9A441] shadow-[0_18px_46px_-28px_rgba(11,44,107,0.9)]"
+                  className="flex w-full items-center justify-center gap-3 rounded-[14px] bg-[#0B2C6B] py-4 text-sm font-semibold text-white shadow-[0_18px_46px_-28px_rgba(11,44,107,0.9)]"
                 >
                   {ctaLabel}
                   <ChevronRight size={18} />
@@ -472,5 +474,6 @@ export default function Navbar() {
         </AnimatePresence>
       </motion.div>
     </div>
+    </>
   )
 }

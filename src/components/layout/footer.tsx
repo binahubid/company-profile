@@ -96,7 +96,7 @@ function FooterContent({ year, locale }: { year: number; locale: Locale }) {
         </div>
 
         <div className="flex flex-col items-center justify-between gap-4 border-t border-black/[0.09] pt-6">
-          <div className="flex flex-wrap items-center justify-center gap-2 text-center text-[10px] tracking-wider text-black/35">
+          <div className="flex flex-wrap items-center justify-center gap-2 text-center text-xs text-[#52617A]">
             &copy; {year}{" "}
             <span className="font-bold text-[#0B2C6B]">
               Bina<span className="text-[#D9A441]">Hub</span>
@@ -107,14 +107,14 @@ function FooterContent({ year, locale }: { year: number; locale: Locale }) {
             <button
               type="button"
               onClick={openPrivacyModal}
-              className="text-[10px] font-bold uppercase tracking-widest text-black/35 transition-colors hover:text-[#D9A441] cursor-pointer"
+              className="min-h-11 text-sm font-medium text-[#52617A] underline-offset-4 transition-colors hover:text-[#0B2C6B] hover:underline cursor-pointer"
             >
               {copy.privacy}
             </button>
             <button
               type="button"
               onClick={openTermsModal}
-              className="text-[10px] font-bold uppercase tracking-widest text-black/35 transition-colors hover:text-[#D9A441] cursor-pointer"
+              className="min-h-11 text-sm font-medium text-[#52617A] underline-offset-4 transition-colors hover:text-[#0B2C6B] hover:underline cursor-pointer"
             >
               {copy.terms}
             </button>
@@ -139,14 +139,14 @@ function FooterContent({ year, locale }: { year: number; locale: Locale }) {
             <p className="mb-5 max-w-[430px] text-[16px] font-light leading-[1.75] text-[#0B2C6B]/64 md:text-[19px]">
               {copy.tagline}
             </p>
-            <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-[#D9A441]/85">
+            <p className="text-xs font-medium tracking-wide text-[#805A19]">
               People. Learning. Elevated.
             </p>
             <SocialLinks />
           </div>
 
           <div className="lg:col-span-5">
-            <h4 className="mb-7 text-[10px] font-bold uppercase tracking-[0.25em] text-[#0B2C6B]/40">
+            <h4 className="mb-7 text-sm font-semibold text-[#52617A]">
               {copy.navigationLabel}
             </h4>
             <div className="grid gap-8 sm:grid-cols-3">
@@ -164,7 +164,7 @@ function FooterContent({ year, locale }: { year: number; locale: Locale }) {
                       <li key={link.label}>
                         <Link
                           href={localizePath(link.href, locale)}
-                          className={`text-sm font-light leading-relaxed transition-colors hover:text-[#0B2C6B] ${group.defaultHref === "/ecosystem" ? "text-[#405675]" : "text-[#0B2C6B]/58"}`}
+                          className={`text-sm font-normal leading-relaxed transition-colors hover:text-[#0B2C6B] ${group.defaultHref === "/ecosystem" ? "text-[#405675]" : "text-[#0B2C6B]/58"}`}
                         >
                           {link.label}
                         </Link>
@@ -177,7 +177,7 @@ function FooterContent({ year, locale }: { year: number; locale: Locale }) {
           </div>
 
           <div className="lg:col-span-3">
-            <h4 className="mb-8 text-[10px] font-bold uppercase tracking-[0.25em] text-[#0B2C6B]/40">
+            <h4 className="mb-8 text-sm font-semibold text-[#52617A]">
               {copy.contactTitle}
             </h4>
             <div className="space-y-5">
@@ -186,7 +186,7 @@ function FooterContent({ year, locale }: { year: number; locale: Locale }) {
                   <MapPin size={18} className="text-[#D9A441]" />
                 </div>
                 <div>
-                  <span className="mb-1 block text-[10px] font-bold uppercase tracking-widest text-[#0B2C6B]/40">
+                  <span className="mb-1 block text-xs font-medium text-[#52617A]">
                     {copy.officeLabel}
                   </span>
                   <p className="max-w-[270px] text-sm font-light leading-[1.65] text-[#0B2C6B]/70">
@@ -201,7 +201,7 @@ function FooterContent({ year, locale }: { year: number; locale: Locale }) {
                   <Mail size={18} className="text-[#D9A441]" />
                 </div>
                 <div>
-                  <span className="mb-1 block text-[10px] font-bold uppercase tracking-widest text-[#0B2C6B]/40">
+                  <span className="mb-1 block text-xs font-medium text-[#52617A]">
                     {copy.emailLabel}
                   </span>
                   <a
@@ -218,7 +218,7 @@ function FooterContent({ year, locale }: { year: number; locale: Locale }) {
                   <Phone size={18} className="text-[#D9A441]" />
                 </div>
                 <div>
-                  <span className="mb-1 block text-[10px] font-bold uppercase tracking-widest text-[#0B2C6B]/40">
+                  <span className="mb-1 block text-xs font-medium text-[#52617A]">
                     {copy.phoneLabel}
                   </span>
                   <a
@@ -234,7 +234,7 @@ function FooterContent({ year, locale }: { year: number; locale: Locale }) {
         </div>
 
         <div className="flex flex-col items-center justify-between gap-6 border-t border-black/[0.09] pt-10 md:flex-row">
-          <div className="flex items-center gap-2 text-[10px] tracking-wider text-black/35">
+          <div className="flex items-center gap-2 text-xs text-[#52617A]">
             &copy; {year}{" "}
             <span className="font-bold text-[#0B2C6B]">
               Bina<span className="text-[#D9A441]">Hub</span>
@@ -245,19 +245,19 @@ function FooterContent({ year, locale }: { year: number; locale: Locale }) {
             <button
               type="button"
               onClick={openPrivacyModal}
-              className="text-[10px] font-bold uppercase tracking-widest text-black/35 transition-colors hover:text-[#D9A441] cursor-pointer"
+              className="min-h-11 text-sm font-medium text-[#52617A] underline-offset-4 transition-colors hover:text-[#0B2C6B] hover:underline cursor-pointer"
             >
               {copy.privacy}
             </button>
             <button
               type="button"
               onClick={openTermsModal}
-              className="text-[10px] font-bold uppercase tracking-widest text-black/35 transition-colors hover:text-[#D9A441] cursor-pointer"
+              className="min-h-11 text-sm font-medium text-[#52617A] underline-offset-4 transition-colors hover:text-[#0B2C6B] hover:underline cursor-pointer"
             >
               {copy.terms}
             </button>
           </div>
-          <div className="text-[10px] font-black uppercase tracking-[0.4em] text-black/18">
+          <div className="text-xs font-medium tracking-wide text-[#52617A]">
             People. Learning. Elevated.
           </div>
         </div>
@@ -279,7 +279,7 @@ function FooterAccordion({
 }) {
   return (
     <details className="group border-b border-[#0B2C6B]/20 py-5">
-      <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-[12px] font-bold uppercase tracking-[0.12em] text-[#0B2C6B] marker:hidden">
+      <summary className="flex cursor-pointer list-none items-center justify-between gap-4 min-h-11 text-sm font-semibold text-[#0B2C6B] marker:hidden">
         {defaultHref ? (
           <Link href={localizePath(defaultHref, locale)} className="transition-colors hover:text-[#D9A441]" onClick={(event) => event.stopPropagation()}>
             {title}
@@ -294,7 +294,7 @@ function FooterAccordion({
           <li key={link.label}>
             <Link
               href={localizePath(link.href, locale)}
-              className={`text-sm font-light leading-relaxed transition-colors hover:text-[#0B2C6B] ${defaultHref === "/ecosystem" ? "text-[#405675]" : "text-[#0B2C6B]/62"}`}
+              className={`text-sm font-normal leading-relaxed transition-colors hover:text-[#0B2C6B] ${defaultHref === "/ecosystem" ? "text-[#405675]" : "text-[#0B2C6B]/62"}`}
             >
               {link.label}
             </Link>
@@ -318,7 +318,7 @@ function SocialLinks() {
             target="_blank"
             rel="noreferrer"
             aria-label={social.label}
-            className="grid h-10 w-10 place-items-center rounded-full border border-[#0B2C6B] text-[#0B2C6B] transition-colors hover:border-[#D9A441] hover:bg-[#D9A441] hover:text-white"
+            className="grid h-11 w-11 place-items-center rounded-full border border-[#0B2C6B] text-[#0B2C6B] transition-colors hover:border-[#D9A441] hover:bg-[#D9A441] hover:text-white"
           >
             <Icon width={17} height={17} />
           </Link>
@@ -391,14 +391,14 @@ function FooterCta({ config, locale }: { config: CtaConfig; locale: Locale }) {
         {config.title}
       </h2>
       {config.description && (
-        <p className={`mt-4 max-w-2xl text-sm font-light leading-relaxed md:mt-6 md:text-lg ${descriptionClass}`}>
+        <p className={`mt-4 max-w-2xl text-sm font-normal leading-relaxed md:mt-6 md:text-lg ${descriptionClass}`}>
           {config.description}
         </p>
       )}
       <div className="mt-7 flex w-full max-w-3xl flex-col items-center justify-center gap-3 sm:flex-row md:mt-10 md:gap-4">
         <Link
           href={localizePath(config.primary.href, locale)}
-          className={`group inline-flex h-12 items-center justify-center gap-3 rounded-full px-6 text-[10px] font-bold uppercase tracking-[0.18em] shadow-xl transition-all duration-300 hover:-translate-y-0.5 active:scale-95 md:h-14 md:px-8 md:text-[11px] md:tracking-[0.2em] ${primaryClass}`}
+          className={`group inline-flex h-12 items-center justify-center gap-3 rounded-full px-6 text-sm font-semibold shadow-sm transition-colors duration-200 md:h-14 md:px-8 ${primaryClass}`}
         >
           {config.primary.label}
           <ChevronRight size={15} className="transition-transform duration-300 group-hover:translate-x-0.5" />
@@ -406,7 +406,7 @@ function FooterCta({ config, locale }: { config: CtaConfig; locale: Locale }) {
         {config.secondary && (
           <Link
             href={localizePath(config.secondary.href, locale)}
-            className={`group inline-flex h-11 items-center justify-center gap-3 rounded-full px-6 text-[10px] font-bold uppercase tracking-[0.16em] shadow-sm transition-all duration-300 hover:-translate-y-0.5 md:h-12 md:px-7 md:text-[11px] md:tracking-[0.18em] ${secondaryClass}`}
+            className={`group inline-flex h-11 items-center justify-center gap-3 rounded-full px-6 text-sm font-semibold transition-colors duration-200 md:h-12 md:px-7 ${secondaryClass}`}
           >
             {config.secondary.label}
             <ArrowRight size={14} className="transition-transform duration-300 group-hover:translate-x-0.5" />

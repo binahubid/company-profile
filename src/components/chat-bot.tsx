@@ -180,6 +180,10 @@ export function ChatBot() {
     }
   };
 
+  const closeChat = () => {
+    setIsOpen(false);
+    requestAnimationFrame(() => document.getElementById('chatbot-trigger')?.focus());
+  };
   if (pathname?.startsWith('/admin')) {
     return null;
   }
@@ -189,15 +193,17 @@ export function ChatBot() {
       {/* Floating Button */}
       <motion.button
         id="chatbot-trigger"
+        type="button"
+        aria-label={locale === 'en' ? 'Open BinaHub chat' : 'Buka chat BinaHub'}
+        aria-controls="chatbot-window"
+        aria-expanded={isOpen}
         initial={{ scale: 0, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
-        whileHover={{ scale: 1.05 }}
-        whileTap={{ scale: 0.95 }}
+        whileTap={{ scale: 0.98 }}
         onClick={() => setIsOpen(true)}
         className={`fixed bottom-6 right-6 z-50 flex h-14 w-14 items-center justify-center rounded-[16px] border border-white/10 bg-[#0B2C6B] shadow-[0_18px_54px_-36px_rgba(11,44,107,0.72)] ${isOpen ? 'hidden' : 'flex'}`}
       >
-        <div className="absolute inset-0 bg-[#D9A441]/16 blur-xl animate-pulse" />
-        <MessageSquare className="text-white w-6 h-6 relative z-10" />
+        <MessageSquare aria-hidden="true" className="text-white w-6 h-6 relative z-10" />
       </motion.button>
 
       {/* Chat Window */}
@@ -205,6 +211,9 @@ export function ChatBot() {
         {isOpen && (
           <motion.div
             id="chatbot-window"
+            role="region"
+            aria-label={locale === 'en' ? 'BinaHub chat' : 'Chat BinaHub'}
+            onKeyDown={event => { if (event.key === 'Escape') { event.preventDefault(); closeChat(); } }}
             initial={{ opacity: 0, y: 20, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
@@ -230,8 +239,10 @@ export function ChatBot() {
                 </div>
               </div>
               <button 
-                onClick={() => setIsOpen(false)}
-                className="text-white/60 hover:text-white transition-colors relative z-10 p-2"
+                type="button"
+                aria-label={locale === 'en' ? 'Close chat' : 'Tutup chat'}
+                onClick={closeChat}
+                className="grid h-11 w-11 place-items-center text-white/85 hover:text-white transition-colors relative z-10"
               >
                 <X className="w-5 h-5" />
               </button>
@@ -299,27 +310,29 @@ export function ChatBot() {
               <form onSubmit={handleSend} className="relative flex items-center">
                 <input
                   type="text"
+                  aria-label={locale === 'en' ? 'Message to Bina' : 'Pesan untuk Bina'}
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
                   placeholder={copy.placeholder}
-                  className="w-full bg-[#F5F7FA] border border-black/5 rounded-full py-3 pl-4 pr-12 text-sm focus:outline-none focus:border-[#0B2C6B]/30 transition-colors"
+                  className="w-full bg-[#F5F7FA] border border-black/5 rounded-full py-3 pl-4 pr-16 text-base focus:outline-none focus:border-[#0B2C6B]/30 transition-colors"
                   disabled={isLoading}
                 />
                 <button
                   type="submit"
+                  aria-label={locale === 'en' ? 'Send message' : 'Kirim pesan'}
                   disabled={!input.trim() || isLoading}
-                  className="absolute right-2 w-8 h-8 bg-[#0B2C6B] rounded-full flex items-center justify-center text-white disabled:opacity-50 disabled:cursor-not-allowed transition-all hover:bg-black"
+                  className="absolute right-1 w-11 h-11 bg-[#0B2C6B] rounded-full flex items-center justify-center text-white disabled:opacity-50 disabled:cursor-not-allowed transition-colors hover:bg-black"
                 >
                   <Send className="w-4 h-4 ml-0.5" />
                 </button>
               </form>
               <div className="text-center mt-3">
-                <span className="text-[9px] text-gray-400 font-medium uppercase tracking-widest">Powered by BinaHub AI</span>
+                <span className="text-xs text-[#52617A] font-medium">Powered by BinaHub AI</span>
                 <span className="text-gray-300">•</span>
                 <button
                   type="button"
                   onClick={openPrivacyModal}
-                  className="text-[9px] text-gray-400 font-medium underline hover:text-[#0B2C6B] transition-colors cursor-pointer"
+                  className="min-h-11 px-2 text-xs text-[#52617A] font-medium underline hover:text-[#0B2C6B] transition-colors cursor-pointer"
                 >
                   {locale === 'en' ? 'Privacy' : 'Privasi'}
                 </button>

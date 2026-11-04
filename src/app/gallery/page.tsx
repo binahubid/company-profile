@@ -88,7 +88,7 @@ export default function GalleryPage() {
         <div className="relative z-10 mx-auto max-w-7xl">
           <div className="grid gap-10 lg:grid-cols-[0.86fr_1.14fr] lg:items-end">
             <div>
-              <span className="inline-flex rounded-full bg-black/[0.04] px-4 py-2 text-[10px] font-bold uppercase tracking-[0.24em] text-[#0B2C6B]/52">
+              <span className="inline-flex rounded-full bg-black/[0.04] px-4 py-2 text-xs font-medium text-[#52617A]">
                 Gallery
               </span>
               <h1 className="mt-6 text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-light leading-[1.02] tracking-tight text-[#0B2C6B]">
@@ -111,11 +111,11 @@ export default function GalleryPage() {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#061A3B]/72 via-[#061A3B]/16 to-white/5" />
               <figcaption className="absolute inset-x-0 bottom-0 p-6 md:p-8">
-                <p className="mb-4 text-[10px] font-bold uppercase tracking-[0.24em] text-[#D9A441]">{copy.featured[0].label}</p>
+                <p className="mb-4 text-xs font-medium text-[#F6E7C5]">{copy.featured[0].label}</p>
                 <h2 className="max-w-2xl text-3xl font-light leading-tight tracking-tight text-white md:text-5xl">
                   {copy.featured[0].title}
                 </h2>
-                <p className="mt-4 text-xs font-bold uppercase tracking-[0.18em] text-white/48">{copy.featured[0].meta}</p>
+                <p className="mt-4 text-sm font-medium text-white/85">{copy.featured[0].meta}</p>
               </figcaption>
             </figure>
 
@@ -131,9 +131,9 @@ export default function GalleryPage() {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#061A3B]/68 via-[#061A3B]/10 to-transparent" />
                   <figcaption className="absolute inset-x-0 bottom-0 p-5">
-                    <p className="mb-3 text-[9px] font-bold uppercase tracking-[0.22em] text-[#D9A441]">{story.label}</p>
+                    <p className="mb-3 text-xs font-medium text-[#F6E7C5]">{story.label}</p>
                     <h3 className="text-xl font-light leading-tight text-white">{story.title}</h3>
-                    <p className="mt-3 text-[9px] font-bold uppercase tracking-[0.16em] text-white/44">{story.meta}</p>
+                    <p className="mt-3 text-sm font-medium text-white/85">{story.meta}</p>
                   </figcaption>
                 </figure>
               ))}
@@ -174,12 +174,12 @@ export default function GalleryPage() {
                     isAnchor ? "opacity-52 group-hover:opacity-38" : "opacity-78 group-hover:opacity-54"
                   }`} />
                   {story && (
-                    <figcaption className="absolute inset-x-0 bottom-0 translate-y-2 p-5 opacity-0 transition-all duration-500 group-hover:translate-y-0 group-hover:opacity-100">
-                      <p className="mb-2 text-[9px] font-bold uppercase tracking-[0.2em] text-[#D9A441]">
+                    <figcaption className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-[#061A3B]/95 via-[#061A3B]/80 to-transparent px-5 pb-5 pt-12">
+                      <p className="mb-2 text-xs font-medium text-[#F6E7C5]">
                         {isAnchor ? (locale === "id" ? "Cerita Utama" : "Key Story") : isSecondary ? (locale === "id" ? "Momen Pendukung" : "Supporting Moment") : (locale === "id" ? "Momen" : "Moment")}
                       </p>
                       <h3 className="text-lg font-light leading-tight text-white">{story.title}</h3>
-                      <p className="mt-2 text-[9px] font-bold uppercase tracking-[0.16em] text-white/42">{story.meta}</p>
+                      <p className="mt-2 text-sm font-normal text-white/85">{story.meta}</p>
                     </figcaption>
                   )}
                 </figure>

@@ -48,20 +48,42 @@
     @apply border-border;
   }
 
-  /* Hide scrollbar for Chrome, Safari and Opera */
-  ::-webkit-scrollbar {
-    display: none;
-  }
-
   html, body {
     background-color: #FFFFFF;
     color: #4A4C54;
     font-family: var(--font-jakarta-sans), 'Segoe UI', sans-serif;
     -webkit-font-smoothing: antialiased;
-    /* Hide scrollbar for IE, Edge and Firefox */
-    -ms-overflow-style: none;
-    scrollbar-width: none;
+    scrollbar-color: #7c8ca8 #f5f7fa;
+    scrollbar-width: thin;
   }
+}
+
+/* Shared public affordances: keep the brand, make every route easier to use. */
+:where(a, button, input, textarea, select, summary):focus-visible {
+  outline: 2px solid #2f5eab;
+  outline-offset: 4px;
+}
+.public-skip-link {
+  position: fixed;
+  z-index: 10000;
+  top: 12px;
+  left: 16px;
+  min-height: 44px;
+  padding: 12px 20px;
+  border-radius: 8px;
+  background: #0b2c6b;
+  color: #fff;
+  font-size: 1rem;
+  line-height: 1.5;
+  transform: translateY(-160%);
+}
+.public-skip-link:focus { transform: translateY(0); }
+@media (prefers-reduced-motion: reduce) {
+  html.scroll-smooth { scroll-behavior: auto; }
+}
+@media (forced-colors: active) {
+  :where(a, button, input, textarea, select, summary):focus-visible { outline-color: Highlight; }
+  .public-skip-link { color: LinkText; background: Canvas; border: 1px solid ButtonText; }
 }
 
 /* Custom Utilities from reference */

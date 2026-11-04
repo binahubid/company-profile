@@ -75,7 +75,7 @@ export default function RootLayout({
             <InboundJourneyTracker />
           </Suspense>
           <Navbar />
-          <main className="flex-grow flex flex-col">{children}</main>
+          <main id="main-content" tabIndex={-1} className="flex-grow flex flex-col">{children}</main>
           <Footer />
           <ChatBotLoader />
           <LegalModal />

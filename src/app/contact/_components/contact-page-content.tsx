@@ -238,7 +238,7 @@ export default function ContactPage() {
   };
 
   return (
-    <div className="bg-[#F5F7FA] min-h-screen pt-28 pb-20 px-6 md:px-12 lg:px-16">
+    <div className="relative isolate overflow-x-clip bg-[#F5F7FA] min-h-screen pt-28 pb-20 px-6 md:px-12 lg:px-16">
       {/* Decorative Glow Ambient Orbs */}
       <div className="pointer-events-none absolute right-0 top-20 h-[220px] w-[760px] bg-[#D9A441]/4 blur-[110px]" />
       <div className="pointer-events-none absolute bottom-20 left-0 h-[180px] w-[720px] bg-[#0B2C6B]/[0.035] blur-[100px]" />
@@ -268,7 +268,7 @@ export default function ContactPage() {
                   <MapPin size={18} className="text-[#D9A441]" />
                 </div>
                 <div>
-                  <span className="block text-[10px] font-bold text-[#0B2C6B]/40 uppercase tracking-widest mb-1">{copy.office}</span>
+                  <span className="block text-xs font-semibold text-[#52617A] mb-1">{copy.office}</span>
                   <p className="text-[#0B2C6B]/70 leading-relaxed text-sm font-light">
                     Kencana Tower, Level Mezzanine,<br />
                     Jl. Raya Meruya Ilir No. 88, Business Park Kebon Jeruk<br />
@@ -283,7 +283,7 @@ export default function ContactPage() {
                   <Mail size={18} className="text-[#D9A441]" />
                 </div>
                 <div>
-                  <span className="block text-[10px] font-bold text-[#0B2C6B]/40 uppercase tracking-widest mb-1">{copy.email}</span>
+                  <span className="block text-xs font-semibold text-[#52617A] mb-1">{copy.email}</span>
                   <a href="mailto:info@binahub.id" className="text-[#0B2C6B] hover:text-[#D9A441] transition-colors font-medium text-sm">
                     info@binahub.id
                   </a>
@@ -296,7 +296,7 @@ export default function ContactPage() {
                   <Phone size={18} className="text-[#D9A441]" />
                 </div>
                 <div>
-                  <span className="block text-[10px] font-bold text-[#0B2C6B]/40 uppercase tracking-widest mb-1">{copy.phone}</span>
+                  <span className="block text-xs font-semibold text-[#52617A] mb-1">{copy.phone}</span>
                   <a href="tel:02129601514" className="text-[#0B2C6B] hover:text-[#D9A441] transition-colors font-medium text-sm">
                     021-29601514
                   </a>
@@ -338,7 +338,7 @@ export default function ContactPage() {
                     
                     {/* Secondary Direct WA Option */}
                     <div className="w-full max-w-sm rounded-[12px] border border-black/[0.04] bg-[#F5F7FA] p-6">
-                      <p className="text-[11px] font-bold text-[#0B2C6B]/40 uppercase tracking-widest mb-3">{copy.quickResponse}</p>
+                      <p className="text-xs font-semibold text-[#52617A] mb-3">{copy.quickResponse}</p>
                       <p className="text-xs text-black/60 mb-4 leading-relaxed">
                         {copy.quickResponseBody}
                       </p>
@@ -367,7 +367,7 @@ export default function ContactPage() {
                   >
                     <div>
                       <h2 className="text-xl font-bold text-[#0B2C6B] tracking-tight mb-1">{copy.formTitle}</h2>
-                      <p className="text-xs text-black/40">{copy.formDesc}</p>
+                      <p className="text-sm text-[#52617A]">{copy.formDesc}</p>
                     </div>
 
                     {/* Server Error Alert */}
@@ -381,96 +381,108 @@ export default function ContactPage() {
                     <div className="grid gap-6 md:grid-cols-2">
                       {/* Name Input */}
                       <div className="flex flex-col gap-1.5">
-                        <label htmlFor="name" className="text-[10px] font-bold text-[#0B2C6B]/60 tracking-wider uppercase">
+                        <label htmlFor="name" className="text-sm font-medium text-[#405675]">
                           {copy.fields.name} <span className="text-rose-500">*</span>
                         </label>
                         <input
                           type="text"
                           id="name"
+                          aria-required="true"
+                          aria-invalid={Boolean(errors.name)}
+                          aria-describedby={errors.name ? "name-error" : undefined}
                           name="name"
                           value={formData.name}
                           onChange={handleInputChange}
                           placeholder={copy.placeholders.name}
-                          className={`w-full px-4 py-3 rounded-xl border bg-black/[0.01] text-sm text-[#0B2C6B] outline-none transition-all duration-300 ${
+                          className={`w-full px-4 py-3 rounded-xl border bg-black/[0.01] text-base text-[#0B2C6B] outline-none transition-[border-color,box-shadow,background-color] duration-200 ${
                             errors.name 
                               ? "border-rose-300 focus:border-rose-500 focus:ring-1 focus:ring-rose-500" 
                               : "border-black/[0.08] focus:border-[#D9A441] focus:ring-1 focus:ring-[#D9A441]"
                           }`}
                         />
-                        {errors.name && <span className="text-[10px] text-rose-500 font-medium">{errors.name}</span>}
+                        {errors.name && <span id="name-error" className="text-sm text-rose-700 font-medium">{errors.name}</span>}
                       </div>
 
                       {/* Company Input */}
                       <div className="flex flex-col gap-1.5">
-                        <label htmlFor="company" className="text-[10px] font-bold text-[#0B2C6B]/60 tracking-wider uppercase">
+                        <label htmlFor="company" className="text-sm font-medium text-[#405675]">
                           {copy.fields.company} <span className="text-rose-500">*</span>
                         </label>
                         <input
                           type="text"
                           id="company"
+                          aria-required="true"
+                          aria-invalid={Boolean(errors.company)}
+                          aria-describedby={errors.company ? "company-error" : undefined}
                           name="company"
                           value={formData.company}
                           onChange={handleInputChange}
                           placeholder={copy.placeholders.company}
-                          className={`w-full px-4 py-3 rounded-xl border bg-black/[0.01] text-sm text-[#0B2C6B] outline-none transition-all duration-300 ${
+                          className={`w-full px-4 py-3 rounded-xl border bg-black/[0.01] text-base text-[#0B2C6B] outline-none transition-[border-color,box-shadow,background-color] duration-200 ${
                             errors.company
                               ? "border-rose-300 focus:border-rose-500 focus:ring-1 focus:ring-rose-500"
                               : "border-black/[0.08] focus:border-[#D9A441] focus:ring-1 focus:ring-[#D9A441]"
                           }`}
                         />
-                        {errors.company && <span className="text-[10px] text-rose-500 font-medium">{errors.company}</span>}
+                        {errors.company && <span id="company-error" className="text-sm text-rose-700 font-medium">{errors.company}</span>}
                       </div>
                     </div>
 
                     <div className="grid gap-6 md:grid-cols-2">
                       {/* Email Input */}
                       <div className="flex flex-col gap-1.5">
-                        <label htmlFor="email" className="text-[10px] font-bold text-[#0B2C6B]/60 tracking-wider uppercase">
+                        <label htmlFor="email" className="text-sm font-medium text-[#405675]">
                           {copy.fields.email} <span className="text-rose-500">*</span>
                         </label>
                         <input
                           type="email"
                           id="email"
+                          aria-required="true"
+                          aria-invalid={Boolean(errors.email)}
+                          aria-describedby={errors.email ? "email-error" : undefined}
                           name="email"
                           value={formData.email}
                           onChange={handleInputChange}
                           placeholder={copy.placeholders.email}
-                          className={`w-full px-4 py-3 rounded-xl border bg-black/[0.01] text-sm text-[#0B2C6B] outline-none transition-all duration-300 ${
+                          className={`w-full px-4 py-3 rounded-xl border bg-black/[0.01] text-base text-[#0B2C6B] outline-none transition-[border-color,box-shadow,background-color] duration-200 ${
                             errors.email 
                               ? "border-rose-300 focus:border-rose-500 focus:ring-1 focus:ring-rose-500" 
                               : "border-black/[0.08] focus:border-[#D9A441] focus:ring-1 focus:ring-[#D9A441]"
                           }`}
                         />
-                        {errors.email && <span className="text-[10px] text-rose-500 font-medium">{errors.email}</span>}
+                        {errors.email && <span id="email-error" className="text-sm text-rose-700 font-medium">{errors.email}</span>}
                       </div>
 
                       {/* Role Input */}
                       <div className="flex flex-col gap-1.5">
-                        <label htmlFor="role" className="text-[10px] font-bold text-[#0B2C6B]/60 tracking-wider uppercase">
+                        <label htmlFor="role" className="text-sm font-medium text-[#405675]">
                           {copy.fields.role} <span className="text-rose-500">*</span>
                         </label>
                         <input
                           type="text"
                           id="role"
+                          aria-required="true"
+                          aria-invalid={Boolean(errors.role)}
+                          aria-describedby={errors.role ? "role-error" : undefined}
                           name="role"
                           value={formData.role}
                           onChange={handleInputChange}
                           placeholder={copy.placeholders.role}
-                          className={`w-full px-4 py-3 rounded-xl border bg-black/[0.01] text-sm text-[#0B2C6B] outline-none transition-all duration-300 ${
+                          className={`w-full px-4 py-3 rounded-xl border bg-black/[0.01] text-base text-[#0B2C6B] outline-none transition-[border-color,box-shadow,background-color] duration-200 ${
                             errors.role
                               ? "border-rose-300 focus:border-rose-500 focus:ring-1 focus:ring-rose-500"
                               : "border-black/[0.08] focus:border-[#D9A441] focus:ring-1 focus:ring-[#D9A441]"
                           }`}
                         />
-                        {errors.role && <span className="text-[10px] text-rose-500 font-medium">{errors.role}</span>}
+                        {errors.role && <span id="role-error" className="text-sm text-rose-700 font-medium">{errors.role}</span>}
                       </div>
                     </div>
 
                     <div className="grid gap-6 md:grid-cols-2">
                       {/* WhatsApp Input */}
                       <div className="flex flex-col gap-1.5">
-                        <label htmlFor="whatsapp" className="text-[10px] font-bold text-[#0B2C6B]/60 tracking-wider uppercase">
-                          {copy.fields.whatsapp} <span className="text-black/30 font-normal">({copy.fields.optional})</span>
+                        <label htmlFor="whatsapp" className="text-sm font-medium text-[#405675]">
+                          {copy.fields.whatsapp} <span className="text-[#52617A] font-normal">({copy.fields.optional})</span>
                         </label>
                         <input
                           type="tel"
@@ -479,35 +491,38 @@ export default function ContactPage() {
                           value={formData.whatsapp}
                           onChange={handleInputChange}
                           placeholder={copy.placeholders.whatsapp}
-                          className="w-full px-4 py-3 rounded-xl border border-black/[0.08] bg-black/[0.01] text-sm text-[#0B2C6B] outline-none focus:border-[#D9A441] focus:ring-1 focus:ring-[#D9A441] transition-all duration-300"
+                          className="w-full px-4 py-3 rounded-xl border border-black/[0.08] bg-black/[0.01] text-base text-[#0B2C6B] outline-none focus:border-[#D9A441] focus:ring-1 focus:ring-[#D9A441] transition-[border-color,box-shadow,background-color] duration-200"
                         />
                       </div>
                     </div>
 
                     {/* Message Input */}
                     <div className="flex flex-col gap-1.5">
-                      <label htmlFor="message" className="text-[10px] font-bold text-[#0B2C6B]/60 tracking-wider uppercase">
+                      <label htmlFor="message" className="text-sm font-medium text-[#405675]">
                         {copy.fields.message} <span className="text-rose-500">*</span>
                       </label>
                       <textarea
                         id="message"
+                        aria-required="true"
+                        aria-invalid={Boolean(errors.message)}
+                        aria-describedby={errors.message ? "message-error" : undefined}
                         name="message"
                         rows={5}
                         value={formData.message}
                         onChange={handleInputChange}
                         placeholder={copy.placeholders.message}
-                        className={`w-full px-4 py-3 rounded-xl border bg-black/[0.01] text-sm text-[#0B2C6B] outline-none resize-none transition-all duration-300 ${
+                        className={`w-full px-4 py-3 rounded-xl border bg-black/[0.01] text-base text-[#0B2C6B] outline-none resize-none transition-[border-color,box-shadow,background-color] duration-200 ${
                           errors.message 
                             ? "border-rose-300 focus:border-rose-500 focus:ring-1 focus:ring-rose-500" 
                             : "border-black/[0.08] focus:border-[#D9A441] focus:ring-1 focus:ring-[#D9A441]"
                         }`}
                       />
-                      {errors.message && <span className="text-[10px] text-rose-500 font-medium">{errors.message}</span>}
+                      {errors.message && <span id="message-error" className="text-sm text-rose-700 font-medium">{errors.message}</span>}
                     </div>
 
                     
                     {/* Legal consent note */}
-                    <div className="text-[11px] leading-relaxed text-black/55 bg-black/[0.02] border border-black/[0.05] p-3.5 rounded-xl">
+                    <div className="text-sm leading-relaxed text-[#52617A] bg-black/[0.02] border border-black/[0.05] p-3.5 rounded-xl">
                       {locale === "en" ? (
                         <span>
                           By submitting this form, you acknowledge and agree to our{" "}
@@ -555,7 +570,7 @@ export default function ContactPage() {
                     <button
                       type="submit"
                       disabled={status === "loading"}
-                      className="mt-4 group relative inline-flex items-center justify-center gap-3 w-full overflow-hidden px-6 py-4 rounded-xl bg-[#0B2C6B] text-white font-bold text-sm hover:bg-[#D9A441] hover:text-[#0B2C6B] transition-all duration-300 disabled:bg-[#0B2C6B]/40 disabled:cursor-not-allowed shadow-[0_4px_16px_rgba(11,44,107,0.15)]"
+                      className="mt-4 group relative inline-flex items-center justify-center gap-3 w-full overflow-hidden px-6 py-4 rounded-xl bg-[#0B2C6B] text-white font-bold text-sm hover:bg-[#D9A441] hover:text-[#0B2C6B] transition-[border-color,box-shadow,background-color] duration-200 disabled:bg-[#0B2C6B]/40 disabled:cursor-not-allowed shadow-[0_4px_16px_rgba(11,44,107,0.15)]"
                     >
                       <span className="absolute inset-y-0 -left-1/3 w-1/3 bg-white/20 blur-xl transition-transform duration-700 group-hover:translate-x-[420%]" />
                       {status === "loading" ? (
