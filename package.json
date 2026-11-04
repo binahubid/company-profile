@@ -1,6 +1,6 @@
 {
   "name": "website-prod",
-  "version": "0.2.48",
+  "version": "0.2.49",
   "private": true,
   "scripts": {
     "dev": "next dev --webpack",
@@ -13,7 +13,7 @@
     "typecheck": "tsc --noEmit",
     "quality:public": "npm run lint:public && npm run typecheck",
     "quality:repo": "npm run quality:public",
-    "test:contracts": "node tools/test-program-entry.mjs && node --test tools/deployment-contract.test.mjs",
+    "test:contracts": "node tools/test-program-entry.mjs && node --test tools/deployment-contract.test.mjs tools/public-visibility.test.mjs",
     "test:dependencies": "node --test tools/minimatch-compat.test.mjs"
   },
   "dependencies": {

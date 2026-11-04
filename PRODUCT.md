@@ -20,6 +20,10 @@ These facts and the compact, simple catalog direction are confirmed by the user.
 - Public catalog never exposes internal prices or operational approval language.
 - Only published, ready, non-mock products/modules come from the existing API.
 - Catalog selection and contact handoff remain available; diagnosis is a separate journey.
+- Owner update4November2026: temporarily hide PETA product links from public
+  website navigation/footer in both languages. Preserve ordinary Service Map
+  content and the other Services links. PETA operation stays in the app;
+  PE/RM mock-payment demonstrations stay inside the protected app admin workspace.
 
 ## Product principles
 

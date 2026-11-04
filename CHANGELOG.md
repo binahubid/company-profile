@@ -1,5 +1,15 @@
 # Changelog
 
+## [0.2.49] - 2026-11-04
+
+- Temporarily hide PETA from public Services navigation and footer in Indonesian
+  and English. Desktop/mobile share these entries; preserve the other seven
+  Services destinations/order and ordinary Service Map copy.
+- Keep payment simulations in the app admin only; no simulation link is exposed
+  by website navigation/footer. App PETA modules, invitations, reports, data and
+  access are unchanged. No API, SQL, env, pricing or design-system change.
+- Add executable ID/EN visibility and preserved-navigation contracts to CI.
+
 ## [0.2.48] - 2026-11-04
 
 - Apply a restrained Unslop refinement to shared public navigation, footer,

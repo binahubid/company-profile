@@ -35,3 +35,12 @@ its centered position and 44px minimum height, using 10px text and a 12px arrow
 on mobile. Desktop retains the 16px arrow. The fixed chat trigger is untouched.
 Current local checks and scoped finish disposition are recorded in
 `docs/service-navigation-and-hero-2026-10-30.md`.
+
+## Visibility update · 4 November 2026
+
+Owner temporarily hides the PETA product from public discovery. Both ID/EN
+Services menus (desktop/mobile) and footer remove only the PETA entry; the other
+seven destinations/order, ordinary Service Map wording and visual treatment stay.
+The previous30October paragraph is historical, not current visibility policy.
+PETA invitations, participant results and admin/program modules remain in app.
+Payment simulation is an admin-app workflow, not a public website action.
