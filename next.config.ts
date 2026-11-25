@@ -38,6 +38,10 @@ const nextConfig: NextConfig = {
         source: "/:path*",
         headers: securityHeaders,
       },
+      {
+        source: "/company-profile-binahub.pdf",
+        headers: [{ key: "Content-Disposition", value: 'attachment; filename="Company-Profile-BinaHub.pdf"' }],
+      },
     ];
   },
   turbopack: {

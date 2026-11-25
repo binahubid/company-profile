@@ -28,7 +28,7 @@ const ROUTES: Entry[] = [
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
-  return ROUTES.flatMap((route) =>
+  const entries = ROUTES.flatMap((route) =>
     locales.map((locale) => {
       const localizedPath = route.path === "/" ? `/${locale}` : `/${locale}${route.path}`;
 
@@ -40,4 +40,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
       };
     }),
   );
+  return [...entries, {
+    url: `${SITE_URL}/company-profile-binahub.pdf`,
+    changeFrequency: "monthly",
+    priority: 0.6,
+  }];
 }

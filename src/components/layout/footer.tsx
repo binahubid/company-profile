@@ -4,7 +4,7 @@ import type { SVGProps } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { ArrowRight, ChevronDown, ChevronRight, Mail, MapPin, Phone } from "lucide-react";
+import { ArrowRight, ChevronDown, ChevronRight, Download, Mail, MapPin, Phone } from "lucide-react";
 import { getLocaleFromPathname, localizePath, stripLocaleFromPathname, type Locale } from "@/i18n/config";
 import { layoutCopy, type CtaConfig, type FooterGroup } from "@/i18n/layout-copy";
 import { useLegalModal } from "@/components/legal";
@@ -38,6 +38,16 @@ function FooterContent({ year, locale }: { year: number; locale: Locale }) {
 
   return (
     <>
+      <div className="mb-5 border-b border-[#0B2C6B]/10 pb-3 text-center md:text-left">
+          <a
+            href="/company-profile-binahub.pdf"
+            download
+            className="inline-flex min-h-11 items-center gap-2 text-sm font-semibold text-[#0B2C6B] underline-offset-4 hover:underline"
+          >
+            <Download size={16} aria-hidden="true" />
+            {locale === "en" ? "Download Company Profile (PDF)" : "Unduh Company Profile (PDF)"}
+          </a>
+      </div>
       <div className="md:hidden">
         <div className="mb-8">
           <Link href={localizePath("/", locale)} className="group mb-7 inline-block">
