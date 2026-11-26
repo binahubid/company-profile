@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
-import { Inter, Plus_Jakarta_Sans } from "next/font/google";
+import { Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
@@ -11,12 +11,17 @@ import { LocaleSync } from "@/components/locale-sync";
 import { JsonLd } from "@/components/json-ld";
 import { InboundJourneyTracker } from "@/components/inbound-journey-tracker";
 
-const jakartaSans = Plus_Jakarta_Sans({
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
-  variable: "--font-jakarta-sans",
-  display: "swap",
-});
+const jakartaFont = "/fonts/plus-jakarta-sans-latin.woff2";
+const jakartaFontStyle = `
+  @font-face {
+    font-family: "Plus Jakarta Sans";
+    src: url("${jakartaFont}") format("woff2");
+    font-style: normal;
+    font-weight: 300 700;
+    font-display: swap;
+  }
+  :root { --font-jakarta-sans: "Plus Jakarta Sans"; }
+`;
 
 const inter = Inter({
   subsets: ["latin"],
@@ -65,11 +70,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang={defaultLocale} className={`scroll-smooth ${jakartaSans.variable} ${inter.variable}`}>
+    <html lang={defaultLocale} className={`scroll-smooth ${inter.variable}`}>
       <head>
+        <link rel="preload" href={jakartaFont} as="font" type="font/woff2" crossOrigin="anonymous" />
+        <style>{jakartaFontStyle}</style>
         <JsonLd />
       </head>
-      <body className={`min-h-screen flex flex-col selection:bg-[#0B2C6B] selection:text-white ${jakartaSans.className}`}>
+      <body
+        className={`min-h-screen flex flex-col selection:bg-[#0B2C6B] selection:text-white`}
+        style={{ fontFamily: "var(--font-jakarta-sans, system-ui), 'Segoe UI', Arial, sans-serif" }}
+      >
         <LegalModalProvider>
           <Suspense fallback={null}>
             <InboundJourneyTracker />

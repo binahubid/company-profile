@@ -32,8 +32,8 @@
 }
 
 @theme inline {
-  --font-sans: var(--font-jakarta-sans), 'Segoe UI', sans-serif;
-  --font-secondary: var(--font-inter), 'Helvetica Neue', Arial, sans-serif;
+  --font-sans: var(--font-jakarta-sans, system-ui), 'Segoe UI', Arial, sans-serif;
+  --font-secondary: var(--font-inter, system-ui), 'Helvetica Neue', Arial, sans-serif;
   --font-mono: 'Geist Mono', monospace;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -51,7 +51,7 @@
   html, body {
     background-color: #FFFFFF;
     color: #4A4C54;
-    font-family: var(--font-jakarta-sans), 'Segoe UI', sans-serif;
+    font-family: var(--font-jakarta-sans, system-ui), 'Segoe UI', Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
     scrollbar-color: #7c8ca8 #f5f7fa;
     scrollbar-width: thin;
