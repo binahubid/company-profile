@@ -17,14 +17,14 @@ const copy={
   {label:'About BinaHub',title:'Helping Organizations',accent:'Grow and Develop',description:'BinaHub helps companies build effective leadership, solid teams, and adaptive work cultures through an integrated approach supported by AI technology.',cta:'Start diagnostic',href:'/insight',secondary:'View Perspective',secondaryHref:'/perspektif'},
  ]},
 };
-export function HeroMessageCarousel({ready,active,mobile,playing,onPlayingChange,onActiveChange,onMotionStateChange}:{ready:boolean;active:number;mobile:boolean;playing:boolean;onPlayingChange:(playing:boolean)=>void;onActiveChange:(index:number)=>void;onMotionStateChange:(playing:boolean)=>void}){
+export function HeroMessageCarousel({active,mobile,playing,onPlayingChange,onActiveChange,onMotionStateChange}:{active:number;mobile:boolean;playing:boolean;onPlayingChange:(playing:boolean)=>void;onActiveChange:(index:number)=>void;onMotionStateChange:(playing:boolean)=>void}){
  const locale=useLocale(),text=copy[locale],reduced=useReducedMotionPreference();
  const count=mobile?4:2,index=active%count,messageIndex=mobile?Number(index===3):index;
  const selectors=mobile?(locale==='en'?['Your needs','Competencies','Your program','About BinaHub']:['Kebutuhan','Kompetensi','Program','Tentang BinaHub']):text.slides.map(slide=>slide.label);
  const id=useId(),root=useRef<HTMLElement>(null);
  const [hovered,setHovered]=useState(false);
  const [visible,setVisible]=useState(true),[announcement,setAnnouncement]=useState('');
- const canRotate=playing&&!reduced&&ready&&!hovered&&visible;
+ const canRotate=playing&&!reduced&&!hovered&&visible;
  useEffect(()=>{onMotionStateChange(canRotate);},[canRotate,onMotionStateChange]);
  useEffect(()=>{
   const element=root.current?.closest('#home-hero')??root.current;if(!element)return;
@@ -48,7 +48,7 @@ export function HeroMessageCarousel({ready,active,mobile,playing,onPlayingChange
   return()=>clearTimeout(timer);
  },[index,canRotate,count,onActiveChange]);
  function select(index:number){onPlayingChange(false);onActiveChange(index);setAnnouncement(`${index+1} / ${count}: ${selectors[index]}`);}
- return <section ref={root} className={styles.carousel} data-auto-rotating={canRotate} data-rotation-status={reduced?'manual':!ready?'starting':!visible?'offscreen':hovered?'hover':!playing?'stopped':'running'} aria-label={text.label} aria-roledescription="carousel"
+ return <section ref={root} className={styles.carousel} data-auto-rotating={canRotate} data-rotation-status={reduced?'manual':!visible?'offscreen':hovered?'hover':!playing?'stopped':'running'} aria-label={text.label} aria-roledescription="carousel"
   onPointerEnter={event=>{if(event.pointerType==='mouse')setHovered(true);}}
   onPointerLeave={()=>setHovered(false)} onPointerDown={event=>{if(event.pointerType!=='mouse'&&!(event.target as HTMLElement).closest('[data-rotation-control]'))onPlayingChange(false);}}
   onFocusCapture={event=>{const target=event.target as HTMLElement;if(!target.closest('[data-rotation-control]')||target.matches(':focus-visible'))onPlayingChange(false);}}>

@@ -50,6 +50,10 @@ const nextConfig: NextConfig = {
         ],
       },
       {
+        source: "/media/site/:path*",
+        headers: [{ key: "Cache-Control", value: "public, max-age=86400" }],
+      },
+      {
         source: "/company-profile-binahub.pdf",
         headers: [{ key: "Content-Disposition", value: 'attachment; filename="Company-Profile-BinaHub.pdf"' }],
       },

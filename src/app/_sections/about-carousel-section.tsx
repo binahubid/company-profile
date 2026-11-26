@@ -42,14 +42,14 @@ const COPY = {
         title: "Siapa Kami",
         lines: ["Mitra", "Transformasi &", "Kapabilitas Masa Depan."],
         type: "hero" as const,
-        bgImage: "/asset/slide1.png",
+        bgImage: "/media/site/about.webp",
       },
       {
         id: 2,
         title: "Visi Kami",
         lines: ["Masa depan di mana kemanusiaan dan", "kemajuan berjalan beriringan."],
         type: "vision" as const,
-        bgImage: "/asset/slide2.png",
+        bgImage: "/media/site/vision.webp",
       },
       {
         id: 3,
@@ -83,14 +83,14 @@ const COPY = {
         title: "Who We Are",
         lines: ["Transformation", "Partner & Future", "Capability."],
         type: "hero" as const,
-        bgImage: "/asset/slide1.png",
+        bgImage: "/media/site/about.webp",
       },
       {
         id: 2,
         title: "Our Vision",
         lines: ["A future where", "humanity and progress", "move together."],
         type: "vision" as const,
-        bgImage: "/asset/slide2.png",
+        bgImage: "/media/site/vision.webp",
       },
       {
         id: 3,
@@ -154,7 +154,7 @@ function PositionSlide({
         src={slide.bgImage}
         alt=""
         fill
-        priority
+        loading="lazy"
         sizes="100vw"
         className="object-cover"
       />
@@ -172,7 +172,7 @@ function PositionSlide({
             </span>
           ))}
         </h2>
-        <p className="font-secondary mt-5 max-w-2xl text-sm font-normal leading-[1.6] text-white/72 md:text-base">
+        <p className="mt-5 max-w-2xl text-sm font-normal leading-[1.6] text-white/72 md:text-base">
           {description}
         </p>
       </div>
@@ -229,7 +229,7 @@ function MissionCard({
             <h2 className="text-[clamp(2rem,4vw,3rem)] font-semibold leading-[1.2] tracking-[-0.025em] text-[#071A33]">
               {title}
             </h2>
-            <p className="font-secondary mt-4 max-w-md text-sm font-normal leading-[1.6] text-[#0B2C6B]/68 md:text-base">
+            <p className="mt-4 max-w-md text-sm font-normal leading-[1.6] text-[#0B2C6B]/68 md:text-base">
               {description}
             </p>
           </div>
@@ -289,7 +289,7 @@ function MissionCard({
                         {point.title}
                       </span>
                     </div>
-                    <p className={`font-secondary text-sm font-normal leading-[1.6] transition-colors ${
+                    <p className={`text-sm font-normal leading-[1.6] transition-colors ${
                       position === 0 ? "text-[#0B2C6B]/68" : "text-[#0B2C6B]/0"
                     }`}>
                       {point.desc}

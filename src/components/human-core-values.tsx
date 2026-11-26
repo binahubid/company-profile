@@ -128,20 +128,20 @@ function AnimatedHumanCoreValuesSection() {
           }`}
         >
           <Image
-            src="/asset/human-texture-light-home.png"
+            src="/media/site/values-light.webp"
             alt=""
             fill
-            priority={false}
+            loading="lazy"
             sizes="100vw"
             className={`object-cover transition-opacity duration-700 ${
               isFinal ? "opacity-0" : "opacity-100"
             }`}
           />
           <Image
-            src="/asset/human-texture-dark-home.png"
+            src="/media/site/values-dark.webp"
             alt=""
             fill
-            priority={false}
+            loading="lazy"
             sizes="100vw"
             className={`object-cover brightness-[0.82] contrast-110 saturate-[0.92] transition-opacity duration-700 ${
               isFinal ? "opacity-100" : "opacity-0"

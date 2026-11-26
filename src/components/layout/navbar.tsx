@@ -201,8 +201,8 @@ export default function Navbar() {
       } ${mobileHidden && !open ? "-translate-y-full opacity-0 lg:translate-y-0 lg:opacity-100" : "translate-y-0 opacity-100"}`}
     >
       <motion.div
-        initial={reducedMotion ? false : { y: -20, opacity: 0 }}
-        animate={{ y: 0, opacity: 1, scale: scrolled ? 0.99 : 1 }}
+        initial={false}
+        animate={{ scale: scrolled ? 0.99 : 1 }}
         transition={{ duration: reducedMotion ? 0 : 0.58, ease: [0.22, 1, 0.36, 1] }}
         className={`relative w-full pointer-events-auto transition-all duration-500 ${scrolled ? "max-w-[1720px] min-[1440px]:max-w-4xl" : "max-w-[1720px]"}`}
         onMouseEnter={cancelDropdownClose}
@@ -230,10 +230,10 @@ export default function Navbar() {
           <Link href={localizePath("/", locale)} className={`group relative z-10 flex min-h-11 items-center transition-all duration-500 ${scrolled ? "min-[1440px]:hidden" : "opacity-100"}`}>
               <div className={`${styles.logo} relative h-12 w-40 transition-transform duration-500 group-hover:-translate-y-0.5 md:h-14 md:w-48 lg:h-14 lg:w-48`}>
               <Image
-                src="/full-logo.png"
+                src="/media/site/binahub-wordmark.webp"
                 alt="BinaHub Logo"
                 fill
-                priority
+                loading="eager"
                 sizes="144px"
                 className="object-contain object-left"
               />

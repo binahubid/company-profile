@@ -9,7 +9,7 @@ export function CTASection() {
       className="relative min-h-[820px] overflow-hidden bg-[#E7E7E4] px-6 pb-[31.5rem] pt-20 text-[#0B2C6B] md:min-h-[860px] md:px-12 md:pb-[31.5rem] md:pt-32 lg:min-h-[880px] lg:px-20 lg:pb-[31.5rem]"
     >
       <Image
-        src="/bg-cta.png"
+        src="/media/site/footer-home.webp"
         alt="BinaHub CTA Background"
         fill
         className="object-cover object-center opacity-100 saturate-100"

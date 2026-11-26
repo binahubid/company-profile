@@ -8,10 +8,6 @@ import { HeroMessageCarousel } from '@/components/hero-message-carousel';
 import { ProgramHeroVisual } from '@/components/program-hero-visual';
 import heroStyles from '@/components/program-hero-visual.module.css';
 
-interface HeroSectionProps {
-  heroReady: boolean;
-}
-
 const MOBILE_HERO_QUERY = '(max-width: 767px)';
 function subscribeMobileHero(onChange: () => void) {
   const media = window.matchMedia(MOBILE_HERO_QUERY);
@@ -22,14 +18,14 @@ const mobileHeroSnapshot = () => window.matchMedia(MOBILE_HERO_QUERY).matches;
 const serverHeroSnapshot = () => false;
 
 const ORBIT_ICONS = [
-  { src: "/icon/iconinsight.png", label: "BinaInsight", angle: 0 },
-  { src: "/icon/iconacademy.png", label: "BinaAcademy", angle: 45 },
-  { src: "/icon/iconcoach.png", label: "BinaCoach", angle: 90 },
-  { src: "/icon/iconlab.png", label: "BinaLab", angle: 135 },
-  { src: "/icon/iconplay.png", label: "BinaPlay", angle: 180 },
-  { src: "/icon/iconimpact.png", label: "BinaImpact", angle: 225 },
-  { src: "/icon/iconjourney.png", label: "BinaJourney", angle: 270 },
-  { src: "/icon/iconworks.png", label: "BinaWorks", angle: 315 },
+  { src: "/media/site/orbit-insight.webp", label: "BinaInsight", angle: 0 },
+  { src: "/media/site/orbit-academy.webp", label: "BinaAcademy", angle: 45 },
+  { src: "/media/site/orbit-coach.webp", label: "BinaCoach", angle: 90 },
+  { src: "/media/site/orbit-lab.webp", label: "BinaLab", angle: 135 },
+  { src: "/media/site/orbit-play.webp", label: "BinaPlay", angle: 180 },
+  { src: "/media/site/orbit-impact.webp", label: "BinaImpact", angle: 225 },
+  { src: "/media/site/orbit-journey.webp", label: "BinaJourney", angle: 270 },
+  { src: "/media/site/orbit-works.webp", label: "BinaWorks", angle: 315 },
 ] as const;
 
 function HeroContourLines() {
@@ -190,7 +186,6 @@ function HeroOrbitVisual() {
         ))}
       </div>
 
-      {/* 3D Logo - always present, responsive sizing */}
       <div className="absolute inset-0 flex items-center justify-center">
         <div
           className="hero-tilt-logo relative h-[70%] w-[70%] min-w-[180px] max-w-[280px] md:h-[52%] md:w-[52%] md:min-w-[135px] md:max-w-[165px] lg:min-w-[225px] lg:max-w-[490px]"
@@ -198,12 +193,12 @@ function HeroOrbitVisual() {
           onPointerLeave={handleLogoLeave}
         >
           <Image
-            src="/3D-logo-2.webp"
+            src="/media/site/hero-brand.webp"
             alt="Logo 3D BinaHub"
             fill
             sizes="(min-width: 1024px) 490px, (min-width: 768px) 165px, 280px"
             className="relative z-10 h-full w-full object-contain drop-shadow-[0_44px_34px_rgba(7,26,51,0.28)]"
-            priority
+            loading="eager"
           />
           <span className="absolute inset-x-[12%] bottom-[4%] h-12 rounded-full bg-[#071A33]/24 blur-3xl" aria-hidden="true" />
         </div>
@@ -212,34 +207,7 @@ function HeroOrbitVisual() {
   );
 }
 
-function FadeIn({
-  children,
-  delay,
-  ready,
-  className,
-}: {
-  children: React.ReactNode;
-  delay: number;
-  ready: boolean;
-  className?: string;
-}) {
-  return (
-    <div
-      data-hero-reveal
-      className={`transition-[opacity,transform,filter] duration-1000 ease-out ${className ?? ""}`}
-      style={{
-        opacity: ready ? 1 : 0,
-        transform: ready ? "translateY(0)" : "translateY(18px)",
-        filter: ready ? "blur(0)" : "blur(12px)",
-        transitionDelay: `${delay}ms`,
-      }}
-    >
-      {children}
-    </div>
-  );
-}
-
-export function HeroSection({ heroReady }: HeroSectionProps) {
+export function HeroSection() {
   const [activeSlide, setActiveSlide] = useState(0);
   const [motionPlaying,setMotionPlaying]=useState(false);
   const [heroPlaying,setHeroPlaying]=useState(true);
@@ -249,22 +217,30 @@ export function HeroSection({ heroReady }: HeroSectionProps) {
   return (
     <section id="home-hero" data-hero-slide={messageIndex===0?'recommendation':'brand'} className="relative z-0 -mt-24 w-full overflow-x-hidden bg-white">
       <div className={`${heroStyles.heroFrame} relative min-h-[calc(100svh+6rem)] overflow-hidden bg-white text-[#071A33]`}>
-        <HeroImageBackground />
+        {messageIndex === 1 && <HeroImageBackground />}
         <div className={heroStyles.recommendationBackdrop} data-active={messageIndex===0} aria-hidden="true"/>
 
         <div className={`${heroStyles.heroContent} relative z-10 flex min-h-[calc(100svh+6rem)] flex-col items-center justify-start px-6 pb-20 pt-[8.25rem] text-center md:pt-[14.75rem] lg:items-start lg:px-20 lg:text-left xl:px-28`}>
           <div className={`${heroStyles.heroComposition} grid w-full max-w-[1580px] items-center gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.9fr)] lg:gap-10 xl:gap-12`}>
             <div className={`${heroStyles.heroCopyColumn} order-1 z-10 flex min-w-0 w-full max-w-[780px] flex-col items-center lg:items-start`}>
-              <HeroMessageCarousel ready={heroReady} active={activeSlide} mobile={mobile} playing={heroPlaying} onPlayingChange={setHeroPlaying} onActiveChange={setActiveSlide} onMotionStateChange={setMotionPlaying}/>
+              <HeroMessageCarousel active={activeSlide} mobile={mobile} playing={heroPlaying} onPlayingChange={setHeroPlaying} onActiveChange={setActiveSlide} onMotionStateChange={setMotionPlaying}/>
             </div>
 
             <div className={`${heroStyles.heroVisualColumn} order-2 pointer-events-auto mx-auto w-full max-w-[340px] px-1 sm:max-w-[410px] md:max-w-[380px] md:px-0 lg:max-w-none orbit-shift-right`}>
-              <FadeIn ready={heroReady} delay={650} className="w-full">
-                <div className={heroStyles.visuals}>
-                  <div className={heroStyles.visual} data-active={messageIndex===0} aria-hidden={messageIndex!==0} inert={messageIndex!==0}><ProgramHeroVisual active={messageIndex===0} onInteract={()=>setHeroPlaying(false)} motionPlaying={motionPlaying&&messageIndex===0&&!mobile}/></div>
-                  <div className={heroStyles.visual} data-active={messageIndex===1} aria-hidden={messageIndex!==1} inert={messageIndex!==1}><HeroOrbitVisual/></div>
+              <div className={heroStyles.visuals}>
+                <div className={heroStyles.visual} data-active={messageIndex === 0} aria-hidden={messageIndex !== 0} inert={messageIndex !== 0}>
+                  <ProgramHeroVisual
+                    active={messageIndex === 0}
+                    onInteract={() => setHeroPlaying(false)}
+                    motionPlaying={motionPlaying && messageIndex === 0 && !mobile}
+                  />
                 </div>
-              </FadeIn>
+                {messageIndex === 1 && !mobile && (
+                  <div className={heroStyles.visual} data-active="true">
+                    <HeroOrbitVisual />
+                  </div>
+                )}
+              </div>
             </div>
           </div>
           <a className={heroStyles.scrollCue} href="#platform" aria-label={en?'Scroll to the next section':'Scroll ke bagian berikutnya'}><ArrowDown size={16} aria-hidden="true"/><span>Scroll</span></a>

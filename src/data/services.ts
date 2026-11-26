@@ -23,7 +23,7 @@ const SERVICES_ID: Service[] = [
     subtitle: "Awareness & Insight Discovery",
     desc: "Membantu individu dan tim memahami diri mereka maupun lingkungannya dengan lebih baik untuk mendorong pertumbuhan yang lebih cerdas.",
     stats: [{ v: "15k+", l: "Asesmen" }, { v: "98%", l: "Akurasi" }],
-    img: "/asset/BinaInsight.png",
+    img: "/media/site/service-insight.webp",
   },
   {
     id: "play",
@@ -32,7 +32,7 @@ const SERVICES_ID: Service[] = [
     subtitle: "Gamified Learning & Team Engagement",
     desc: "Pengalaman belajar yang menarik untuk memperkuat koneksi, energi, dan kolaborasi tim.",
     stats: [{ v: "300+", l: "Sesi" }, { v: "4.9/5", l: "Rating" }],
-    img: "/asset/BinaPlay.png",
+    img: "/media/site/service-play.webp",
   },
   {
     id: "lab",
@@ -41,7 +41,7 @@ const SERVICES_ID: Service[] = [
     subtitle: "Experiential Workshops",
     desc: "Belajar melalui pengalaman nyata untuk membangun wawasan dan kapabilitas.",
     stats: [{ v: "250+", l: "Workshop" }, { v: "95%", l: "Kepuasan" }],
-    img: "/asset/BinaLab.png",
+    img: "/media/site/service-lab.webp",
   },
   {
     id: "academy",
@@ -50,7 +50,7 @@ const SERVICES_ID: Service[] = [
     subtitle: "Structured Learning Programs",
     desc: "Perjalanan pembelajaran terstruktur yang dirancang untuk pertumbuhan berkelanjutan.",
     stats: [{ v: "10k+", l: "Alumni" }, { v: "92%", l: "Penyelesaian" }],
-    img: "/asset/BinaAcademy.png",
+    img: "/media/site/service-academy.webp",
   },
   {
     id: "coach",
@@ -59,7 +59,7 @@ const SERVICES_ID: Service[] = [
     subtitle: "Executive & Performance Coaching",
     desc: "Membimbing individu untuk berpikir jernih, bertindak dengan kesadaran, dan tumbuh dengan rasa memiliki.",
     stats: [{ v: "500+", l: "Eksekutif" }, { v: "3x", l: "Pertumbuhan" }],
-    img: "/asset/BinaCoach.png",
+    img: "/media/site/service-coach.webp",
   },
   {
     id: "impact",
@@ -68,7 +68,7 @@ const SERVICES_ID: Service[] = [
     subtitle: "Measurement & ROI",
     desc: "Mengukur kemajuan untuk memastikan dampak yang bermakna dan berkelanjutan.",
     stats: [{ v: "100+", l: "Laporan" }, { v: "100%", l: "Ketertelusuran" }],
-    img: "/asset/BinaImpact.png",
+    img: "/media/site/service-impact.webp",
   },
   {
     id: "journey",
@@ -77,7 +77,7 @@ const SERVICES_ID: Service[] = [
     subtitle: "Beyond Travel. Real Transformation",
     desc: "Perjalanan terpandu yang dirancang bukan hanya untuk menciptakan kenangan, tetapi untuk menghadirkan kejelasan, tujuan, dan transformasi diri.",
     stats: [{ v: "50+", l: "Destinasi" }, { v: "4.9/5", l: "Pengalaman" }],
-    img: "/asset/BinaJourney.png",
+    img: "/media/site/service-journey.webp",
   },
   {
     id: "works",
@@ -86,7 +86,7 @@ const SERVICES_ID: Service[] = [
     subtitle: "Execution & Performance Acceleration",
     desc: "Mengubah pembelajaran menjadi tindakan, dan strategi menjadi hasil nyata.",
     stats: [{ v: "200+", l: "Proyek" }, { v: "99%", l: "Tercapai" }],
-    img: "/asset/BinaWorks.png",
+    img: "/media/site/service-works.webp",
   },
 ];
 
@@ -98,7 +98,7 @@ const SERVICES_EN: Service[] = [
     subtitle: "Awareness & Insight Discovery",
     desc: "Helps individuals and teams understand themselves and their surroundings more clearly to encourage smarter growth.",
     stats: [{ v: "15k+", l: "Assessments" }, { v: "98%", l: "Accuracy" }],
-    img: "/asset/BinaInsight.png",
+    img: "/media/site/service-insight.webp",
   },
   {
     id: "play",
@@ -107,7 +107,7 @@ const SERVICES_EN: Service[] = [
     subtitle: "Gamified Learning & Team Engagement",
     desc: "Engaging learning experiences that strengthen connection, energy, and team collaboration.",
     stats: [{ v: "300+", l: "Sessions" }, { v: "4.9/5", l: "Rating" }],
-    img: "/asset/BinaPlay.png",
+    img: "/media/site/service-play.webp",
   },
   {
     id: "lab",
@@ -116,7 +116,7 @@ const SERVICES_EN: Service[] = [
     subtitle: "Experiential Workshops",
     desc: "Learning through real experience to build insight and capability.",
     stats: [{ v: "250+", l: "Workshops" }, { v: "95%", l: "Satisfaction" }],
-    img: "/asset/BinaLab.png",
+    img: "/media/site/service-lab.webp",
   },
   {
     id: "academy",
@@ -125,7 +125,7 @@ const SERVICES_EN: Service[] = [
     subtitle: "Structured Learning Programs",
     desc: "A structured learning journey designed for sustainable capability growth.",
     stats: [{ v: "10k+", l: "Alumni" }, { v: "92%", l: "Completion" }],
-    img: "/asset/BinaAcademy.png",
+    img: "/media/site/service-academy.webp",
   },
   {
     id: "coach",
@@ -134,7 +134,7 @@ const SERVICES_EN: Service[] = [
     subtitle: "Executive & Performance Coaching",
     desc: "Guides individuals to think clearly, act with awareness, and grow with ownership.",
     stats: [{ v: "500+", l: "Executives" }, { v: "3x", l: "Growth" }],
-    img: "/asset/BinaCoach.png",
+    img: "/media/site/service-coach.webp",
   },
   {
     id: "impact",
@@ -143,7 +143,7 @@ const SERVICES_EN: Service[] = [
     subtitle: "Measurement & ROI",
     desc: "Measures progress to ensure learning creates meaningful and sustainable impact.",
     stats: [{ v: "100+", l: "Reports" }, { v: "100%", l: "Traceability" }],
-    img: "/asset/BinaImpact.png",
+    img: "/media/site/service-impact.webp",
   },
   {
     id: "journey",
@@ -152,7 +152,7 @@ const SERVICES_EN: Service[] = [
     subtitle: "Beyond Travel. Real Transformation",
     desc: "Guided journeys designed not only for memories, but for clarity, purpose, and personal transformation.",
     stats: [{ v: "50+", l: "Destinations" }, { v: "4.9/5", l: "Experience" }],
-    img: "/asset/BinaJourney.png",
+    img: "/media/site/service-journey.webp",
   },
   {
     id: "works",
@@ -161,7 +161,7 @@ const SERVICES_EN: Service[] = [
     subtitle: "Execution & Performance Acceleration",
     desc: "Turns learning into action, and strategy into real results.",
     stats: [{ v: "200+", l: "Projects" }, { v: "99%", l: "Achieved" }],
-    img: "/asset/BinaWorks.png",
+    img: "/media/site/service-works.webp",
   },
 ];
 

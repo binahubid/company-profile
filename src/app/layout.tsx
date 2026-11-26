@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
-import { Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
@@ -23,13 +22,6 @@ const jakartaFontStyle = `
   }
   :root { --font-jakarta-sans: "Plus Jakarta Sans"; }
 `;
-
-const inter = Inter({
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
-  variable: "--font-inter",
-  display: "swap",
-});
 
 const title = `${SITE_NAME} | ${SITE_TAGLINE}`;
 
@@ -57,9 +49,8 @@ export const metadata: Metadata = {
     },
   },
   icons: {
-    icon: "/logo.webp",
-    shortcut: "/logo.webp",
-    apple: "/logo.webp",
+    icon: { url: "/media/site/mark-48.webp", sizes: "48x48", type: "image/webp" },
+    apple: { url: "/media/site/mark-180.png", sizes: "180x180", type: "image/png" },
   },
 };
 
@@ -71,7 +62,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang={defaultLocale} className={`scroll-smooth ${inter.variable}`}>
+    <html lang={defaultLocale} className="scroll-smooth">
       <head>
         <link rel="preload" href={jakartaFont} as="font" type="font/woff2" crossOrigin="anonymous" />
         <style>{jakartaFontStyle}</style>

@@ -52,7 +52,7 @@ function FooterContent({ year, locale }: { year: number; locale: Locale }) {
           <Link href={localizePath("/", locale)} className="group mb-7 inline-block">
             <div className="relative h-12 w-48 transition-transform duration-500 group-hover:-translate-y-0.5">
               <Image
-                src="/full-logo.png"
+                src="/media/site/binahub-wordmark.webp"
                 alt="BinaHub Logo"
                 fill
                 className="object-contain object-left"
@@ -135,7 +135,7 @@ function FooterContent({ year, locale }: { year: number; locale: Locale }) {
             <Link href={localizePath("/", locale)} className="group mb-9 inline-block">
               <div className="relative h-12 w-48 transition-transform duration-500 group-hover:-translate-y-0.5">
                 <Image
-                  src="/full-logo.png"
+                  src="/media/site/binahub-wordmark.webp"
                   alt="BinaHub Logo"
                   fill
                   className="object-contain object-left"
@@ -453,7 +453,7 @@ const Footer = () => {
         ? "bg-[#0B2C6B] text-white"
         : "bg-[#071A33] text-white";
   const bgByPath: Record<string, string> = {
-    "/": "/bg-cta.png",
+    "/": "/media/site/footer-home.webp",
     "/about": "/cta-footer-bg-gold-waves.png",
     "/ecosystem": "/cta-footer-bg.png",
     "/journey": "/cta-footer-bg-gold-texture.png",

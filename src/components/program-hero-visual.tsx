@@ -1,6 +1,6 @@
 'use client';
 import {useId,useLayoutEffect,useRef,useState} from 'react';
-import Image from 'next/image';
+import { HeroArtwork } from './hero-artwork';
 import {Layers3,Route,Target} from 'lucide-react';
 import {useLocale} from '@/i18n/use-locale';
 import {useReducedMotionPreference} from '@/hooks/use-reduced-motion';
@@ -16,7 +16,7 @@ export function ProgramHeroVisual({motionPlaying=false,active=true,onInteract}:{
   {name:'needs',title:en?'Your needs':'Kebutuhan',description:en?'Team challenges and intended outcomes.':'Tantangan dan tujuan tim Anda.',Icon:Target},
   {name:'competencies',title:en?'Competencies':'Kompetensi',description:en?'A relevant development focus.':'Fokus pengembangan yang relevan.',Icon:Layers3},
   {name:'program',title:en?'Your program':'Program',description:en?'Options to explore with BinaHub.':'Pilihan untuk dibahas bersama.',Icon:Route},
- ];
+ ] as const;
  useLayoutEffect(()=>{
   const previous=before.current;before.current=null;if(!previous||reduced||!active)return;
   const cards=Array.from(root.current!.querySelectorAll<HTMLElement>('[data-journey-layer]'));
@@ -56,7 +56,9 @@ export function ProgramHeroVisual({motionPlaying=false,active=true,onInteract}:{
     <span className={styles.layerTitle}>{title}</span>
     <span className={styles.layerText}>{description}</span>
    </div>
-   <div className={styles.artwork}><Image src={`/program-recommendation/hero-${name}.webp`} alt="" fill priority={index===0} sizes="(min-width:1280px) 320px, (min-width:768px) 230px, 190px" className={styles.illustration}/></div>
+   <div className={styles.artwork}>
+    <HeroArtwork name={name} priority={index === 0} className={styles.illustration} />
+   </div>
   </div>)}
   <button type="button" className={styles.shuffleControl} onClick={shuffle} onFocus={onInteract} disabled={shuffling||!active} aria-busy={shuffling} aria-label={en?'Shuffle program cards':'Acak urutan kartu program'} aria-describedby={id+'-shuffle-hint'}><span id={id+'-shuffle-hint'}>{en?'Click to shuffle':'Klik untuk mengacak'}</span></button>
   <p className={styles.srOnly} role="status" aria-live="polite" aria-atomic="true">{announcement}</p>
