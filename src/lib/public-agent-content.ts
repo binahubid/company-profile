@@ -60,5 +60,3 @@ export const publicAgentTools = [
     text: contact.join("\n"),
   },
 ] as const;
-
-export type PublicAgentTool = (typeof publicAgentTools)[number];

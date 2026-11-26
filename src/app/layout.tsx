@@ -9,6 +9,7 @@ import { SITE_URL, SITE_NAME, SITE_TAGLINE, SITE_DESCRIPTION, SITE_KEYWORDS } fr
 import { defaultLocale } from "@/i18n/config";
 import { LocaleSync } from "@/components/locale-sync";
 import { JsonLd } from "@/components/json-ld";
+import { WebMcpScript } from "@/components/web-mcp-script";
 import { InboundJourneyTracker } from "@/components/inbound-journey-tracker";
 
 const jakartaFont = "/fonts/plus-jakarta-sans-latin.woff2";
@@ -75,6 +76,7 @@ export default function RootLayout({
         <link rel="preload" href={jakartaFont} as="font" type="font/woff2" crossOrigin="anonymous" />
         <style>{jakartaFontStyle}</style>
         <JsonLd />
+        <WebMcpScript />
       </head>
       <body
         className={`min-h-screen flex flex-col selection:bg-[#0B2C6B] selection:text-white`}

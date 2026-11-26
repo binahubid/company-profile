@@ -26,6 +26,14 @@ const graph = {
       sameAs: Object.values(BUSINESS.social),
     },
     {
+      "@type": "Service",
+      "@id": `${SITE_URL}/#transformation-services`,
+      name: "Layanan Transformasi Individu, Tim, dan Organisasi",
+      serviceType: "Konsultasi transformasi dan pengembangan kapabilitas",
+      url: `${SITE_URL}/id/ecosystem/`,
+      provider: { "@id": organizationId },
+    },
+    {
       "@type": "WebSite",
       "@id": `${SITE_URL}/#website`,
       name: SITE_NAME,

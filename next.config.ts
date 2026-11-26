@@ -44,6 +44,8 @@ const nextConfig: NextConfig = {
         headers: [
           { key: "Link", value: AGENT_LINK_HEADER },
           { key: "Vary", value: "Accept" },
+          // Shared caches may ignore Vary: Accept for a normal HTML page.
+          { key: "Cache-Control", value: "private, no-store" },
           { key: "Content-Signal", value: CONTENT_SIGNAL },
         ],
       },
