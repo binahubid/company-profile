@@ -1,11 +1,20 @@
+import type { Metadata } from "next";
+import { HomeWebMcp } from "@/components/home-web-mcp";
+import { publicAgentTools } from "@/lib/public-agent-content";
+import { HOME_LANGUAGE_ALTERNATES } from "@/lib/site";
 import { HomeHero } from "./_sections/home-hero";
 import { AboutCarouselSection } from "./_sections/about-carousel-section";
 import { ServicesSection } from "./_sections/services-section";
 import { HumanCoreValuesSection } from "@/components/human-core-values";
 
+export const metadata: Metadata = {
+  alternates: { canonical: "/", languages: HOME_LANGUAGE_ALTERNATES },
+};
+
 export default function Home() {
   return (
     <div className="bg-[#F5F7FA] text-[#4A4C54] min-h-screen font-sans antialiased">
+      <HomeWebMcp tools={publicAgentTools} />
       <div className="relative z-0">
         <HomeHero />
       </div>

@@ -7,34 +7,33 @@ import { usePathname } from "next/navigation";
 import { ArrowRight, ChevronDown, ChevronRight, Download, Mail, MapPin, Phone } from "lucide-react";
 import { getLocaleFromPathname, localizePath, stripLocaleFromPathname, type Locale } from "@/i18n/config";
 import { layoutCopy, type CtaConfig, type FooterGroup } from "@/i18n/layout-copy";
-import { useLegalModal } from "@/components/legal";
+import { BUSINESS } from "@/lib/business";
 
 const SOCIAL_LINKS = [
   {
     label: "Instagram",
-    href: "https://instagram.com/binahub.id",
+    href: BUSINESS.social.instagram,
     icon: InstagramIcon,
   },
   {
     label: "TikTok",
-    href: "https://tiktok.com/@binahub.id",
+    href: BUSINESS.social.tiktok,
     icon: TiktokIcon,
   },
   {
     label: "LinkedIn",
-    href: "https://www.linkedin.com/company/binahubid/",
+    href: BUSINESS.social.linkedin,
     icon: LinkedinIcon,
   },
   {
     label: "YouTube",
-    href: "https://youtube.com/@binahubid",
+    href: BUSINESS.social.youtube,
     icon: YoutubeIcon,
   },
 ] as const;
 
 function FooterContent({ year, locale }: { year: number; locale: Locale }) {
   const copy = layoutCopy[locale].footer;
-  const { openPrivacyModal, openTermsModal } = useLegalModal();
 
   return (
     <>
@@ -114,20 +113,18 @@ function FooterContent({ year, locale }: { year: number; locale: Locale }) {
             . PT Binahub Solusi Transformasi.
           </div>
           <div className="flex items-center gap-6">
-            <button
-              type="button"
-              onClick={openPrivacyModal}
-              className="min-h-11 text-sm font-medium text-[#52617A] underline-offset-4 transition-colors hover:text-[#0B2C6B] hover:underline cursor-pointer"
+            <Link
+              href={localizePath("/privacy", locale)}
+              className="inline-flex min-h-11 items-center text-sm font-medium text-[#52617A] underline-offset-4 transition-colors hover:text-[#0B2C6B] hover:underline"
             >
               {copy.privacy}
-            </button>
-            <button
-              type="button"
-              onClick={openTermsModal}
-              className="min-h-11 text-sm font-medium text-[#52617A] underline-offset-4 transition-colors hover:text-[#0B2C6B] hover:underline cursor-pointer"
+            </Link>
+            <Link
+              href={localizePath("/terms", locale)}
+              className="inline-flex min-h-11 items-center text-sm font-medium text-[#52617A] underline-offset-4 transition-colors hover:text-[#0B2C6B] hover:underline"
             >
               {copy.terms}
-            </button>
+            </Link>
           </div>
         </div>
       </div>
@@ -252,20 +249,18 @@ function FooterContent({ year, locale }: { year: number; locale: Locale }) {
             . PT Binahub Solusi Transformasi.
           </div>
           <div className="flex items-center gap-8">
-            <button
-              type="button"
-              onClick={openPrivacyModal}
-              className="min-h-11 text-sm font-medium text-[#52617A] underline-offset-4 transition-colors hover:text-[#0B2C6B] hover:underline cursor-pointer"
+            <Link
+              href={localizePath("/privacy", locale)}
+              className="inline-flex min-h-11 items-center text-sm font-medium text-[#52617A] underline-offset-4 transition-colors hover:text-[#0B2C6B] hover:underline"
             >
               {copy.privacy}
-            </button>
-            <button
-              type="button"
-              onClick={openTermsModal}
-              className="min-h-11 text-sm font-medium text-[#52617A] underline-offset-4 transition-colors hover:text-[#0B2C6B] hover:underline cursor-pointer"
+            </Link>
+            <Link
+              href={localizePath("/terms", locale)}
+              className="inline-flex min-h-11 items-center text-sm font-medium text-[#52617A] underline-offset-4 transition-colors hover:text-[#0B2C6B] hover:underline"
             >
               {copy.terms}
-            </button>
+            </Link>
           </div>
           <div className="text-xs font-medium tracking-wide text-[#52617A]">
             People. Learning. Elevated.

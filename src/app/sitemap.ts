@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 import { locales } from "@/i18n/config";
-import { SITE_URL } from "@/lib/site";
+import { HOME_LANGUAGE_ALTERNATES, SITE_URL } from "@/lib/site";
 
 export const dynamic = "force-static";
 
@@ -23,6 +23,8 @@ const ROUTES: Entry[] = [
   { path: "/from-bdn-to-binahub", priority: 0.6, changeFrequency: "yearly" },
   { path: "/gallery", priority: 0.6, changeFrequency: "monthly" },
   { path: "/contact", priority: 0.7, changeFrequency: "yearly" },
+  { path: "/terms", priority: 0.4, changeFrequency: "yearly" },
+  { path: "/privacy", priority: 0.4, changeFrequency: "yearly" },
   { path: "/binahub", priority: 0.5, changeFrequency: "monthly" },
 ];
 
@@ -30,7 +32,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
   const entries = ROUTES.flatMap((route) =>
     locales.map((locale) => {
-      const localizedPath = route.path === "/" ? `/${locale}` : `/${locale}${route.path}`;
+      const localizedPath = route.path === "/" ? HOME_LANGUAGE_ALTERNATES[locale] : `/${locale}${route.path}/`;
 
       return {
         url: `${SITE_URL}${localizedPath}`,

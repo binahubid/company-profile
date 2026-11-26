@@ -53,15 +53,17 @@ export function HeroMessageCarousel({ready,active,mobile,playing,onPlayingChange
   onPointerLeave={()=>setHovered(false)} onPointerDown={event=>{if(event.pointerType!=='mouse'&&!(event.target as HTMLElement).closest('[data-rotation-control]'))onPlayingChange(false);}}
   onFocusCapture={event=>{const target=event.target as HTMLElement;if(!target.closest('[data-rotation-control]')||target.matches(':focus-visible'))onPlayingChange(false);}}>
   <MobileHeroDeck active={mobile?index:0} onSelect={select}/>
-  <div className={styles.panels} aria-live="off">{text.slides.map((slide,index)=><div key={slide.href} id={`${id}-slide-${index}`} className={styles.slide}
+  <div className={styles.panels} aria-live="off">{text.slides.map((slide,index)=>{
+   const Heading=index===0?'h1':'h2';
+   return <div key={slide.href} id={`${id}-slide-${index}`} className={styles.slide}
    data-active={messageIndex===index} data-variant={index===0?'recommendation':'brand'} aria-hidden={messageIndex!==index} inert={messageIndex!==index} role="group" aria-roledescription="slide" aria-label={slide.label}>
-   <h1 className={styles.title}><span>{slide.title}</span><span className={styles.accent}>{slide.accent}</span></h1>
+   <Heading className={styles.title}><span>{slide.title}</span><span className={styles.accent}>{slide.accent}</span></Heading>
    <p className={styles.description}>{slide.description}</p>
    <div className={styles.actions}>
     <ProgramJourneyLink href={localizePath(slide.href,locale)} className={styles.primary}>{slide.cta}<ChevronRight size={16} aria-hidden="true"/></ProgramJourneyLink>
     <ProgramJourneyLink href={localizePath(slide.secondaryHref,locale)} className={styles.secondary}>{slide.secondary}<ArrowRight size={16} aria-hidden="true"/></ProgramJourneyLink>
    </div>
-  </div>)}</div>
+  </div>})}</div>
   <div className={styles.controls} role="group" aria-label={locale==='en'?'Hero slide controls':'Kontrol slide utama'}>
    {selectors.map((label,selectorIndex)=><button key={label} type="button" aria-label={label} aria-controls={`${id}-slide-${mobile?Number(selectorIndex===3):selectorIndex}`} aria-pressed={index===selectorIndex} onClick={()=>select(selectorIndex)}><span className={styles.controlLabel}>{label}</span></button>)}
    <button type="button" data-rotation-control className={styles.rotation} disabled={reduced} aria-label={playing&&!reduced?text.pause:text.play}

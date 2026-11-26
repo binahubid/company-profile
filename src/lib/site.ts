@@ -5,6 +5,8 @@ export const SITE_URL = (
   process.env.NEXT_PUBLIC_SITE_URL ?? "https://binahub.id"
 ).replace(/\/+$/, "");
 
+export const HOME_LANGUAGE_ALTERNATES = { id: "/", en: "/en/", "x-default": "/" };
+
 export const SITE_NAME = "BinaHub";
 
 export const SITE_TAGLINE = "Human Transformation & Future Capability Partner";

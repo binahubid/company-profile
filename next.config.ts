@@ -1,4 +1,5 @@
 import type { NextConfig } from "next";
+import { AGENT_LINK_HEADER, CONTENT_SIGNAL } from "./src/lib/agent-discovery";
 
 const isDev = process.env.NODE_ENV !== "production";
 
@@ -37,6 +38,14 @@ const nextConfig: NextConfig = {
       {
         source: "/:path*",
         headers: securityHeaders,
+      },
+      {
+        source: "/",
+        headers: [
+          { key: "Link", value: AGENT_LINK_HEADER },
+          { key: "Vary", value: "Accept" },
+          { key: "Content-Signal", value: CONTENT_SIGNAL },
+        ],
       },
       {
         source: "/company-profile-binahub.pdf",
