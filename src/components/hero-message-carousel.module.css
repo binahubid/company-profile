@@ -47,12 +47,15 @@
   .actions { padding-top: 18px; }
 }
 @media (max-width: 767px) {
+  .carousel { position: relative; }
   .title { font-size: clamp(1.42rem, 6.1vw, 2.1rem); line-height: 1.16; }
   .description { margin-top: 12px; font-size: 13px; line-height: 1.6; }
   .actions { display: grid; grid-auto-flow: column; width: min(100%, 350px); padding-top: 14px; gap: 8px; }
   .primary, .secondary { min-height: 44px; padding: 8px 11px; text-transform: none; font-size: 11px; letter-spacing: 0; border-radius: 999px; }
-  .previous, .next { top: calc(var(--hero-top) + var(--hero-deck-size) / 2); }
-  .controls .rotation { right: 5px; top: calc(var(--hero-top) + var(--hero-deck-size) - 25px); bottom: auto; }
+  .previous, .next { top: calc(var(--hero-deck-size) / 2); }
+  .previous { left: -11px; }
+  .next, .controls .rotation { right: -11px; }
+  .controls .rotation { top: calc(var(--hero-deck-size) - 25px); bottom: auto; }
 }
 @media (forced-colors: active) {
   .controls button { background: ButtonFace; color: ButtonText; border-color: ButtonText; }

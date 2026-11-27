@@ -6,6 +6,7 @@ import { MessageSquare, X, Send, User, Loader2 } from 'lucide-react';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { useLocale } from '@/i18n/use-locale';
+import { stripLocaleFromPathname } from '@/i18n/config';
 import { useLegalModal } from '@/components/legal';
 import { appApiUrl } from '@/lib/public-api';
 
@@ -38,6 +39,17 @@ export function ChatBot() {
         placeholder: 'Ketik pesan Anda di sini...',
       }), [locale]);
   const [isOpen, setIsOpen] = useState(false);
+  const [heroPassed, setHeroPassed] = useState(false);
+  const isHome = stripLocaleFromPathname(pathname || "/") === "/";
+
+  useEffect(() => {
+    if (!isHome) return;
+    const hero = document.getElementById("home-hero");
+    if (!hero) return;
+    const observer = new IntersectionObserver(([entry]) => setHeroPassed(entry.boundingClientRect.bottom <= 0));
+    observer.observe(hero);
+    return () => observer.disconnect();
+  }, [isHome]);
   const [messages, setMessages] = useState<Message[]>([
     { role: 'assistant', content: copy.greeting }
   ]);
@@ -201,7 +213,7 @@ export function ChatBot() {
         animate={{ scale: 1, opacity: 1 }}
         whileTap={{ scale: 0.98 }}
         onClick={() => setIsOpen(true)}
-        className={`fixed bottom-6 right-6 z-50 flex h-14 w-14 items-center justify-center rounded-[16px] border border-white/10 bg-[#0B2C6B] shadow-[0_18px_54px_-36px_rgba(11,44,107,0.72)] ${isOpen ? 'hidden' : 'flex'}`}
+        className={`fixed bottom-6 right-6 z-50 flex h-14 w-14 items-center justify-center rounded-[16px] border border-white/10 bg-[#0B2C6B] shadow-[0_18px_54px_-36px_rgba(11,44,107,0.72)] ${isOpen || (isHome && !heroPassed) ? 'hidden' : 'flex'}`}
       >
         <MessageSquare aria-hidden="true" className="text-white w-6 h-6 relative z-10" />
       </motion.button>

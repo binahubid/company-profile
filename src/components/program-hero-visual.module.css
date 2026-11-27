@@ -68,7 +68,6 @@
   .heroContent {
     --hero-top: clamp(62px, 9.5svh, 84px);
     --hero-deck-size: min(67vw, clamp(150px, 30svh, 270px));
-    align-content: start;
     padding: var(--hero-top) 16px 24px;
   }
   .heroVisualColumn { display: none; }

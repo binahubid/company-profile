@@ -62,6 +62,10 @@ export default function Navbar() {
       const sampleY = window.innerWidth >= 1024 ? (window.scrollY > 16 ? 34 : 86) : 28
       const elements = document.elementsFromPoint(window.innerWidth / 2, sampleY)
       const target = elements.find((element) => !navbar?.contains(element))
+      if ((isInsightPage && window.scrollY <= 16) || target?.closest('#home-hero, #pilih-diagnosis')) {
+        setNavOnDark(false)
+        return
+      }
 
       let current: Element | null = target ?? document.body
       let depth = 0
@@ -122,7 +126,7 @@ export default function Navbar() {
       window.removeEventListener("scroll", handleScroll)
       window.removeEventListener("resize", handleScroll)
     }
-  }, [])
+  }, [isInsightPage, normalizedPathname])
 
   useEffect(() => {
     const scrollToHash = () => {
