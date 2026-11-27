@@ -2,25 +2,28 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { Pause, Play } from "lucide-react";
+import Link from "next/link";
+import { ArrowUpRight, Pause, Play } from "lucide-react";
 import { PARTNER_LOGOS } from "@/lib/partner-logos";
 import { useLocale } from "@/i18n/use-locale";
+import { localizePath } from "@/i18n/config";
 import { useReducedMotionPreference } from "@/hooks/use-reduced-motion";
 import styles from "./partner-logo-rail.module.css";
 
 export function PartnerLogoRail() {
-  const en = useLocale() === "en";
+  const locale = useLocale();
+  const en = locale === "en";
   const reducedMotion = useReducedMotionPreference();
   const [paused, setPaused] = useState(false);
   return (
-    <section className={styles.rail} aria-labelledby="partner-logo-heading" aria-describedby="partner-logo-source" data-paused={paused}>
+    <section className={styles.rail} aria-labelledby="partner-logo-heading" data-paused={paused}>
       <div className={styles.top}>
-        <div className={styles.caption}>
-          <h2 id="partner-logo-heading">
-            {en ? "Companies and partners who have worked with us" : "Perusahaan dan mitra yang pernah bekerja sama dengan kami"}
-          </h2>
-          <p id="partner-logo-source">{en ? "BDN portfolio" : "Portofolio BDN"}</p>
-        </div>
+        <h2 id="partner-logo-heading">
+          <Link href={localizePath("/about", locale) + "#perjalanan"} className={styles.headingLink}>
+            {en ? "Companies and partners in our journey" : "Perusahaan dan mitra dalam perjalanan kami"}
+            <ArrowUpRight size={13} aria-hidden="true" />
+          </Link>
+        </h2>
         {!reducedMotion && (
           <button type="button" className={styles.toggle} onClick={() => setPaused(value => !value)}
             aria-label={paused ? (en ? "Play client logos" : "Jalankan logo klien") : (en ? "Pause client logos" : "Jeda logo klien")}>

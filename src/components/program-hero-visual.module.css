@@ -73,7 +73,10 @@
   .heroVisualColumn { display: none; }
 }
 @media (max-width: 767px) and (max-height: 760px) {
-  .heroContent { --hero-deck-size: min(58vw, clamp(146px, 24svh, 192px)); }
+  .heroContent {
+    --hero-deck-size: min(58vw, clamp(146px, 24svh, 192px));
+    padding-bottom: 12px;
+  }
 }
 @media (forced-colors: active) {
   .atmosphere, .recommendationBackdrop, .artwork, .orbit, .badge { display: none; }
