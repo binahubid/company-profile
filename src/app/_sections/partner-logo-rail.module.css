@@ -1,9 +1,8 @@
 .rail {
   position: relative;
   z-index: 11;
-  background: #fff;
-  border-top: 1px solid #dce5f1;
-  padding: 4px 0 12px;
+  background: linear-gradient(180deg, transparent, rgb(255 255 255 / 38%));
+  padding: 4px 0 8px;
 }
 .top {
   display: flex;
@@ -14,6 +13,14 @@
   padding-inline: 12px;
   text-align: center;
 }
+.caption {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: center;
+  gap: 1px 10px;
+}
+.caption p { font-size: 10px; line-height: 1.4; color: #526783; }
 .top h2 {
   color: #405675;
   font-size: clamp(10px, 1.4vw, 12px);
@@ -49,15 +56,15 @@
 .item {
   display: grid;
   place-items: center;
-  width: clamp(86px, 10vw, 130px);
-  height: clamp(40px, 5.5vw, 60px);
+  width: clamp(94px, 10.4vw, 138px);
+  height: clamp(46px, 5.5vw, 66px);
   padding: 5px 9px;
 }
 .logo {
   height: auto;
   width: auto;
-  max-height: 34px;
-  max-width: 86%;
+  max-height: 40px;
+  max-width: 92%;
   object-fit: contain;
   transition: filter 180ms ease, opacity 180ms ease;
 }
@@ -70,7 +77,6 @@
 @media (hover: hover) and (min-width: 768px) {
   .logo { filter: grayscale(1); opacity: .72; }
   .rail:hover .logo, .rail:focus-within .logo { filter: none; opacity: 1; }
-  .rail:hover .track { animation-play-state: paused; }
 }
 @media (prefers-reduced-motion: reduce) {
   .track { animation: none; }

@@ -30,7 +30,7 @@ const SAMPLE_SIGNAL_EN: Record<string, string> = {
 const COPY = {
   id: {
     result: "Hasil Penilaian",
-    simulation: "Simulasi output assessment",
+    simulation: "Contoh hasil diagnosis tim",
     category: "Profesional",
     priority: "Prioritas",
     sampleReport: "Sample Report",
@@ -42,7 +42,7 @@ const COPY = {
   },
   en: {
     result: "Assessment Result",
-    simulation: "Assessment output simulation",
+    simulation: "Sample team diagnostic result",
     category: "Professional",
     priority: "Priority",
     sampleReport: "Sample Report",

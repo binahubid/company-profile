@@ -13,11 +13,14 @@ export function PartnerLogoRail() {
   const reducedMotion = useReducedMotionPreference();
   const [paused, setPaused] = useState(false);
   return (
-    <section className={styles.rail} aria-labelledby="partner-logo-heading" data-paused={paused}>
+    <section className={styles.rail} aria-labelledby="partner-logo-heading" aria-describedby="partner-logo-source" data-paused={paused}>
       <div className={styles.top}>
-        <h2 id="partner-logo-heading">
-          {en ? "Organizations that have worked with Bina Daya Nugraha" : "Organisasi yang telah bekerja sama dengan Bina Daya Nugraha"}
-        </h2>
+        <div className={styles.caption}>
+          <h2 id="partner-logo-heading">
+            {en ? "Companies and partners who have worked with us" : "Perusahaan dan mitra yang pernah bekerja sama dengan kami"}
+          </h2>
+          <p id="partner-logo-source">{en ? "BDN portfolio" : "Portofolio BDN"}</p>
+        </div>
         {!reducedMotion && (
           <button type="button" className={styles.toggle} onClick={() => setPaused(value => !value)}
             aria-label={paused ? (en ? "Play client logos" : "Jalankan logo klien") : (en ? "Pause client logos" : "Jeda logo klien")}>
@@ -31,7 +34,7 @@ export function PartnerLogoRail() {
             <ul key={String(duplicate)} className={styles.items} aria-hidden={duplicate || undefined}>
               {PARTNER_LOGOS.map(logo => (
                 <li key={logo.name} className={styles.item}>
-                  <Image src={logo.src} alt={duplicate ? "" : logo.name} width={110} height={36}
+                  <Image src={logo.src} alt={duplicate ? "" : logo.name} width={120} height={42}
                     className={`${styles.logo} ${logo.className ?? ""}`} />
                 </li>
               ))}

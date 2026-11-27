@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 import { ArrowRight, Check } from "lucide-react";
 import { DIMENSIONS } from "../questions";
 import { PixelIcon } from "@/components/pixel-icon";
-import { ReportPreview } from "./landing-preview";
+import { DiagnosticPreview, ReportPreview } from "./landing-preview";
 import { ProgramJourneyLink } from "@/components/program-journey-link";
 import { ServicePathCards } from "@/components/service-path-cards";
 import { useLocale } from "@/i18n/use-locale";
@@ -39,10 +39,11 @@ const COPY = {
     heroTitle: "Diagnosis performa",
     heroHighlight: "berbasis data.",
     heroBody:
-      "Diagnostik mendalam berbasis data untuk menemukan blind spot performa, membaca kesiapan transformasi, dan menentukan prioritas pengembangan tim.",
+      "Kenali kekuatan dan prioritas pengembangan diri, tim, dan organisasi dengan diagnosis BinaInsight.",
     start: "Mulai Diagnosis Tim",
-    preview: "Lihat Preview Hasil",
-    stats: ["5-7 Menit", "49 Indikator", "7 Area"],
+    choose: "Pilih diagnosis",
+    preview: "Contoh hasil diagnosis tim",
+    stats: ["Individu", "Tim", "Organisasi"],
     productEyebrow: "Product Experience",
     productTitle: "Hasil diagnosis tim dengan",
     productBody:
@@ -73,10 +74,11 @@ const COPY = {
     heroTitle: "Data-driven",
     heroHighlight: "performance diagnostic.",
     heroBody:
-      "A deep data-informed diagnostic to uncover performance blind spots, read transformation readiness, and define team development priorities.",
+      "Use BinaInsight to identify strengths and development priorities for yourself, your team, or your organization.",
     start: "Start Team Diagnosis",
-    preview: "View Report Preview",
-    stats: ["5-7 Minutes", "49 Indicators", "7 Areas"],
+    choose: "Choose a diagnostic",
+    preview: "Sample team report",
+    stats: ["Individual", "Team", "Organization"],
     productEyebrow: "Product Experience",
     productTitle: "Team diagnosis results from",
     productBody:
@@ -119,16 +121,75 @@ export function LandingStep() {
 
   return (
     <div className="w-full flex flex-col pt-20 md:pt-26">
+      {/* Hero */}
+      <section className="mb-8 w-full px-4 md:mb-12" aria-labelledby="diagnosis-hero-title">
+        <div className="relative flex min-h-[620px] w-full items-center justify-center overflow-hidden rounded-[16px] border border-black/[0.03] shadow-[0_24px_78px_-58px_rgba(11,44,107,0.52)] md:h-[78svh] md:rounded-[18px]">
+          <div className="absolute inset-0 w-full h-full">
+            <Image
+              src="/asset/bg-insight.png"
+              alt=""
+              fill
+              preload
+              sizes="100vw"
+              className="object-cover object-center scale-105 saturate-[0.94] brightness-[1.12]"
+            />
+            <div className="absolute inset-0 bg-[#061A3A]/22 mix-blend-multiply" />
+            <div className="absolute inset-0 bg-gradient-to-r from-[#071A33]/82 via-[#0B2C6B]/38 to-[#0B2C6B]/6" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/24 via-transparent to-black/5" />
+            <div className="absolute left-[58%] top-[30%] h-56 w-96 bg-[#D9A63A]/8 blur-3xl" />
+          </div>
+
+          <div className="relative z-10 grid w-full items-center justify-items-start gap-8 px-6 py-14 md:grid-cols-[minmax(0,3fr)_minmax(0,2fr)] md:px-12 lg:px-14 xl:px-16">
+            <div className="text-left w-full max-w-[980px]">
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/18 text-[11px] uppercase tracking-widest font-medium mb-8 text-white/90 bg-white/12">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#D9A441] animate-pulse" />
+                BinaInsight Diagnostic
+              </div>
+              <h1 id="diagnosis-hero-title" className="max-w-4xl text-4xl sm:text-5xl md:text-6xl lg:text-[4.45rem] xl:text-[4.9rem] font-light tracking-tight leading-[1.04] mb-6 text-white">
+                {copy.heroTitle} <br />{" "}
+                <span className="text-[#D9A441] font-light italic">{copy.heroHighlight}</span>
+              </h1>
+              <p className="text-sm sm:text-base md:text-lg text-white/90 max-w-xl mb-10 leading-relaxed">
+                {copy.heroBody}
+              </p>
+              <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 mb-10">
+                <a
+                  href="#pilih-diagnosis"
+                  className="w-full sm:w-auto group relative inline-flex items-center justify-center min-h-14 px-5 py-3 text-center md:min-h-16 lg:px-10 bg-[#0B2C6B] text-[#D9A441] rounded-full text-[13px] font-bold tracking-widest hover:bg-[#08245A] transition-all overflow-hidden uppercase shadow-xl shadow-[#0B2C6B]/30 border border-[#D9A441]/20"
+                >
+                  <span className="relative z-10 flex items-center gap-3">
+                    {copy.choose}
+                    <ArrowRight size={18} aria-hidden="true" className="group-hover:translate-x-1 transition-transform" />
+                  </span>
+                </a>
+                <a
+                  href="#about-insight"
+                  className="rounded-full border border-white/18 px-6 py-4 text-white/72 hover:text-white hover:bg-white/10 text-[11px] font-bold tracking-widest uppercase transition-colors"
+                >
+                  {copy.preview}
+                </a>
+              </div>
+              <div className="flex flex-wrap items-center gap-4 text-white/88 text-[10px] font-medium tracking-[0.2em] uppercase border-t border-white/10 pt-8">
+                <span>{copy.stats[0]}</span>
+                <div className="w-1 h-1 rounded-full bg-white/20" />
+                <span>{copy.stats[1]}</span>
+                <div className="w-1 h-1 rounded-full bg-white/20" />
+                <span>{copy.stats[2]}</span>
+              </div>
+            </div>
+
+            <DiagnosticPreview />
+          </div>
+        </div>
+      </section>
+
       <section id="pilih-diagnosis" aria-labelledby="diagnosis-intro" className="scroll-mt-24 bg-[#f5f7fa] px-5 py-12 md:px-10 md:py-20">
         <div className="mx-auto max-w-6xl">
-          <h1 id="diagnosis-intro" className="text-4xl font-semibold tracking-tight text-[#0b2c6b] sm:text-5xl">
-            {en ? "BinaHub Diagnostics" : "Diagnosis BinaHub"}
-          </h1>
-          <p className="mb-8 mt-4 max-w-2xl text-base leading-relaxed text-[#405675]">
-            {en ? "Choose a diagnostic to explore your development priorities or understand what your team needs."
-              : "Kenali prioritas pengembangan diri Anda atau petakan kebutuhan pengembangan tim dan organisasi."}
-          </p>
-          <ServicePathCards paths={[
+          <h2 id="diagnosis-intro" className="text-3xl font-semibold tracking-tight text-[#0b2c6b] sm:text-4xl">
+            {copy.choose}
+          </h2>
+          <div className="mt-6">
+            <ServicePathCards paths={[
             {
               icon: "individual",
               title: en ? "Individual Self Diagnostic" : "Self Diagnostic Individu",
@@ -143,11 +204,8 @@ export function LandingStep() {
               href: teamHref,
               detail: en ? "49 indicators" : "49 indikator",
             },
-          ]} />
-          <a href="#about-insight" className="mt-4 inline-flex min-h-11 items-center gap-2 text-sm font-semibold text-[#0b2c6b] underline-offset-4 hover:underline">
-            {en ? "See a team report example" : "Lihat contoh laporan diagnosis tim"}
-            <ArrowRight size={16} aria-hidden="true" />
-          </a>
+            ]} />
+          </div>
         </div>
       </section>
 

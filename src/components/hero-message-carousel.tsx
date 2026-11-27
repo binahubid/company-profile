@@ -10,11 +10,11 @@ import styles from './hero-message-carousel.module.css';
 const copy={
  id:{label:'Pilihan utama BinaHub',pause:'Jeda pergantian otomatis',play:'Putar slide otomatis',slides:[
   {label:'Rekomendasi program',title:'Program pengembangan',accent:'yang tepat untuk organisasi Anda.',description:'Ceritakan tantangan dan hasil yang ingin dicapai. Kami bantu memilih program pengembangan yang sesuai.',cta:'Dapatkan rekomendasi program',href:'/rekomendasi-program',secondary:'Jelajahi program',secondaryHref:'/pricing'},
-  {label:'Diagnosis',title:'Diagnosis BinaHub',accent:'Kenali prioritas pengembangan Anda.',description:'Pilih diagnosis untuk diri sendiri atau petakan kondisi tim dan organisasi Anda.',cta:'Pilih diagnosis',href:'/insight'},
+  {label:'Diagnosis',title:'Diagnosis BinaHub',accent:'Kenali prioritas pengembangan Anda.',description:'Pilih diagnosis untuk diri sendiri atau petakan kondisi tim dan organisasi Anda.',cta:'Pilih diagnosis',href:'/insight',secondary:'Lihat Perspektif',secondaryHref:'/perspektif'},
  ]},
  en:{label:'Explore BinaHub',pause:'Pause automatic slides',play:'Play slides automatically',slides:[
   {label:'Program recommendations',title:'Development programs',accent:'for your organization’s needs.',description:'Tell us about your challenges and goals. We’ll help you find the right development program.',cta:'Get program recommendations',href:'/rekomendasi-program',secondary:'Explore programs',secondaryHref:'/pricing'},
-  {label:'Diagnostics',title:'BinaHub Diagnostics',accent:'Find your development priorities.',description:'Explore your own development needs or assess your team and organization.',cta:'Choose a diagnostic',href:'/insight'},
+  {label:'Diagnostics',title:'BinaHub Diagnostics',accent:'Find your development priorities.',description:'Explore your own development needs or assess your team and organization.',cta:'Choose a diagnostic',href:'/insight',secondary:'View Perspective',secondaryHref:'/perspektif'},
  ]},
 };
 export function HeroMessageCarousel({active,mobile,playing,onPlayingChange,onActiveChange,onMotionStateChange}:{active:number;mobile:boolean;playing:boolean;onPlayingChange:(playing:boolean)=>void;onActiveChange:(index:number)=>void;onMotionStateChange:(playing:boolean)=>void}){
