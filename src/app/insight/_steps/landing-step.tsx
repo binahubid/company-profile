@@ -41,6 +41,7 @@ const COPY = {
     heroBody:
       "Kenali kekuatan dan prioritas pengembangan diri, tim, dan organisasi dengan diagnosis BinaInsight.",
     start: "Mulai Diagnosis Tim",
+    choose: "Pilih diagnosis",
     startDiagnostic: "Mulai Diagnostik",
     preview: "Contoh hasil diagnosis tim",
     stats: ["Individu", "Tim", "Organisasi"],
@@ -76,6 +77,7 @@ const COPY = {
     heroBody:
       "Use BinaInsight to identify strengths and development priorities for yourself, your team, or your organization.",
     start: "Start Team Diagnosis",
+    choose: "Choose a diagnostic",
     startDiagnostic: "Start Diagnostic",
     preview: "Sample team report",
     stats: ["Individual", "Team", "Organization"],
