@@ -8,7 +8,7 @@ import { DIMENSIONS } from "../questions";
 import { PixelIcon } from "@/components/pixel-icon";
 import { DiagnosticPreview, ReportPreview } from "./landing-preview";
 import { ProgramJourneyLink } from "@/components/program-journey-link";
-import { ServicePathCards } from "@/components/service-path-cards";
+import { diagnosisEntryUrl } from "@/lib/program-journey-url";
 import { useLocale } from "@/i18n/use-locale";
 import { useLegalModal } from "@/components/legal";
 
@@ -41,7 +41,6 @@ const COPY = {
     heroBody:
       "Kenali kekuatan dan prioritas pengembangan diri, tim, dan organisasi dengan diagnosis BinaInsight.",
     start: "Mulai Diagnosis Tim",
-    choose: "Pilih diagnosis",
     startDiagnostic: "Mulai Diagnostik",
     preview: "Contoh hasil diagnosis tim",
     stats: ["Individu", "Tim", "Organisasi"],
@@ -77,7 +76,6 @@ const COPY = {
     heroBody:
       "Use BinaInsight to identify strengths and development priorities for yourself, your team, or your organization.",
     start: "Start Team Diagnosis",
-    choose: "Choose a diagnostic",
     startDiagnostic: "Start Diagnostic",
     preview: "Sample team report",
     stats: ["Individual", "Team", "Organization"],
@@ -117,7 +115,7 @@ export function LandingStep() {
   const copy = COPY[locale];
   const en = locale === "en";
   const teamHref = appOrigin + (en ? "/en/insight" : "/insight");
-  const choiceHref = appOrigin + (en ? "/diagnose?lang=en" : "/diagnose");
+  const choiceHref = diagnosisEntryUrl(locale);
   const dimensionCopy = locale === "en" ? DIMENSION_COPY_EN : DIMENSION_COPY;
   const [activeDimension, setActiveDimension] = useState(0);
   const activeName = DIMENSIONS[activeDimension];
@@ -182,32 +180,6 @@ export function LandingStep() {
             </div>
 
             <DiagnosticPreview />
-          </div>
-        </div>
-      </section>
-
-      <section id="pilih-diagnosis" aria-labelledby="diagnosis-intro" className="scroll-mt-24 bg-[#f5f7fa] px-5 py-12 md:px-10 md:py-20">
-        <div className="mx-auto max-w-6xl">
-          <h2 id="diagnosis-intro" className="text-3xl font-semibold tracking-tight text-[#0b2c6b] sm:text-4xl">
-            {copy.choose}
-          </h2>
-          <div className="mt-6">
-            <ServicePathCards paths={[
-            {
-              icon: "individual",
-              title: en ? "Individual Self Diagnostic" : "Self Diagnostic Individu",
-              description: en ? "Reflect on how you work and identify areas to develop." : "Pahami cara Anda bekerja dan tentukan area pengembangan diri.",
-              href: appOrigin + "/insight/individual/packages",
-            },
-            {
-              icon: "team",
-              title: en ? "Team / organization diagnosis" : "Diagnosis Tim / Organisasi",
-              description: en ? "Map your team’s current situation and identify development priorities across seven areas."
-                : "Kenali kekuatan dan prioritas pengembangan tim melalui tujuh area penilaian.",
-              href: teamHref,
-              detail: en ? "49 indicators" : "49 indikator",
-            },
-            ]} />
           </div>
         </div>
       </section>

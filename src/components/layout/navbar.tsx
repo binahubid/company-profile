@@ -9,6 +9,8 @@ import { ChevronRight, ChevronDown, Menu, X } from "lucide-react"
 import { usePathname } from "next/navigation"
 import { getLocaleFromPathname, localizePath, stripLocaleFromPathname } from "@/i18n/config"
 import { layoutCopy, type NavItemKey } from "@/i18n/layout-copy"
+import { diagnosisEntryUrl } from "@/lib/program-journey-url"
+import { ProgramJourneyLink } from "@/components/program-journey-link"
 import { LanguageSwitcher } from "./language-switcher"
 import styles from "./navbar.module.css"
 
@@ -28,9 +30,10 @@ export default function Navbar() {
   const normalizedPathname = stripLocaleFromPathname(pathname || "/")
   const isInsightPage = normalizedPathname === "/insight"
   const isHomePage = normalizedPathname === "/"
-  const ctaHref = isInsightPage ? "#pilih-diagnosis" : localizePath("/rekomendasi-program", locale)
+  const CtaLink = isInsightPage ? ProgramJourneyLink : Link
+  const ctaHref = isInsightPage ? diagnosisEntryUrl(locale) : localizePath("/rekomendasi-program", locale)
   const ctaLabel = isInsightPage
-    ? locale === "en" ? "Choose a diagnostic" : "Pilih Diagnosis"
+    ? locale === "en" ? "Start Diagnostic" : "Mulai Diagnostik"
     : locale === "en" ? "Program recommendations" : "Rekomendasi program"
 
   useEffect(() => {
@@ -62,7 +65,7 @@ export default function Navbar() {
       const sampleY = window.innerWidth >= 1024 ? (window.scrollY > 16 ? 34 : 86) : 28
       const elements = document.elementsFromPoint(window.innerWidth / 2, sampleY)
       const target = elements.find((element) => !navbar?.contains(element))
-      if ((isInsightPage && window.scrollY <= 16) || target?.closest('#home-hero, #pilih-diagnosis')) {
+      if ((isInsightPage && window.scrollY <= 16) || target?.closest('#home-hero')) {
         setNavOnDark(false)
         return
       }
@@ -297,13 +300,13 @@ export default function Navbar() {
           {/* CTA Button */}
           <div className={`pointer-events-auto relative z-10 col-start-3 flex items-center justify-end gap-3 ${scrolled ? "lg:hidden" : ""}`}>
             <LanguageSwitcher />
-            <Link
+            <CtaLink
               href={ctaHref}
               className="hidden h-12 items-center gap-2 rounded-full bg-[#0B2C6B] px-5 text-sm font-semibold text-white shadow-[0_16px_38px_-24px_rgba(11,44,107,0.95)] transition-colors duration-200 hover:bg-[#071A33] xl:flex"
             >
               {ctaLabel}
               <ChevronRight size={12} strokeWidth={2} />
-            </Link>
+            </CtaLink>
 
             {/* Mobile Toggle */}
             <button
@@ -463,14 +466,14 @@ export default function Navbar() {
                 })}
                 <div className="h-px bg-black/[0.05] my-2 mx-4" />
                 <LanguageSwitcher variant="mobile" onNavigate={() => setOpen(false)} />
-                <Link
+                <CtaLink
                   href={ctaHref}
                   onClick={() => setOpen(false)}
                   className="flex w-full items-center justify-center gap-3 rounded-[14px] bg-[#0B2C6B] py-4 text-sm font-semibold text-white shadow-[0_18px_46px_-28px_rgba(11,44,107,0.9)]"
                 >
                   {ctaLabel}
                   <ChevronRight size={18} />
-                </Link>
+                </CtaLink>
               </div>
             </motion.div>
           )}

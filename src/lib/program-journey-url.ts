@@ -1,3 +1,8 @@
+export function diagnosisEntryUrl(locale: 'id' | 'en') {
+  const appOrigin = (process.env.NEXT_PUBLIC_BINAHUB_APP_URL || 'https://app.binahub.id').replace(/\/+$/, '');
+  return appOrigin + (locale === 'en' ? '/diagnose?lang=en' : '/diagnose');
+}
+
 const keys=['utm_source','utm_medium','utm_campaign','utm_content','utm_term','gclid','fbclid','msclkid','bh_journey'];
 export function programJourneyUrl(destination:string,currentUrl:string){
  const current=new URL(currentUrl),target=new URL(destination,current.origin);
