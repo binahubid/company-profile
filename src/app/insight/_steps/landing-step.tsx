@@ -41,7 +41,7 @@ const COPY = {
     heroBody:
       "Kenali kekuatan dan prioritas pengembangan diri, tim, dan organisasi dengan diagnosis BinaInsight.",
     start: "Mulai Diagnosis Tim",
-    choose: "Pilih diagnosis",
+    startDiagnostic: "Mulai Diagnostik",
     preview: "Contoh hasil diagnosis tim",
     stats: ["Individu", "Tim", "Organisasi"],
     productEyebrow: "Product Experience",
@@ -76,7 +76,7 @@ const COPY = {
     heroBody:
       "Use BinaInsight to identify strengths and development priorities for yourself, your team, or your organization.",
     start: "Start Team Diagnosis",
-    choose: "Choose a diagnostic",
+    startDiagnostic: "Start Diagnostic",
     preview: "Sample team report",
     stats: ["Individual", "Team", "Organization"],
     productEyebrow: "Product Experience",
@@ -115,6 +115,7 @@ export function LandingStep() {
   const copy = COPY[locale];
   const en = locale === "en";
   const teamHref = appOrigin + (en ? "/en/insight" : "/insight");
+  const choiceHref = appOrigin + (en ? "/diagnose?lang=en" : "/diagnose");
   const dimensionCopy = locale === "en" ? DIMENSION_COPY_EN : DIMENSION_COPY;
   const [activeDimension, setActiveDimension] = useState(0);
   const activeName = DIMENSIONS[activeDimension];
@@ -153,15 +154,15 @@ export function LandingStep() {
                 {copy.heroBody}
               </p>
               <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 mb-10">
-                <a
-                  href="#pilih-diagnosis"
+                <ProgramJourneyLink
+                  href={choiceHref}
                   className="w-full sm:w-auto group relative inline-flex items-center justify-center min-h-14 px-5 py-3 text-center md:min-h-16 lg:px-10 bg-[#0B2C6B] text-[#D9A441] rounded-full text-[13px] font-bold tracking-widest hover:bg-[#08245A] transition-all overflow-hidden uppercase shadow-xl shadow-[#0B2C6B]/30 border border-[#D9A441]/20"
                 >
                   <span className="relative z-10 flex items-center gap-3">
-                    {copy.choose}
+                    {copy.startDiagnostic}
                     <ArrowRight size={18} aria-hidden="true" className="group-hover:translate-x-1 transition-transform" />
                   </span>
-                </a>
+                </ProgramJourneyLink>
                 <a
                   href="#about-insight"
                   className="rounded-full border border-white/18 px-6 py-4 text-white/72 hover:text-white hover:bg-white/10 text-[11px] font-bold tracking-widest uppercase transition-colors"

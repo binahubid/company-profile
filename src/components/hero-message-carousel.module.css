@@ -40,7 +40,16 @@
 .previous, .next { top: calc(50% + 26px); transform: translateY(-50%); }
 .previous { left: clamp(5px, 1.25vw, 24px); }
 .next { right: clamp(5px, 1.25vw, 24px); }
-.controls .rotation { right: clamp(14px, 3vw, 40px); bottom: 8px; border-color: transparent; background: transparent; }
+.controls .rotation {
+  right: clamp(14px, 3vw, 40px);
+  bottom: 8px;
+  border-color: transparent;
+  background: transparent;
+  opacity: .55;
+  transition: opacity 160ms ease;
+}
+.controls .rotation:is(:hover, :focus-visible) { opacity: 1; }
+@media (prefers-reduced-motion: reduce) { .controls .rotation { transition: none; } }
 @media (max-width: 1023px) {
   .title { font-size: clamp(1.75rem, 4.4vw, 3rem); }
   .description { margin-top: 14px; font-size: 14px; }

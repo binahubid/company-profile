@@ -34,8 +34,10 @@
   min-height: 36px;
   color: #0b2c6b;
   border-radius: 50%;
+  opacity: .55;
+  transition: opacity 160ms ease;
 }
-.toggle:hover { background: #eef3fa; }
+.toggle:is(:hover, :focus-visible) { opacity: 1; }
 .viewport {
   overflow: hidden;
   padding-block: 2px;
@@ -85,5 +87,5 @@
   .track { animation: none; }
   .viewport { overflow-x: auto; mask-image: none; }
   .items[aria-hidden] { display: none; }
-  .logo { transition: none; }
+  .logo, .toggle { transition: none; }
 }

@@ -385,7 +385,7 @@ export function AboutCarouselSection() {
             </button>
           ))}
           {!reducedMotion && (
-            <button type="button" onClick={() => setPaused((current) => !current)} aria-label={paused ? copy.play : copy.pause} className="flex h-11 w-11 items-center justify-center text-white/80 hover:text-white">
+            <button type="button" onClick={() => setPaused((current) => !current)} aria-label={paused ? copy.play : copy.pause} className="flex h-11 w-11 items-center justify-center text-white opacity-55 transition-opacity hover:opacity-100 focus-visible:opacity-100 motion-reduce:transition-none">
               {paused ? <Play size={14} aria-hidden="true" /> : <Pause size={14} aria-hidden="true" />}
             </button>
           )}
