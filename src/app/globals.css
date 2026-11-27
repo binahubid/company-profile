@@ -51,8 +51,15 @@
     color: #4A4C54;
     font-family: var(--font-jakarta-sans, system-ui), 'Segoe UI', Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
-    scrollbar-color: #7c8ca8 #f5f7fa;
-    scrollbar-width: thin;
+  }
+
+  html {
+    scrollbar-color: #6d85ac #eef3fa;
+    scrollbar-width: auto;
+    scrollbar-gutter: stable;
+  }
+  @media (hover: hover) {
+    html { overflow-y: scroll; }
   }
 }
 

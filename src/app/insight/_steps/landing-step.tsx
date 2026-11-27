@@ -6,13 +6,13 @@ import { motion } from "framer-motion";
 import { ArrowRight, Check } from "lucide-react";
 import { DIMENSIONS } from "../questions";
 import { PixelIcon } from "@/components/pixel-icon";
-import { DiagnosticPreview, ReportPreview } from "./landing-preview";
+import { ReportPreview } from "./landing-preview";
+import { ProgramJourneyLink } from "@/components/program-journey-link";
+import { ServicePathCards } from "@/components/service-path-cards";
 import { useLocale } from "@/i18n/use-locale";
 import { useLegalModal } from "@/components/legal";
 
-interface LandingStepProps {
-  onStart: () => void;
-}
+const appOrigin = (process.env.NEXT_PUBLIC_BINAHUB_APP_URL || "https://app.binahub.id").replace(/\/$/, "");
 
 const DIMENSION_COPY: Record<string, string> = {
   Insights: "Menemukan akar masalah performa, bukan sekadar gejala di permukaan.",
@@ -40,11 +40,11 @@ const COPY = {
     heroHighlight: "berbasis data.",
     heroBody:
       "Diagnostik mendalam berbasis data untuk menemukan blind spot performa, membaca kesiapan transformasi, dan menentukan prioritas pengembangan tim.",
-    start: "Mulai Diagnostik",
+    start: "Mulai Diagnosis Tim",
     preview: "Lihat Preview Hasil",
     stats: ["5-7 Menit", "49 Indikator", "7 Area"],
     productEyebrow: "Product Experience",
-    productTitle: "Apa yang akan Anda dapatkan dari",
+    productTitle: "Hasil diagnosis tim dengan",
     productBody:
       "BinaInsight membantu organisasi melihat performa secara lebih jernih: apa yang sudah kuat, apa yang menghambat, dan area mana yang perlu diprioritaskan.",
     benefits: [
@@ -74,11 +74,11 @@ const COPY = {
     heroHighlight: "performance diagnostic.",
     heroBody:
       "A deep data-informed diagnostic to uncover performance blind spots, read transformation readiness, and define team development priorities.",
-    start: "Start Diagnostic",
+    start: "Start Team Diagnosis",
     preview: "View Report Preview",
     stats: ["5-7 Minutes", "49 Indicators", "7 Areas"],
     productEyebrow: "Product Experience",
-    productTitle: "What will you get from",
+    productTitle: "Team diagnosis results from",
     productBody:
       "BinaInsight helps organizations see performance more clearly: what is already strong, what slows progress, and which areas deserve priority.",
     benefits: [
@@ -107,94 +107,59 @@ const COPY = {
 
 type DimensionIconType = "insights" | "lab" | "coach" | "play" | "academy" | "works" | "impact";
 
-export function LandingStep({ onStart }: LandingStepProps) {
+export function LandingStep() {
   const locale = useLocale();
   const { openPrivacyModal, openTermsModal } = useLegalModal();
   const copy = COPY[locale];
+  const en = locale === "en";
+  const teamHref = appOrigin + (en ? "/en/insight" : "/insight");
   const dimensionCopy = locale === "en" ? DIMENSION_COPY_EN : DIMENSION_COPY;
   const [activeDimension, setActiveDimension] = useState(0);
   const activeName = DIMENSIONS[activeDimension];
 
   return (
-    <motion.div
-      key="landing"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0, y: -20, filter: "blur(4px)" }}
-      transition={{ duration: 0.6 }}
-      className="w-full flex flex-col pt-20 md:pt-26"
-    >
-      {/* Hero */}
-      <section className="w-full px-4 mb-12">
-        <div className="relative flex min-h-[620px] w-full items-center justify-center overflow-hidden rounded-[16px] border border-black/[0.03] shadow-[0_24px_78px_-58px_rgba(11,44,107,0.52)] md:h-[78svh] md:rounded-[18px]">
-          <div className="absolute inset-0 w-full h-full">
-            <Image
-              src="/asset/bg-insight.png"
-              alt="Team Collaboration"
-              fill
-              priority
-              sizes="100vw"
-              className="object-cover object-center scale-105 saturate-[0.94] brightness-[1.12]"
-            />
-            <div className="absolute inset-0 bg-[#061A3A]/22 mix-blend-multiply" />
-            <div className="absolute inset-0 bg-gradient-to-r from-[#071A33]/82 via-[#0B2C6B]/38 to-[#0B2C6B]/6" />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/24 via-transparent to-black/5" />
-            <div className="absolute left-[58%] top-[30%] h-56 w-96 bg-[#D9A63A]/8 blur-3xl" />
-          </div>
-
-          <div className="relative z-10 grid w-full items-center justify-items-start gap-8 px-6 py-14 md:grid-cols-[60%_40%] md:px-12 lg:px-14 xl:px-16">
-            <div className="text-left w-full max-w-[980px]">
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/18 text-[11px] uppercase tracking-widest font-medium mb-8 text-white/84 bg-white/12">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#D9A441] animate-pulse" />
-                BinaInsight Diagnostic
-              </div>
-              <h1 className="max-w-4xl text-4xl sm:text-5xl md:text-6xl lg:text-[4.45rem] xl:text-[4.9rem] font-light tracking-tight leading-[1.04] mb-6 text-white">
-                {copy.heroTitle} <br />{" "}
-                <span className="text-[#D9A441] font-light italic">{copy.heroHighlight}</span>
-              </h1>
-              <p className="text-sm sm:text-base md:text-lg text-white/70 max-w-xl mb-10 leading-relaxed">
-                {copy.heroBody}
-              </p>
-              <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 mb-10">
-                <button
-                  onClick={onStart}
-                  className="w-full sm:w-auto group relative inline-flex items-center justify-center h-14 md:h-16 px-10 md:px-12 bg-[#0B2C6B] text-[#D9A441] rounded-full text-[13px] font-bold tracking-widest hover:bg-[#08245A] transition-all overflow-hidden uppercase shadow-xl shadow-[#0B2C6B]/30 border border-[#D9A441]/20"
-                >
-                  <span className="relative z-10 flex items-center gap-3">
-                    {copy.start}
-                    <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
-                  </span>
-                </button>
-                <a
-                  href="#about-insight"
-                  className="rounded-full border border-white/18 px-6 py-4 text-white/72 hover:text-white hover:bg-white/10 text-[11px] font-bold tracking-widest uppercase transition-colors"
-                >
-                  {copy.preview}
-                </a>
-              </div>
-              <div className="flex flex-wrap items-center gap-4 text-white/54 text-[10px] font-medium tracking-[0.2em] uppercase border-t border-white/10 pt-8">
-                <span>{copy.stats[0]}</span>
-                <div className="w-1 h-1 rounded-full bg-white/20" />
-                <span>{copy.stats[1]}</span>
-                <div className="w-1 h-1 rounded-full bg-white/20" />
-                <span>{copy.stats[2]}</span>
-              </div>
-            </div>
-
-            <DiagnosticPreview />
-          </div>
+    <div className="w-full flex flex-col pt-20 md:pt-26">
+      <section id="pilih-diagnosis" aria-labelledby="diagnosis-intro" className="scroll-mt-24 bg-[#f5f7fa] px-5 py-12 md:px-10 md:py-20">
+        <div className="mx-auto max-w-6xl">
+          <h1 id="diagnosis-intro" className="text-4xl font-semibold tracking-tight text-[#0b2c6b] sm:text-5xl">
+            {en ? "BinaHub Diagnostics" : "Diagnosis BinaHub"}
+          </h1>
+          <p className="mb-8 mt-4 max-w-2xl text-base leading-relaxed text-[#405675]">
+            {en ? "Choose a diagnostic to explore your development priorities or understand what your team needs."
+              : "Kenali prioritas pengembangan diri Anda atau petakan kebutuhan pengembangan tim dan organisasi."}
+          </p>
+          <ServicePathCards paths={[
+            {
+              icon: "individual",
+              title: en ? "Individual Self Diagnostic" : "Self Diagnostic Individu",
+              description: en ? "Reflect on how you work and identify areas to develop." : "Pahami cara Anda bekerja dan tentukan area pengembangan diri.",
+              href: appOrigin + "/insight/individual/packages",
+            },
+            {
+              icon: "team",
+              title: en ? "Team / organization diagnosis" : "Diagnosis Tim / Organisasi",
+              description: en ? "Map your team’s current situation and identify development priorities across seven areas."
+                : "Kenali kekuatan dan prioritas pengembangan tim melalui tujuh area penilaian.",
+              href: teamHref,
+              detail: en ? "49 indicators" : "49 indikator",
+            },
+          ]} />
+          <a href="#about-insight" className="mt-4 inline-flex min-h-11 items-center gap-2 text-sm font-semibold text-[#0b2c6b] underline-offset-4 hover:underline">
+            {en ? "See a team report example" : "Lihat contoh laporan diagnosis tim"}
+            <ArrowRight size={16} aria-hidden="true" />
+          </a>
         </div>
       </section>
 
       {/* Why BinaInsight */}
-      <section id="about-insight" className="py-12 md:py-24 px-6 bg-white">
+      <section id="about-insight" className="scroll-mt-24 py-12 md:py-24 px-6 bg-white">
         <div className="max-w-6xl mx-auto grid md:grid-cols-[0.9fr_1.1fr] gap-16 items-center">
           <div>
             <div className="text-[10px] font-bold tracking-[0.3em] text-[#D9A441] uppercase mb-4">
               {copy.productEyebrow}
             </div>
             <h2 className="text-3xl md:text-5xl font-light leading-tight mb-8 text-[#0B2C6B]">
-              {copy.productTitle} <span className="italic">BinaInsight?</span>
+              {copy.productTitle} <span className="italic">BinaInsight</span>
             </h2>
             <p className="text-black/58 text-lg leading-relaxed mb-10 font-light">
               {copy.productBody}
@@ -390,13 +355,11 @@ export function LandingStep({ onStart }: LandingStepProps) {
             </h3>
           </div>
 
-          <button
-            onClick={onStart}
-            className="relative z-10 group flex items-center gap-4 px-8 h-14 bg-white text-[#0B2C6B] rounded-full text-xs font-bold tracking-widest hover:bg-[#D9A441] transition-all shadow-xl"
-          >
+          <ProgramJourneyLink href={teamHref}
+            className="relative z-10 group flex items-center gap-4 px-8 h-14 bg-white text-[#0B2C6B] rounded-full text-xs font-bold hover:bg-[#D9A441] transition-all shadow-xl">
             {copy.start}
-            <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
-          </button>
+            <ArrowRight size={18} aria-hidden="true" className="group-hover:translate-x-1 transition-transform" />
+          </ProgramJourneyLink>
         </div>
         {/* Analytical Insight Disclaimer & Legal Protection */}
         <div className="mt-8 text-center text-xs text-black/45 max-w-2xl mx-auto leading-relaxed">
@@ -445,6 +408,6 @@ export function LandingStep({ onStart }: LandingStepProps) {
           )}
         </div>
       </section>
-    </motion.div>
+    </div>
   );
 }

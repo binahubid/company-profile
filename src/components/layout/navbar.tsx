@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect, useRef, type MouseEvent } from "react"
+import { useState, useEffect, useRef } from "react"
 import Link from "next/link"
 import Image from "next/image"
 import { motion, AnimatePresence } from "framer-motion"
@@ -10,7 +10,6 @@ import { usePathname } from "next/navigation"
 import { getLocaleFromPathname, localizePath, stripLocaleFromPathname } from "@/i18n/config"
 import { layoutCopy, type NavItemKey } from "@/i18n/layout-copy"
 import { LanguageSwitcher } from "./language-switcher"
-import { withInboundJourney } from "@/lib/inbound-journey"
 import styles from "./navbar.module.css"
 
 export default function Navbar() {
@@ -29,23 +28,13 @@ export default function Navbar() {
   const normalizedPathname = stripLocaleFromPathname(pathname || "/")
   const isInsightPage = normalizedPathname === "/insight"
   const isHomePage = normalizedPathname === "/"
-  const assessmentOrigin = (process.env.NEXT_PUBLIC_BINAHUB_APP_URL || "https://app.binahub.id").replace(/\/$/, "")
-  const ctaHref = isInsightPage
-    ? `${assessmentOrigin}/diagnose${locale === "en" ? "?lang=en" : ""}`
-    : localizePath("/rekomendasi-program", locale)
+  const ctaHref = isInsightPage ? "#pilih-diagnosis" : localizePath("/rekomendasi-program", locale)
   const ctaLabel = isInsightPage
-    ? locale === "en" ? "Start Diagnostic" : "Mulai Diagnosis"
+    ? locale === "en" ? "Choose a diagnostic" : "Pilih Diagnosis"
     : locale === "en" ? "Program recommendations" : "Rekomendasi program"
-  const preserveJourneyOnAssessmentStart = isInsightPage
-    ? (event: MouseEvent<HTMLAnchorElement>) => {
-      const trackedHref = withInboundJourney(ctaHref)
-      if (trackedHref === ctaHref) return
-      event.preventDefault()
-      window.location.assign(trackedHref)
-    }
-    : undefined
 
   useEffect(() => {
+    let lastScrollY = window.scrollY
     const parseRgb = (color: string) => {
       const match = color.match(/rgba?\(([^)]+)\)/)
       if (!match) return null
@@ -103,9 +92,18 @@ export default function Navbar() {
     }
 
     const handleScroll = () => {
-      setMobileHidden(false)
+      const y = Math.max(0, window.scrollY)
+      const mobile = window.innerWidth < 1024
+      const movement = y - lastScrollY
+      if (!mobile || y <= 72) setMobileHidden(false)
+      else if (Math.abs(movement) >= 6) setMobileHidden(movement > 0 && y > 154)
+      if (Math.abs(movement) >= 6 || y <= 72) lastScrollY = y
       detectBackgroundTone()
 
+      if (mobile) {
+        setScrolled(y > 72)
+        return
+      }
       const painPoint = document.getElementById("pain-point")
       if (!painPoint) {
         setScrolled(window.scrollY > 240)
@@ -118,7 +116,7 @@ export default function Navbar() {
     }
 
     handleScroll()
-    window.addEventListener("scroll", handleScroll)
+    window.addEventListener("scroll", handleScroll, { passive: true })
     window.addEventListener("resize", handleScroll)
     return () => {
       window.removeEventListener("scroll", handleScroll)
@@ -196,15 +194,17 @@ export default function Navbar() {
     <a href="#main-content" className="public-skip-link">{locale === 'en' ? 'Skip to main content' : 'Lewati ke konten utama'}</a>
     <div
       id="global-navbar"
-      className={`${isHomePage ? styles.homeHeader : ""} fixed inset-x-0 top-0 z-[100] flex justify-center px-4 pointer-events-none transition-all duration-500 md:px-8 ${
-        scrolled ? "py-4 md:py-6 min-[1440px]:py-0" : "py-4 md:py-6"
-      } ${mobileHidden && !open ? "-translate-y-full opacity-0 lg:translate-y-0 lg:opacity-100" : "translate-y-0 opacity-100"}`}
+      data-mobile-hidden={mobileHidden && !open}
+      data-compact={scrolled}
+      className={`${styles.header} ${isHomePage ? styles.homeHeader : ""} fixed inset-x-0 top-0 z-[100] flex justify-center px-4 pointer-events-none md:px-6 xl:px-8 ${
+        scrolled ? "py-3 lg:py-0" : "py-4 lg:py-5"
+      }`}
     >
       <motion.div
         initial={false}
-        animate={{ scale: scrolled ? 0.99 : 1 }}
+        animate={{ scale: 1 }}
         transition={{ duration: reducedMotion ? 0 : 0.58, ease: [0.22, 1, 0.36, 1] }}
-        className={`relative w-full pointer-events-auto transition-all duration-500 ${scrolled ? "max-w-[1720px] min-[1440px]:max-w-4xl" : "max-w-[1720px]"}`}
+        className={`relative w-full transition-all duration-300 ${scrolled ? "max-w-[1720px] lg:max-w-4xl" : "max-w-[1720px]"}`}
         onMouseEnter={cancelDropdownClose}
         onMouseLeave={closeDropdownSoon}
         onFocusCapture={cancelDropdownClose}
@@ -223,12 +223,12 @@ export default function Navbar() {
         }}
       >
         <nav
-          className={`relative grid items-center gap-4 transition-all duration-500 ${
-            scrolled ? "grid-cols-[auto_1fr_auto] min-[1440px]:grid-cols-1 min-[1440px]:justify-items-center" : "grid-cols-[auto_1fr_auto]"
+          className={`relative grid grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-2 transition-all duration-300 xl:gap-4 ${
+            scrolled ? "lg:grid-cols-1 lg:justify-items-center" : ""
           }`}
         >
-          <Link href={localizePath("/", locale)} className={`group relative z-10 flex min-h-11 items-center transition-all duration-500 ${scrolled ? "min-[1440px]:hidden" : "opacity-100"}`}>
-              <div className={`${styles.logo} relative h-12 w-40 transition-transform duration-500 group-hover:-translate-y-0.5 md:h-14 md:w-48 lg:h-14 lg:w-48`}>
+          <Link href={localizePath("/", locale)} className={`${styles.homeLink} pointer-events-auto group relative z-10 flex min-h-11 items-center ${scrolled ? "lg:hidden" : ""}`}>
+              <div className={`${styles.logo} relative h-12 w-40 transition-transform duration-500 group-hover:-translate-y-0.5 lg:h-12 xl:w-48`}>
               <Image
                 src="/media/site/binahub-wordmark.webp"
                 alt="BinaHub Logo"
@@ -241,7 +241,7 @@ export default function Navbar() {
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="relative z-10 hidden justify-center min-[1440px]:flex">
+          <div className="pointer-events-auto relative z-10 hidden min-w-0 justify-center lg:flex">
             <motion.div
               layout
               transition={{ duration: reducedMotion ? 0 : 0.46, ease: [0.22, 1, 0.36, 1] }}
@@ -259,7 +259,7 @@ export default function Navbar() {
                 <Link
                   href={localizePath(link.href, locale)}
                   aria-current={normalizedPathname === link.href ? "page" : undefined}
-                  className={`relative flex min-w-[104px] items-center justify-center gap-2 rounded-full px-4 py-3 text-sm font-semibold transition-colors duration-200 ${
+                  className={`relative flex min-h-11 items-center justify-center gap-1.5 whitespace-nowrap rounded-full px-3 py-2 text-[13px] font-semibold xl:min-w-[96px] xl:px-4 xl:text-sm transition-colors duration-200 ${
                     activeDropdown === link.key || normalizedPathname === link.href
                       ? activeNavLinkClass
                       : inactiveNavLinkClass
@@ -280,7 +280,7 @@ export default function Navbar() {
                       cancelDropdownClose()
                       setActiveDropdown(activeDropdown === link.key ? null : link.key)
                     }}
-                    className="absolute right-1 top-1/2 flex h-11 w-8 -translate-y-1/2 items-center justify-center rounded-full"
+                    className="absolute right-0 top-1/2 flex h-11 w-7 -translate-y-1/2 items-center justify-center rounded-full"
                   >
                     <ChevronDown aria-hidden="true" size={12} strokeWidth={1.8} className={`transition-transform duration-200 ${activeDropdown === link.key ? "rotate-180 text-[#D9A441]" : navOnDark ? "text-white/46" : "text-[#0B2C6B]/42"}`} />
                   </button>
@@ -291,12 +291,11 @@ export default function Navbar() {
           </div>
 
           {/* CTA Button */}
-          <div className={`relative z-10 col-start-3 flex items-center justify-end gap-4 transition-all duration-500 ${scrolled ? "min-[1440px]:hidden" : "opacity-100"}`}>
+          <div className={`pointer-events-auto relative z-10 col-start-3 flex items-center justify-end gap-3 ${scrolled ? "lg:hidden" : ""}`}>
             <LanguageSwitcher />
             <Link
               href={ctaHref}
-              onClick={preserveJourneyOnAssessmentStart}
-              className="hidden h-12 items-center gap-2 rounded-full bg-[#0B2C6B] px-5 text-sm font-semibold text-white shadow-[0_16px_38px_-24px_rgba(11,44,107,0.95)] transition-colors duration-200 hover:bg-[#071A33] min-[1440px]:flex"
+              className="hidden h-12 items-center gap-2 rounded-full bg-[#0B2C6B] px-5 text-sm font-semibold text-white shadow-[0_16px_38px_-24px_rgba(11,44,107,0.95)] transition-colors duration-200 hover:bg-[#071A33] xl:flex"
             >
               {ctaLabel}
               <ChevronRight size={12} strokeWidth={2} />
@@ -310,7 +309,7 @@ export default function Navbar() {
               aria-expanded={open}
               aria-controls="mobile-navigation"
               onClick={() => setOpen((current) => !current)}
-              className={`${styles.toggle} flex h-12 w-12 items-center justify-center rounded-full border shadow-[0_16px_38px_-28px_rgba(11,44,107,0.5)] backdrop-blur-md transition-colors min-[1440px]:hidden ${
+              className={`${styles.toggle} flex h-12 w-12 items-center justify-center rounded-full border shadow-[0_16px_38px_-28px_rgba(11,44,107,0.5)] backdrop-blur-md transition-colors lg:hidden ${
                 navOnDark
                   ? "border-white/20 bg-[#071A33]/42 text-white hover:bg-[#071A33]/62"
                   : "border-white/52 bg-white/90 text-[#0B2C6B] hover:bg-white"
@@ -332,7 +331,7 @@ export default function Navbar() {
               transition={{ duration: reducedMotion ? 0 : 0.24, ease: [0.22, 1, 0.36, 1] }}
               onMouseEnter={cancelDropdownClose}
               onMouseLeave={closeDropdownSoon}
-              className="absolute left-0 right-0 top-full hidden pt-3 min-[1440px]:block"
+              className="pointer-events-auto absolute left-0 right-0 top-full hidden pt-3 lg:block"
             >
               <div className="relative overflow-hidden rounded-[14px] border border-white/10 bg-[#070A10]/96 shadow-[0_28px_76px_-44px_rgba(0,0,0,0.68)]">
                 <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_18%_0%,rgba(217,164,65,0.12),transparent_28%),linear-gradient(90deg,rgba(255,255,255,0.04),transparent_42%)]" />
@@ -369,7 +368,7 @@ export default function Navbar() {
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: 10, scale: 0.95 }}
               transition={{ duration: reducedMotion ? 0 : 0.2 }}
-              className="absolute left-3 right-3 top-full mt-3 max-h-[76vh] overflow-y-auto rounded-[18px] border border-white/35 bg-[#F8FAFC]/96 p-3 shadow-[0_24px_72px_-48px_rgba(11,44,107,0.42)] backdrop-blur-md sm:left-4 sm:right-4 sm:p-4 min-[1440px]:hidden"
+              className="pointer-events-auto absolute left-0 right-0 top-full mt-3 max-h-[calc(100dvh-88px)] overflow-y-auto rounded-[18px] border border-white/35 bg-[#F8FAFC]/96 p-3 shadow-[0_24px_72px_-48px_rgba(11,44,107,0.42)] backdrop-blur-md sm:left-auto sm:w-[min(420px,100%)] sm:p-4 lg:hidden"
             >
               <div className="pointer-events-none absolute inset-0 rounded-[inherit] bg-[radial-gradient(circle_at_80%_0%,rgba(217,164,65,0.16),transparent_28%),linear-gradient(135deg,rgba(255,255,255,0.86),rgba(255,255,255,0.34))]" />
               <div className="relative z-10 mb-3 flex items-center justify-between border-b border-[#0B2C6B]/8 px-3 pb-3">

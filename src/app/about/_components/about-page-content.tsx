@@ -9,6 +9,7 @@ import { localizePath } from "@/i18n/config"
 import { useLocale } from "@/i18n/use-locale"
 import { Tag } from "@/components/ui/tag"
 import { CoreValuesSection } from "@/components/core-values-section"
+import { PARTNER_LOGOS } from "@/lib/partner-logos"
 
 const MISI_PILLARS = [
   {
@@ -56,39 +57,6 @@ const MISSION_TEXTURES = [
   "bg-[linear-gradient(130deg,transparent_0%,transparent_44%,rgba(255,255,255,0.32)_45%,transparent_46%),repeating-linear-gradient(0deg,rgba(255,255,255,0.15)_0_1px,transparent_1px_20px)]",
   "bg-[radial-gradient(circle_at_78%_28%,rgba(255,255,255,0.3),transparent_18%),repeating-linear-gradient(45deg,rgba(255,255,255,0.18)_0_1px,transparent_1px_14px)]",
   "bg-[radial-gradient(circle_at_35%_30%,rgba(255,255,255,0.3),transparent_18%),repeating-linear-gradient(120deg,rgba(255,255,255,0.16)_0_1px,transparent_1px_16px)]",
-];
-
-const PARTNER_LOGOS: { name: string; src: string; className?: string }[] = [
-  { name: "Acer", src: "/partner/acer.png", className: "scale-90" },
-  { name: "Astra Honda Motor", src: "/partner/AHM.svg", className: "scale-[2.25]" },
-  { name: "AirNav Indonesia", src: "/partner/airnav.webp", className: "scale-150" },
-  { name: "Aldena", src: "/partner/Aldena.png" },
-  { name: "Alkagra", src: "/partner/alkagra.png", className: "scale-90" },
-  { name: "Bata", src: "/partner/bata.webp", className: "scale-90" },
-  { name: "Castrol", src: "/partner/castrol.png" },
-  { name: "Chandra Asri", src: "/partner/chandraasri.png", className: "scale-110" },
-  { name: "Ciputra", src: "/partner/ciputra.png", className: "scale-110" },
-  { name: "Dattabot", src: "/partner/dattabot.png" },
-  { name: "DDI", src: "/partner/ddi.png" },
-  { name: "Holcim", src: "/partner/holcim.png", className: "scale-110" },
-  { name: "IBCSD", src: "/partner/ibcsd.png", className: "scale-110" },
-  { name: "Indosat", src: "/partner/indosat.png", className: "scale-125" },
-  { name: "Kompas Gramedia", src: "/partner/kompas-gramedia.svg", className: "scale-110" },
-  { name: "Kiroyan", src: "/partner/kiroyan.png" },
-  { name: "MS Coal", src: "/partner/mscoal.png", className: "scale-90" },
-  { name: "PTC", src: "/partner/ptc.webp", className: "scale-110" },
-  { name: "Prowell Energy", src: "/partner/prowellenergy.png" },
-  { name: "Safran", src: "/partner/safran.svg" },
-  { name: "Sampoerna", src: "/partner/sampurna.png", className: "scale-125" },
-  { name: "Sarana Jaya", src: "/partner/saranajaya.webp", className: "scale-110" },
-  { name: "Siap Siaga", src: "/partner/siapsiaga.png" },
-  { name: "Sqiva", src: "/partner/Sqiva.png", className: "scale-90" },
-  { name: "Swisscontact", src: "/partner/swisscontact.png" },
-  { name: "Syngenta", src: "/partner/syngenta.png", className: "scale-90" },
-  { name: "Telin", src: "/partner/Telin.png" },
-  { name: "Telkom Infra", src: "/partner/Telkomimetra.png", className: "scale-110" },
-  { name: "Transcorp", src: "/partner/transcorp.svg" },
-  { name: "Umira", src: "/partner/umira.png" },
 ];
 
 const ABOUT_COPY = {

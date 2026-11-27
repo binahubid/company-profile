@@ -1,11 +1,10 @@
 "use client";
 
 import Image from "next/image";
-import {ArrowDown} from 'lucide-react';
-import {useLocale} from '@/i18n/use-locale';
 import { useState, useSyncExternalStore } from 'react';
 import { HeroMessageCarousel } from '@/components/hero-message-carousel';
 import { ProgramHeroVisual } from '@/components/program-hero-visual';
+import { PartnerLogoRail } from './partner-logo-rail';
 import heroStyles from '@/components/program-hero-visual.module.css';
 
 const MOBILE_HERO_QUERY = '(max-width: 767px)';
@@ -213,15 +212,14 @@ export function HeroSection() {
   const [heroPlaying,setHeroPlaying]=useState(true);
   const mobile = useSyncExternalStore(subscribeMobileHero, mobileHeroSnapshot, serverHeroSnapshot);
   const messageIndex = mobile ? Number(activeSlide === 3) : activeSlide % 2;
-  const en=useLocale()==='en';
   return (
-    <section id="home-hero" data-hero-slide={messageIndex===0?'recommendation':'brand'} className="relative z-0 -mt-24 w-full overflow-x-hidden bg-white">
-      <div className={`${heroStyles.heroFrame} relative min-h-[calc(100svh+6rem)] overflow-hidden bg-white text-[#071A33]`}>
+    <section id="home-hero" data-hero-slide={messageIndex===0?'recommendation':'brand'} className="relative z-0 w-full overflow-x-clip bg-white">
+      <div className={`${heroStyles.heroFrame} relative bg-white text-[#071A33]`}>
         {messageIndex === 1 && <HeroImageBackground />}
         <div className={heroStyles.recommendationBackdrop} data-active={messageIndex===0} aria-hidden="true"/>
 
-        <div className={`${heroStyles.heroContent} relative z-10 flex min-h-[calc(100svh+6rem)] flex-col items-center justify-start px-6 pb-20 pt-[8.25rem] text-center md:pt-[14.75rem] lg:items-start lg:px-20 lg:text-left xl:px-28`}>
-          <div className={`${heroStyles.heroComposition} grid w-full max-w-[1580px] items-center gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.9fr)] lg:gap-10 xl:gap-12`}>
+        <div className={`${heroStyles.heroContent} relative z-10 text-center lg:text-left`}>
+          <div className={`${heroStyles.heroComposition} grid w-full max-w-[1580px] items-center lg:grid-cols-[minmax(0,1fr)_minmax(0,0.9fr)]`}>
             <div className={`${heroStyles.heroCopyColumn} order-1 z-10 flex min-w-0 w-full max-w-[780px] flex-col items-center lg:items-start`}>
               <HeroMessageCarousel active={activeSlide} mobile={mobile} playing={heroPlaying} onPlayingChange={setHeroPlaying} onActiveChange={setActiveSlide} onMotionStateChange={setMotionPlaying}/>
             </div>
@@ -243,8 +241,8 @@ export function HeroSection() {
               </div>
             </div>
           </div>
-          <a className={heroStyles.scrollCue} href="#platform" aria-label={en?'Scroll to the next section':'Scroll ke bagian berikutnya'}><ArrowDown size={16} aria-hidden="true"/><span>Scroll</span></a>
         </div>
+        <PartnerLogoRail />
       </div>
     </section>
   );

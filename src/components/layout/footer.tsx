@@ -34,19 +34,19 @@ const SOCIAL_LINKS = [
 
 function FooterContent({ year, locale }: { year: number; locale: Locale }) {
   const copy = layoutCopy[locale].footer;
+  const companyProfileDownload = (
+    <div className="mb-3 text-center md:text-left">
+      <a href="/company-profile-binahub.pdf" download
+        className="inline-flex min-h-11 items-center gap-2 text-sm font-semibold text-[#0b2c6b] underline-offset-4 hover:underline">
+        <Download size={16} aria-hidden="true" />
+        {locale === "en" ? "Download Company Profile (PDF)" : "Unduh Company Profile (PDF)"}
+      </a>
+    </div>
+  );
 
   return (
     <>
-      <div className="mb-5 border-b border-[#0B2C6B]/10 pb-3 text-center md:text-left">
-          <a
-            href="/company-profile-binahub.pdf"
-            download
-            className="inline-flex min-h-11 items-center gap-2 text-sm font-semibold text-[#0B2C6B] underline-offset-4 hover:underline"
-          >
-            <Download size={16} aria-hidden="true" />
-            {locale === "en" ? "Download Company Profile (PDF)" : "Unduh Company Profile (PDF)"}
-          </a>
-      </div>
+
       <div className="md:hidden">
         <div className="mb-8">
           <Link href={localizePath("/", locale)} className="group mb-7 inline-block">
@@ -104,6 +104,7 @@ function FooterContent({ year, locale }: { year: number; locale: Locale }) {
           </div>
         </div>
 
+        {companyProfileDownload}
         <div className="flex flex-col items-center justify-between gap-4 border-t border-black/[0.09] pt-6">
           <div className="flex flex-wrap items-center justify-center gap-2 text-center text-xs text-[#52617A]">
             &copy; {year}{" "}
@@ -240,6 +241,7 @@ function FooterContent({ year, locale }: { year: number; locale: Locale }) {
           </div>
         </div>
 
+        {companyProfileDownload}
         <div className="flex flex-col items-center justify-between gap-6 border-t border-black/[0.09] pt-10 md:flex-row">
           <div className="flex items-center gap-2 text-xs text-[#52617A]">
             &copy; {year}{" "}

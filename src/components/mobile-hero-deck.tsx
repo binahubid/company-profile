@@ -12,7 +12,7 @@ export function MobileHeroDeck({active,onSelect}:{active:number;onSelect:(index:
   {tone:'needs',title:en?'Your needs':'Kebutuhan',description:en?'Team challenges and intended outcomes.':'Tantangan dan tujuan tim Anda.'},
   {tone:'competencies',title:en?'Competencies':'Kompetensi',description:en?'A relevant development focus.':'Fokus pengembangan yang relevan.'},
   {tone:'program',title:en?'Your program':'Program',description:en?'Options to explore with BinaHub.':'Pilihan untuk dibahas bersama.'},
-  {tone:'brand',title:en?'About BinaHub':'Tentang BinaHub',description:'People. Learning. Elevated.'},
+  {tone:'brand',title:en?'Diagnostics':'Diagnosis',description:en?'Individuals, teams and organizations.':'Individu, tim, dan organisasi.'},
  ] as const;
  return <div className={styles.deck} data-mobile-hero-deck data-active-card={active} data-brand-active={active===3} aria-hidden="true"
   onPointerDown={event=>{if(event.isPrimary)pointer.current={id:event.pointerId,x:event.clientX,y:event.clientY};}}

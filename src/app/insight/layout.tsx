@@ -1,14 +1,14 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Diagnosa Performa",
+  title: "Diagnosis Individu, Tim dan Organisasi",
   description:
-    "Mulai perjalanan transformasi Anda dengan diagnosa mandiri BinaInsight, pahami diri dan organisasi untuk bertumbuh lebih cerdas dan terarah.",
+    "Pilih Self Diagnostic Individu atau diagnosis tim dan organisasi untuk mengenali prioritas pengembangan bersama BinaHub.",
   alternates: { canonical: "/insight" },
   openGraph: {
-    title: "Diagnosa Performa | BinaHub",
+    title: "Diagnosis Individu, Tim dan Organisasi | BinaHub",
     description:
-      "Diagnosa mandiri BinaInsight untuk memahami diri dan organisasi sebelum memulai transformasi.",
+      "Temukan jalur diagnosis yang tepat untuk kebutuhan pengembangan diri atau tim Anda.",
     url: "/insight",
     locale: "id_ID",
   },

@@ -4,6 +4,7 @@ import {ArrowDown, ArrowRight, Check, ChevronDown, FileText, MessagesSquare} fro
 import {localizePath, type Locale} from '@/i18n/config';
 import {ProgramJourneyLink} from './program-journey-link';
 import {ProgramRecommendationDemo} from './program-recommendation-demo';
+import { ServicePathCards, type ServicePath } from './service-path-cards';
 import palette from '@/styles/program-palette.module.css';
 import styles from './program-recommendation.module.css';
 
@@ -24,16 +25,33 @@ export function ProgramRecommendationLanding({locale}: {locale: Locale}) {
     ['Pelajari rekomendasinya', 'Tinjau ringkasan kebutuhan, fokus pengembangan, dan pilihan program yang relevan.'],
     ['Bahas langkah berikutnya', 'Selaraskan ruang lingkup, kebutuhan pelaksanaan, dan investasi bersama tim BinaHub.'],
   ];
-  const paths = en ? [
-    ['Team / organization diagnosis', 'Map your team’s current conditions and development needs.', app + '/en/insight'],
-    ['Individual Self Diagnostic', 'Explore your own development needs.', app + '/insight/individual/packages'],
-    ['Program catalog', 'Browse BinaHub’s development solutions.', localizePath('/pricing', locale)],
-    ['Inquiry / consultation', 'Discuss your questions with the BinaHub team.', localizePath('/contact', locale)],
-  ] : [
-    ['Diagnosis tim / organisasi', 'Petakan kondisi dan kebutuhan pengembangan tim.', app + '/insight'],
-    ['Self Diagnostic individu', 'Kenali kebutuhan pengembangan diri Anda.', app + '/insight/individual/packages'],
-    ['Katalog program', 'Jelajahi solusi pengembangan BinaHub.', localizePath('/pricing', locale)],
-    ['Inquiry / konsultasi', 'Diskusikan pertanyaan Anda bersama tim BinaHub.', localizePath('/contact', locale)],
+  const diagnosis: ServicePath[] = [
+    {
+      icon: 'team',
+      title: en ? 'Team / organization diagnosis' : 'Diagnosis Tim / Organisasi',
+      description: en ? 'Map your team’s current situation and development needs.' : 'Petakan kondisi dan prioritas pengembangan tim.',
+      href: app + (en ? '/en/insight' : '/insight'),
+    },
+    {
+      icon: 'individual',
+      title: en ? 'Individual Self Diagnostic' : 'Self Diagnostic Individu',
+      description: en ? 'Identify your own development priorities.' : 'Kenali kebutuhan pengembangan diri Anda.',
+      href: app + '/insight/individual/packages',
+    },
+  ];
+  const alternatives: ServicePath[] = [
+    {
+      icon: 'catalog',
+      title: en ? 'Explore programs' : 'Jelajahi Program',
+      description: en ? 'Compare programs by topic, learning goals and format.' : 'Bandingkan program berdasarkan topik, sasaran pembelajaran, dan format.',
+      href: localizePath('/pricing', locale),
+    },
+    {
+      icon: 'inquiry',
+      title: en ? 'Send an inquiry' : 'Inquiry / Konsultasi',
+      description: en ? 'Tell the BinaHub team about a specific need or ask about delivery.' : 'Sampaikan kebutuhan khusus atau tanyakan pelaksanaan program ke tim BinaHub.',
+      href: localizePath('/contact', locale),
+    },
   ];
   const benefits = en ? [
     ['A shared understanding', 'Your challenges and intended outcomes, brought together in a readable summary.'],
@@ -126,11 +144,15 @@ export function ProgramRecommendationLanding({locale}: {locale: Locale}) {
       </div>
     </section>
 
-    <section className={styles.container + ' ' + styles.otherPaths} aria-labelledby="other-paths-heading">
-      <h2 id="other-paths-heading">{en ? 'A different starting point?' : 'Ingin memulai dari jalur lain?'}</h2>
-      <div className={styles.paths}>{paths.map(([title, text, href]) => <ProgramJourneyLink key={title} href={href} className={styles.path}>
-        <div><h3>{title}</h3><p>{text}</p></div><ArrowRight size={18} aria-hidden="true"/>
-      </ProgramJourneyLink>)}</div>
-    </section>
+    <div className={styles.container + ' ' + styles.otherPaths}>
+      <section aria-labelledby="diagnosis-paths-heading">
+        <h2 id="diagnosis-paths-heading">{en ? 'Start with a diagnostic' : 'Mulai dari diagnosis'}</h2>
+        <ServicePathCards paths={diagnosis} />
+      </section>
+      <section aria-labelledby="other-paths-heading">
+        <h2 id="other-paths-heading">{en ? 'Explore programs or contact us' : 'Jelajahi program atau hubungi kami'}</h2>
+        <ServicePathCards paths={alternatives} />
+      </section>
+    </div>
   </div>;
 }

@@ -3,18 +3,18 @@ import type { Locale } from "@/i18n/config";
 
 const COPY = {
   id: {
-    title: "Diagnosa Performa",
+    title: "Diagnosis Individu, Tim dan Organisasi",
     description:
-      "Mulai perjalanan transformasi Anda dengan diagnosa mandiri BinaInsight, pahami diri dan organisasi untuk bertumbuh lebih cerdas dan terarah.",
+      "Pilih Self Diagnostic Individu atau diagnosis tim dan organisasi untuk mengenali prioritas pengembangan bersama BinaHub.",
     ogDescription:
-      "Diagnosa mandiri BinaInsight untuk memahami diri dan organisasi sebelum memulai transformasi.",
+      "Temukan jalur diagnosis yang tepat untuk kebutuhan pengembangan diri atau tim Anda.",
   },
   en: {
-    title: "Performance Diagnostic",
+    title: "Individual, Team and Organization Diagnostics",
     description:
-      "Start your transformation journey with BinaInsight self-diagnostic, understand yourself and your organization to grow smarter and more focused.",
+      "Choose the Individual Self Diagnostic or team and organization diagnosis to identify development priorities with BinaHub.",
     ogDescription:
-      "BinaInsight self-diagnostic to understand yourself and your organization before starting transformation.",
+      "Find the right diagnostic for your own development or your team’s needs.",
   },
 };
 

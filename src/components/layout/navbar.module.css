@@ -6,10 +6,32 @@
 }
 .services [data-submenu-description] { color: #bec9dd; }
 .services a:focus-visible { outline: 2px solid #d9a441; outline-offset: -4px; }
-@media (max-width: 1439px) {
+@media (max-width: 1023px) {
   .services [data-submenu-description] { color: #405675; }
   .services [data-submenu-title] { font-size: 13px; color: #0b2c6b; }
   .services a { min-height: 44px; }
+}
+.header {
+  transition: transform .24s ease, opacity .22s ease, visibility .24s ease;
+}
+.homeLink {
+  transition: transform .22s ease, opacity .2s ease, visibility .22s ease;
+}
+@media (max-width: 1023px) {
+  .header[data-compact="true"] .homeLink {
+    visibility: hidden;
+    pointer-events: none;
+    opacity: 0;
+    transform: translateY(-7px);
+  }
+  .header[data-mobile-hidden="true"]:not(:focus-within) {
+    visibility: hidden;
+    opacity: 0;
+    transform: translateY(-110%);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .header, .homeLink { transition: none; }
 }
 @media (max-width: 767px) {
   .homeHeader { padding-inline: 20px; }

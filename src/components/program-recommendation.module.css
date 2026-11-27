@@ -111,13 +111,8 @@
 .closing .primary:hover { background: var(--program-champagne); }
 .closing .primary:focus-visible { outline-color: var(--program-white); }
 .otherPaths { padding-block: var(--space-section); }
-.otherPaths > h2 { font-size: 1.25rem; margin-bottom: 28px; }
-.paths { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 64px; }
-.path { border-top: 1px solid var(--program-line); padding-block: 20px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
-.path h3 { font-size: .85rem; }
-.path p { margin-top: 6px; font-size: .8rem; }
-.path > svg { flex-shrink: 0; }
-.path:hover h3 { text-decoration: underline; text-underline-offset: 4px; }
+.otherPaths > section + section { margin-top: clamp(32px, 6vw, 68px); }
+.otherPaths h2 { color: #0b2c6b; font-size: clamp(1.2rem, 2.5vw, 1.65rem); font-weight: 600; margin-bottom: 16px; }
 @media (min-width: 768px) and (max-width: 1099px) {
   .container { width: calc(100% - 64px); }
   .demoContent { padding: 26px; }
@@ -130,7 +125,7 @@
 @media (max-width: 767px) {
   .container { width: calc(100% - 40px); }
   .hero { padding-top: 112px; }
-  .sectionIntro, .reportGrid, .questions, .closing, .paths { grid-template-columns: minmax(0, 1fr); gap: 24px; }
+  .sectionIntro, .reportGrid, .questions, .closing { grid-template-columns: minmax(0, 1fr); gap: 24px; }
   .page h1 { max-width: 20ch; font-size: clamp(2.1rem, 7.8vw, 3rem); }
   .lead { font-size: .95rem; max-width: 45ch; }
   .note { margin-top: 12px; font-size: .75rem; }
@@ -160,7 +155,6 @@
   .closing { padding: 32px 24px; gap: 28px; }
   .closing::after { background: linear-gradient(90deg, #071a33e6, #10234bc4); }
   .closing .primary { justify-self: start; }
-  .paths { gap: 0; }
 }
 @media (max-width: 359px) {
   .container { width: calc(100% - 32px); }

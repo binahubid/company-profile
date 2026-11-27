@@ -31,7 +31,7 @@ export function LanguageSwitcher({ variant = "desktop", onNavigate }: LanguageSw
       className={
         isMobile
           ? "flex w-full items-center justify-between gap-3 rounded-[14px] border border-[#0B2C6B]/8 bg-[#0B2C6B] px-3 py-3"
-          : "hidden h-12 items-center gap-1 rounded-full border border-white/24 bg-[#0B2C6B] px-1 shadow-[0_16px_38px_-28px_rgba(11,44,107,0.42)] backdrop-blur-xl min-[1440px]:flex"
+          : "hidden h-12 items-center gap-1 rounded-full border border-white/24 bg-[#0B2C6B] px-1 shadow-[0_16px_38px_-28px_rgba(11,44,107,0.42)] backdrop-blur-xl lg:flex"
       }
       role="group"
       aria-label={activeLocale === "en" ? "Language selector" : "Pilihan bahasa"}
