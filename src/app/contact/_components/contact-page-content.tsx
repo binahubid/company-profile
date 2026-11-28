@@ -8,6 +8,8 @@ import { useLegalModal } from "@/components/legal";
 import { appApiUrl } from "@/lib/public-api";
 import { readPageAttribution } from "@/lib/attribution";
 import { readInboundJourneyId } from "@/lib/inbound-journey";
+import { ReferralField } from "@/components/referral-field";
+import { ensureReferralCapture } from "@/lib/referral-client";
 
 const COPY = {
   id: {
@@ -152,6 +154,7 @@ export default function ContactPage() {
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [serverMessage, setServerMessage] = useState("");
   const [openFaq, setOpenFaq] = useState(0);
+  const [referralConsentCode, setReferralConsentCode] = useState<string>();
 
   useEffect(() => {
     let cancelled = false;
@@ -208,13 +211,16 @@ export default function ContactPage() {
         ?.split(",")
         .map((value) => value.trim())
         .filter(Boolean) || [];
+      await ensureReferralCapture();
       const response = await fetch(appApiUrl("/api/contact"), {
+        credentials: "include",
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           ...formData,
           moduleCodes,
           journeyId: readInboundJourneyId(),
+          referralConsentCode,
           attribution: readPageAttribution(window.location.href, document.referrer),
           locale,
         }),
@@ -224,6 +230,7 @@ export default function ContactPage() {
 
       if (response.ok && data.success) {
         setStatus("success");
+        setReferralConsentCode(undefined);
         setServerMessage(data.message || copy.successFallback);
         setFormData({ name: "", company: "", role: "", email: "", whatsapp: "", message: "" });
       } else {
@@ -521,6 +528,9 @@ export default function ContactPage() {
                     </div>
 
                     
+                    <ReferralField locale={locale} consentCode={referralConsentCode}
+                      onConsent={setReferralConsentCode} disabled={status === "loading"} booking />
+
                     {/* Legal consent note */}
                     <div className="text-sm leading-relaxed text-[#52617A] bg-black/[0.02] border border-black/[0.05] p-3.5 rounded-xl">
                       {locale === "en" ? (

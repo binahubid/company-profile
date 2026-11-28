@@ -54,6 +54,7 @@ export const metadata: Metadata = {
   },
 };
 
+import { ReferralTracker } from "@/components/referral-tracker";
 import { LegalModalProvider, LegalModal } from "@/components/legal";
 
 export default function RootLayout({
@@ -76,6 +77,7 @@ export default function RootLayout({
         <LegalModalProvider>
           <Suspense fallback={null}>
             <InboundJourneyTracker />
+            <ReferralTracker />
           </Suspense>
           <Navbar />
           <main id="main-content" tabIndex={-1} className="flex-grow flex flex-col">{children}</main>
